@@ -10,7 +10,6 @@
       v-if="shouldShowNavbar"
       @toggle-sidebar="toggleSidebar"
     />
-
     <div
       class="sidebar-mask"
       @click="toggleSidebar(false)"
@@ -28,17 +27,6 @@
       </template>
     </Sidebar>
 
-    <SidebarRight
-      :items="sidebarItems"
-      @toggle-sidebar="toggleSidebar"
-    >
-      <template #top>
-        <slot name="sidebar-top" />
-      </template>
-      <template #bottom>
-        <slot name="sidebar-bottom" />
-      </template>
-    </SidebarRight>
 
     <Home v-if="$page.frontmatter.home" />
 
@@ -53,6 +41,20 @@
         <slot name="page-bottom" />
       </template>
     </Page>
+
+     <SidebarRight
+      :items="sidebarItems"
+      @toggle-sidebar="toggleSidebar"
+    >
+      <template #top>
+        <slot name="sidebar-top" />
+      </template>
+      <template #bottom>
+        <slot name="sidebar-bottom" />
+      </template>
+    </SidebarRight>
+    
+    
   </div>
 </template>
 

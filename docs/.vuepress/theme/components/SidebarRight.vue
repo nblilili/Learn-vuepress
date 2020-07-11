@@ -1,29 +1,58 @@
 <template>
   <aside class="sidebar-right">
-  
-    <slot name="top" />
 
-    <SidebarLinks
-      :depth="0"
-      :items="items"
-    />
+    <NavLinks />
+
+    <slot name="top" />
+    
     <slot name="bottom" />
   </aside>
 </template>
 
 <script>
 import SidebarLinks from '@theme/components/SidebarLinks.vue'
+import NavLinks from '@theme/components/NavLinks.vue'
 
 export default {
   name: 'SidebarRight',
 
-  components: { SidebarLinks },
+  components: { SidebarLinks, NavLinks },
 
-  props: ['items']
+  props: ['items'],
+
+  data() {
+    return {
+      selected: null,
+      options: [
+        { value: null, text: '菊风云平台' },
+        { value: 'one-2-one', text: '一对一语音通话' },
+        { value: 'b', text: ' 一对一视频通话' },
+        { value: 'c', text: 'This is an option with object value' },
+        { value: 'd', text: 'This one is disabled'}
+      ]
+    }
+  },
+  methods: {
+    handleOpen(key, keyPath) {
+      console.log(key, keyPath);
+    },
+    handleClose(key, keyPath) {
+      console.log(key, keyPath);
+    }
+  }
 }
 </script>
 
 <style lang="stylus">
+.el-dropdown-link 
+    cursor: pointer
+    color: #008AFF
+    font-size: 12px
+  
+
+.el-icon-arrow-down 
+    font-size: 12px
+
 .sidebar-right
   ul
     padding 0
@@ -59,4 +88,15 @@ export default {
         top calc(1rem - 2px)
     & > .sidebar-links
       padding 1rem 0
+
+.left-nav 
+  margin-top: 9px;
+  padding: 18px;
+
+
+.left-title
+  margin: 20px 0;
+  cursor: pointer;
+  position: relative;
+
 </style>
