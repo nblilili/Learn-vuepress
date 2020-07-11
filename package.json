@@ -20,5 +20,10 @@
   "homepage": "https://github.com/nblilili/Learn-vuepress#readme",
   "devDependencies": {
     "vuepress": "^1.5.2"
+  },
+  "dependencies": {
+    "bootstrap": "^4.5.0",
+    "bootstrap-vue": "^2.15.0",
+    "vue": "^2.6.11"
   }
 }
