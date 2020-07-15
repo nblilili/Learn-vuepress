@@ -1,13 +1,17 @@
 {
   "name": "learn-vuepress",
   "version": "1.0.0",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "docs:dev": "vuepress dev docs",
     "docs:build": "vuepress build docs"
   },
-  "repository": "git+https://github.com/nblilili/Learn-vuepress.git",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nblilili/Learn-vuepress.git"
+  },
   "author": "nblilili",
   "license": "ISC",
   "bugs": {
@@ -15,21 +19,13 @@
   },
   "homepage": "https://github.com/nblilili/Learn-vuepress#readme",
   "devDependencies": {
-    "vuepress": "^1.5.2",
-    "vuepress-plugin-table-of-contents": "^1.1.6",
-    "vuepress-theme-reco": "^1.5.3"
+    "vuepress": "^1.5.2"
   },
   "dependencies": {
     "bootstrap": "^4.5.0",
     "bootstrap-vue": "^2.15.0",
-    "core-js": "^2.6.11",
     "element-ui": "^2.13.2",
     "layui-src": "^2.5.5",
     "vue": "^2.6.11"
-  },
-  "directories": {
-    "doc": "docs"
-  },
-  "keywords": [],
-  "description": ""
+  }
 }

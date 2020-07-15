@@ -1,6 +1,7 @@
 <template>
-  <aside class="sidebar-right">
-  
+  <aside class="sidebar">
+    <NavLinks />
+
     <slot name="top" />
 
     <SidebarLinks
@@ -13,18 +14,19 @@
 
 <script>
 import SidebarLinks from '@theme/components/SidebarLinks.vue'
+import NavLinks from '@theme/components/NavLinks.vue'
 
 export default {
-  name: 'SidebarRight',
+  name: 'Sidebar',
 
-  components: { SidebarLinks },
+  components: { SidebarLinks, NavLinks },
 
   props: ['items']
 }
 </script>
 
 <style lang="stylus">
-.sidebar-right
+.sidebar
   ul
     padding 0
     margin 0
@@ -52,7 +54,7 @@ export default {
       margin-top .75rem
 
 @media (max-width: $MQMobile)
-  .sidebar-right
+  .sidebar
     .nav-links
       display block
       .dropdown-wrapper .nav-dropdown .dropdown-item a.router-link-active::after

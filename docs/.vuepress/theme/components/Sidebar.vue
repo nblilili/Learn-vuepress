@@ -1,9 +1,18 @@
 <template>
   <aside class="sidebar">
-
     <NavLinks />
 
     <slot name="top" />
+    <div>
+      <b-form-select v-model = "selected"  :options="options"></b-form-select>
+    </div>
+
+    <!-- links -->
+    <div class="left-nav">
+      <div class="left-title left-title_1 active" v-for="link in links">
+        <a href="">{{ link.name }}</a>
+      </div>
+    </div>
     
     <slot name="bottom" />
   </aside>
@@ -21,38 +30,30 @@ export default {
   props: ['items'],
 
   data() {
-    return {
-      selected: null,
-      options: [
-        { value: null, text: '菊风云平台' },
-        { value: 'one-2-one', text: '一对一语音通话' },
-        { value: 'b', text: ' 一对一视频通话' },
-        { value: 'c', text: 'This is an option with object value' },
-        { value: 'd', text: 'This one is disabled'}
-      ]
+      return {
+        selected: null,
+        options: [
+          { value: null, text: '菊风云平台' },
+          { value: 'one-2-one', text: '一对一语音通话' },
+          { value: 'b', text: ' 一对一视频通话' },
+          { value: 'c', text: 'This is an option with object value' },
+          { value: 'd', text: 'This one is disabled'}
+        ],
+        links: [
+          {name: '平台概述',herf: ''},
+          {name: '关键术语',herf: ''},
+          {name: '创建应用',erf: ''},
+          {name: '控制台说明',herf: ''},
+          {name: '天塞鹰眼',herf: ''},
+          {name: '下载',herf: ''},
+          {name: '技术支持社区',herf: ''}
+        ]
+      }
     }
-  },
-  methods: {
-    handleOpen(key, keyPath) {
-      console.log(key, keyPath);
-    },
-    handleClose(key, keyPath) {
-      console.log(key, keyPath);
-    }
-  }
 }
 </script>
 
 <style lang="stylus">
-.el-dropdown-link 
-    cursor: pointer
-    color: #008AFF
-    font-size: 12px
-  
-
-.el-icon-arrow-down 
-    font-size: 12px
-
 .sidebar
   ul
     padding 0
