@@ -19,6 +19,14 @@
   },
   "homepage": "https://github.com/nblilili/Learn-vuepress#readme",
   "devDependencies": {
-    "vuepress": "^1.5.2"
+    "vuepress": "^1.5.2",
+    "vuepress-plugin-autobar": "boboidream/vuepress-bar"
+  },
+  "dependencies": {
+    "bootstrap": "^4.5.0",
+    "bootstrap-vue": "^2.15.0",
+    "element-ui": "^2.13.2",
+    "layui-src": "^2.5.5",
+    "vue": "^2.6.11"
   }
 }
