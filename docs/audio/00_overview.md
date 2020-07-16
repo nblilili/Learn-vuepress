@@ -1,10 +1,3 @@
-### Navigation
-
--   [index](../../genindex.html "General Index")
--   [next](01_demo_exp.html "Demo 体验") |
--   [previous](index.html "一对一语音通话") |
--   [DocCenter 2.1 documentation](../../index.html) »
--   [一对一语音通话](index.html) »
 
 <span id="id2"></span>
 

@@ -1,11 +1,3 @@
-### Navigation
-
--   [index](../../genindex.html "General Index")
--   [next](01_demo_exp.html "Demo 体验") |
--   [previous](index.html "一对一视频通话") |
--   [DocCenter 2.1 documentation](../../index.html) »
--   [一对一视频通话](index.html) »
-
 产品概述<a href="#id1" class="headerlink" title="Permalink to this headline">¶</a>
 ==================================================================================
 
@@ -150,10 +142,4 @@ iOS、Android、Windows、macOS、Linux、Web，并支持平台间互通，具�
 </tbody>
 </table>
 
-### Navigation
 
--   [index](../../genindex.html "General Index")
--   [next](01_demo_exp.html "Demo 体验") |
--   [previous](index.html "一对一视频通话") |
--   [DocCenter 2.1 documentation](../../index.html) »
--   [一对一视频通话](index.html) »
