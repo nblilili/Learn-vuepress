@@ -3,21 +3,24 @@
   
     <slot name="top" />
 
-    <SidebarLinks
-      :depth="0"
-      :items="items"
-    />
+    <SubSidebar class="side-bar" />
+    
+    <!-- <ModuleTransition>
+      <SubSidebar class="side-bar" />
+    </ModuleTransition> -->
+
     <slot name="bottom" />
   </aside>
 </template>
 
 <script>
-import SidebarLinks from '@theme/components/SidebarLinks.vue'
+import ModuleTransition from '@theme/components/ModuleTransition.vue'
+import SubSidebar from '@theme/components/SubSidebar.vue'
 
 export default {
   name: 'SidebarRight',
 
-  components: { SidebarLinks },
+  components: { ModuleTransition, SubSidebar },
 
   props: ['items']
 }
