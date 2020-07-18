@@ -1,3 +1,5 @@
+const sidebarConf = require('./config/sidebarConf.js');
+
 module.exports = {
   themeConfig: {
     nav: [
@@ -7,22 +9,11 @@ module.exports = {
         text: '产品',
         ariaLabel: '产品列表',
         items: [
-          { text: '一对一', link: '/audio/' },
-          { text: '多方', link: '/video/' }
+          { text: '一对一', link: '/一对一语音通话/' },
+          { text: '多方', link: '/testClass/' }
         ]
       },
     ],
-    sidebar: {
-      '/video/': [
-        '',
-        '00_overview',
-        '01_demo_exp'
-      ],
-      '/audio/': [
-        '',
-        '00_overview',
-        '01_demo_exp'
-      ]
-    }
+    sidebar: sidebarConf
   }
 }   

@@ -26,7 +26,8 @@ export default {
     // for sidebar: auto pages, a hash link should be active if one of its child
     // matches
     const active = item.type === 'auto'
-      ? selfActive || item.children.some(c => isActive($route, item.basePath + '#' + c.slug))
+      ? selfActive 
+      // || item.children.some(c => isActive($route, item.basePath + '#' + c.slug))
       : selfActive
     const link = item.type === 'external'
       ? renderExternal(h, item.path, item.title || item.path)
