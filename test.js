@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const translaterUtil = require('./docs/.vuepress/utils/translaterUtil.js')
 
 var sidebar = new Object();
 getSidebarConf('docs/00_product');
@@ -88,26 +89,10 @@ function makeDirObj(objTitle, children, collapsable){
 function translateGroupTitle(objTitle){
   var cnTitle = "no matched name"
   // 对 title 进行判断
-  switch(objTitle){
-    case '02_download':{
-      cnTitle = '下载';
-      break;
-    }
-    case '03_quick_start':{
-      cnTitle = '快速开始';
-      break;
-    }
-    case '04_basic_func':{
-      cnTitle = '基本功能集成';
-      break;
-    }
-    case '05_adv_func':{
-      cnTitle = '进阶功能集成';
-      break;
-    }
-    default:
-      cnTitle = objTitle;
-      console.log(objTitle + "has no corresponding name");
+  if(translaterUtil.has(objTitle)){
+    cnTitle = translaterUtil.get(objTitle);
+  }else{
+    cnTitle = objTitle;
   }
   return cnTitle
 }

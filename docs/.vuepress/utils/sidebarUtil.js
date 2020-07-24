@@ -1,13 +1,14 @@
 const fs = require('fs');
 const path = require('path');
-const translaterUtil = require('./translaterUtil.js')
+var translaterUtil = require('../map/translaterMap.js');
+var platformUtil = require('../map/platformMap.js');
+var folderFilterSet = require('../map/folderFilterSet.js');
 
 var sidebar = new Object();
 
 module.exports = {
   getSidebarConf(filePath){
     divideProducts(filePath, sidebar);
-  
     console.log("-----this is sidebar!-----");
     return sidebar;
   }
@@ -81,12 +82,11 @@ function makeDirObj(objTitle, children, collapsable){
 function translateGroupTitle(objTitle){
   var cnTitle = "no matched name"
   // 对 title 进行判断
-  if(){
+  if(translaterUtil.has(objTitle)){
     cnTitle = translaterUtil.get(objTitle)
   }else{
     cnTitle = objTitle;
   }
-
   return cnTitle
 }
 
@@ -110,19 +110,19 @@ function getChildren(basePath, filePath, childArr){
           }else{
             if(stats.isFile()){
               console.log("fileDir"+ fileDir);
-              var relativePath = path.relative(basePath, fileDir).split(path.sep).join('/')
-              filename == 'README.md' ? childArr.splice(0,0,''):childArr.push(relativePath);
+              var relativePath = path.relative(basePath, fileDir).split(path.sep).join('/');
               //console.log(childArr);
               console.log(sidebar);
+              if(!platformUtil.has(filename)){
+                filename == 'README.md' ? childArr.splice(0,0,''):childArr.push(relativePath);
+              }else {
+                console.log("fileDir" + fileDir + "and do nothing");
+              }
             }else{
-              if(filename == "Android"){
+              // folder
+              if(folderFilterSet.has(filename)){
                 console.log("floderDir:"+ fileDir);
                 getChildren(basePath, fileDir, childArr);
-              }else if( filename == "iOS" 
-                || filename == "macOS" 
-                || filename == "Windows"
-                || filename == "C++"){
-                console.log("floderDir:"+ fileDir+"and do nothing");
               }else{
                 var subChildArr = new Array();
                 childArr.push(makeDirObj(filename, subChildArr, true));
