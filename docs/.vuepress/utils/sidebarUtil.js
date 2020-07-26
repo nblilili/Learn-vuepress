@@ -5,7 +5,7 @@ var platformUtil = require('../map/platformMap.js');
 var folderFilterSet = require('../map/folderFilterSet.js');
 
 var sidebar = new Object();
-const basePath = '';
+var basePath = '';
 
 module.exports = {
   getSidebarConf(filePath){
