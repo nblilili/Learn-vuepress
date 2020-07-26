@@ -23,25 +23,25 @@ function genMarkdown()
     else  
       echo "FILE $path" 
       if [ ."${path##*.}"x = "$old"x ];then
-        # 新旧路径
-        oldName=${path%.*}$old
+        # 路径
         newName=${path%.*}$new
-        # 处理错误内容
-        # sed -i "" "s|<span.*></span>||g" ${newName}
-        # sed -i "" "s|\[¶\]\(.*\)||g" ${newName}
-        # sed -i "" "s|<div.*>||g" ${newName}
-        # sed -i "" "s|<\/div.*>||g" ${newName}
-        # sed -i "" 's|](\/cn\/document\/V2.1|](https:\/\/developer.juphoon.com\/cn\/document\/V2.1|g' ${newName}
 
-        
         # 清空标题上的内容
         lineNum=$(grep -n -m 1 "# .*" ${newName} | cut -f1 -d:)
+        let lineNum--
+        if [ "$lineNum" -ne "-1" ];then
+          echo "not equals -1"
+          sed -i "" "1,$lineNum"d"" ${newName}
+        fi
+
+        # 设置新标题
         echo linenum:$lineNum
-        title=$(basename $path $old)
-        echo title:$title
-        let $lineNum--
-        sed -i "" "1,$lineNum"d"" ${newName}
-        # front matter
+
+        title=$(basename ${newName} $new)
+        if [ "$title" = "README" ];then
+          title="简介"
+        fi
+        echo title: $title
         gsed -i '1 i ---' ${newName}
         gsed -i "1 i title:${title}" ${newName}
         gsed -i '1 i ---' ${newName}

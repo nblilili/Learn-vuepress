@@ -5,7 +5,7 @@ var platformUtil = require('../map/platformMap.js');
 var folderFilterSet = require('../map/folderFilterSet.js');
 
 var sidebar = new Object();
-const basePath = '';
+var basePath = '';
 
 module.exports = {
   getSidebarConf(filePath){
@@ -114,8 +114,9 @@ function getChildren(filePath, childArr){
               var relativePath = path.relative(basePath, fileDir).split(path.sep).join('/');
               //console.log(childArr);
               //console.log(sidebar);
+              //relativePath.split('README.md')[0]
               if(!platformUtil.has(filename)){
-                filename == 'README.md' ? childArr.splice(0,0,''):childArr.push(relativePath);
+                filename == 'README.md' ? childArr.splice(0,0,relativePath.split('README.md')[0]):childArr.push(relativePath);
               }else {
                 console.log("fileDir" + fileDir + "and do nothing");
               }
