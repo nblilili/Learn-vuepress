@@ -5,6 +5,7 @@ var platformUtil = require('../map/platformMap.js');
 var folderFilterSet = require('../map/folderFilterSet.js');
 
 var sidebar = new Object();
+const basePath = '';
 
 module.exports = {
   getSidebarConf(filePath){
@@ -21,7 +22,7 @@ module.exports = {
  */
 function divideProducts(filePath, sidebar){
 
-  fs.readdir(filePath,function(err, files){
+  fs.readdir(filePath, (err, files) => {
     if(err){
       console.warn(err);
     }else{
@@ -49,14 +50,14 @@ function divideProducts(filePath, sidebar){
  * @param {侧边栏对象} sidebar 
  */
 function fileDisplay(filePath, sidebar){
-  const basePath = filePath;
+  basePath = filePath;
   // 一级的 title
   var title = path.basename(path.parse(filePath).dir)+ "/" + path.basename(filePath);
   console.log("title-----"+ title);
   // 一级的 sidebar 对象 "$title": [],
   var arr = new Array();
   sidebar['/' + title + '/'] = arr;
-  getChildren(basePath, filePath, arr);
+  getChildren(filePath, arr);
 }
 
 /**
@@ -95,7 +96,7 @@ function translateGroupTitle(objTitle){
  * @param {路径} filePath 
  * @param {子数组} childArr 
  */
-function getChildren(basePath, filePath, childArr){
+function getChildren(filePath, childArr){
   fs.readdir(filePath,function(err,files){
     if(err){
       console.warn(err)
@@ -112,7 +113,7 @@ function getChildren(basePath, filePath, childArr){
               console.log("fileDir"+ fileDir);
               var relativePath = path.relative(basePath, fileDir).split(path.sep).join('/');
               //console.log(childArr);
-              console.log(sidebar);
+              //console.log(sidebar);
               if(!platformUtil.has(filename)){
                 filename == 'README.md' ? childArr.splice(0,0,''):childArr.push(relativePath);
               }else {
@@ -122,11 +123,11 @@ function getChildren(basePath, filePath, childArr){
               // folder
               if(folderFilterSet.has(filename)){
                 console.log("floderDir:"+ fileDir);
-                getChildren(basePath, fileDir, childArr);
+                getChildren(fileDir, childArr);
               }else{
                 var subChildArr = new Array();
                 childArr.push(makeDirObj(filename, subChildArr, true));
-                getChildren(basePath, fileDir, subChildArr);
+                getChildren(fileDir, subChildArr);
               }
             }
           }
