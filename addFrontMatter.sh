@@ -14,7 +14,6 @@ function genMarkdown()
   for file in `ls $1`  
   do  
     local path=$1"/"$file
-    echo "path $path"
     if [ -d $path ]
       then  
       echo "DIR $path"   
@@ -34,17 +33,18 @@ function genMarkdown()
           sed -i "" "1,$lineNum"d"" ${newName}
         fi
 
-        # 设置新标题
-        echo linenum:$lineNum
-
-        title=$(basename ${newName} $new)
-        if [ "$title" = "README" ];then
-          title="简介"
-        fi
-        echo title: $title
-        gsed -i '1 i ---' ${newName}
-        gsed -i "1 i title:${title}" ${newName}
-        gsed -i '1 i ---' ${newName}
+        # 设置新标题,删除前缀
+        # echo linenum:$lineNum
+        # filename=$(basename ${newName} $new | cut -f2 -d "_")
+        # if [ "$filename" = "README" ];then
+        #   title="简介"
+        # else 
+        #   title=$(grep -n -m 1 "# .*" ${newName} | cut -f2 -d " ")
+        # fi
+        # echo title: $title
+        # gsed -i '1 i ---' ${newName}
+        # gsed -i "1 i title: ${title}" ${newName}
+        # gsed -i '1 i ---' ${newName}
 
         # 删除原有内容
         #rm -rf ${name}$old 
