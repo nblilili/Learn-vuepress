@@ -26,15 +26,13 @@ Note
 
 
 
-
-
-    //初始化
-    -(bool)initialize {
-       JCClient *client = [JCClient create:"创建应用获取的 AppKey" callback:self creatParam:nil];
-       return client.state == JCClientStateIdle;
-    }
-
-
+```objective
+//初始化
+-(bool)initialize {
+   JCClient *client = [JCClient create:"创建应用获取的 AppKey" callback:self creatParam:nil];
+   return client.state == JCClientStateIdle;
+}
+```
 
 
 
@@ -45,18 +43,16 @@ JCClientCallback 中的主要方法如下
 
 
 
+```objective
+//登陆结果回调
+-(void)onLogin:(bool)result reason:(JCClientReason)reason;
 
+//登出回调
+-(void)onLogout:(JCClientReason)reason;
 
-    //登陆结果回调
-    -(void)onLogin:(bool)result reason:(JCClientReason)reason;
-    
-    //登出回调
-    -(void)onLogout:(JCClientReason)reason;
-    
-    //登陆状态变化通知
-    -(void)onClientStateChange:(JCClientState)state oldState:(JCClientState)oldState;
-
-
+//登陆状态变化通知
+-(void)onClientStateChange:(JCClientState)state oldState:(JCClientState)oldState;
+```
 
 
 
@@ -83,16 +79,14 @@ SDK 初始化之后，即可进行登录的集成。
 
 
 
+```objective
+JCClientLoginParam* loginParam = [[JCClientLoginParam alloc] init];
+// 1. 设置服务器环境
+loginParam.serverAddress = @"服务器地址";
 
-
-    JCClientLoginParam* loginParam = [[JCClientLoginParam alloc] init];
-    // 1. 设置服务器环境
-    loginParam.serverAddress = @"服务器地址";
-    
-    // 2. 发起登录
-    [client login:userID password:password loginParam:loginParam];
-
-
+// 2. 发起登录
+[client login:userID password:password loginParam:loginParam];
+```
 
 
 
@@ -132,22 +126,20 @@ Note
 
 
 
-
-
-    -(void)onClientStateChange:(JCClientState)state oldState:(JCClientState)oldState
-    {
-        if (state == JCClientStateIdle) { // 未登录
-        ...
-        } else if (state == JCClientStateLogining) { // 登录中
-        ...
-        } else if (state == JCClientStateLogined) {  // 登录成功
-        ...
-        } else if (state == JCClientStateLogouting) {  // 登出中
-        ...
-        }
+```objective
+-(void)onClientStateChange:(JCClientState)state oldState:(JCClientState)oldState
+{
+    if (state == JCClientStateIdle) { // 未登录
+    ...
+    } else if (state == JCClientStateLogining) { // 登录中
+    ...
+    } else if (state == JCClientStateLogined) {  // 登录成功
+    ...
+    } else if (state == JCClientStateLogouting) {  // 登出中
+    ...
     }
-
-
+}
+```
 
 
 
@@ -159,18 +151,16 @@ Note
 
 
 
-
-
-    -(void)onLogin:(bool)result reason:(JCClientReason)reason {
-        if (result) {// 登录成功
-            ...
-        }
-        if (reason == JCClientReasonAuth) {// 账号密码错误
-            ...
-        }
+```objective
+-(void)onLogin:(bool)result reason:(JCClientReason)reason {
+    if (result) {// 登录成功
+        ...
     }
-
-
+    if (reason == JCClientReasonAuth) {// 账号密码错误
+        ...
+    }
+}
+```
 
 
 
@@ -197,11 +187,9 @@ JCClientStateLogined（登录成功）。SDK
 
 
 
-
-
-    [client logout];
-
-
+```objective
+[client logout];
+```
 
 
 
@@ -209,15 +197,13 @@ JCClientStateLogined（登录成功）。SDK
 
 
 
-
-
-    -(void)onLogout:(JCClientReason)reason {
-        if (reason == JCClientReasonServerLogout) {// 强制登出
-            ...
-        }
+```objective
+-(void)onLogout:(JCClientReason)reason {
+    if (reason == JCClientReasonServerLogout) {// 强制登出
+        ...
     }
-
-
+}
+```
 
 
 

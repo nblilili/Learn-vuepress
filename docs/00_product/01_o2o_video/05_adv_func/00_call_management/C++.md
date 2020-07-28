@@ -12,11 +12,9 @@ title: 通话管理
 
 
 
-
-
-    JCManager::shared()->call->maxCallNum = 1;
-
-
+```C++ 
+JCManager::shared()->call->maxCallNum = 1;
+```
 
 
 
@@ -40,19 +38,17 @@ title: 通话管理
 
 
 
-
-
-    //获取活跃通话对象
-    JCCallItem* item = JCManager::shared()->call->getActiveCallItem();
-    //获取通话对象的静音状态
-    bool isMute = item->getMute();
-        if (item != NULL)
-        {
-        //开启或关闭静音
-                JCManager::shared()->call->mute(item);
-        }
-
-
+```C++ 
+//获取活跃通话对象
+JCCallItem* item = JCManager::shared()->call->getActiveCallItem();
+//获取通话对象的静音状态
+bool isMute = item->getMute();
+    if (item != NULL)
+    {
+    //开启或关闭静音
+            JCManager::shared()->call->mute(item);
+    }
+```
 
 
 
@@ -75,19 +71,17 @@ JCCallItem 对象当前的呼叫保持状态来决定
 
 
 
-
-
-    //获取活跃通话对象
-    JCCallItem* item = JCManager::shared()->call->getActiveCallItem();
-    //获取通话对象的呼叫保持状态
-    bool isHeld = item->getHold();
-    if (item != NULL)
-        {
-        //开启或关闭呼叫保持
-                JCManager::shared()->call->hold(item);
-        }
-
-
+```C++ 
+//获取活跃通话对象
+JCCallItem* item = JCManager::shared()->call->getActiveCallItem();
+//获取通话对象的呼叫保持状态
+bool isHeld = item->getHold();
+if (item != NULL)
+    {
+    //开启或关闭呼叫保持
+            JCManager::shared()->call->hold(item);
+    }
+```
 
 
 
@@ -103,13 +97,11 @@ JCCallItem 对象当前的呼叫保持状态来决定
 
 
 
-
-
-    //获取通话对象列表
-    std::list<JCCallItem*>* callItems = JCManager::shared()->call->getCallItems();
-    JCManager::shared()->call->becomeActive(callItems[1]);
-
-
+```C++ 
+//获取通话对象列表
+std::list<JCCallItem*>* callItems = JCManager::shared()->call->getCallItems();
+JCManager::shared()->call->becomeActive(callItems[1]);
+```
 
 
 
@@ -129,15 +121,13 @@ JCCallItem 对象当前的呼叫保持状态来决定
 
 
 
-
-
-    JCCallItem* item = JCManager::shared()->call->getActiveCallItem();
-        if (item != NULL)
-        {
-                JCManager::shared()->call->enableUploadVideoStream(item);
-        }
-
-
+```C++ 
+JCCallItem* item = JCManager::shared()->call->getActiveCallItem();
+    if (item != NULL)
+    {
+            JCManager::shared()->call->enableUploadVideoStream(item);
+    }
+```
 
 
 
@@ -166,25 +156,23 @@ JCCallItem 对象当前的呼叫保持状态来决定
 
 
 
-
-
-    void JCManager::onCallItemUpdate(JCCallItem* item, JCCallItemChangeParam changeParam)
-    {
-        if (changeParam.mute) { // 开启静音
-            ...
-        } else if (changeParam.sate) { // 通话状态变化
-            ...
-        } else if (changeParam.held) { // 被挂起变化
-            ...
-        } else if (changeParam.active) { // 活跃状态变化
-            ...
-        } else if (changeParam.netStatus) { // 网络状态变化
-            ...
-        }
+```C++ 
+void JCManager::onCallItemUpdate(JCCallItem* item, JCCallItemChangeParam changeParam)
+{
+    if (changeParam.mute) { // 开启静音
+        ...
+    } else if (changeParam.sate) { // 通话状态变化
+        ...
+    } else if (changeParam.held) { // 被挂起变化
+        ...
+    } else if (changeParam.active) { // 活跃状态变化
+        ...
+    } else if (changeParam.netStatus) { // 网络状态变化
         ...
     }
-
-
+    ...
+}
+```
 
 
 
@@ -206,28 +194,26 @@ JCCallItem 对象当前的呼叫保持状态来决定
 
 
 
-
-
-    void JCSampleDlg::OnBnClickedButton1Callrecordaudio()
+```C++ 
+void JCSampleDlg::OnBnClickedButton1Callrecordaudio()
+{
+    JCCallItem* item = JCManager::shared()->call->getActiveCallItem();
+    if (item != NULL)
     {
-        JCCallItem* item = JCManager::shared()->call->getActiveCallItem();
-        if (item != NULL)
+        if (item->getAudioRecord())
         {
-            if (item->getAudioRecord())
-            {
-                //如果正在录制，则停止音频录制
-                JCManager::shared()->call->audioRecord(item, false, "");
-            }
-            else
-            {
-                std::string filePath = "录制音频文件保存路径";
-                //开始音频录制
-                JCManager::shared()->call->audioRecord(item, true, filePath);
-            }
+            //如果正在录制，则停止音频录制
+            JCManager::shared()->call->audioRecord(item, false, "");
+        }
+        else
+        {
+            std::string filePath = "录制音频文件保存路径";
+            //开始音频录制
+            JCManager::shared()->call->audioRecord(item, true, filePath);
         }
     }
-
-
+}
+```
 
 
 
@@ -237,12 +223,10 @@ JCCallItem 对象当前的呼叫保持状态来决定
 
 
 
-
-
-    void JCManager::onCallItemUpdate(JCCallItem* item, JCCallItemChangeParam changeParam) {
-    }
-
-
+```C++ 
+void JCManager::onCallItemUpdate(JCCallItem* item, JCCallItemChangeParam changeParam) {
+}
+```
 
 
 
@@ -260,12 +244,10 @@ JCCallItem 对象当前的呼叫保持状态来决定
 
 
 
-
-
-    JCCallItem* item = JCManager::shared()->call->getActiveCallItem();
-    JCManager::shared()->call->sendMessage(item, "text", "消息内容");
-
-
+```C++ 
+JCCallItem* item = JCManager::shared()->call->getActiveCallItem();
+JCManager::shared()->call->sendMessage(item, "text", "消息内容");
+```
 
 
 
@@ -275,14 +257,12 @@ JCCallItem 对象当前的呼叫保持状态来决定
 
 
 
-
-
-    void JCManager::onMessageReceive(const char* type, const char* content, JCCallItem* item)
-    {
-        cout << "收到Call消息 " << item->getDisplayName() << " type:" << type << endl;
-    }
-
-
+```C++ 
+void JCManager::onMessageReceive(const char* type, const char* content, JCCallItem* item)
+{
+    cout << "收到Call消息 " << item->getDisplayName() << " type:" << type << endl;
+}
+```
 
 
 

@@ -15,11 +15,9 @@ title: 频道管理
 
 
 
-
-
-    JCManager::shared()->mediaChannel->query("channelId");
-
-
+```C++ 
+JCManager::shared()->mediaChannel->query("channelId");
+```
 
 
 
@@ -29,20 +27,18 @@ title: 频道管理
 
 
 
-
-
-    void JCManager::onQuery(int operationId, bool result, JCMediaChannelReason reason, JCMediaChannelQueryInfo* queryInfo)
-    {
-        //查询结果
-        if (result) {
-            //查询到的 channelId
-            CString channelId = queryInfo->getChannelId();
-            //查询到的成员数
-            int number = queryInfo->getClientCount();
-        }
+```C++ 
+void JCManager::onQuery(int operationId, bool result, JCMediaChannelReason reason, JCMediaChannelQueryInfo* queryInfo)
+{
+    //查询结果
+    if (result) {
+        //查询到的 channelId
+        CString channelId = queryInfo->getChannelId();
+        //查询到的成员数
+        int number = queryInfo->getClientCount();
     }
-
-
+}
+```
 
 
 
@@ -62,12 +58,10 @@ title: 频道管理
 
 
 
-
-
-    //最后一个参数为接收者 id，如果为空则会发给频道所有人员
-    JCManager::shared()->mediaChannel->sendMessage(type, "消息内容", NULL);
-
-
+```C++ 
+//最后一个参数为接收者 id，如果为空则会发给频道所有人员
+JCManager::shared()->mediaChannel->sendMessage(type, "消息内容", NULL);
+```
 
 
 
@@ -79,15 +73,13 @@ title: 频道管理
 
 
 
-
-
-    void JCManager::onMessageReceive(const char* type, const char* content, const char* fromUserId)
-    {
-        std::stringstream s;
-        s << "收到Conf消息 " << fromUserId << " type:" << type << " content:" << JCTool::Utf8ToGB2312(content);
-    }
-
-
+```C++ 
+void JCManager::onMessageReceive(const char* type, const char* content, const char* fromUserId)
+{
+    std::stringstream s;
+    s << "收到Conf消息 " << fromUserId << " type:" << type << " content:" << JCTool::Utf8ToGB2312(content);
+}
+```
 
 
 
@@ -111,11 +103,9 @@ title: 频道管理
 
 
 
-
-
-    JCMediaChannelParticipant* participant = JCManager::shared()->mediaChannel->getParticipant(userId);
-
-
+```C++ 
+JCMediaChannelParticipant* participant = JCManager::shared()->mediaChannel->getParticipant(userId);
+```
 
 
 
@@ -135,11 +125,9 @@ title: 频道管理
 
 
 
-
-
-    std::list<JCMediaChannelParticipant*>* participants = JCManager::shared()->mediaChannel->getParticipants();
-
-
+```C++ 
+std::list<JCMediaChannelParticipant*>* participants = JCManager::shared()->mediaChannel->getParticipants();
+```
 
 
 
@@ -159,14 +147,12 @@ title: 频道管理
 
 
 
-
-
-    //获取成员对象
-    JCMediaChannelParticipant* participant = JCManager::shared()->mediaChannel->getParticipant(userId);
-    //踢除成员
-    JCManager::shared()->mediaChannel->kick(participant);
-
-
+```C++ 
+//获取成员对象
+JCMediaChannelParticipant* participant = JCManager::shared()->mediaChannel->getParticipant(userId);
+//踢除成员
+JCManager::shared()->mediaChannel->kick(participant);
+```
 
 
 

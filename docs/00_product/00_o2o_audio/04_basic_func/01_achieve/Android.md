@@ -19,63 +19,61 @@ title: 实现一对一语音通话
 
 
 
+```java 
+// 声明对象
+JCMediaDevice mMediaDevice;
+JCCall mCall;
 
+// 初始化函数
+public boolean initialize(Context context) {
+    //1. 媒体类
+    mMediaDevice = JCMediaDevice.create(mClient, new JCMediaDeviceCallback() {
+        @Override
+        public void onCameraUpdate() {
 
-    // 声明对象
-    JCMediaDevice mMediaDevice;
-    JCCall mCall;
-    
-    // 初始化函数
-    public boolean initialize(Context context) {
-        //1. 媒体类
-        mMediaDevice = JCMediaDevice.create(mClient, new JCMediaDeviceCallback() {
-            @Override
-            public void onCameraUpdate() {
-    
-            }
-            @Override
-            public void onAudioOutputTypeChange(int i) {
-    
-            }
-            @Override
-            public void onRenderReceived(JCMediaDeviceVideoCanvas jcMediaDeviceVideoCanvas) {
-    
-            }
-            @Override
-            public void onRenderStart(JCMediaDeviceVideoCanvas jcMediaDeviceVideoCanvas) {
-    
-            }
-        });
-        //2. 通话类
-        mCall = JCCall.create(mClient, mMediaDevice, new JCCallCallback() {
-            @Override
-            public void onCallItemAdd(JCCallItem jcCallItem) {
-    
-            }
-    
-            @Override
-            public void onCallItemRemove(JCCallItem jcCallItem, int i, String s) {
-    
-            }
-    
-            @Override
-            public void onCallItemUpdate(JCCallItem jcCallItem, JCCallItem.ChangeParam changeParam) {
-    
-            }
-    
-            @Override
-            public void onMessageReceive(String s, String s1, JCCallItem jcCallItem) {
-    
-            }
-    
-            @Override
-            public void onMissedCallItem(JCCallItem jcCallItem) {
-    
-            }
-        });
-    }
+        }
+        @Override
+        public void onAudioOutputTypeChange(int i) {
 
+        }
+        @Override
+        public void onRenderReceived(JCMediaDeviceVideoCanvas jcMediaDeviceVideoCanvas) {
 
+        }
+        @Override
+        public void onRenderStart(JCMediaDeviceVideoCanvas jcMediaDeviceVideoCanvas) {
+
+        }
+    });
+    //2. 通话类
+    mCall = JCCall.create(mClient, mMediaDevice, new JCCallCallback() {
+        @Override
+        public void onCallItemAdd(JCCallItem jcCallItem) {
+
+        }
+
+        @Override
+        public void onCallItemRemove(JCCallItem jcCallItem, int i, String s) {
+
+        }
+
+        @Override
+        public void onCallItemUpdate(JCCallItem jcCallItem, JCCallItem.ChangeParam changeParam) {
+
+        }
+
+        @Override
+        public void onMessageReceive(String s, String s1, JCCallItem jcCallItem) {
+
+        }
+
+        @Override
+        public void onMissedCallItem(JCCallItem jcCallItem) {
+
+        }
+    });
+}
+```
 
 
 
@@ -100,12 +98,10 @@ title: 实现一对一语音通话
 
 
 
-
-
-    // 发起语音呼叫
-    mCall.call(userID, isVideo, extraParam);
-
-
+```java 
+// 发起语音呼叫
+mCall.call(userID, isVideo, extraParam);
+```
 
 
 
@@ -121,25 +117,23 @@ title: 实现一对一语音通话
 
 
 
+```java 
+// 1. 发起语音通话
+mCall.call(userID, false, null);
 
-
-    // 1. 发起语音通话
-    mCall.call(userID, false, null);
-    
-    // 2. 重写回调
-    @Override
-    public void onCallItemAdd(JCCallItem item) {
-        // 业务逻辑
-        if (item.direction == JCCall.DIRECTION_IN) {
-            // 如果是被叫
-            ...
-        }else{
-            // 如果是主叫
-            ...
-        }
+// 2. 重写回调
+@Override
+public void onCallItemAdd(JCCallItem item) {
+    // 业务逻辑
+    if (item.direction == JCCall.DIRECTION_IN) {
+        // 如果是被叫
+        ...
+    }else{
+        // 如果是主叫
+        ...
     }
-
-
+}
+```
 
 
 
@@ -159,18 +153,16 @@ title: 实现一对一语音通话
     
     
     
-    
-    
-        @Override
-        public void onCallItemAdd(JCCallItem item) {
-            // 1. 如果是语音呼入且在振铃中
-            if (item.getDirection() == JCCall.DIRECTION_IN && !item.getVideo()) {
-                // 2. 做出相应的处理，如在界面上显示“振铃中”
-                ...
-            }
+    ```java 
+    @Override
+    public void onCallItemAdd(JCCallItem item) {
+        // 1. 如果是语音呼入且在振铃中
+        if (item.getDirection() == JCCall.DIRECTION_IN && !item.getVideo()) {
+            // 2. 做出相应的处理，如在界面上显示“振铃中”
+            ...
         }
-    
-    
+    }
+    ```
     
     
 
@@ -180,11 +172,9 @@ title: 实现一对一语音通话
     
     
     
-    
-    
-        mCall.answer(item, false);
-    
-    
+    ```java 
+    mCall.answer(item, false);
+    ```
     
     
 
@@ -212,11 +202,9 @@ Note
     
     
     
-    
-    
-        mCall.getActiveCallItem();
-    
-    
+    ```java 
+    mCall.getActiveCallItem();
+    ```
     
     
 
@@ -226,11 +214,9 @@ Note
     
     
     
-    
-    
-        mCall.term(item, reason, description);
-    
-    
+    ```java 
+    mCall.term(item, reason, description);
+    ```
     
     
 
@@ -238,14 +224,12 @@ Note
 
 
 
-
-
-    // 1. 获取当前活跃通话
-    JCCallItem item = mCall.getActiveCallItem();
-    // 2. 挂断当前活跃通话
-    mCall.term(item, JCCall.REASON_NONE, null);
-
-
+```java 
+// 1. 获取当前活跃通话
+JCCallItem item = mCall.getActiveCallItem();
+// 2. 挂断当前活跃通话
+mCall.term(item, JCCall.REASON_NONE, null);
+```
 
 
 

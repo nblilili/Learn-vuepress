@@ -15,16 +15,14 @@ title: 智能硬件
 
 
 
-
-
-    /// 360P
-    JCCallMediaConfigMode360P,
-    /// 720P
-    JCCallMediaConfigMode720P,
-    /// 智能硬件场景，比如会和手表通话等
-    JCCallMediaConfigModeIntelligentHardware,
-
-
+```objective
+/// 360P
+JCCallMediaConfigMode360P,
+/// 720P
+JCCallMediaConfigMode720P,
+/// 智能硬件场景，比如会和手表通话等
+JCCallMediaConfigModeIntelligentHardware,
+```
 
 
 
@@ -34,13 +32,11 @@ title: 智能硬件
 
 
 
-
-
-    /// 根据模式生成配置参数
-    /// @param mode 模式
-    +(JCCallMediaConfig* __nonnull)generateByMode:(JCCallMediaConfigMode)mode;
-
-
+```objective
+/// 根据模式生成配置参数
+/// @param mode 模式
++(JCCallMediaConfig* __nonnull)generateByMode:(JCCallMediaConfigMode)mode;
+```
 
 
 
@@ -48,11 +44,9 @@ title: 智能硬件
 
 
 
-
-
-    JCManager.shared.call.mediaConfig = [JCCallMediaConfig generateByMode:JCCallMediaConfigModeIntelligentHardware];
-
-
+```objective
+JCManager.shared.call.mediaConfig = [JCCallMediaConfig generateByMode:JCCallMediaConfigModeIntelligentHardware];
+```
 
 
 
@@ -662,20 +656,18 @@ title: 智能硬件
 
 
 
-
-
-    /// 声学回声消除。支持在免提状态下的通话，对于iOS和Windows等性能较好的机型有效。
-    JCCallAecModeAEC = 0, // MtcCallDb.EN_MTC_EC_AEC;
-    /// 使用操作系统提供的声学回声消除功能，支持在免提状态下的通话。对于多数iOS和Android等品牌手机有效，但部分机型可能无效。
-    JCCallAecModeOS = 1, // MtcCallDb.EN_MTC_EC_OS;
-    /// 声学回声抑制，通过半双工方式实现回声抑制，通常不建议使用。
-    JCCallAecModeAES = 2, // MtcCallDb.EN_MTC_EC_AES;
-    /// 软件自适应声学回声消除，对于大多数所有机型有效。但计算量比AEC稍大一些。SDE追踪延迟精度高，FDE能适应更大的延迟。
-    JCCallAecModeFDE = 3, // MtcCallDb.EN_MTC_EC_AEC_FDE;
-    /// 软件自适应声学回声消除，对于大多数所有机型有效。但计算量比AEC稍大一些。SDE追踪延迟精度高，FDE能适应更大的延迟。
-    JCCallAecModeSDE = 4, // MtcCallDb.EN_MTC_EC_AEC_SDE;
-
-
+```objective
+/// 声学回声消除。支持在免提状态下的通话，对于iOS和Windows等性能较好的机型有效。
+JCCallAecModeAEC = 0, // MtcCallDb.EN_MTC_EC_AEC;
+/// 使用操作系统提供的声学回声消除功能，支持在免提状态下的通话。对于多数iOS和Android等品牌手机有效，但部分机型可能无效。
+JCCallAecModeOS = 1, // MtcCallDb.EN_MTC_EC_OS;
+/// 声学回声抑制，通过半双工方式实现回声抑制，通常不建议使用。
+JCCallAecModeAES = 2, // MtcCallDb.EN_MTC_EC_AES;
+/// 软件自适应声学回声消除，对于大多数所有机型有效。但计算量比AEC稍大一些。SDE追踪延迟精度高，FDE能适应更大的延迟。
+JCCallAecModeFDE = 3, // MtcCallDb.EN_MTC_EC_AEC_FDE;
+/// 软件自适应声学回声消除，对于大多数所有机型有效。但计算量比AEC稍大一些。SDE追踪延迟精度高，FDE能适应更大的延迟。
+JCCallAecModeSDE = 4, // MtcCallDb.EN_MTC_EC_AEC_SDE;
+```
 
 
 
@@ -685,45 +677,43 @@ title: 智能硬件
 
 
 
+```objective
+//音频参数
+JCCallMediaConfig* mediaConfig = [JCCallMediaConfig new];
+mediaConfig.audioEnableCodecs = @"opus";
+mediaConfig.audioAecMode = JCCallAecModeFDE;
+mediaConfig.audioArsEnable = true;
+mediaConfig.audioArsBitrateMax = 20;
+mediaConfig.audioArsBitrateMin = 5;
+mediaConfig.audioRed = true;
+mediaConfig.audioRxAnr = false;
+mediaConfig.audioRtx = true;
+mediaConfig.audioRxAgc = false;
+mediaConfig.audioQosAec = true;
+mediaConfig.audioQosAnr = true;
+mediaConfig.audioQosAgc = true;
+mediaConfig.audioQosVad = true;
 
+//视频参数
+mediaConfig.videoEnableCodecs = @"H264";
+mediaConfig.videoResolutionRecvWidth = 128;
+mediaConfig.videoResolutionRecvHeight = 128;
+mediaConfig.videoResolutionSendWidth = 640;
+mediaConfig.videoResolutionSendHeight = 360;
+mediaConfig.videoBitrate = 30;
+mediaConfig.videoSendFramerate = 15;
+mediaConfig.videoArsEnable = true;
+mediaConfig.videoArsBitrateMax = 75;
+mediaConfig.videoArsBitrateMin = 10;
+mediaConfig.videoArsFramerateMax = 15;
+mediaConfig.videoArsFramerateMin = 0;
+mediaConfig.videoRedFec  = true;
+mediaConfig.videoRecvFullScreen  = true;
+mediaConfig.videoSmallNalu  = true;
+mediaConfig.videoResolutionControl  = true;
 
-    //音频参数
-    JCCallMediaConfig* mediaConfig = [JCCallMediaConfig new];
-    mediaConfig.audioEnableCodecs = @"opus";
-    mediaConfig.audioAecMode = JCCallAecModeFDE;
-    mediaConfig.audioArsEnable = true;
-    mediaConfig.audioArsBitrateMax = 20;
-    mediaConfig.audioArsBitrateMin = 5;
-    mediaConfig.audioRed = true;
-    mediaConfig.audioRxAnr = false;
-    mediaConfig.audioRtx = true;
-    mediaConfig.audioRxAgc = false;
-    mediaConfig.audioQosAec = true;
-    mediaConfig.audioQosAnr = true;
-    mediaConfig.audioQosAgc = true;
-    mediaConfig.audioQosVad = true;
-    
-    //视频参数
-    mediaConfig.videoEnableCodecs = @"H264";
-    mediaConfig.videoResolutionRecvWidth = 128;
-    mediaConfig.videoResolutionRecvHeight = 128;
-    mediaConfig.videoResolutionSendWidth = 640;
-    mediaConfig.videoResolutionSendHeight = 360;
-    mediaConfig.videoBitrate = 30;
-    mediaConfig.videoSendFramerate = 15;
-    mediaConfig.videoArsEnable = true;
-    mediaConfig.videoArsBitrateMax = 75;
-    mediaConfig.videoArsBitrateMin = 10;
-    mediaConfig.videoArsFramerateMax = 15;
-    mediaConfig.videoArsFramerateMin = 0;
-    mediaConfig.videoRedFec  = true;
-    mediaConfig.videoRecvFullScreen  = true;
-    mediaConfig.videoSmallNalu  = true;
-    mediaConfig.videoResolutionControl  = true;
-    
-    JCManager.shared.call.mediaConfig = mediaConfig;
-
-
+JCManager.shared.call.mediaConfig = mediaConfig;
+```
 
 
 

@@ -174,26 +174,24 @@ title: 常见问题
 
 
 
-
-
-    /**
-     * 逐帧采集视频画面
-     *
-     * 当为 H264 格式时
-     * 1. 如果是关键帧需要将 0x67 0x68 0x41 的数据作为一帧传入
-     * 2. 关键帧要以固定间隔传入，例如5秒，否则一开始可能有几秒对端无法显示视频
-     *
-     * @param data 画面二进制数据
-     * @param format   视频像素格式
-     * @param width    宽
-     * @param height   高
-     * @param angle    90 的倍数
-     * @param mirror   0 不镜像，1进行左右镜像
-     * @param keyFrame 是否为关键帧，针对 format 为 H264
-     */
-    public abstract void setVideoFileFrame(byte[] data, @VideoPixelFormat int format, int width, int height, int angle, int mirror, boolean keyFrame);
-
-
+```java 
+/**
+ * 逐帧采集视频画面
+ *
+ * 当为 H264 格式时
+ * 1. 如果是关键帧需要将 0x67 0x68 0x41 的数据作为一帧传入
+ * 2. 关键帧要以固定间隔传入，例如5秒，否则一开始可能有几秒对端无法显示视频
+ *
+ * @param data 画面二进制数据
+ * @param format   视频像素格式
+ * @param width    宽
+ * @param height   高
+ * @param angle    90 的倍数
+ * @param mirror   0 不镜像，1进行左右镜像
+ * @param keyFrame 是否为关键帧，针对 format 为 H264
+ */
+public abstract void setVideoFileFrame(byte[] data, @VideoPixelFormat int format, int width, int height, int angle, int mirror, boolean keyFrame);
+```
 
 
 
@@ -208,15 +206,13 @@ title: 常见问题
 
 
 
-
-
-    mediaDevice.startVideoFile();
-    byte[] buf = new byte[10];
-    buf[0] = 0x5;
-    mediaDevice.setVideoFileFrame(buf, JCMediaDevice.H264, 1, 1, 0, 0, false);
-    mediaDevice.stopVideoFile();
-
-
+```java 
+mediaDevice.startVideoFile();
+byte[] buf = new byte[10];
+buf[0] = 0x5;
+mediaDevice.setVideoFileFrame(buf, JCMediaDevice.H264, 1, 1, 0, 0, false);
+mediaDevice.stopVideoFile();
+```
 
 
 

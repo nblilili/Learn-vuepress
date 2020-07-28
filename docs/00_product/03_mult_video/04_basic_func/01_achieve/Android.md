@@ -19,88 +19,86 @@ title: 实现多方视频通话
 
 
 
+```java 
+// 声明对象
+JCMediaDevice mMediaDevice;
+JCMediaChannel mMediaChannel;
 
+// 初始化函数
+public boolean initialize(Context context) {
 
-    // 声明对象
-    JCMediaDevice mMediaDevice;
-    JCMediaChannel mMediaChannel;
-    
-    // 初始化函数
-    public boolean initialize(Context context) {
-    
-        //1. 媒体类
-        mMediaDevice = JCMediaDevice.create(mClient, new JCMediaDeviceCallback() {
-            @Override
-            public void onCameraUpdate() {
-    
-            }
-            @Override
-            public void onAudioOutputTypeChange(int i) {
-    
-            }
-            @Override
-            public void onRenderReceived(JCMediaDeviceVideoCanvas jcMediaDeviceVideoCanvas) {
-    
-            }
-            @Override
-            public void onRenderStart(JCMediaDeviceVideoCanvas jcMediaDeviceVideoCanvas) {
-    
-            }
-        });
-        // 2. 媒体通道类
-        mMediaChannel = JCMediaChannel.create(client, mediaDevice, new JCMediaChannelCallback() {
-            @Override
-            public void onMediaChannelStateChange(int i, int i1) {
-    
-            }
-            @Override
-            public void onMediaChannelPropertyChange(JCMediaChannel.PropChangeParam propChangeParam) {
-    
-            }
-            @Override
-            public void onJoin(boolean b, int i, String s) {
-    
-            }
-            @Override
-            public void onLeave(int i, String s) {
-    
-            }
-            @Override
-            public void onStop(boolean b, int i) {
-    
-            }
-            @Override
-            public void onQuery(int i, boolean b, int i1, JCMediaChannelQueryInfo jcMediaChannelQueryInfo) {
-    
-            }
-            @Override
-            public void onParticipantJoin(JCMediaChannelParticipant jcMediaChannelParticipant) {
-    
-            }
-            @Override
-            public void onParticipantLeft(JCMediaChannelParticipant jcMediaChannelParticipant) {
-    
-            }
-            @Override
-            public void onParticipantUpdate(JCMediaChannelParticipant jcMediaChannelParticipant, JCMediaChannelParticipant.ChangeParam changeParam) {
-    
-            }
-            @Override
-            public void onMessageReceive(String s, String s1, String s2) {
-    
-            }
-            @Override
-            public void onInviteSipUserResult(int i, boolean b, int i1) {
-    
-            }
-            @Override
-            public void onParticipantVolumeChange(JCMediaChannelParticipant jcMediaChannelParticipant) {
-    
-            }
-        });
-    }
+    //1. 媒体类
+    mMediaDevice = JCMediaDevice.create(mClient, new JCMediaDeviceCallback() {
+        @Override
+        public void onCameraUpdate() {
 
+        }
+        @Override
+        public void onAudioOutputTypeChange(int i) {
 
+        }
+        @Override
+        public void onRenderReceived(JCMediaDeviceVideoCanvas jcMediaDeviceVideoCanvas) {
+
+        }
+        @Override
+        public void onRenderStart(JCMediaDeviceVideoCanvas jcMediaDeviceVideoCanvas) {
+
+        }
+    });
+    // 2. 媒体通道类
+    mMediaChannel = JCMediaChannel.create(client, mediaDevice, new JCMediaChannelCallback() {
+        @Override
+        public void onMediaChannelStateChange(int i, int i1) {
+
+        }
+        @Override
+        public void onMediaChannelPropertyChange(JCMediaChannel.PropChangeParam propChangeParam) {
+
+        }
+        @Override
+        public void onJoin(boolean b, int i, String s) {
+
+        }
+        @Override
+        public void onLeave(int i, String s) {
+
+        }
+        @Override
+        public void onStop(boolean b, int i) {
+
+        }
+        @Override
+        public void onQuery(int i, boolean b, int i1, JCMediaChannelQueryInfo jcMediaChannelQueryInfo) {
+
+        }
+        @Override
+        public void onParticipantJoin(JCMediaChannelParticipant jcMediaChannelParticipant) {
+
+        }
+        @Override
+        public void onParticipantLeft(JCMediaChannelParticipant jcMediaChannelParticipant) {
+
+        }
+        @Override
+        public void onParticipantUpdate(JCMediaChannelParticipant jcMediaChannelParticipant, JCMediaChannelParticipant.ChangeParam changeParam) {
+
+        }
+        @Override
+        public void onMessageReceive(String s, String s1, String s2) {
+
+        }
+        @Override
+        public void onInviteSipUserResult(int i, boolean b, int i1) {
+
+        }
+        @Override
+        public void onParticipantVolumeChange(JCMediaChannelParticipant jcMediaChannelParticipant) {
+
+        }
+    });
+}
+```
 
 
 
@@ -118,14 +116,12 @@ title: 实现多方视频通话
     
     
     
-    
-    
-        // 1. 开启音频流
-        mMediaDeviceChannel.enableUploadAudioStream(true);
-        // 2. 开启视频流（语音无需调用此方法）
-        mMediaDeviceChannel.enableUploadVIdeoStream(true);
-    
-    
+    ```java 
+    // 1. 开启音频流
+    mMediaDeviceChannel.enableUploadAudioStream(true);
+    // 2. 开启视频流（语音无需调用此方法）
+    mMediaDeviceChannel.enableUploadVIdeoStream(true);
+    ```
     
     
 
@@ -144,11 +140,9 @@ title: 实现多方视频通话
     > 
     > 
     > 
-    > 
-    > 
-    >     mMediaChannel.join("222", null);
-    > 
-    > 
+    > ```java 
+>     mMediaChannel.join("222", null);
+    > ```
     > 
     > 
     > 
@@ -160,18 +154,16 @@ title: 实现多方视频通话
     
     
     
-    
-    
-        @Override
-        public void onJoin(boolean result, @JCMediaChannel MediaChannelReason int reason, String channelId) {
-            if (result) {
-                // 加入频道成功
-            } else {
-                // 加入频道失败
-            }
+    ```java 
+    @Override
+    public void onJoin(boolean result, @JCMediaChannel MediaChannelReason int reason, String channelId) {
+        if (result) {
+            // 加入频道成功
+        } else {
+            // 加入频道失败
         }
-    
-    
+    }
+    ```
     
     
 
@@ -194,12 +186,10 @@ title: 实现多方视频通话
 
 
 
-
-
-    // 打开本地视频预览
-    mMediaChannel.getSelfParticipant().startVideo(JCMediaDevice.RENDER_FULL_CONTENT, JCMediaChannel.PICTURESIZE_NONE);
-
-
+```java 
+// 打开本地视频预览
+mMediaChannel.getSelfParticipant().startVideo(JCMediaDevice.RENDER_FULL_CONTENT, JCMediaChannel.PICTURESIZE_NONE);
+```
 
 
 
@@ -231,16 +221,14 @@ title: 实现多方视频通话
 
 
 
-
-
-    // 获取所有成员对象
-    List<JCMediaChannelParticipant> participants = mMediaChannel.getSelfParticipant();
-    // 调用创建视频画面的方法
-    participants.get(0).startVideo(JCMediaDevice.RENDER_FULL_CONTENT, JCMediaChannel.PICTURESIZE_NONE);
-    // 请求远端视频流, 此处调用大尺寸视频窗口
-    mMediaChannel.requestVideo(participants.get(0), PICTURESIZE_LARGE);
-
-
+```java 
+// 获取所有成员对象
+List<JCMediaChannelParticipant> participants = mMediaChannel.getSelfParticipant();
+// 调用创建视频画面的方法
+participants.get(0).startVideo(JCMediaDevice.RENDER_FULL_CONTENT, JCMediaChannel.PICTURESIZE_NONE);
+// 请求远端视频流, 此处调用大尺寸视频窗口
+mMediaChannel.requestVideo(participants.get(0), PICTURESIZE_LARGE);
+```
 
 
 
@@ -256,11 +244,9 @@ title: 实现多方视频通话
 
 
 
-
-
-    mMediaChannel.leave();
-
-
+```java 
+mMediaChannel.leave();
+```
 
 
 
@@ -270,11 +256,9 @@ title: 实现多方视频通话
 
 
 
-
-
-    mParticipant.stopVideo();
-
-
+```java 
+mParticipant.stopVideo();
+```
 
 
 
@@ -298,17 +282,15 @@ title: 实现多方视频通话
 
 
 
-
-
-    // 离开频道结果回调
-    @Override
-    public void onLeave(@JCMediaChannel.MediaChannelReason int reason, String channelId) {
-        ...
-        // 销毁视频画面
-        mParticipant.stopVideo();
-    }
-
-
+```java 
+// 离开频道结果回调
+@Override
+public void onLeave(@JCMediaChannel.MediaChannelReason int reason, String channelId) {
+    ...
+    // 销毁视频画面
+    mParticipant.stopVideo();
+}
+```
 
 
 
@@ -322,12 +304,10 @@ title: 实现多方视频通话
 
 
 
-
-
-    // 结束频道
-    mMediaChannel.stop();
-
-
+```java 
+// 结束频道
+mMediaChannel.stop();
+```
 
 
 
@@ -337,11 +317,9 @@ title: 实现多方视频通话
 
 
 
-
-
-    mParticipant.stopVideo();
-
-
+```java 
+mParticipant.stopVideo();
+```
 
 
 
@@ -355,16 +333,14 @@ title: 实现多方视频通话
 
 
 
-
-
-    @Override
-    public void onStop(boolean result, @JCMediaChannel.MediaChannelReason int reason) {
-        // 销毁视频， canvas 为 JCMediaDeviceVideoCanvas 对象实例
-        mParticipant.stopVideo();
-        canvas = null;
-    }
-
-
+```java 
+@Override
+public void onStop(boolean result, @JCMediaChannel.MediaChannelReason int reason) {
+    // 销毁视频， canvas 为 JCMediaDeviceVideoCanvas 对象实例
+    mParticipant.stopVideo();
+    canvas = null;
+}
+```
 
 
 

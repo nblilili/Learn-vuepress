@@ -79,15 +79,13 @@ CocoaPods 环境安装好后，执行以下操作：
 
 
 
-
-
-    platform :ios, '9.0'
-    #use_frameworks!
-    target 'Your App' do
-    pod 'JuphoonCloudSDK_iOS', '2.1'
-    end
-
-
+```default 
+platform :ios, '9.0'
+#use_frameworks!
+target 'Your App' do
+pod 'JuphoonCloudSDK_iOS', '2.1'
+end
+```
 
 
 
@@ -135,26 +133,24 @@ Note
     > 
     > 
     > 
-    > 
-    > 
-    >     - AssetsLibrary.framework
-    >     - AudioToolbox.framework
-    >     - VideoToolBox.framework
-    >     - AVFoundation.framework
-    >     - CFNetwork.framework
-    >     - CoreMedia.framework
-    >     - CoreMotion.framework
-    >     - CoreVideo.framework
-    >     - GLKit.framework
-    >     - PushKit.framework（推送使用）
-    >     - ReplayKit.framework
-    >     - Security.framework
-    >     - SystemConfiguration.framework
-    >     - libc++.tbd
-    >     - libz.tbd
-    >     - libresolv.tbd
-    > 
-    > 
+    > ```default 
+>     - AssetsLibrary.framework
+>     - AudioToolbox.framework
+>     - VideoToolBox.framework
+>     - AVFoundation.framework
+>     - CFNetwork.framework
+>     - CoreMedia.framework
+>     - CoreMotion.framework
+>     - CoreVideo.framework
+>     - GLKit.framework
+>     - PushKit.framework（推送使用）
+>     - ReplayKit.framework
+>     - Security.framework
+>     - SystemConfiguration.framework
+>     - libc++.tbd
+>     - libz.tbd
+>     - libresolv.tbd
+    > ```
     > 
     > 
     > 
@@ -171,13 +167,11 @@ Note
     > 
     > 
     > 
-    > 
-    > 
-    >     - Framework Search Paths：$(PROJECT_DIR)/../sdk
-    >     - Header Search Paths：$(PROJECT_DIR)/../sdk/include
-    >     - Library Search Paths：$(PROJECT_DIR)/../sdk/lib/ios
-    > 
-    > 
+    > ```default 
+>     - Framework Search Paths：$(PROJECT_DIR)/../sdk
+>     - Header Search Paths：$(PROJECT_DIR)/../sdk/include
+>     - Library Search Paths：$(PROJECT_DIR)/../sdk/lib/ios
+    > ```
     > 
     > 
     > 
@@ -294,26 +288,24 @@ Note
     > 
     > 
     > 
-    > 
-    > 
-    >     - AssetsLibrary.framework
-    >     - AudioToolbox.framework
-    >     - VideoToolBox.framework
-    >     - AVFoundation.framework
-    >     - CFNetwork.framework
-    >     - CoreMedia.framework
-    >     - CoreMotion.framework
-    >     - CoreVideo.framework
-    >     - GLKit.framework
-    >     - PushKit.framework（推送使用）
-    >     - ReplayKit.framework
-    >     - Security.framework
-    >     - SystemConfiguration.framework
-    >     - libc++.tbd
-    >     - libz.tbd
-    >     - libresolv.tbd
-    > 
-    > 
+    > ```default 
+>     - AssetsLibrary.framework
+>     - AudioToolbox.framework
+>     - VideoToolBox.framework
+>     - AVFoundation.framework
+>     - CFNetwork.framework
+>     - CoreMedia.framework
+>     - CoreMotion.framework
+>     - CoreVideo.framework
+>     - GLKit.framework
+>     - PushKit.framework（推送使用）
+>     - ReplayKit.framework
+>     - Security.framework
+>     - SystemConfiguration.framework
+>     - libc++.tbd
+>     - libz.tbd
+>     - libresolv.tbd
+    > ```
     > 
     > 
     > 
@@ -330,11 +322,9 @@ Note
     > 
     > 
     > 
-    > 
-    > 
-    >     - Framework Search Paths：$(PROJECT_DIR)/../sdk
-    > 
-    > 
+    > ```default 
+>     - Framework Search Paths：$(PROJECT_DIR)/../sdk
+    > ```
     > 
     > 
     > 

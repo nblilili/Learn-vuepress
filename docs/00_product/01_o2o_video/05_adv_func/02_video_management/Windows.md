@@ -17,14 +17,12 @@ title: 视频管理
 
 
 
-
-
-    /// <summary>
-    /// 摄像头列表
-    /// </summary>
-    public List<JCMediaDeviceCamera> cameras
-
-
+```csharp 
+/// <summary>
+/// 摄像头列表
+/// </summary>
+public List<JCMediaDeviceCamera> cameras
+```
 
 
 
@@ -32,18 +30,16 @@ title: 视频管理
 
 
 
-
-
-    /// <summary>
-    /// 名称
-    /// </summary>
-    public string cameraName { get; internal set; }
-    /// <summary>
-    /// id
-    /// </summary>
-    public string cameraId
-
-
+```csharp 
+/// <summary>
+/// 名称
+/// </summary>
+public string cameraName { get; internal set; }
+/// <summary>
+/// id
+/// </summary>
+public string cameraId
+```
 
 
 
@@ -51,16 +47,14 @@ title: 视频管理
 
 
 
-
-
-    /// <summary>
-    /// 切换摄像头
-    /// </summary>
-    /// <param name="camera">要切换的摄像头</param>
-    /// <returns>true为切换成功，false为切换失败</returns>
-    public bool switchCamera(JCMediaDeviceCamera camera)
-
-
+```csharp 
+/// <summary>
+/// 切换摄像头
+/// </summary>
+/// <param name="camera">要切换的摄像头</param>
+/// <returns>true为切换成功，false为切换失败</returns>
+public bool switchCamera(JCMediaDeviceCamera camera)
+```
 
 
 
@@ -68,15 +62,13 @@ title: 视频管理
 
 
 
+```csharp 
+// 获取摄像头列表
+List<JCMediaDeviceCamera> cameraDevices = mediaDevice.cameraDevices;
 
-
-    // 获取摄像头列表
-    List<JCMediaDeviceCamera> cameraDevices = mediaDevice.cameraDevices;
-    
-    // 切换摄像头
-    mediaDevice.switchCamera(mediaDevice.cameras[0]);
-
-
+// 切换摄像头
+mediaDevice.switchCamera(mediaDevice.cameras[0]);
+```
 
 
 
@@ -92,17 +84,15 @@ title: 视频管理
 
 
 
-
-
-    /// <summary>
-    /// 设定摄像头分辨率，请在调用startCamera()接口之前调用才会生效
-    /// </summary>
-    /// <param name="width">摄像头分辨率宽</param>
-    /// <param name="height">摄像头分辨率高</param>
-    /// <param name="framerate">帧速率</param>
-    public void setCameraProperty(int width, int height, int framerate)
-
-
+```csharp 
+/// <summary>
+/// 设定摄像头分辨率，请在调用startCamera()接口之前调用才会生效
+/// </summary>
+/// <param name="width">摄像头分辨率宽</param>
+/// <param name="height">摄像头分辨率高</param>
+/// <param name="framerate">帧速率</param>
+public void setCameraProperty(int width, int height, int framerate)
+```
 
 
 
@@ -110,12 +100,10 @@ title: 视频管理
 
 
 
-
-
-    // 设置摄像头采集属性
-    mediaDevice.setCameraProperty(640, 360, 30);
-
-
+```csharp 
+// 设置摄像头采集属性
+mediaDevice.setCameraProperty(640, 360, 30);
+```
 
 
 
@@ -129,15 +117,13 @@ title: 视频管理
 
 
 
-
-
-    /// <summary>
-    /// 旋转画面
-    /// </summary>
-    /// <param name="angle">旋转角度</param>
-    public void rotate(JCMediaDeviceVideoCanvasRoatate angle)
-
-
+```csharp 
+/// <summary>
+/// 旋转画面
+/// </summary>
+/// <param name="angle">旋转角度</param>
+public void rotate(JCMediaDeviceVideoCanvasRoatate angle)
+```
 
 
 
@@ -151,26 +137,24 @@ JCMediaDeviceVideoCanvasRoatate 枚举值如下
 
 
 
-
-
-    /// <summary>
-    /// 0
-    /// </summary>
-    Angle0 = 0,
-    /// <summary>
-    /// 90
-    /// </summary>
-    Angle90 = 90,
-    /// <summary>
-    /// 180
-    /// </summary>
-    Angle180 = 180,
-    /// <summary>
-    /// 270
-    /// </summary>
-    Angle270 = 270
-
-
+```csharp 
+/// <summary>
+/// 0
+/// </summary>
+Angle0 = 0,
+/// <summary>
+/// 90
+/// </summary>
+Angle90 = 90,
+/// <summary>
+/// 180
+/// </summary>
+Angle180 = 180,
+/// <summary>
+/// 270
+/// </summary>
+Angle270 = 270
+```
 
 
 
@@ -178,12 +162,10 @@ JCMediaDeviceVideoCanvasRoatate 枚举值如下
 
 
 
-
-
-    // 设置摄像头采集属性
-    mediaDevice.rotate(JCMediaDeviceVideoCanvasRoatate.Angle0);
-
-
+```csharp 
+// 设置摄像头采集属性
+mediaDevice.rotate(JCMediaDeviceVideoCanvasRoatate.Angle0);
+```
 
 
 
@@ -211,16 +193,14 @@ JCMediaDeviceVideoCanvasRoatate 枚举值如下
 
 
 
-
-
-    /// <summary>
-    /// 获取预览视频对象，通过此对象能获得视图用于UI显示
-    /// </summary>
-    /// <param name="mode">渲染方式</param>
-    /// <returns>JCMediaDeviceVideoCanvas对象</returns>
-    public JCMediaDeviceVideoCanvas startCameraVideo(JCMediaDeviceRenderMode mode)
-
-
+```csharp 
+/// <summary>
+/// 获取预览视频对象，通过此对象能获得视图用于UI显示
+/// </summary>
+/// <param name="mode">渲染方式</param>
+/// <returns>JCMediaDeviceVideoCanvas对象</returns>
+public JCMediaDeviceVideoCanvas startCameraVideo(JCMediaDeviceRenderMode mode)
+```
 
 
 
@@ -259,17 +239,15 @@ JCMediaDeviceVideoCanvasRoatate 枚举值如下
 
 
 
-
-
-    /// <summary>
-    /// 获得视频对象，通过此对象能获得视图用于UI显示
-    /// </summary>
-    /// <param name="videoSource">渲染标识串，比如 JCMediaChannelParticipant JCCallItem 中的 renderId，当videoSource 为 videoFileId 时，内部会调用 startVideoFile</param>
-    /// <param name="mode">渲染模式</param>
-    /// <returns>JCMediaDeviceVideoCanvas对象</returns>
-    public JCMediaDeviceVideoCanvas startVideo(string videoSource, JCMediaDeviceRenderMode mode)
-
-
+```csharp 
+/// <summary>
+/// 获得视频对象，通过此对象能获得视图用于UI显示
+/// </summary>
+/// <param name="videoSource">渲染标识串，比如 JCMediaChannelParticipant JCCallItem 中的 renderId，当videoSource 为 videoFileId 时，内部会调用 startVideoFile</param>
+/// <param name="mode">渲染模式</param>
+/// <returns>JCMediaDeviceVideoCanvas对象</returns>
+public JCMediaDeviceVideoCanvas startVideo(string videoSource, JCMediaDeviceRenderMode mode)
+```
 
 
 
@@ -277,24 +255,22 @@ JCMediaDeviceVideoCanvasRoatate 枚举值如下
 
 
 
+```csharp 
+// 获取摄像头列表
+List<JCMediaDeviceCamera> cameraDevices = mediaDevice.cameras;
 
+// 打开本地视频预览
+JCMediaDeviceVideoCanvas localCanvas = mediaDevice.startCameraVideo(JCMediaDeviceRenderMode.FULLCONTENT);
+ImageBrush image = new ImageBrush(localCanvas.videoView);
+image.Stretch = Stretch.Uniform;
+this.label.Background = image;
 
-    // 获取摄像头列表
-    List<JCMediaDeviceCamera> cameraDevices = mediaDevice.cameras;
-    
-    // 打开本地视频预览
-    JCMediaDeviceVideoCanvas localCanvas = mediaDevice.startCameraVideo(JCMediaDeviceRenderMode.FULLCONTENT);
-    ImageBrush image = new ImageBrush(localCanvas.videoView);
-    image.Stretch = Stretch.Uniform;
-    this.label.Background = image;
-    
-    // 远端视频渲染，renderId来源于通话对象，一对一为JCCallItem对象，多方为JCMediaChannelParticipant对象
-    JCMediaDeviceVideoCanvas remoteCanvas = mediaDevice.startVideo(renderId, JCMediaDeviceRenderMode.FULLSCREEN);
-    ImageBrush image = new ImageBrush(remoteCanvas.videoView);
-    image.Stretch = Stretch.Uniform;
-    this.label.Background = image;
-
-
+// 远端视频渲染，renderId来源于通话对象，一对一为JCCallItem对象，多方为JCMediaChannelParticipant对象
+JCMediaDeviceVideoCanvas remoteCanvas = mediaDevice.startVideo(renderId, JCMediaDeviceRenderMode.FULLSCREEN);
+ImageBrush image = new ImageBrush(remoteCanvas.videoView);
+image.Stretch = Stretch.Uniform;
+this.label.Background = image;
+```
 
 
 
@@ -312,15 +288,13 @@ JCMediaDeviceVideoCanvasRoatate 枚举值如下
 
 
 
-
-
-    /// <summary>
-    /// 停止视频
-    /// </summary>
-    /// <param name="canvas">JCMediaDeviceVideoCanvas对象，由startVideo获得</param>
-    public void stopVideo(JCMediaDeviceVideoCanvas canvas)
-
-
+```csharp 
+/// <summary>
+/// 停止视频
+/// </summary>
+/// <param name="canvas">JCMediaDeviceVideoCanvas对象，由startVideo获得</param>
+public void stopVideo(JCMediaDeviceVideoCanvas canvas)
+```
 
 
 
@@ -328,24 +302,22 @@ JCMediaDeviceVideoCanvasRoatate 枚举值如下
 
 
 
-
-
-    JCMediaDeviceVideoCanvas localCanvas = mediaDevice.startCameraVideo(JCMediaDeviceRenderMode.FULLCONTENT);
-    JCMediaDeviceVideoCanvas remoteCanvas = mediaDevice.startVideo(renderId, JCMediaDeviceRenderMode.FULLSCREEN);
-    if (localCanvas != null)
-        {
-            this.smvideoGrid.Background = null;
-            mediaDevice.stopVideo(localCanvas);
-            localCanvas = null;
-        }
-    if (remoteCanvas != null)
-        {
-            this.fullvideoGrid.Background = null;
-            mediaDevice.stopVideo(remoteCanvas);
-            remoteCanvas = null;
-        }
-
-
+```csharp 
+JCMediaDeviceVideoCanvas localCanvas = mediaDevice.startCameraVideo(JCMediaDeviceRenderMode.FULLCONTENT);
+JCMediaDeviceVideoCanvas remoteCanvas = mediaDevice.startVideo(renderId, JCMediaDeviceRenderMode.FULLSCREEN);
+if (localCanvas != null)
+    {
+        this.smvideoGrid.Background = null;
+        mediaDevice.stopVideo(localCanvas);
+        localCanvas = null;
+    }
+if (remoteCanvas != null)
+    {
+        this.fullvideoGrid.Background = null;
+        mediaDevice.stopVideo(remoteCanvas);
+        remoteCanvas = null;
+    }
+```
 
 
 
@@ -359,18 +331,16 @@ JCMediaDeviceVideoCanvasRoatate 枚举值如下
 
 
 
-
-
-    /// <summary>
-    /// 视频通话截图
-    /// </summary>
-    /// <param name="width">截屏宽度像素，-1为视频源像素</param>
-    /// <param name="height">截屏高度像素，-1为视频源像素</param>
-    /// <param name="filePath">文件路径</param>
-    /// <returns>是否成功</returns>
-    public bool snapshot(int width, int height, string filePath)
-
-
+```csharp 
+/// <summary>
+/// 视频通话截图
+/// </summary>
+/// <param name="width">截屏宽度像素，-1为视频源像素</param>
+/// <param name="height">截屏高度像素，-1为视频源像素</param>
+/// <param name="filePath">文件路径</param>
+/// <returns>是否成功</returns>
+public bool snapshot(int width, int height, string filePath)
+```
 
 
 
@@ -386,16 +356,14 @@ JCMediaDeviceVideoCanvasRoatate 枚举值如下
 
 
 
-
-
-    /// <summary>
-    /// 更新视频渲染标识
-    /// </summary>
-    /// <param name="videoSource">渲染标识</param>
-    /// <returns>成功失败</returns>
-    public bool replace(string videoSource)
-
-
+```csharp 
+/// <summary>
+/// 更新视频渲染标识
+/// </summary>
+/// <param name="videoSource">渲染标识</param>
+/// <returns>成功失败</returns>
+public bool replace(string videoSource)
+```
 
 
 
@@ -409,15 +377,13 @@ JCMediaDeviceVideoCanvasRoatate 枚举值如下
 
 
 
-
-
-    /// <summary>
-    /// 暂停渲染
-    /// </summary>
-    /// <returns>成功失败</returns>
-    public bool pause()
-
-
+```csharp 
+/// <summary>
+/// 暂停渲染
+/// </summary>
+/// <returns>成功失败</returns>
+public bool pause()
+```
 
 
 
@@ -431,15 +397,13 @@ JCMediaDeviceVideoCanvasRoatate 枚举值如下
 
 
 
-
-
-    /// <summary>
-    /// 恢复渲染
-    /// </summary>
-    /// <returns>成功失败</returns>
-    public bool resume()
-
-
+```csharp 
+/// <summary>
+/// 恢复渲染
+/// </summary>
+/// <returns>成功失败</returns>
+public bool resume()
+```
 
 
 
@@ -461,19 +425,17 @@ JCMediaDeviceVideoCanvasRoatate 枚举值如下
 
 
 
+```csharp 
+/// <summary>
+/// 当前使用摄像头
+/// </summary>
+public JCMediaDeviceCamera camera
 
-
-    /// <summary>
-    /// 当前使用摄像头
-    /// </summary>
-    public JCMediaDeviceCamera camera
-    
-    /// <summary>
-    /// 默认摄像头
-    /// </summary>
-    public JCMediaDeviceCamera defaultCamera
-
-
+/// <summary>
+/// 默认摄像头
+/// </summary>
+public JCMediaDeviceCamera defaultCamera
+```
 
 
 
@@ -485,21 +447,19 @@ JCMediaDeviceVideoCanvasRoatate 枚举值如下
 
 
 
+```csharp 
+/// <summary>
+/// 开启摄像头
+/// </summary>
+/// <returns>true为开启成功，false为开启失败</returns>
+public bool startCamera()
 
-
-    /// <summary>
-    /// 开启摄像头
-    /// </summary>
-    /// <returns>true为开启成功，false为开启失败</returns>
-    public bool startCamera()
-    
-    /// <summary>
-    /// 关闭摄像头
-    /// </summary>
-    /// <returns>true为关闭成功，false为关闭失败</returns>
-    public bool stopCamera()
-
-
+/// <summary>
+/// 关闭摄像头
+/// </summary>
+/// <returns>true为关闭成功，false为关闭失败</returns>
+public bool stopCamera()
+```
 
 
 
@@ -511,16 +471,14 @@ JCMediaDeviceVideoCanvasRoatate 枚举值如下
 
 
 
-
-
-    /// <summary>
-    /// 切换摄像头
-    /// </summary>
-    /// <param name="camera">要切换的摄像头</param>
-    /// <returns>true为切换成功，false为切换失败</returns>
-    public bool switchCamera(JCMediaDeviceCamera camera)
-
-
+```csharp 
+/// <summary>
+/// 切换摄像头
+/// </summary>
+/// <param name="camera">要切换的摄像头</param>
+/// <returns>true为切换成功，false为切换失败</returns>
+public bool switchCamera(JCMediaDeviceCamera camera)
+```
 
 
 
@@ -528,18 +486,16 @@ JCMediaDeviceVideoCanvasRoatate 枚举值如下
 
 
 
+```csharp 
+// 打开摄像头
+mediaDevice.startCamera();
 
+// 关闭摄像头
+mediaDevice.stopCamera();
 
-    // 打开摄像头
-    mediaDevice.startCamera();
-    
-    // 关闭摄像头
-    mediaDevice.stopCamera();
-    
-    // 切换摄像头
-    mediaDevice.switchCamera(mediaDevice.cameras[0]);
-
-
+// 切换摄像头
+mediaDevice.switchCamera(mediaDevice.cameras[0]);
+```
 
 
 

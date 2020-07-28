@@ -19,40 +19,38 @@ title: 实现语音互动直播
 
 
 
+```csharp 
+/// 新建类并实现
+class JCManager : JCClientCallback, JCMediaDeviceCallback,JCMediaChannelCallbac{
 
+    #region JCMediaDeviceCallback
 
-    /// 新建类并实现
-    class JCManager : JCClientCallback, JCMediaDeviceCallback,JCMediaChannelCallbac{
-    
-        #region JCMediaDeviceCallback
-    
-        public void onCameraUpdate(){...}
-    
-        public void onAudioOutputTypeChange(string audioOutputType){...}
-    
-        #endregion
-    
-        #region JCMediaChannelCallback
-        ...
-        /// 实现 JCMediaChannelCallback 中的方法
-        ...
-        #endregion
-    
-        /// 声明对象
-        JCMediaDevice mMediaDevice;
-        JCMediaChannel mMediaChannel;
-    
-        /// 初始化函数
-        public bool initialize(Context context) {
-    
-            /// 1. 媒体类
-            mMediaDevice = JCMediaDevice.create(mClient, this);
-            /// 2. 媒体通道类
-            mMediaChannel = JCMediaChannel.create(client, mediaDevice, this);
-        }
+    public void onCameraUpdate(){...}
+
+    public void onAudioOutputTypeChange(string audioOutputType){...}
+
+    #endregion
+
+    #region JCMediaChannelCallback
+    ...
+    /// 实现 JCMediaChannelCallback 中的方法
+    ...
+    #endregion
+
+    /// 声明对象
+    JCMediaDevice mMediaDevice;
+    JCMediaChannel mMediaChannel;
+
+    /// 初始化函数
+    public bool initialize(Context context) {
+
+        /// 1. 媒体类
+        mMediaDevice = JCMediaDevice.create(mClient, this);
+        /// 2. 媒体通道类
+        mMediaChannel = JCMediaChannel.create(client, mediaDevice, this);
     }
-
-
+}
+```
 
 
 
@@ -68,14 +66,12 @@ title: 实现语音互动直播
 
 
 
-
-
-    //自定义主播角色
-    JCMediaChannelCustomRole ROLE_BROASCASTER = JCMediaChannelConstants.CUSTOM_ROLE_0;
-    //自定义观众角色
-    JCMediaChannelCustomRole ROLE_AUDIENCE = JCMediaChannelConstants.CUSTOM_ROLE_1;
-
-
+```csharp 
+//自定义主播角色
+JCMediaChannelCustomRole ROLE_BROASCASTER = JCMediaChannelConstants.CUSTOM_ROLE_0;
+//自定义观众角色
+JCMediaChannelCustomRole ROLE_AUDIENCE = JCMediaChannelConstants.CUSTOM_ROLE_1;
+```
 
 
 
@@ -85,12 +81,10 @@ title: 实现语音互动直播
 
 
 
-
-
-    /// 设置角色，participant(第二个参数） 值为 null 代表设置自身的角色
-    mediaChannel.setCustomRole(ROLE_BROASCASTER, null);
-
-
+```csharp 
+/// 设置角色，participant(第二个参数） 值为 null 代表设置自身的角色
+mediaChannel.setCustomRole(ROLE_BROASCASTER, null);
+```
 
 
 
@@ -106,12 +100,10 @@ title: 实现语音互动直播
     
     
     
-    
-    
-        /// 1. 开启音频流
-        mMediaDeviceChannel.enableUploadAudioStream(true);
-    
-    
+    ```csharp 
+    /// 1. 开启音频流
+    mMediaDeviceChannel.enableUploadAudioStream(true);
+    ```
     
     
 
@@ -130,11 +122,9 @@ title: 实现语音互动直播
     > 
     > 
     > 
-    > 
-    > 
-    >     mMediaChannel.join("222", null);
-    > 
-    > 
+    > ```csharp 
+>     mMediaChannel.join("222", null);
+    > ```
     > 
     > 
     > 
@@ -146,17 +136,15 @@ title: 实现语音互动直播
     
     
     
-    
-    
-        public void onJoin(bool result, JCMediaChannelReason reason, String channelId) {
-            if (result) {
-                /// 加入频道成功
-            } else {
-                /// 加入频道失败
-            }
+    ```csharp 
+    public void onJoin(bool result, JCMediaChannelReason reason, String channelId) {
+        if (result) {
+            /// 加入频道成功
+        } else {
+            /// 加入频道失败
         }
-    
-    
+    }
+    ```
     
     
 
@@ -172,11 +160,9 @@ title: 实现语音互动直播
 
 
 
-
-
-    mMediaChannel.leave();
-
-
+```csharp 
+mMediaChannel.leave();
+```
 
 
 
@@ -186,11 +172,9 @@ title: 实现语音互动直播
 
 
 
-
-
-    mParticipant.stopVideo();
-
-
+```csharp 
+mParticipant.stopVideo();
+```
 
 
 
@@ -202,17 +186,15 @@ title: 实现语音互动直播
 
 
 
+```csharp 
+/// 离开频道结果回调
 
-
-    /// 离开频道结果回调
-    
-    public void onLeave(JCMediaChannelReason reason, String channelId) {
-        ...
-        /// 销毁视频画面
-        mParticipant.stopVideo();
-    }
-
-
+public void onLeave(JCMediaChannelReason reason, String channelId) {
+    ...
+    /// 销毁视频画面
+    mParticipant.stopVideo();
+}
+```
 
 
 
@@ -226,12 +208,10 @@ title: 实现语音互动直播
 
 
 
-
-
-    /// 结束频道
-    mMediaChannel.stop();
-
-
+```csharp 
+/// 结束频道
+mMediaChannel.stop();
+```
 
 
 
@@ -241,11 +221,9 @@ title: 实现语音互动直播
 
 
 
-
-
-    mParticipant.stopVideo();
-
-
+```csharp 
+mParticipant.stopVideo();
+```
 
 
 
@@ -259,15 +237,13 @@ title: 实现语音互动直播
 
 
 
-
-
-    public void onStop(bool result, JCMediaChannelReason reason) {
-        /// 销毁视频， canvas 为 JCMediaDeviceVideoCanvas 对象实例
-        mParticipant.stopVideo();
-        canvas = null;
-    }
-
-
+```csharp 
+public void onStop(bool result, JCMediaChannelReason reason) {
+    /// 销毁视频， canvas 为 JCMediaDeviceVideoCanvas 对象实例
+    mParticipant.stopVideo();
+    canvas = null;
+}
+```
 
 
 

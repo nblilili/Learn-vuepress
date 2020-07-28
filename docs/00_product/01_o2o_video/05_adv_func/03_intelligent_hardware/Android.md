@@ -19,18 +19,16 @@ title: 智能硬件
 
 
 
-
-
-    // 360P
-    public static final int MODE_360P = 0;
-    // 720P
-    public static final int MODE_720P = MODE_360P + 1;
-    // 小屏智能设备
-    public static final int MODE_INTELLINGENT_HARDWARE_SMALL = MODE_720P + 1;
-    // 大屏智能设备
-    public static final int MODE_INTELLINGENT_HARDWARE_LARGE = MODE_INTELLINGENT_HARDWARE_SMALL + 1;
-
-
+```java 
+// 360P
+public static final int MODE_360P = 0;
+// 720P
+public static final int MODE_720P = MODE_360P + 1;
+// 小屏智能设备
+public static final int MODE_INTELLINGENT_HARDWARE_SMALL = MODE_720P + 1;
+// 大屏智能设备
+public static final int MODE_INTELLINGENT_HARDWARE_LARGE = MODE_INTELLINGENT_HARDWARE_SMALL + 1;
+```
 
 
 
@@ -41,16 +39,14 @@ title: 智能硬件
 
 
 
-
-
-    /**
-      * 根据模式生成配置参数
-      * @param mode
-      * @return
-      */
-    public static MediaConfig generateByMode(@Mode int mode);
-
-
+```java 
+/**
+  * 根据模式生成配置参数
+  * @param mode
+  * @return
+  */
+public static MediaConfig generateByMode(@Mode int mode);
+```
 
 
 
@@ -58,11 +54,9 @@ title: 智能硬件
 
 
 
-
-
-    JCManager.shared.call.mediaConfig = JCCall.MediaConfig.generateByMode(JCCall.MediaConfig.MODE_INTELLINGENT_HARDWARE_SMALL);
-
-
+```java 
+JCManager.shared.call.mediaConfig = JCCall.MediaConfig.generateByMode(JCCall.MediaConfig.MODE_INTELLINGENT_HARDWARE_SMALL);
+```
 
 
 
@@ -825,20 +819,18 @@ title: 智能硬件
 
 
 
-
-
-    // 声学回声消除。支持在免提状态下的通话，对于iOS和Windows等性能较好的机型有效。
-    public static final int AEC_MODE_AEC = MtcCallDb.EN_MTC_EC_AEC;
-    // 使用操作系统提供的声学回声消除功能，支持在免提状态下的通话。对于多数iOS和Android等品牌手机有效，但部分机型可能无效。
-    public static final int AEC_MODE_OS = MtcCallDb.EN_MTC_EC_OS;
-    // 声学回声抑制，通过半双工方式实现回声抑制，通常不建议使用。
-    public static final int AEC_MODE_AES = MtcCallDb.EN_MTC_EC_AES;
-    // 软件自适应声学回声消除，对于大多数所有机型有效。但计算量比AEC稍大一些。SDE追踪延迟精度高，FDE能适应更大的延迟。
-    public static final int AEC_MODE_FDE = MtcCallDb.EN_MTC_EC_AEC_FDE;
-    // 软件自适应声学回声消除，对于大多数所有机型有效。但计算量比AEC稍大一些。SDE追踪延迟精度高，FDE能适应更大的延迟。
-    public static final int AEC_MODE_SDE = MtcCallDb.EN_MTC_EC_AEC_SDE;
-
-
+```java 
+// 声学回声消除。支持在免提状态下的通话，对于iOS和Windows等性能较好的机型有效。
+public static final int AEC_MODE_AEC = MtcCallDb.EN_MTC_EC_AEC;
+// 使用操作系统提供的声学回声消除功能，支持在免提状态下的通话。对于多数iOS和Android等品牌手机有效，但部分机型可能无效。
+public static final int AEC_MODE_OS = MtcCallDb.EN_MTC_EC_OS;
+// 声学回声抑制，通过半双工方式实现回声抑制，通常不建议使用。
+public static final int AEC_MODE_AES = MtcCallDb.EN_MTC_EC_AES;
+// 软件自适应声学回声消除，对于大多数所有机型有效。但计算量比AEC稍大一些。SDE追踪延迟精度高，FDE能适应更大的延迟。
+public static final int AEC_MODE_FDE = MtcCallDb.EN_MTC_EC_AEC_FDE;
+// 软件自适应声学回声消除，对于大多数所有机型有效。但计算量比AEC稍大一些。SDE追踪延迟精度高，FDE能适应更大的延迟。
+public static final int AEC_MODE_SDE = MtcCallDb.EN_MTC_EC_AEC_SDE;
+```
 
 
 
@@ -848,45 +840,43 @@ title: 智能硬件
 
 
 
+```java 
+//音频参数
+MediaConfig mediaConfig = new MediaConfig();
+mediaConfig.audioEnableCodecs = "opus";
+mediaConfig.audioAecMode = JCCall.MediaConfig.AEC_MODE_FDE;
+mediaConfig.audioArsEnable = true;
+mediaConfig.audioArsBitrateMax = 20;
+mediaConfig.audioArsBitrateMin = 5;
+mediaConfig.audioRed = true;
+mediaConfig.audioRxAnr = false;
+mediaConfig.audioRtx = true;
+mediaConfig.audioRxAgc = false;
+mediaConfig.audioQosAec = true;
+mediaConfig.audioQosAnr = true;
+mediaConfig.audioQosAgc = true;
+mediaConfig.audioQosVad = true;
 
+//视频参数
+mediaConfig.videoEnableCodecs = "H264";
+mediaConfig.videoResolutionRecvWidth = 128;
+mediaConfig.videoResolutionRecvHeight = 128;
+mediaConfig.videoResolutionSendWidth = 640;
+mediaConfig.videoResolutionSendHeight = 360;
+mediaConfig.videoBitrate = 30;
+mediaConfig.videoSendFramerate = 15;
+mediaConfig.videoArsEnable = true;
+mediaConfig.videoArsBitrateMax = 75;
+mediaConfig.videoArsBitrateMin = 10;
+mediaConfig.videoArsFramerateMax = 15;
+mediaConfig.videoArsFramerateMin = 0;
+mediaConfig.videoRedFec  = true;
+mediaConfig.videoRecvFullScreen  = true;
+mediaConfig.videoSmallNalu  = true;
+mediaConfig.videoResolutionControl  = true;
 
-    //音频参数
-    MediaConfig mediaConfig = new MediaConfig();
-    mediaConfig.audioEnableCodecs = "opus";
-    mediaConfig.audioAecMode = JCCall.MediaConfig.AEC_MODE_FDE;
-    mediaConfig.audioArsEnable = true;
-    mediaConfig.audioArsBitrateMax = 20;
-    mediaConfig.audioArsBitrateMin = 5;
-    mediaConfig.audioRed = true;
-    mediaConfig.audioRxAnr = false;
-    mediaConfig.audioRtx = true;
-    mediaConfig.audioRxAgc = false;
-    mediaConfig.audioQosAec = true;
-    mediaConfig.audioQosAnr = true;
-    mediaConfig.audioQosAgc = true;
-    mediaConfig.audioQosVad = true;
-    
-    //视频参数
-    mediaConfig.videoEnableCodecs = "H264";
-    mediaConfig.videoResolutionRecvWidth = 128;
-    mediaConfig.videoResolutionRecvHeight = 128;
-    mediaConfig.videoResolutionSendWidth = 640;
-    mediaConfig.videoResolutionSendHeight = 360;
-    mediaConfig.videoBitrate = 30;
-    mediaConfig.videoSendFramerate = 15;
-    mediaConfig.videoArsEnable = true;
-    mediaConfig.videoArsBitrateMax = 75;
-    mediaConfig.videoArsBitrateMin = 10;
-    mediaConfig.videoArsFramerateMax = 15;
-    mediaConfig.videoArsFramerateMin = 0;
-    mediaConfig.videoRedFec  = true;
-    mediaConfig.videoRecvFullScreen  = true;
-    mediaConfig.videoSmallNalu  = true;
-    mediaConfig.videoResolutionControl  = true;
-    
-    JCManager.shared.call.mediaConfig = mediaConfig;
-
-
+JCManager.shared.call.mediaConfig = mediaConfig;
+```
 
 
 
@@ -958,11 +948,9 @@ Note
     
     
     
-    
-    
-        JCPush push = JCPush.create(client);
-    
-    
+    ```java 
+    JCPush push = JCPush.create(client);
+    ```
     
     
 
@@ -970,17 +958,15 @@ Note
     
     
     
-    
-    
-        JCPushTemplate pushInfo = new JCPushTemplate();
-        pushInfo.initWithMiPush(context.getPackageName(), "随意输入");
-        JCManager.getInstance().push.addPushInfo(pushInfo);
-        pushInfo.initWithCall(JCPushTemplate.XIAOMI, JCManager.getInstance().client.getUserId(), "呼叫", "0");
-        JCManager.getInstance().push.addPushInfo(pushInfo);
-        //设置模式，登录成功后、呼叫前或者收到来电前都可以设置
-        JCManager.shared.call.mediaConfig = JCCall.MediaConfig.generateByMode(JCCall.MediaConfig.MODE_INTELLINGENT_HARDWARE_SMALL);
-    
-    
+    ```java 
+    JCPushTemplate pushInfo = new JCPushTemplate();
+    pushInfo.initWithMiPush(context.getPackageName(), "随意输入");
+    JCManager.getInstance().push.addPushInfo(pushInfo);
+    pushInfo.initWithCall(JCPushTemplate.XIAOMI, JCManager.getInstance().client.getUserId(), "呼叫", "0");
+    JCManager.getInstance().push.addPushInfo(pushInfo);
+    //设置模式，登录成功后、呼叫前或者收到来电前都可以设置
+    JCManager.shared.call.mediaConfig = JCCall.MediaConfig.generateByMode(JCCall.MediaConfig.MODE_INTELLINGENT_HARDWARE_SMALL);
+    ```
     
     
 

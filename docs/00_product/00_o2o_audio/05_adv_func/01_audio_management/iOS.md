@@ -36,19 +36,17 @@ title: 音频管理
 
 
 
-
-
-    /**
-     * add mic data callback
-     *
-     * @param[in] pUser         the callback user data
-     * @param[in] pfnCb         the callback
-     *
-     * @return                  0 on succeed, otherwise failed.
-     */
-    int Zmf_AudioInputAddCallback(void *pUser, ZmfAudioInputCallback pfnCb);
-
-
+```objective
+/**
+ * add mic data callback
+ *
+ * @param[in] pUser         the callback user data
+ * @param[in] pfnCb         the callback
+ *
+ * @return                  0 on succeed, otherwise failed.
+ */
+int Zmf_AudioInputAddCallback(void *pUser, ZmfAudioInputCallback pfnCb);
+```
 
 
 
@@ -56,26 +54,24 @@ title: 音频管理
 
 
 
-
-
-    /** the callback to receive audio input data
-     *
-     * @param[in] pUser  the user data registered by Zmf_AddAudioInputCallback
-     * @param[in] inputId       unique name of the audio input
-     * @param[in] iSampleRateHz  the sample rating of the pcm data
-     * @param[in] iChannels     the channel number of the pcm data
-     * @param[in] buf           the pcm data
-     * @param[in] len           the pcm data length
-     * @param[in,out] micLevel
-     * @param[in] playDelayMS   the play delay ms
-     * @param[in] recDelayMS    the record dely ms
-     * @param[in] clockDrift    the clock drift ms
-     */
-    typedef void (*ZmfAudioInputCallback)(void* pUser, const char* inputId, int iSampleRateHz, int iChannels,
-                                       unsigned char *buf, int len, int *micLevel,
-                                       int playDelayMS, int recDelayMS, int clockDrift);
-
-
+```objective
+/** the callback to receive audio input data
+ *
+ * @param[in] pUser  the user data registered by Zmf_AddAudioInputCallback
+ * @param[in] inputId       unique name of the audio input
+ * @param[in] iSampleRateHz  the sample rating of the pcm data
+ * @param[in] iChannels     the channel number of the pcm data
+ * @param[in] buf           the pcm data
+ * @param[in] len           the pcm data length
+ * @param[in,out] micLevel
+ * @param[in] playDelayMS   the play delay ms
+ * @param[in] recDelayMS    the record dely ms
+ * @param[in] clockDrift    the clock drift ms
+ */
+typedef void (*ZmfAudioInputCallback)(void* pUser, const char* inputId, int iSampleRateHz, int iChannels,
+                                   unsigned char *buf, int len, int *micLevel,
+                                   int playDelayMS, int recDelayMS, int clockDrift);
+```
 
 
 
@@ -85,24 +81,22 @@ title: 音频管理
 
 
 
+```objective
+id data; //采集的音频数据对象
+void* p = (__bridge void *)data;
+static void zmfAudioInputCallback(void* pUser, const char* inputId, int iSampleRateHz, int iChannels,
+                                   unsigned char *buf, int len, int *micLevel,
+                                   int playDelayMS, int recDelayMS, int clockDrift) {
 
-
-    id data; //采集的音频数据对象
-    void* p = (__bridge void *)data;
-    static void zmfAudioInputCallback(void* pUser, const char* inputId, int iSampleRateHz, int iChannels,
-                                       unsigned char *buf, int len, int *micLevel,
-                                       int playDelayMS, int recDelayMS, int clockDrift) {
-    
-        NSLog(@"音频数据处理");
-    }
-    - (void)call {
-        //注册回调
-        Zmf_AudioInputAddCallback(p, zmfAudioInputCallback);
-        //发起呼叫
-        [call call:@"对端号码" video:true extraParam:@"自定义透传字符串"];
-    }
-
-
+    NSLog(@"音频数据处理");
+}
+- (void)call {
+    //注册回调
+    Zmf_AudioInputAddCallback(p, zmfAudioInputCallback);
+    //发起呼叫
+    [call call:@"对端号码" video:true extraParam:@"自定义透传字符串"];
+}
+```
 
 
 
@@ -110,18 +104,16 @@ title: 音频管理
 
 
 
-
-
-    /**
-     * remove mic data callback
-     *
-     * @param[in]  pUser        the callback user data
-     *
-     * @return                  0 on succeed, otherwise failed.
-     */
-    int Zmf_AudioInputRemoveCallback(void *pUser);
-
-
+```objective
+/**
+ * remove mic data callback
+ *
+ * @param[in]  pUser        the callback user data
+ *
+ * @return                  0 on succeed, otherwise failed.
+ */
+int Zmf_AudioInputRemoveCallback(void *pUser);
+```
 
 
 
@@ -129,18 +121,16 @@ title: 音频管理
 
 
 
-
-
-    id data; //采集的音频数据对象
-    void* p = (__bridge void *)data;
-    -(void)endCall {
-        //移除回调
-        Zmf_AudioInputRemoveCallback(p);
-        //挂断通话
-        [call term:item reason:JCCallReasonNone description:@"自己挂断"];
-    }
-
-
+```objective
+id data; //采集的音频数据对象
+void* p = (__bridge void *)data;
+-(void)endCall {
+    //移除回调
+    Zmf_AudioInputRemoveCallback(p);
+    //挂断通话
+    [call term:item reason:JCCallReasonNone description:@"自己挂断"];
+}
+```
 
 
 
@@ -159,18 +149,16 @@ title: 音频管理
 
 
 
-
-
-    /**
-     * add fill speak callback
-     *
-     * @param[in]  pUser        the callback user data
-     *
-     * @return                  0 on succeed, otherwise failed.
-     */
-    int  Zmf_AudioOutputAddCallback     (void *pUser, ZmfAudioOutputCallback pfnCb);
-
-
+```objective
+/**
+ * add fill speak callback
+ *
+ * @param[in]  pUser        the callback user data
+ *
+ * @return                  0 on succeed, otherwise failed.
+ */
+int  Zmf_AudioOutputAddCallback     (void *pUser, ZmfAudioOutputCallback pfnCb);
+```
 
 
 
@@ -178,25 +166,23 @@ title: 音频管理
 
 
 
+```objective
+/** the callback to get audio output buffer, when Zmf_OnAudioOutput() invoked.
+ *
+ * @param[in] pUser          the callback user data
+ * @param[in] outputId       unique name of the audio output
+ * @param[in] iSampleRateHz  the sample rating of the pcm data
+ * @param[in] iChannels      the channel number of the pcm data
+ * @param[in] buf            the pcm data
+ * @param[in] len            the pcm data length
+ */
 
-
-    /** the callback to get audio output buffer, when Zmf_OnAudioOutput() invoked.
-     *
-     * @param[in] pUser          the callback user data
-     * @param[in] outputId       unique name of the audio output
-     * @param[in] iSampleRateHz  the sample rating of the pcm data
-     * @param[in] iChannels      the channel number of the pcm data
-     * @param[in] buf            the pcm data
-     * @param[in] len            the pcm data length
-     */
-    
-    /** the callback to fill audio output buffer
-     * @param[in] pUser  the user data registered by Zmf_AudioOutputAddCallback
-     */
-    typedef int  (*ZmfAudioOutputCallback)(void* pUser, const char* outputId, int iSampleRateHz, int iChannels,
-                                         unsigned char *buf, int len);
-
-
+/** the callback to fill audio output buffer
+ * @param[in] pUser  the user data registered by Zmf_AudioOutputAddCallback
+ */
+typedef int  (*ZmfAudioOutputCallback)(void* pUser, const char* outputId, int iSampleRateHz, int iChannels,
+                                     unsigned char *buf, int len);
+```
 
 
 
@@ -206,23 +192,21 @@ title: 音频管理
 
 
 
+```objective
+static void zmfAudioOutputCallback(void* pUser, const char* outputId, int iSampleRateHz, int iChannels,
+                                     unsigned char *buf, int len) {
 
-
-    static void zmfAudioOutputCallback(void* pUser, const char* outputId, int iSampleRateHz, int iChannels,
-                                         unsigned char *buf, int len) {
-    
-        NSLog(@"音频数据处理");
-    }
-    id data; //解码后的音频数据
-    void* p = (__bridge void *)data;
-    - (void)call {
-        //注册回调
-        Zmf_AudioOutputAddCallback(p, zmfAudioOutputCallback);
-        //发起业务
-        [call call:@"对端号码" video:true extraParam:@"自定义透传字符串"];
-    }
-
-
+    NSLog(@"音频数据处理");
+}
+id data; //解码后的音频数据
+void* p = (__bridge void *)data;
+- (void)call {
+    //注册回调
+    Zmf_AudioOutputAddCallback(p, zmfAudioOutputCallback);
+    //发起业务
+    [call call:@"对端号码" video:true extraParam:@"自定义透传字符串"];
+}
+```
 
 
 
@@ -230,18 +214,16 @@ title: 音频管理
 
 
 
-
-
-    /**
-     * remove fill speak callback
-     *
-     * @param[in]  pUser        the callback user data
-     *
-     * @return                  0 on succeed, otherwise failed.
-     */
-    int  Zmf_AudioOutputRemoveCallback  (void *pUser);
-
-
+```objective
+/**
+ * remove fill speak callback
+ *
+ * @param[in]  pUser        the callback user data
+ *
+ * @return                  0 on succeed, otherwise failed.
+ */
+int  Zmf_AudioOutputRemoveCallback  (void *pUser);
+```
 
 
 
@@ -249,18 +231,16 @@ title: 音频管理
 
 
 
-
-
-    id data; //解码后的音频数据
-    void* p = (__bridge void *)data;
-    - (void)endCall {
-        //取消注册回调
-        Zmf_AudioOutputRemoveCallback(p);
-        //挂断通话
-        [call term:item reason:JCCallReasonNone description:@"自己挂断"];
-    }
-
-
+```objective
+id data; //解码后的音频数据
+void* p = (__bridge void *)data;
+- (void)endCall {
+    //取消注册回调
+    Zmf_AudioOutputRemoveCallback(p);
+    //挂断通话
+    [call term:item reason:JCCallReasonNone description:@"自己挂断"];
+}
+```
 
 
 
@@ -290,20 +270,18 @@ Juphoon 对应的接口中进行后续操作。
 
 
 
-
-
-    /**
-     * @brief Initialize Audio module of ZMF(Zero Media Framework).
-     * @param  applicationContext For Windows, it can be the handle of the window,
-     *                            The notification event will be sent to that window.
-     *                            Or it can be callback function of type ZmfEventListenCallback.
-     *                            For iOS, it must be the Context.
-     *                            For iOS, it should be NULL and is ignored.
-     * @return                    0 on succeed, otherwise failed.
-     */
-    int Zmf_AudioInitialize(void *applicationContext);
-
-
+```objective
+/**
+ * @brief Initialize Audio module of ZMF(Zero Media Framework).
+ * @param  applicationContext For Windows, it can be the handle of the window,
+ *                            The notification event will be sent to that window.
+ *                            Or it can be callback function of type ZmfEventListenCallback.
+ *                            For iOS, it must be the Context.
+ *                            For iOS, it should be NULL and is ignored.
+ * @return                    0 on succeed, otherwise failed.
+ */
+int Zmf_AudioInitialize(void *applicationContext);
+```
 
 
 
@@ -311,27 +289,25 @@ Juphoon 对应的接口中进行后续操作。
 
 
 
-
-
-    /**
-     * The audio input data entry to ZMF, each callback will obtain the data.
-     * Multiple data will mix in the callback of the jssmme Engine,
-     * and the first input will be main channel.
-     *
-     * @param[in] inputId       unique name of the audio input       //输入设备id
-     * @param[in] sampleRateHz  the sample rating of the pcm data    //外部采样率 取值范围：8000，16000，32000，44100，48000取决于外部
-     * @param[in] iChannels     the channel number of the pcm data   //通道数量 取值范围：1或2
-     * @param[in] buf           the pcm data                         //外部采集数据源
-     * @param[in] len           the pcm data length                  //对应数据长度
-     * @param[in,out] micLevel                                       //音量，取值范围：0-100，会根据实际输入音频返回音量值
-     * @param[in] playDelayMS                                        //播放时延 通常取0
-     * @param[in] recDelayMS                                         //采集时延 通常取0
-     * @param[in] clockDrift                                         //时钟漂移 通常取0
-     *
-     */
-     void Zmf_OnAudioInput (const char *inputId, int sampleRateHz, int iChannels, unsigned char *buf, int len, int *micLevel, int playDelayMS, int recDelayMS, int clockDrift);
-
-
+```objective
+/**
+ * The audio input data entry to ZMF, each callback will obtain the data.
+ * Multiple data will mix in the callback of the jssmme Engine,
+ * and the first input will be main channel.
+ *
+ * @param[in] inputId       unique name of the audio input       //输入设备id
+ * @param[in] sampleRateHz  the sample rating of the pcm data    //外部采样率 取值范围：8000，16000，32000，44100，48000取决于外部
+ * @param[in] iChannels     the channel number of the pcm data   //通道数量 取值范围：1或2
+ * @param[in] buf           the pcm data                         //外部采集数据源
+ * @param[in] len           the pcm data length                  //对应数据长度
+ * @param[in,out] micLevel                                       //音量，取值范围：0-100，会根据实际输入音频返回音量值
+ * @param[in] playDelayMS                                        //播放时延 通常取0
+ * @param[in] recDelayMS                                         //采集时延 通常取0
+ * @param[in] clockDrift                                         //时钟漂移 通常取0
+ *
+ */
+ void Zmf_OnAudioInput (const char *inputId, int sampleRateHz, int iChannels, unsigned char *buf, int len, int *micLevel, int playDelayMS, int recDelayMS, int clockDrift);
+```
 
 
 
@@ -339,18 +315,16 @@ Juphoon 对应的接口中进行后续操作。
 
 
 
-
-
-    //初始化音频设备
-    Zmf_AudioInitialize(NULL);
-    -(void)voiceCall {
-        // 输入长度为length，采样频率16000，通道数为1的pcm数据片段
-        Zmf_OnAudioInput("Test",16000,1,pcmdata,length,0,0,0,0);
-        //发起呼叫
-        [call call:@"对端号码" video:true extraParam:@"自定义透传字符串"];
-    }
-
-
+```objective
+//初始化音频设备
+Zmf_AudioInitialize(NULL);
+-(void)voiceCall {
+    // 输入长度为length，采样频率16000，通道数为1的pcm数据片段
+    Zmf_OnAudioInput("Test",16000,1,pcmdata,length,0,0,0,0);
+    //发起呼叫
+    [call call:@"对端号码" video:true extraParam:@"自定义透传字符串"];
+}
+```
 
 
 
@@ -366,16 +340,14 @@ Note
 
 
 
-
-
-    /**
-     * tell ZMF the audio input has stopped
-     *
-     * @param[in] inputId       unique name of the device  //输入设备id
-     */
-    void Zmf_OnAudioInputDidStop(const char *inputId);
-
-
+```objective
+/**
+ * tell ZMF the audio input has stopped
+ *
+ * @param[in] inputId       unique name of the device  //输入设备id
+ */
+void Zmf_OnAudioInputDidStop(const char *inputId);
+```
 
 
 
@@ -383,16 +355,14 @@ Note
 
 
 
-
-
-    -(void)endCall {
-        //停止采集
-        Zmf_OnAudioInputDidStop("Test");
-        //挂断通话
-        [call term:item reason:JCCallReasonNone description:@"自己挂断"];
-    }
-
-
+```objective
+-(void)endCall {
+    //停止采集
+    Zmf_OnAudioInputDidStop("Test");
+    //挂断通话
+    [call term:item reason:JCCallReasonNone description:@"自己挂断"];
+}
+```
 
 
 
@@ -402,20 +372,18 @@ Note
 
 
 
-
-
-    /**
-     * The outlet which audio output can get data from.
-     *
-     * @param[in] outputId      unique name of the audio output       //输出设备id
-     * @param[in] sampleRateHz  the sample rating of the pcm data     //采样率  取值范围：8000，16000，32000，44100，48000取决于外部
-     * @param[in] iChannels     the channel number of the pcm data    //通道数量 取值范围：1或2
-     * @param[in] buf           the pcm data to be filled             //外部采集数据源
-     * @param[in] len           the pcm data length                   //对应数据buf长度
-     */
-     void Zmf_OnAudioOutput (const char *outputId, int sampleRateHz, int iChannels, unsigned char *buf, int len);
-
-
+```objective
+/**
+ * The outlet which audio output can get data from.
+ *
+ * @param[in] outputId      unique name of the audio output       //输出设备id
+ * @param[in] sampleRateHz  the sample rating of the pcm data     //采样率  取值范围：8000，16000，32000，44100，48000取决于外部
+ * @param[in] iChannels     the channel number of the pcm data    //通道数量 取值范围：1或2
+ * @param[in] buf           the pcm data to be filled             //外部采集数据源
+ * @param[in] len           the pcm data length                   //对应数据buf长度
+ */
+ void Zmf_OnAudioOutput (const char *outputId, int sampleRateHz, int iChannels, unsigned char *buf, int len);
+```
 
 
 
@@ -423,18 +391,16 @@ Note
 
 
 
-
-
-    //初始化音频设备
-    Zmf_AudioInitialize(NULL);
-    -(void)call {
-        // 输入长度为length，采样频率16000，通道数为1的pcm数据片段
-        Zmf_OnAudioOutput("Test",16000,1,buf,length);
-        //发起呼叫
-        [call call:@"对端号码" video:true extraParam:@"自定义透传字符串"];
-    }
-
-
+```objective
+//初始化音频设备
+Zmf_AudioInitialize(NULL);
+-(void)call {
+    // 输入长度为length，采样频率16000，通道数为1的pcm数据片段
+    Zmf_OnAudioOutput("Test",16000,1,buf,length);
+    //发起呼叫
+    [call call:@"对端号码" video:true extraParam:@"自定义透传字符串"];
+}
+```
 
 
 
@@ -450,16 +416,14 @@ Note
 
 
 
-
-
-    /**
-     * tell ZMF the audio output has stopped
-     *
-     * @param[in] outputId      unique name of the device    //输出设备id
-     */
-    void Zmf_OnAudioOutputDidStop(const char *outputId);
-
-
+```objective
+/**
+ * tell ZMF the audio output has stopped
+ *
+ * @param[in] outputId      unique name of the device    //输出设备id
+ */
+void Zmf_OnAudioOutputDidStop(const char *outputId);
+```
 
 
 
@@ -467,16 +431,14 @@ Note
 
 
 
-
-
-    -(void)endCall {
-        //停止播放数据
-        Zmf_OnAudioOutputDidStop("Test");
-        //挂断通话
-        [call term:item reason:JCCallReasonNone description:@"自己挂断"];
-    }
-
-
+```objective
+-(void)endCall {
+    //停止播放数据
+    Zmf_OnAudioOutputDidStop("Test");
+    //挂断通话
+    [call term:item reason:JCCallReasonNone description:@"自己挂断"];
+}
+```
 
 
 
@@ -510,15 +472,13 @@ UI 通过下面的方法开启和关闭扬声器:
 
 
 
-
-
-    /**
-     *  @brief 开启关闭扬声器
-     *  @param enable 是否开启
-     */
-    -(void)enableSpeaker:(bool)enable;
-
-
+```objective
+/**
+ *  @brief 开启关闭扬声器
+ *  @param enable 是否开启
+ */
+-(void)enableSpeaker:(bool)enable;
+```
 
 
 
@@ -530,21 +490,19 @@ UI 通过下面的方法开启和关闭扬声器:
 
 
 
+```objective
+/**
+ *  @brief 启动音频，一般正式开启通话前需要调用此接口
+ *  @return 成功返回 true，失败返回 false
+ */
+-(bool)startAudio;
 
-
-    /**
-     *  @brief 启动音频，一般正式开启通话前需要调用此接口
-     *  @return 成功返回 true，失败返回 false
-     */
-    -(bool)startAudio;
-    
-    /**
-     *  @brief 停止音频，一般在通话结束时调用
-     *  @return 成功返回 true，失败返回 false
-     */
-    -(bool)stopAudio;
-
-
+/**
+ *  @brief 停止音频，一般在通话结束时调用
+ *  @return 成功返回 true，失败返回 false
+ */
+-(bool)stopAudio;
+```
 
 
 
@@ -558,15 +516,13 @@ UI 通过下面的方法开启和关闭扬声器:
 
 
 
-
-
-    /**
-     *  @brief 获得当前音频模式，目前只支持听筒和扬声器，iOS 使用
-     *  @return 音频模式
-     */
-    -(NSString* __nullable)getAudioOutputType;
-
-
+```objective
+/**
+ *  @brief 获得当前音频模式，目前只支持听筒和扬声器，iOS 使用
+ *  @return 音频模式
+ */
+-(NSString* __nullable)getAudioOutputType;
+```
 
 
 
@@ -578,15 +534,13 @@ UI 通过下面的方法开启和关闭扬声器:
 
 
 
-
-
-    /**
-     *  @brief 是否开启了扬声器，iOS 使用
-     *  @return ture表示开启，false表示未开启
-     */
-    -(bool)isSpeakerOn;
-
-
+```objective
+/**
+ *  @brief 是否开启了扬声器，iOS 使用
+ *  @return ture表示开启，false表示未开启
+ */
+-(bool)isSpeakerOn;
+```
 
 
 
@@ -594,18 +548,16 @@ UI 通过下面的方法开启和关闭扬声器:
 
 
 
+```objective
+// 开启关闭扬声器
+[mediaDevice enableSpeaker:true];
 
+// 关闭音频设备
+[mediaDevice stopAudio];
 
-    // 开启关闭扬声器
-    [mediaDevice enableSpeaker:true];
-    
-    // 关闭音频设备
-    [mediaDevice stopAudio];
-    
-    // 开启音频设备
-    [mediaDevice startAudio]
-
-
+// 开启音频设备
+[mediaDevice startAudio]
+```
 
 
 

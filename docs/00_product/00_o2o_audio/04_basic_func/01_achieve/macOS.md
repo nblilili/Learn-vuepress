@@ -19,18 +19,16 @@ create](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCCall.h
 
 
 
-
-
-    //初始化
-    -(bool)initialize {
-       //1. 媒体类
-       JCMediaDevice *mediaDevice = [JCMediaDevice create:client callback:self];
-       //2. 通话类
-       JCCall *call = [JCCall create:client mediaDevice:mediaDevice callback:self];
-       return client.state == JCClientStateLogined;
-    }
-
-
+```objective
+//初始化
+-(bool)initialize {
+   //1. 媒体类
+   JCMediaDevice *mediaDevice = [JCMediaDevice create:client callback:self];
+   //2. 通话类
+   JCCall *call = [JCCall create:client mediaDevice:mediaDevice callback:self];
+   return client.state == JCClientStateLogined;
+}
+```
 
 
 
@@ -45,18 +43,16 @@ JCMediaDeviceCallback 中的主要方法如下
 
 
 
+```objective
+//摄像头变化
+-(void)onCameraUpdate;
 
+//音频输出变化
+-(void)onAudioOutputTypeChange:(NSString*)audioOutputType;
 
-    //摄像头变化
-    -(void)onCameraUpdate;
-    
-    //音频输出变化
-    -(void)onAudioOutputTypeChange:(NSString*)audioOutputType;
-    
-    //声音中断恢复
-    -(void)onAudioInerruptAndResume:(BOOL)interrupt;
-
-
+//声音中断恢复
+-(void)onAudioInerruptAndResume:(BOOL)interrupt;
+```
 
 
 
@@ -69,18 +65,16 @@ JCCallCallback 中的主要方法如下
 
 
 
+```objective
+//新增通话回调
+-(void)onCallItemAdd:(JCCallItem* __nonnull)item;
 
+//移除通话
+-(void)onCallItemRemove:(JCCallItem* __nonnull)item reason:(JCCallReason)reason description:(NSString * __nullable)description;
 
-    //新增通话回调
-    -(void)onCallItemAdd:(JCCallItem* __nonnull)item;
-    
-    //移除通话
-    -(void)onCallItemRemove:(JCCallItem* __nonnull)item reason:(JCCallReason)reason description:(NSString * __nullable)description;
-    
-    //通话状态更新回调（当上层收到此回调时，可以根据 JCCallItem 对象获得该通话的所有信息及状态，从而更新该通话相关UI）
-    -(void)onCallItemUpdate:(JCCallItem* __nonnull)item changeParam:(JCCallChangeParam * __nullable)changeParam;
-
-
+//通话状态更新回调（当上层收到此回调时，可以根据 JCCallItem 对象获得该通话的所有信息及状态，从而更新该通话相关UI）
+-(void)onCallItemUpdate:(JCCallItem* __nonnull)item changeParam:(JCCallChangeParam * __nullable)changeParam;
+```
 
 
 
@@ -102,12 +96,10 @@ JCCallCallback 中的主要方法如下
 
 
 
-
-
-    // 发起语音呼叫
-    [call call:@"userID" video:false extraParam:@"自定义透传字符串"];
-
-
+```objective
+// 发起语音呼叫
+[call call:@"userID" video:false extraParam:@"自定义透传字符串"];
+```
 
 
 
@@ -121,21 +113,19 @@ JCCallCallback 中的主要方法如下
 
 
 
-
-
-    // 收到新增通话回调
-    -(void)onCallItemAdd:(JCCallItem* __nonnull)item {
-        // 业务逻辑
-        if (item.direction == JCCallDirectionIn) {
-            // 如果是呼入
-            ...
-        } else {
-            // 如果是呼出
-            ...
-        }
+```objective
+// 收到新增通话回调
+-(void)onCallItemAdd:(JCCallItem* __nonnull)item {
+    // 业务逻辑
+    if (item.direction == JCCallDirectionIn) {
+        // 如果是呼入
+        ...
+    } else {
+        // 如果是呼出
+        ...
     }
-
-
+}
+```
 
 
 
@@ -163,17 +153,15 @@ Note
 
 
 
-
-
-    -(void)onCallItemAdd:(JCCallItem* __nonnull)item {
-        // 1. 如果是语音呼入且在振铃中
-        if (item && item.direction == JCCallDirectionIn && !item.video) {
-            // 2. 做出相应的处理，如在界面上显示“振铃中”
-            ...
-        }
+```objective
+-(void)onCallItemAdd:(JCCallItem* __nonnull)item {
+    // 1. 如果是语音呼入且在振铃中
+    if (item && item.direction == JCCallDirectionIn && !item.video) {
+        // 2. 做出相应的处理，如在界面上显示“振铃中”
+        ...
     }
-
-
+}
+```
 
 
 
@@ -183,12 +171,10 @@ Note
 
 
 
-
-
-    // 应答通话
-    [call answer:item video:false];
-
-
+```objective
+// 应答通话
+[call answer:item video:false];
+```
 
 
 
@@ -220,14 +206,12 @@ Note
     
     
     
-    
-    
-        // 1. 获取当前活跃通话
-        JCCallItem *item = [call getActiveCallItem];
-        // 2. 挂断当前活跃通话
-        [call term:item reason:JCCallReasonNone description:@"主叫挂断"];
-    
-    
+    ```objective
+    // 1. 获取当前活跃通话
+    JCCallItem *item = [call getActiveCallItem];
+    // 2. 挂断当前活跃通话
+    [call term:item reason:JCCallReasonNone description:@"主叫挂断"];
+    ```
     
     
 

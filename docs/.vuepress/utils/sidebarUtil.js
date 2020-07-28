@@ -21,7 +21,6 @@ module.exports = {
  * @param {侧边栏对象} sidebar 
  */
 function divideProducts(filePath, sidebar){
-
   fs.readdir(filePath, (err, files) => {
     if(err){
       console.warn(err);
@@ -67,8 +66,6 @@ function fileDisplay(filePath, sidebar){
  * @param {是否能折叠} collapsable 
  */
 function makeDirObj(objTitle, children, collapsable){
-  console.log("in makDirObj")
-  console.log(children);
   var obj = new Object();
   obj.title =  translateGroupTitle(objTitle);
   obj.children = children;
@@ -117,12 +114,12 @@ function getChildren(filePath, childArr){
               if(!platformUtil.has(filename)){
                 filename == 'README.md' ? childArr.splice(0,0,''):childArr.push(relativePath);
               }else {
-                console.log("fileDir" + fileDir + "and do nothing");
+                console.log("fileDir: " + fileDir + " and do nothing");
               }
             }else{
               // folder
               if(folderFilterSet.has(filename)){
-                console.log("floderDir:"+ fileDir);
+                console.log("floderDir: "+ fileDir);
                 getChildren(fileDir, childArr);
               }else{
                 var subChildArr = new Array();

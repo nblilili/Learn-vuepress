@@ -36,19 +36,17 @@ title: 音频管理
 
 
 
-
-
-    /**
-     * add mic data callback
-     *
-     * @param[in] pUser         the callback user data
-     * @param[in] pfnCb         the callback
-     *
-     * @return                  0 on succeed, otherwise failed.
-     */
-    int Zmf_AudioInputAddCallback(void *pUser, ZmfAudioInputCallback pfnCb);
-
-
+```C++ 
+/**
+ * add mic data callback
+ *
+ * @param[in] pUser         the callback user data
+ * @param[in] pfnCb         the callback
+ *
+ * @return                  0 on succeed, otherwise failed.
+ */
+int Zmf_AudioInputAddCallback(void *pUser, ZmfAudioInputCallback pfnCb);
+```
 
 
 
@@ -56,26 +54,24 @@ title: 音频管理
 
 
 
-
-
-    /** the callback to receive audio input data
-     *
-     * @param[in] pUser  the user data registered by Zmf_AddAudioInputCallback
-     * @param[in] inputId       unique name of the audio input
-     * @param[in] iSampleRateHz  the sample rating of the pcm data
-     * @param[in] iChannels     the channel number of the pcm data
-     * @param[in] buf           the pcm data
-     * @param[in] len           the pcm data length
-     * @param[in,out] micLevel
-     * @param[in] playDelayMS   the play delay ms
-     * @param[in] recDelayMS    the record dely ms
-     * @param[in] clockDrift    the clock drift ms
-     */
-    typedef void (*ZmfAudioInputCallback)(void* pUser, const char* inputId, int iSampleRateHz, int iChannels,
-                                       unsigned char *buf, int len, int *micLevel,
-                                       int playDelayMS, int recDelayMS, int clockDrift);
-
-
+```C++ 
+/** the callback to receive audio input data
+ *
+ * @param[in] pUser  the user data registered by Zmf_AddAudioInputCallback
+ * @param[in] inputId       unique name of the audio input
+ * @param[in] iSampleRateHz  the sample rating of the pcm data
+ * @param[in] iChannels     the channel number of the pcm data
+ * @param[in] buf           the pcm data
+ * @param[in] len           the pcm data length
+ * @param[in,out] micLevel
+ * @param[in] playDelayMS   the play delay ms
+ * @param[in] recDelayMS    the record dely ms
+ * @param[in] clockDrift    the clock drift ms
+ */
+typedef void (*ZmfAudioInputCallback)(void* pUser, const char* inputId, int iSampleRateHz, int iChannels,
+                                   unsigned char *buf, int len, int *micLevel,
+                                   int playDelayMS, int recDelayMS, int clockDrift);
+```
 
 
 
@@ -85,23 +81,21 @@ title: 音频管理
 
 
 
+```C++ 
+static void zmfAudioInputCallback(void* pUser, const char* inputId, int iSampleRateHz, int iChannels,
+                                   unsigned char *buf, int len, int *micLevel,
+                                   int playDelayMS, int recDelayMS, int clockDrift) {
 
-
-    static void zmfAudioInputCallback(void* pUser, const char* inputId, int iSampleRateHz, int iChannels,
-                                       unsigned char *buf, int len, int *micLevel,
-                                       int playDelayMS, int recDelayMS, int clockDrift) {
-    
-        cout << "音频数据处理" << endl;
-    }
-    void JCSampleDlg::OnBnClickedButtonCall()
-    {
-        //注册回调
-        Zmf_AudioInputAddCallback(void*pUser, zmfAudioInputCallback);
-        //发起呼叫
-        ...
-    }
-
-
+    cout << "音频数据处理" << endl;
+}
+void JCSampleDlg::OnBnClickedButtonCall()
+{
+    //注册回调
+    Zmf_AudioInputAddCallback(void*pUser, zmfAudioInputCallback);
+    //发起呼叫
+    ...
+}
+```
 
 
 
@@ -109,18 +103,16 @@ title: 音频管理
 
 
 
-
-
-    /**
-     * remove mic data callback
-     *
-     * @param[in]  pUser        the callback user data
-     *
-     * @return                  0 on succeed, otherwise failed.
-     */
-    int Zmf_AudioInputRemoveCallback(void *pUser);
-
-
+```C++ 
+/**
+ * remove mic data callback
+ *
+ * @param[in]  pUser        the callback user data
+ *
+ * @return                  0 on succeed, otherwise failed.
+ */
+int Zmf_AudioInputRemoveCallback(void *pUser);
+```
 
 
 
@@ -128,17 +120,15 @@ title: 音频管理
 
 
 
-
-
-    void JCSampleDlg::OnBnClickedButtonEndCall()
-    {
-        //移除回调
-        Zmf_AudioInputRemoveCallback(p);
-        //挂断通话
-        ...
-    }
-
-
+```C++ 
+void JCSampleDlg::OnBnClickedButtonEndCall()
+{
+    //移除回调
+    Zmf_AudioInputRemoveCallback(p);
+    //挂断通话
+    ...
+}
+```
 
 
 
@@ -157,18 +147,16 @@ title: 音频管理
 
 
 
-
-
-    /**
-     * add fill speak callback
-     *
-     * @param[in]  pUser        the callback user data
-     *
-     * @return                  0 on succeed, otherwise failed.
-     */
-    int  Zmf_AudioOutputAddCallback     (void *pUser, ZmfAudioOutputCallback pfnCb);
-
-
+```C++ 
+/**
+ * add fill speak callback
+ *
+ * @param[in]  pUser        the callback user data
+ *
+ * @return                  0 on succeed, otherwise failed.
+ */
+int  Zmf_AudioOutputAddCallback     (void *pUser, ZmfAudioOutputCallback pfnCb);
+```
 
 
 
@@ -176,25 +164,23 @@ title: 音频管理
 
 
 
+```C++ 
+/** the callback to get audio output buffer, when Zmf_OnAudioOutput() invoked.
+ *
+ * @param[in] pUser          the callback user data
+ * @param[in] outputId       unique name of the audio output
+ * @param[in] iSampleRateHz  the sample rating of the pcm data
+ * @param[in] iChannels      the channel number of the pcm data
+ * @param[in] buf            the pcm data
+ * @param[in] len            the pcm data length
+ */
 
-
-    /** the callback to get audio output buffer, when Zmf_OnAudioOutput() invoked.
-     *
-     * @param[in] pUser          the callback user data
-     * @param[in] outputId       unique name of the audio output
-     * @param[in] iSampleRateHz  the sample rating of the pcm data
-     * @param[in] iChannels      the channel number of the pcm data
-     * @param[in] buf            the pcm data
-     * @param[in] len            the pcm data length
-     */
-    
-    /** the callback to fill audio output buffer
-     * @param[in] pUser  the user data registered by Zmf_AudioOutputAddCallback
-     */
-    typedef int  (*ZmfAudioOutputCallback)(void* pUser, const char* outputId, int iSampleRateHz, int iChannels,
-                                         unsigned char *buf, int len);
-
-
+/** the callback to fill audio output buffer
+ * @param[in] pUser  the user data registered by Zmf_AudioOutputAddCallback
+ */
+typedef int  (*ZmfAudioOutputCallback)(void* pUser, const char* outputId, int iSampleRateHz, int iChannels,
+                                     unsigned char *buf, int len);
+```
 
 
 
@@ -204,22 +190,20 @@ title: 音频管理
 
 
 
+```C++ 
+static void zmfAudioOutputCallback(void* pUser, const char* outputId, int iSampleRateHz, int iChannels,
+                                     unsigned char *buf, int len) {
 
-
-    static void zmfAudioOutputCallback(void* pUser, const char* outputId, int iSampleRateHz, int iChannels,
-                                         unsigned char *buf, int len) {
-    
-        cout << "音频数据处理" << endl;
-    }
-    void JCSampleDlg::OnBnClickedButtonCall()
-    {
-        //注册回调
-        Zmf_AudioOutputAddCallback(void*pUser, zmfAudioOutputCallback);
-        //发起呼叫
-        ...
-    }
-
-
+    cout << "音频数据处理" << endl;
+}
+void JCSampleDlg::OnBnClickedButtonCall()
+{
+    //注册回调
+    Zmf_AudioOutputAddCallback(void*pUser, zmfAudioOutputCallback);
+    //发起呼叫
+    ...
+}
+```
 
 
 
@@ -227,18 +211,16 @@ title: 音频管理
 
 
 
-
-
-    /**
-     * remove fill speak callback
-     *
-     * @param[in]  pUser        the callback user data
-     *
-     * @return                  0 on succeed, otherwise failed.
-     */
-    int  Zmf_AudioOutputRemoveCallback  (void *pUser);
-
-
+```C++ 
+/**
+ * remove fill speak callback
+ *
+ * @param[in]  pUser        the callback user data
+ *
+ * @return                  0 on succeed, otherwise failed.
+ */
+int  Zmf_AudioOutputRemoveCallback  (void *pUser);
+```
 
 
 
@@ -246,17 +228,15 @@ title: 音频管理
 
 
 
-
-
-    void JCSampleDlg::OnBnClickedButtonEndCall()
-    {
-        //取消注册回调
-        Zmf_AudioOutputRemoveCallback(p);
-        //挂断通话
-        ...
-    }
-
-
+```C++ 
+void JCSampleDlg::OnBnClickedButtonEndCall()
+{
+    //取消注册回调
+    Zmf_AudioOutputRemoveCallback(p);
+    //挂断通话
+    ...
+}
+```
 
 
 
@@ -286,20 +266,18 @@ Juphoon 对应的接口中进行后续操作。
 
 
 
-
-
-    /**
-     * @brief Initialize Audio module of ZMF(Zero Media Framework).
-     * @param  applicationContext For Windows, it can be the handle of the window,
-     *                            The notification event will be sent to that window.
-     *                            Or it can be callback function of type ZmfEventListenCallback.
-     *                            For Android, it must be the Context.
-     *                            For iOS, it should be NULL and is ignored.
-     * @return                    0 on succeed, otherwise failed.
-     */
-    int Zmf_AudioInitialize(void *applicationContext);
-
-
+```C++ 
+/**
+ * @brief Initialize Audio module of ZMF(Zero Media Framework).
+ * @param  applicationContext For Windows, it can be the handle of the window,
+ *                            The notification event will be sent to that window.
+ *                            Or it can be callback function of type ZmfEventListenCallback.
+ *                            For Android, it must be the Context.
+ *                            For iOS, it should be NULL and is ignored.
+ * @return                    0 on succeed, otherwise failed.
+ */
+int Zmf_AudioInitialize(void *applicationContext);
+```
 
 
 
@@ -307,27 +285,25 @@ Juphoon 对应的接口中进行后续操作。
 
 
 
-
-
-    /**
-     * The audio input data entry to ZMF, each callback will obtain the data.
-     * Multiple data will mix in the callback of the jssmme Engine,
-     * and the first input will be main channel.
-     *
-     * @param[in] inputId       unique name of the audio input       //输入设备id
-     * @param[in] sampleRateHz  the sample rating of the pcm data    //外部采样率 取值范围：8000，16000，32000，44100，48000取决于外部
-     * @param[in] iChannels     the channel number of the pcm data   //通道数量 取值范围：1或2
-     * @param[in] buf           the pcm data                         //外部采集数据源
-     * @param[in] len           the pcm data length                  //对应数据长度
-     * @param[in,out] micLevel                                       //音量，取值范围：0-100，会根据实际输入音频返回音量值
-     * @param[in] playDelayMS                                        //播放时延 通常取0
-     * @param[in] recDelayMS                                         //采集时延 通常取0
-     * @param[in] clockDrift                                         //时钟漂移 通常取0
-     *
-     */
-     void Zmf_OnAudioInput (const char *inputId, int sampleRateHz, int iChannels, unsigned char *buf, int len, int *micLevel, int playDelayMS, int recDelayMS, int clockDrift);
-
-
+```C++ 
+/**
+ * The audio input data entry to ZMF, each callback will obtain the data.
+ * Multiple data will mix in the callback of the jssmme Engine,
+ * and the first input will be main channel.
+ *
+ * @param[in] inputId       unique name of the audio input       //输入设备id
+ * @param[in] sampleRateHz  the sample rating of the pcm data    //外部采样率 取值范围：8000，16000，32000，44100，48000取决于外部
+ * @param[in] iChannels     the channel number of the pcm data   //通道数量 取值范围：1或2
+ * @param[in] buf           the pcm data                         //外部采集数据源
+ * @param[in] len           the pcm data length                  //对应数据长度
+ * @param[in,out] micLevel                                       //音量，取值范围：0-100，会根据实际输入音频返回音量值
+ * @param[in] playDelayMS                                        //播放时延 通常取0
+ * @param[in] recDelayMS                                         //采集时延 通常取0
+ * @param[in] clockDrift                                         //时钟漂移 通常取0
+ *
+ */
+ void Zmf_OnAudioInput (const char *inputId, int sampleRateHz, int iChannels, unsigned char *buf, int len, int *micLevel, int playDelayMS, int recDelayMS, int clockDrift);
+```
 
 
 
@@ -335,19 +311,17 @@ Juphoon 对应的接口中进行后续操作。
 
 
 
-
-
-    //初始化音频设备
-    Zmf_AudioInitialize(NULL);
-    void JCSampleDlg::OnBnClickedButtonCall()
-    {
-        // 输入长度为length，采样频率16000，通道数为1的pcm数据片段
-        Zmf_OnAudioInput("Test",16000,1,pcmdata,length,0,0,0,0);
-        //发起呼叫
-        ...
-    }
-
-
+```C++ 
+//初始化音频设备
+Zmf_AudioInitialize(NULL);
+void JCSampleDlg::OnBnClickedButtonCall()
+{
+    // 输入长度为length，采样频率16000，通道数为1的pcm数据片段
+    Zmf_OnAudioInput("Test",16000,1,pcmdata,length,0,0,0,0);
+    //发起呼叫
+    ...
+}
+```
 
 
 
@@ -363,16 +337,14 @@ Note
 
 
 
-
-
-    /**
-     * tell ZMF the audio input has stopped
-     *
-     * @param[in] inputId       unique name of the device  //输入设备id
-     */
-    void Zmf_OnAudioInputDidStop(const char *inputId);
-
-
+```C++ 
+/**
+ * tell ZMF the audio input has stopped
+ *
+ * @param[in] inputId       unique name of the device  //输入设备id
+ */
+void Zmf_OnAudioInputDidStop(const char *inputId);
+```
 
 
 
@@ -380,17 +352,15 @@ Note
 
 
 
-
-
-    void JCSampleDlg::OnBnClickedButtonEndCall()
-    {
-        //停止采集
-        Zmf_OnAudioInputDidStop("Test");
-        //挂断通话
-        ...
-    }
-
-
+```C++ 
+void JCSampleDlg::OnBnClickedButtonEndCall()
+{
+    //停止采集
+    Zmf_OnAudioInputDidStop("Test");
+    //挂断通话
+    ...
+}
+```
 
 
 
@@ -400,20 +370,18 @@ Note
 
 
 
-
-
-    /**
-     * The outlet which audio output can get data from.
-     *
-     * @param[in] outputId      unique name of the audio output       //输出设备id
-     * @param[in] sampleRateHz  the sample rating of the pcm data     //采样率  取值范围：8000，16000，32000，44100，48000取决于外部
-     * @param[in] iChannels     the channel number of the pcm data    //通道数量 取值范围：1或2
-     * @param[in] buf           the pcm data to be filled             //外部采集数据源
-     * @param[in] len           the pcm data length                   //对应数据buf长度
-     */
-     void Zmf_OnAudioOutput (const char *outputId, int sampleRateHz, int iChannels, unsigned char *buf, int len);
-
-
+```C++ 
+/**
+ * The outlet which audio output can get data from.
+ *
+ * @param[in] outputId      unique name of the audio output       //输出设备id
+ * @param[in] sampleRateHz  the sample rating of the pcm data     //采样率  取值范围：8000，16000，32000，44100，48000取决于外部
+ * @param[in] iChannels     the channel number of the pcm data    //通道数量 取值范围：1或2
+ * @param[in] buf           the pcm data to be filled             //外部采集数据源
+ * @param[in] len           the pcm data length                   //对应数据buf长度
+ */
+ void Zmf_OnAudioOutput (const char *outputId, int sampleRateHz, int iChannels, unsigned char *buf, int len);
+```
 
 
 
@@ -421,19 +389,17 @@ Note
 
 
 
-
-
-    //初始化音频设备
-    Zmf_AudioInitialize(NULL);
-    void JCSampleDlg::OnBnClickedButtonCall()
-    {
-        // 输入长度为length，采样频率16000，通道数为1的pcm数据片段
-        Zmf_OnAudioOutput("Test",16000,1,buf,length);
-        //发起呼叫
-        ...
-    }
-
-
+```C++ 
+//初始化音频设备
+Zmf_AudioInitialize(NULL);
+void JCSampleDlg::OnBnClickedButtonCall()
+{
+    // 输入长度为length，采样频率16000，通道数为1的pcm数据片段
+    Zmf_OnAudioOutput("Test",16000,1,buf,length);
+    //发起呼叫
+    ...
+}
+```
 
 
 
@@ -449,16 +415,14 @@ Note
 
 
 
-
-
-    /**
-     * tell ZMF the audio output has stopped
-     *
-     * @param[in] outputId      unique name of the device    //输出设备id
-     */
-    void Zmf_OnAudioOutputDidStop(const char *outputId);
-
-
+```C++ 
+/**
+ * tell ZMF the audio output has stopped
+ *
+ * @param[in] outputId      unique name of the device    //输出设备id
+ */
+void Zmf_OnAudioOutputDidStop(const char *outputId);
+```
 
 
 
@@ -466,17 +430,15 @@ Note
 
 
 
-
-
-    void JCSampleDlg::OnBnClickedButtonEndCall()
-    {
-        //停止播放数据
-        Zmf_OnAudioOutputDidStop("Test");
-        //挂断通话
-        ...
-    }
-
-
+```C++ 
+void JCSampleDlg::OnBnClickedButtonEndCall()
+{
+    //停止播放数据
+    Zmf_OnAudioOutputDidStop("Test");
+    //挂断通话
+    ...
+}
+```
 
 
 
@@ -510,11 +472,9 @@ Note
 
 
 
-
-
-    std::list<JCMediaDeviceAudio>* audios = JCManager::shared()->mediaDevice->getAudioInputs();
-
-
+```C++ 
+std::list<JCMediaDeviceAudio>* audios = JCManager::shared()->mediaDevice->getAudioInputs();
+```
 
 
 
@@ -530,11 +490,9 @@ Note
 
 
 
-
-
-    std::list<JCMediaDeviceAudio>* audios = JCManager::shared()->mediaDevice->getAudioOutputs();
-
-
+```C++ 
+std::list<JCMediaDeviceAudio>* audios = JCManager::shared()->mediaDevice->getAudioOutputs();
+```
 
 
 
@@ -550,11 +508,9 @@ Note
 
 
 
-
-
-    JCManager::shared()->mediaDevice->startAudio();
-
-
+```C++ 
+JCManager::shared()->mediaDevice->startAudio();
+```
 
 
 
@@ -564,11 +520,9 @@ Note
 
 
 
-
-
-    JCManager::shared()->mediaDevice->stopAudio();
-
-
+```C++ 
+JCManager::shared()->mediaDevice->stopAudio();
+```
 
 
 

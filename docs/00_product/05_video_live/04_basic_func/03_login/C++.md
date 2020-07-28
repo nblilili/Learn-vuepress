@@ -13,31 +13,29 @@ title: 登录
 
 
 
+```C++ 
+class JCManager : public JCClientCallback
+{
+public:
+    //单例管理类
+    JCManager();
+    ~JCManager();
 
+    static std::shared_ptr<JCManager> shared();
+    bool initialize();
+    void uninitialize();
+    //登录回调
+    virtual void onLogin(bool result, JCClientReason reason);
+    //登出回调
+    virtual void onLogout(JCClientReason reason);
+    //登录状态变化回调
+    virtual void onClientStateChange(JCClientState state, JCClientState oldState);
 
-    class JCManager : public JCClientCallback
-    {
-    public:
-        //单例管理类
-        JCManager();
-        ~JCManager();
-    
-        static std::shared_ptr<JCManager> shared();
-        bool initialize();
-        void uninitialize();
-        //登录回调
-        virtual void onLogin(bool result, JCClientReason reason);
-        //登出回调
-        virtual void onLogout(JCClientReason reason);
-        //登录状态变化回调
-        virtual void onClientStateChange(JCClientState state, JCClientState oldState);
-    
-    public:
-        //JCClient 对象
-        JCClient* client;
-    };
-
-
+public:
+    //JCClient 对象
+    JCClient* client;
+};
+```
 
 
 
@@ -47,29 +45,27 @@ title: 登录
 
 
 
-
-
-    bool JCManager::initialize()
-    {
-        //初始化
-        client = createJCClient("用户 appKey", this, NULL);
-        if (client->getState() == JCClientStateNotInit) {
-            return false;
-        }
-        return true;
+```C++ 
+bool JCManager::initialize()
+{
+    //初始化
+    client = createJCClient("用户 appKey", this, NULL);
+    if (client->getState() == JCClientStateNotInit) {
+        return false;
     }
-    
-    //登录结果回调
-    void JCManager::onLogin(bool result, JCClientReason reason) {
-    }
-    //登出结果回调
-    void JCManager::onLogout(JCClientReason reason) {
-    }
-    //登录状态变化回调
-    void JCManager::onClientStateChange(JCClientState state, JCClientState oldState) {
-    }
+    return true;
+}
 
-
+//登录结果回调
+void JCManager::onLogin(bool result, JCClientReason reason) {
+}
+//登出结果回调
+void JCManager::onLogout(JCClientReason reason) {
+}
+//登录状态变化回调
+void JCManager::onClientStateChange(JCClientState state, JCClientState oldState) {
+}
+```
 
 
 
@@ -93,26 +89,24 @@ SDK 初始化之后，即可进行登录的集成。登录接口调用流程如�
 
 
 
-
-
-    //登录
-    void JCSampleDlg::OnBnClickedButtonLogin()
-    {
-        int state = JCManager::shared()->client->getState();
-        if (state == JCClientStateIdle) {
-            JCClientLoginParam* loginParam = new JCClientLoginParam();
-            // 1. 设置服务器环境
-            loginParam->serverAddress = "服务器地址";
-            // 2. 发起登录
-            JCManager::shared()->client->login("用户名", "123", loginParam);
-        }
-        else {
-            // 如果已经登录则登出
-            JCManager::shared()->client->logout();
-        }
+```C++ 
+//登录
+void JCSampleDlg::OnBnClickedButtonLogin()
+{
+    int state = JCManager::shared()->client->getState();
+    if (state == JCClientStateIdle) {
+        JCClientLoginParam* loginParam = new JCClientLoginParam();
+        // 1. 设置服务器环境
+        loginParam->serverAddress = "服务器地址";
+        // 2. 发起登录
+        JCManager::shared()->client->login("用户名", "123", loginParam);
     }
-
-
+    else {
+        // 如果已经登录则登出
+        JCManager::shared()->client->logout();
+    }
+}
+```
 
 
 
@@ -148,21 +142,19 @@ Note
 
 
 
-
-
-    void JCManager::onClientStateChange(JCClientState state, JCClientState oldState) {
-         if (state == JCClient.STATE_IDLE) { // 未登录
-           ...
-        } else if (state == JCClientStateLogining) { // 正在登录
-           ...
-        } else if (state == JCClientStateLogined) { // 登录成功
-           ...
-        } else if (state == JCClientStateLogouting) { // 登出中
-           ...
-        }
+```C++ 
+void JCManager::onClientStateChange(JCClientState state, JCClientState oldState) {
+     if (state == JCClient.STATE_IDLE) { // 未登录
+       ...
+    } else if (state == JCClientStateLogining) { // 正在登录
+       ...
+    } else if (state == JCClientStateLogined) { // 登录成功
+       ...
+    } else if (state == JCClientStateLogouting) { // 登出中
+       ...
     }
-
-
+}
+```
 
 
 
@@ -172,18 +164,16 @@ Note
 
 
 
-
-
-    void JCManager::onLogin(bool result, JCClientReason reason) {
-        if (result) {/// 登录成功
-            ...
-        }
-        if (reason == JCClientReasonAuth) {// 账号密码错误
-            ...
-        }
+```C++ 
+void JCManager::onLogin(bool result, JCClientReason reason) {
+    if (result) {/// 登录成功
+        ...
     }
-
-
+    if (reason == JCClientReasonAuth) {// 账号密码错误
+        ...
+    }
+}
+```
 
 
 
@@ -210,11 +200,9 @@ JCClientStateLogined（登录成功）。SDK
 
 
 
-
-
-    JCManager::shared()->client->logout();
-
-
+```C++ 
+JCManager::shared()->client->logout();
+```
 
 
 
@@ -222,15 +210,13 @@ JCClientStateLogined（登录成功）。SDK
 
 
 
-
-
-    void JCManager::onLogout(JCClientReason reason) {
-        if (reason == JCClientReasonServerLogout) {// 强制登出
-            ...
-        }
+```C++ 
+void JCManager::onLogout(JCClientReason reason) {
+    if (reason == JCClientReasonServerLogout) {// 强制登出
+        ...
     }
-
-
+}
+```
 
 
 

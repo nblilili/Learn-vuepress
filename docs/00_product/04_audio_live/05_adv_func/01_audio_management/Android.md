@@ -34,18 +34,16 @@ ZmfAudio.InputCallback 类型的回调函数
 
 
 
-
-
-    /**
-     * add audio input data callback
-     *
-     * @param[in] callback      the callback user data
-     *
-     * @return                  void.
-     */
-    ZmfAudio.inputAddCallback(ZmfAudio.InputCallback var0);
-
-
+```java 
+/**
+ * add audio input data callback
+ *
+ * @param[in] callback      the callback user data
+ *
+ * @return                  void.
+ */
+ZmfAudio.inputAddCallback(ZmfAudio.InputCallback var0);
+```
 
 
 
@@ -53,24 +51,22 @@ ZmfAudio.InputCallback 类型的回调函数
 
 
 
-
-
-    /** the callback to receive audio input data
-     * @param[in] inputId         unique name of the audio input
-     * @param[in] iSampleRateHz   the sample rate of the pcm data
-     * @param[in] iChannels       the channel number of the pcm data
-     * @param[in] data             the pcm data
-     * @param[in] playDelayMS      the play delay ms
-     * @param[in] recDelayMS       the record dely ms
-     * @param[in] clockDrift       the clock drift ms
-     * @return                     void
-     */
-    public interface InputCallback
-    {
-        void onAudioInputFrame(String inputId, int sampleRateHz, int iChannels, ByteBuffer data, int playDelayMS, int recDelayMS, int clockDrift);
-    }
-
-
+```java 
+/** the callback to receive audio input data
+ * @param[in] inputId         unique name of the audio input
+ * @param[in] iSampleRateHz   the sample rate of the pcm data
+ * @param[in] iChannels       the channel number of the pcm data
+ * @param[in] data             the pcm data
+ * @param[in] playDelayMS      the play delay ms
+ * @param[in] recDelayMS       the record dely ms
+ * @param[in] clockDrift       the clock drift ms
+ * @return                     void
+ */
+public interface InputCallback
+{
+    void onAudioInputFrame(String inputId, int sampleRateHz, int iChannels, ByteBuffer data, int playDelayMS, int recDelayMS, int clockDrift);
+}
+```
 
 
 
@@ -78,19 +74,17 @@ ZmfAudio.InputCallback 类型的回调函数
 
 
 
-
-
-    public void onAudioInputFrame(String inputId, int sampleRateHz, int iChannels, ByteBuffer data, int playDelayMS, int recDelayMS, int clockDrift) {
-        System.out.println("音频采集数据处理");
-    }
-    public void call() {
-        //注册回调
-        ZmfAudio.inputAddCallback(onAudioInputFrame);
-        //发起呼叫
-        call.call("peer number", true, "自定义透传字符串");
-    }
-
-
+```java 
+public void onAudioInputFrame(String inputId, int sampleRateHz, int iChannels, ByteBuffer data, int playDelayMS, int recDelayMS, int clockDrift) {
+    System.out.println("音频采集数据处理");
+}
+public void call() {
+    //注册回调
+    ZmfAudio.inputAddCallback(onAudioInputFrame);
+    //发起呼叫
+    call.call("peer number", true, "自定义透传字符串");
+}
+```
 
 
 
@@ -100,18 +94,16 @@ ZmfAudio.InputCallback 类型的回调函数
 
 
 
-
-
-    /**
-     * remove input audio data callback
-     *
-     * @param[in]  callback      the callback user data
-     *
-     * @return                  void.
-     */
-    ZmfAudio.inputRemoveCallback(ZmfAudio.InputCallback var0);
-
-
+```java 
+/**
+ * remove input audio data callback
+ *
+ * @param[in]  callback      the callback user data
+ *
+ * @return                  void.
+ */
+ZmfAudio.inputRemoveCallback(ZmfAudio.InputCallback var0);
+```
 
 
 
@@ -119,17 +111,15 @@ ZmfAudio.InputCallback 类型的回调函数
 
 
 
-
-
-    public void endCall() {
-        //移除回调
-        ZmfAudio.inputRemoveCallback(onAudioInputFrame);
-        JCCallItem item = call.getCallItems().get(0);
-        // 挂断通话
-        call.term(item, JCCall.REASON_NONE, "自己挂断");
-    }
-
-
+```java 
+public void endCall() {
+    //移除回调
+    ZmfAudio.inputRemoveCallback(onAudioInputFrame);
+    JCCallItem item = call.getCallItems().get(0);
+    // 挂断通话
+    call.term(item, JCCall.REASON_NONE, "自己挂断");
+}
+```
 
 
 
@@ -148,18 +138,16 @@ ZmfAudio.OutputCallback 类型的回调函数
 
 
 
-
-
-    /**
-     * add audio output data callback
-     *
-     * @param[in] callback      the callback user data
-     *
-     * @return                  >= 0 on succeed is handle, otherwise failed.
-     */
-    ZmfAudio.outputAddCallback(ZmfAudio.OutputCallback var0);
-
-
+```java 
+/**
+ * add audio output data callback
+ *
+ * @param[in] callback      the callback user data
+ *
+ * @return                  >= 0 on succeed is handle, otherwise failed.
+ */
+ZmfAudio.outputAddCallback(ZmfAudio.OutputCallback var0);
+```
 
 
 
@@ -167,24 +155,22 @@ ZmfAudio.OutputCallback 类型的回调函数
 
 
 
-
-
-    /**
-     * The callback to receive audio output data
-     *
-     * @param[in] captureId       audio output unique name
-     * @param[in] iSampleRateHz   the sample rate of the pcm data
-     * @param[in] iChannels       the channel number of the pcm data
-     * @param[in] data            the pcm data
-     *
-     * @return                    void
-     */
-    public interface OutputCallback
-    {
-        void onAudioOutputFrame(String outputId, int sampleRateHz, int iChannels, ByteBuffer data);
-    }
-
-
+```java 
+/**
+ * The callback to receive audio output data
+ *
+ * @param[in] captureId       audio output unique name
+ * @param[in] iSampleRateHz   the sample rate of the pcm data
+ * @param[in] iChannels       the channel number of the pcm data
+ * @param[in] data            the pcm data
+ *
+ * @return                    void
+ */
+public interface OutputCallback
+{
+    void onAudioOutputFrame(String outputId, int sampleRateHz, int iChannels, ByteBuffer data);
+}
+```
 
 
 
@@ -194,19 +180,17 @@ ZmfAudio.OutputCallback 类型的回调函数
 
 
 
-
-
-    public void void onAudioOutputFrame(String outputId, int sampleRateHz, int iChannels, ByteBuffer data) {
-        System.out.println("音频解码后的数据处理");
-    }
-    public void call() {
-        //注册回调
-        ZmfAudio.outputAddCallback(onAudioOutputFrame);
-        //发起通话
-        call.call("peer number", true, "自定义透传字符串");
-    }
-
-
+```java 
+public void void onAudioOutputFrame(String outputId, int sampleRateHz, int iChannels, ByteBuffer data) {
+    System.out.println("音频解码后的数据处理");
+}
+public void call() {
+    //注册回调
+    ZmfAudio.outputAddCallback(onAudioOutputFrame);
+    //发起通话
+    call.call("peer number", true, "自定义透传字符串");
+}
+```
 
 
 
@@ -214,18 +198,16 @@ ZmfAudio.OutputCallback 类型的回调函数
 
 
 
-
-
-    /**
-     * remove output audio data callback
-     *
-     * @param[in] callback      the callback user data
-     *
-     * @return                  void.
-     */
-    ZmfAudio.outputRemoveCallback(ZmfAudio.OutputCallback var0)
-
-
+```java 
+/**
+ * remove output audio data callback
+ *
+ * @param[in] callback      the callback user data
+ *
+ * @return                  void.
+ */
+ZmfAudio.outputRemoveCallback(ZmfAudio.OutputCallback var0)
+```
 
 
 
@@ -233,17 +215,15 @@ ZmfAudio.OutputCallback 类型的回调函数
 
 
 
-
-
-    public void endCall() {
-        //移除回调
-        ZmfAudio.outputRemoveCallback(onAudioOutputFrame);
-        JCCallItem item = call.getCallItems().get(0);
-        //挂断通话
-        call.term(item, JCCall.REASON_NONE, "自己挂断");
-    }
-
-
+```java 
+public void endCall() {
+    //移除回调
+    ZmfAudio.outputRemoveCallback(onAudioOutputFrame);
+    JCCallItem item = call.getCallItems().get(0);
+    //挂断通话
+    call.term(item, JCCall.REASON_NONE, "自己挂断");
+}
+```
 
 
 
@@ -273,24 +253,22 @@ Juphoon 对应的接口中进行后续操作。
 
 
 
-
-
-    /**
-     * The audio input data entry to ZMF
-     *
-     * @param[in] inputId       unique name of the audio input                       //输入设备id
-     * @param[in] sampleRateHz  the sample rating of the pcm data                    //采样率 取值范围：8000，16000，32000，44100，48000取决于外部
-     * @param[in] iChannels     the channel number of the pcm data                   //通道数量 取值范围：1或2
-     * @param[in] data          the pcm data                                         //外部采集数据源
-     * @param[in] playDelayMS   playout delay in ms                                  //播放时延 通常取0
-     * @param[in] recDelayMS    record delay in ms                                   //采集时延 通常取0
-     * @param[in] clockDrift    clock drift between playout and record timestamp //时钟漂移 通常取0
-     *
-     */
-    static public void onInput (String inputId, int sampleRateHz, int iChannels, ByteBuffer data,
-                                                         int playDelayMS, int recDelayMS, int clockDrift)
-
-
+```java 
+/**
+ * The audio input data entry to ZMF
+ *
+ * @param[in] inputId       unique name of the audio input                       //输入设备id
+ * @param[in] sampleRateHz  the sample rating of the pcm data                    //采样率 取值范围：8000，16000，32000，44100，48000取决于外部
+ * @param[in] iChannels     the channel number of the pcm data                   //通道数量 取值范围：1或2
+ * @param[in] data          the pcm data                                         //外部采集数据源
+ * @param[in] playDelayMS   playout delay in ms                                  //播放时延 通常取0
+ * @param[in] recDelayMS    record delay in ms                                   //采集时延 通常取0
+ * @param[in] clockDrift    clock drift between playout and record timestamp //时钟漂移 通常取0
+ *
+ */
+static public void onInput (String inputId, int sampleRateHz, int iChannels, ByteBuffer data,
+                                                     int playDelayMS, int recDelayMS, int clockDrift)
+```
 
 
 
@@ -306,19 +284,17 @@ Note
 
 
 
-
-
-    //初始化音频设备
-    android.content.Context activity;
-    ZmfAudio.initialize(activity);
-    public void call() {
-        // 输入长度为length，采样频率16000，通道数为1的pcm数据片段
-        onInput("Test",16000,1,pcmdata,length,0,0,0,0);
-        //发起呼叫
-        call.call("peer number", true, "自定义透传字符串");
-    }
-
-
+```java 
+//初始化音频设备
+android.content.Context activity;
+ZmfAudio.initialize(activity);
+public void call() {
+    // 输入长度为length，采样频率16000，通道数为1的pcm数据片段
+    onInput("Test",16000,1,pcmdata,length,0,0,0,0);
+    //发起呼叫
+    call.call("peer number", true, "自定义透传字符串");
+}
+```
 
 
 
@@ -326,16 +302,14 @@ Note
 
 
 
-
-
-    /**
-     * tell ZMF the audio input has stopped
-     *
-     * @param[in] inputId       unique name of the device              //输出设备id
-     */
-    static public void onInputDidStop(String inputId)
-
-
+```java 
+/**
+ * tell ZMF the audio input has stopped
+ *
+ * @param[in] inputId       unique name of the device              //输出设备id
+ */
+static public void onInputDidStop(String inputId)
+```
 
 
 
@@ -343,16 +317,14 @@ Note
 
 
 
-
-
-    public void endCall() {
-        //停止采集
-        onInputDidStop("Test");
-        //挂断通话
-        call.term(item, JCCall.REASON_NONE, "自己挂断");
-    }
-
-
+```java 
+public void endCall() {
+    //停止采集
+    onInputDidStop("Test");
+    //挂断通话
+    call.term(item, JCCall.REASON_NONE, "自己挂断");
+}
+```
 
 
 
@@ -362,19 +334,17 @@ Note
 
 
 
-
-
-    **
-     * The outlet which audio output can get data from.
-     *
-     * @param[in] outputId      unique name of the audio output       //输出设备id
-     * @param[in] sampleRateHz  the sample rating of the pcm data     //采样率 取值范围：8000，16000，32000，44100，48000取决于外部
-     * @param[in] iChannels     the channel number of the pcm data    //通道数量 取值范围：1或2
-     * @param[in] data          the pcm data to be filled             //外部采集数据源
-     */
-    static public void onOutput (String outputId, int sampleRateHz, int iChannels, ByteBuffer data);
-
-
+```java 
+**
+ * The outlet which audio output can get data from.
+ *
+ * @param[in] outputId      unique name of the audio output       //输出设备id
+ * @param[in] sampleRateHz  the sample rating of the pcm data     //采样率 取值范围：8000，16000，32000，44100，48000取决于外部
+ * @param[in] iChannels     the channel number of the pcm data    //通道数量 取值范围：1或2
+ * @param[in] data          the pcm data to be filled             //外部采集数据源
+ */
+static public void onOutput (String outputId, int sampleRateHz, int iChannels, ByteBuffer data);
+```
 
 
 
@@ -390,19 +360,17 @@ Note
 
 
 
-
-
-    //初始化音频设备
-    android.content.Context activity;
-    ZmfAudio.initialize(activity);
-    public void call() {
-        // 输入长度为length，采样频率16000，通道数为1的pcm数据片段
-        onOutput("Test"，16000，1，buf，length);
-        //发起呼叫
-        call.call("peer number", true, "自定义透传字符串");
-    }
-
-
+```java 
+//初始化音频设备
+android.content.Context activity;
+ZmfAudio.initialize(activity);
+public void call() {
+    // 输入长度为length，采样频率16000，通道数为1的pcm数据片段
+    onOutput("Test"，16000，1，buf，length);
+    //发起呼叫
+    call.call("peer number", true, "自定义透传字符串");
+}
+```
 
 
 
@@ -410,16 +378,14 @@ Note
 
 
 
-
-
-    /**
-     * tell ZMF the audio output has stopped
-     *
-     * @param[in] inputId       unique name of the device         //输入设备id
-     */
-    static public void onOutputDidStop(String outputId)
-
-
+```java 
+/**
+ * tell ZMF the audio output has stopped
+ *
+ * @param[in] inputId       unique name of the device         //输入设备id
+ */
+static public void onOutputDidStop(String outputId)
+```
 
 
 
@@ -435,16 +401,14 @@ Note
 
 
 
-
-
-    public void endCall() {
-        //停止播放数据，业务中或者业务结束时均可以调用
-        onOutputDidStop("Test");
-        //挂断通话
-        call.term(item, JCCall.REASON_NONE, "自己挂断");
-    }
-
-
+```java 
+public void endCall() {
+    //停止播放数据，业务中或者业务结束时均可以调用
+    onOutputDidStop("Test");
+    //挂断通话
+    call.term(item, JCCall.REASON_NONE, "自己挂断");
+}
+```
 
 
 
@@ -466,16 +430,14 @@ Note
 
 
 
-
-
-    /**
-     * 音频路由类型
-     *
-     * @return 音频路由类型
-     */
-    public abstract int getAudioRouteType();
-
-
+```java 
+/**
+ * 音频路由类型
+ *
+ * @return 音频路由类型
+ */
+public abstract int getAudioRouteType();
+```
 
 
 
@@ -483,18 +445,16 @@ Note
 
 
 
-
-
-    /** 听筒 */
-    public static final int AUDIO_ROUTE_RECEIVER = 0;
-    /** 扬声器 */
-    public static final int AUDIO_ROUTE_SPEAKER = 1;
-    /** 有线耳机 */
-    public static final int AUDIO_ROUTE_HEADSET = 2;
-    /** 蓝牙耳机 */
-    public static final int AUDIO_ROUTE_BLUETOOTH = 3;
-
-
+```java 
+/** 听筒 */
+public static final int AUDIO_ROUTE_RECEIVER = 0;
+/** 扬声器 */
+public static final int AUDIO_ROUTE_SPEAKER = 1;
+/** 有线耳机 */
+public static final int AUDIO_ROUTE_HEADSET = 2;
+/** 蓝牙耳机 */
+public static final int AUDIO_ROUTE_BLUETOOTH = 3;
+```
 
 
 
@@ -506,16 +466,14 @@ Note
 
 
 
-
-
-    /**
-     * 开启/关闭扬声器
-     *
-     * @param enable 是否开启
-     */
-    public abstract void enableSpeaker(boolean enable);
-
-
+```java 
+/**
+ * 开启/关闭扬声器
+ *
+ * @param enable 是否开启
+ */
+public abstract void enableSpeaker(boolean enable);
+```
 
 
 
@@ -527,23 +485,21 @@ Note
 
 
 
+```java 
+/**
+ * 启动音频，一般正式开启通话前需要调用此接口
+ *
+ * @return 成功返回 true，失败返回 false
+ */
+public abstract boolean startAudio();
 
-
-    /**
-     * 启动音频，一般正式开启通话前需要调用此接口
-     *
-     * @return 成功返回 true，失败返回 false
-     */
-    public abstract boolean startAudio();
-    
-    /**
-     * 停止音频，一般在通话结束时调用
-     *
-     * @return 成功返回 true，失败返回 false
-     */
-    public abstract boolean stopAudio();
-
-
+/**
+ * 停止音频，一般在通话结束时调用
+ *
+ * @return 成功返回 true，失败返回 false
+ */
+public abstract boolean stopAudio();
+```
 
 
 
@@ -551,16 +507,14 @@ Note
 
 
 
-
-
-    // 开启扬声器
-    mediaDevice.enableSpeaker(true);
-    // 开启音频设备
-    mediaDevice.startAudio();
-    // 关闭音频设备
-    mediaDevice.stopAudio();
-
-
+```java 
+// 开启扬声器
+mediaDevice.enableSpeaker(true);
+// 开启音频设备
+mediaDevice.startAudio();
+// 关闭音频设备
+mediaDevice.stopAudio();
+```
 
 
 

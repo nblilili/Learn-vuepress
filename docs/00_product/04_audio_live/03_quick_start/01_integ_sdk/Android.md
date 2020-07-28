@@ -76,16 +76,14 @@ Note
 
 
 
-
-
+```java 
+...
+dependencies {
     ...
-    dependencies {
-        ...
-        // 可通过 JC SDK 发版说明取得最新版本号
-        implementation 'com.JuphoonCloud:JC-SDK:2.1'
-    }
-
-
+    // 可通过 JC SDK 发版说明取得最新版本号
+    implementation 'com.JuphoonCloud:JC-SDK:2.1'
+}
+```
 
 
 
@@ -106,15 +104,13 @@ Note
     
     
     
-    
-    
-        sourceSets {
-            main {
-                jniLibs.srcDirs = ['libs’]
-            }
+    ```java 
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs’]
         }
-    
-    
+    }
+    ```
     
     
 
@@ -130,24 +126,22 @@ Note
 
 
 
-
-
-    <uses-feature android:name="android.hardware.camera" />
-    <uses-feature android:name="android.hardware.camera.autofocus" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.RECORD_AUDIO" />
-    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.VIBRATE"/>
-    <uses-permission android:name="android.permission.BLUETOOTH" />
-    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
-
-
+```java 
+<uses-feature android:name="android.hardware.camera" />
+<uses-feature android:name="android.hardware.camera.autofocus" />
+<uses-permission android:name="android.permission.INTERNET" />
+<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+<uses-permission android:name="android.permission.READ_PHONE_STATE" />
+<uses-permission android:name="android.permission.WAKE_LOCK" />
+<uses-permission android:name="android.permission.CAMERA" />
+<uses-permission android:name="android.permission.RECORD_AUDIO" />
+<uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+<uses-permission android:name="android.permission.VIBRATE"/>
+<uses-permission android:name="android.permission.BLUETOOTH" />
+<uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+```
 
 
 
@@ -172,17 +166,15 @@ Note
 
 
 
-
-
-    -dontwarn com.juphoon.*
-    -keep class com.juphoon.**{*;}
-    //底层sdk
-    -dontwarn com.justalk.*
-    -keep class com.justalk.**{*;}
-    -keepattributes InnerClasses
-    -keep class **.R$* {*;}
-
-
+```java 
+-dontwarn com.juphoon.*
+-keep class com.juphoon.**{*;}
+//底层sdk
+-dontwarn com.justalk.*
+-keep class com.justalk.**{*;}
+-keepattributes InnerClasses
+-keep class **.R$* {*;}
+```
 
 
 

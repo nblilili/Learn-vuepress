@@ -12,11 +12,9 @@ title: 通话管理
 
 
 
-
-
-    call.maxCallNum = 1;
-
-
+```csharp 
+call.maxCallNum = 1;
+```
 
 
 
@@ -41,16 +39,14 @@ title: 通话管理
 
 
 
-
-
-    /// <summary>
-    /// 静音，通过JCCallItem中的静音状态来决定开启关闭
-    /// </summary>
-    /// <param name="item">JCCallItem对象</param>
-    /// <returns>返回true表示正常执行调用流程，false表示调用异常</returns>
-    public bool mute(JCCallItem item)
-
-
+```csharp 
+/// <summary>
+/// 静音，通过JCCallItem中的静音状态来决定开启关闭
+/// </summary>
+/// <param name="item">JCCallItem对象</param>
+/// <returns>返回true表示正常执行调用流程，false表示调用异常</returns>
+public bool mute(JCCallItem item)
+```
 
 
 
@@ -70,18 +66,16 @@ title: 通话管理
 
 
 
-
-
-    /// <summary>
-    /// 通话录音，通过JCCallItem对象中的呼叫保持状态来决定开启关闭呼叫保持
-    /// </summary>
-    /// <param name="item">JCCallItem对象</param>
-    /// <param name="enable">开启关闭录音</param>
-    /// <param name="filePath">录音文件路径</param>
-    /// <returns>返回true表示正常执行调用流程，false表示调用异常</returns>
-    public bool audioRecord(JCCallItem item, bool enable, string filePath)
-
-
+```csharp 
+/// <summary>
+/// 通话录音，通过JCCallItem对象中的呼叫保持状态来决定开启关闭呼叫保持
+/// </summary>
+/// <param name="item">JCCallItem对象</param>
+/// <param name="enable">开启关闭录音</param>
+/// <param name="filePath">录音文件路径</param>
+/// <returns>返回true表示正常执行调用流程，false表示调用异常</returns>
+public bool audioRecord(JCCallItem item, bool enable, string filePath)
+```
 
 
 
@@ -89,27 +83,25 @@ title: 通话管理
 
 
 
-
-
+```csharp 
 ``` 
-    JCCallItem item = call.getActiveCallItem();
-    if (item.audioRecord)
+JCCallItem item = call.getActiveCallItem();
+if (item.audioRecord)
+{
+    // 录音结束
+    call.audioRecord(item, false, "your filePath");
+} else {
+    // 创建录音文件保存路径
+    String filePath; // 录音文件的绝对路径，SDK会自动创建录音文件
+    if (filtPath.Length > 0)
     {
-        // 录音结束
-        call.audioRecord(item, false, "your filePath");
-    } else {
-        // 创建录音文件保存路径
-        String filePath; // 录音文件的绝对路径，SDK会自动创建录音文件
-        if (filtPath.Length > 0)
-        {
-            // 开始录音
-            call.audioRecord(item, true, filePath);
-        }
+        // 开始录音
+        call.audioRecord(item, true, filePath);
     }
 }
+}
 ```
-
-
+```
 
 
 
@@ -117,17 +109,15 @@ title: 通话管理
 
 
 
-
-
-    /// <summary>
-    /// 通话状态更新回调
-    /// 当上层收到此回调时，可以根据JCCallItem对象获得该通话所有信息及状态，从而更新通话相关UI
-    /// </summary>
-    /// <param name="item">JCCallItem对象</param>
-    /// <param name="changeParam">更新标识类</param>
-    void onCallItemUpdate(JCCallItem item, JCCallItem.ChangeParam changeParam);
-
-
+```csharp 
+/// <summary>
+/// 通话状态更新回调
+/// 当上层收到此回调时，可以根据JCCallItem对象获得该通话所有信息及状态，从而更新通话相关UI
+/// </summary>
+/// <param name="item">JCCallItem对象</param>
+/// <param name="changeParam">更新标识类</param>
+void onCallItemUpdate(JCCallItem item, JCCallItem.ChangeParam changeParam);
+```
 
 
 
@@ -145,16 +135,14 @@ JCCallItem
 
 
 
-
-
-    /// <summary>
-    /// 呼叫保持，通过JCCallItem对象中的呼叫保持状态来决定开启关闭
-    /// </summary>
-    /// <param name="item">JCCallItem对象</param>
-    /// <returns>返回true表示正常执行调用流程，false表示调用异常</returns>
-    public bool hold(JCCallItem item)
-
-
+```csharp 
+/// <summary>
+/// 呼叫保持，通过JCCallItem对象中的呼叫保持状态来决定开启关闭
+/// </summary>
+/// <param name="item">JCCallItem对象</param>
+/// <returns>返回true表示正常执行调用流程，false表示调用异常</returns>
+public bool hold(JCCallItem item)
+```
 
 
 
@@ -168,16 +156,14 @@ JCCallItem
 
 
 
-
-
-    /// <summary>
-    /// 切换活跃通话
-    /// </summary>
-    /// <param name="item">需要变活跃的JCCallItem对象</param>
-    /// <returns>返回true表示正常执行调用流程，false表示调用异常</returns>
-    public bool becomeActive(JCCallItem item)
-
-
+```csharp 
+/// <summary>
+/// 切换活跃通话
+/// </summary>
+/// <param name="item">需要变活跃的JCCallItem对象</param>
+/// <returns>返回true表示正常执行调用流程，false表示调用异常</returns>
+public bool becomeActive(JCCallItem item)
+```
 
 
 
@@ -185,15 +171,13 @@ JCCallItem
 
 
 
-
-
-    //获取活跃通话对象
-    JCCallItem item = call.getActiveCallItem();
-    call.mute(item);
-    call.hold(item);
-    call.becomeActive(item);
-
-
+```csharp 
+//获取活跃通话对象
+JCCallItem item = call.getActiveCallItem();
+call.mute(item);
+call.hold(item);
+call.becomeActive(item);
+```
 
 
 
@@ -207,18 +191,16 @@ JCCallItem
 
 
 
-
-
-    /// <summary>
-    /// 通过通话建立后的通道发送数据
-    /// </summary>
-    /// <param name="item">需要发送数据的JCCallItem对象</param>
-    /// <param name="type">文本消息类型，用户可以自定义，例如text，xml等</param>
-    /// <param name="content">文本内容</param>
-    /// <returns>返回 true 表示正常执行调用流程，false 表示调用异常</returns>
-    public bool sendMessage(JCCallItem item, string type, string content)
-
-
+```csharp 
+/// <summary>
+/// 通过通话建立后的通道发送数据
+/// </summary>
+/// <param name="item">需要发送数据的JCCallItem对象</param>
+/// <param name="type">文本消息类型，用户可以自定义，例如text，xml等</param>
+/// <param name="content">文本内容</param>
+/// <returns>返回 true 表示正常执行调用流程，false 表示调用异常</returns>
+public bool sendMessage(JCCallItem item, string type, string content)
+```
 
 
 
@@ -226,8 +208,7 @@ JCCallItem
 
 
 
-
-
+```csharp 
 ``` 
  /// <summary>
  /// 通话中收到消息的回调
@@ -237,8 +218,7 @@ JCCallItem
  /// <param name="item">JCCallItem对象</param>
 void onMessageReceive(string type, string content, JCCallItem item);
 ```
-
-
+```
 
 
 
@@ -246,12 +226,10 @@ void onMessageReceive(string type, string content, JCCallItem item);
 
 
 
-
-
-    JCCallItem item = call.getActiveCallItem();
-    call.sendMessage(item, "text", "消息内容");
-
-
+```csharp 
+JCCallItem item = call.getActiveCallItem();
+call.sendMessage(item, "text", "消息内容");
+```
 
 
 
@@ -265,17 +243,15 @@ void onMessageReceive(string type, string content, JCCallItem item);
 
 
 
-
-
-    /// <summary>
-    /// 通话状态更新回调
-    /// 当上层收到此回调时，可以根据JCCallItem对象获得该通话所有信息及状态，从而更新通话相关UI
-    /// </summary>
-    /// <param name="item">JCCallItem对象</param>
-    /// <param name="changeParam">更新标识类</param>
-    void onCallItemUpdate(JCCallItem item, JCCallItem.ChangeParam changeParam);
-
-
+```csharp 
+/// <summary>
+/// 通话状态更新回调
+/// 当上层收到此回调时，可以根据JCCallItem对象获得该通话所有信息及状态，从而更新通话相关UI
+/// </summary>
+/// <param name="item">JCCallItem对象</param>
+/// <param name="changeParam">更新标识类</param>
+void onCallItemUpdate(JCCallItem item, JCCallItem.ChangeParam changeParam);
+```
 
 
 
@@ -295,23 +271,21 @@ Note
 
 
 
-
-
-    public void onCallItemUpdate(JCCallItem item, JCCallItem.ChangeParam changeParam) {
-        if (item.mute) { // 开启静音
-            ...
-        } else if (item.hold) { // 挂起通话变化
-            ...
-        } else if (item.held) { // 被挂起变化
-            ...
-        } else if (item.active) { // 激活状态变化
-            ...
-        } else if (item.netStatus) { // 网络状态变化
-            ...
-        }
+```csharp 
+public void onCallItemUpdate(JCCallItem item, JCCallItem.ChangeParam changeParam) {
+    if (item.mute) { // 开启静音
+        ...
+    } else if (item.hold) { // 挂起通话变化
+        ...
+    } else if (item.held) { // 被挂起变化
+        ...
+    } else if (item.active) { // 激活状态变化
+        ...
+    } else if (item.netStatus) { // 网络状态变化
+        ...
     }
-
-
+}
+```
 
 
 

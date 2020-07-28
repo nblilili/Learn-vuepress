@@ -19,40 +19,38 @@ title: 实现多方语音通话
 
 
 
+```csharp 
+/// 新建类并实现
+class JCManager : JCClientCallback, JCMediaDeviceCallback,JCMediaChannelCallbac{
 
+    #region JCMediaDeviceCallback
 
-    /// 新建类并实现
-    class JCManager : JCClientCallback, JCMediaDeviceCallback,JCMediaChannelCallbac{
-    
-        #region JCMediaDeviceCallback
-    
-        public void onCameraUpdate(){...}
-    
-        public void onAudioOutputTypeChange(string audioOutputType){...}
-    
-        #endregion
-    
-        #region JCMediaChannelCallback
-        ...
-        /// 实现 JCMediaChannelCallback 中的方法
-        ...
-        #endregion
-    
-        /// 声明对象
-        JCMediaDevice mMediaDevice;
-        JCMediaChannel mMediaChannel;
-    
-        /// 初始化函数
-        public bool initialize(Context context) {
-    
-            /// 1. 媒体类
-            mMediaDevice = JCMediaDevice.create(mClient, this);
-            /// 2. 媒体通道类
-            mMediaChannel = JCMediaChannel.create(client, mediaDevice, this);
-        }
+    public void onCameraUpdate(){...}
+
+    public void onAudioOutputTypeChange(string audioOutputType){...}
+
+    #endregion
+
+    #region JCMediaChannelCallback
+    ...
+    /// 实现 JCMediaChannelCallback 中的方法
+    ...
+    #endregion
+
+    /// 声明对象
+    JCMediaDevice mMediaDevice;
+    JCMediaChannel mMediaChannel;
+
+    /// 初始化函数
+    public bool initialize(Context context) {
+
+        /// 1. 媒体类
+        mMediaDevice = JCMediaDevice.create(mClient, this);
+        /// 2. 媒体通道类
+        mMediaChannel = JCMediaChannel.create(client, mediaDevice, this);
     }
-
-
+}
+```
 
 
 
@@ -68,12 +66,10 @@ title: 实现多方语音通话
     
     
     
-    
-    
-        /// 1. 开启音频流
-        mMediaDeviceChannel.enableUploadAudioStream(true);
-    
-    
+    ```csharp 
+    /// 1. 开启音频流
+    mMediaDeviceChannel.enableUploadAudioStream(true);
+    ```
     
     
 
@@ -92,11 +88,9 @@ title: 实现多方语音通话
     > 
     > 
     > 
-    > 
-    > 
-    >     mMediaChannel.join("222", null);
-    > 
-    > 
+    > ```csharp 
+>     mMediaChannel.join("222", null);
+    > ```
     > 
     > 
     > 
@@ -108,17 +102,15 @@ title: 实现多方语音通话
     
     
     
-    
-    
-        public void onJoin(bool result, JCMediaChannelReason reason, String channelId) {
-            if (result) {
-                /// 加入频道成功
-            } else {
-                /// 加入频道失败
-            }
+    ```csharp 
+    public void onJoin(bool result, JCMediaChannelReason reason, String channelId) {
+        if (result) {
+            /// 加入频道成功
+        } else {
+            /// 加入频道失败
         }
-    
-    
+    }
+    ```
     
     
 
@@ -134,11 +126,9 @@ title: 实现多方语音通话
 
 
 
-
-
-    mMediaChannel.leave();
-
-
+```csharp 
+mMediaChannel.leave();
+```
 
 
 
@@ -150,15 +140,13 @@ title: 实现多方语音通话
 
 
 
+```csharp 
+/// 离开频道结果回调
 
-
-    /// 离开频道结果回调
-    
-    public void onLeave(JCMediaChannelReason reason, String channelId) {
-        ...
-    }
-
-
+public void onLeave(JCMediaChannelReason reason, String channelId) {
+    ...
+}
+```
 
 
 
@@ -172,12 +160,10 @@ title: 实现多方语音通话
 
 
 
-
-
-    /// 结束频道
-    mMediaChannel.stop();
-
-
+```csharp 
+/// 结束频道
+mMediaChannel.stop();
+```
 
 
 
@@ -191,13 +177,11 @@ title: 实现多方语音通话
 
 
 
-
-
-    public void onStop(bool result, JCMediaChannelReason reason) {
-        ...
-    }
-
-
+```csharp 
+public void onStop(bool result, JCMediaChannelReason reason) {
+    ...
+}
+```
 
 
 

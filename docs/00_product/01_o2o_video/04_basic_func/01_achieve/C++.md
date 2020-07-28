@@ -19,32 +19,30 @@ title: 实现一对一通话
 
 
 
+```C++ 
+class JCManager : public JCMediaDeviceCallback, public JCCallCallback
+{
+public:
+  //新增通话回调
+  virtual void onCallItemAdd(JCCallItem* item);
+  //移除通话回调
+  virtual void onCallItemRemove(JCCallItem* item, JCCallReason reason, const char* description);
+  //通话状态更新回调
+  virtual void onCallItemUpdate(JCCallItem* item, JCCallItemChangeParam changeParam);
+  //通话中收到消息回调
+  virtual void onMessageReceive(const char* type, const char* content, JCCallItem* item);
+  //上报服务器拉取的未接来电
+  virtual void onMissedCallItem(JCCallItem* item);
+  //摄像头变化回调
+  virtual void onCameraUpdate();
 
-
-    class JCManager : public JCMediaDeviceCallback, public JCCallCallback
-    {
-    public:
-      //新增通话回调
-      virtual void onCallItemAdd(JCCallItem* item);
-      //移除通话回调
-      virtual void onCallItemRemove(JCCallItem* item, JCCallReason reason, const char* description);
-      //通话状态更新回调
-      virtual void onCallItemUpdate(JCCallItem* item, JCCallItemChangeParam changeParam);
-      //通话中收到消息回调
-      virtual void onMessageReceive(const char* type, const char* content, JCCallItem* item);
-      //上报服务器拉取的未接来电
-      virtual void onMissedCallItem(JCCallItem* item);
-      //摄像头变化回调
-      virtual void onCameraUpdate();
-    
-    public:
-        //JCMediaDevice 对象
-        JCMediaDevice* mediaDevice;
-        //JCCall 对象
-        JCCall* call;
-    };
-
-
+public:
+    //JCMediaDevice 对象
+    JCMediaDevice* mediaDevice;
+    //JCCall 对象
+    JCCall* call;
+};
+```
 
 
 
@@ -64,18 +62,16 @@ Note
 
 
 
-
-
-    bool JCManager::initialize()
-    {
-      //1. 媒体类
-      mediaDevice = createJCMediaDevice(client, this);
-      //2. 通话类
-      call = createJCCall(client, mediaDevice, this);
-      return true;
-    }
-
-
+```C++ 
+bool JCManager::initialize()
+{
+  //1. 媒体类
+  mediaDevice = createJCMediaDevice(client, this);
+  //2. 通话类
+  call = createJCCall(client, mediaDevice, this);
+  return true;
+}
+```
 
 
 
@@ -112,15 +108,13 @@ Note
 
 
 
-
-
-    // 发起视频呼叫
-    void JCSampleDlg::OnBnClickedButtonVideocall()
-    {
-      JCManager::shared()->call->call("userID", true, "自定义透传字符串");
-    }
-
-
+```C++ 
+// 发起视频呼叫
+void JCSampleDlg::OnBnClickedButtonVideocall()
+{
+  JCManager::shared()->call->call("userID", true, "自定义透传字符串");
+}
+```
 
 
 
@@ -134,21 +128,19 @@ Note
 
 
 
-
-
-    // 收到新增通话回调
-    void JCManager::onCallItemAdd(JCCallItem* item) {
-        // 业务逻辑
-        if (item->direction == JCCallDirectionIn) {
-            // 如果是呼入
-            ...
-        } else {
-            // 如果是呼出
-            ...
-        }
+```C++ 
+// 收到新增通话回调
+void JCManager::onCallItemAdd(JCCallItem* item) {
+    // 业务逻辑
+    if (item->direction == JCCallDirectionIn) {
+        // 如果是呼入
+        ...
+    } else {
+        // 如果是呼出
+        ...
     }
-
-
+}
+```
 
 
 
@@ -180,18 +172,16 @@ JCCallStateCancel。
 
 
 
-
-
-    void JCManager::onCallItemAdd(JCCallItem* item) {
-        JCMediaDeviceVideoCanvas* mCallLocalCanvas;
-        if (mCallLocalCanvas == NULL && item->getUploadVideoStreamSelf())
-                    {
-            // 创建本地视频画面
-            mCallLocalCanvas = item->startSelfVideo((void*)mWndCallLocalVideo.m_hWnd, (JCMediaDeviceRenderMode)JCMediaDeviceRenderModeFullContent);
-        }
+```C++ 
+void JCManager::onCallItemAdd(JCCallItem* item) {
+    JCMediaDeviceVideoCanvas* mCallLocalCanvas;
+    if (mCallLocalCanvas == NULL && item->getUploadVideoStreamSelf())
+                {
+        // 创建本地视频画面
+        mCallLocalCanvas = item->startSelfVideo((void*)mWndCallLocalVideo.m_hWnd, (JCMediaDeviceRenderMode)JCMediaDeviceRenderModeFullContent);
     }
-
-
+}
+```
 
 
 
@@ -211,17 +201,15 @@ JCCallStateCancel。
 
 
 
-
-
-    void JCManager::onCallItemAdd(JCCallItem* item) {
-        // 1. 如果是视频呼入且在振铃中
-        if (item->getDirection() == JCCallDirectionIn && item->getState() == JCCallStatePending) {
-            // 2. 做出相应的处理，如在界面上显示“振铃中”
-             ...
-        }
+```C++ 
+void JCManager::onCallItemAdd(JCCallItem* item) {
+    // 1. 如果是视频呼入且在振铃中
+    if (item->getDirection() == JCCallDirectionIn && item->getState() == JCCallStatePending) {
+        // 2. 做出相应的处理，如在界面上显示“振铃中”
+         ...
     }
-
-
+}
+```
 
 
 
@@ -231,14 +219,12 @@ JCCallStateCancel。
 
 
 
-
-
-    // 获取活跃通话
-    JCCallItem* item = JCManager::shared()->call->getActiveCallItem();
-    // 应答通话
-    JCManager::shared()->call->answer(item, item->getVideo());
-
-
+```C++ 
+// 获取活跃通话
+JCCallItem* item = JCManager::shared()->call->getActiveCallItem();
+// 应答通话
+JCManager::shared()->call->answer(item, item->getVideo());
+```
 
 
 
@@ -273,19 +259,17 @@ JCCallStateTalking。
 
 
 
-
-
-    void JCManager::onCallItemUpdate(JCCallItem* item, JCCallItemChangeParam changeParam) {
-        JCMediaDeviceVideoCanvas *mCallRemoteCanvas;
-        // 如果对端在上传视频流（uploadVideoStreamOther）
-        if (mCallRemoteCanvas == NULL && item->getUploadVideoStreamOther())
-        {
-          // 创建远端视频画面
-          mCallRemoteCanvas = item->startOtherVideo(mWndCallRemoteVideo.m_hWnd, (JCMediaDeviceRenderMode)JCMediaDeviceRenderModeFullContent);
-        }
+```C++ 
+void JCManager::onCallItemUpdate(JCCallItem* item, JCCallItemChangeParam changeParam) {
+    JCMediaDeviceVideoCanvas *mCallRemoteCanvas;
+    // 如果对端在上传视频流（uploadVideoStreamOther）
+    if (mCallRemoteCanvas == NULL && item->getUploadVideoStreamOther())
+    {
+      // 创建远端视频画面
+      mCallRemoteCanvas = item->startOtherVideo(mWndCallRemoteVideo.m_hWnd, (JCMediaDeviceRenderMode)JCMediaDeviceRenderModeFullContent);
     }
-
-
+}
+```
 
 
 
@@ -307,20 +291,18 @@ JCCallStateTalking。
     
     
     
-    
-    
-        void JCSampleDlg::OnBnClickedButtonTermcall()
-        {
-          // 1. 获取当前活跃通话
-          JCCallItem* item = JCManager::shared()->call->getActiveCallItem();
-          if (item != NULL)
-          {
-            // 2. 挂断当前活跃通话
-            JCManager::shared()->call->term(item, JCCallReasonNone, "term");
-          }
-        }
-    
-    
+    ```C++ 
+    void JCSampleDlg::OnBnClickedButtonTermcall()
+    {
+      // 1. 获取当前活跃通话
+      JCCallItem* item = JCManager::shared()->call->getActiveCallItem();
+      if (item != NULL)
+      {
+        // 2. 挂断当前活跃通话
+        JCManager::shared()->call->term(item, JCCallReasonNone, "term");
+      }
+    }
+    ```
     
     
 
@@ -342,26 +324,24 @@ JCCallStateTalking。
 
 
 
-
-
-    void JCManager::onCallItemRemove(JCCallItem* item, JCCallReason reason, const char* description) { //移除通话回调
-      // 本端视频销毁
-      if (mCallLocalCanvas != NULL && !item->getUploadVideoStreamSelf())
-      {
-        item->stopSelfVideo();
-        mCallLocalCanvas = NULL;
-        mWndCallLocalVideo.Invalidate();
-      }
-      // 远端视频销毁
-      if (mCallRemoteCanvas != NULL && !item->getUploadVideoStreamOther())
-      {
-        item->stopOtherVideo();
-        mCallRemoteCanvas = NULL;
-        mWndCallRemoteVideo.Invalidate();
-      }
-    }
-
-
+```C++ 
+void JCManager::onCallItemRemove(JCCallItem* item, JCCallReason reason, const char* description) { //移除通话回调
+  // 本端视频销毁
+  if (mCallLocalCanvas != NULL && !item->getUploadVideoStreamSelf())
+  {
+    item->stopSelfVideo();
+    mCallLocalCanvas = NULL;
+    mWndCallLocalVideo.Invalidate();
+  }
+  // 远端视频销毁
+  if (mCallRemoteCanvas != NULL && !item->getUploadVideoStreamOther())
+  {
+    item->stopOtherVideo();
+    mCallRemoteCanvas = NULL;
+    mWndCallRemoteVideo.Invalidate();
+  }
+}
+```
 
 
 

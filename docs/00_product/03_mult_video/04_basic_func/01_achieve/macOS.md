@@ -19,18 +19,16 @@ create](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaC
 
 
 
-
-
-    //初始化
-    -(bool)initialize {
-       //1. 媒体类
-       JCMediaDevice *mediaDevice = [JCMediaDevice create:client callback:self];
-       //2. 媒体通道类
-       JCMediaChannel *mediaChannel = [JCMediaChannel create:client mediaDevice:mediaDevice callback:self];
-       return client.state == JCClientStateLogined;
-    }
-
-
+```objective
+//初始化
+-(bool)initialize {
+   //1. 媒体类
+   JCMediaDevice *mediaDevice = [JCMediaDevice create:client callback:self];
+   //2. 媒体通道类
+   JCMediaChannel *mediaChannel = [JCMediaChannel create:client mediaDevice:mediaDevice callback:self];
+   return client.state == JCClientStateLogined;
+}
+```
 
 
 
@@ -45,24 +43,22 @@ JCMediaDeviceCallback 中的主要方法如下
 
 
 
+```objective
+//摄像头变化
+-(void)onCameraUpdate;
 
+//音频输出变化
+-(void)onAudioOutputTypeChange:(NSString*)audioOutputType;
 
-    //摄像头变化
-    -(void)onCameraUpdate;
-    
-    //音频输出变化
-    -(void)onAudioOutputTypeChange:(NSString*)audioOutputType;
-    
-    //声音中断恢复
-    -(void)onAudioInerruptAndResume:(BOOL)interrupt;
-    
-    //收到第一帧数据
-    -(void)onRenderReceived:(JCMediaDeviceVideoCanvas*)canvas;
-    
-    //渲染开始
-    -(void)onRenderStart:(JCMediaDeviceVideoCanvas*)canvas;
+//声音中断恢复
+-(void)onAudioInerruptAndResume:(BOOL)interrupt;
 
+//收到第一帧数据
+-(void)onRenderReceived:(JCMediaDeviceVideoCanvas*)canvas;
 
+//渲染开始
+-(void)onRenderStart:(JCMediaDeviceVideoCanvas*)canvas;
+```
 
 
 
@@ -75,33 +71,31 @@ JCMediaChannel 中的主要方法如下
 
 
 
+```objective
+//自身状态变化回调
+-(void)onMediaChannelStateChange:(JCMediaChannelState)state oldState:(JCMediaChannelState)oldState;
 
+//加入频道结果回调
+-(void)onJoin:(bool)result reason:(JCMediaChannelReason)reason channelId:(NSString*)channelId;
 
-    //自身状态变化回调
-    -(void)onMediaChannelStateChange:(JCMediaChannelState)state oldState:(JCMediaChannelState)oldState;
-    
-    //加入频道结果回调
-    -(void)onJoin:(bool)result reason:(JCMediaChannelReason)reason channelId:(NSString*)channelId;
-    
-    //离开频道结果回调
-    -(void)onLeave:(JCMediaChannelReason)reason channelId:(NSString*)channelId;
-    
-    //解散频道结果回调
-    -(void)onStop:(bool)result reason:(JCMediaChannelReason)reason;
-    
-    //新成员加入回调
-    -(void)onParticipantJoin:(JCMediaChannelParticipant*)participant;
-    
-    //成员离开回调
-    -(void)onParticipantLeft:(JCMediaChannelParticipant*)participant;
-    
-    //成员更新回调
-    -(void)onParticipantUpdate:(JCMediaChannelParticipant*)participant participantChangeParam:(JCMediaChannelParticipantChangeParam *)participantChangeParam;
-    
-    //成员声音变化
-    -(void)onParticipantVolumeChange:(JCMediaChannelParticipant*)participant;
+//离开频道结果回调
+-(void)onLeave:(JCMediaChannelReason)reason channelId:(NSString*)channelId;
 
+//解散频道结果回调
+-(void)onStop:(bool)result reason:(JCMediaChannelReason)reason;
 
+//新成员加入回调
+-(void)onParticipantJoin:(JCMediaChannelParticipant*)participant;
+
+//成员离开回调
+-(void)onParticipantLeft:(JCMediaChannelParticipant*)participant;
+
+//成员更新回调
+-(void)onParticipantUpdate:(JCMediaChannelParticipant*)participant participantChangeParam:(JCMediaChannelParticipantChangeParam *)participantChangeParam;
+
+//成员声音变化
+-(void)onParticipantVolumeChange:(JCMediaChannelParticipant*)participant;
+```
 
 
 
@@ -119,14 +113,12 @@ JCMediaChannel 中的主要方法如下
     
     
     
-    
-    
-        // 1. 开启音频流
-        [mediaDeviceChannel enableUploadAudioStream:true];
-        // 2. 开启视频流
-        [mediaDeviceChannel enableUploadVIdeoStream:true];
-    
-    
+    ```objective
+    // 1. 开启音频流
+    [mediaDeviceChannel enableUploadAudioStream:true];
+    // 2. 开启视频流
+    [mediaDeviceChannel enableUploadVIdeoStream:true];
+    ```
     
     
 
@@ -145,12 +137,10 @@ JCMediaChannel 中的主要方法如下
 
 
 
-
-
-    // 加入频道
-    [mediaChannel join:@"222" joinParam:nil];
-
-
+```objective
+// 加入频道
+[mediaChannel join:@"222" joinParam:nil];
+```
 
 
 
@@ -160,19 +150,17 @@ JCMediaChannel 中的主要方法如下
     
     
     
-    
-    
-        // 加入频道结果回调
-        -(void)onJoin:(bool)result reason:(JCMediaChannelReason)reason channelId:(NSString*)channelId
-        {
-            if (result) {
-              // 加入成功
-            } else {
-              // 加入失败
-            }
+    ```objective
+    // 加入频道结果回调
+    -(void)onJoin:(bool)result reason:(JCMediaChannelReason)reason channelId:(NSString*)channelId
+    {
+        if (result) {
+          // 加入成功
+        } else {
+          // 加入失败
         }
-    
-    
+    }
+    ```
     
     
 
@@ -188,12 +176,10 @@ JCMediaChannel 中的主要方法如下
 
 
 
-
-
-    // 1. 获得频道成员自身对象
-    JCMediaChannelParticipant *participant = mediaChannel.selfParticipant;
-
-
+```objective
+// 1. 获得频道成员自身对象
+JCMediaChannelParticipant *participant = mediaChannel.selfParticipant;
+```
 
 
 
@@ -209,12 +195,10 @@ JCMediaChannel 中的主要方法如下
 
 
 
-
-
-    // 2. 打开本地视频预览
-    JCMediaDeviceVideoCanvas *localCanvas = [participant startVideo:JCMediaDeviceRenderFullScreen pictureSize:JCMediaChannelPictureSizeLarge];
-
-
+```objective
+// 2. 打开本地视频预览
+JCMediaDeviceVideoCanvas *localCanvas = [participant startVideo:JCMediaDeviceRenderFullScreen pictureSize:JCMediaChannelPictureSizeLarge];
+```
 
 
 
@@ -240,15 +224,13 @@ JCMediaChannel 中的主要方法如下
 
 
 
-
-
-    -(void)onParticipantJoin:(JCMediaChannelParticipant*)participant {
-        if (participant.video) {
-            JCMediaDeviceVideoCanvas *remoteCanvas = [participant startVideo:JCMediaDeviceRenderFullScreen pictureSize:JCMediaChannelPictureSizeLarge];
-        }
+```objective
+-(void)onParticipantJoin:(JCMediaChannelParticipant*)participant {
+    if (participant.video) {
+        JCMediaDeviceVideoCanvas *remoteCanvas = [participant startVideo:JCMediaDeviceRenderFullScreen pictureSize:JCMediaChannelPictureSizeLarge];
     }
-
-
+}
+```
 
 
 
@@ -264,12 +246,10 @@ JCMediaChannel 中的主要方法如下
 
 
 
-
-
-    // 发送本地音频流
-    [mediaChannel enableUploadAudioStream:true];
-
-
+```objective
+// 发送本地音频流
+[mediaChannel enableUploadAudioStream:true];
+```
 
 
 
@@ -285,11 +265,9 @@ JCMediaChannel 中的主要方法如下
 
 
 
-
-
-    [mediaChannel leave];
-
-
+```objective
+[mediaChannel leave];
+```
 
 
 
@@ -315,18 +293,16 @@ JCMediaChannel 中的主要方法如下
 
 
 
-
-
-    -(void)onLeave:(JCMediaChannelReason)reason channelId:(NSString*)channelId {
-        if (localCanvas != nil) { // 本地视频销毁
-            [participant stopVideo];
-        }
-        if (remoteCanvas != nil) { // 远端视频销毁
-            [participant stopVideo];
-        }
+```objective
+-(void)onLeave:(JCMediaChannelReason)reason channelId:(NSString*)channelId {
+    if (localCanvas != nil) { // 本地视频销毁
+        [participant stopVideo];
     }
-
-
+    if (remoteCanvas != nil) { // 远端视频销毁
+        [participant stopVideo];
+    }
+}
+```
 
 
 
@@ -340,12 +316,10 @@ JCMediaChannel 中的主要方法如下
 
 
 
-
-
-    // 结束频道
-    [mediaChannel stop];
-
-
+```objective
+// 结束频道
+[mediaChannel stop];
+```
 
 
 

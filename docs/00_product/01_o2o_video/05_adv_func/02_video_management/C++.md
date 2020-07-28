@@ -19,11 +19,9 @@ title: 视频管理
 
 
 
-
-
-    std::list<JCMediaDeviceCamera>* cameras = JCManager::shared()->mediaDevice->getCameras();
-
-
+```C++ 
+std::list<JCMediaDeviceCamera>* cameras = JCManager::shared()->mediaDevice->getCameras();
+```
 
 
 
@@ -33,12 +31,10 @@ title: 视频管理
 
 
 
-
-
-    /// 切换指定摄像头
-    JCManager::shared()->mediaDevice->switchCamera(cameras[0]);
-
-
+```C++ 
+/// 切换指定摄像头
+JCManager::shared()->mediaDevice->switchCamera(cameras[0]);
+```
 
 
 
@@ -54,11 +50,9 @@ title: 视频管理
 
 
 
-
-
-    JCManager::shared()->mediaDevice->setCameraProperty(640, 360, 24);
-
-
+```C++ 
+JCManager::shared()->mediaDevice->setCameraProperty(640, 360, 24);
+```
 
 
 
@@ -76,11 +70,9 @@ title: 视频管理
 
 
 
-
-
-    JCManager::shared()->mediaDeviceCanvas->rotate(Angle90);
-
-
+```C++ 
+JCManager::shared()->mediaDeviceCanvas->rotate(Angle90);
+```
 
 
 
@@ -94,18 +86,16 @@ title: 视频管理
 
 
 
-
-
-    // 窗口与屏幕角度 0
-    Angle0 = 0,
-    // 窗口与屏幕角度 90
-    Angle90 = 90,
-    // 窗口与屏幕角度 180
-    Angle180 = 180,
-    // 窗口与屏幕角度 270
-    Angle270 = 270
-
-
+```C++ 
+// 窗口与屏幕角度 0
+Angle0 = 0,
+// 窗口与屏幕角度 90
+Angle90 = 90,
+// 窗口与屏幕角度 180
+Angle180 = 180,
+// 窗口与屏幕角度 270
+Angle270 = 270
+```
 
 
 
@@ -146,16 +136,14 @@ title: 视频管理
 
 
 
-
-
-    /** add capture data callback
-     * @param[in] pUser     the callback user data
-     * @param[in] pfnCb     the callback
-     * returns 0 on succeed, otherwise failed
-     */
-    int Zmf_VideoCaptureAddCallback (void *pUser, ZmfVideoCaptureCallback pfnCb)
-
-
+```C++ 
+/** add capture data callback
+ * @param[in] pUser     the callback user data
+ * @param[in] pfnCb     the callback
+ * returns 0 on succeed, otherwise failed
+ */
+int Zmf_VideoCaptureAddCallback (void *pUser, ZmfVideoCaptureCallback pfnCb)
+```
 
 
 
@@ -163,27 +151,25 @@ title: 视频管理
 
 
 
-
-
-    /** the callback to receive captured image
-     * iImgAngle - iCamOrient equal to device rotate angle.
-     * if encoder is NULL, the pixel format of buf must be ZmfPixelFormatI420
-     *
-     * @param[in] pUser     the user data registered by Zmf_VideoCaptureAddCallback
-     * @param[in] captureId the id of captured image
-     * @param[in] iFace     the capture Face @see ZmfVideoFaceType
-     * @param[in] iImgAngle the image rotated angle (CW)
-     * @param[in] iCaptureOrient the capturer fixed orient
-     * @param[in,out] iWidth  the image width
-     * @param[in,out] iHeight the image height
-     * @param[in,out] buf     the image data I420 buffer
-     * @param[in,out] encoder capture encoder
-     */
-     typedef void (*ZmfVideoCaptureCallback)(void* pUser, const char* captureId, int iFace,
-                                           int iImgAngle, int iCaptureOrient, int* iWidth, int* iHeight,
-                                           unsigned char *buf, ZmfVideoCaptureEncoder* encoder);
-
-
+```C++ 
+/** the callback to receive captured image
+ * iImgAngle - iCamOrient equal to device rotate angle.
+ * if encoder is NULL, the pixel format of buf must be ZmfPixelFormatI420
+ *
+ * @param[in] pUser     the user data registered by Zmf_VideoCaptureAddCallback
+ * @param[in] captureId the id of captured image
+ * @param[in] iFace     the capture Face @see ZmfVideoFaceType
+ * @param[in] iImgAngle the image rotated angle (CW)
+ * @param[in] iCaptureOrient the capturer fixed orient
+ * @param[in,out] iWidth  the image width
+ * @param[in,out] iHeight the image height
+ * @param[in,out] buf     the image data I420 buffer
+ * @param[in,out] encoder capture encoder
+ */
+ typedef void (*ZmfVideoCaptureCallback)(void* pUser, const char* captureId, int iFace,
+                                       int iImgAngle, int iCaptureOrient, int* iWidth, int* iHeight,
+                                       unsigned char *buf, ZmfVideoCaptureEncoder* encoder);
+```
 
 
 
@@ -191,23 +177,21 @@ title: 视频管理
 
 
 
+```C++ 
+static void zmfVideoCaptureCallback(void* pUser, const char* captureId, int iFace,
+                                    int iImgAngle, int iCaptureOrient, int* iWidth, int* iHeight,
+                                    unsigned char *buf, ZmfVideoCaptureEncoder* encoder) {
 
-
-    static void zmfVideoCaptureCallback(void* pUser, const char* captureId, int iFace,
-                                        int iImgAngle, int iCaptureOrient, int* iWidth, int* iHeight,
-                                        unsigned char *buf, ZmfVideoCaptureEncoder* encoder) {
-    
-        cout << "视频数据处理" << endl;
-    }
-    void JCSampleDlg::OnBnClickedButtonCall()
-    {
-        //注册回调
-        Zmf_VideoCaptureAddCallback(void*pUser, zmfVideoCaptureCallback);
-        //发起呼叫
-        ...
-    }
-
-
+    cout << "视频数据处理" << endl;
+}
+void JCSampleDlg::OnBnClickedButtonCall()
+{
+    //注册回调
+    Zmf_VideoCaptureAddCallback(void*pUser, zmfVideoCaptureCallback);
+    //发起呼叫
+    ...
+}
+```
 
 
 
@@ -217,8 +201,7 @@ title: 视频管理
 
 
 
-
-
+```C++ 
 ``` 
  /** remove capture data callback
   * @param[in] pUser     the callback user data
@@ -226,8 +209,7 @@ title: 视频管理
   */
 int Zmf_VideoCaptureRemoveCallback (void *pUser)
 ```
-
-
+```
 
 
 
@@ -235,17 +217,15 @@ int Zmf_VideoCaptureRemoveCallback (void *pUser)
 
 
 
-
-
-    void JCSampleDlg::OnBnClickedButtonEndCall()
-    {
-        //移除回调
-        Zmf_VideoCaptureRemoveCallback(p);
-        //挂断通话
-        ...
-    }
-
-
+```C++ 
+void JCSampleDlg::OnBnClickedButtonEndCall()
+{
+    //移除回调
+    Zmf_VideoCaptureRemoveCallback(p);
+    //挂断通话
+    ...
+}
+```
 
 
 
@@ -264,19 +244,17 @@ int Zmf_VideoCaptureRemoveCallback (void *pUser)
 
 
 
-
-
-    /**
-     * add render data callback
-     *
-     * @param[in] pUser      the callback user data
-     * @param[in] pfnCb      the callback
-     *
-     * @return               0 on succeed, otherwise failed.
-     */
-    int Zmf_VideoRenderAddCallback (void *pUser, ZmfVideoRenderCallback pfnCb);
-
-
+```C++ 
+/**
+ * add render data callback
+ *
+ * @param[in] pUser      the callback user data
+ * @param[in] pfnCb      the callback
+ *
+ * @return               0 on succeed, otherwise failed.
+ */
+int Zmf_VideoRenderAddCallback (void *pUser, ZmfVideoRenderCallback pfnCb);
+```
 
 
 
@@ -284,31 +262,29 @@ int Zmf_VideoCaptureRemoveCallback (void *pUser)
 
 
 
-
-
-    /**
-     * The callback to receive video render data
-     *
-     * @param[in] pUser         the user data registered by Zmf_AddVideoRenderCallback
-     * @param[in] renderId      video render unique name
-     * @param[in] sourceType    video render source type @see ZmfVideoSourceType
-     * @param[in] iAngle the image angle
-     * @param[in] iMirror the image mirror type
-     * @param[in] iWidth  the image width
-     * @param[in] iHeight  the image height
-     * @param[in] buf           I420 render data
-     *
-     * @return                  if process render data should return > 0, other 0
-     *
-     * @remarks
-     *  if buf == 0 or iWidth ==0 or iHeight == 0, means the render will close,
-     *  so should call Zmf_OnVideoRenderRequestRemove.
-     */
-     typedef int  (*ZmfVideoRenderCallback)(void* pUser, const char* renderId, int sourceType, int iAngle,
-                                      int iMirror, int* iWidth, int* iHeight, unsigned char *buf,
-                                      unsigned long timeStamp);
-
-
+```C++ 
+/**
+ * The callback to receive video render data
+ *
+ * @param[in] pUser         the user data registered by Zmf_AddVideoRenderCallback
+ * @param[in] renderId      video render unique name
+ * @param[in] sourceType    video render source type @see ZmfVideoSourceType
+ * @param[in] iAngle the image angle
+ * @param[in] iMirror the image mirror type
+ * @param[in] iWidth  the image width
+ * @param[in] iHeight  the image height
+ * @param[in] buf           I420 render data
+ *
+ * @return                  if process render data should return > 0, other 0
+ *
+ * @remarks
+ *  if buf == 0 or iWidth ==0 or iHeight == 0, means the render will close,
+ *  so should call Zmf_OnVideoRenderRequestRemove.
+ */
+ typedef int  (*ZmfVideoRenderCallback)(void* pUser, const char* renderId, int sourceType, int iAngle,
+                                  int iMirror, int* iWidth, int* iHeight, unsigned char *buf,
+                                  unsigned long timeStamp);
+```
 
 
 
@@ -318,23 +294,21 @@ int Zmf_VideoCaptureRemoveCallback (void *pUser)
 
 
 
+```C++ 
+static void zmfVideoRenderCallback(void* pUser, const char* renderId, int sourceType, int iAngle,
+                                   int iMirror, int* iWidth, int* iHeight, unsigned char *buf,
+                                   unsigned long timeStamp) {
 
-
-    static void zmfVideoRenderCallback(void* pUser, const char* renderId, int sourceType, int iAngle,
-                                       int iMirror, int* iWidth, int* iHeight, unsigned char *buf,
-                                       unsigned long timeStamp) {
-    
-       cout << "视频数据处理" << endl;
-    }
-    void JCSampleDlg::OnBnClickedButtonCall()
-    {
-        //注册回调
-        Zmf_VideoRenderAddCallback(void*pUser, zmfVideoRenderCallback);
-        //发起呼叫
-        ...
-    }
-
-
+   cout << "视频数据处理" << endl;
+}
+void JCSampleDlg::OnBnClickedButtonCall()
+{
+    //注册回调
+    Zmf_VideoRenderAddCallback(void*pUser, zmfVideoRenderCallback);
+    //发起呼叫
+    ...
+}
+```
 
 
 
@@ -342,17 +316,15 @@ int Zmf_VideoCaptureRemoveCallback (void *pUser)
 
 
 
-
-
-    /**
-     * remove render data callback
-     *
-     * @param[in] pUser      the callback user data
-     * @return               0 on succeed, otherwise failed.
-     */
-    int Zmf_VideoRenderRemoveCallback (void *pUser)
-
-
+```C++ 
+/**
+ * remove render data callback
+ *
+ * @param[in] pUser      the callback user data
+ * @return               0 on succeed, otherwise failed.
+ */
+int Zmf_VideoRenderRemoveCallback (void *pUser)
+```
 
 
 
@@ -360,17 +332,15 @@ int Zmf_VideoCaptureRemoveCallback (void *pUser)
 
 
 
-
-
-    void JCSampleDlg::OnBnClickedButtonEndCall()
-    {
-        //移除回调
-        Zmf_VideoRenderRemoveCallback(p);
-        //挂断通话
-        ...
-    }
-
-
+```C++ 
+void JCSampleDlg::OnBnClickedButtonEndCall()
+{
+    //移除回调
+    Zmf_VideoRenderRemoveCallback(p);
+    //挂断通话
+    ...
+}
+```
 
 
 
@@ -398,27 +368,25 @@ Juphoon 对应的接口中进行后续操作。
 
 
 
-
-
-    /**
-     * The video capture data entry to ZMF
-     * iImgAngle - iCamOrient equal to device rotate angle.
-     * if encoder is NULL, the pixel format of bufI420 must be ZmfPixelFormatI420
-     *
-     * @param[in] captureId     unique name of the video capture           //标识外部采集的ID
-     * @param[in] iFace         the capture face, @see ZmfVideoFaceType    //外部视频的朝向，一般取0
-     * @param[in] iImgAngle     the image rotated angle (CW)               //输入的外部视频正立所需旋转角度，顺时针为正，取值范围0，90，180，270
-     * @param[in] iCamAngle     the camera fixed orient                    //外部镜头固定角度，同iImgAngle，取值范围0，90，180，270
-     * @param[in,out] iWidth    the image width at least align 4,
-     *                          return the cropped width of bufI420.       //输入图像的宽
-     * @param[in,out] iHeight   the image height at least align 4.
-     *                          return the cropped height of bufI420.      //输入图像的高
-     * @param[in] bufI420       the image data                             //输入图像的buffer
-     * @param[in,out] encoder   the capture encoder                        //标识输入图像编码格式
-     */
-     void Zmf_OnVideoCapture(const char *captureId, int iFace, int iImgAngle, int iCamAngle, int *iWidth, int *iHeight, unsigned char *bufI420, ZmfVideoCaptureEncoder* encoder);
-
-
+```C++ 
+/**
+ * The video capture data entry to ZMF
+ * iImgAngle - iCamOrient equal to device rotate angle.
+ * if encoder is NULL, the pixel format of bufI420 must be ZmfPixelFormatI420
+ *
+ * @param[in] captureId     unique name of the video capture           //标识外部采集的ID
+ * @param[in] iFace         the capture face, @see ZmfVideoFaceType    //外部视频的朝向，一般取0
+ * @param[in] iImgAngle     the image rotated angle (CW)               //输入的外部视频正立所需旋转角度，顺时针为正，取值范围0，90，180，270
+ * @param[in] iCamAngle     the camera fixed orient                    //外部镜头固定角度，同iImgAngle，取值范围0，90，180，270
+ * @param[in,out] iWidth    the image width at least align 4,
+ *                          return the cropped width of bufI420.       //输入图像的宽
+ * @param[in,out] iHeight   the image height at least align 4.
+ *                          return the cropped height of bufI420.      //输入图像的高
+ * @param[in] bufI420       the image data                             //输入图像的buffer
+ * @param[in,out] encoder   the capture encoder                        //标识输入图像编码格式
+ */
+ void Zmf_OnVideoCapture(const char *captureId, int iFace, int iImgAngle, int iCamAngle, int *iWidth, int *iHeight, unsigned char *bufI420, ZmfVideoCaptureEncoder* encoder);
+```
 
 
 
@@ -426,18 +394,16 @@ Juphoon 对应的接口中进行后续操作。
 
 
 
-
-
-    Zmf_VideoInitialize(NULL);
-    void JCSampleDlg::OnBnClickedButtonCall()
-    {
-        //输入分辨率为640*360，编码为I420无需额外旋转的图像
-        Zmf_OnVideoCapture("Test",0,0,0,640,360,buf,0);
-        //发起呼叫
-        ...
-    }
-
-
+```C++ 
+Zmf_VideoInitialize(NULL);
+void JCSampleDlg::OnBnClickedButtonCall()
+{
+    //输入分辨率为640*360，编码为I420无需额外旋转的图像
+    Zmf_OnVideoCapture("Test",0,0,0,640,360,buf,0);
+    //发起呼叫
+    ...
+}
+```
 
 
 
@@ -445,16 +411,14 @@ Juphoon 对应的接口中进行后续操作。
 
 
 
-
-
-    /**
-     * tell ZMF the video capture has stopped
-     *
-     * @param[in] captureId     unique name of the device
-     */
-    void Zmf_OnVideoCaptureDidStop(const char *captureId);
-
-
+```C++ 
+/**
+ * tell ZMF the video capture has stopped
+ *
+ * @param[in] captureId     unique name of the device
+ */
+void Zmf_OnVideoCaptureDidStop(const char *captureId);
+```
 
 
 
@@ -462,17 +426,15 @@ Juphoon 对应的接口中进行后续操作。
 
 
 
-
-
-    void JCSampleDlg::OnBnClickedButtonEndCall()
-    {
-        //停止采集
-        Zmf_OnVideoCaptureDidStop("Test");
-        //挂断通话
-        ...
-    }
-
-
+```C++ 
+void JCSampleDlg::OnBnClickedButtonEndCall()
+{
+    //停止采集
+    Zmf_OnVideoCaptureDidStop("Test");
+    //挂断通话
+    ...
+}
+```
 
 
 
@@ -482,22 +444,20 @@ Juphoon 对应的接口中进行后续操作。
 
 
 
-
-
-    /**
-     * The video render data entry to ZMF
-     *
-     * @param[in] renderId      unique name of the video render source                //标识渲染的ID
-     * @param[in] sourceType    the render source type, @see ZmfVideoSourceType       //渲染源类型，一般为0
-     * @param[in] iAngle        the image rotated angle (CW)ZmfVideoCaptureCallback   //渲染正立所需角度，一般为0 取值范围0，90，180，270
-     * @param[in] iMirror       the camera fixed orient                               //渲染镜像类型，一般为0
-     * @param[in] iWidth        the image width                                       //渲染图像宽
-     * @param[in] iHeight       the image height                                      //渲染图像高
-     * @param[in] bufI420       the image data I420 buffer                            //渲染数据buffer
-     */
-     void Zmf_OnVideoRender(const char *renderId, int sourceType, int iAngle, int iMirror, int *iWidth, int *iHeight, unsigned char *bufI420, unsigned long timeStamp);
-
-
+```C++ 
+/**
+ * The video render data entry to ZMF
+ *
+ * @param[in] renderId      unique name of the video render source                //标识渲染的ID
+ * @param[in] sourceType    the render source type, @see ZmfVideoSourceType       //渲染源类型，一般为0
+ * @param[in] iAngle        the image rotated angle (CW)ZmfVideoCaptureCallback   //渲染正立所需角度，一般为0 取值范围0，90，180，270
+ * @param[in] iMirror       the camera fixed orient                               //渲染镜像类型，一般为0
+ * @param[in] iWidth        the image width                                       //渲染图像宽
+ * @param[in] iHeight       the image height                                      //渲染图像高
+ * @param[in] bufI420       the image data I420 buffer                            //渲染数据buffer
+ */
+ void Zmf_OnVideoRender(const char *renderId, int sourceType, int iAngle, int iMirror, int *iWidth, int *iHeight, unsigned char *bufI420, unsigned long timeStamp);
+```
 
 
 
@@ -505,18 +465,16 @@ Juphoon 对应的接口中进行后续操作。
 
 
 
-
-
-    Zmf_VideoInitialize(NULL);
-    void JCSampleDlg::OnBnClickedButtonCall()
-    {
-        //输入分辨率为640*360，编码为I420无需额外旋转的图像
-        Zmf_OnVideoRender("Test",0,0,0,640,360,buf,0);
-        //发起呼叫
-        ...
-    }
-
-
+```C++ 
+Zmf_VideoInitialize(NULL);
+void JCSampleDlg::OnBnClickedButtonCall()
+{
+    //输入分辨率为640*360，编码为I420无需额外旋转的图像
+    Zmf_OnVideoRender("Test",0,0,0,640,360,buf,0);
+    //发起呼叫
+    ...
+}
+```
 
 
 
@@ -524,11 +482,9 @@ Juphoon 对应的接口中进行后续操作。
 
 
 
-
-
-    Zmf_OnVideoRender(const char *renderId, 0, 0, 0, 0, 0, 0, 0);
-
-
+```C++ 
+Zmf_OnVideoRender(const char *renderId, 0, 0, 0, 0, 0, 0, 0);
+```
 
 
 
@@ -536,17 +492,15 @@ Juphoon 对应的接口中进行后续操作。
 
 
 
-
-
-    void JCSampleDlg::OnBnClickedButtonEndCall()
-    {
-        //停止渲染
-        Zmf_OnVideoRender("Test", 0, 0, 0, 0, 0, 0, 0);
-        //挂断通话
-        ...
-    }
-
-
+```C++ 
+void JCSampleDlg::OnBnClickedButtonEndCall()
+{
+    //停止渲染
+    Zmf_OnVideoRender("Test", 0, 0, 0, 0, 0, 0, 0);
+    //挂断通话
+    ...
+}
+```
 
 
 
@@ -572,11 +526,9 @@ Juphoon 对应的接口中进行后续操作。
 
 
 
-
-
-    JCManager::shared()->mediaDeviceCanvas->replace(videoSource);
-
-
+```C++ 
+JCManager::shared()->mediaDeviceCanvas->replace(videoSource);
+```
 
 
 
@@ -592,11 +544,9 @@ Juphoon 对应的接口中进行后续操作。
 
 
 
-
-
-    JCManager::shared()->mediaDeviceCanvas->pause();
-
-
+```C++ 
+JCManager::shared()->mediaDeviceCanvas->pause();
+```
 
 
 
@@ -612,11 +562,9 @@ Juphoon 对应的接口中进行后续操作。
 
 
 
-
-
-    JCManager::shared()->mediaDeviceCanvas->resume();
-
-
+```C++ 
+JCManager::shared()->mediaDeviceCanvas->resume();
+```
 
 
 
@@ -646,14 +594,12 @@ Juphoon 对应的接口中进行后续操作。
 
 
 
-
-
-    //开启摄像头
-    JCManager::shared()->mediaDevice->startCamera();
-    //关闭摄像头
-    JCManager::shared()->mediaDevice->stopCamera();
-
-
+```C++ 
+//开启摄像头
+JCManager::shared()->mediaDevice->startCamera();
+//关闭摄像头
+JCManager::shared()->mediaDevice->stopCamera();
+```
 
 
 
@@ -669,11 +615,9 @@ Juphoon 对应的接口中进行后续操作。
 
 
 
-
-
-    JCMediaDeviceCamera camera = JCManager::shared()->mediaDevice->getCamera();
-
-
+```C++ 
+JCMediaDeviceCamera camera = JCManager::shared()->mediaDevice->getCamera();
+```
 
 
 
@@ -689,11 +633,9 @@ Juphoon 对应的接口中进行后续操作。
 
 
 
-
-
-    std::list<JCMediaDeviceWindow>* windows = JCManager::shared()->mediaDevice->getWindows();
-
-
+```C++ 
+std::list<JCMediaDeviceWindow>* windows = JCManager::shared()->mediaDevice->getWindows();
+```
 
 
 
@@ -709,11 +651,9 @@ Juphoon 对应的接口中进行后续操作。
 
 
 
-
-
-    std::list<JCMediaDeviceWindow>* windows = JCManager::shared()->mediaDevice->getDesktops();
-
-
+```C++ 
+std::list<JCMediaDeviceWindow>* windows = JCManager::shared()->mediaDevice->getDesktops();
+```
 
 
 

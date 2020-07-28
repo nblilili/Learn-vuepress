@@ -19,40 +19,38 @@ title: 实现一对一语音通话
 
 
 
+```csharp 
+/// 新建类并实现
+class JCManager : JCClientCallback, JCMediaDeviceCallback,JCCallCallbac{
 
+    #region JCMediaDeviceCallback
 
-    /// 新建类并实现
-    class JCManager : JCClientCallback, JCMediaDeviceCallback,JCCallCallbac{
-    
-        #region JCMediaDeviceCallback
-    
-        public void onCameraUpdate(){...}
-    
-        public void onAudioOutputTypeChange(string audioOutputType){...}
-    
-        #endregion
-    
-        #region JCCallCallbac
-        ...
-        /// 实现 JCCallCallbac 中的方法
-        ...
-        #endregion
-    
-        /// 声明对象
-        JCMediaDevice mMediaDevice;
-        JCMediaChannel mMediaChannel;
-    
-        /// 初始化函数
-        public bool initialize(Context context) {
-    
-            /// 1. 媒体类
-            mMediaDevice = JCMediaDevice.create(mClient, this);
-            /// 2. 通话类
-            mCall = JCCall.create(mClient, mMediaDevice, this);
-        }
+    public void onCameraUpdate(){...}
+
+    public void onAudioOutputTypeChange(string audioOutputType){...}
+
+    #endregion
+
+    #region JCCallCallbac
+    ...
+    /// 实现 JCCallCallbac 中的方法
+    ...
+    #endregion
+
+    /// 声明对象
+    JCMediaDevice mMediaDevice;
+    JCMediaChannel mMediaChannel;
+
+    /// 初始化函数
+    public bool initialize(Context context) {
+
+        /// 1. 媒体类
+        mMediaDevice = JCMediaDevice.create(mClient, this);
+        /// 2. 通话类
+        mCall = JCCall.create(mClient, mMediaDevice, this);
     }
-
-
+}
+```
 
 
 
@@ -75,12 +73,10 @@ title: 实现一对一语音通话
 
 
 
-
-
-    /// 发起语音呼叫
-    mCall.call(userID, isVideo, extraParam);
-
-
+```csharp 
+/// 发起语音呼叫
+mCall.call(userID, isVideo, extraParam);
+```
 
 
 
@@ -96,25 +92,23 @@ title: 实现一对一语音通话
 
 
 
+```csharp 
+/// 1. 发起语音通话
+mCall.call(userID, false, null);
 
+/// 2. 重写回调
 
-    /// 1. 发起语音通话
-    mCall.call(userID, false, null);
-    
-    /// 2. 重写回调
-    
-    public void onCallItemAdd(JCCallItem item) {
-        /// 业务逻辑
-        if (item.direction == JCCall.DIRECTION_IN) {
-            /// 如果是被叫
-            ...
-        }else{
-            /// 如果是主叫
-            ...
-        }
+public void onCallItemAdd(JCCallItem item) {
+    /// 业务逻辑
+    if (item.direction == JCCall.DIRECTION_IN) {
+        /// 如果是被叫
+        ...
+    }else{
+        /// 如果是主叫
+        ...
     }
-
-
+}
+```
 
 
 
@@ -132,17 +126,15 @@ title: 实现一对一语音通话
     
     
     
-    
-    
-        public void onCallItemAdd(JCCallItem item) {
-            /// 1. 如果是语音呼入且在振铃中
-            if (item.direction == JCCall.DIRECTION_IN && !item.video) {
-                /// 2. 做出相应的处理，如在界面上显示“振铃中”
-                ...
-            }
+    ```csharp 
+    public void onCallItemAdd(JCCallItem item) {
+        /// 1. 如果是语音呼入且在振铃中
+        if (item.direction == JCCall.DIRECTION_IN && !item.video) {
+            /// 2. 做出相应的处理，如在界面上显示“振铃中”
+            ...
         }
-    
-    
+    }
+    ```
     
     
 
@@ -152,11 +144,9 @@ title: 实现一对一语音通话
     
     
     
-    
-    
-        mCall.answer(item, false);
-    
-    
+    ```csharp 
+    mCall.answer(item, false);
+    ```
     
     
 
@@ -184,11 +174,9 @@ Note
     
     
     
-    
-    
-        mCall.getActiveCallItem();
-    
-    
+    ```csharp 
+    mCall.getActiveCallItem();
+    ```
     
     
 
@@ -198,11 +186,9 @@ Note
     
     
     
-    
-    
-        mCall.term(item, reason, description);
-    
-    
+    ```csharp 
+    mCall.term(item, reason, description);
+    ```
     
     
 
@@ -210,14 +196,12 @@ Note
 
 
 
-
-
-    /// 1. 获取当前活跃通话
-    JCCallItem item = mCall.getActiveCallItem();
-    /// 2. 挂断当前活跃通话
-    mCall.term(item, JCCall.REASON_NONE, null);
-
-
+```csharp 
+/// 1. 获取当前活跃通话
+JCCallItem item = mCall.getActiveCallItem();
+/// 2. 挂断当前活跃通话
+mCall.term(item, JCCall.REASON_NONE, null);
+```
 
 
 

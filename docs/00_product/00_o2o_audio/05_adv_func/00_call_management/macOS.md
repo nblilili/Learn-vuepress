@@ -12,11 +12,9 @@ title: 通话管理
 
 
 
-
-
-    call.maxCallNum = 1;
-
-
+```default 
+call.maxCallNum = 1;
+```
 
 
 
@@ -41,16 +39,14 @@ title: 通话管理
 
 
 
-
-
-    /**
-     *  @brief 静音，通过 JCCallItem 对象中的静音状态来决定开启关闭静音
-     *  @param item JCCallItem 对象
-     *  @return 返回 true 表示正常执行调用流程，false 表示调用异常
-     */
-    -(bool)mute:(JCCallItem* __nonnull)item;
-
-
+```default 
+/**
+ *  @brief 静音，通过 JCCallItem 对象中的静音状态来决定开启关闭静音
+ *  @param item JCCallItem 对象
+ *  @return 返回 true 表示正常执行调用流程，false 表示调用异常
+ */
+-(bool)mute:(JCCallItem* __nonnull)item;
+```
 
 
 
@@ -73,19 +69,17 @@ title: 通话管理
 
 
 
-
-
-    /**
-     * 语音通话录音，通过 JCCallItem 对象中的audioRecord状态来决定开启关闭录音
-     *
-     * @param item              JCCallItem 对象
-     * @param enable            开启关闭录音
-     * @param filePath          录音文件路径
-     * @return                  返回 true 表示正常执行调用流程，false 表示调用异常
-     */
-    -(bool)audioRecord:(JCCallItem* __nonnull)item enable:(bool)enable filePath:(NSString* __nullable)filePath;
-
-
+```default 
+/**
+ * 语音通话录音，通过 JCCallItem 对象中的audioRecord状态来决定开启关闭录音
+ *
+ * @param item              JCCallItem 对象
+ * @param enable            开启关闭录音
+ * @param filePath          录音文件路径
+ * @return                  返回 true 表示正常执行调用流程，false 表示调用异常
+ */
+-(bool)audioRecord:(JCCallItem* __nonnull)item enable:(bool)enable filePath:(NSString* __nullable)filePath;
+```
 
 
 
@@ -93,28 +87,26 @@ title: 通话管理
 
 
 
-
-
-    // 语音录制
-    - (void)audioRecord:(JCCallItem* __nonnull)item {
-        if (item.audioRecord) { // 正在录制中
-           //可以做录音结束的处理
-           [call audioRecord:item enable:false filePath:@"your filePath"];
+```default 
+// 语音录制
+- (void)audioRecord:(JCCallItem* __nonnull)item {
+    if (item.audioRecord) { // 正在录制中
+       //可以做录音结束的处理
+       [call audioRecord:item enable:false filePath:@"your filePath"];
+        ...
+    } else { // 未在录制中
+        // 创建录音文件
+        NSString *filePath; // 录音文件的绝对路径，SDK会自动创建录音文件
+        if (filePath != nil) {
+           // 开始录音
+           [call audioRecord:item enable:true filePath:filePath];
             ...
-        } else { // 未在录制中
-            // 创建录音文件
-            NSString *filePath; // 录音文件的绝对路径，SDK会自动创建录音文件
-            if (filePath != nil) {
-               // 开始录音
-               [call audioRecord:item enable:true filePath:filePath];
-                ...
-            } else {
-                // 录音失败的处理
-            }
+        } else {
+            // 录音失败的处理
         }
     }
-
-
+}
+```
 
 
 
@@ -122,16 +114,14 @@ title: 通话管理
 
 
 
-
-
-    /**
-     *  @brief 通话状态更新回调（当上层收到此回调时，可以根据 JCCallItem 对象获得该通话的所有信息及状态，从而更新该通话相关UI）
-     *  @param item JCCallItem 对象
-     *  @param changeParam 更新标识类
-     */
-    -(void)onCallItemUpdate:(JCCallItem* __nonnull)item changeParam:(JCCallChangeParam * __nullable)changeParam;
-
-
+```default 
+/**
+ *  @brief 通话状态更新回调（当上层收到此回调时，可以根据 JCCallItem 对象获得该通话的所有信息及状态，从而更新该通话相关UI）
+ *  @param item JCCallItem 对象
+ *  @param changeParam 更新标识类
+ */
+-(void)onCallItemUpdate:(JCCallItem* __nonnull)item changeParam:(JCCallChangeParam * __nullable)changeParam;
+```
 
 
 
@@ -149,16 +139,14 @@ JCCallItem
 
 
 
-
-
-    /**
-     *  @brief                  呼叫保持，通过 JCCallItem 对象中的呼叫保持状态来决定开启关闭呼叫保持
-     *  @param item             JCCallItem 对象
-     *  @return                 返回 true 表示正常执行调用流程，false 表示调用异常
-     */
-    -(bool)hold:(JCCallItem* __nonnull)item;
-
-
+```default 
+/**
+ *  @brief                  呼叫保持，通过 JCCallItem 对象中的呼叫保持状态来决定开启关闭呼叫保持
+ *  @param item             JCCallItem 对象
+ *  @return                 返回 true 表示正常执行调用流程，false 表示调用异常
+ */
+-(bool)hold:(JCCallItem* __nonnull)item;
+```
 
 
 
@@ -172,16 +160,14 @@ JCCallItem
 
 
 
-
-
-    /**
-     *  @brief 切换活跃通话
-     *  @param item 需要变为活跃状态的 JCCallItem 对象
-     *  @return 返回 true 表示正常执行调用流程，false 表示调用异常
-     */
-    -(bool)becomeActive:(JCCallItem* __nonnull)item;
-
-
+```default 
+/**
+ *  @brief 切换活跃通话
+ *  @param item 需要变为活跃状态的 JCCallItem 对象
+ *  @return 返回 true 表示正常执行调用流程，false 表示调用异常
+ */
+-(bool)becomeActive:(JCCallItem* __nonnull)item;
+```
 
 
 
@@ -189,18 +175,16 @@ JCCallItem
 
 
 
-
-
-    //获取活跃通话对象
-    JCCallItem *item = [call getActiveCallItem];;
-    //开启或关闭静音
-    [call mute:item];
-    //开启关闭呼叫保持
-    [call hold:item];
-    //切换活跃通话
-    [call becomeActive:item];
-
-
+```default 
+//获取活跃通话对象
+JCCallItem *item = [call getActiveCallItem];;
+//开启或关闭静音
+[call mute:item];
+//开启关闭呼叫保持
+[call hold:item];
+//切换活跃通话
+[call becomeActive:item];
+```
 
 
 
@@ -214,18 +198,16 @@ JCCallItem
 
 
 
-
-
-    /**
-     *  @brief 通过通话建立的通道发送数据
-     *  @param item 需要发送数据的 JCCallItem 对象
-     *  @param type 文本消息类型，用户可以自定义，例如text、xml等
-     *  @param content 消息内容
-     *  @return 返回 true 表示正常执行调用流程，false 表示调用异常
-     */
-    -(bool)sendMessage:(JCCallItem * __nonnull)item type:(NSString * __nonnull)type content:(NSString * __nonnull)content;
-
-
+```default 
+/**
+ *  @brief 通过通话建立的通道发送数据
+ *  @param item 需要发送数据的 JCCallItem 对象
+ *  @param type 文本消息类型，用户可以自定义，例如text、xml等
+ *  @param content 消息内容
+ *  @return 返回 true 表示正常执行调用流程，false 表示调用异常
+ */
+-(bool)sendMessage:(JCCallItem * __nonnull)item type:(NSString * __nonnull)type content:(NSString * __nonnull)content;
+```
 
 
 
@@ -233,17 +215,15 @@ JCCallItem
 
 
 
-
-
-    /**
-     *  @brief 通话中收到消息的回调
-     *  @param item JCCallItem 对象
-     *  @param type 消息类型
-     *  @param content 消息内容
-     */
-    -(void)onMessageReceive:(JCCallItem * __nonnull)item type:(NSString * __nonnull)type content:(NSString * __nonnull)content;
-
-
+```default 
+/**
+ *  @brief 通话中收到消息的回调
+ *  @param item JCCallItem 对象
+ *  @param type 消息类型
+ *  @param content 消息内容
+ */
+-(void)onMessageReceive:(JCCallItem * __nonnull)item type:(NSString * __nonnull)type content:(NSString * __nonnull)content;
+```
 
 
 
@@ -251,11 +231,9 @@ JCCallItem
 
 
 
-
-
-    [call sendMessage:item type:@"text" content:@"消息内容"];
-
-
+```default 
+[call sendMessage:item type:@"text" content:@"消息内容"];
+```
 
 
 
@@ -269,16 +247,14 @@ JCCallItem
 
 
 
-
-
-    /**
-     *  @brief 通话状态更新回调（当上层收到此回调时，可以根据 JCCallItem 对象获得该通话的所有信息及状态，从而更新该通话相关UI）
-     *  @param item JCCallItem 对象
-     *  @param changeParam 更新标识类
-     */
-    -(void)onCallItemUpdate:(JCCallItem* __nonnull)item changeParam:(JCCallChangeParam * __nullable)changeParam;
-
-
+```default 
+/**
+ *  @brief 通话状态更新回调（当上层收到此回调时，可以根据 JCCallItem 对象获得该通话的所有信息及状态，从而更新该通话相关UI）
+ *  @param item JCCallItem 对象
+ *  @param changeParam 更新标识类
+ */
+-(void)onCallItemUpdate:(JCCallItem* __nonnull)item changeParam:(JCCallChangeParam * __nullable)changeParam;
+```
 
 
 
@@ -297,25 +273,23 @@ Note
 
 
 
-
-
-    -(void)onCallItemUpdate:(JCCallItem* __nonnull)item changeParam:(JCCallChangeParam * __nullable)changeParam {
-        JCCallItem* callItem = item;
-        if (changeParam.mute) { // 开启静音
-            ...
-        } else if (changeParam.sate) { // 通话状态变化
-            ...
-        } else if (changeParam.held) { // 被挂起变化
-            ...
-        } else if (changeParam.active) { // 活跃状态变化
-            ...
-        } else if (changeParam.netStatus) { // 网络状态变化
-            ...
-        }
+```default 
+-(void)onCallItemUpdate:(JCCallItem* __nonnull)item changeParam:(JCCallChangeParam * __nullable)changeParam {
+    JCCallItem* callItem = item;
+    if (changeParam.mute) { // 开启静音
+        ...
+    } else if (changeParam.sate) { // 通话状态变化
+        ...
+    } else if (changeParam.held) { // 被挂起变化
+        ...
+    } else if (changeParam.active) { // 活跃状态变化
+        ...
+    } else if (changeParam.netStatus) { // 网络状态变化
         ...
     }
-
-
+    ...
+}
+```
 
 
 

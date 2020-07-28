@@ -103,13 +103,11 @@ mac 端使用的动态库集成 SDK。
     > 
     > 
     > 
-    > 
-    > 
-    >     - Framework Search Paths：$(PROJECT_DIR)/../sdk
-    >     - Header Search Paths：$(PROJECT_DIR)/../sdk/include
-    >     - Library Search Paths：$(PROJECT_DIR)/../sdk/lib/ios
-    > 
-    > 
+    > ```default 
+>     - Framework Search Paths：$(PROJECT_DIR)/../sdk
+>     - Header Search Paths：$(PROJECT_DIR)/../sdk/include
+>     - Library Search Paths：$(PROJECT_DIR)/../sdk/lib/ios
+    > ```
     > 
     > 
     > 

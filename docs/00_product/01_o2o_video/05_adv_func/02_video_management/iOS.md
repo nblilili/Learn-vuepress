@@ -17,18 +17,16 @@ title: 视频管理
 
 
 
+```default 
+/// 摄像头列表
+NSArray<JCMediaDeviceCamera*> *  __nonnull cameras;
 
+/// 正在使用的摄像头
+JCMediaDeviceCamera* __nullable camera;
 
-    /// 摄像头列表
-    NSArray<JCMediaDeviceCamera*> *  __nonnull cameras;
-    
-    /// 正在使用的摄像头
-    JCMediaDeviceCamera* __nullable camera;
-    
-    /// 默认摄像头
-    JCMediaDeviceCamera* __nullable defaultCamera;
-
-
+/// 默认摄像头
+JCMediaDeviceCamera* __nullable defaultCamera;
+```
 
 
 
@@ -36,18 +34,16 @@ title: 视频管理
 
 
 
+```default 
+/// 摄像头id
+NSString* __nonnull cameraId;
 
+/// 摄像头名字
+NSString* __nonnull cameraName;
 
-    /// 摄像头id
-    NSString* __nonnull cameraId;
-    
-    /// 摄像头名字
-    NSString* __nonnull cameraName;
-    
-    /// 摄像头类型
-    JCMediaDeviceCameraType cameraType;
-
-
+/// 摄像头类型
+JCMediaDeviceCameraType cameraType;
+```
 
 
 
@@ -55,14 +51,12 @@ title: 视频管理
 
 
 
-
-
-    JCMediaDeviceCameraTypeNone = 0,
-    JCMediaDeviceCameraTypeFront = 1,
-    JCMediaDeviceCameraTypeBack = 2,
-    JCMediaDeviceCameraTypeUnknown = 3
-
-
+```default 
+JCMediaDeviceCameraTypeNone = 0,
+JCMediaDeviceCameraTypeFront = 1,
+JCMediaDeviceCameraTypeBack = 2,
+JCMediaDeviceCameraTypeUnknown = 3
+```
 
 
 
@@ -70,13 +64,11 @@ title: 视频管理
 
 
 
-
-
-    /// 切换指定摄像头
-    /// @param camera 摄像头
-    -(bool)switchCamera:(JCMediaDeviceCamera* __nonnull)camera;
-
-
+```default 
+/// 切换指定摄像头
+/// @param camera 摄像头
+-(bool)switchCamera:(JCMediaDeviceCamera* __nonnull)camera;
+```
 
 
 
@@ -92,17 +84,15 @@ title: 视频管理
 
 
 
-
-
-    /**
-     *  @breif 设置摄像头采集属性
-     *  @param width 采集宽度，默认640
-     *  @param height 采集高度，默认360
-     *  @param framerate 帧速率，默认30
-     */
-    - (void)setCameraProperty:(int)width height:(int)height framerate:(int)framerate;
-
-
+```default 
+/**
+ *  @breif 设置摄像头采集属性
+ *  @param width 采集宽度，默认640
+ *  @param height 采集高度，默认360
+ *  @param framerate 帧速率，默认30
+ */
+- (void)setCameraProperty:(int)width height:(int)height framerate:(int)framerate;
+```
 
 
 
@@ -116,15 +106,13 @@ title: 视频管理
 
 
 
-
-
-    /**
-     * @breif 指定摄像头采集角度，为90的倍数
-     * @param angle 角度
-     */
-    -(void)specifyCameraAngle:(int)angle;
-
-
+```default 
+/**
+ * @breif 指定摄像头采集角度，为90的倍数
+ * @param angle 角度
+ */
+-(void)specifyCameraAngle:(int)angle;
+```
 
 
 
@@ -140,15 +128,13 @@ title: 视频管理
 
 
 
-
-
-    /**
-     * @brief 旋转角度，必须是90的倍数，该角度表示画面与屏幕正方向旋转后的夹角
-     * @param angle 角度值
-     */
-    -(void)rotate:(int)angle;
-
-
+```default 
+/**
+ * @brief 旋转角度，必须是90的倍数，该角度表示画面与屏幕正方向旋转后的夹角
+ * @param angle 角度值
+ */
+-(void)rotate:(int)angle;
+```
 
 
 
@@ -162,18 +148,16 @@ title: 视频管理
 
 
 
-
-
-    /// 窗口与屏幕角度 0
-    JCMediaDeviceRotateAngle0 = 0,
-    /// 窗口与屏幕角度 90
-    JCMediaDeviceRotateAngle90 = 90,
-    /// 窗口与屏幕角度 180
-    JCMediaDeviceRotateAngle180 = 180,
-    /// 窗口与屏幕角度 270
-    JCMediaDeviceRotateAngle270 = 270,
-
-
+```default 
+/// 窗口与屏幕角度 0
+JCMediaDeviceRotateAngle0 = 0,
+/// 窗口与屏幕角度 90
+JCMediaDeviceRotateAngle90 = 90,
+/// 窗口与屏幕角度 180
+JCMediaDeviceRotateAngle180 = 180,
+/// 窗口与屏幕角度 270
+JCMediaDeviceRotateAngle270 = 270,
+```
 
 
 
@@ -181,20 +165,18 @@ title: 视频管理
 
 
 
+```default 
+// 获取摄像头列表
+NSArray<JCMediaDeviceCamera*> * cameras = mediaDevice.cameras;
+// 设置要切换的摄像头
+[mediaDevice switchCamera:cameras[1]];
 
+// 设置摄像头采集属性
+[mediaDevice setCameraProperty:640 height:360 framerate:30];
 
-    // 获取摄像头列表
-    NSArray<JCMediaDeviceCamera*> * cameras = mediaDevice.cameras;
-    // 设置要切换的摄像头
-    [mediaDevice switchCamera:cameras[1]];
-    
-    // 设置摄像头采集属性
-    [mediaDevice setCameraProperty:640 height:360 framerate:30];
-    
-    // 设置Canvas旋转角度
-    [canvas rotate:90];
-
-
+// 设置Canvas旋转角度
+[canvas rotate:90];
+```
 
 
 
@@ -229,16 +211,14 @@ title: 视频管理
 
 
 
-
-
-    /** add capture data callback
-     * @param[in] pUser     the callback user data
-     * @param[in] pfnCb     the callback
-     * returns 0 on succeed, otherwise failed
-     */
-    int Zmf_VideoCaptureAddCallback (void *pUser, ZmfVideoCaptureCallback pfnCb)
-
-
+```default 
+/** add capture data callback
+ * @param[in] pUser     the callback user data
+ * @param[in] pfnCb     the callback
+ * returns 0 on succeed, otherwise failed
+ */
+int Zmf_VideoCaptureAddCallback (void *pUser, ZmfVideoCaptureCallback pfnCb)
+```
 
 
 
@@ -246,27 +226,25 @@ title: 视频管理
 
 
 
-
-
-    /** the callback to receive captured image
-     * iImgAngle - iCamOrient equal to device rotate angle.
-     * if encoder is NULL, the pixel format of buf must be ZmfPixelFormatI420
-     *
-     * @param[in] pUser     the user data registered by Zmf_VideoCaptureAddCallback
-     * @param[in] captureId the id of captured image
-     * @param[in] iFace     the capture Face @see ZmfVideoFaceType
-     * @param[in] iImgAngle the image rotated angle (CW)
-     * @param[in] iCaptureOrient the capturer fixed orient
-     * @param[in,out] iWidth  the image width
-     * @param[in,out] iHeight the image height
-     * @param[in,out] buf     the image data I420 buffer
-     * @param[in,out] encoder capture encoder
-     */
-     typedef void (*ZmfVideoCaptureCallback)(void* pUser, const char* captureId, int iFace,
-                                           int iImgAngle, int iCaptureOrient, int* iWidth, int* iHeight,
-                                           unsigned char *buf, ZmfVideoCaptureEncoder* encoder);
-
-
+```default 
+/** the callback to receive captured image
+ * iImgAngle - iCamOrient equal to device rotate angle.
+ * if encoder is NULL, the pixel format of buf must be ZmfPixelFormatI420
+ *
+ * @param[in] pUser     the user data registered by Zmf_VideoCaptureAddCallback
+ * @param[in] captureId the id of captured image
+ * @param[in] iFace     the capture Face @see ZmfVideoFaceType
+ * @param[in] iImgAngle the image rotated angle (CW)
+ * @param[in] iCaptureOrient the capturer fixed orient
+ * @param[in,out] iWidth  the image width
+ * @param[in,out] iHeight the image height
+ * @param[in,out] buf     the image data I420 buffer
+ * @param[in,out] encoder capture encoder
+ */
+ typedef void (*ZmfVideoCaptureCallback)(void* pUser, const char* captureId, int iFace,
+                                       int iImgAngle, int iCaptureOrient, int* iWidth, int* iHeight,
+                                       unsigned char *buf, ZmfVideoCaptureEncoder* encoder);
+```
 
 
 
@@ -274,24 +252,22 @@ title: 视频管理
 
 
 
+```default 
+id render; //采集的视频数据对象
+void* p = (__bridge void *)render;
+static void zmfVideoCaptureCallback(void* pUser, const char* captureId, int iFace,
+                                    int iImgAngle, int iCaptureOrient, int* iWidth, int* iHeight,
+                                    unsigned char *buf, ZmfVideoCaptureEncoder* encoder) {
 
-
-    id render; //采集的视频数据对象
-    void* p = (__bridge void *)render;
-    static void zmfVideoCaptureCallback(void* pUser, const char* captureId, int iFace,
-                                        int iImgAngle, int iCaptureOrient, int* iWidth, int* iHeight,
-                                        unsigned char *buf, ZmfVideoCaptureEncoder* encoder) {
-    
-        NSLog(@"视频数据处理");
-    }
-    - (void)videoCall {
-        //注册回调
-        Zmf_VideoCaptureAddCallback(p, zmfVideoCaptureCallback);
-        //发起呼叫
-        [call call:@"对端号码" video:true extraParam:@"自定义透传字符串"];
-    }
-
-
+    NSLog(@"视频数据处理");
+}
+- (void)videoCall {
+    //注册回调
+    Zmf_VideoCaptureAddCallback(p, zmfVideoCaptureCallback);
+    //发起呼叫
+    [call call:@"对端号码" video:true extraParam:@"自定义透传字符串"];
+}
+```
 
 
 
@@ -301,8 +277,7 @@ title: 视频管理
 
 
 
-
-
+```default 
 ``` 
  /** remove capture data callback
   * @param[in] pUser     the callback user data
@@ -310,8 +285,7 @@ title: 视频管理
   */
 int Zmf_VideoCaptureRemoveCallback (void *pUser)
 ```
-
-
+```
 
 
 
@@ -319,18 +293,16 @@ int Zmf_VideoCaptureRemoveCallback (void *pUser)
 
 
 
-
-
-    id render; //采集的视频数据对象
-    void* p = (__bridge void *)render;
-    -(void)endCall {
-        //移除回调
-        Zmf_VideoCaptureRemoveCallback(p);
-        //挂断通话
-        [call term:item reason:JCCallReasonNone description:@"自己挂断"];
-    }
-
-
+```default 
+id render; //采集的视频数据对象
+void* p = (__bridge void *)render;
+-(void)endCall {
+    //移除回调
+    Zmf_VideoCaptureRemoveCallback(p);
+    //挂断通话
+    [call term:item reason:JCCallReasonNone description:@"自己挂断"];
+}
+```
 
 
 
@@ -349,19 +321,17 @@ int Zmf_VideoCaptureRemoveCallback (void *pUser)
 
 
 
-
-
-    /**
-     * add render data callback
-     *
-     * @param[in] pUser      the callback user data
-     * @param[in] pfnCb      the callback
-     *
-     * @return               0 on succeed, otherwise failed.
-     */
-    int Zmf_VideoRenderAddCallback (void *pUser, ZmfVideoRenderCallback pfnCb);
-
-
+```default 
+/**
+ * add render data callback
+ *
+ * @param[in] pUser      the callback user data
+ * @param[in] pfnCb      the callback
+ *
+ * @return               0 on succeed, otherwise failed.
+ */
+int Zmf_VideoRenderAddCallback (void *pUser, ZmfVideoRenderCallback pfnCb);
+```
 
 
 
@@ -369,31 +339,29 @@ int Zmf_VideoCaptureRemoveCallback (void *pUser)
 
 
 
-
-
-    /**
-     * The callback to receive video render data
-     *
-     * @param[in] pUser         the user data registered by Zmf_AddVideoRenderCallback
-     * @param[in] renderId      video render unique name
-     * @param[in] sourceType    video render source type @see ZmfVideoSourceType
-     * @param[in] iAngle the image angle
-     * @param[in] iMirror the image mirror type
-     * @param[in] iWidth  the image width
-     * @param[in] iHeight  the image height
-     * @param[in] buf           I420 render data
-     *
-     * @return                  if process render data should return > 0, other 0
-     *
-     * @remarks
-     *  if buf == 0 or iWidth ==0 or iHeight == 0, means the render will close,
-     *  so should call Zmf_OnVideoRenderRequestRemove.
-     */
-     typedef int  (*ZmfVideoRenderCallback)(void* pUser, const char* renderId, int sourceType, int iAngle,
-                                      int iMirror, int* iWidth, int* iHeight, unsigned char *buf,
-                                      unsigned long timeStamp);
-
-
+```default 
+/**
+ * The callback to receive video render data
+ *
+ * @param[in] pUser         the user data registered by Zmf_AddVideoRenderCallback
+ * @param[in] renderId      video render unique name
+ * @param[in] sourceType    video render source type @see ZmfVideoSourceType
+ * @param[in] iAngle the image angle
+ * @param[in] iMirror the image mirror type
+ * @param[in] iWidth  the image width
+ * @param[in] iHeight  the image height
+ * @param[in] buf           I420 render data
+ *
+ * @return                  if process render data should return > 0, other 0
+ *
+ * @remarks
+ *  if buf == 0 or iWidth ==0 or iHeight == 0, means the render will close,
+ *  so should call Zmf_OnVideoRenderRequestRemove.
+ */
+ typedef int  (*ZmfVideoRenderCallback)(void* pUser, const char* renderId, int sourceType, int iAngle,
+                                  int iMirror, int* iWidth, int* iHeight, unsigned char *buf,
+                                  unsigned long timeStamp);
+```
 
 
 
@@ -403,24 +371,22 @@ int Zmf_VideoCaptureRemoveCallback (void *pUser)
 
 
 
+```default 
+id render; //解码后的视频数据对象
+void* p = (__bridge void *)render;
+static void zmfVideoRenderCallback(void* pUser, const char* renderId, int sourceType, int iAngle,
+                                   int iMirror, int* iWidth, int* iHeight, unsigned char *buf,
+                                   unsigned long timeStamp) {
 
-
-    id render; //解码后的视频数据对象
-    void* p = (__bridge void *)render;
-    static void zmfVideoRenderCallback(void* pUser, const char* renderId, int sourceType, int iAngle,
-                                       int iMirror, int* iWidth, int* iHeight, unsigned char *buf,
-                                       unsigned long timeStamp) {
-    
-        NSLog(@"视频数据处理");
-    }
-    - (void)videoCall {
-        //注册回调
-        Zmf_VideoRenderAddCallback(p, zmfVideoRenderCallback);
-        //发起呼叫
-        [call call:@"对端号码" video:true extraParam:@"自定义透传字符串"];
-    }
-
-
+    NSLog(@"视频数据处理");
+}
+- (void)videoCall {
+    //注册回调
+    Zmf_VideoRenderAddCallback(p, zmfVideoRenderCallback);
+    //发起呼叫
+    [call call:@"对端号码" video:true extraParam:@"自定义透传字符串"];
+}
+```
 
 
 
@@ -428,17 +394,15 @@ int Zmf_VideoCaptureRemoveCallback (void *pUser)
 
 
 
-
-
-    /**
-     * remove render data callback
-     *
-     * @param[in] pUser      the callback user data
-     * @return               0 on succeed, otherwise failed.
-     */
-    int Zmf_VideoRenderRemoveCallback (void *pUser)
-
-
+```default 
+/**
+ * remove render data callback
+ *
+ * @param[in] pUser      the callback user data
+ * @return               0 on succeed, otherwise failed.
+ */
+int Zmf_VideoRenderRemoveCallback (void *pUser)
+```
 
 
 
@@ -446,18 +410,16 @@ int Zmf_VideoCaptureRemoveCallback (void *pUser)
 
 
 
-
-
-    id render; //解码后的视频数据对象
-    void* p = (__bridge void *)render;
-    -(void)endCall {
-        //移除回调
-        Zmf_VideoRenderRemoveCallback(p);
-        //挂断通话
-        [call term:item reason:JCCallReasonNone description:@"自己挂断"];
-    }
-
-
+```default 
+id render; //解码后的视频数据对象
+void* p = (__bridge void *)render;
+-(void)endCall {
+    //移除回调
+    Zmf_VideoRenderRemoveCallback(p);
+    //挂断通话
+    [call term:item reason:JCCallReasonNone description:@"自己挂断"];
+}
+```
 
 
 
@@ -485,27 +447,25 @@ Juphoon 对应的接口中进行后续操作。
 
 
 
-
-
-    /**
-     * The video capture data entry to ZMF
-     * iImgAngle - iCamOrient equal to device rotate angle.
-     * if encoder is NULL, the pixel format of bufI420 must be ZmfPixelFormatI420
-     *
-     * @param[in] captureId     unique name of the video capture           //标识外部采集的ID
-     * @param[in] iFace         the capture face, @see ZmfVideoFaceType    //外部视频的朝向，一般取0
-     * @param[in] iImgAngle     the image rotated angle (CW)               //输入的外部视频正立所需旋转角度，顺时针为正，取值范围0，90，180，270
-     * @param[in] iCamAngle     the camera fixed orient                    //外部镜头固定角度，同iImgAngle，取值范围0，90，180，270
-     * @param[in,out] iWidth    the image width at least align 4,
-     *                          return the cropped width of bufI420.       //输入图像的宽
-     * @param[in,out] iHeight   the image height at least align 4.
-     *                          return the cropped height of bufI420.      //输入图像的高
-     * @param[in] bufI420       the image data                             //输入图像的buffer
-     * @param[in,out] encoder   the capture encoder                        //标识输入图像编码格式
-     */
-     void Zmf_OnVideoCapture(const char *captureId, int iFace, int iImgAngle, int iCamAngle, int *iWidth, int *iHeight, unsigned char *bufI420, ZmfVideoCaptureEncoder* encoder);
-
-
+```default 
+/**
+ * The video capture data entry to ZMF
+ * iImgAngle - iCamOrient equal to device rotate angle.
+ * if encoder is NULL, the pixel format of bufI420 must be ZmfPixelFormatI420
+ *
+ * @param[in] captureId     unique name of the video capture           //标识外部采集的ID
+ * @param[in] iFace         the capture face, @see ZmfVideoFaceType    //外部视频的朝向，一般取0
+ * @param[in] iImgAngle     the image rotated angle (CW)               //输入的外部视频正立所需旋转角度，顺时针为正，取值范围0，90，180，270
+ * @param[in] iCamAngle     the camera fixed orient                    //外部镜头固定角度，同iImgAngle，取值范围0，90，180，270
+ * @param[in,out] iWidth    the image width at least align 4,
+ *                          return the cropped width of bufI420.       //输入图像的宽
+ * @param[in,out] iHeight   the image height at least align 4.
+ *                          return the cropped height of bufI420.      //输入图像的高
+ * @param[in] bufI420       the image data                             //输入图像的buffer
+ * @param[in,out] encoder   the capture encoder                        //标识输入图像编码格式
+ */
+ void Zmf_OnVideoCapture(const char *captureId, int iFace, int iImgAngle, int iCamAngle, int *iWidth, int *iHeight, unsigned char *bufI420, ZmfVideoCaptureEncoder* encoder);
+```
 
 
 
@@ -513,17 +473,15 @@ Juphoon 对应的接口中进行后续操作。
 
 
 
-
-
-    Zmf_VideoInitialize(NULL);
-    - (void)videoCall {
-        //输入分辨率为640*360，编码为I420无需额外旋转的图像
-        Zmf_OnVideoCapture("Test",0,0,0,640,360,buf,0);
-        //发起呼叫
-        [call call:@"对端号码" video:true extraParam:@"自定义透传字符串"];
-    }
-
-
+```default 
+Zmf_VideoInitialize(NULL);
+- (void)videoCall {
+    //输入分辨率为640*360，编码为I420无需额外旋转的图像
+    Zmf_OnVideoCapture("Test",0,0,0,640,360,buf,0);
+    //发起呼叫
+    [call call:@"对端号码" video:true extraParam:@"自定义透传字符串"];
+}
+```
 
 
 
@@ -531,16 +489,14 @@ Juphoon 对应的接口中进行后续操作。
 
 
 
-
-
-    /**
-     * tell ZMF the video capture has stopped
-     *
-     * @param[in] captureId     unique name of the device
-     */
-    void Zmf_OnVideoCaptureDidStop(const char *captureId);
-
-
+```default 
+/**
+ * tell ZMF the video capture has stopped
+ *
+ * @param[in] captureId     unique name of the device
+ */
+void Zmf_OnVideoCaptureDidStop(const char *captureId);
+```
 
 
 
@@ -548,16 +504,14 @@ Juphoon 对应的接口中进行后续操作。
 
 
 
-
-
-    - (void)endCall {
-        //停止采集
-        Zmf_OnVideoCaptureDidStop("Test");
-        //挂断通话
-        [call term:item reason:JCCallReasonNone description:@"自己挂断"];
-    }
-
-
+```default 
+- (void)endCall {
+    //停止采集
+    Zmf_OnVideoCaptureDidStop("Test");
+    //挂断通话
+    [call term:item reason:JCCallReasonNone description:@"自己挂断"];
+}
+```
 
 
 
@@ -567,22 +521,20 @@ Juphoon 对应的接口中进行后续操作。
 
 
 
-
-
-    /**
-     * The video render data entry to ZMF
-     *
-     * @param[in] renderId      unique name of the video render source                //标识渲染的ID
-     * @param[in] sourceType    the render source type, @see ZmfVideoSourceType       //渲染源类型，一般为0
-     * @param[in] iAngle        the image rotated angle (CW)ZmfVideoCaptureCallback   //渲染正立所需角度，一般为0 取值范围0，90，180，270
-     * @param[in] iMirror       the camera fixed orient                               //渲染镜像类型，一般为0
-     * @param[in] iWidth        the image width                                       //渲染图像宽
-     * @param[in] iHeight       the image height                                      //渲染图像高
-     * @param[in] bufI420       the image data I420 buffer                            //渲染数据buffer
-     */
-     void Zmf_OnVideoRender(const char *renderId, int sourceType, int iAngle, int iMirror, int *iWidth, int *iHeight, unsigned char *bufI420, unsigned long timeStamp);
-
-
+```default 
+/**
+ * The video render data entry to ZMF
+ *
+ * @param[in] renderId      unique name of the video render source                //标识渲染的ID
+ * @param[in] sourceType    the render source type, @see ZmfVideoSourceType       //渲染源类型，一般为0
+ * @param[in] iAngle        the image rotated angle (CW)ZmfVideoCaptureCallback   //渲染正立所需角度，一般为0 取值范围0，90，180，270
+ * @param[in] iMirror       the camera fixed orient                               //渲染镜像类型，一般为0
+ * @param[in] iWidth        the image width                                       //渲染图像宽
+ * @param[in] iHeight       the image height                                      //渲染图像高
+ * @param[in] bufI420       the image data I420 buffer                            //渲染数据buffer
+ */
+ void Zmf_OnVideoRender(const char *renderId, int sourceType, int iAngle, int iMirror, int *iWidth, int *iHeight, unsigned char *bufI420, unsigned long timeStamp);
+```
 
 
 
@@ -590,17 +542,15 @@ Juphoon 对应的接口中进行后续操作。
 
 
 
-
-
-    Zmf_VideoInitialize(NULL);
-    - (void)videoCall {
-        //输入分辨率为640*360，编码为I420无需额外旋转的图像
-        Zmf_OnVideoRender("Test",0,0,0,640,360,buf,0);
-        //发起呼叫
-        [call call:@"对端号码" video:true extraParam:@"自定义透传字符串"];
-    }
-
-
+```default 
+Zmf_VideoInitialize(NULL);
+- (void)videoCall {
+    //输入分辨率为640*360，编码为I420无需额外旋转的图像
+    Zmf_OnVideoRender("Test",0,0,0,640,360,buf,0);
+    //发起呼叫
+    [call call:@"对端号码" video:true extraParam:@"自定义透传字符串"];
+}
+```
 
 
 
@@ -608,11 +558,9 @@ Juphoon 对应的接口中进行后续操作。
 
 
 
-
-
-    Zmf_OnVideoRender(const char *renderId, 0, 0, 0, 0, 0, 0, 0);
-
-
+```default 
+Zmf_OnVideoRender(const char *renderId, 0, 0, 0, 0, 0, 0, 0);
+```
 
 
 
@@ -620,16 +568,14 @@ Juphoon 对应的接口中进行后续操作。
 
 
 
-
-
-    - (void)endCall {
-        //停止渲染
-        Zmf_OnVideoRender("Test", 0, 0, 0, 0, 0, 0, 0);
-        //挂断通话
-        [call term:item reason:JCCallReasonNone description:@"自己挂断"];
-    }
-
-
+```default 
+- (void)endCall {
+    //停止渲染
+    Zmf_OnVideoRender("Test", 0, 0, 0, 0, 0, 0, 0);
+    //挂断通话
+    [call term:item reason:JCCallReasonNone description:@"自己挂断"];
+}
+```
 
 
 
@@ -655,16 +601,14 @@ Juphoon 对应的接口中进行后续操作。
 
 
 
-
-
-    /**
-     *  @brief 获得预览视频对象，通过此对象能获得视图用于UI显示
-     *  @param type 渲染模式，@ref JCMediaDeviceRender
-     *  @return JCMediaDeviceVideoCanvas 对象
-     */
-    -(JCMediaDeviceVideoCanvas* __nullable)startCameraVideo:(int)type;
-
-
+```default 
+/**
+ *  @brief 获得预览视频对象，通过此对象能获得视图用于UI显示
+ *  @param type 渲染模式，@ref JCMediaDeviceRender
+ *  @return JCMediaDeviceVideoCanvas 对象
+ */
+-(JCMediaDeviceVideoCanvas* __nullable)startCameraVideo:(int)type;
+```
 
 
 
@@ -703,17 +647,15 @@ Juphoon 对应的接口中进行后续操作。
 
 
 
-
-
-    /**
-     *  @brief 获得预览视频对象，通过此对象能获得视图用于UI显示
-     *  @param videoSource 渲染标识串，比如 JCMediaChannelParticipant JCCallItem 中的 renderId，当videoSource 为 videoFileId 时，内部会调用 startVideoFile
-     *  @param type        渲染模式，@ref JCMediaDeviceRender
-     *  @return JCMediaDeviceVideoCanvas 对象
-     */
-    -(JCMediaDeviceVideoCanvas* __nullable)startVideo:(NSString* __nonnull)videoSource renderType:(int)type;
-
-
+```default 
+/**
+ *  @brief 获得预览视频对象，通过此对象能获得视图用于UI显示
+ *  @param videoSource 渲染标识串，比如 JCMediaChannelParticipant JCCallItem 中的 renderId，当videoSource 为 videoFileId 时，内部会调用 startVideoFile
+ *  @param type        渲染模式，@ref JCMediaDeviceRender
+ *  @return JCMediaDeviceVideoCanvas 对象
+ */
+-(JCMediaDeviceVideoCanvas* __nullable)startVideo:(NSString* __nonnull)videoSource renderType:(int)type;
+```
 
 
 
@@ -721,19 +663,17 @@ Juphoon 对应的接口中进行后续操作。
 
 
 
+```default 
+// 创建本地视频画面对象
+JCMediaDeviceVideoCanvas *local = [mediaDevice startCameraVideo:JCMediaDeviceRenderFullContent];
+local.videoView.frame = CGRectMake(0, 0, 100, 100);
+[self.view addSubview:local.videoView];
 
-
-    // 创建本地视频画面对象
-    JCMediaDeviceVideoCanvas *local = [mediaDevice startCameraVideo:JCMediaDeviceRenderFullContent];
-    local.videoView.frame = CGRectMake(0, 0, 100, 100);
-    [self.view addSubview:local.videoView];
-    
-    // 创建远端视频画面对象，renderId来源于通话对象，一对一为JCCallItem对象，多方为JCMediaChannelParticipant对象
-    JCMediaDeviceVideoCanvas *remote = [mediaDevice startVideo:renderId renderType:JCMediaDeviceRenderFullContent];
-    remote.videoView.frame = CGRectMake(100, 0, 100, 100);
-    [self.view addSubview:remote.videoView];
-
-
+// 创建远端视频画面对象，renderId来源于通话对象，一对一为JCCallItem对象，多方为JCMediaChannelParticipant对象
+JCMediaDeviceVideoCanvas *remote = [mediaDevice startVideo:renderId renderType:JCMediaDeviceRenderFullContent];
+remote.videoView.frame = CGRectMake(100, 0, 100, 100);
+[self.view addSubview:remote.videoView];
+```
 
 
 
@@ -751,15 +691,13 @@ Juphoon 对应的接口中进行后续操作。
 
 
 
-
-
-    /**
-     *  @brief 停止视频
-     *  @param canvas JCMediaDeviceVideoCanvas 对象，由 startVideo 获得
-     */
-    -(void)stopVideo:(JCMediaDeviceVideoCanvas* __nonnull)canvas;
-
-
+```default 
+/**
+ *  @brief 停止视频
+ *  @param canvas JCMediaDeviceVideoCanvas 对象，由 startVideo 获得
+ */
+-(void)stopVideo:(JCMediaDeviceVideoCanvas* __nonnull)canvas;
+```
 
 
 
@@ -767,24 +705,22 @@ Juphoon 对应的接口中进行后续操作。
 
 
 
-
-
-    JCMediaDeviceVideoCanvas *localCanvas = [mediaDevice startCameraVideo:JCMediaDeviceRenderFullContent];
-    JCMediaDeviceVideoCanvas *remoteCanvas = [mediaDevice startVideo:renderId renderType:JCMediaDeviceRenderFullContent];
-    if (localCanvas) {
-        // 移除本地视频
-        [mediaDevice stopVideo:localCanvas];
-        [localCanvas.videoView removeFromSuperview];
-        localCanvas = nil;
-    }
-    if (remoteCanvas) {
-        // 移除远端视频
-        [mediaDevice stopVideo:remoteCanvas];
-        [remoteCanvas.videoView removeFromSuperview];
-        remoteCanvas = nil;
-    }
-
-
+```default 
+JCMediaDeviceVideoCanvas *localCanvas = [mediaDevice startCameraVideo:JCMediaDeviceRenderFullContent];
+JCMediaDeviceVideoCanvas *remoteCanvas = [mediaDevice startVideo:renderId renderType:JCMediaDeviceRenderFullContent];
+if (localCanvas) {
+    // 移除本地视频
+    [mediaDevice stopVideo:localCanvas];
+    [localCanvas.videoView removeFromSuperview];
+    localCanvas = nil;
+}
+if (remoteCanvas) {
+    // 移除远端视频
+    [mediaDevice stopVideo:remoteCanvas];
+    [remoteCanvas.videoView removeFromSuperview];
+    remoteCanvas = nil;
+}
+```
 
 
 
@@ -802,16 +738,14 @@ Juphoon 对应的接口中进行后续操作。
 
 
 
-
-
-    /**
-     *  @breif 更新视频渲染标识
-     *  @param videoSource 视频源
-     *  @return 成功返回 true，失败返回 false
-     */
-    -(bool)replace:(NSString*)videoSource;
-
-
+```default 
+/**
+ *  @breif 更新视频渲染标识
+ *  @param videoSource 视频源
+ *  @return 成功返回 true，失败返回 false
+ */
+-(bool)replace:(NSString*)videoSource;
+```
 
 
 
@@ -825,15 +759,13 @@ Juphoon 对应的接口中进行后续操作。
 
 
 
-
-
-    /**
-     *  @brief 暂停渲染
-     *  @return 成功返回 true，失败返回 false
-     */
-    -(void)pause;
-
-
+```default 
+/**
+ *  @brief 暂停渲染
+ *  @return 成功返回 true，失败返回 false
+ */
+-(void)pause;
+```
 
 
 
@@ -847,15 +779,13 @@ Juphoon 对应的接口中进行后续操作。
 
 
 
-
-
-    /**
-     *  @brief 恢复渲染
-     *  @return 成功返回 true，失败返回 false
-     */
-    -(void)resume;
-
-
+```default 
+/**
+ *  @brief 恢复渲染
+ *  @return 成功返回 true，失败返回 false
+ */
+-(void)resume;
+```
 
 
 
@@ -877,21 +807,19 @@ Juphoon 对应的接口中进行后续操作。
 
 
 
+```default 
+/**
+ *  @breif 开启摄像头，一般在只需开启摄像头时调用
+ *  @return 成功返回 true，失败返回 false
+ */
+-(bool)startCamera;
 
-
-    /**
-     *  @breif 开启摄像头，一般在只需开启摄像头时调用
-     *  @return 成功返回 true，失败返回 false
-     */
-    -(bool)startCamera;
-    
-    /**
-     *  @breif 关闭摄像头，一般和 startCamera 配对使用
-     *  @return 成功返回 true，失败返回 false
-     */
-    -(bool)stopCamera;
-
-
+/**
+ *  @breif 关闭摄像头，一般和 startCamera 配对使用
+ *  @return 成功返回 true，失败返回 false
+ */
+-(bool)stopCamera;
+```
 
 
 
@@ -903,15 +831,13 @@ Juphoon 对应的接口中进行后续操作。
 
 
 
-
-
-    /**
-     *  @breif 切换前后摄像头，内部会根据当前摄像头类型来进行切换
-     *  @return 成功返回 true，失败返回 false
-     */
-    -(bool)switchCamera;
-
-
+```default 
+/**
+ *  @breif 切换前后摄像头，内部会根据当前摄像头类型来进行切换
+ *  @return 成功返回 true，失败返回 false
+ */
+-(bool)switchCamera;
+```
 
 
 
@@ -919,18 +845,16 @@ Juphoon 对应的接口中进行后续操作。
 
 
 
+```default 
+// 打开摄像头
+[mediaDevice startCamera];
 
+// 关闭摄像头
+[mediaDevice stopCamera];
 
-    // 打开摄像头
-    [mediaDevice startCamera];
-    
-    // 关闭摄像头
-    [mediaDevice stopCamera];
-    
-    // 切换摄像头
-    [mediaDevice switchCamera];
-
-
+// 切换摄像头
+[mediaDevice switchCamera];
+```
 
 
 

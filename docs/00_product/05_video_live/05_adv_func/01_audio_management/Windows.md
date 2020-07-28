@@ -15,19 +15,17 @@ title: 音频管理
 
 
 
+```csharp 
+/// <summary>
+/// 当前输入设备
+/// </summary>
+public JCMediaDeviceAudio audioInput
 
-
-    /// <summary>
-    /// 当前输入设备
-    /// </summary>
-    public JCMediaDeviceAudio audioInput
-    
-    /// <summary>
-    /// 当前输出设备
-    /// </summary>
-    public JCMediaDeviceAudio audioOutput
-
-
+/// <summary>
+/// 当前输出设备
+/// </summary>
+public JCMediaDeviceAudio audioOutput
+```
 
 
 
@@ -39,14 +37,12 @@ title: 音频管理
 
 
 
-
-
-    /// <summary>
-    /// 音频输入设备列表
-    /// </summary>
-    public List<JCMediaDeviceAudio> audioInputs
-
-
+```csharp 
+/// <summary>
+/// 音频输入设备列表
+/// </summary>
+public List<JCMediaDeviceAudio> audioInputs
+```
 
 
 
@@ -54,18 +50,16 @@ title: 音频管理
 
 
 
-
-
-    /// <summary>
-    /// 名称
-    /// </summary>
-    public string audioName
-    /// <summary>
-    /// id
-    /// </summary>
-    public string audioId
-
-
+```csharp 
+/// <summary>
+/// 名称
+/// </summary>
+public string audioName
+/// <summary>
+/// id
+/// </summary>
+public string audioId
+```
 
 
 
@@ -77,14 +71,12 @@ title: 音频管理
 
 
 
-
-
-    /// <summary>
-    /// 音频输出设备列表
-    /// </summary>
-    public List<JCMediaDeviceAudio> audioOutputs
-
-
+```csharp 
+/// <summary>
+/// 音频输出设备列表
+/// </summary>
+public List<JCMediaDeviceAudio> audioOutputs
+```
 
 
 
@@ -92,18 +84,16 @@ title: 音频管理
 
 
 
-
-
-    /// <summary>
-    /// 名称
-    /// </summary>
-    public string audioName
-    /// <summary>
-    /// id
-    /// </summary>
-    public string audioId
-
-
+```csharp 
+/// <summary>
+/// 名称
+/// </summary>
+public string audioName
+/// <summary>
+/// id
+/// </summary>
+public string audioId
+```
 
 
 
@@ -111,15 +101,13 @@ title: 音频管理
 
 
 
+```csharp 
+// 获取音频输入设备列表
+List<JCMediaDeviceAudio> audioInputDevices = mediaDevice.audioInputs;
 
-
-    // 获取音频输入设备列表
-    List<JCMediaDeviceAudio> audioInputDevices = mediaDevice.audioInputs;
-    
-    // 获取音频输出设备列表
-    List<JCMediaDeviceAudio> audioOutputDevices = mediaDevice.audioOutputs;
-
-
+// 获取音频输出设备列表
+List<JCMediaDeviceAudio> audioOutputDevices = mediaDevice.audioOutputs;
+```
 
 
 
@@ -131,21 +119,19 @@ title: 音频管理
 
 
 
+```csharp 
+/// <summary>
+/// 启动音频，一般正式开启通话前需要调用此接口
+///</summary>
+///<returns>启动成功失败</returns>
+public bool startAudio()
 
-
-    /// <summary>
-    /// 启动音频，一般正式开启通话前需要调用此接口
-    ///</summary>
-    ///<returns>启动成功失败</returns>
-    public bool startAudio()
-    
-    /// <summary>
-    /// 停止音频，一般在通话结束时调用
-    /// </summary>
-    /// <returns>停止音频成功失败</returns>
-    public bool stopAudio()
-
-
+/// <summary>
+/// 停止音频，一般在通话结束时调用
+/// </summary>
+/// <returns>停止音频成功失败</returns>
+public bool stopAudio()
+```
 
 
 
@@ -157,15 +143,13 @@ title: 音频管理
 
 
 
-
-
-    /// <summary>
-    /// 获取当前输出等级
-    /// </summary>
-    /// <returns>音频输出等级</returns>
-    public int getSpkLevel()
-
-
+```csharp 
+/// <summary>
+/// 获取当前输出等级
+/// </summary>
+/// <returns>音频输出等级</returns>
+public int getSpkLevel()
+```
 
 
 
@@ -173,18 +157,16 @@ title: 音频管理
 
 
 
+```csharp 
+// 打开音频
+mediaDevice.startAudio();
 
+// 关闭音频
+mediaDevice.stopAudio();
 
-    // 打开音频
-    mediaDevice.startAudio();
-    
-    // 关闭音频
-    mediaDevice.stopAudio();
-    
-    // 获取当前输出等级
-    int level = mediaDevice.getSpkLevel();
-
-
+// 获取当前输出等级
+int level = mediaDevice.getSpkLevel();
+```
 
 
 

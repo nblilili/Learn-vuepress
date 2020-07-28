@@ -12,11 +12,9 @@ title: 通话管理
 
 
 
-
-
-    call.maxCallNum = 1;
-
-
+```java 
+call.maxCallNum = 1;
+```
 
 
 
@@ -42,17 +40,15 @@ title: 通话管理
 
 
 
-
-
-    /**
-     * 静音，通过 JCCallItem 对象中的静音状态来决定开启关闭静音
-     *
-     * @param   item JCCallItem 对象
-     * @return  返回 true 表示正常执行调用流程，false 表示调用异常
-     */
-    public abstract boolean mute(JCCallItem item);
-
-
+```java 
+/**
+ * 静音，通过 JCCallItem 对象中的静音状态来决定开启关闭静音
+ *
+ * @param   item JCCallItem 对象
+ * @return  返回 true 表示正常执行调用流程，false 表示调用异常
+ */
+public abstract boolean mute(JCCallItem item);
+```
 
 
 
@@ -72,19 +68,17 @@ title: 通话管理
 
 
 
-
-
-    /**
-     * 语音通话录音，通过 JCCallItem 对象中的audioRecord状态来决定开启关闭录音
-     *
-     * @param item      JCCallItem 对象
-     * @param enable    开启关闭录音
-     * @param filePath  录音文件路径
-     * @return          返回 true 表示正常执行调用流程，false 表示调用异常
-     */
-    public abstract boolean audioRecord(JCCallItem item, boolean enable, String filePath);
-
-
+```java 
+/**
+ * 语音通话录音，通过 JCCallItem 对象中的audioRecord状态来决定开启关闭录音
+ *
+ * @param item      JCCallItem 对象
+ * @param enable    开启关闭录音
+ * @param filePath  录音文件路径
+ * @return          返回 true 表示正常执行调用流程，false 表示调用异常
+ */
+public abstract boolean audioRecord(JCCallItem item, boolean enable, String filePath);
+```
 
 
 
@@ -92,22 +86,20 @@ title: 通话管理
 
 
 
-
-
-    JCCallItem item = call.getCallItems().get(0);
-    if (item.getAudioRecord()) {
-        // 录音结束
-        call.audioRecord(item, false, "your filePath");
-    } else {
-        // 创建录音保存文件路径
-        String filePath; // 录音文件的绝对路径，SDK会自动创建录音文件
-        if (!TextUtils.isEmpty(filePath)) {
-            // 开始录音
-            call.audioRecord(item, true, filePath);
-        }
+```java 
+JCCallItem item = call.getCallItems().get(0);
+if (item.getAudioRecord()) {
+    // 录音结束
+    call.audioRecord(item, false, "your filePath");
+} else {
+    // 创建录音保存文件路径
+    String filePath; // 录音文件的绝对路径，SDK会自动创建录音文件
+    if (!TextUtils.isEmpty(filePath)) {
+        // 开始录音
+        call.audioRecord(item, true, filePath);
     }
-
-
+}
+```
 
 
 
@@ -115,17 +107,15 @@ title: 通话管理
 
 
 
-
-
-    /**
-     * 通话状态更新回调（当上层收到此回调时，可以根据 JCCallItem 对象获得该通话的所有信息及状态，从而更新该通话相关UI）
-     *
-     * @param item JCCallItem 对象
-     * @param changeParam 更新标识类
-     */
-    void onCallItemUpdate(JCCallItem item, JCCallItem.ChangeParam changeParam);
-
-
+```java 
+/**
+ * 通话状态更新回调（当上层收到此回调时，可以根据 JCCallItem 对象获得该通话的所有信息及状态，从而更新该通话相关UI）
+ *
+ * @param item JCCallItem 对象
+ * @param changeParam 更新标识类
+ */
+void onCallItemUpdate(JCCallItem item, JCCallItem.ChangeParam changeParam);
+```
 
 
 
@@ -144,18 +134,16 @@ title: 通话管理
 
 
 
-
-
-    /**
-     * 呼叫保持，通过 JCCallItem 对象中的呼叫保持状态来决定开启关闭呼叫保持
-     * 只针对音频，如果是视频通话则要上层处理视频逻辑
-     *
-     * @param item  JCCallItem 对象
-     * @return      返回 true 表示正常执行调用流程，false 表示调用异常
-     */
-    public abstract boolean hold(JCCallItem item);
-
-
+```java 
+/**
+ * 呼叫保持，通过 JCCallItem 对象中的呼叫保持状态来决定开启关闭呼叫保持
+ * 只针对音频，如果是视频通话则要上层处理视频逻辑
+ *
+ * @param item  JCCallItem 对象
+ * @return      返回 true 表示正常执行调用流程，false 表示调用异常
+ */
+public abstract boolean hold(JCCallItem item);
+```
 
 
 
@@ -169,17 +157,15 @@ title: 通话管理
 
 
 
-
-
-    /**
-     * 切换活跃通话
-     *
-     * @param item  需要变为活跃状态的 JCCallItem 对象
-     * @return      返回 true 表示正常执行调用流程，false 表示调用异常
-     */
-    public abstract boolean becomeActive(JCCallItem item);
-
-
+```java 
+/**
+ * 切换活跃通话
+ *
+ * @param item  需要变为活跃状态的 JCCallItem 对象
+ * @return      返回 true 表示正常执行调用流程，false 表示调用异常
+ */
+public abstract boolean becomeActive(JCCallItem item);
+```
 
 
 
@@ -193,19 +179,17 @@ title: 通话管理
 
 
 
-
-
-    /**
-     * 通过通话建立的通道发送数据
-     *
-     * @param item      需要发送数据的 JCCallItem 对象
-     * @param type      文本消息类型，用户可以自定义，例如text，xml等
-     * @param content   文本内容
-     * @return          返回 true 表示正常执行调用流程，false 表示调用异常
-     */
-    public abstract boolean sendMessage(JCCallItem item, String type, String content);
-
-
+```java 
+/**
+ * 通过通话建立的通道发送数据
+ *
+ * @param item      需要发送数据的 JCCallItem 对象
+ * @param type      文本消息类型，用户可以自定义，例如text，xml等
+ * @param content   文本内容
+ * @return          返回 true 表示正常执行调用流程，false 表示调用异常
+ */
+public abstract boolean sendMessage(JCCallItem item, String type, String content);
+```
 
 
 
@@ -213,18 +197,16 @@ title: 通话管理
 
 
 
-
-
-    /**
-     * 通话中收到消息的回调
-     *
-     * @param type    消息类型
-     * @param content 消息内容
-     * @param item    JCCallItem 对象
-     */
-    void onMessageReceive(String type, String content, JCCallItem item);
-
-
+```java 
+/**
+ * 通话中收到消息的回调
+ *
+ * @param type    消息类型
+ * @param content 消息内容
+ * @param item    JCCallItem 对象
+ */
+void onMessageReceive(String type, String content, JCCallItem item);
+```
 
 
 
@@ -232,12 +214,10 @@ title: 通话管理
 
 
 
-
-
-    JCCallItem item = call.getActiveCallItem();
-    call.sendMessage("text", "消息内容", item);
-
-
+```java 
+JCCallItem item = call.getActiveCallItem();
+call.sendMessage("text", "消息内容", item);
+```
 
 
 
@@ -253,17 +233,15 @@ title: 通话管理
 
 
 
-
-
-    /**
-     * 通话状态更新回调（当上层收到此回调时，可以根据 JCCallItem 对象获得该通话的所有信息及状态，从而更新该通话相关UI）
-     *
-     * @param item           JCCallItem 对象，当 item 为 null 时表示全部更新
-     * @param changeParam    更新标识类
-     */
-    void onCallItemUpdate(JCCallItem item, JCCallItem.ChangeParam changeParam);
-
-
+```java 
+/**
+ * 通话状态更新回调（当上层收到此回调时，可以根据 JCCallItem 对象获得该通话的所有信息及状态，从而更新该通话相关UI）
+ *
+ * @param item           JCCallItem 对象，当 item 为 null 时表示全部更新
+ * @param changeParam    更新标识类
+ */
+void onCallItemUpdate(JCCallItem item, JCCallItem.ChangeParam changeParam);
+```
 
 
 
@@ -281,25 +259,23 @@ Note
 
 
 
-
-
-    public void onCallItemUpdate(JCCallItem item, JCCallItem.ChangeParam changeParam) {
-        if (item.mute) { // 开启静音
-            ...
-        } else if (item.hold) { // 挂起通话
-            ...
-        } else if (item.held) { // 被挂起
-            ...
-        } else if (item.active) { // 激活状态
-            ...
-        } else if (item.uploadVideoStreamSelf) { // 本端在上传视频流
-            ...
-        } else if (item.uploadVideoStreamOther) { // 远端在上传视频流
-            ...
-        }
+```java 
+public void onCallItemUpdate(JCCallItem item, JCCallItem.ChangeParam changeParam) {
+    if (item.mute) { // 开启静音
+        ...
+    } else if (item.hold) { // 挂起通话
+        ...
+    } else if (item.held) { // 被挂起
+        ...
+    } else if (item.active) { // 激活状态
+        ...
+    } else if (item.uploadVideoStreamSelf) { // 本端在上传视频流
+        ...
+    } else if (item.uploadVideoStreamOther) { // 远端在上传视频流
+        ...
     }
-
-
+}
+```
 
 
 

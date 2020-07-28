@@ -19,45 +19,43 @@ title: 实现多方语音通话
 
 
 
+```C++ 
+class JCManager : public JCMediaDeviceCallback, public JCMediaChannelCallback
+{
+public:
 
+    //自身状态变化回调
+    virtual void onMediaChannelStateChange(JCMediaChannelState state, JCMediaChannelState oldState);
+    //频道属性变化回调
+    virtual void onMediaChannelPropertyChange(JCMediaChannelPropChangeParam propChangeParam);
+    //加入频道结果回调
+    virtual void onJoin(bool result, JCMediaChannelReason reason, const char* channelId);
+    //离开频道结果回调
+    virtual void onLeave(JCMediaChannelReason reason, const char* channelId);
+    //解散频道结果回调
+    virtual void onStop(bool result, JCMediaChannelReason reason);
+    //查询频道结果回调
+    virtual void onQuery(int operationId, bool result, JCMediaChannelReason reason, JCMediaChannelQueryInfo* queryInfo);
+    //新成员加入回调
+    virtual void onParticipantJoin(JCMediaChannelParticipant* participant);
+    //成员离开回调
+    virtual void onParticipantLeft(JCMediaChannelParticipant* participant);
+    //成员更新回调
+    virtual void onParticipantUpdate(JCMediaChannelParticipant* participant, JCMediaChannelParticipant::ChangeParam changeParam);
+    //频道中收到消息回调
+    virtual void onMessageReceive(const char* type, const char* content, const char* fromUserId);
+    //邀请sip成员结果回调
+    virtual void onInviteSipUserResult(int operationId, bool result, JCMediaChannelReason reason);
+    //成员声音变化
+    virtual void onParticipantVolumeChange(JCMediaChannelParticipant* participant);
 
-    class JCManager : public JCMediaDeviceCallback, public JCMediaChannelCallback
-    {
-    public:
-    
-        //自身状态变化回调
-        virtual void onMediaChannelStateChange(JCMediaChannelState state, JCMediaChannelState oldState);
-        //频道属性变化回调
-        virtual void onMediaChannelPropertyChange(JCMediaChannelPropChangeParam propChangeParam);
-        //加入频道结果回调
-        virtual void onJoin(bool result, JCMediaChannelReason reason, const char* channelId);
-        //离开频道结果回调
-        virtual void onLeave(JCMediaChannelReason reason, const char* channelId);
-        //解散频道结果回调
-        virtual void onStop(bool result, JCMediaChannelReason reason);
-        //查询频道结果回调
-        virtual void onQuery(int operationId, bool result, JCMediaChannelReason reason, JCMediaChannelQueryInfo* queryInfo);
-        //新成员加入回调
-        virtual void onParticipantJoin(JCMediaChannelParticipant* participant);
-        //成员离开回调
-        virtual void onParticipantLeft(JCMediaChannelParticipant* participant);
-        //成员更新回调
-        virtual void onParticipantUpdate(JCMediaChannelParticipant* participant, JCMediaChannelParticipant::ChangeParam changeParam);
-        //频道中收到消息回调
-        virtual void onMessageReceive(const char* type, const char* content, const char* fromUserId);
-        //邀请sip成员结果回调
-        virtual void onInviteSipUserResult(int operationId, bool result, JCMediaChannelReason reason);
-        //成员声音变化
-        virtual void onParticipantVolumeChange(JCMediaChannelParticipant* participant);
-    
-    public:
-        //媒体设备对象
-        JCMediaDevice* mediaDevice;
-        //媒体通道对象
-        JCMediaChannel* mediaChannel;
-    };
-
-
+public:
+    //媒体设备对象
+    JCMediaDevice* mediaDevice;
+    //媒体通道对象
+    JCMediaChannel* mediaChannel;
+};
+```
 
 
 
@@ -69,19 +67,17 @@ title: 实现多方语音通话
 
 
 
-
-
-    //初始化
-    bool JCManager::initialize()
-    {
-        //1. 媒体类
-        mediaDevice = createJCMediaDevice(client, this);
-        //1. 媒体通道类
-        mediaChannel = createJCMediaChannel(client, mediaDevice, this);
-        return true;
-    }
-
-
+```C++ 
+//初始化
+bool JCManager::initialize()
+{
+    //1. 媒体类
+    mediaDevice = createJCMediaDevice(client, this);
+    //1. 媒体通道类
+    mediaChannel = createJCMediaChannel(client, mediaDevice, this);
+    return true;
+}
+```
 
 
 
@@ -121,12 +117,10 @@ JC SDK 默认不上传本地音频流，因此如果需要进入会议中就能�
 
 
 
-
-
-    // 开启音频流
-    JCManager::shared()->mediaChannel->enableUploadAudioStream(true);
-
-
+```C++ 
+// 开启音频流
+JCManager::shared()->mediaChannel->enableUploadAudioStream(true);
+```
 
 
 
@@ -151,12 +145,10 @@ Note
 
 
 
-
-
-    // 关闭视频流上传
-    JCManager::shared()->mediaChannel->enableUploadVideoStream(false);
-
-
+```C++ 
+// 关闭视频流上传
+JCManager::shared()->mediaChannel->enableUploadVideoStream(false);
+```
 
 
 
@@ -175,12 +167,10 @@ Note
 
 
 
-
-
-    // 加入频道
-    JCManager::shared()->mediaChannel->join("频道 ID", NULL);
-
-
+```C++ 
+// 加入频道
+JCManager::shared()->mediaChannel->join("频道 ID", NULL);
+```
 
 
 
@@ -190,21 +180,19 @@ Note
 
 
 
-
-
-    // 加入频道结果回调
-    void JCManager::onJoin(bool result, JCMediaChannelReason reason, const char* channelId)
-    {
-        if (result) {
-        //加入成功的逻辑
-        ...
-        } else {
-        //加入失败的逻辑
-        ...
-        }
+```C++ 
+// 加入频道结果回调
+void JCManager::onJoin(bool result, JCMediaChannelReason reason, const char* channelId)
+{
+    if (result) {
+    //加入成功的逻辑
+    ...
+    } else {
+    //加入失败的逻辑
+    ...
     }
-
-
+}
+```
 
 
 
@@ -220,11 +208,9 @@ Note
 
 
 
-
-
-    JCManager::shared()->mediaChannel->leave();
-
-
+```C++ 
+JCManager::shared()->mediaChannel->leave();
+```
 
 
 
@@ -236,15 +222,13 @@ Note
 
 
 
-
-
-    // 离开频道回调
-    void JCManager::onLeave(JCMediaChannelReason reason, const char* channelId);
-    {
-        //离开频道的逻辑
-    }
-
-
+```C++ 
+// 离开频道回调
+void JCManager::onLeave(JCMediaChannelReason reason, const char* channelId);
+{
+    //离开频道的逻辑
+}
+```
 
 
 
@@ -258,12 +242,10 @@ Note
 
 
 
-
-
-    // 结束频道
-    JCManager::shared()->mediaChannel->stop();
-
-
+```C++ 
+// 结束频道
+JCManager::shared()->mediaChannel->stop();
+```
 
 
 
@@ -277,14 +259,12 @@ Note
 
 
 
-
-
-    void JCManager::onStop(bool result, JCMediaChannelReason reason)
-    {
-        //结束频道的处理逻辑
-    }
-
-
+```C++ 
+void JCManager::onStop(bool result, JCMediaChannelReason reason)
+{
+    //结束频道的处理逻辑
+}
+```
 
 
 

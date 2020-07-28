@@ -19,34 +19,32 @@ title: 登录
 
 
 
+```java 
+// JCClient 对象
+JCClient mClient;
 
+// 初始化函数
+public boolean initialize(Context context) {
+    // 登录类
+    mClient = JCClient.create(context, "用户 appKey", new JCClientCallback() {
+        @Override
+        public void onLogin(boolean result, int reason) {
 
-    // JCClient 对象
-    JCClient mClient;
-    
-    // 初始化函数
-    public boolean initialize(Context context) {
-        // 登录类
-        mClient = JCClient.create(context, "用户 appKey", new JCClientCallback() {
-            @Override
-            public void onLogin(boolean result, int reason) {
-    
-            }
-            @Override
-            public void onLogout(int reason) {
-    
-            }
-            @Override
-            public void onClientStateChange(int state, int oldState) {
-    
-            }
-        }, null);
-        // 获取初始化状态（用来判断初始化状态）
-        mInit = mClient.getState() == JCClient.STATE_IDLE;
-        return mInit;
-    }
+        }
+        @Override
+        public void onLogout(int reason) {
 
+        }
+        @Override
+        public void onClientStateChange(int state, int oldState) {
 
+        }
+    }, null);
+    // 获取初始化状态（用来判断初始化状态）
+    mInit = mClient.getState() == JCClient.STATE_IDLE;
+    return mInit;
+}
+```
 
 
 
@@ -71,15 +69,13 @@ SDK 初始化之后，即可进行登录的集成。 登出接口调用流程如
 
 
 
-
-
-    JCClient.LoginParam loginParam = new JCClient.LoginParam();
-    // 1. 设置服务器环境。
-    loginParam.serverAddress = "服务器地址";
-    // 2. 发起登录
-    mClient.login(userID, password, loginParam);
-
-
+```java 
+JCClient.LoginParam loginParam = new JCClient.LoginParam();
+// 1. 设置服务器环境。
+loginParam.serverAddress = "服务器地址";
+// 2. 发起登录
+mClient.login(userID, password, loginParam);
+```
 
 
 
@@ -117,22 +113,20 @@ Note
 
 
 
-
-
-    @Override
-    public void onClientStateChange(@JCClient.ClientState int state, @JCClient.ClientState int oldState) {
-         if (state == JCClient.STATE_IDLE) { // 未登录
-           ...
-        } else if (state == JCClient.STATE_LOGINING) { // 正在登录
-           ...
-        } else if (state == JCClient.STATE_LOGINED) { // 登录成功
-           ...
-        } else if (state == JCClient.STATE_LOGOUTING) { // 登出中
-           ...
-        }
+```java 
+@Override
+public void onClientStateChange(@JCClient.ClientState int state, @JCClient.ClientState int oldState) {
+     if (state == JCClient.STATE_IDLE) { // 未登录
+       ...
+    } else if (state == JCClient.STATE_LOGINING) { // 正在登录
+       ...
+    } else if (state == JCClient.STATE_LOGINED) { // 登录成功
+       ...
+    } else if (state == JCClient.STATE_LOGOUTING) { // 登出中
+       ...
     }
-
-
+}
+```
 
 
 
@@ -144,20 +138,18 @@ Note
 
 
 
-
-
-    @Override
-    public void onLogin(boolean result, @JCClient.ClientReason int reason) {
-        if (result) {// 登录成功
-            ...
-        }
-        if (reason == REASON_AUTH) {// 账号密码错误
-            ...
-        }
-    
+```java 
+@Override
+public void onLogin(boolean result, @JCClient.ClientReason int reason) {
+    if (result) {// 登录成功
+        ...
+    }
+    if (reason == REASON_AUTH) {// 账号密码错误
+        ...
     }
 
-
+}
+```
 
 
 
@@ -181,16 +173,14 @@ Note
 
 
 
-
-
-    @Override
-    public void onLogout(@JCClient.ClientReason int reason) {
-        if (reason == REASON_SERVER_LOGOUT) {// 强制登出
-            ...
-        }
+```java 
+@Override
+public void onLogout(@JCClient.ClientReason int reason) {
+    if (reason == REASON_SERVER_LOGOUT) {// 强制登出
+        ...
     }
-
-
+}
+```
 
 
 

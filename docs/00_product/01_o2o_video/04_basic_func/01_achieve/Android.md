@@ -19,63 +19,61 @@ title: 实现一对一视频通话
 
 
 
+```java 
+// 声明对象
+JCMediaDevice mMediaDevice;
+JCCall mCall;
 
+// 初始化函数
+public boolean initialize(Context context) {
+    //1. 媒体类
+    mMediaDevice = JCMediaDevice.create(mClient, new JCMediaDeviceCallback() {
+        @Override
+        public void onCameraUpdate() {
 
-    // 声明对象
-    JCMediaDevice mMediaDevice;
-    JCCall mCall;
-    
-    // 初始化函数
-    public boolean initialize(Context context) {
-        //1. 媒体类
-        mMediaDevice = JCMediaDevice.create(mClient, new JCMediaDeviceCallback() {
-            @Override
-            public void onCameraUpdate() {
-    
-            }
-            @Override
-            public void onAudioOutputTypeChange(int i) {
-    
-            }
-            @Override
-            public void onRenderReceived(JCMediaDeviceVideoCanvas jcMediaDeviceVideoCanvas) {
-    
-            }
-            @Override
-            public void onRenderStart(JCMediaDeviceVideoCanvas jcMediaDeviceVideoCanvas) {
-    
-            }
-        });
-        //2. 通话类
-        mCall = JCCall.create(mClient, mMediaDevice, new JCCallCallback() {
-            @Override
-            public void onCallItemAdd(JCCallItem jcCallItem) {
-    
-            }
-    
-            @Override
-            public void onCallItemRemove(JCCallItem jcCallItem, int i, String s) {
-    
-            }
-    
-            @Override
-            public void onCallItemUpdate(JCCallItem jcCallItem, JCCallItem.ChangeParam changeParam) {
-    
-            }
-    
-            @Override
-            public void onMessageReceive(String s, String s1, JCCallItem jcCallItem) {
-    
-            }
-    
-            @Override
-            public void onMissedCallItem(JCCallItem jcCallItem) {
-    
-            }
-        });
-    }
+        }
+        @Override
+        public void onAudioOutputTypeChange(int i) {
 
+        }
+        @Override
+        public void onRenderReceived(JCMediaDeviceVideoCanvas jcMediaDeviceVideoCanvas) {
 
+        }
+        @Override
+        public void onRenderStart(JCMediaDeviceVideoCanvas jcMediaDeviceVideoCanvas) {
+
+        }
+    });
+    //2. 通话类
+    mCall = JCCall.create(mClient, mMediaDevice, new JCCallCallback() {
+        @Override
+        public void onCallItemAdd(JCCallItem jcCallItem) {
+
+        }
+
+        @Override
+        public void onCallItemRemove(JCCallItem jcCallItem, int i, String s) {
+
+        }
+
+        @Override
+        public void onCallItemUpdate(JCCallItem jcCallItem, JCCallItem.ChangeParam changeParam) {
+
+        }
+
+        @Override
+        public void onMessageReceive(String s, String s1, JCCallItem jcCallItem) {
+
+        }
+
+        @Override
+        public void onMissedCallItem(JCCallItem jcCallItem) {
+
+        }
+    });
+}
+```
 
 
 
@@ -89,14 +87,12 @@ title: 实现一对一视频通话
 
 
 
-
-
-    // 根据模式生成配置参数
-    JCCall.MediaConfig mediaConfig = JCCall.MediaConfig.generateByMode(JCCall.MediaConfig.MODE_INTELLINGENT_HARDWARE_SMALL);
-    // 设置媒体参数
-    JCManager.shared.call.mediaConfig = mediaConfig;
-
-
+```java 
+// 根据模式生成配置参数
+JCCall.MediaConfig mediaConfig = JCCall.MediaConfig.generateByMode(JCCall.MediaConfig.MODE_INTELLINGENT_HARDWARE_SMALL);
+// 设置媒体参数
+JCManager.shared.call.mediaConfig = mediaConfig;
+```
 
 
 
@@ -125,12 +121,10 @@ title: 实现一对一视频通话
 
 
 
-
-
-    // 发起语音呼叫
-    mCall.call(userID, isVideo, null);
-
-
+```java 
+// 发起语音呼叫
+mCall.call(userID, isVideo, null);
+```
 
 
 
@@ -144,21 +138,19 @@ title: 实现一对一视频通话
 
 
 
-
-
-    @Override
-    public void onCallItemAdd(JCCallItem item) {
-        // 业务逻辑
-        if (item.direction == JCCall.DIRECTION_IN) {
-            // 如果是被叫
-            ...
-        }else{
-            // 如果是主叫
-            ...
-        }
+```java 
+@Override
+public void onCallItemAdd(JCCallItem item) {
+    // 业务逻辑
+    if (item.direction == JCCall.DIRECTION_IN) {
+        // 如果是被叫
+        ...
+    }else{
+        // 如果是主叫
+        ...
     }
-
-
+}
+```
 
 
 
@@ -180,16 +172,14 @@ title: 实现一对一视频通话
 
 
 
-
-
-    // 1. 发起视频呼叫
-    mCall.call("222", true, null);
-    // 2. 获取当前活跃通话
-    JCCallItem mCallItem = mCall.getActiveCallItem();
-    // 3. 打开本地视频预览，这里选择的是自适应模式
-    mCallItem.startSelfVideo(JCMediaDevice.RENDER_FULL_AUTO);
-
-
+```java 
+// 1. 发起视频呼叫
+mCall.call("222", true, null);
+// 2. 获取当前活跃通话
+JCCallItem mCallItem = mCall.getActiveCallItem();
+// 3. 打开本地视频预览，这里选择的是自适应模式
+mCallItem.startSelfVideo(JCMediaDevice.RENDER_FULL_AUTO);
+```
 
 
 
@@ -209,18 +199,16 @@ title: 实现一对一视频通话
 
 
 
-
-
-    @Override
-    public void onCallItemAdd(JCCallItem item) {
-        // 1. 如果是视频呼入且在振铃中
-        if (item.getDirection() == JCCall.DIRECTION_IN && item.getVideo()) {
-            // 2. 做出相应的处理，如在界面上显示“振铃中”
-            ...
-        }
+```java 
+@Override
+public void onCallItemAdd(JCCallItem item) {
+    // 1. 如果是视频呼入且在振铃中
+    if (item.getDirection() == JCCall.DIRECTION_IN && item.getVideo()) {
+        // 2. 做出相应的处理，如在界面上显示“振铃中”
+        ...
     }
-
-
+}
+```
 
 
 
@@ -230,11 +218,9 @@ title: 实现一对一视频通话
 
 
 
-
-
-    mCall.answer(item, true);
-
-
+```java 
+mCall.answer(item, true);
+```
 
 
 
@@ -268,20 +254,18 @@ STATE\_TALKING。
 
 
 
-
-
-    @Override
-    public void onCallItemUpdate(JCCallItem item) {
-        // 如果对端在上传视频流（uploadVideoStreamOther）
-        // mRemoteCanvas 为 JCMediaDeviceVideoCanvas 对象实例，请在方法前声明。
-        if (item.getState() == JCCall.STATE_TALKING && mRemoteCanvas == null && item.getUploadVideoStreamOther()) {
-            // 获取远端视频画面，renderId来源JCCallItem对象
-            JCMediaDeviceVideoCanvas mRemoteCanvas = item.startOtherVideo(JCMediaDevice.RENDER_FULL_CONTENT);
-            ...
-        }
+```java 
+@Override
+public void onCallItemUpdate(JCCallItem item) {
+    // 如果对端在上传视频流（uploadVideoStreamOther）
+    // mRemoteCanvas 为 JCMediaDeviceVideoCanvas 对象实例，请在方法前声明。
+    if (item.getState() == JCCall.STATE_TALKING && mRemoteCanvas == null && item.getUploadVideoStreamOther()) {
+        // 获取远端视频画面，renderId来源JCCallItem对象
+        JCMediaDeviceVideoCanvas mRemoteCanvas = item.startOtherVideo(JCMediaDevice.RENDER_FULL_CONTENT);
+        ...
     }
-
-
+}
+```
 
 
 
@@ -299,11 +283,9 @@ STATE\_TALKING。
     
     
     
-    
-    
-        mCall.getActiveCallItem();
-    
-    
+    ```java 
+    mCall.getActiveCallItem();
+    ```
     
     
 
@@ -313,11 +295,9 @@ STATE\_TALKING。
     
     
     
-    
-    
-        mCall.term(item, reason, description);
-    
-    
+    ```java 
+    mCall.term(item, reason, description);
+    ```
     
     
 
@@ -325,14 +305,12 @@ STATE\_TALKING。
 
 
 
-
-
-    // 1. 获取当前活跃通话
-    JCCallItem item = mCall.getActiveCallItem();
-    // 2. 挂断当前活跃通话
-    mCall.term(item, JCCall.REASON_NONE, null);
-
-
+```java 
+// 1. 获取当前活跃通话
+JCCallItem item = mCall.getActiveCallItem();
+// 2. 挂断当前活跃通话
+mCall.term(item, JCCall.REASON_NONE, null);
+```
 
 
 
@@ -356,17 +334,15 @@ STATE\_TALKING。
 
 
 
-
-
-    @Override
-    public void onCallItemRemove(JCCallItem item, @JCCall.CallReason int reason, String description) {
-        // 销毁本地视频画面
-        item.stopSelfVideo();
-        // 销毁远端视频画面
-        item.stopOtherVideo();
-    }
-
-
+```java 
+@Override
+public void onCallItemRemove(JCCallItem item, @JCCall.CallReason int reason, String description) {
+    // 销毁本地视频画面
+    item.stopSelfVideo();
+    // 销毁远端视频画面
+    item.stopOtherVideo();
+}
+```
 
 
 
