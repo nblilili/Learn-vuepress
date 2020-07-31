@@ -107,7 +107,7 @@ function getChildren(filePath, childArr){
               console.warn('获取文件stats失败');
           }else{
             if(stats.isFile()){
-              console.log("fileDir"+ fileDir);
+              console.log("fileDir: "+ fileDir);
               var relativePath = path.relative(basePath, fileDir).split(path.sep).join('/');
               //console.log(childArr);
               //console.log(sidebar);
