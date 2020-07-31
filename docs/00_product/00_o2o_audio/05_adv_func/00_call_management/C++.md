@@ -34,7 +34,7 @@ JCManager::shared()->call->maxCallNum = 1;
 
 调用
 [mute](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_call.html#a62d7c7454fae84422579e3a6275af243)
-方法开启或关闭静音，开启关闭静音需要根据 JCCallItem 对象当前的静音状态来决定，静音开启后，对方将听不到您的声音
+方法开启或关闭静音，开启关闭静音需要根据 JCCallItem 对象当前的静音状态来决定，静音开启后，对方将听不到您的声音。
 
 
 
@@ -67,7 +67,7 @@ bool isMute = item->getMute();
 调用
 [hold](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_call.html#aae536642d3d5c785c2ce7d9275f8653a)
 方法对通话对象进行呼叫保持或解除呼叫保持（当通话对象处于被保持状态（即状态为held）时不可以进行此操作），开启或关闭呼叫保持需要根据
-JCCallItem 对象当前的呼叫保持状态来决定
+JCCallItem 对象当前的呼叫保持状态来决定。
 
 
 
@@ -93,7 +93,7 @@ if (item != NULL)
 
 调用
 [becomeActive](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_call.html#ae45d0744f3df39cc2c6dc3bb00bb7354)
-方法对通话中被保持的对象和活跃的通话对象进行切换
+方法对通话中被保持的对象和活跃的通话对象进行切换。
 
 
 
@@ -152,7 +152,7 @@ JCCallItem* item = JCManager::shared()->call->getActiveCallItem();
 
 通话过程中，如果通话状态发生了改变，如开启关闭静音、开启关闭通话保持、活跃状态切换、开启关闭音视频流发送等，均会触发
 [onCallItemUpdate](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_call_callback.html#a1ba1c4f09c1f573d9fe2acb5057d6c18)
-回调
+回调。
 
 
 
@@ -190,7 +190,7 @@ void JCManager::onCallItemUpdate(JCCallItem* item, JCCallItemChangeParam changeP
 
 调用
 [audioRecord](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_call.html#a058fb76428f0a77f4bbbb8670eec2868)
-方法开启或关闭通话录音:
+方法开启或关闭通话录音。
 
 
 
@@ -219,7 +219,7 @@ void JCSampleDlg::OnBnClickedButton1Callrecordaudio()
 
 开启或关闭录音时，录音状态会发生改变，并通过
 [onCallItemUpdate](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_call_callback.html#a1ba1c4f09c1f573d9fe2acb5057d6c18)
-回调上报
+回调上报。
 
 
 
@@ -240,7 +240,7 @@ void JCManager::onCallItemUpdate(JCCallItem* item, JCCallItemChangeParam changeP
 
 调用
 [sendMessage](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_call.html#a94e37abb045b901e1703b7534f4cc379)
-方法在通话中实现发消息的功能
+方法在通话中实现发消息的功能。
 
 
 
@@ -253,7 +253,7 @@ JCManager::shared()->call->sendMessage(item, "text", "消息内容");
 
 当通话中收到消息时，会收到
 [onMessageReceive](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_call_callback.html#afb8281abd54bc8c18b77aadfe234a882)
-回调
+回调。
 
 
 
@@ -273,6 +273,29 @@ void JCManager::onMessageReceive(const char* type, const char* content, JCCallIt
 
 
 
+
+
+
+
+
+[Next
+](01_audio_management.html "音频管理")
+[
+Previous](index.html "进阶功能集成")
+
+
+
+-----
+
+
+
+© Copyright 2020 宁波菊风系统软件有限公司
+
+
+
+Built with [Sphinx](http://sphinx-doc.org/) using a
+[theme](https://github.com/rtfd/sphinx_rtd_theme) provided by [Read the
+Docs](https://readthedocs.org).
 
 
 

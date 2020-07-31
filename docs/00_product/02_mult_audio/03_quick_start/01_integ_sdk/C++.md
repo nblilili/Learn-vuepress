@@ -25,11 +25,11 @@ title: 一分钟集成 SDK
 
 参考以下步骤创建一个 Windows 项目。若已有 Windows 项目，可以直接查看集成 SDK。
 
-  - 打开 Microsoft Visual Studio 并点击新建项目。
+  - 打开 **Microsoft Visual Studio** 并点击新建项目。
 
-  - 进入新建项目窗口，选择项目类型为 MFC 应用程序，输入项目名称，选择项目存储路径，并点击确认。
+  - 进入 **新建项目** 窗口，选择项目类型为 **MFC 应用程序**，输入项目名称，选择项目存储路径，并点击 **确认**。
 
-  - 进入 MFC 应用程序窗口，选择应用程序类型为基于对话框，并点击完成。
+  - 进入 **MFC 应用程序** 窗口，选择应用程序类型为 **基于对话框**，并点击完成。
 
 
 
@@ -66,6 +66,29 @@ SDK 路径为相对路径，开发者需要根据 SDK 实际存放的路径进�
 
 
 
+
+
+
+
+
+[Next
+](../../04_basic_func/index.html "多方语音通话")
+[
+Previous](00_run_demo.html "一分钟跑通 Demo")
+
+
+
+-----
+
+
+
+© Copyright 2020 宁波菊风系统软件有限公司
+
+
+
+Built with [Sphinx](http://sphinx-doc.org/) using a
+[theme](https://github.com/rtfd/sphinx_rtd_theme) provided by [Read the
+Docs](https://readthedocs.org).
 
 
 

@@ -1,9 +1,12 @@
 const fs = require('fs');
 const path = require('path');
-const translaterUtil = require('./docs/.vuepress/utils/translaterUtil.js')
+// const translaterUtil = require('./docs/.vuepress/utils/translaterUtil.js')
 
 var sidebar = new Object();
-getSidebarConf('docs/00_product');
+
+var navbar = genNavbar('en');
+console.log(navbar);
+
 
 module.exports = {
   getSidebarConf(filePath){
@@ -12,6 +15,31 @@ module.exports = {
     console.log("-----this is sidebar!-----");
     return sidebar;
   }
+}
+
+function genNavbar(language){
+  return [
+    { 
+      text: '产品',
+      ariaLabel: '/'+ language + '/00_o2o_audio/',
+      items: [
+        { text: '一对一语音', link: '/'+ language + '/00_o2o_audio/' },
+        { text: '一对一视频', link: '/'+ language + '/01_o2o_video/' },
+        { text: '多方语音', link: '/'+ language + '/02_mult_audio/' },
+        { text: '多方视频', link: '/'+ language + '/03_mult_video/' },
+        { text: '语音直播', link: '/'+ language + '/04_audio_live/' },
+        { text: '视频直播', link: '/'+ language + '/05_video_live/' },
+      ]
+    },
+    { 
+      text: '语言',
+      items: [
+        { text: 'English', link: '/en/00_o2o_audio/' },
+        { text: '中文', link: '/'+ language + '/00_o2o_audio/' },
+      ]
+    },
+    { text: '测试', link: '/一对一语音通话/'},
+  ]
 }
 
 function getSidebarConf(filePath){

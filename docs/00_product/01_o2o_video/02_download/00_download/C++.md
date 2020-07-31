@@ -24,6 +24,29 @@ SDK](https://developer.juphoon.com/portal/cn/downloadsdk/download_sdk.php?filena
 
 
 
+[Next
+](../../03_quick_start/index.html "一对一视频通话")
+[
+Previous](index.html "SDK 下载")
+
+
+
+-----
+
+
+
+© Copyright 2020 宁波菊风系统软件有限公司
+
+
+
+Built with [Sphinx](http://sphinx-doc.org/) using a
+[theme](https://github.com/rtfd/sphinx_rtd_theme) provided by [Read the
+Docs](https://readthedocs.org).
+
+
+
+
+
 
 
 

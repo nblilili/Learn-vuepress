@@ -20,11 +20,12 @@ function genMarkdown() {
       then  
       echo "DIR $path"   
       echo "delete index$old"
-      rm -f $path/index$old_format
+      rm -f $path/index${old}
       mkdir -p docs/${path#*/}
       genMarkdown $path 
     else  
       echo "FILE $path" 
+
       # 这里用于转换，判断文件的后缀是不是符合
       if [ ."${path##*.}"x = "$old"x ];then
         
@@ -36,7 +37,7 @@ function genMarkdown() {
         echo "-----t1-----"$t1
         echo "-----upPath-----"$upPath
         echo "-----upupPath-----"$upupPath
-        newbasename=$(basename $path $old) # name of file:yyy
+        newbasename=$(basename $path $old) 
 
         # 去除文件后缀的路径 即 xxx/index
         oldName=${path%%.*}$old
@@ -68,7 +69,6 @@ function genMarkdown() {
         echo "changing  ${name}$old to ${new_path}!"
         handlingErrors ${new_path}
         
-
         # 删除原有内容
         #rm -rf ${name}$old 
       else

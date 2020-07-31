@@ -241,6 +241,29 @@ ID，也不能加入会议。
 
 
 
+[Next
+](98_vocabulary_table.html "词汇表")
+[
+Previous](05_adv_func/C++/01_audio_management.html "音频管理")
+
+
+
+-----
+
+
+
+© Copyright 2020 宁波菊风系统软件有限公司
+
+
+
+Built with [Sphinx](http://sphinx-doc.org/) using a
+[theme](https://github.com/rtfd/sphinx_rtd_theme) provided by [Read the
+Docs](https://readthedocs.org).
+
+
+
+
+
 
 
 

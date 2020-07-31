@@ -12,7 +12,7 @@ title: 通话管理
 
 
 
-```default 
+```objective
 call.maxCallNum = 1;
 ```
 
@@ -39,7 +39,7 @@ call.maxCallNum = 1;
 
 
 
-```default 
+```objective
 /**
  *  @brief 静音，通过 JCCallItem 对象中的静音状态来决定开启关闭静音
  *  @param item JCCallItem 对象
@@ -62,14 +62,15 @@ call.maxCallNum = 1;
 
 如果正在录制或者通话被挂起或者挂起的情况下，不能进行音频录制。
 
-录音状态可通过 [<span id="id11" class="problematic">|JCCallItem|</span>](#id10)
+录音状态可通过
+[JCCallItem](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCCallItem.html)
 对象获取。
 
 开启或关闭录音接口如下
 
 
 
-```default 
+```objective
 /**
  * 语音通话录音，通过 JCCallItem 对象中的audioRecord状态来决定开启关闭录音
  *
@@ -83,11 +84,11 @@ call.maxCallNum = 1;
 
 
 
-示例代码:
+示例代码
 
 
 
-```default 
+```objective
 // 语音录制
 - (void)audioRecord:(JCCallItem* __nonnull)item {
     if (item.audioRecord) { // 正在录制中
@@ -114,7 +115,7 @@ call.maxCallNum = 1;
 
 
 
-```default 
+```objective
 /**
  *  @brief 通话状态更新回调（当上层收到此回调时，可以根据 JCCallItem 对象获得该通话的所有信息及状态，从而更新该通话相关UI）
  *  @param item JCCallItem 对象
@@ -139,7 +140,7 @@ JCCallItem
 
 
 
-```default 
+```objective
 /**
  *  @brief                  呼叫保持，通过 JCCallItem 对象中的呼叫保持状态来决定开启关闭呼叫保持
  *  @param item             JCCallItem 对象
@@ -160,7 +161,7 @@ JCCallItem
 
 
 
-```default 
+```objective
 /**
  *  @brief 切换活跃通话
  *  @param item 需要变为活跃状态的 JCCallItem 对象
@@ -175,7 +176,7 @@ JCCallItem
 
 
 
-```default 
+```objective
 //获取活跃通话对象
 JCCallItem *item = [call getActiveCallItem];;
 //开启或关闭静音
@@ -198,7 +199,7 @@ JCCallItem *item = [call getActiveCallItem];;
 
 
 
-```default 
+```objective
 /**
  *  @brief 通过通话建立的通道发送数据
  *  @param item 需要发送数据的 JCCallItem 对象
@@ -215,7 +216,7 @@ JCCallItem *item = [call getActiveCallItem];;
 
 
 
-```default 
+```objective
 /**
  *  @brief 通话中收到消息的回调
  *  @param item JCCallItem 对象
@@ -227,11 +228,11 @@ JCCallItem *item = [call getActiveCallItem];;
 
 
 
-示例代码:
+示例代码
 
 
 
-```default 
+```objective
 [call sendMessage:item type:@"text" content:@"消息内容"];
 ```
 
@@ -247,7 +248,7 @@ JCCallItem *item = [call getActiveCallItem];;
 
 
 
-```default 
+```objective
 /**
  *  @brief 通话状态更新回调（当上层收到此回调时，可以根据 JCCallItem 对象获得该通话的所有信息及状态，从而更新该通话相关UI）
  *  @param item JCCallItem 对象
@@ -265,15 +266,16 @@ JCCallItem *item = [call getActiveCallItem];;
 Note
 
 静音状态、通话保持状态、活跃状态可通过
-[<span id="id13" class="problematic">|JCCallItem|</span>](#id12) 对象获得。
+[JCCallItem](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCCallItem.html)
+对象获得。
 
 
 
-示例代码:
+示例代码
 
 
 
-```default 
+```objective
 -(void)onCallItemUpdate:(JCCallItem* __nonnull)item changeParam:(JCCallChangeParam * __nullable)changeParam {
     JCCallItem* callItem = item;
     if (changeParam.mute) { // 开启静音
@@ -302,6 +304,29 @@ Note
 
 
 
+
+
+
+
+
+[Next
+](01_audio_management.html "音频管理")
+[
+Previous](index.html "进阶功能集成")
+
+
+
+-----
+
+
+
+© Copyright 2020 宁波菊风系统软件有限公司
+
+
+
+Built with [Sphinx](http://sphinx-doc.org/) using a
+[theme](https://github.com/rtfd/sphinx_rtd_theme) provided by [Read the
+Docs](https://readthedocs.org).
 
 
 

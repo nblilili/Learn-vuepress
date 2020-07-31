@@ -30,9 +30,9 @@ title: 音频管理
 
 2.  成功注册后，JC SDK 会在捕捉到音频数据时通过回调函数回调采集到的原始音频数据相对应参数
 
-3.用户拿到音频数据后，根据场景需要自行在回调函数中进行参数处理，处理后数据通过该回调函数返回给JC SDK。
+3.  用户拿到音频数据后，根据场景需要自行在回调函数中进行参数处理，处理后数据通过该回调函数返回给JC SDK。
 
-首先注册音频输入回调
+首先注册音频输入回调。
 
 
 
@@ -99,7 +99,7 @@ void JCSampleDlg::OnBnClickedButtonCall()
 
 
 
-如果想移除回调，调用下面的接口
+如果想移除回调，调用下面的接口。
 
 
 
@@ -143,7 +143,7 @@ void JCSampleDlg::OnBnClickedButtonEndCall()
 
 3.  用户拿到音频数据后，根据场景需要自行在回调函数中进行音频数据的处理，处理后的数据通过该回调函数返回给 JC SDK。
 
-首先注册音频输出回调
+首先注册音频输出回调。
 
 
 
@@ -160,7 +160,7 @@ int  Zmf_AudioOutputAddCallback     (void *pUser, ZmfAudioOutputCallback pfnCb);
 
 
 
-回调类型说明
+回调类型说明：
 
 
 
@@ -207,7 +207,7 @@ void JCSampleDlg::OnBnClickedButtonCall()
 
 
 
-如果想移除回调，调用下面的接口
+如果想移除回调，调用下面的接口。
 
 
 
@@ -224,7 +224,7 @@ int  Zmf_AudioOutputRemoveCallback  (void *pUser);
 
 
 
-取消注册回调
+取消注册回调。
 
 
 
@@ -262,7 +262,7 @@ Juphoon 对应的接口中进行后续操作。
 
 若需要使用自己的音视频设备并且 Zmf\_AudioInitialize 初始化成功，在下面的回调函数中操作音频设备；
 
-音频设备初始化接口
+音频设备初始化接口。
 
 
 
@@ -281,7 +281,7 @@ int Zmf_AudioInitialize(void *applicationContext);
 
 
 
-采集数据输入接口
+采集数据输入接口。
 
 
 
@@ -333,7 +333,7 @@ Note
 
 
 
-采集停止接口
+采集停止接口。
 
 
 
@@ -366,7 +366,7 @@ void JCSampleDlg::OnBnClickedButtonEndCall()
 
 如果想在音频输出端使用自定义的播放数据，则调用下面的接口：
 
-播放数据输入接口
+播放数据输入接口。
 
 
 
@@ -411,7 +411,7 @@ Note
 
 
 
-播放数据停止接口
+播放数据停止接口。
 
 
 
@@ -468,7 +468,7 @@ Note
 
 调用
 [getAudioInputs](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_device.html#ab177fc54d666d727ece18588268fd203)
-接口获取音频输入设备列表
+接口获取音频输入设备列表。
 
 
 
@@ -486,7 +486,7 @@ std::list<JCMediaDeviceAudio>* audios = JCManager::shared()->mediaDevice->getAud
 
 调用
 [getAudioOutputs](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_device.html#a72ba20f63202cbc61bf2cfc8170045b3)
-接口获取音频输出设备列表
+接口获取音频输出设备列表。
 
 
 
@@ -504,7 +504,7 @@ std::list<JCMediaDeviceAudio>* audios = JCManager::shared()->mediaDevice->getAud
 
 调用
 [startAudio](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_device.html#a3e5dbd693aa7d245377e78cb78902018)
-接口开启音频设备
+接口开启音频设备。
 
 
 
@@ -516,7 +516,7 @@ JCManager::shared()->mediaDevice->startAudio();
 
 调用
 [stopAudio](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_device.html#a007283dc73188577ae32b50849d3d3fd)
-接口关闭音频设备
+接口关闭音频设备。
 
 
 
@@ -533,6 +533,29 @@ JCManager::shared()->mediaDevice->stopAudio();
 
 
 
+
+
+
+
+
+[Next
+](../../97_FAQ.html "常见问题")
+[
+Previous](05_channel_management.html "频道管理")
+
+
+
+-----
+
+
+
+© Copyright 2020 宁波菊风系统软件有限公司
+
+
+
+Built with [Sphinx](http://sphinx-doc.org/) using a
+[theme](https://github.com/rtfd/sphinx_rtd_theme) provided by [Read the
+Docs](https://readthedocs.org).
 
 
 

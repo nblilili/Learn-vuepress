@@ -57,7 +57,7 @@ Apple ID，完成后即可选择您的账户作为开发团队。
 
 ### 方法一：通过 CocoaPods 自动导入静态库
 
-`2.0` 及以上的版本支持使用 CocoaPods 导入 SDK。 导入前需要安装 CocoaPods 环境，安装方式参照
+`V2.0` 及以上的版本支持使用 CocoaPods 导入 SDK。 导入前需要安装 CocoaPods 环境，安装方式参照
 [CocoaPods 官网](https://cocoapods.org) 。
 
 CocoaPods 环境安装好后，执行以下操作：
@@ -93,7 +93,7 @@ end
 
 Note
 
-`2.1` 为当前发布的最新版本，关于指定具体版本请参考 [pod
+`V2.1` 为当前发布的最新版本，关于指定具体版本请参考 [pod
 使用规范](https://guides.cocoapods.org/using/the-podfile.html) 。
 
 如果需要更新本地库版本，在执行 pod install 之前执行 pod update 命令。
@@ -129,30 +129,39 @@ Note
     > 
     > 
     > 
-    > 继续点击 ‘+’ 符号，导入如下系统依赖的库:
+    > 继续点击 ‘+’ 符号，导入如下系统依赖的库：
     > 
+    >   - AssetsLibrary.framework
     > 
+    >   - AudioToolbox.framework
     > 
-    > ```default 
->     - AssetsLibrary.framework
->     - AudioToolbox.framework
->     - VideoToolBox.framework
->     - AVFoundation.framework
->     - CFNetwork.framework
->     - CoreMedia.framework
->     - CoreMotion.framework
->     - CoreVideo.framework
->     - GLKit.framework
->     - PushKit.framework（推送使用）
->     - ReplayKit.framework
->     - Security.framework
->     - SystemConfiguration.framework
->     - libc++.tbd
->     - libz.tbd
->     - libresolv.tbd
-    > ```
+    >   - VideoToolBox.framework
     > 
+    >   - AVFoundation.framework
     > 
+    >   - CFNetwork.framework
+    > 
+    >   - CoreMedia.framework
+    > 
+    >   - CoreMotion.framework
+    > 
+    >   - CoreVideo.framework
+    > 
+    >   - GLKit.framework
+    > 
+    >   - PushKit.framework（推送使用）
+    > 
+    >   - ReplayKit.framework
+    > 
+    >   - Security.framework
+    > 
+    >   - SystemConfiguration.framework
+    > 
+    >   - libc++.tbd
+    > 
+    >   - libz.tbd
+    > 
+    >   - libresolv.tbd
     > 
     > 
 
@@ -163,17 +172,13 @@ Note
     > 
     > 
     > 点击 ‘Build Settings’，找到 Search Paths，设置 Framework Search Paths
-    > 、Header Search Paths（头文件路径） 和 Library Search Paths（库文件路径）:
+    > 、Header Search Paths（头文件路径） 和 Library Search Paths（库文件路径）：
     > 
+    >   - Framework Search Paths：$(PROJECT\_DIR)/../sdk
     > 
+    >   - Header Search Paths：$(PROJECT\_DIR)/../sdk/include
     > 
-    > ```default 
->     - Framework Search Paths：$(PROJECT_DIR)/../sdk
->     - Header Search Paths：$(PROJECT_DIR)/../sdk/include
->     - Library Search Paths：$(PROJECT_DIR)/../sdk/lib/ios
-    > ```
-    > 
-    > 
+    >   - Library Search Paths：$(PROJECT\_DIR)/../sdk/lib/ios
     > 
     > 
     > 
@@ -284,30 +289,39 @@ Note
     > 
     > 
     > 
-    > 继续点击 ‘+’ 符号，导入如下系统依赖的库:
+    > 继续点击 ‘+’ 符号，导入如下系统依赖的库：
     > 
+    >   - AssetsLibrary.framework
     > 
+    >   - AudioToolbox.framework
     > 
-    > ```default 
->     - AssetsLibrary.framework
->     - AudioToolbox.framework
->     - VideoToolBox.framework
->     - AVFoundation.framework
->     - CFNetwork.framework
->     - CoreMedia.framework
->     - CoreMotion.framework
->     - CoreVideo.framework
->     - GLKit.framework
->     - PushKit.framework（推送使用）
->     - ReplayKit.framework
->     - Security.framework
->     - SystemConfiguration.framework
->     - libc++.tbd
->     - libz.tbd
->     - libresolv.tbd
-    > ```
+    >   - VideoToolBox.framework
     > 
+    >   - AVFoundation.framework
     > 
+    >   - CFNetwork.framework
+    > 
+    >   - CoreMedia.framework
+    > 
+    >   - CoreMotion.framework
+    > 
+    >   - CoreVideo.framework
+    > 
+    >   - GLKit.framework
+    > 
+    >   - PushKit.framework（推送使用）
+    > 
+    >   - ReplayKit.framework
+    > 
+    >   - Security.framework
+    > 
+    >   - SystemConfiguration.framework
+    > 
+    >   - libc++.tbd
+    > 
+    >   - libz.tbd
+    > 
+    >   - libresolv.tbd
     > 
     > 
 
@@ -318,15 +332,9 @@ Note
     > 
     > 
     > 点击 ‘Build Settings’，找到 Search Paths，设置 Framework Search Paths
-    > 、Header Search Paths（头文件路径） 和 Library Search Paths（库文件路径）:
+    > 、Header Search Paths（头文件路径） 和 Library Search Paths（库文件路径）：
     > 
-    > 
-    > 
-    > ```default 
->     - Framework Search Paths：$(PROJECT_DIR)/../sdk
-    > ```
-    > 
-    > 
+    >   - Framework Search Paths：$(PROJECT\_DIR)/../sdk
     > 
     > 
     > 
@@ -451,6 +459,29 @@ Note
 
 
 
+
+
+
+
+
+[Next
+](../Android/index.html "快速入门")
+[
+Previous](00_run_demo.html "一分钟跑通 Demo")
+
+
+
+-----
+
+
+
+© Copyright 2020 宁波菊风系统软件有限公司
+
+
+
+Built with [Sphinx](http://sphinx-doc.org/) using a
+[theme](https://github.com/rtfd/sphinx_rtd_theme) provided by [Read the
+Docs](https://readthedocs.org).
 
 
 

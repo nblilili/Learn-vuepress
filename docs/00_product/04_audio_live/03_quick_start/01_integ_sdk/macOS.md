@@ -51,7 +51,8 @@ Apple ID，完成后即可选择您的账户作为开发团队。
 
 mac 端使用的动态库集成 SDK。
 
-1.  解压并打开下载的 JC SDK 动态库，在 sdk 文件目录下包含 JCSDKOC.framework 文件。
+1.  解压并打开下载的 JC SDK 动态库，在 sdk 文件目录下包含 JCSDKOC.framework、include 和 lib
+    三个文件夹。
 
 2.  将 `sdk` 文件夹拷贝到您工程所在的目录下。
 
@@ -61,8 +62,8 @@ mac 端使用的动态库集成 SDK。
     > 
     > 
     > 
-    > 点击 ‘General’，在 “Embedded Binaries” 一栏，点击 ‘+’ 符号，然后导入 JCSDK 文件夹下的
-    > JCSDKOC.framework。
+    > 点击 ‘General’，在 “Embedded Binaries” 一栏，点击 ‘+’ 符号，然后导入 sdk 文件夹下的
+    > JCSDKOC.framework 和 lib 文件夹下的 libmtc.dylib、libzmf.dylib。
     > 
     > 
 
@@ -99,24 +100,20 @@ mac 端使用的动态库集成 SDK。
     > 
     > 
     > 点击 ‘Build Settings’，找到 Search Paths，设置 Framework Search Paths
-    > 、Header Search Paths（头文件路径） 和 Library Search Paths（库文件路径）:
+    > 、Header Search Paths（头文件路径） 和 Library Search Paths（库文件路径）：
     > 
+    >   - Framework Search Paths：$(PROJECT\_DIR)/../sdk
     > 
+    >   - Header Search Paths：$(PROJECT\_DIR)/../sdk/include
     > 
-    > ```default 
->     - Framework Search Paths：$(PROJECT_DIR)/../sdk
->     - Header Search Paths：$(PROJECT_DIR)/../sdk/include
->     - Library Search Paths：$(PROJECT_DIR)/../sdk/lib/ios
-    > ```
-    > 
-    > 
+    >   - Library Search Paths：$(PROJECT\_DIR)/../sdk/lib/ios
     > 
     > 
     > 
     > Note
     > 
-    > 在完成第 1 步导入 JCSDKOC.framework 和两个 .a 文件后，Xcode 会自动生成该路径，如果 Xcode
-    > 没有自动生成路径，用户要根据 `JCSDKOC.framework` 、`include` 和 `lib`
+    > 在完成第 1 步导入 JCSDKOC.framework 和两个 .dylib 文件后，Xcode 会自动生成该路径，如果
+    > Xcode 没有自动生成路径，用户要根据 `JCSDKOC.framework` 、`include` 和 `lib`
     > 文件所在目录，手动设置路径。
     > 
     > 
@@ -227,6 +224,29 @@ mac 端使用的动态库集成 SDK。
 
 
 
+
+
+
+
+
+[Next
+](../Windows/index.html "快速入门")
+[
+Previous](00_run_demo.html "一分钟跑通 Demo")
+
+
+
+-----
+
+
+
+© Copyright 2020 宁波菊风系统软件有限公司
+
+
+
+Built with [Sphinx](http://sphinx-doc.org/) using a
+[theme](https://github.com/rtfd/sphinx_rtd_theme) provided by [Read the
+Docs](https://readthedocs.org).
 
 
 

@@ -41,9 +41,9 @@ Note
 
 解压后的目录如下：
 
-![../../../../\_images/duoiOS.png](../../../../_images/duoiOS.png)
+![duoios](../../../../_images/duoios.png)
 
-JuphoonCommon 为工程所依赖的独立模块，提供 http 账号管理功能。
+JuphoonCommon.framework 为工程提供 http 账号管理功能。
 
 
 
@@ -53,7 +53,7 @@ JuphoonCommon 为工程所依赖的独立模块，提供 http 账号管理功能
 
 在下图红框标记的代码中输入自己的 AppKey
 
-![../../../../\_images/duokey1.png](../../../../_images/duokey1.png)
+![duokey1](../../../../_images/duokey1.png)
 
 
 
@@ -61,14 +61,7 @@ JuphoonCommon 为工程所依赖的独立模块，提供 http 账号管理功能
 
 ### 运行 Demo
 
-连接 iOS 真机，首先编译 JuphoonCommon 工程，编译成功后会生成 JuphoonCommon.framework。
-
-打开 JuphoonDuo 工程，点击 ‘General’，在 “Linked Frameworks and Libraries” 一栏，点击
-‘+’ 号，将生成的 JuphoonCommon.framework 添加到工程中。如下图：
-
-![../../../../\_images/demorun.png](../../../../_images/demorun.png)
-
-点击 run，编译运行 Demo 程序。
+连接 iOS 真机，点击 run，编译运行 Demo 程序。
 
 
 
@@ -88,6 +81,29 @@ RealmSwift 库进行替换。
 
 
 
+
+
+
+
+
+[Next
+](01_integ_sdk.html "一分钟集成 SDK")
+[
+Previous](index.html "快速入门")
+
+
+
+-----
+
+
+
+© Copyright 2020 宁波菊风系统软件有限公司
+
+
+
+Built with [Sphinx](http://sphinx-doc.org/) using a
+[theme](https://github.com/rtfd/sphinx_rtd_theme) provided by [Read the
+Docs](https://readthedocs.org).
 
 
 

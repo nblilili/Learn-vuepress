@@ -9,11 +9,11 @@ title: 频道管理
 
 ## 频道信息查询
 
-如需查询频道相关信息，例如频道名称、是否存在、成员名、成员数，可以调用 query 接口进行查询操作
+如需查询频道相关信息，例如频道名称、是否存在、成员名、成员数，可以调用 query 接口进行查询操作。
 
 
 
-```default 
+```objective
 /**
  * 查询频道相关信息，例如是否存在，人数等
  *
@@ -25,11 +25,11 @@ public abstract int query(String channelId);
 
 
 
-示例代码:
+示例代码
 
 
 
-```default 
+```objective
 mediaChannel.query("channelId");
 ```
 
@@ -39,7 +39,7 @@ mediaChannel.query("channelId");
 
 
 
-```default 
+```objective
 /**
  * 查询频道信息结果回调
  *
@@ -53,11 +53,11 @@ public void onQuery(int operationId, boolean result, @JCMediaChannel.MediaChanne
 
 
 
-示例代码:
+示例代码
 
 
 
-```default 
+```objective
 public void onQuery(int operationId, boolean result, @JCMediaChannel.MediaChannelReason int reason, JCMediaChannelQueryInfo queryInfo) {
    // 查询成功
    if (result) {
@@ -93,11 +93,11 @@ public void onQuery(int operationId, boolean result, @JCMediaChannel.MediaChanne
 
 ### 获取成员对象
 
-通过 userId 获取频道成员对象
+通过 userId 获取频道成员对象。
 
 
 
-```default 
+```objective
 /**
  *  @brief 获得频道成员
  *  @param userId 用户唯一标识
@@ -118,11 +118,11 @@ public void onQuery(int operationId, boolean result, @JCMediaChannel.MediaChanne
 
 ### 踢出成员
 
-调用下面的方法将成员踢出会议
+调用下面的方法将成员踢出会议。
 
 
 
-```default 
+```objective
 /**
  * @brief 将成员踢出会议
  *
@@ -134,11 +134,11 @@ public void onQuery(int operationId, boolean result, @JCMediaChannel.MediaChanne
 
 
 
-示例代码:
+示例代码
 
 
 
-```default 
+```objective
 JCMediaChannelParticipant* participant = [mediaChannel getParticipant:@"userId"];
 if (participant != nil) {
     [mediaChannel kick:participant];
@@ -155,11 +155,11 @@ if (participant != nil) {
 
 ### 给其他成员发消息
 
-如果想在频道中给其他成员发送消息，可以调用下面的接口
+如果想在频道中给其他成员发送消息，可以调用下面的接口。
 
 
 
-```default 
+```objective
 /**
  * @brief 发送消息
  *
@@ -175,11 +175,11 @@ if (participant != nil) {
 
 其中，消息类型（type）为自定义类型。
 
-示例代码:
+示例代码
 
 
 
-```default 
+```objective
 -(void)onJoin:(bool)result reason:(JCMediaChannelReason)reason channelId:(NSString*)channelId {
     // 发送给所有成员
     [mediaChannel sendMessage:@"text" content:@"content" toUserId:nil];
@@ -190,11 +190,11 @@ if (participant != nil) {
 
 
 
-当频道中的其他成员收到消息时，会收到 onMessageReceive 回调
+当频道中的其他成员收到消息时，会收到 onMessageReceive 回调。
 
 
 
-```default 
+```objective
 /**
  * @brief 接收频道消息的回调
  *
@@ -216,6 +216,29 @@ if (participant != nil) {
 
 
 
+
+
+
+
+
+[Next
+](../Android/index.html "进阶功能集成")
+[
+Previous](01_audio_management.html "音频管理")
+
+
+
+-----
+
+
+
+© Copyright 2020 宁波菊风系统软件有限公司
+
+
+
+Built with [Sphinx](http://sphinx-doc.org/) using a
+[theme](https://github.com/rtfd/sphinx_rtd_theme) provided by [Read the
+Docs](https://readthedocs.org).
 
 
 

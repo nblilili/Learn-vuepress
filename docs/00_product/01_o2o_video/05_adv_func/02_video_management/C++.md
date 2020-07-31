@@ -15,7 +15,7 @@ title: 视频管理
 
 视频采集设置前，可以通过 JCMediaDevice 类中的
 [getCameras](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_device.html#af5d7b21bf998890a10bbf4ea5c3984da)
-方法获取摄像头列表：
+方法获取摄像头列表。
 
 
 
@@ -27,7 +27,7 @@ std::list<JCMediaDeviceCamera>* cameras = JCManager::shared()->mediaDevice->getC
 
 摄像头列表获取后，调用
 [switchCamera](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_device.html#a0716deb7c816c605444f2bb3202e9ef5)
-方法切换指定的摄像头
+方法切换指定的摄像头。
 
 
 
@@ -66,7 +66,7 @@ JCManager::shared()->mediaDevice->setCameraProperty(640, 360, 24);
 
 调用
 [rotate](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_device_video_canvas.html#a44d1073788a9cd3c6620c839eea76ffa)
-接口设置 Canvas 中画布的旋转角度。其中，旋转角度必须是 90 的倍数，该角度表示与屏幕正方向旋转后的夹角
+接口设置 Canvas 中画布的旋转角度。其中，旋转角度必须是 90 的倍数，该角度表示与屏幕正方向旋转后的夹角。
 
 
 
@@ -132,7 +132,7 @@ Angle270 = 270
 
 3.  用户拿到视频数据后，根据场景需要自行在回调函数中进行参数处理，处理后数据通过该回调函数返回给 JC SDK。
 
-首先注册视频采集回调，在登录成功后即可调用
+首先注册视频采集回调，在登录成功后即可调用。
 
 
 
@@ -147,7 +147,7 @@ int Zmf_VideoCaptureAddCallback (void *pUser, ZmfVideoCaptureCallback pfnCb)
 
 
 
-回调类型说明
+回调类型说明：
 
 
 
@@ -197,7 +197,7 @@ void JCSampleDlg::OnBnClickedButtonCall()
 
 注册后，每帧采集的视频数据通过 ZmfVideoCaptureCallback 回调，可以处理对应的视频数据。
 
-如果想移除回调，调用下面的接口
+如果想移除回调，调用下面的接口。
 
 
 
@@ -240,7 +240,7 @@ void JCSampleDlg::OnBnClickedButtonEndCall()
 
 3.  用户拿到视频数据后，根据场景需要自行在回调函数中进行参数处理，处理后数据通过该回调函数返回给JC SDK。
 
-首先注册视频输出回调，在登录成功后即可调用
+首先注册视频输出回调，在登录成功后即可调用。
 
 
 
@@ -258,7 +258,7 @@ int Zmf_VideoRenderAddCallback (void *pUser, ZmfVideoRenderCallback pfnCb);
 
 
 
-回调类型说明
+回调类型说明：
 
 
 
@@ -312,7 +312,7 @@ void JCSampleDlg::OnBnClickedButtonCall()
 
 
 
-如果想移除回调，调用下面的接口
+如果想移除回调，调用下面的接口。
 
 
 
@@ -350,8 +350,6 @@ void JCSampleDlg::OnBnClickedButtonEndCall()
 
 ### 自定义视频采集和渲染
 
-自定义视频采集和渲染
-
 对于不支持系统标准 API 的视频采集/渲染设备，或者想利用已经采集好的 I420 或 h264
 数据，可另起采集/渲染线程，把采集/渲染数据放入
 Juphoon 对应的接口中进行后续操作。
@@ -364,7 +362,7 @@ Juphoon 对应的接口中进行后续操作。
 
 自定义视频采集接口如下：
 
-在收到登录成功的回调后以及 Zmf\_VideoInitialize 初始化成功后，把采集/准备渲染的数据通过下面的接口输入
+在收到登录成功的回调后以及 Zmf\_VideoInitialize 初始化成功后，把采集/准备渲染的数据通过下面的接口输入。
 
 
 
@@ -407,7 +405,7 @@ void JCSampleDlg::OnBnClickedButtonCall()
 
 
 
-采集停止接口
+采集停止接口。
 
 
 
@@ -440,7 +438,7 @@ void JCSampleDlg::OnBnClickedButtonEndCall()
 
 如果想在视频渲染端使用自己的渲染方式，则调用下面的接口：
 
-视频数据渲染接口
+视频数据渲染接口。
 
 
 
@@ -478,7 +476,7 @@ void JCSampleDlg::OnBnClickedButtonCall()
 
 
 
-渲染数据停止接口
+渲染数据停止接口。
 
 
 
@@ -522,7 +520,7 @@ void JCSampleDlg::OnBnClickedButtonEndCall()
 
 调用
 [replace](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_device_video_canvas.html#a0f93d017306b5920f3fdccc00e2074f8)
-接口更新视频渲染标识
+接口更新视频渲染标识。
 
 
 
@@ -540,7 +538,7 @@ JCManager::shared()->mediaDeviceCanvas->replace(videoSource);
 
 调用
 [pause](http://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_device_video_canvas.html#a799b848e69d56d866ec6ff716882a455)
-接口暂停画面的渲染
+接口暂停画面的渲染。
 
 
 
@@ -558,7 +556,7 @@ JCManager::shared()->mediaDeviceCanvas->pause();
 
 调用
 [resume](http://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_device_video_canvas.html#ac49c80c2eda55f0225f12c3572b938da)
-接口恢复已暂停的视频渲染
+接口恢复已暂停的视频渲染。
 
 
 
@@ -586,11 +584,11 @@ JCManager::shared()->mediaDeviceCanvas->resume();
 
 调用
 [startCamera](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_device.html#a8980c035521b9c5c20afa34fad23293e)
-接口开启摄像头
+接口开启摄像头。
 
 调用
 [stopCamera](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_device.html#a201fd2352117c7fbdc03ef10837fc701)
-接口关闭摄像头
+接口关闭摄像头。
 
 
 
@@ -611,7 +609,7 @@ JCManager::shared()->mediaDevice->stopCamera();
 
 调用
 [getCamera](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_device.html#acb427f7249ef1e384b1a910c90c31190)
-接口获取当前使用的摄像头
+接口获取当前使用的摄像头。
 
 
 
@@ -629,7 +627,7 @@ JCMediaDeviceCamera camera = JCManager::shared()->mediaDevice->getCamera();
 
 调用
 [getWindows](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_device.html#aec338b2eea709884722f7c426c924653)
-接口获取窗口列表
+接口获取窗口列表。
 
 
 
@@ -647,7 +645,7 @@ std::list<JCMediaDeviceWindow>* windows = JCManager::shared()->mediaDevice->getW
 
 调用
 [getDesktops](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_device.html#a8cbda493ef14c4b97ff022948bb15bf1)
-接口获取桌面列表
+接口获取桌面列表。
 
 
 
@@ -664,6 +662,29 @@ std::list<JCMediaDeviceWindow>* windows = JCManager::shared()->mediaDevice->getD
 
 
 
+
+
+
+
+
+[Next
+](../../97_FAQ.html "常见问题")
+[
+Previous](01_audio_management.html "音频管理")
+
+
+
+-----
+
+
+
+© Copyright 2020 宁波菊风系统软件有限公司
+
+
+
+Built with [Sphinx](http://sphinx-doc.org/) using a
+[theme](https://github.com/rtfd/sphinx_rtd_theme) provided by [Read the
+Docs](https://readthedocs.org).
 
 
 

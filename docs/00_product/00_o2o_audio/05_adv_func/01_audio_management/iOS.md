@@ -32,7 +32,7 @@ title: 音频管理
 
 3.  用户拿到音频数据后，根据场景需要自行在回调函数中进行参数处理，处理后数据通过该回调函数返回给JC SDK。
 
-首先注册音频输入回调
+首先注册音频输入回调。
 
 
 
@@ -100,7 +100,7 @@ static void zmfAudioInputCallback(void* pUser, const char* inputId, int iSampleR
 
 
 
-如果想移除回调，调用下面的接口
+如果想移除回调，调用下面的接口。
 
 
 
@@ -145,7 +145,7 @@ void* p = (__bridge void *)data;
 
 3.  用户拿到音频数据后，根据场景需要自行在回调函数中进行音频数据的处理，处理后的数据通过该回调函数返回给 JC SDK。
 
-首先注册音频输出回调
+首先注册音频输出回调。
 
 
 
@@ -162,7 +162,7 @@ int  Zmf_AudioOutputAddCallback     (void *pUser, ZmfAudioOutputCallback pfnCb);
 
 
 
-回调类型说明
+回调类型说明:
 
 
 
@@ -210,7 +210,7 @@ void* p = (__bridge void *)data;
 
 
 
-如果想移除回调，调用下面的接口
+如果想移除回调，调用下面的接口。
 
 
 
@@ -266,7 +266,7 @@ Juphoon 对应的接口中进行后续操作。
 
 若需要使用自己的音视频设备并且 Zmf\_AudioInitialize 初始化成功，在下面的回调函数中操作音频设备；
 
-音频设备初始化接口
+音频设备初始化接口。
 
 
 
@@ -285,7 +285,7 @@ int Zmf_AudioInitialize(void *applicationContext);
 
 
 
-采集数据输入接口
+采集数据输入接口。
 
 
 
@@ -336,7 +336,7 @@ Note
 
 
 
-采集停止接口
+采集停止接口。
 
 
 
@@ -368,7 +368,7 @@ void Zmf_OnAudioInputDidStop(const char *inputId);
 
 如果想在音频输出端使用自定义的播放数据，则调用下面的接口：
 
-播放数据输入接口
+播放数据输入接口。
 
 
 
@@ -412,7 +412,7 @@ Note
 
 
 
-播放数据停止接口
+播放数据停止接口。
 
 
 
@@ -468,7 +468,7 @@ Note
 
 ### 开启/关闭扬声器
 
-UI 通过下面的方法开启和关闭扬声器:
+UI 通过下面的方法开启和关闭扬声器。
 
 
 
@@ -512,7 +512,7 @@ UI 通过下面的方法开启和关闭扬声器:
 
 ### 获得当前音频模式
 
-目前只支持听筒和扬声器
+目前只支持听筒和扬声器。
 
 
 
@@ -568,6 +568,29 @@ UI 通过下面的方法开启和关闭扬声器:
 
 
 
+
+
+
+
+
+[Next
+](../Android/index.html "进阶功能集成")
+[
+Previous](00_call_management.html "通话管理")
+
+
+
+-----
+
+
+
+© Copyright 2020 宁波菊风系统软件有限公司
+
+
+
+Built with [Sphinx](http://sphinx-doc.org/) using a
+[theme](https://github.com/rtfd/sphinx_rtd_theme) provided by [Read the
+Docs](https://readthedocs.org).
 
 
 

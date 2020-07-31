@@ -80,11 +80,8 @@ function makeDirObj(objTitle, children, collapsable){
 function translateGroupTitle(objTitle){
   var cnTitle = "no matched name"
   // 对 title 进行判断
-  if(translaterUtil.has(objTitle)){
-    cnTitle = translaterUtil.get(objTitle)
-  }else{
-    cnTitle = objTitle;
-  }
+  translaterUtil.has(objTitle)? cnTitle = translaterUtil.get(objTitle) : cnTitle = objTitle;
+  
   return cnTitle
 }
 
@@ -110,7 +107,7 @@ function getChildren(filePath, childArr){
               console.log("fileDir: "+ fileDir);
               var relativePath = path.relative(basePath, fileDir).split(path.sep).join('/');
               //console.log(childArr);
-              //console.log(sidebar);
+              console.log(sidebar);
               if(!platformUtil.has(filename)){
                 filename == 'README.md' ? childArr.splice(0,0,''):childArr.push(relativePath);
               }else {

@@ -13,13 +13,14 @@
 </template>
 
 <script>
+import DropdownLink from '@theme/components/DropdownLink.vue'
 import SidebarLinks from '@theme/components/SidebarLinks.vue'
 import NavLinks from '@theme/components/NavLinks.vue'
 
 export default {
   name: 'Sidebar',
 
-  components: { SidebarLinks, NavLinks },
+  components: { SidebarLinks, NavLinks, DropdownLink},
 
   props: ['items']
 }

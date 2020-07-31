@@ -149,10 +149,7 @@ dependencies {
 
 Note
 
-您在 AndroidManifest 中进行权限配置时，请确保您能够获得打开摄像头、音视频录制等相关权限。 权限具体信息可以参考
-[<span class="std std-ref">Android
-权限说明</span>](../../../../01_基础功能集成/00_Reference.html#android)
-。
+您在 AndroidManifest 中进行权限配置时，请确保您能够获得打开摄像头、音视频录制等相关权限。
 
 
 
@@ -183,6 +180,29 @@ Note
 
 
 
+
+
+
+
+
+[Next
+](../macOS/index.html "快速入门")
+[
+Previous](00_run_demo.html "一分钟跑通 Demo")
+
+
+
+-----
+
+
+
+© Copyright 2020 宁波菊风系统软件有限公司
+
+
+
+Built with [Sphinx](http://sphinx-doc.org/) using a
+[theme](https://github.com/rtfd/sphinx_rtd_theme) provided by [Read the
+Docs](https://readthedocs.org).
 
 
 

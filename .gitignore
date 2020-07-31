@@ -1,4 +1,5 @@
 /node_modules/
 /html/
 /docs/
-/template/
+/template/*
+/stash/

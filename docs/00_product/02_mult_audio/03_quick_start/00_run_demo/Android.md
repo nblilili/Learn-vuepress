@@ -38,22 +38,39 @@ Note
 1.  解压下载的 Demo 源码压缩包，并打开工程。
 
 2.  设置自己的 AppKey：在下图红框标记的代码中输入自己的 AppKey
-    
-    > 
-    > 
-    > 
-    > 
-    > ![../../../../\_images/duokey2.png](../../../../_images/duokey2.png)
-    > 
-    > 
 
-3.  连接安卓真机，编译运行 Demo 。
+![duokey2](../../../../_images/roomkey2.png)
+
+1.  连接安卓真机，编译运行 Demo 。
 
 
 
 
 
 
+
+
+
+
+
+[Next
+](01_integ_sdk.html "一分钟集成 SDK")
+[
+Previous](index.html "快速入门")
+
+
+
+-----
+
+
+
+© Copyright 2020 宁波菊风系统软件有限公司
+
+
+
+Built with [Sphinx](http://sphinx-doc.org/) using a
+[theme](https://github.com/rtfd/sphinx_rtd_theme) provided by [Read the
+Docs](https://readthedocs.org).
 
 
 

@@ -11,7 +11,7 @@ title: 频道管理
 
 调用
 [query](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel.html#af7ccf465a6ddb05aa4ff22f5f61eab10)
-接口查询频道相关信息，例如频道名称、频道是否存在、成员名以及成员数
+接口查询频道相关信息，例如频道名称、频道是否存在、成员名以及成员数。
 
 
 
@@ -23,7 +23,7 @@ JCManager::shared()->mediaChannel->query("channelId");
 
 查询操作发起后，查询的结果通过
 [onQuery](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel_callback.html#a864db3251f12affc38f7c95c7fdccab1)
-回调上报：
+回调上报。
 
 
 
@@ -54,7 +54,7 @@ void JCManager::onQuery(int operationId, bool result, JCMediaChannelReason reaso
 
 如果想在频道中给其他成员发送消息，可以调用
 [sendMessage](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel.html#aa67711141ad0883ad8f2dce0ea631b48)
-方法
+方法。
 
 
 
@@ -69,7 +69,7 @@ JCManager::shared()->mediaChannel->sendMessage(type, "消息内容", NULL);
 
 当频道中的其他成员收到消息时，会收到
 [onMessageReceive](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel_callback.html#a6f6b72922ebc576d94f55dc153b1209d)
-回调
+回调。
 
 
 
@@ -99,7 +99,7 @@ void JCManager::onMessageReceive(const char* type, const char* content, const ch
 
 调用
 [getParticipant](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel.html#a0fd6477db77a60df91fa615b814ac796)
-方法，传入成员的 userId 获取频道成员对象
+方法，传入成员的 userId 获取频道成员对象。
 
 
 
@@ -121,7 +121,7 @@ JCMediaChannelParticipant* participant = JCManager::shared()->mediaChannel->getP
 
 调用
 [getParticipants](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel.html#a3baccb9d05486fb20ff8d206284f609e)
-方法获取频道所有成员对象
+方法获取频道所有成员对象。
 
 
 
@@ -143,7 +143,7 @@ std::list<JCMediaChannelParticipant*>* participants = JCManager::shared()->media
 
 调用
 [kick](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel.html#aa5ee1e5334beb9ca63a8dc7110aaf6c0)
-方法将成员踢出会议
+方法将成员踢出会议。
 
 
 
@@ -163,6 +163,29 @@ JCManager::shared()->mediaChannel->kick(participant);
 
 
 
+
+
+
+
+
+[Next
+](01_audio_management.html "音频管理")
+[
+Previous](index.html "进阶功能集成")
+
+
+
+-----
+
+
+
+© Copyright 2020 宁波菊风系统软件有限公司
+
+
+
+Built with [Sphinx](http://sphinx-doc.org/) using a
+[theme](https://github.com/rtfd/sphinx_rtd_theme) provided by [Read the
+Docs](https://readthedocs.org).
 
 
 

@@ -182,6 +182,29 @@ int level = mediaDevice.getSpkLevel();
 
 
 
+[Next
+](05_channel_management.html "频道管理")
+[
+Previous](index.html "进阶功能集成")
+
+
+
+-----
+
+
+
+© Copyright 2020 宁波菊风系统软件有限公司
+
+
+
+Built with [Sphinx](http://sphinx-doc.org/) using a
+[theme](https://github.com/rtfd/sphinx_rtd_theme) provided by [Read the
+Docs](https://readthedocs.org).
+
+
+
+
+
 
 
 

@@ -214,6 +214,29 @@ void onMessageReceive(string type, string content, string fromUserId);
 
 
 
+[Next
+](../C++/index.html "进阶功能集成")
+[
+Previous](02_video_management.html "视频管理")
+
+
+
+-----
+
+
+
+© Copyright 2020 宁波菊风系统软件有限公司
+
+
+
+Built with [Sphinx](http://sphinx-doc.org/) using a
+[theme](https://github.com/rtfd/sphinx_rtd_theme) provided by [Read the
+Docs](https://readthedocs.org).
+
+
+
+
+
 
 
 

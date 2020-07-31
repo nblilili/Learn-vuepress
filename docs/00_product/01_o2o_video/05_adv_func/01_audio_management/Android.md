@@ -23,12 +23,12 @@ title: 音频管理
 
 参考如下步骤，在你的项目中实现原始音频数据功能：
 
-1.发起业务前通过 ZmfAudio.inputAddCallback 注册音频采集回调，并在该函数中实现一个
-ZmfAudio.InputCallback 类型的回调函数
+1.  发起业务前通过 ZmfAudio.inputAddCallback 注册音频采集回调，并在该函数中实现一个
+    ZmfAudio.InputCallback 类型的回调函数
 
-2.成功注册后，JC SDK 会在捕捉到音频数据时通过回调函数回调采集到的原始音频数据相对应参数
+2.  成功注册后，JC SDK 会在捕捉到音频数据时通过回调函数回调采集到的原始音频数据相对应参数
 
-3.用户拿到音频数据后，根据场景需要自行在回调函数中进行参数处理，处理后数据通过该回调函数返回给JC SDK。
+3.  用户拿到音频数据后，根据场景需要自行在回调函数中进行参数处理，处理后数据通过该回调函数返回给JC SDK。
 
 首先注册音频输入回调
 
@@ -127,12 +127,12 @@ public void endCall() {
 
 参考如下步骤，在你的项目中实现原始音频数据功能：
 
-1.发起业务前通过 ZmfAudio.outputAddCallback 注册音频输出回调，并在该函数中实现一个
-ZmfAudio.OutputCallback 类型的回调函数
+1.  发起业务前通过 ZmfAudio.outputAddCallback 注册音频输出回调，并在该函数中实现一个
+    ZmfAudio.OutputCallback 类型的回调函数
 
-2.成功注册后，JC SDK 会在捕捉到音频数据时通过回调函数回调采集到的原始音频数据相对应参数
+2.  成功注册后，JC SDK 会在捕捉到音频数据时通过回调函数回调采集到的原始音频数据相对应参数
 
-3.用户拿到音频数据后，根据场景需要自行在回调函数中进行参数处理，处理后数据通过该回调函数返回给JC SDK。
+3.  用户拿到音频数据后，根据场景需要自行在回调函数中进行参数处理，处理后数据通过该回调函数返回给JC SDK。
 
 首先注册音频输出回调
 
@@ -525,6 +525,29 @@ mediaDevice.stopAudio();
 
 
 
+
+
+
+
+
+[Next
+](02_video_management.html "视频管理")
+[
+Previous](00_call_management.html "通话管理")
+
+
+
+-----
+
+
+
+© Copyright 2020 宁波菊风系统软件有限公司
+
+
+
+Built with [Sphinx](http://sphinx-doc.org/) using a
+[theme](https://github.com/rtfd/sphinx_rtd_theme) provided by [Read the
+Docs](https://readthedocs.org).
 
 
 

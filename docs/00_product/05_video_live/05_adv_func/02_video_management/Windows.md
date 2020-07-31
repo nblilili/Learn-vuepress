@@ -185,10 +185,6 @@ mediaDevice.rotate(JCMediaDeviceVideoCanvasRoatate.Angle0);
 
   - 本地视频渲染
 
-进行视频渲染前可通过
-[<span class="std std-ref">获取摄像头列表</span>](../../../../04_视频管理/Windows/00_视频数据采集管理.html#id3)
-接口获取摄像头列表。
-
 本地视频渲染通过调用 startCameraVideo 接口获得本地视频对象用于 UI 界面显示，**该接口会打开摄像头**
 
 
@@ -506,6 +502,29 @@ mediaDevice.switchCamera(mediaDevice.cameras[0]);
 
 
 
+
+
+
+
+
+[Next
+](05_channel_management.html "频道管理")
+[
+Previous](01_audio_management.html "音频管理")
+
+
+
+-----
+
+
+
+© Copyright 2020 宁波菊风系统软件有限公司
+
+
+
+Built with [Sphinx](http://sphinx-doc.org/) using a
+[theme](https://github.com/rtfd/sphinx_rtd_theme) provided by [Read the
+Docs](https://readthedocs.org).
 
 
 
