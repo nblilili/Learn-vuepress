@@ -17,7 +17,7 @@ title: 视频管理
 
 
 
-```objective
+```objectivec
 /// 摄像头列表
 NSArray<JCMediaDeviceCamera*> *  __nonnull cameras;
 
@@ -34,7 +34,7 @@ JCMediaDeviceCamera* __nullable defaultCamera;
 
 
 
-```objective
+```objectivec
 /// 摄像头id
 NSString* __nonnull cameraId;
 
@@ -51,7 +51,7 @@ JCMediaDeviceCameraType cameraType;
 
 
 
-```objective
+```objectivec
 JCMediaDeviceCameraTypeNone = 0,
 JCMediaDeviceCameraTypeFront = 1,
 JCMediaDeviceCameraTypeBack = 2,
@@ -64,7 +64,7 @@ JCMediaDeviceCameraTypeUnknown = 3
 
 
 
-```objective
+```objectivec
 /// 切换指定摄像头
 /// @param camera 摄像头
 -(bool)switchCamera:(JCMediaDeviceCamera* __nonnull)camera;
@@ -84,7 +84,7 @@ JCMediaDeviceCameraTypeUnknown = 3
 
 
 
-```objective
+```objectivec
 /**
  *  @breif 设置摄像头采集属性
  *  @param width 采集宽度，默认640
@@ -106,7 +106,7 @@ JCMediaDeviceCameraTypeUnknown = 3
 
 
 
-```objective
+```objectivec
 /**
  * @breif 指定摄像头采集角度，为90的倍数
  * @param angle 角度
@@ -128,7 +128,7 @@ JCMediaDeviceCameraTypeUnknown = 3
 
 
 
-```objective
+```objectivec
 /**
  * @brief 旋转角度，必须是90的倍数，该角度表示画面与屏幕正方向旋转后的夹角
  * @param angle 角度值
@@ -148,7 +148,7 @@ JCMediaDeviceCameraTypeUnknown = 3
 
 
 
-```objective
+```objectivec
 /// 窗口与屏幕角度 0
 JCMediaDeviceRotateAngle0 = 0,
 /// 窗口与屏幕角度 90
@@ -165,7 +165,7 @@ JCMediaDeviceRotateAngle270 = 270,
 
 
 
-```objective
+```objectivec
 // 获取摄像头列表
 NSArray<JCMediaDeviceCamera*> * cameras = mediaDevice.cameras;
 // 设置要切换的摄像头
@@ -211,7 +211,7 @@ NSArray<JCMediaDeviceCamera*> * cameras = mediaDevice.cameras;
 
 
 
-```objective
+```objectivec
 /** add capture data callback
  * @param[in] pUser     the callback user data
  * @param[in] pfnCb     the callback
@@ -226,7 +226,7 @@ int Zmf_VideoCaptureAddCallback (void *pUser, ZmfVideoCaptureCallback pfnCb)
 
 
 
-```objective
+```objectivec
 /** the callback to receive captured image
  * iImgAngle - iCamOrient equal to device rotate angle.
  * if encoder is NULL, the pixel format of buf must be ZmfPixelFormatI420
@@ -252,7 +252,7 @@ int Zmf_VideoCaptureAddCallback (void *pUser, ZmfVideoCaptureCallback pfnCb)
 
 
 
-```objective
+```objectivec
 id render; //采集的视频数据对象
 void* p = (__bridge void *)render;
 static void zmfVideoCaptureCallback(void* pUser, const char* captureId, int iFace,
@@ -277,7 +277,7 @@ static void zmfVideoCaptureCallback(void* pUser, const char* captureId, int iFac
 
 
 
-```objective
+```objectivec
 ``` 
  /** remove capture data callback
   * @param[in] pUser     the callback user data
@@ -293,7 +293,7 @@ int Zmf_VideoCaptureRemoveCallback (void *pUser)
 
 
 
-```objective
+```objectivec
 id render; //采集的视频数据对象
 void* p = (__bridge void *)render;
 -(void)endCall {
@@ -321,7 +321,7 @@ void* p = (__bridge void *)render;
 
 
 
-```objective
+```objectivec
 /**
  * add render data callback
  *
@@ -339,7 +339,7 @@ int Zmf_VideoRenderAddCallback (void *pUser, ZmfVideoRenderCallback pfnCb);
 
 
 
-```objective
+```objectivec
 /**
  * The callback to receive video render data
  *
@@ -371,7 +371,7 @@ int Zmf_VideoRenderAddCallback (void *pUser, ZmfVideoRenderCallback pfnCb);
 
 
 
-```objective
+```objectivec
 id render; //解码后的视频数据对象
 void* p = (__bridge void *)render;
 static void zmfVideoRenderCallback(void* pUser, const char* renderId, int sourceType, int iAngle,
@@ -394,7 +394,7 @@ static void zmfVideoRenderCallback(void* pUser, const char* renderId, int source
 
 
 
-```objective
+```objectivec
 /**
  * remove render data callback
  *
@@ -410,7 +410,7 @@ int Zmf_VideoRenderRemoveCallback (void *pUser)
 
 
 
-```objective
+```objectivec
 id render; //解码后的视频数据对象
 void* p = (__bridge void *)render;
 -(void)endCall {
@@ -445,7 +445,7 @@ Juphoon 对应的接口中进行后续操作。
 
 
 
-```objective
+```objectivec
 /**
  * The video capture data entry to ZMF
  * iImgAngle - iCamOrient equal to device rotate angle.
@@ -471,7 +471,7 @@ Juphoon 对应的接口中进行后续操作。
 
 
 
-```objective
+```objectivec
 Zmf_VideoInitialize(NULL);
 - (void)videoCall {
     //输入分辨率为640*360，编码为I420无需额外旋转的图像
@@ -487,7 +487,7 @@ Zmf_VideoInitialize(NULL);
 
 
 
-```objective
+```objectivec
 /**
  * tell ZMF the video capture has stopped
  *
@@ -502,7 +502,7 @@ void Zmf_OnVideoCaptureDidStop(const char *captureId);
 
 
 
-```objective
+```objectivec
 - (void)endCall {
     //停止采集
     Zmf_OnVideoCaptureDidStop("Test");
@@ -519,7 +519,7 @@ void Zmf_OnVideoCaptureDidStop(const char *captureId);
 
 
 
-```objective
+```objectivec
 /**
  * The video render data entry to ZMF
  *
@@ -540,7 +540,7 @@ void Zmf_OnVideoCaptureDidStop(const char *captureId);
 
 
 
-```objective
+```objectivec
 Zmf_VideoInitialize(NULL);
 - (void)videoCall {
     //输入分辨率为640*360，编码为I420无需额外旋转的图像
@@ -556,7 +556,7 @@ Zmf_VideoInitialize(NULL);
 
 
 
-```objective
+```objectivec
 Zmf_OnVideoRender(const char *renderId, 0, 0, 0, 0, 0, 0, 0);
 ```
 
@@ -566,7 +566,7 @@ Zmf_OnVideoRender(const char *renderId, 0, 0, 0, 0, 0, 0, 0);
 
 
 
-```objective
+```objectivec
 - (void)endCall {
     //停止渲染
     Zmf_OnVideoRender("Test", 0, 0, 0, 0, 0, 0, 0);
@@ -599,7 +599,7 @@ Zmf_OnVideoRender(const char *renderId, 0, 0, 0, 0, 0, 0, 0);
 
 
 
-```objective
+```objectivec
 /**
  *  @brief 获得预览视频对象，通过此对象能获得视图用于UI显示
  *  @param type 渲染模式，@ref JCMediaDeviceRender
@@ -645,7 +645,7 @@ Zmf_OnVideoRender(const char *renderId, 0, 0, 0, 0, 0, 0, 0);
 
 
 
-```objective
+```objectivec
 /**
  *  @brief 获得预览视频对象，通过此对象能获得视图用于UI显示
  *  @param videoSource 渲染标识串，比如 JCMediaChannelParticipant JCCallItem 中的 renderId，当videoSource 为 videoFileId 时，内部会调用 startVideoFile
@@ -661,7 +661,7 @@ Zmf_OnVideoRender(const char *renderId, 0, 0, 0, 0, 0, 0, 0);
 
 
 
-```objective
+```objectivec
 // 创建本地视频画面对象
 JCMediaDeviceVideoCanvas *local = [mediaDevice startCameraVideo:JCMediaDeviceRenderFullContent];
 local.videoView.frame = CGRectMake(0, 0, 100, 100);
@@ -689,7 +689,7 @@ remote.videoView.frame = CGRectMake(100, 0, 100, 100);
 
 
 
-```objective
+```objectivec
 /**
  *  @brief 停止视频
  *  @param canvas JCMediaDeviceVideoCanvas 对象，由 startVideo 获得
@@ -703,7 +703,7 @@ remote.videoView.frame = CGRectMake(100, 0, 100, 100);
 
 
 
-```objective
+```objectivec
 JCMediaDeviceVideoCanvas *localCanvas = [mediaDevice startCameraVideo:JCMediaDeviceRenderFullContent];
 JCMediaDeviceVideoCanvas *remoteCanvas = [mediaDevice startVideo:renderId renderType:JCMediaDeviceRenderFullContent];
 if (localCanvas) {
@@ -736,7 +736,7 @@ if (remoteCanvas) {
 
 
 
-```objective
+```objectivec
 /**
  *  @breif 更新视频渲染标识
  *  @param videoSource 视频源
@@ -757,7 +757,7 @@ if (remoteCanvas) {
 
 
 
-```objective
+```objectivec
 /**
  *  @brief 暂停渲染
  *  @return 成功返回 true，失败返回 false
@@ -777,7 +777,7 @@ if (remoteCanvas) {
 
 
 
-```objective
+```objectivec
 /**
  *  @brief 恢复渲染
  *  @return 成功返回 true，失败返回 false
@@ -805,7 +805,7 @@ if (remoteCanvas) {
 
 
 
-```objective
+```objectivec
 /**
  *  @breif 开启摄像头，一般在只需开启摄像头时调用
  *  @return 成功返回 true，失败返回 false
@@ -829,7 +829,7 @@ if (remoteCanvas) {
 
 
 
-```objective
+```objectivec
 /**
  *  @breif 切换前后摄像头，内部会根据当前摄像头类型来进行切换
  *  @return 成功返回 true，失败返回 false
@@ -843,7 +843,7 @@ if (remoteCanvas) {
 
 
 
-```objective
+```objectivec
 // 打开摄像头
 [mediaDevice startCamera];
 

@@ -106,8 +106,8 @@ function getChildren(filePath, childArr){
             if(stats.isFile()){
               console.log("fileDir: "+ fileDir);
               var relativePath = path.relative(basePath, fileDir).split(path.sep).join('/');
-              //console.log(childArr);
-              console.log(sidebar);
+              // console.log(childArr);
+              // console.log(sidebar);
               if(!platformUtil.has(filename)){
                 filename == 'README.md' ? childArr.splice(0,0,''):childArr.push(relativePath);
               }else {

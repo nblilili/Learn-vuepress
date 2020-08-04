@@ -36,7 +36,7 @@ title: 音频管理
 
 
 
-```objective
+```objectivec
 /**
  * add mic data callback
  *
@@ -54,7 +54,7 @@ int Zmf_AudioInputAddCallback(void *pUser, ZmfAudioInputCallback pfnCb);
 
 
 
-```objective
+```objectivec
 /** the callback to receive audio input data
  *
  * @param[in] pUser  the user data registered by Zmf_AddAudioInputCallback
@@ -81,7 +81,7 @@ typedef void (*ZmfAudioInputCallback)(void* pUser, const char* inputId, int iSam
 
 
 
-```objective
+```objectivec
 id data; //采集的音频数据对象
 void* p = (__bridge void *)data;
 static void zmfAudioInputCallback(void* pUser, const char* inputId, int iSampleRateHz, int iChannels,
@@ -104,7 +104,7 @@ static void zmfAudioInputCallback(void* pUser, const char* inputId, int iSampleR
 
 
 
-```objective
+```objectivec
 /**
  * remove mic data callback
  *
@@ -121,7 +121,7 @@ int Zmf_AudioInputRemoveCallback(void *pUser);
 
 
 
-```objective
+```objectivec
 id data; //采集的音频数据对象
 void* p = (__bridge void *)data;
 -(void)endCall {
@@ -149,7 +149,7 @@ void* p = (__bridge void *)data;
 
 
 
-```objective
+```objectivec
 /**
  * add fill speak callback
  *
@@ -166,7 +166,7 @@ int  Zmf_AudioOutputAddCallback     (void *pUser, ZmfAudioOutputCallback pfnCb);
 
 
 
-```objective
+```objectivec
 /** the callback to get audio output buffer, when Zmf_OnAudioOutput() invoked.
  *
  * @param[in] pUser          the callback user data
@@ -192,7 +192,7 @@ typedef int  (*ZmfAudioOutputCallback)(void* pUser, const char* outputId, int iS
 
 
 
-```objective
+```objectivec
 static void zmfAudioOutputCallback(void* pUser, const char* outputId, int iSampleRateHz, int iChannels,
                                      unsigned char *buf, int len) {
 
@@ -214,7 +214,7 @@ void* p = (__bridge void *)data;
 
 
 
-```objective
+```objectivec
 /**
  * remove fill speak callback
  *
@@ -231,7 +231,7 @@ int  Zmf_AudioOutputRemoveCallback  (void *pUser);
 
 
 
-```objective
+```objectivec
 id data; //解码后的音频数据
 void* p = (__bridge void *)data;
 - (void)endCall {
@@ -270,7 +270,7 @@ Juphoon 对应的接口中进行后续操作。
 
 
 
-```objective
+```objectivec
 /**
  * @brief Initialize Audio module of ZMF(Zero Media Framework).
  * @param  applicationContext For Windows, it can be the handle of the window,
@@ -289,7 +289,7 @@ int Zmf_AudioInitialize(void *applicationContext);
 
 
 
-```objective
+```objectivec
 /**
  * The audio input data entry to ZMF, each callback will obtain the data.
  * Multiple data will mix in the callback of the jssmme Engine,
@@ -315,7 +315,7 @@ int Zmf_AudioInitialize(void *applicationContext);
 
 
 
-```objective
+```objectivec
 //初始化音频设备
 Zmf_AudioInitialize(NULL);
 -(void)voiceCall {
@@ -340,7 +340,7 @@ Note
 
 
 
-```objective
+```objectivec
 /**
  * tell ZMF the audio input has stopped
  *
@@ -355,7 +355,7 @@ void Zmf_OnAudioInputDidStop(const char *inputId);
 
 
 
-```objective
+```objectivec
 -(void)endCall {
     //停止采集
     Zmf_OnAudioInputDidStop("Test");
@@ -372,7 +372,7 @@ void Zmf_OnAudioInputDidStop(const char *inputId);
 
 
 
-```objective
+```objectivec
 /**
  * The outlet which audio output can get data from.
  *
@@ -391,7 +391,7 @@ void Zmf_OnAudioInputDidStop(const char *inputId);
 
 
 
-```objective
+```objectivec
 //初始化音频设备
 Zmf_AudioInitialize(NULL);
 -(void)call {
@@ -416,7 +416,7 @@ Note
 
 
 
-```objective
+```objectivec
 /**
  * tell ZMF the audio output has stopped
  *
@@ -431,7 +431,7 @@ void Zmf_OnAudioOutputDidStop(const char *outputId);
 
 
 
-```objective
+```objectivec
 -(void)endCall {
     //停止播放数据
     Zmf_OnAudioOutputDidStop("Test");
@@ -474,7 +474,7 @@ JCMediaDeviceAudio 对象。
 
 
 
-```objective
+```objectivec
 /// 音频输入设备列表
 NSArray<JCMediaDeviceAudio*>* __nonnull audioInputs;
 
@@ -528,7 +528,7 @@ JCMediaDeviceAudio 对象的属性如下：
 
 
 
-```objective
+```objectivec
 /// 音频输出设备列表
 NSArray<JCMediaDeviceAudio*>* __nonnull audioOutputs;
 
@@ -576,7 +576,7 @@ JCMediaDeviceAudio 对象的属性如下：
 
 
 
-```objective
+```objectivec
 // 获取音频输入设备列表
 NSArray<JCMediaDeviceAudio*>* audioInputDevices = mediaDevice.audioInputs;
 
@@ -594,7 +594,7 @@ NSArray<JCMediaDeviceAudio*>* audioOutputDevices = mediaDevice.audioOutputs;
 
 
 
-```objective
+```objectivec
 /**
  *  @brief 启动音频，一般正式开启通话前需要调用此接口
  *  @return 成功返回 true，失败返回 false
@@ -614,7 +614,7 @@ NSArray<JCMediaDeviceAudio*>* audioOutputDevices = mediaDevice.audioOutputs;
 
 
 
-```objective
+```objectivec
 // 打开音频设备
 [mediaDevice startAudio];
 // 关闭音频设备

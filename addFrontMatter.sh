@@ -26,6 +26,7 @@ function genMarkdown()
         # 新旧路径
         oldName=${path%.*}$old
         newName=${path%.*}$new
+        
         # 处理错误内容
         # sed -i "" "s|<span.*></span>||g" ${newName}
         # sed -i "" "s|\[¶\]\(.*\)||g" ${newName}

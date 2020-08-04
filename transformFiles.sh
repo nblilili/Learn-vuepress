@@ -88,7 +88,12 @@ function handlingErrors() {
   # 添加高亮
   # 获取高亮类型
   syntaxType=$(grep -n -m1 "highlight-.* " -o ${new_path} | cut -f2 -d-)
-  
+  if [ "${syntaxType}" = "objective"];then
+    syntaxType="objectivec"
+  fi
+  if [ "${syntaxType}" = "c++"];then
+    syntaxType="cpp"
+  fi
   # 逆序遍历以循环删除空行
   start_nums=($(grep -n "<div class=\"highlight\">" -o ${new_path} | cut -f1 -d:))
   for ((i=${#start_nums[@]}-1;i>=0;i--))

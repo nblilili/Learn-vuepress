@@ -12,7 +12,7 @@ title: 通话管理
 
 
 
-```C++ 
+```cpp
 JCManager::shared()->call->maxCallNum = 1;
 ```
 
@@ -38,7 +38,7 @@ JCManager::shared()->call->maxCallNum = 1;
 
 
 
-```C++ 
+```cpp
 //获取活跃通话对象
 JCCallItem* item = JCManager::shared()->call->getActiveCallItem();
 //获取通话对象的静音状态
@@ -71,7 +71,7 @@ JCCallItem 对象当前的呼叫保持状态来决定。
 
 
 
-```C++ 
+```cpp
 //获取活跃通话对象
 JCCallItem* item = JCManager::shared()->call->getActiveCallItem();
 //获取通话对象的呼叫保持状态
@@ -97,7 +97,7 @@ if (item != NULL)
 
 
 
-```C++ 
+```cpp
 //获取通话对象列表
 std::list<JCCallItem*>* callItems = JCManager::shared()->call->getCallItems();
 JCManager::shared()->call->becomeActive(callItems[1]);
@@ -121,7 +121,7 @@ JCManager::shared()->call->becomeActive(callItems[1]);
 
 
 
-```C++ 
+```cpp
 JCCallItem* item = JCManager::shared()->call->getActiveCallItem();
     if (item != NULL)
     {
@@ -156,7 +156,7 @@ JCCallItem* item = JCManager::shared()->call->getActiveCallItem();
 
 
 
-```C++ 
+```cpp
 void JCManager::onCallItemUpdate(JCCallItem* item, JCCallItemChangeParam changeParam)
 {
     if (changeParam.mute) { // 开启静音
@@ -194,7 +194,7 @@ void JCManager::onCallItemUpdate(JCCallItem* item, JCCallItemChangeParam changeP
 
 
 
-```C++ 
+```cpp
 void JCSampleDlg::OnBnClickedButton1Callrecordaudio()
 {
     JCCallItem* item = JCManager::shared()->call->getActiveCallItem();
@@ -223,7 +223,7 @@ void JCSampleDlg::OnBnClickedButton1Callrecordaudio()
 
 
 
-```C++ 
+```cpp
 void JCManager::onCallItemUpdate(JCCallItem* item, JCCallItemChangeParam changeParam) {
 }
 ```
@@ -244,7 +244,7 @@ void JCManager::onCallItemUpdate(JCCallItem* item, JCCallItemChangeParam changeP
 
 
 
-```C++ 
+```cpp
 JCCallItem* item = JCManager::shared()->call->getActiveCallItem();
 JCManager::shared()->call->sendMessage(item, "text", "消息内容");
 ```
@@ -257,7 +257,7 @@ JCManager::shared()->call->sendMessage(item, "text", "消息内容");
 
 
 
-```C++ 
+```cpp
 void JCManager::onMessageReceive(const char* type, const char* content, JCCallItem* item)
 {
     cout << "收到Call消息 " << item->getDisplayName() << " type:" << type << endl;

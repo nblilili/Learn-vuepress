@@ -19,7 +19,7 @@ title: 视频管理
 
 
 
-```C++ 
+```cpp
 std::list<JCMediaDeviceCamera>* cameras = JCManager::shared()->mediaDevice->getCameras();
 ```
 
@@ -31,7 +31,7 @@ std::list<JCMediaDeviceCamera>* cameras = JCManager::shared()->mediaDevice->getC
 
 
 
-```C++ 
+```cpp
 /// 切换指定摄像头
 JCManager::shared()->mediaDevice->switchCamera(cameras[0]);
 ```
@@ -50,7 +50,7 @@ JCManager::shared()->mediaDevice->switchCamera(cameras[0]);
 
 
 
-```C++ 
+```cpp
 JCManager::shared()->mediaDevice->setCameraProperty(640, 360, 24);
 ```
 
@@ -70,7 +70,7 @@ JCManager::shared()->mediaDevice->setCameraProperty(640, 360, 24);
 
 
 
-```C++ 
+```cpp
 JCManager::shared()->mediaDeviceCanvas->rotate(Angle90);
 ```
 
@@ -86,7 +86,7 @@ JCManager::shared()->mediaDeviceCanvas->rotate(Angle90);
 
 
 
-```C++ 
+```cpp
 // 窗口与屏幕角度 0
 Angle0 = 0,
 // 窗口与屏幕角度 90
@@ -136,7 +136,7 @@ Angle270 = 270
 
 
 
-```C++ 
+```cpp
 /** add capture data callback
  * @param[in] pUser     the callback user data
  * @param[in] pfnCb     the callback
@@ -151,7 +151,7 @@ int Zmf_VideoCaptureAddCallback (void *pUser, ZmfVideoCaptureCallback pfnCb)
 
 
 
-```C++ 
+```cpp
 /** the callback to receive captured image
  * iImgAngle - iCamOrient equal to device rotate angle.
  * if encoder is NULL, the pixel format of buf must be ZmfPixelFormatI420
@@ -177,7 +177,7 @@ int Zmf_VideoCaptureAddCallback (void *pUser, ZmfVideoCaptureCallback pfnCb)
 
 
 
-```C++ 
+```cpp
 static void zmfVideoCaptureCallback(void* pUser, const char* captureId, int iFace,
                                     int iImgAngle, int iCaptureOrient, int* iWidth, int* iHeight,
                                     unsigned char *buf, ZmfVideoCaptureEncoder* encoder) {
@@ -201,7 +201,7 @@ void JCSampleDlg::OnBnClickedButtonCall()
 
 
 
-```C++ 
+```cpp
 ``` 
  /** remove capture data callback
   * @param[in] pUser     the callback user data
@@ -217,7 +217,7 @@ int Zmf_VideoCaptureRemoveCallback (void *pUser)
 
 
 
-```C++ 
+```cpp
 void JCSampleDlg::OnBnClickedButtonEndCall()
 {
     //移除回调
@@ -244,7 +244,7 @@ void JCSampleDlg::OnBnClickedButtonEndCall()
 
 
 
-```C++ 
+```cpp
 /**
  * add render data callback
  *
@@ -262,7 +262,7 @@ int Zmf_VideoRenderAddCallback (void *pUser, ZmfVideoRenderCallback pfnCb);
 
 
 
-```C++ 
+```cpp
 /**
  * The callback to receive video render data
  *
@@ -294,7 +294,7 @@ int Zmf_VideoRenderAddCallback (void *pUser, ZmfVideoRenderCallback pfnCb);
 
 
 
-```C++ 
+```cpp
 static void zmfVideoRenderCallback(void* pUser, const char* renderId, int sourceType, int iAngle,
                                    int iMirror, int* iWidth, int* iHeight, unsigned char *buf,
                                    unsigned long timeStamp) {
@@ -316,7 +316,7 @@ void JCSampleDlg::OnBnClickedButtonCall()
 
 
 
-```C++ 
+```cpp
 /**
  * remove render data callback
  *
@@ -332,7 +332,7 @@ int Zmf_VideoRenderRemoveCallback (void *pUser)
 
 
 
-```C++ 
+```cpp
 void JCSampleDlg::OnBnClickedButtonEndCall()
 {
     //移除回调
@@ -366,7 +366,7 @@ Juphoon 对应的接口中进行后续操作。
 
 
 
-```C++ 
+```cpp
 /**
  * The video capture data entry to ZMF
  * iImgAngle - iCamOrient equal to device rotate angle.
@@ -392,7 +392,7 @@ Juphoon 对应的接口中进行后续操作。
 
 
 
-```C++ 
+```cpp
 Zmf_VideoInitialize(NULL);
 void JCSampleDlg::OnBnClickedButtonCall()
 {
@@ -409,7 +409,7 @@ void JCSampleDlg::OnBnClickedButtonCall()
 
 
 
-```C++ 
+```cpp
 /**
  * tell ZMF the video capture has stopped
  *
@@ -424,7 +424,7 @@ void Zmf_OnVideoCaptureDidStop(const char *captureId);
 
 
 
-```C++ 
+```cpp
 void JCSampleDlg::OnBnClickedButtonEndCall()
 {
     //停止采集
@@ -442,7 +442,7 @@ void JCSampleDlg::OnBnClickedButtonEndCall()
 
 
 
-```C++ 
+```cpp
 /**
  * The video render data entry to ZMF
  *
@@ -463,7 +463,7 @@ void JCSampleDlg::OnBnClickedButtonEndCall()
 
 
 
-```C++ 
+```cpp
 Zmf_VideoInitialize(NULL);
 void JCSampleDlg::OnBnClickedButtonCall()
 {
@@ -480,7 +480,7 @@ void JCSampleDlg::OnBnClickedButtonCall()
 
 
 
-```C++ 
+```cpp
 Zmf_OnVideoRender(const char *renderId, 0, 0, 0, 0, 0, 0, 0);
 ```
 
@@ -490,7 +490,7 @@ Zmf_OnVideoRender(const char *renderId, 0, 0, 0, 0, 0, 0, 0);
 
 
 
-```C++ 
+```cpp
 void JCSampleDlg::OnBnClickedButtonEndCall()
 {
     //停止渲染
@@ -524,7 +524,7 @@ void JCSampleDlg::OnBnClickedButtonEndCall()
 
 
 
-```C++ 
+```cpp
 JCManager::shared()->mediaDeviceCanvas->replace(videoSource);
 ```
 
@@ -542,7 +542,7 @@ JCManager::shared()->mediaDeviceCanvas->replace(videoSource);
 
 
 
-```C++ 
+```cpp
 JCManager::shared()->mediaDeviceCanvas->pause();
 ```
 
@@ -560,7 +560,7 @@ JCManager::shared()->mediaDeviceCanvas->pause();
 
 
 
-```C++ 
+```cpp
 JCManager::shared()->mediaDeviceCanvas->resume();
 ```
 
@@ -592,7 +592,7 @@ JCManager::shared()->mediaDeviceCanvas->resume();
 
 
 
-```C++ 
+```cpp
 //开启摄像头
 JCManager::shared()->mediaDevice->startCamera();
 //关闭摄像头
@@ -613,7 +613,7 @@ JCManager::shared()->mediaDevice->stopCamera();
 
 
 
-```C++ 
+```cpp
 JCMediaDeviceCamera camera = JCManager::shared()->mediaDevice->getCamera();
 ```
 
@@ -631,7 +631,7 @@ JCMediaDeviceCamera camera = JCManager::shared()->mediaDevice->getCamera();
 
 
 
-```C++ 
+```cpp
 std::list<JCMediaDeviceWindow>* windows = JCManager::shared()->mediaDevice->getWindows();
 ```
 
@@ -649,7 +649,7 @@ std::list<JCMediaDeviceWindow>* windows = JCManager::shared()->mediaDevice->getW
 
 
 
-```C++ 
+```cpp
 std::list<JCMediaDeviceWindow>* windows = JCManager::shared()->mediaDevice->getDesktops();
 ```
 

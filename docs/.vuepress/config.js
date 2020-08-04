@@ -4,6 +4,9 @@ const sidebarConf = require('./config/sidebarConf.js');
 const sidebarUtil = require('./utils/sidebarUtil.js')
 
 module.exports = {
+  markdown: {
+    lineNumbers: true
+  },
   locales: {
     '/': {},
     '/en/': {},
@@ -23,7 +26,7 @@ module.exports = {
         // 当前 locale 的 algolia docsearch 选项
         algolia: {},
         nav: navConf.genNavbar('cn'),
-        sidebar: sidebarUtil.getSidebarConf('docs/00_product'),
+        sidebar: sidebarUtil.getSidebarConf('docs/cn')
       },
       '/en/': {
         selectText: 'Languages',

@@ -36,7 +36,7 @@ title: 音频管理
 
 
 
-```C++ 
+```cpp
 /**
  * add mic data callback
  *
@@ -54,7 +54,7 @@ int Zmf_AudioInputAddCallback(void *pUser, ZmfAudioInputCallback pfnCb);
 
 
 
-```C++ 
+```cpp
 /** the callback to receive audio input data
  *
  * @param[in] pUser  the user data registered by Zmf_AddAudioInputCallback
@@ -81,7 +81,7 @@ typedef void (*ZmfAudioInputCallback)(void* pUser, const char* inputId, int iSam
 
 
 
-```C++ 
+```cpp
 static void zmfAudioInputCallback(void* pUser, const char* inputId, int iSampleRateHz, int iChannels,
                                    unsigned char *buf, int len, int *micLevel,
                                    int playDelayMS, int recDelayMS, int clockDrift) {
@@ -103,7 +103,7 @@ void JCSampleDlg::OnBnClickedButtonCall()
 
 
 
-```C++ 
+```cpp
 /**
  * remove mic data callback
  *
@@ -120,7 +120,7 @@ int Zmf_AudioInputRemoveCallback(void *pUser);
 
 
 
-```C++ 
+```cpp
 void JCSampleDlg::OnBnClickedButtonEndCall()
 {
     //移除回调
@@ -147,7 +147,7 @@ void JCSampleDlg::OnBnClickedButtonEndCall()
 
 
 
-```C++ 
+```cpp
 /**
  * add fill speak callback
  *
@@ -164,7 +164,7 @@ int  Zmf_AudioOutputAddCallback     (void *pUser, ZmfAudioOutputCallback pfnCb);
 
 
 
-```C++ 
+```cpp
 /** the callback to get audio output buffer, when Zmf_OnAudioOutput() invoked.
  *
  * @param[in] pUser          the callback user data
@@ -190,7 +190,7 @@ typedef int  (*ZmfAudioOutputCallback)(void* pUser, const char* outputId, int iS
 
 
 
-```C++ 
+```cpp
 static void zmfAudioOutputCallback(void* pUser, const char* outputId, int iSampleRateHz, int iChannels,
                                      unsigned char *buf, int len) {
 
@@ -211,7 +211,7 @@ void JCSampleDlg::OnBnClickedButtonCall()
 
 
 
-```C++ 
+```cpp
 /**
  * remove fill speak callback
  *
@@ -228,7 +228,7 @@ int  Zmf_AudioOutputRemoveCallback  (void *pUser);
 
 
 
-```C++ 
+```cpp
 void JCSampleDlg::OnBnClickedButtonEndCall()
 {
     //取消注册回调
@@ -266,7 +266,7 @@ Juphoon 对应的接口中进行后续操作。
 
 
 
-```C++ 
+```cpp
 /**
  * @brief Initialize Audio module of ZMF(Zero Media Framework).
  * @param  applicationContext For Windows, it can be the handle of the window,
@@ -285,7 +285,7 @@ int Zmf_AudioInitialize(void *applicationContext);
 
 
 
-```C++ 
+```cpp
 /**
  * The audio input data entry to ZMF, each callback will obtain the data.
  * Multiple data will mix in the callback of the jssmme Engine,
@@ -311,7 +311,7 @@ int Zmf_AudioInitialize(void *applicationContext);
 
 
 
-```C++ 
+```cpp
 //初始化音频设备
 Zmf_AudioInitialize(NULL);
 void JCSampleDlg::OnBnClickedButtonCall()
@@ -337,7 +337,7 @@ Note
 
 
 
-```C++ 
+```cpp
 /**
  * tell ZMF the audio input has stopped
  *
@@ -352,7 +352,7 @@ void Zmf_OnAudioInputDidStop(const char *inputId);
 
 
 
-```C++ 
+```cpp
 void JCSampleDlg::OnBnClickedButtonEndCall()
 {
     //停止采集
@@ -370,7 +370,7 @@ void JCSampleDlg::OnBnClickedButtonEndCall()
 
 
 
-```C++ 
+```cpp
 /**
  * The outlet which audio output can get data from.
  *
@@ -389,7 +389,7 @@ void JCSampleDlg::OnBnClickedButtonEndCall()
 
 
 
-```C++ 
+```cpp
 //初始化音频设备
 Zmf_AudioInitialize(NULL);
 void JCSampleDlg::OnBnClickedButtonCall()
@@ -415,7 +415,7 @@ Note
 
 
 
-```C++ 
+```cpp
 /**
  * tell ZMF the audio output has stopped
  *
@@ -430,7 +430,7 @@ void Zmf_OnAudioOutputDidStop(const char *outputId);
 
 
 
-```C++ 
+```cpp
 void JCSampleDlg::OnBnClickedButtonEndCall()
 {
     //停止播放数据
@@ -472,7 +472,7 @@ Note
 
 
 
-```C++ 
+```cpp
 std::list<JCMediaDeviceAudio>* audios = JCManager::shared()->mediaDevice->getAudioInputs();
 ```
 
@@ -490,7 +490,7 @@ std::list<JCMediaDeviceAudio>* audios = JCManager::shared()->mediaDevice->getAud
 
 
 
-```C++ 
+```cpp
 std::list<JCMediaDeviceAudio>* audios = JCManager::shared()->mediaDevice->getAudioOutputs();
 ```
 
@@ -508,7 +508,7 @@ std::list<JCMediaDeviceAudio>* audios = JCManager::shared()->mediaDevice->getAud
 
 
 
-```C++ 
+```cpp
 JCManager::shared()->mediaDevice->startAudio();
 ```
 
@@ -520,7 +520,7 @@ JCManager::shared()->mediaDevice->startAudio();
 
 
 
-```C++ 
+```cpp
 JCManager::shared()->mediaDevice->stopAudio();
 ```
 

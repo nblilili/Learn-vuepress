@@ -13,7 +13,7 @@ title: 频道管理
 
 
 
-```objective
+```objectivec
 /**
  * 查询频道相关信息，例如是否存在，人数等
  *
@@ -29,7 +29,7 @@ public abstract int query(String channelId);
 
 
 
-```objective
+```objectivec
 mediaChannel.query("channelId");
 ```
 
@@ -39,7 +39,7 @@ mediaChannel.query("channelId");
 
 
 
-```objective
+```objectivec
 /**
  * 查询频道信息结果回调
  *
@@ -57,7 +57,7 @@ public void onQuery(int operationId, boolean result, @JCMediaChannel.MediaChanne
 
 
 
-```objective
+```objectivec
 public void onQuery(int operationId, boolean result, @JCMediaChannel.MediaChannelReason int reason, JCMediaChannelQueryInfo queryInfo) {
    // 查询成功
    if (result) {
@@ -97,7 +97,7 @@ public void onQuery(int operationId, boolean result, @JCMediaChannel.MediaChanne
 
 
 
-```objective
+```objectivec
 /**
  *  @brief 获得频道成员
  *  @param userId 用户唯一标识
@@ -122,7 +122,7 @@ public void onQuery(int operationId, boolean result, @JCMediaChannel.MediaChanne
 
 
 
-```objective
+```objectivec
 /**
  * @brief 将成员踢出会议
  *
@@ -138,7 +138,7 @@ public void onQuery(int operationId, boolean result, @JCMediaChannel.MediaChanne
 
 
 
-```objective
+```objectivec
 JCMediaChannelParticipant* participant = [mediaChannel getParticipant:@"userId"];
 if (participant != nil) {
     [mediaChannel kick:participant];
@@ -159,7 +159,7 @@ if (participant != nil) {
 
 
 
-```objective
+```objectivec
 /**
  * @brief 发送消息
  *
@@ -179,7 +179,7 @@ if (participant != nil) {
 
 
 
-```objective
+```objectivec
 -(void)onJoin:(bool)result reason:(JCMediaChannelReason)reason channelId:(NSString*)channelId {
     // 发送给所有成员
     [mediaChannel sendMessage:@"text" content:@"content" toUserId:nil];
@@ -194,7 +194,7 @@ if (participant != nil) {
 
 
 
-```objective
+```objectivec
 /**
  * @brief 接收频道消息的回调
  *

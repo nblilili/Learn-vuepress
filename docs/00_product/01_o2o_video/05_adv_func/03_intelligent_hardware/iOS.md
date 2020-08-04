@@ -15,7 +15,7 @@ title: 智能硬件
 
 
 
-```objective
+```objectivec
 /// 360P
 JCCallMediaConfigMode360P,
 /// 720P
@@ -32,7 +32,7 @@ JCCallMediaConfigModeIntelligentHardware,
 
 
 
-```objective
+```objectivec
 /// 根据模式生成配置参数
 /// @param mode 模式
 +(JCCallMediaConfig* __nonnull)generateByMode:(JCCallMediaConfigMode)mode;
@@ -44,7 +44,7 @@ JCCallMediaConfigModeIntelligentHardware,
 
 
 
-```objective
+```objectivec
 JCManager.shared.call.mediaConfig = [JCCallMediaConfig generateByMode:JCCallMediaConfigModeIntelligentHardware];
 ```
 
@@ -656,7 +656,7 @@ JCManager.shared.call.mediaConfig = [JCCallMediaConfig generateByMode:JCCallMedi
 
 
 
-```objective
+```objectivec
 /// 声学回声消除。支持在免提状态下的通话，对于iOS和Windows等性能较好的机型有效。
 JCCallAecModeAEC = 0, // MtcCallDb.EN_MTC_EC_AEC;
 /// 使用操作系统提供的声学回声消除功能，支持在免提状态下的通话。对于多数iOS和Android等品牌手机有效，但部分机型可能无效。
@@ -677,7 +677,7 @@ JCCallAecModeSDE = 4, // MtcCallDb.EN_MTC_EC_AEC_SDE;
 
 
 
-```objective
+```objectivec
 //音频参数
 JCCallMediaConfig* mediaConfig = [JCCallMediaConfig new];
 mediaConfig.audioEnableCodecs = @"opus";

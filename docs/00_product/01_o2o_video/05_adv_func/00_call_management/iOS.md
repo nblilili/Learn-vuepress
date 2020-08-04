@@ -12,7 +12,7 @@ title: 通话管理
 
 
 
-```objective
+```objectivec
 call.maxCallNum = 1;
 ```
 
@@ -39,7 +39,7 @@ call.maxCallNum = 1;
 
 
 
-```objective
+```objectivec
 /**
  *  @brief 静音，通过 JCCallItem 对象中的静音状态来决定开启关闭静音
  *  @param item JCCallItem 对象
@@ -66,7 +66,7 @@ call.maxCallNum = 1;
 
 
 
-```objective
+```objectivec
 /**
  * 语音通话录音，通过 JCCallItem 对象中的audioRecord状态来决定开启关闭录音
  *
@@ -84,7 +84,7 @@ call.maxCallNum = 1;
 
 
 
-```objective
+```objectivec
 // 语音录制
 - (void)audioRecord:(JCCallItem* __nonnull)item {
     if (item.audioRecord) { // 正在录制中
@@ -111,7 +111,7 @@ call.maxCallNum = 1;
 
 
 
-```objective
+```objectivec
 /**
  *  @brief 通话状态更新回调（当上层收到此回调时，可以根据 JCCallItem 对象获得该通话的所有信息及状态，从而更新该通话相关UI）
  *  @param item JCCallItem 对象
@@ -136,7 +136,7 @@ JCCallItem
 
 
 
-```objective
+```objectivec
 /**
  *  @brief                  呼叫保持，通过 JCCallItem 对象中的呼叫保持状态来决定开启关闭呼叫保持
  *  @param item             JCCallItem 对象
@@ -157,7 +157,7 @@ JCCallItem
 
 
 
-```objective
+```objectivec
 /**
  *  @brief 切换活跃通话
  *  @param item 需要变为活跃状态的 JCCallItem 对象
@@ -180,7 +180,7 @@ JCCallItem
 
 
 
-```objective
+```objectivec
 /**
  *  @brief 通过通话建立的通道发送数据
  *  @param item 需要发送数据的 JCCallItem 对象
@@ -197,7 +197,7 @@ JCCallItem
 
 
 
-```objective
+```objectivec
 /**
  *  @brief 通话中收到消息的回调
  *  @param item JCCallItem 对象
@@ -213,7 +213,7 @@ JCCallItem
 
 
 
-```objective
+```objectivec
 [call sendMessage:item type:@"text" content:@"消息内容"];
 ```
 
@@ -231,7 +231,7 @@ JCCallItem
 
 
 
-```objective
+```objectivec
 /**
  *  @brief 通话状态更新回调（当上层收到此回调时，可以根据 JCCallItem 对象获得该通话的所有信息及状态，从而更新该通话相关UI）
  *  @param item JCCallItem 对象
@@ -258,7 +258,7 @@ Note
 
 
 
-```objective
+```objectivec
 -(void)onCallItemUpdate:(JCCallItem* __nonnull)item changeParam:(JCCallChangeParam * __nullable)changeParam {
     JCCallItem* callItem = item;
     if (changeParam.mute) { // 开启静音
