@@ -1,38 +1,21 @@
-const path = require("path")
-const rootpath = path.dirname(__dirname) //执行一次dirname将目录定位到docs目录
-const utils = require('./utils/index.js');
-const filehelper = require('./utils/initPage.js');
+const sidebarConf = require('./config/sidebarConf.js');
+const sidebarUtil = require('./utils/sidebarUtil');
+const navConf = require('./config/navConf.js');
 
 module.exports = {
+  host:"0.0.0.0",
+  base:'/doc/',
+  devServer:{
+    proxy:{
+      "/portal/cn/message":"http://developer.juphoon.com:8088"
+    }
+  },
   themeConfig: {
-    nav: [
-      { text: 'Home', link: '/css/00.定义函数' },
-      { text: 'Guide', link: '/css/02.变量作用域'},
-      { 
-        text: '产品',
-        ariaLabel: '产品列表',
-        items: [
-          { text: '一对一', link: '/audio/' },
-          { text: '多方', link: '/video/' }
-        ]
-      },
-    ],
-    sidebar: [
-      {
-        title: 'Group 1',   // required
-        path: '/css/',      // optional, link of the title, which should be an absolute path and must exist
-        collapsable: true, // optional, defaults to true
-        sidebarDepth: 10,    // optional, defaults to 1
-        children: [
-          '02.变量作用域.md',
-          '03.解构赋值.md',
-          ''
-        ]
-      },
-      {
-        title: 'Group 2',
-        children: [ /* ... */ ]
-      }
-    ] // 侧边栏配置
+    algolia: {
+      apiKey: '3a539aab83105f01761a137c61004d85',
+      indexName: 'vuepress_doc'
+    },
+    nav: navConf,
+    sidebar: sidebarUtil.getSidebarConf('docs/00_product/')
   }
 }   

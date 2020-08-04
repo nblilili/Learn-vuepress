@@ -26,8 +26,15 @@ export default {
 }
 </script>
 
-<style lang="stylus">
+<style lang="stylus" scoped>
+.sidebar-right.fixed{
+  position fixed
+  top 100px
+}
 .sidebar-right
+  position fixed
+  top 150px
+  transition all 0.3s
   ul
     padding 0
     margin 0

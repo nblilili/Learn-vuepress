@@ -40,7 +40,7 @@ export default {
 
 <style lang="stylus" scoped>
 .side-bar
-  position fixed
+  
   top 10rem
   bottom 10rem
   right 2rem
