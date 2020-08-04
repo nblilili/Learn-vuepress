@@ -12,7 +12,12 @@
         </section>-->
         <div style="padding: 2.5rem 2.5rem 0px 2.5rem" v-if="needTags">
           <div class="mbtns">
-            <a :href="item.href" v-for="item in CardName" :key="item.name">{{item.name}}</a>
+            <a
+              :class="item.active?'active':''"
+              :href="item.href"
+              v-for="item in CardName"
+              :key="item.name"
+            >{{item.name}}</a>
           </div>
         </div>
         <Content class="theme-default-content"></Content>
@@ -81,18 +86,24 @@ export default {
       let that = this;
       console.log("TagsConfig", TagsConfig);
       console.log(this.$route.path);
-      let url = this.$route.path;
+      // url.indexOf(i) > -1;
+      var url = this.$route.path;
       for (let i in TagsConfig) {
         if (url.indexOf(i) > -1) {
           this.needTags = true;
           let array = [];
           TagsConfig[i].forEach((e) => {
+            // if (url.indexOf(e) > -1) {
+            //   console.log("有了");
+            // } else {
             array.push({
               name: e,
+              active: url.indexOf(e) > -1 ? true : false,
               href: that.$site.base + i + "/" + e + ".html",
             });
           });
-          this.CardName = array
+          console.log(array)
+          this.CardName = array;
         }
       }
     },
@@ -154,7 +165,7 @@ export default {
 }
 
 .big-box {
-  margin: 100px 10px 0px 10px;
+  margin: 40px 10px 0px 10px;
   background: #fff;
 }
 
@@ -210,7 +221,7 @@ a, a:hover, a:focus {
 }
 
 .mbtns {
-  padding: 0px!important;
+  padding: 0px !important;
 }
 
 .mbtns a.active, .mbtns a.active:hover, .sdkcont .mbtns a.active, .sdkcont .mbtns a.active:hover, .mbtns a:hover {
@@ -229,6 +240,6 @@ a, a:hover, a:focus {
   color: #68758d;
   font-size: 16px;
   font-weight: 500;
-  margin-bottom 15px
+  margin-bottom: 15px;
 }
 </style>
