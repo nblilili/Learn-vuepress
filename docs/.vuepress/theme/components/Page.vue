@@ -165,7 +165,7 @@ export default {
 }
 
 .big-box {
-  margin: 40px 10px 0px 10px;
+  margin: 100px 10px 0px 10px;
   background: #fff;
 }
 
