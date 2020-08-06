@@ -28,7 +28,39 @@
                 </div>
               </div>
             </div>
-            <AlgoliaSearchBox v-if="isAlgoliaSearch" :options="algolia" />
+            <div
+              class="links"
+              style="margin: 0 20px;
+              font-size: 16px;
+              text-align: center;
+              position: relative;
+              float: left;"
+            >
+              <AlgoliaSearchBox v-if="isAlgoliaSearch" :options="algolia" />
+              <SearchBox
+                v-else-if="$site.themeConfig.search !== false && $page.frontmatter.search !== false"
+              />
+            </div>
+            <div class="nav-item">
+              <!-- <a class="header-line this_line" href="/olddoc">切换到老文档中心</a> -->
+              <div>
+                <a class="header-line this_line">
+                  切换到老文档中心
+                  <i class="arrow fa fa-angle-down"></i>
+                </a>
+                <div class="nav-child navChild dev">
+                  <table>
+                    <tr v-for="(item2,index) in switchList" :key="item2.text">
+                      <td>
+                        <a :href="item2.link" target="_blank">
+                          <div class="nav-tit">{{item2.text}}</div>
+                        </a>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+            </div>
             <div class="nav-btn" v-if="!user_type">
               <div class="nlogin">
                 <a class="loginBtn" href="/signin">登录</a>
@@ -60,7 +92,7 @@
             </div>
           </div>
           <div class="headerIcon">
-            <i class="fa fa-bars"></i>
+            <i class="iconfont icon-home_shousuo_h_icon"></i>
           </div>
         </nav>
       </div>
@@ -81,20 +113,51 @@ export default {
       site: [],
       UserInfo: {},
       user_type: false,
+      switchList: [
+        {
+          text: "1.0",
+          link: "/1.0",
+        },
+        {
+          text: "2.0",
+          link: "/2.0",
+        },
+      ],
+
+      // linksWrapMaxWidth:null
     };
   },
   computed: {
-    algolia () {
-      return this.$themeLocaleConfig.algolia || this.$site.themeConfig.algolia || {}
+    algolia() {
+      return (
+        this.$themeLocaleConfig.algolia || this.$site.themeConfig.algolia || {}
+      );
     },
 
-    isAlgoliaSearch () {
-      return this.algolia && this.algolia.apiKey && this.algolia.indexName
-    }
+    isAlgoliaSearch() {
+      return this.algolia && this.algolia.apiKey && this.algolia.indexName;
+    },
   },
   mounted() {
-    console.log(this.$themeLocaleConfig.algolia)
-    console.log(this.$site.themeConfig.algolia)
+    // const MOBILE_DESKTOP_BREAKPOINT = 719; // refer to config.styl
+    // const NAVBAR_VERTICAL_PADDING =
+    //   parseInt(css(this.$el, "paddingLeft")) +
+    //   parseInt(css(this.$el, "paddingRight"));
+    // const handleLinksWrapWidth = () => {
+    //   if (document.documentElement.clientWidth < MOBILE_DESKTOP_BREAKPOINT) {
+    //     this.linksWrapMaxWidth = null;
+    //   } else {
+    //     this.linksWrapMaxWidth =
+    //       this.$el.offsetWidth -
+    //       NAVBAR_VERTICAL_PADDING -
+    //       ((this.$refs.siteName && this.$refs.siteName.offsetWidth) || 0);
+    //   }
+    // };
+    // handleLinksWrapWidth();
+    // window.addEventListener("resize", handleLinksWrapWidth, false);
+
+    console.log(this.$themeLocaleConfig.algolia);
+    console.log(this.$site.themeConfig.algolia);
     let that = this;
     this.site = this.$site.themeConfig.nav;
     var user_type = localStorage.getItem("user_type");
@@ -152,6 +215,88 @@ export default {
 };
 </script>
 
-<style lang="styl" scoped>
-@import url(../styles/header_footer.styl);
+<style lang="stylus">
+@import url('../styles/header_footer.styl');
+@import url('../assets/css/font/iconfont.css');
+
+.search-box input {
+  cursor: text;
+  width: 10rem;
+  height: 2rem;
+  color: #4e6e8e;
+  display: inline-block;
+  border: 1px solid #cfd4db;
+  border-radius: 2rem;
+  font-size: 0.9rem;
+  line-height: 2rem;
+  padding: 0 0.5rem 0 2rem;
+  outline: none;
+  transition: all 0.2s ease;
+  background: #fff url('../assets/img/search.83621669.svg') 0.6rem 0.5rem no-repeat;
+  background-size: 1rem;
+}
+
+$navbar-vertical-padding = 0.7rem;
+$navbar-horizontal-padding = 1.5rem;
+
+.navbar {
+  padding: $navbar-vertical-padding $navbar-horizontal-padding;
+  line-height: $navbarHeight - 1.4rem;
+
+  a, span, img {
+    // display: inline-block;
+  }
+
+  .logo {
+    height: $navbarHeight - 1.4rem;
+    min-width: $navbarHeight - 1.4rem;
+    margin-right: 0.8rem;
+    vertical-align: top;
+  }
+
+  .site-name {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: $textColor;
+    position: relative;
+  }
+
+  .links {
+    padding-left: 1.5rem;
+    box-sizing: border-box;
+    // background-color: white;
+    white-space: nowrap;
+    font-size: 0.9rem;
+    position: absolute;
+    right: $navbar-horizontal-padding;
+    top: $navbar-vertical-padding;
+    display: flex;
+
+    .search-box {
+      flex: 0 0 auto;
+      vertical-align: top;
+    }
+  }
+}
+
+@media (max-width: $MQMobile) {
+  .navbar {
+    padding-left: 4rem;
+
+    .can-hide {
+      display: none;
+    }
+
+    .links {
+      padding-left: 1.5rem;
+    }
+
+    .site-name {
+      width: calc(100vw - 9.4rem);
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+  }
+}
 </style>

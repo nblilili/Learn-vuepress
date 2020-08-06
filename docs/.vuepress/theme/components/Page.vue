@@ -23,7 +23,8 @@
         <Content class="theme-default-content"></Content>
         <!-- <Content slot-key="head" /> -->
         <PageEdit />
-        <PageNav v-bind="{ sidebarItems }" />
+        
+        <PageNav v-if="($route.path.indexOf('Android') <= -1)"  v-bind="{ sidebarItems }" />
       </div>
       <div class="page-right">
         <SidebarRight
@@ -93,9 +94,6 @@ export default {
           this.needTags = true;
           let array = [];
           TagsConfig[i].forEach((e) => {
-            // if (url.indexOf(e) > -1) {
-            //   console.log("有了");
-            // } else {
             array.push({
               name: e,
               active: url.indexOf(e) > -1 ? true : false,
@@ -165,7 +163,7 @@ export default {
 }
 
 .big-box {
-  margin: 100px 10px 0px 10px;
+  margin: 40px 10px 0px 10px;
   background: #fff;
 }
 
