@@ -9,27 +9,27 @@ module.exports = [{
     title: "产品",
     children: [{
         title: "一对一语音通话",
-        url: "/cn/document/V2.1/o2o_audio/overview.php"
+        url: "/doc/cn/00_o2o_audio/"
       },
       {
         title: "一对一视频通话",
-        url: "/cn/document/V2.1/o2o_video/overview.php"
+        url: "/doc/cn/01_o2o_video/"
       },
       {
         title: "多方语音通话",
-        url: "/cn/document/V2.1/mult_audio/overview.php"
+        url: "/doc/cn/02_mult_audio/"
       },
       {
         title: "多方视频通话",
-        url: "/cn/document/V2.1/mult_video/overview.php"
+        url: "/doc/cn/03_mult_video/"
       },
       {
         title: "语音互动直播",
-        url: "/cn/document/V2.1/audio_live/overview.php"
+        url: "/doc/cn/04_audio_live/"
       },
       {
         title: "视频互动直播",
-        url: "/cn/document/V2.1/video_live/overview.php"
+        url: "/doc/cn/05_video_live/"
       }
     ]
   },

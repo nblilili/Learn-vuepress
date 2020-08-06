@@ -16,6 +16,7 @@ module.exports = {
       indexName: 'vuepress_doc'
     },
     nav: navConf,
-    sidebar: sidebarUtil.getSidebarConf('docs/00_product/')
+    // sidebar: sidebarConf
+    sidebar: sidebarUtil.getSidebarConf('docs/cn/')
   }
 }   

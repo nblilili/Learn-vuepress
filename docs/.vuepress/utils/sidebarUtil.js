@@ -1,17 +1,24 @@
 const fs = require('fs');
 const path = require('path');
-var translaterUtil = require('../map/translaterMap.js');
+var translatorUtil = require('../map/translatorMap.js');
 var platformUtil = require('../map/platformMap.js');
 var folderFilterSet = require('../map/folderFilterSet.js');
 
 var sidebar = new Object();
 var basePath = '';
+var tags = [];
+
+
 
 module.exports = {
   getSidebarConf(filePath){
-    divideProducts(filePath, sidebar);
-    console.log("-----this is sidebar!-----");
+    // 处理 sidebar 对象
+    divideProducts(filePath);
+    console.log("----- this is sidebar!-----");
     return sidebar;
+  },
+  getSidebarSelect(filePath){
+
   }
 }
   
@@ -20,7 +27,7 @@ module.exports = {
  * @param {文档入口路径} filePath 
  * @param {侧边栏对象} sidebar 
  */
-function divideProducts(filePath, sidebar){
+function divideProducts(filePath){
   fs.readdir(filePath, (err, files) => {
     if(err){
       console.warn(err);
@@ -34,6 +41,7 @@ function divideProducts(filePath, sidebar){
             console.log(error);
           }else{
             if (stats.isDirectory() && fileDir!=filePath){
+              // 展示所有的文件
               fileDisplay(fileDir, sidebar);
             }
           }
@@ -52,7 +60,7 @@ function fileDisplay(filePath, sidebar){
   basePath = filePath;
   // 一级的 title
   var title = path.basename(path.parse(filePath).dir)+ "/" + path.basename(filePath);
-  console.log("title-----"+ title);
+  console.log("title: "+ title);
   // 一级的 sidebar 对象 "$title": [],
   var arr = new Array();
   sidebar['/' + title + '/'] = arr;
@@ -63,13 +71,13 @@ function fileDisplay(filePath, sidebar){
  * 每个文件夹都是一个对象
  * @param {文件夹的名字} objTitle 
  * @param { group 中的 children } children 
- * @param {是否能折叠} collapsable 
+ * @param {是否能折叠} collapsible 
  */
-function makeDirObj(objTitle, children, collapsable){
+function makeDirObj(objTitle, children, collapsible){
   var obj = new Object();
   obj.title =  translateGroupTitle(objTitle);
   obj.children = children;
-  obj.collapsable = collapsable
+  obj.collapsible = collapsible
   return obj
 }
 
@@ -80,7 +88,7 @@ function makeDirObj(objTitle, children, collapsable){
 function translateGroupTitle(objTitle){
   var cnTitle = "no matched name"
   // 对 title 进行判断
-  translaterUtil.has(objTitle)? cnTitle = translaterUtil.get(objTitle) : cnTitle = objTitle;
+  translatorUtil.has(objTitle)? cnTitle = translatorUtil.get(objTitle) : cnTitle = objTitle;
   
   return cnTitle
 }
@@ -108,6 +116,8 @@ function getChildren(filePath, childArr){
               var relativePath = path.relative(basePath, fileDir).split(path.sep).join('/');
               // console.log(childArr);
               // console.log(sidebar);
+              console.log("----------------");
+              console.log(JSON.stringify(sidebar,null,4));
               if(!platformUtil.has(filename)){
                 filename == 'README.md' ? childArr.splice(0,0,''):childArr.push(relativePath);
               }else {

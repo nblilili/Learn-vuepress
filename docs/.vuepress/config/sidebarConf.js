@@ -1,69 +1,240 @@
 module.exports = {
-  // '/testClass/': [
-  //   '',     /* /foo/ */
-  //   '00',  /* /foo/one.html */
-  //   '01'   /* /foo/two.html */
-  // ],
-  '/00_product/': [
-    // '/', /* /bar/ */
-    ['./00_o2o_audio/00_overview', "平台概述"],
-    {
-      title: '下载', // required
-      children: [{
-          title: 'SDK下载', // required
-          path: './00_o2o_audio/02_download/Android/00_download',
-        },
-        {
-          title: '场景Demo体验', // required
-          path: './00_o2o_audio/02_download/C++/00_download',
-        },
-        {
-          title: 'Demo源码', // required
-          path: './00_o2o_audio/02_download/iOS/00_download',
-        },
-      ]
-    },
-    ['./00_o2o_audio/02_download/Windows/00_download', "测试一下距离"],
-    // './00_o2o_audio/02_download/Android/00_download',
-    // './00_o2o_audio/02_download/C++/00_download',
-    // './00_o2o_audio/02_download/iOS/00_download',
-    // './00_o2o_audio/02_download/macOS/00_download',
-    // './00_o2o_audio/02_download/Windows/00_download'
+  "/v2.1/00_o2o_audio/": [
+      "",
+      "v2.1/00_o2o_audio/01_demo_exp.md",
+      {
+          "title": "下载",
+          "children": [
+              "v2.1/00_o2o_audio/02_download/00_download/Android.md"
+          ],
+          "collapsible": true
+      },
+      {
+          "title": "快速开始",
+          "children": [
+              "v2.1/00_o2o_audio/03_quick_start/00_run_demo/Android.md",
+              "v2.1/00_o2o_audio/03_quick_start/01_integ_sdk/Android.md"
+          ],
+          "collapsible": true
+      },
+      {
+          "title": "基本功能集成",
+          "children": [
+              "v2.1/00_o2o_audio/04_basic_func/00_dev_environment/Android.md",
+              "v2.1/00_o2o_audio/04_basic_func/01_login/Android.md",
+              "v2.1/00_o2o_audio/04_basic_func/02_achieve/Android.md"
+          ],
+          "collapsible": true
+      },
+      {
+          "title": "进阶功能集成",
+          "children": [
+              "v2.1/00_o2o_audio/05_adv_func/00_call_management/Android.md",
+              "v2.1/00_o2o_audio/05_adv_func/01_audio_management/Android.md"
+          ],
+          "collapsible": true
+      },
+      "v2.1/00_o2o_audio/97_FAQ.md",
+      "v2.1/00_o2o_audio/98_vocabulary_table.md",
+      "v2.1/00_o2o_audio/99_api_reference/99_api_reference/Android.md"
   ],
-  '/testClass/': [
-    '',
-    './01',
-    {
-      title: 'Group 1', // required
-      //path: '//',      //可以通过这个 path 来设置 ios。macOS四个平台
-      collapsable: true, // optional, defaults to true
-      sidebarDepth: 1, // optional, defaults to 1
-      children: [
-        './00',
-        './01',
-        {
-          title: 'Group 1', // required
-          //path: '//',      //可以通过这个 path 来设置 ios。macOS四个平台
-          collapsable: true, // optional, defaults to true
-          sidebarDepth: 1, // optional, defaults to 1
-          children: [
-            './00',
-            './01'
-          ]
-        }
-      ]
-    }
+  "/v2.1/01_o2o_video/": [
+      "",
+      "v2.1/01_o2o_video/01_demo_exp.md",
+      {
+          "title": "下载",
+          "children": [
+              "v2.1/01_o2o_video/02_download/00_download/Android.md"
+          ],
+          "collapsible": true
+      },
+      {
+          "title": "快速开始",
+          "children": [
+              "v2.1/01_o2o_video/03_quick_start/00_run_demo/Android.md",
+              "v2.1/01_o2o_video/03_quick_start/01_integ_sdk/Android.md"
+          ],
+          "collapsible": true
+      },
+      {
+          "title": "基本功能集成",
+          "children": [
+              "v2.1/01_o2o_video/04_basic_func/00_dev_environment/Android.md",
+              "v2.1/01_o2o_video/04_basic_func/01_login/Android.md",
+              "v2.1/01_o2o_video/04_basic_func/02_achieve/Android.md"
+          ],
+          "collapsible": true
+      },
+      {
+          "title": "进阶功能集成",
+          "children": [
+              "v2.1/01_o2o_video/05_adv_func/00_call_management/Android.md",
+              "v2.1/01_o2o_video/05_adv_func/01_audio_management/Android.md",
+              "v2.1/01_o2o_video/05_adv_func/02_video_management/Android.md",
+              "v2.1/01_o2o_video/05_adv_func/03_intelligent_hardware/Android.md"
+          ],
+          "collapsible": true
+      },
+      "v2.1/01_o2o_video/97_FAQ.md",
+      "v2.1/01_o2o_video/98_vocabulary_table.md",
+      "v2.1/01_o2o_video/99_api_reference/99_api_reference/Android.md"
   ],
-  '/testClass2/': [
-    '', /* /bar/ */
-    '04', /* /bar/three.html */
+  "/v2.1/02_mult_audio/": [
+      "",
+      "v2.1/02_mult_audio/01_demo_exp.md",
+      {
+          "title": "下载",
+          "children": [
+              "v2.1/02_mult_audio/02_download/00_download/Android.md"
+          ],
+          "collapsible": true
+      },
+      {
+          "title": "快速开始",
+          "children": [
+              "v2.1/02_mult_audio/03_quick_start/00_run_demo/Android.md",
+              "v2.1/02_mult_audio/03_quick_start/01_integ_sdk/Android.md"
+          ],
+          "collapsible": true
+      },
+      {
+          "title": "基本功能集成",
+          "children": [
+              "v2.1/02_mult_audio/04_basic_func/00_dev_environment/Android.md",
+              "v2.1/02_mult_audio/04_basic_func/01_login/Android.md",
+              "v2.1/02_mult_audio/04_basic_func/02_achieve/Android.md"
+          ],
+          "collapsible": true
+      },
+      {
+          "title": "进阶功能集成",
+          "children": [
+              "v2.1/02_mult_audio/05_adv_func/01_audio_management/Android.md",
+              "v2.1/02_mult_audio/05_adv_func/05_channel_management/Android.md"
+          ],
+          "collapsible": true
+      },
+      "v2.1/02_mult_audio/97_FAQ.md",
+      "v2.1/02_mult_audio/98_vocabulary_table.md",
+      "v2.1/02_mult_audio/99_api_reference/99_api_reference/Android.md"
   ],
-
-  // fallback
-  '/一对一语音通话/': [
-    '', /* / */
-    '02', /* /contact.html */
-    '03', /* /about.html */
-    '产品概述', /* /about.html */
+  "/v2.1/03_mult_video/": [
+      "",
+      "v2.1/03_mult_video/01_demo_exp.md",
+      {
+          "title": "下载",
+          "children": [
+              "v2.1/03_mult_video/02_download/00_download/Android.md"
+          ],
+          "collapsible": true
+      },
+      {
+          "title": "快速开始",
+          "children": [
+              "v2.1/03_mult_video/03_quick_start/00_run_demo/Android.md",
+              "v2.1/03_mult_video/03_quick_start/01_integ_sdk/Android.md"
+          ],
+          "collapsible": true
+      },
+      {
+          "title": "基本功能集成",
+          "children": [
+              "v2.1/03_mult_video/04_basic_func/00_dev_environment/Android.md",
+              "v2.1/03_mult_video/04_basic_func/01_login/Android.md",
+              "v2.1/03_mult_video/04_basic_func/02_achieve/Android.md"
+          ],
+          "collapsible": true
+      },
+      {
+          "title": "进阶功能集成",
+          "children": [
+              "v2.1/03_mult_video/05_adv_func/01_audio_management/Android.md",
+              "v2.1/03_mult_video/05_adv_func/02_video_management/Android.md",
+              "v2.1/03_mult_video/05_adv_func/05_channel_management/Android.md"
+          ],
+          "collapsible": true
+      },
+      "v2.1/03_mult_video/97_FAQ.md",
+      "v2.1/03_mult_video/98_vocabulary_table.md",
+      "v2.1/03_mult_video/99_api_reference/99_api_reference/Android.md"
+  ],
+  "/v2.1/04_audio_live/": [
+      "",
+      {
+          "title": "下载",
+          "children": [
+              "v2.1/04_audio_live/02_download/00_download/Android.md"
+          ],
+          "collapsible": true
+      },
+      "v2.1/04_audio_live/01_demo_exp.md",
+      {
+          "title": "快速开始",
+          "children": [
+              "v2.1/04_audio_live/03_quick_start/00_run_demo/Android.md",
+              "v2.1/04_audio_live/03_quick_start/01_integ_sdk/Android.md"
+          ],
+          "collapsible": true
+      },
+      {
+          "title": "基本功能集成",
+          "children": [
+              "v2.1/04_audio_live/04_basic_func/00_dev_environment/Android.md",
+              "v2.1/04_audio_live/04_basic_func/01_login/Android.md",
+              "v2.1/04_audio_live/04_basic_func/02_achieve/Android.md"
+          ],
+          "collapsible": true
+      },
+      {
+          "title": "进阶功能集成",
+          "children": [
+              "v2.1/04_audio_live/05_adv_func/01_audio_management/Android.md",
+              "v2.1/04_audio_live/05_adv_func/05_channel_management/Android.md"
+          ],
+          "collapsible": true
+      },
+      "v2.1/04_audio_live/97_FAQ.md",
+      "v2.1/04_audio_live/98_vocabulary_table.md",
+      "v2.1/04_audio_live/99_api_reference/99_api_reference/Android.md"
+  ],
+  "/v2.1/05_video_live/": [
+      "",
+      "01_demo_exp.md",
+      {
+          "title": "下载",
+          "children": [
+              "02_download/00_download/Android.md"
+          ],
+          "collapsible": true
+      },
+      {
+          "title": "快速开始",
+          "children": [
+              "03_quick_start/00_run_demo/Android.md",
+              "03_quick_start/01_integ_sdk/Android.md"
+          ],
+          "collapsible": true
+      },
+      {
+          "title": "基本功能集成",
+          "children": [
+              "04_basic_func/00_dev_environment/Android.md",
+              "04_basic_func/01_login/Android.md",
+              "04_basic_func/02_achieve/Android.md"
+          ],
+          "collapsible": true
+      },
+      {
+          "title": "进阶功能集成",
+          "children": [
+              "05_adv_func/01_audio_management/Android.md",
+              "05_adv_func/02_video_management/Android.md",
+              "05_adv_func/05_channel_management/Android.md"
+          ],
+          "collapsible": true
+      },
+      "97_FAQ.md",
+      "98_vocabulary_table.md",
+      "99_api_reference/99_api_reference/Android.md"
   ]
 }
