@@ -87,8 +87,6 @@ function descendantIsActive(route, item) {
         return descendantIsActive(route, child);
       } else {
         let active = child.type === "page" && isActive(route, child.path);
-        console.log(route.path);
-        console.log(child.path);
         if (check_path_0(route.path) == check_path_0(child.path)) {
           active = true;
         }
