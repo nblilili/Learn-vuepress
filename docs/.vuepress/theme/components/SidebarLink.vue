@@ -1,7 +1,7 @@
 <script>
 import { isActive, hashRE, groupHeaders } from "../util";
 import { map } from "../../config/sidebarSelect";
-
+import TagsConfig from "../../config/TagsConfig"
 export default {
   functional: true,
 
@@ -27,12 +27,9 @@ export default {
       let index = str.lastIndexOf("/");
       return (str = str.substr(index + 1, str.length));
     }
-    // console.log(check_path($route.path));
-    // console.log(check_path(item.path));
-    // if()
-
     if (check_path_0($route.path) == check_path_0(item.path)) {
       if (check_path(item.path) == "Android.html") {
+        console.log(TagsConfig)
         let array = ["iOS", "Android", "C++", "macOS", "Windows"];
         array.forEach((e) => {
           if (check_path($route.path) == e + ".html") {

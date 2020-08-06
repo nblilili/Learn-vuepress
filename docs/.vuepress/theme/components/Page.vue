@@ -10,21 +10,39 @@
             <router-link :to="'/'+$site.themeConfig.tags+'/?tag='+tag" class="tag">{{tag}}</router-link>
           </span>
         </section>-->
+        <!-- <div>{{title}}</div>  -->
+        <span class="layui-breadcrumb" style="padding: 30px 0 15px 30px;">
+          <a v-for="(item,i) in title" :key="item" href="javascript:;">
+            {{item}}
+            <i v-if="i!=title.length-1" class="iconfont icon-jiantou" />
+          </a>
+          <!-- <a href="javascript:;">菊风云平台</a>
+          <i class="iconfont icon-jiantou" />
+          <a href="javascript:;">下载</a>
+          <i class="iconfont icon-jiantou" />
+          <a href="javascript:;">SDK 下载</a>-->
+        </span>
+        <!-- <span class="layui-breadcrumb" style="padding: 30px 0 15px 30px;">
+          <a href="javascript:;">菊风云平台</a>
+          <i class="iconfont icon-jiantou" />
+          <a href="javascript:;">下载</a>
+          <i class="iconfont icon-jiantou" />
+          <a href="javascript:;">SDK 下载</a>
+        </span>-->
         <div style="padding: 2.5rem 2.5rem 0px 2.5rem" v-if="needTags">
           <div class="mbtns">
-            <a
+            <router-link
               :class="item.active?'active':''"
-              :href="item.href"
               v-for="item in CardName"
               :key="item.name"
-            >{{item.name}}</a>
+              :to="item.href"
+            >{{item.name}}</router-link>
           </div>
         </div>
         <Content class="theme-default-content"></Content>
         <!-- <Content slot-key="head" /> -->
         <PageEdit />
-        
-        <PageNav v-if="($route.path.indexOf('Android') <= -1)"  v-bind="{ sidebarItems }" />
+        <PageNav v-if="($route.path.indexOf('Android') <= -1)" v-bind="{ sidebarItems }" />
       </div>
       <div class="page-right">
         <SidebarRight
@@ -61,17 +79,18 @@ export default {
       addclass: "",
       needTags: false,
       CardName: [],
+      title: "",
     };
   },
   watch: {
     sidebarItems(newValue, oldValue) {
-      // console.log(newValue);
-      // console.log(JSON.parse(JSON.stringify(newValue)));
       this.needTags = false;
       this.checkroute();
+      this.checkpath();
     },
   },
   mounted() {
+    this.checkpath();
     var that = this;
     this.needTags = false;
     this.checkroute();
@@ -83,11 +102,39 @@ export default {
     );
   },
   methods: {
+    checkpath() {
+      let that = this;
+      let sidebarItems = this.sidebarItems;
+      let path = this.$route.path;
+      console.log(sidebarItems, path);
+      var targetPath = path;
+      function findPath(array, path = []) {
+        for (const data of array) {
+          path.push(data.title);
+          // if (data.path === targetPath) {
+            
+          //   return path;
+          // }
+          if (data.path === targetPath) {
+            return path;
+          }
+          if (data.children) {
+            const findChildren = findPath(data.children, path);
+            if (findChildren.length) return findChildren;
+          }
+          path.pop();
+        }
+        return [];
+      }
+
+      console.log("findPath(sidebarItems)=>", findPath(sidebarItems));
+      this.title = findPath(sidebarItems);
+    },
+
     checkroute() {
       let that = this;
       console.log("TagsConfig", TagsConfig);
       console.log(this.$route.path);
-      // url.indexOf(i) > -1;
       var url = this.$route.path;
       for (let i in TagsConfig) {
         if (url.indexOf(i) > -1) {
@@ -97,10 +144,10 @@ export default {
             array.push({
               name: e,
               active: url.indexOf(e) > -1 ? true : false,
-              href: that.$site.base + i + "/" + e + ".html",
+              href: e,
             });
           });
-          console.log(array)
+          console.log(array);
           this.CardName = array;
         }
       }
@@ -149,10 +196,21 @@ export default {
     },
   },
 };
+function check_path_0(data) {
+  let str = data;
+  let index = str.lastIndexOf("/");
+  return (str = str.substr(0, index + 1));
+}
+function check_path(data) {
+  let str = data;
+  let index = str.lastIndexOf("/");
+  return (str = str.substr(index + 1, str.length));
+}
 </script>
 
 <style lang="stylus">
 @require '../styles/wrapper.styl';
+@import url('//at.alicdn.com/t/font_1986404_qeirj50z3e9.css');
 
 // .fixed {
 // position: fixed;

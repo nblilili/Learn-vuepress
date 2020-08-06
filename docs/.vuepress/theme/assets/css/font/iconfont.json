@@ -6,18 +6,18 @@
   "description": "",
   "glyphs": [
     {
-      "icon_id": "4247120",
+      "icon_id": "16365595",
       "name": "下拉",
       "font_class": "xiala",
-      "unicode": "e6c0",
-      "unicode_decimal": 59072
+      "unicode": "e74f",
+      "unicode_decimal": 59215
     },
     {
-      "icon_id": "4867106",
-      "name": "下拉",
-      "font_class": "xiala1",
-      "unicode": "e65b",
-      "unicode_decimal": 58971
+      "icon_id": "14310223",
+      "name": "上拉",
+      "font_class": "shangla",
+      "unicode": "e628",
+      "unicode_decimal": 58920
     },
     {
       "icon_id": "925488",

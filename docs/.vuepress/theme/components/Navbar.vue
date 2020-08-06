@@ -42,8 +42,8 @@
               />
             </div>
             <div class="nav-item">
-              <!-- <a class="header-line this_line" href="/olddoc">切换到老文档中心</a> -->
-              <div>
+              <a class="header-line this_line" href="/olddoc">切换到老文档中心</a>
+              <!-- <div>
                 <a class="header-line this_line">
                   切换到老文档中心
                   <i class="arrow fa fa-angle-down"></i>
@@ -59,7 +59,7 @@
                     </tr>
                   </table>
                 </div>
-              </div>
+              </div>-->
             </div>
             <div class="nav-btn" v-if="!user_type">
               <div class="nlogin">
@@ -217,7 +217,8 @@ export default {
 
 <style lang="stylus">
 @import url('../styles/header_footer.styl');
-@import url('../assets/css/font/iconfont.css');
+// @import url('../assets/css/font/iconfont.css');
+@import url('//at.alicdn.com/t/font_1986404_8fs7crvc73y.css');
 
 .search-box input {
   cursor: text;

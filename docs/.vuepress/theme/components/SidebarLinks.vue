@@ -62,7 +62,6 @@ export default {
     },
 
     isActive(page) {
-      console.log(isActive(this.$route, page.regularPath));
       return isActive(this.$route, page.regularPath);
     },
   },
@@ -71,7 +70,6 @@ export default {
 function resolveOpenGroupIndex(route, items) {
   for (let i = 0; i < items.length; i++) {
     const item = items[i];
-    console.log(item);
     if (descendantIsActive(route, item)) {
       console.log(i);
       return i;
@@ -91,6 +89,7 @@ function descendantIsActive(route, item) {
           active = true;
         }
         return active;
+        // return  child.type === "page" && isActive(route, child.path);
       }
     });
   }

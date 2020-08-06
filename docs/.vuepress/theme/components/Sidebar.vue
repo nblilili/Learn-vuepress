@@ -2,9 +2,11 @@
   <div>
     <div id="left" class="left" :class="scollpage">
       <!-- 头部跳转选择 -->
+      
       <div id="left-top" class="left-top">
         <div class="left-top-title_1" @click="showmenu?showmenu=false:showmenu=true">
           <span class="title_name">菊风云平台</span>
+          <i class="iconfont" :class="showmenu?'icon-shangla':'icon-xiala'"></i>
         </div>
         <div class="left-top-menu" v-show="showmenu" style="display:block">
           <div v-for="(item,index) in menulist" :key="item.title">
@@ -42,12 +44,12 @@ export default {
   props: ["items", "scollpage"],
   watch: {
     scollpage(newValue, oldValue) {
-      console.log(newValue);
+      // console.log(newValue);
     },
   },
   mounted() {
-    console.log(MenuList);
-    console.log((this.menulist = MenuList));
+    // console.log(MenuList);
+    // console.log((this.menulist = MenuList));
   },
   data() {
     return {
