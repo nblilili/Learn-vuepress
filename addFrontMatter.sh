@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# 生成 markdown
 function genMarkdown()  
 {  
   # change from old to new

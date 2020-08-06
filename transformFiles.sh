@@ -9,6 +9,8 @@ function genMarkdown() {
   old_format="html"
   new_format="commonmark"
 
+  path_prefixes="docs/"
+
   arr=('Android' 'iOS' 'macOS' 'Windows' 'C++')
 
   for file in `ls $1`  
@@ -21,7 +23,7 @@ function genMarkdown() {
       echo "DIR $path"   
       echo "delete index$old"
       rm -f $path/index${old}
-      mkdir -p docs/${path#*/}
+      mkdir -p ${path_prefixes}${path#*/}
       genMarkdown $path 
     else  
       echo "FILE $path" 
@@ -44,23 +46,23 @@ function genMarkdown() {
         new_path=''
         if [[ "${arr[@]}" =~ "$upPath" ]];then
           # 新建一个文件夹
-          mkdir -p docs/${upupPath#*/}/$newbasename
-          echo '-----making-----'docs/${upupPath#*/}/$newbasename
+          mkdir -p ${path_prefixes}${upupPath#*/}/$newbasename
+          echo '-----making-----'${path_prefixes}${upupPath#*/}/$newbasename
           # 删除老版本文件夹
-          rm -rf docs/${upupPath#*/}/$upPath
-          echo '-----deleting-----'docs/${upupPath#*/}/$upPath
+          rm -rf ${path_prefixes}${upupPath#*/}/$upPath
+          echo '-----deleting-----'${path_prefixes}${upupPath#*/}/$upPath
           
-          new_path=docs/${upupPath#*/}/$newbasename/$upPath$new
+          new_path=${path_prefixes}${upupPath#*/}/$newbasename/$upPath$new
           echo '-----changednew_path-----'$new_path
         else
           # 一级菜单下的 00_overview 改为 README 文件
           if [ "$(basename $path $old)" = "00_overview" ];then
             t=${path%/*}/README${new}
-            new_path=docs/${t#*/}
+            new_path=${path_prefixes}${t#*/}
             echo '-----changednew_path-----'$new_path
           else
             t=${path%%.*}${new}
-            new_path=docs/${t#*/}
+            new_path=${path_prefixes}${t#*/}
             echo '-----changednew_path-----'$new_path
           fi  
         fi
@@ -88,12 +90,13 @@ function handlingErrors() {
   # 添加高亮
   # 获取高亮类型
   syntaxType=$(grep -n -m1 "highlight-.* " -o ${new_path} | cut -f2 -d-)
-  if [ "${syntaxType}" = "objective"];then
+  if [ "${syntaxType}"x = "objective"x ];then
     syntaxType="objectivec"
-  fi
-  if [ "${syntaxType}" = "c++"];then
+  elif [ ${syntaxType} = C++ ];then
     syntaxType="cpp"
+    # 自己本身
   fi
+  echo "syntaxType: "${syntaxType}
   # 逆序遍历以循环删除空行
   start_nums=($(grep -n "<div class=\"highlight\">" -o ${new_path} | cut -f1 -d:))
   for ((i=${#start_nums[@]}-1;i>=0;i--))
@@ -118,10 +121,27 @@ function handlingErrors() {
     gsed -i "${start_num}d" ${new_path}
   done
   
+  # 修改 note
+  note_start_nums=($(grep -n "<div class=\"admonition note\">" -o ${new_path} | cut -f1 -d:))
+  for ((i=${#note_start_nums[@]}-1;i>=0;i--))
+  do
+    note_start_num=${note_start_nums[i]}
+    echo "-----start_num-----: "$note_start_num
+    # 替换 div 头, 这里选的不是 start_num 那一行
+    gsed -i "${note_start_num}s|<div class=\"admonition note\">|::: tip|g" ${new_path}
+    
+    # 替换 div 尾
+    val=$(sed -n "${note_start_num},10000p" ${new_path} | grep -n -m1 "<\/div.*>" | cut -f1 -d:)
+    note_end_num=`expr ${val} + ${note_start_num} - 1`
+    echo "-----end_num-----: "${note_end_num}
+    gsed -i "${note_end_num}s|<\/div.*>|:::|g" ${new_path}
+    
+  done
 
   # 处理错误内容
 
   sed -i "" "s|<span.*></span>||g" ${new_path}
+  sed -i "" "s|Note||g" ${new_path}
   sed -i "" "s|\[¶\]\(.*\)||g" ${new_path}
   sed -i "" "s|<div.*>||g" ${new_path}
   sed -i "" "s|<\/div.*>||g" ${new_path}

@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-var translaterUtil = require('../map/translaterMap.js');
+var translatorUtil = require('../map/translatorMap.js');
 var platformUtil = require('../map/platformMap.js');
 var folderFilterSet = require('../map/folderFilterSet.js');
 
@@ -63,13 +63,13 @@ function fileDisplay(filePath, sidebar){
  * 每个文件夹都是一个对象
  * @param {文件夹的名字} objTitle 
  * @param { group 中的 children } children 
- * @param {是否能折叠} collapsable 
+ * @param {是否能折叠} collapsible 
  */
-function makeDirObj(objTitle, children, collapsable){
+function makeDirObj(objTitle, children, collapsible){
   var obj = new Object();
   obj.title =  translateGroupTitle(objTitle);
   obj.children = children;
-  obj.collapsable = collapsable
+  obj.collapsible = collapsible
   return obj
 }
 
@@ -80,7 +80,7 @@ function makeDirObj(objTitle, children, collapsable){
 function translateGroupTitle(objTitle){
   var cnTitle = "no matched name"
   // 对 title 进行判断
-  translaterUtil.has(objTitle)? cnTitle = translaterUtil.get(objTitle) : cnTitle = objTitle;
+  translatorUtil.has(objTitle)? cnTitle = translatorUtil.get(objTitle) : cnTitle = objTitle;
   
   return cnTitle
 }
@@ -107,7 +107,7 @@ function getChildren(filePath, childArr){
               console.log("fileDir: "+ fileDir);
               var relativePath = path.relative(basePath, fileDir).split(path.sep).join('/');
               // console.log(childArr);
-              // console.log(sidebar);
+              // console.log(JSON.stringify(sidebar));
               if(!platformUtil.has(filename)){
                 filename == 'README.md' ? childArr.splice(0,0,''):childArr.push(relativePath);
               }else {
