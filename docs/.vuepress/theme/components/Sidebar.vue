@@ -50,6 +50,7 @@ export default {
   mounted() {
     // console.log(MenuList);
     // console.log((this.menulist = MenuList));
+    console.log(this.$themeConfig)
   },
   data() {
     return {

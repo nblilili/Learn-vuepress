@@ -14,7 +14,7 @@ module.exports = {
   getSidebarConf(filePath){
     // 处理 sidebar 对象
     divideProducts(filePath);
-    console.log("----- this is sidebar!-----");
+    // console.log("----- this is sidebar!-----");
     return sidebar;
   },
   getSidebarSelect(filePath){
@@ -33,12 +33,12 @@ function divideProducts(filePath){
       console.warn(err);
     }else{
       files.forEach(function(dirname){
-        console.log("----------"+dirname);
+        // console.log("----------"+dirname);
         //获取当前文件的绝对路径
         var fileDir = path.join(filePath, dirname);
         fs.stat(fileDir, function(error, stats){
           if (error){
-            console.log(error);
+            // console.log(error);
           }else{
             if (stats.isDirectory() && fileDir!=filePath){
               // 展示所有的文件
@@ -60,7 +60,7 @@ function fileDisplay(filePath, sidebar){
   basePath = filePath;
   // 一级的 title
   var title = path.basename(path.parse(filePath).dir)+ "/" + path.basename(filePath);
-  console.log("title: "+ title);
+  // console.log("title: "+ title);
   // 一级的 sidebar 对象 "$title": [],
   var arr = new Array();
   sidebar['/' + title + '/'] = arr;
@@ -112,21 +112,21 @@ function getChildren(filePath, childArr){
               console.warn('获取文件stats失败');
           }else{
             if(stats.isFile()){
-              console.log("fileDir: "+ fileDir);
+              // console.log("fileDir: "+ fileDir);
               var relativePath = path.relative(basePath, fileDir).split(path.sep).join('/');
-              // console.log(childArr);
-              // console.log(sidebar);
-              console.log("----------------");
-              console.log(JSON.stringify(sidebar,null,4));
+              // // console.log(childArr);
+              // // console.log(sidebar);
+              // console.log("----------------");
+              // console.log(JSON.stringify(sidebar,null,4));
               if(!platformUtil.has(filename)){
                 filename == 'README.md' ? childArr.splice(0,0,''):childArr.push(relativePath);
               }else {
-                console.log("fileDir: " + fileDir + " and do nothing");
+                // console.log("fileDir: " + fileDir + " and do nothing");
               }
             }else{
               // folder
               if(folderFilterSet.has(filename)){
-                console.log("floderDir: "+ fileDir);
+                // console.log("floderDir: "+ fileDir);
                 getChildren(fileDir, childArr);
               }else{
                 var subChildArr = new Array();

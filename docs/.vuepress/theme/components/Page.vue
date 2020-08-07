@@ -69,7 +69,7 @@
 import PageEdit from "@theme/components/PageEdit.vue";
 import PageNav from "@theme/components/PageNav.vue";
 import SidebarRight from "@theme/components/SidebarRight.vue";
-import TagsConfig from "../../config/TagsConfig.js";
+// import TagsConfig from "../../config/TagsConfig.js";
 
 export default {
   components: { PageEdit, PageNav, SidebarRight },
@@ -94,7 +94,7 @@ export default {
     var that = this;
     this.needTags = false;
     this.checkroute();
-    console.log(this.$site);
+    // console.log(this.$site);
     window.addEventListener(
       "scroll",
       this.throttle(this.handleScrollx, 200),
@@ -106,17 +106,15 @@ export default {
       let that = this;
       let sidebarItems = this.sidebarItems;
       let path = this.$route.path;
-      console.log(sidebarItems, path);
+      // console.log(sidebarItems, path);
       var targetPath = path;
       function findPath(array, path = []) {
         for (const data of array) {
           path.push(data.title);
-          // if (data.path === targetPath) {
-            
-          //   return path;
-          // }
-          if (data.path === targetPath) {
-            return path;
+          if (data.path) {
+            if (check_path_0(data.path) == check_path_0(that.$route.path)) {
+              return path;
+            }
           }
           if (data.children) {
             const findChildren = findPath(data.children, path);
@@ -126,15 +124,13 @@ export default {
         }
         return [];
       }
-
-      console.log("findPath(sidebarItems)=>", findPath(sidebarItems));
+      // console.log("findPath(sidebarItems)=>", findPath(sidebarItems));
       this.title = findPath(sidebarItems);
     },
 
     checkroute() {
       let that = this;
-      console.log("TagsConfig", TagsConfig);
-      console.log(this.$route.path);
+      var TagsConfig = this.$themeConfig.tagConfig;
       var url = this.$route.path;
       for (let i in TagsConfig) {
         if (url.indexOf(i) > -1) {
@@ -147,25 +143,21 @@ export default {
               href: e,
             });
           });
-          console.log(array);
+          // console.log(array);
           this.CardName = array;
         }
       }
     },
     handleScrollx() {
       let that = this;
-      console.log("滚动高度", window.pageYOffset);
-      console.log(
-        "距离顶部高度",
-        that.$refs.pronbit.getBoundingClientRect().top
-      );
-      console.log(that.$refs.pronbit.getBoundingClientRect().top);
+      // console.log("滚动高度", window.pageYOffset);
+      // console.log(that.$refs.pronbit.getBoundingClientRect().top);
       if (that.$refs.pronbit.getBoundingClientRect().top > -1) {
         that.addclass = "";
       } else {
         that.addclass = "fixed";
       }
-      console.log("addclass", that.addclass);
+      // console.log("addclass", that.addclass);
       that.$emit("addclass", that.addclass);
     },
     throttle(fn, delay, atleast) {

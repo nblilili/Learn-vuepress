@@ -1,5 +1,6 @@
 const sidebarConf = require('./config/sidebarConf.js');
 const sidebarUtil = require('./utils/sidebarUtil');
+const tagsUtil = require('./utils/tagsUtil');
 const navConf = require('./config/navConf.js');
 
 module.exports = {
@@ -17,6 +18,7 @@ module.exports = {
     },
     nav: navConf,
     // sidebar: sidebarConf
-    sidebar: sidebarUtil.getSidebarConf('docs/cn/')
+    sidebar: sidebarUtil.getSidebarConf('docs/cn/'),
+    tagConfig: tagsUtil.getTagsConf('docs/cn/')
   }
 }   
