@@ -3,40 +3,24 @@ title: 通话管理
 ---
 # 通话管理
 
-
-
 ## 通话人数设置
 
 发起通话前可以通过 maxCallNum 属性设置通话的最大人数，默认为 1。如果是视频通话，最大人数只能是 1，如果是语音通话，最大人数为
 2。
 
-
-
 ```cpp
 JCManager::shared()->call->maxCallNum = 1;
 ```
 
-
-
 当通话超过最大数时，呼出会失败，收到来电会自动拒绝。
 
-
-
-
-
 ## 通话过程控制
-
-
-
-
 
 ### 通话静音
 
 调用
 [mute](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_call.html#a62d7c7454fae84422579e3a6275af243)
 方法开启或关闭静音，开启关闭静音需要根据 JCCallItem 对象当前的静音状态来决定，静音开启后，对方将听不到您的声音。
-
-
 
 ```cpp
 //获取活跃通话对象
@@ -50,17 +34,11 @@ bool isMute = item->getMute();
     }
 ```
 
-
-
 该方法调用后会触发
 [onCallItemUpdate](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_call_callback.html#a1ba1c4f09c1f573d9fe2acb5057d6c18)
 回调。
 
-
-
 -----
-
-
 
 ### 开启/关闭呼叫保持
 
@@ -68,8 +46,6 @@ bool isMute = item->getMute();
 [hold](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_call.html#aae536642d3d5c785c2ce7d9275f8653a)
 方法对通话对象进行呼叫保持或解除呼叫保持（当通话对象处于被保持状态（即状态为held）时不可以进行此操作），开启或关闭呼叫保持需要根据
 JCCallItem 对象当前的呼叫保持状态来决定。
-
-
 
 ```cpp
 //获取活跃通话对象
@@ -83,19 +59,11 @@ if (item != NULL)
     }
 ```
 
-
-
-
-
-
-
 ### 切换活跃通话
 
 调用
 [becomeActive](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_call.html#ae45d0744f3df39cc2c6dc3bb00bb7354)
 方法对通话中被保持的对象和活跃的通话对象进行切换。
-
-
 
 ```cpp
 //获取通话对象列表
@@ -103,13 +71,7 @@ std::list<JCCallItem*>* callItems = JCManager::shared()->call->getCallItems();
 JCManager::shared()->call->becomeActive(callItems[1]);
 ```
 
-
-
-
-
 -----
-
-
 
 ### 开启/关闭视频流发送
 
@@ -119,8 +81,6 @@ JCManager::shared()->call->becomeActive(callItems[1]);
 [onCallItemUpdate](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_call_callback.html#a1ba1c4f09c1f573d9fe2acb5057d6c18)
 回调。
 
-
-
 ```cpp
 JCCallItem* item = JCManager::shared()->call->getActiveCallItem();
     if (item != NULL)
@@ -129,32 +89,24 @@ JCCallItem* item = JCManager::shared()->call->getActiveCallItem();
     }
 ```
 
-
-
 该接口的具体作用机制如下图所示：
 
 ![../../../../\_images/enablevideostream.png](../../../../_images/enablevideostream.png)
 
-  - 如果 A 开启发送视频流，则 A 的 item-\>getUploadVideoStreamSelf() 返回值为 true，B 则通过
+- 如果 A 开启发送视频流，则 A 的 item-\>getUploadVideoStreamSelf() 返回值为 true，B 则通过
     item-\>getUploadVideoStreamOther() 方法（此处返回值为 true）判断 A 的视频流发送状态。
 
-  - 如果 A 关闭发送视频流，则 A 的 item-\>getUploadVideoStreamSelf() 返回值为 false，B
+- 如果 A 关闭发送视频流，则 A 的 item-\>getUploadVideoStreamSelf() 返回值为 false，B
     则通过 item-\>getUploadVideoStreamOther() 方法（此处返回值为 false）判断 A
     的视频流发送状态。此时 B 将看不到 A 的画面。
 
-
-
 -----
-
-
 
 ### 相关回调
 
 通话过程中，如果通话状态发生了改变，如开启关闭静音、开启关闭通话保持、活跃状态切换、开启关闭音视频流发送等，均会触发
 [onCallItemUpdate](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_call_callback.html#a1ba1c4f09c1f573d9fe2acb5057d6c18)
 回调。
-
-
 
 ```cpp
 void JCManager::onCallItemUpdate(JCCallItem* item, JCCallItemChangeParam changeParam)
@@ -174,13 +126,7 @@ void JCManager::onCallItemUpdate(JCCallItem* item, JCCallItemChangeParam changeP
 }
 ```
 
-
-
-
-
 -----
-
-
 
 ### 通话录音
 
@@ -191,8 +137,6 @@ void JCManager::onCallItemUpdate(JCCallItem* item, JCCallItemChangeParam changeP
 调用
 [audioRecord](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_call.html#a058fb76428f0a77f4bbbb8670eec2868)
 方法开启或关闭通话录音。
-
-
 
 ```cpp
 void JCSampleDlg::OnBnClickedButton1Callrecordaudio()
@@ -215,26 +159,16 @@ void JCSampleDlg::OnBnClickedButton1Callrecordaudio()
 }
 ```
 
-
-
 开启或关闭录音时，录音状态会发生改变，并通过
 [onCallItemUpdate](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_call_callback.html#a1ba1c4f09c1f573d9fe2acb5057d6c18)
 回调上报。
-
-
 
 ```cpp
 void JCManager::onCallItemUpdate(JCCallItem* item, JCCallItemChangeParam changeParam) {
 }
 ```
 
-
-
-
-
 -----
-
-
 
 ### 通话中发送消息
 
@@ -242,20 +176,14 @@ void JCManager::onCallItemUpdate(JCCallItem* item, JCCallItemChangeParam changeP
 [sendMessage](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_call.html#a94e37abb045b901e1703b7534f4cc379)
 方法在通话中实现发消息的功能。
 
-
-
 ```cpp
 JCCallItem* item = JCManager::shared()->call->getActiveCallItem();
 JCManager::shared()->call->sendMessage(item, "text", "消息内容");
 ```
 
-
-
 当通话中收到消息时，会收到
 [onMessageReceive](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_call_callback.html#afb8281abd54bc8c18b77aadfe234a882)
 回调。
-
-
 
 ```cpp
 void JCManager::onMessageReceive(const char* type, const char* content, JCCallItem* item)
@@ -263,21 +191,3 @@ void JCManager::onMessageReceive(const char* type, const char* content, JCCallIt
     cout << "收到Call消息 " << item->getDisplayName() << " type:" << type << endl;
 }
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

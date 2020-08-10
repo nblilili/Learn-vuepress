@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const platformUtil = require('../map/platformMap');
+const platformUtil = require('../map/platformSet');
 
 var tagMap = new Map();
 

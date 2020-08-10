@@ -3,8 +3,6 @@ title: API 参考
 ---
 # API 参考
 
-
-
 ## 登录类
 
 [JCClient（登录类）](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_client.html)
@@ -14,10 +12,6 @@ title: API 参考
 [JCClientState（登录状态）](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/_j_c_client_constants_8h.html#a5c6824014f5c55e65de4010f908e1eaa)
 
 [JCClientReason（原因枚举）](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/_j_c_client_constants_8h.html#a8b1b44e57fff02634fd4637428a70020)
-
-
-
-
 
 ## 多方视频通话类
 
@@ -49,10 +43,6 @@ title: API 参考
 
 [JCMediaChannelnetStatus（网络状态）](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/_j_c_media_channel_constants_8h.html#aa43c2be02792430571b1ae82100eee6f)
 
-
-
-
-
 ## 媒体设备类
 
 [JCMediaDevice（设备模块）](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_device.html)
@@ -68,17 +58,3 @@ title: API 参考
 [JCMediaDeviceVideoCanvasRoatate（窗口与屏幕角度）](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/_j_c_media_devie_constants_8h.html#a1f14e425a8b2abadf1bf7e2e59baa158)
 
 [JCMediaDeviceVideoPixelFormat（视频像素格式）](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/_j_c_media_devie_constants_8h.html#a2c6c5198086db6570f08f4da6d23bf2a)
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -7,8 +7,6 @@ title: 实现一对一视频通话
 
 ![../../../../\_images/1-1workflowandroid.png](../../../../_images/1-1workflowandroid.png)
 
-
-
 ## 初始化
 
 调用
@@ -17,9 +15,7 @@ title: 实现一对一视频通话
 [JCCall.create()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCCall.html#create-com.juphoon.cloud.JCClient-com.juphoon.cloud.JCMediaDevice-com.juphoon.cloud.JCCallCallback-)
 以初始化实现一对一通话需要的模块
 
-
-
-```java 
+```java
 // 声明对象
 JCMediaDevice mMediaDevice;
 JCCall mCall;
@@ -75,34 +71,20 @@ public boolean initialize(Context context) {
 }
 ```
 
-
-
-
-
-
-
 ## 媒体参数设置
 
 一对一视频通话支持智能硬件设备集成，需要在发起通话前设置媒体参数
 
-
-
-```java 
+```java
 // 根据模式生成配置参数
 JCCall.MediaConfig mediaConfig = JCCall.MediaConfig.generateByMode(JCCall.MediaConfig.MODE_INTELLINGENT_HARDWARE_SMALL);
 // 更新媒体参数
 JCManager.getInstance().call.updateMediaConfig(mediaConfig);
 ```
 
-
-
 菊风提供四种配置模式供开发者选择，并开放相关属性供开发者进行灵活的自定义配置，具体方法请查看
 [<span class="std std-ref">媒体参数设置</span>](../../05_adv_func/Android/03_intelligent_hardware.html#android)
 。
-
-
-
-
 
 ## 拨打通话
 
@@ -110,23 +92,19 @@ JCManager.getInstance().call.updateMediaConfig(mediaConfig);
 [call()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCCall.html#call-java.lang.String-boolean-java.lang.String-)
 发起视频通话，需要填写的参数有：
 
-  - `userID` 填写对方的用户ID。
+- `userID` 填写对方的用户ID。
 
-  - `isVideo` 选择是否为视频通话， true 表示拨打视频通话， false 表示拨打语音通话。
+- `isVideo` 选择是否为视频通话， true 表示拨打视频通话， false 表示拨打语音通话。
 
-  - [extraParam()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCCall.html#call-java.lang.String-boolean-java.lang.String-)
+- [extraParam()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCCall.html#call-java.lang.String-boolean-java.lang.String-)
     为自定义透传字符串， 可通过
     [getExtraParam()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCCallItem.html#getExtraParam--)
     方法获取该属性。
 
-
-
-```java 
+```java
 // 发起语音呼叫
 mCall.call(userID, isVideo, null);
 ```
-
-
 
 拨打通话后，主叫和被叫均会收到新增通话的回调
 [onCallItemAdd()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCCallCallback.html#onCallItemAdd-com.juphoon.cloud.JCCallItem-)
@@ -136,9 +114,7 @@ mCall.call(userID, isVideo, null);
 [onCallItemAdd()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCCallCallback.html#onCallItemAdd-com.juphoon.cloud.JCCallItem-)
 执行逻辑操作。
 
-
-
-```java 
+```java
 @Override
 public void onCallItemAdd(JCCallItem item) {
     // 业务逻辑
@@ -152,19 +128,11 @@ public void onCallItemAdd(JCCallItem item) {
 }
 ```
 
-
-
 ::: tip
-
-
 
 如果主叫想取消通话，可以直接转到挂断通话部分。调用挂断接口后，通话状态变为 STATE\_CANCEL。
 
 :::
-
-
-
-
 
 ## 创建本地视频画面
 
@@ -178,9 +146,7 @@ public void onCallItemAdd(JCCallItem item) {
 
 示例代码:
 
-
-
-```java 
+```java
 // 1. 发起视频呼叫
 mCall.call("222", true, null);
 // 2. 获取当前活跃通话
@@ -188,12 +154,6 @@ JCCallItem mCallItem = mCall.getActiveCallItem();
 // 3. 打开本地视频预览，这里选择的是自适应模式
 mCallItem.startSelfVideo(JCMediaDevice.RENDER_FULL_AUTO);
 ```
-
-
-
-
-
-
 
 ## 应答通话
 
@@ -205,9 +165,7 @@ mCallItem.startSelfVideo(JCMediaDevice.RENDER_FULL_AUTO);
 [getVideo()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCCallItem.html#getVideo--)
 方法获取 `video` 属性来判断是视频呼入还是语音呼入，从而做出相应的处理。
 
-
-
-```java 
+```java
 @Override
 public void onCallItemAdd(JCCallItem item) {
     // 1. 如果是视频呼入且在振铃中
@@ -218,33 +176,21 @@ public void onCallItemAdd(JCCallItem item) {
 }
 ```
 
-
-
 调用
 [answer()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCCall.html#answer-java.lang.String-boolean-java.lang.String-)
 接听通话。
 
-
-
-```java 
+```java
 mCall.answer(item, true);
 ```
-
-
 
 通话接听后，通话状态变为 STATE\_CONNECTING。
 
 ::: tip
 
-
-
 如果被叫要在此时拒绝通话，请调用挂断通话的接口。这种情况下调用挂断后，通话状态变为 STATE\_CANCELED。
 
 :::
-
-
-
-
 
 ## 创建远端视频画面
 
@@ -260,9 +206,7 @@ STATE\_TALKING。
 
 示例代码:
 
-
-
-```java 
+```java
 @Override
 public void onCallItemUpdate(JCCallItem item) {
     // 如果对端在上传视频流（uploadVideoStreamOther）
@@ -275,56 +219,34 @@ public void onCallItemUpdate(JCCallItem item) {
 }
 ```
 
-
-
-
-
-
-
 ## 挂断通话
 
 主叫或者被叫均可以挂断通话。
 
-1.  调用
+1. 调用
     [getActiveCallItem()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCCall.html#getActiveCallItem--)
     获取当前活跃的通话对象:
-    
-    
-    
-    ```java 
+
+    ```java
     mCall.getActiveCallItem();
     ```
-    
-    
 
-2.  调用
+2. 调用
     [term()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCCall.html#term-com.juphoon.cloud.JCCallItem-int-java.lang.String-)
     挂断当前活跃通话:
-    
-    
-    
-    ```java 
+
+    ```java
     mCall.term(item, reason, description);
     ```
-    
-    
 
 示例代码:
 
-
-
-```java 
+```java
 // 1. 获取当前活跃通话
 JCCallItem item = mCall.getActiveCallItem();
 // 2. 挂断当前活跃通话
 mCall.term(item, JCCall.REASON_NONE, null);
 ```
-
-
-
-
-
-
 
 ## 销毁本地和远端视频画面
 
@@ -340,9 +262,7 @@ mCall.term(item, JCCall.REASON_NONE, null);
 
 示例代码:
 
-
-
-```java 
+```java
 @Override
 public void onCallItemRemove(JCCallItem item, @JCCall.CallReason int reason, String description) {
     // 销毁本地视频画面
@@ -352,28 +272,8 @@ public void onCallItemRemove(JCCallItem item, @JCCall.CallReason int reason, Str
 }
 ```
 
-
-
-
-
-
-
 ## 待机功耗优化方案
 
 针对手表端 JC SDK 待机功耗的问题，菊风提供对应的解决方案，详细内容参考：
 [<span class="std std-ref">待机功耗优化方案</span>](../../05_adv_func/Android/03_intelligent_hardware.html#id5)
 。
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -3,8 +3,6 @@ title: API 参考
 ---
 # API 参考
 
-
-
 ## 登录类
 
 [JCClient（登录类）](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCClient.html)
@@ -14,10 +12,6 @@ title: API 参考
 [JCClientState（登录状态）](https://developer.juphoon.com/portal/reference/V2.1/ios/Constants/JCClientState.html)
 
 [JCClientReason（原因枚举）](https://developer.juphoon.com/portal/reference/V2.1/ios/Constants/JCClientReason.html)
-
-
-
-
 
 ## 多方视频通话类
 
@@ -53,10 +47,6 @@ title: API 参考
 
 [JCMediaChannelUtils（工具类）](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaChannelUtils.html)
 
-
-
-
-
 ## 媒体设备类
 
 [JCMediaDevice（设备模块）](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaDevice.html)
@@ -72,17 +62,3 @@ title: API 参考
 [JCMediaDeviceVideoPixelFormat（视频像素格式）](https://developer.juphoon.com/portal/reference/V2.1/ios/Constants/JCMediaDeviceVideoPixelFormat.html)
 
 -----
-
-
-
-
-
-
-
-
-
-
-
-
-
-

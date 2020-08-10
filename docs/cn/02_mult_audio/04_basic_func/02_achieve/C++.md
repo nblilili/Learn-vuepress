@@ -7,8 +7,6 @@ title: 实现多方语音通话
 
 ![../../../../\_images/multiaudioworkflow.png](../../../../_images/multiaudioworkflow.png)
 
-
-
 ## 初始化
 
 首先继承
@@ -16,8 +14,6 @@ title: 实现多方语音通话
 对象和
 [JCMediaDeviceCallback](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_device_callback.html)
 对象，并实现这两个对象中的纯虚函数。
-
-
 
 ```cpp
 class JCManager : public JCMediaDeviceCallback, public JCMediaChannelCallback
@@ -57,15 +53,11 @@ public:
 };
 ```
 
-
-
 然后调用
 [createJCMediaDevice](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/_j_c_media_device_8h.html#a96a10766264f3c12af531b70cb9c9749)
 和
 [createJCMediaChannel](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/_j_c_media_channel_8h.html#acaca886fc345f798056ff2b9c2ee11ac)
 以初始化多方视频通话需要的模块：
-
-
 
 ```cpp
 //初始化
@@ -79,17 +71,15 @@ bool JCManager::initialize()
 }
 ```
 
-
-
 其中：
 
-  - JCMediaDevice create 方法中的 this 为
+- JCMediaDevice create 方法中的 this 为
     [JCMediaDeviceCallback](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_device_callback.html)
     的派生类，该类于将媒体设备相关的事件通知给上层。因此需要先创建 JCMediaDeviceCallback
     的派生类，然后在该派生类中实现 JCMediaDeviceCallback
     的纯虚函数。
 
-  - JCMediaChannel create 方法中的 this 为
+- JCMediaChannel create 方法中的 this 为
     [JCMediaChannelCallback](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel_callback.html)
     的派生类，该类用于将频道中的相关事件通知给上层。因此需要先创建 JCMediaChannelCallback
     的派生类，然后在该派生类中实现 JCMediaChannelCallback
@@ -97,15 +87,9 @@ bool JCManager::initialize()
 
 ::: tip
 
-
-
 回调中的对象只能在该回调中使用，不能保存，上层可通过对应的方法获取通话对象。
 
 :::
-
-
-
-
 
 ## 加入频道
 
@@ -115,18 +99,12 @@ JC SDK 默认不上传本地音频流，因此如果需要进入会议中就能�
 [enableUploadAudioStream](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel.html#a2b08d87b38fe2fd7a394e2786241cc4c)
 开启音频流。
 
-
-
 ```cpp
 // 开启音频流
 JCManager::shared()->mediaChannel->enableUploadAudioStream(true);
 ```
 
-
-
 ::: tip
-
-
 
 该接口可以在加入频道之前调用，也可以在加入频道之后调用。两者区别具体如下。
 
@@ -143,42 +121,32 @@ JCManager::shared()->mediaChannel->enableUploadAudioStream(true);
 
 由于 SDK 默认上传视频流，因此需要在加入频道前关闭上传视频流的标识以进行语音通话
 
-
-
 ```cpp
 // 关闭视频流上传
 JCManager::shared()->mediaChannel->enableUploadVideoStream(false);
 ```
 
-
-
-2.  调用
+2. 调用
     [join](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel.html#acfdb1da52955cf8b01d95527eb28890b)
     方法加入频道。你需要在该方法中传入如下参数：
 
 <!-- end list -->
 
-  - channelIdOrUri：频道 ID 或频道 Uri，当 param 中 uriMode 设置为 true 时表示频道
+- channelIdOrUri：频道 ID 或频道 Uri，当 param 中 uriMode 设置为 true 时表示频道
     Uri，其他表示频道 ID。频道 ID 或 Uri 相同的用户会进入同一个频道。
 
-  - joinParam：加入参数，没有则填 NULL。详见
+- joinParam：加入参数，没有则填 NULL。详见
     [JCMediaChannelJoinParam](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel_join_param.html)
     对象。
-
-
 
 ```cpp
 // 加入频道
 JCManager::shared()->mediaChannel->join("频道 ID", NULL);
 ```
 
-
-
 3\. 加入频道后会收到
 [onJoin](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel_callback.html#a430bd78b28e189ee3c9564ddb7db213d)
 回调。
-
-
 
 ```cpp
 // 加入频道结果回调
@@ -194,33 +162,21 @@ void JCManager::onJoin(bool result, JCMediaChannelReason reason, const char* cha
 }
 ```
 
-
-
-
-
-
-
 ## 离开频道
 
 调用
 [leave](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel.html#a93c19137044fec1568f73f1f6dbfee84)
 方法离开当前频道。
 
-
-
 ```cpp
 JCManager::shared()->mediaChannel->leave();
 ```
-
-
 
 离开频道后，自身收到
 [onLeave](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel_callback.html#a18bc4fae89f0d56fb849075f1603ac71)
 回调，其他成员同时收到
 [onParticipantLeft](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel_callback.html#a5888058878f3aaa382b3ede94228a6e8)
 回调。
-
-
 
 ```cpp
 // 离开频道回调
@@ -230,24 +186,14 @@ void JCManager::onLeave(JCMediaChannelReason reason, const char* channelId);
 }
 ```
 
-
-
-
-
-
-
 ## 解散频道
 
 如果想解散频道，可以调用下面的接口，此时所有成员都将被退出。
-
-
 
 ```cpp
 // 结束频道
 JCManager::shared()->mediaChannel->stop();
 ```
-
-
 
 解散频道后，发起结束的成员收到
 [onStop](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel_callback.html#a61a1d5a81563d34f80e70541a114a74a)
@@ -257,8 +203,6 @@ JCManager::shared()->mediaChannel->stop();
 [JCMediaChannelReason](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/_j_c_media_channel_constants_8h.html#a24a2154e4bb2db63c75b31cd2b021fc3)
 。
 
-
-
 ```cpp
 void JCManager::onStop(bool result, JCMediaChannelReason reason)
 {
@@ -266,20 +210,4 @@ void JCManager::onStop(bool result, JCMediaChannelReason reason)
 }
 ```
 
-
-
 至此，您已经完成基础的多方语音通话功能。
-
-
-
-
-
-
-
-
-
-
-
-
-
-

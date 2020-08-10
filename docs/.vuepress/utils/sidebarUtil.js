@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 var translatorUtil = require('../map/translatorMap.js');
-var platformUtil = require('../map/platformMap.js');
+var platformUtil = require('../map/platformSet.js');
 var folderFilterSet = require('../map/folderFilterSet.js');
 
 var sidebar = new Object();
@@ -43,6 +43,9 @@ function divideProducts(filePath){
             if (stats.isDirectory() && fileDir!=filePath){
               // 展示所有的文件
               fileDisplay(fileDir, sidebar);
+            }else{
+              //is file
+              return;
             }
           }
         })

@@ -3,19 +3,11 @@ title: 视频管理
 ---
 # 视频管理
 
-
-
-
-
 ## 视频数据采集管理
-
-
 
 ### 设置要开启的摄像头类型
 
 视频采集设置前，可以通过 JCMediaDevice 类中的属性获取摄像头列表、当前摄像头以及默认摄像头，具体如下：
-
-
 
 ```objectivec
 /// 摄像头列表
@@ -28,11 +20,7 @@ JCMediaDeviceCamera* __nullable camera;
 JCMediaDeviceCamera* __nullable defaultCamera;
 ```
 
-
-
 其中，摄像头对象（JCMediaDeviceCamera）有以下属性：
-
-
 
 ```objectivec
 /// 摄像头id
@@ -45,11 +33,7 @@ NSString* __nonnull cameraName;
 JCMediaDeviceCameraType cameraType;
 ```
 
-
-
 摄像头类型（JCMediaDeviceCameraType）有以下几种：
-
-
 
 ```objectivec
 JCMediaDeviceCameraTypeNone = 0,
@@ -58,11 +42,7 @@ JCMediaDeviceCameraTypeBack = 2,
 JCMediaDeviceCameraTypeUnknown = 3
 ```
 
-
-
 摄像头列表获取后，可以调用下面的方法切换指定的摄像头。
-
-
 
 ```objectivec
 /// 切换指定摄像头
@@ -70,19 +50,11 @@ JCMediaDeviceCameraTypeUnknown = 3
 -(bool)switchCamera:(JCMediaDeviceCamera* __nonnull)camera;
 ```
 
-
-
-
-
-
-
 ### 设置摄像头采集分辨率
 
 可以通过自定义摄像头采集参数实现不同的采集分辨率，如采集的高度、宽度和帧速率。
 
 摄像头采集属性设置接口如下：
-
-
 
 ```objectivec
 /**
@@ -94,19 +66,9 @@ JCMediaDeviceCameraTypeUnknown = 3
 - (void)setCameraProperty:(int)width height:(int)height framerate:(int)framerate;
 ```
 
-
-
-
-
-
-
-
-
 ### 设置 Canvas 旋转角度
 
 如果想设置 Canvas 中画布的角度，需要调用 JCMediaDeviceVideoCanvas 类中的 rotate 接口。
-
-
 
 ```objectivec
 /**
@@ -116,8 +78,6 @@ JCMediaDeviceCameraTypeUnknown = 3
 -(void)rotate:(int)angle;
 ```
 
-
-
 其中，角度需为 90 的倍数。调用该接口后，本端显示的本地视频画面和远端视频画面会同时旋转相同的角度，而对端显示的画面不受影响。
 
 例如 A 设置旋转 90 度，则 A 端显示的 A 和 B 视频画面会同时旋转 90 度。而 B 端的视频画面则不会发生任何改变。如下图所示：
@@ -125,8 +85,6 @@ JCMediaDeviceCameraTypeUnknown = 3
 ![../../../../\_images/rotateset.png](../../../../_images/rotateset.png)
 
 角度值参考下如下：
-
-
 
 ```objectivec
 /// 窗口与屏幕角度 0
@@ -139,11 +97,7 @@ JCMediaDeviceRotateAngle180 = 180,
 JCMediaDeviceRotateAngle270 = 270,
 ```
 
-
-
 示例代码
-
-
 
 ```objectivec
 // 获取摄像头列表
@@ -158,21 +112,15 @@ NSArray<JCMediaDeviceCamera*> * cameras = mediaDevice.cameras;
 [canvas rotate:90];
 ```
 
-
-
-
-
 -----
-
-
 
 ### 原始视频数据
 
 在视频传输过程中，可以对每帧视频数据进行图像处理，以实现美颜等需求。有以下两种处理时机：
 
-1.  在视频采集后编码前处理；会影响本地预览和对端接收视频。
+1. 在视频采集后编码前处理；会影响本地预览和对端接收视频。
 
-2.  在解码后渲染前处理；影响本地接收视频。
+2. 在解码后渲染前处理；影响本地接收视频。
 
 具体如下：
 
@@ -180,16 +128,14 @@ NSArray<JCMediaDeviceCamera*> * cameras = mediaDevice.cameras;
 
 参考如下步骤，在你的项目中实现原始视频数据功能：
 
-1.  发起业务前通过 Zmf\_VideoCaptureAddCallback 注册视频采集回调，并在该函数中实现一个
+1. 发起业务前通过 Zmf\_VideoCaptureAddCallback 注册视频采集回调，并在该函数中实现一个
     ZmfVideoCaptureCallback 类型的回调函数
 
-2.  成功注册后，JC SDK 会在捕捉到每个视频帧时通过回调函数回调采集到的原始视频数据相对应参数
+2. 成功注册后，JC SDK 会在捕捉到每个视频帧时通过回调函数回调采集到的原始视频数据相对应参数
 
-3.  用户拿到视频数据后，根据场景需要自行在回调函数中进行参数处理，处理后数据通过该回调函数返回给 JC SDK。
+3. 用户拿到视频数据后，根据场景需要自行在回调函数中进行参数处理，处理后数据通过该回调函数返回给 JC SDK。
 
 首先注册视频采集回调，在登录成功后即可调用。
-
-
 
 ```objectivec
 /** add capture data callback
@@ -200,11 +146,7 @@ NSArray<JCMediaDeviceCamera*> * cameras = mediaDevice.cameras;
 int Zmf_VideoCaptureAddCallback (void *pUser, ZmfVideoCaptureCallback pfnCb)
 ```
 
-
-
 回调类型说明
-
-
 
 ```objectivec
 /** the callback to receive captured image
@@ -226,11 +168,7 @@ int Zmf_VideoCaptureAddCallback (void *pUser, ZmfVideoCaptureCallback pfnCb)
                                        unsigned char *buf, ZmfVideoCaptureEncoder* encoder);
 ```
 
-
-
 示例代码
-
-
 
 ```objectivec
 id render; //采集的视频数据对象
@@ -249,29 +187,24 @@ static void zmfVideoCaptureCallback(void* pUser, const char* captureId, int iFac
 }
 ```
 
-
-
 注册后，每帧采集的视频数据通过 ZmfVideoCaptureCallback 回调，可以处理对应的视频数据。
 
 如果想移除回调，调用下面的接口。
 
-
-
 ```objectivec
-``` 
+```
+
  /** remove capture data callback
-  * @param[in] pUser     the callback user data
-  * returns 0 on succeed, otherwise failed
+
+* @param[in] pUser     the callback user data
+* returns 0 on succeed, otherwise failed
   */
-int Zmf_VideoCaptureRemoveCallback (void *pUser)
+int Zmf_VideoCaptureRemoveCallback (void*pUser)
+
 ```
 ```
-
-
 
 示例代码
-
-
 
 ```objectivec
 id render; //采集的视频数据对象
@@ -284,22 +217,18 @@ void* p = (__bridge void *)render;
 }
 ```
 
-
-
 **解码后，渲染前处理**
 
 参考如下步骤，在你的项目中实现原始视频数据功能：
 
-1.  发起业务前通过 Zmf\_VideoRenderAddCallback 注册视频输出回调，并在该函数中实现一个
+1. 发起业务前通过 Zmf\_VideoRenderAddCallback 注册视频输出回调，并在该函数中实现一个
     ZmfVideoRenderCallback 类型的回调函数
 
-2.  成功注册后，JC SDK 会在捕捉到每个视频帧时通过回调函数回调输出的原始视频数据相对应参数
+2. 成功注册后，JC SDK 会在捕捉到每个视频帧时通过回调函数回调输出的原始视频数据相对应参数
 
-3.  用户拿到视频数据后，根据场景需要自行在回调函数中进行参数处理，处理后数据通过该回调函数返回给JC SDK。
+3. 用户拿到视频数据后，根据场景需要自行在回调函数中进行参数处理，处理后数据通过该回调函数返回给JC SDK。
 
 首先注册视频输出回调，在登录成功后即可调用。
-
-
 
 ```objectivec
 /**
@@ -313,11 +242,7 @@ void* p = (__bridge void *)render;
 int Zmf_VideoRenderAddCallback (void *pUser, ZmfVideoRenderCallback pfnCb);
 ```
 
-
-
 回调类型说明：
-
-
 
 ```objectivec
 /**
@@ -343,13 +268,9 @@ int Zmf_VideoRenderAddCallback (void *pUser, ZmfVideoRenderCallback pfnCb);
                                   unsigned long timeStamp);
 ```
 
-
-
 注册后，每帧解码后的视频数据通过 ZmfVideoRenderCallback 回调，可以处理对应的视频数据。
 
 示例代码
-
-
 
 ```objectivec
 id render; //解码后的视频数据对象
@@ -368,11 +289,7 @@ static void zmfVideoRenderCallback(void* pUser, const char* renderId, int source
 }
 ```
 
-
-
 如果想移除回调，调用下面的接口。
-
-
 
 ```objectivec
 /**
@@ -384,11 +301,7 @@ static void zmfVideoRenderCallback(void* pUser, const char* renderId, int source
 int Zmf_VideoRenderRemoveCallback (void *pUser)
 ```
 
-
-
 示例代码
-
-
 
 ```objectivec
 id render; //解码后的视频数据对象
@@ -401,12 +314,6 @@ void* p = (__bridge void *)render;
 }
 ```
 
-
-
-
-
-
-
 ### 自定义视频采集和渲染
 
 对于不支持系统标准 API 的视频采集/渲染设备，或者想利用已经采集好的 I420 或 h264
@@ -415,15 +322,13 @@ Juphoon 对应的接口中进行后续操作。
 
 参考如下步骤，在你的项目中实现自定义视频源功能：
 
-1.  通过 JC SDK 提供的接口将外部设备采集/准备渲染的数据输入到 JC SDK 进行后续操作。
+1. 通过 JC SDK 提供的接口将外部设备采集/准备渲染的数据输入到 JC SDK 进行后续操作。
 
-2.  如果想停止外部设备采集/准备渲染的数据输入，则调用 JC SDK 提供的接口停止数据输入即可。
+2. 如果想停止外部设备采集/准备渲染的数据输入，则调用 JC SDK 提供的接口停止数据输入即可。
 
 自定义视频采集接口如下：
 
 在收到登录成功的回调后以及 Zmf\_VideoInitialize 初始化成功后，把采集/准备渲染的数据通过下面的接口输入。
-
-
 
 ```objectivec
 /**
@@ -445,11 +350,7 @@ Juphoon 对应的接口中进行后续操作。
  void Zmf_OnVideoCapture(const char *captureId, int iFace, int iImgAngle, int iCamAngle, int *iWidth, int *iHeight, unsigned char *bufI420, ZmfVideoCaptureEncoder* encoder);
 ```
 
-
-
 示例代码
-
-
 
 ```objectivec
 Zmf_VideoInitialize(NULL);
@@ -461,11 +362,7 @@ Zmf_VideoInitialize(NULL);
 }
 ```
 
-
-
 采集停止接口。
-
-
 
 ```objectivec
 /**
@@ -476,11 +373,7 @@ Zmf_VideoInitialize(NULL);
 void Zmf_OnVideoCaptureDidStop(const char *captureId);
 ```
 
-
-
 示例代码
-
-
 
 ```objectivec
 - (void)endCall {
@@ -491,13 +384,9 @@ void Zmf_OnVideoCaptureDidStop(const char *captureId);
 }
 ```
 
-
-
 如果想在视频渲染端使用自己的渲染方式，则调用下面的接口：
 
 视频数据渲染接口。
-
-
 
 ```objectivec
 /**
@@ -514,11 +403,7 @@ void Zmf_OnVideoCaptureDidStop(const char *captureId);
  void Zmf_OnVideoRender(const char *renderId, int sourceType, int iAngle, int iMirror, int *iWidth, int *iHeight, unsigned char *bufI420, unsigned long timeStamp);
 ```
 
-
-
 示例代码
-
-
 
 ```objectivec
 Zmf_VideoInitialize(NULL);
@@ -530,21 +415,13 @@ Zmf_VideoInitialize(NULL);
 }
 ```
 
-
-
 渲染数据停止接口。
-
-
 
 ```objectivec
 Zmf_OnVideoRender(const char *renderId, 0, 0, 0, 0, 0, 0, 0);
 ```
 
-
-
 示例代码
-
-
 
 ```objectivec
 - (void)endCall {
@@ -555,29 +432,13 @@ Zmf_OnVideoRender(const char *renderId, 0, 0, 0, 0, 0, 0, 0);
 }
 ```
 
-
-
-
-
-
-
-
-
-
-
 ## 视频渲染管理
-
-
-
-
 
 ### 创建本地和远端视频画面
 
-  - 本地视频渲染
+- 本地视频渲染
 
 本地视频渲染通过调用 startCameraVideo 接口获得本地视频对象用于 UI 界面显示，**该接口会打开摄像头** 。
-
-
 
 ```objectivec
 /**
@@ -587,8 +448,6 @@ Zmf_OnVideoRender(const char *renderId, 0, 0, 0, 0, 0, 0, 0);
  */
 -(JCMediaDeviceVideoCanvas* __nullable)startCameraVideo:(int)type;
 ```
-
-
 
 其中，渲染模式（JCMediaDeviceRender)有以下三种：
 
@@ -619,11 +478,9 @@ Zmf_OnVideoRender(const char *renderId, 0, 0, 0, 0, 0, 0, 0);
 </tbody>
 </table>
 
-  - 远端视频渲染
+- 远端视频渲染
 
 调用 startVideo 方法获取对端视频对象并进行渲染。
-
-
 
 ```objectivec
 /**
@@ -635,11 +492,7 @@ Zmf_OnVideoRender(const char *renderId, 0, 0, 0, 0, 0, 0, 0);
 -(JCMediaDeviceVideoCanvas* __nullable)startVideo:(NSString* __nonnull)videoSource renderType:(int)type;
 ```
 
-
-
 示例代码
-
-
 
 ```objectivec
 // 创建本地视频画面对象
@@ -653,21 +506,11 @@ remote.videoView.frame = CGRectMake(100, 0, 100, 100);
 [self.view addSubview:remote.videoView];
 ```
 
-
-
 -----
-
-
-
-
-
-
 
 ### 销毁本地和远端视频画面
 
 在视频通话结束或者视频通话中，如果想销毁视频画面，可以调用下面的接口。
-
-
 
 ```objectivec
 /**
@@ -677,11 +520,7 @@ remote.videoView.frame = CGRectMake(100, 0, 100, 100);
 -(void)stopVideo:(JCMediaDeviceVideoCanvas* __nonnull)canvas;
 ```
 
-
-
 示例代码
-
-
 
 ```objectivec
 JCMediaDeviceVideoCanvas *localCanvas = [mediaDevice startCameraVideo:JCMediaDeviceRenderFullContent];
@@ -700,21 +539,13 @@ if (remoteCanvas) {
 }
 ```
 
-
-
 -----
 
 渲染控制主要使用到 JCMediaDeviceVideoCanvas 类中的接口。具体如下：
 
-
-
-
-
 ### 更新视频渲染标识
 
 如果想更新视频渲染标识，可以调用下面的接口。
-
-
 
 ```objectivec
 /**
@@ -725,17 +556,9 @@ if (remoteCanvas) {
 -(bool)replace:(NSString*)videoSource;
 ```
 
-
-
-
-
-
-
 ### 暂停渲染
 
 如果想暂停画面的渲染可以调用如下接口。
-
-
 
 ```objectivec
 /**
@@ -745,17 +568,9 @@ if (remoteCanvas) {
 -(void)pause;
 ```
 
-
-
-
-
-
-
 ### 恢复渲染
 
 如果想对已暂停的画面继续进行渲染，可以调用下面的接口。
-
-
 
 ```objectivec
 /**
@@ -765,27 +580,13 @@ if (remoteCanvas) {
 -(void)resume;
 ```
 
-
-
 -----
-
-
-
-
-
-
-
-
 
 ## 频设备管理
 
 视频设备管理主要用到 JCMediaDevice 类中的方法，具体如下：
 
-
-
 ### 开启关闭摄像头
-
-
 
 ```objectivec
 /**
@@ -801,15 +602,7 @@ if (remoteCanvas) {
 -(bool)stopCamera;
 ```
 
-
-
-
-
-
-
 ### 切换摄像头
-
-
 
 ```objectivec
 /**
@@ -819,11 +612,7 @@ if (remoteCanvas) {
 -(bool)switchCamera;
 ```
 
-
-
 示例代码
-
-
 
 ```objectivec
 // 打开摄像头
@@ -835,21 +624,3 @@ if (remoteCanvas) {
 // 切换摄像头
 [mediaDevice switchCamera];
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -31,3 +31,7 @@
 - [ ] 文档中的代码换行
 
   ![](https://nblilili-1300722586.cos.ap-shanghai.myqcloud.com/pics/20200810114007.png)
+
+- [ ] 代码块中的字间距没改
+
+  ![](https://nblilili-1300722586.cos.ap-shanghai.myqcloud.com/pics/20200810133457.png)

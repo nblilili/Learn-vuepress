@@ -3,34 +3,22 @@ title: 通话管理
 ---
 # 通话管理
 
-
-
 ## 通话人数设置
 
 发起通话前可以通过 maxCallNum 属性设置通话的最大人数，默认为 1。如果是视频通话，最大人数只能是 1，如果是语音通话，最大人数为
 2。
 
-
-
-```java 
+```java
 call.maxCallNum = 1;
 ```
 
-
-
 当通话超过最大人数时：
 
-  - 呼出会失败，原因为 JCCallReasonCallOverLimit（超过通话数限制）。
+- 呼出会失败，原因为 JCCallReasonCallOverLimit（超过通话数限制）。
 
-  - 收到来电会自动拒绝，原因为 JCCallReasonBusy（忙）。
-
-
-
-
+- 收到来电会自动拒绝，原因为 JCCallReasonBusy（忙）。
 
 ## 通话过程控制
-
-
 
 ### 通话静音
 
@@ -38,9 +26,7 @@ call.maxCallNum = 1;
 [getMute()](http://developer.juphoon.com/portal/reference/android/com/juphoon/cloud/JCCallItem.html#getMute--)
 方法获得。静音开启后，对方将听不到您的声音
 
-
-
-```java 
+```java
 /**
  * 静音，通过 JCCallItem 对象中的静音状态来决定开启关闭静音
  *
@@ -50,14 +36,6 @@ call.maxCallNum = 1;
 public abstract boolean mute(JCCallItem item);
 ```
 
-
-
-
-
-
-
-
-
 ### 通话录音
 
 可以在通话中进行录音，开启或关闭录音需要根据当前的录音状态（audioRecord）来决定。如果正在录制或者通话被挂起或者挂起的情况下，不能进行音频录制。录音状态（audioRecord）可通过
@@ -66,9 +44,7 @@ public abstract boolean mute(JCCallItem item);
 
 开启或关闭录音接口如下
 
-
-
-```java 
+```java
 /**
  * 语音通话录音，通过 JCCallItem 对象中的audioRecord状态来决定开启关闭录音
  *
@@ -80,13 +56,9 @@ public abstract boolean mute(JCCallItem item);
 public abstract boolean audioRecord(JCCallItem item, boolean enable, String filePath);
 ```
 
-
-
 示例代码:
 
-
-
-```java 
+```java
 JCCallItem item = call.getCallItems().get(0);
 if (item.getAudioRecord()) {
     // 录音结束
@@ -101,13 +73,9 @@ if (item.getAudioRecord()) {
 }
 ```
 
-
-
 开启或关闭录音时，录音状态会发生改变，并通过 onCallItemUpdate 回调上报
 
-
-
-```java 
+```java
 /**
  * 通话状态更新回调（当上层收到此回调时，可以根据 JCCallItem 对象获得该通话的所有信息及状态，从而更新该通话相关UI）
  *
@@ -117,13 +85,7 @@ if (item.getAudioRecord()) {
 void onCallItemUpdate(JCCallItem item, JCCallItem.ChangeParam changeParam);
 ```
 
-
-
-
-
 -----
-
-
 
 ### 开启/关闭呼叫保持
 
@@ -132,9 +94,7 @@ void onCallItemUpdate(JCCallItem item, JCCallItem.ChangeParam changeParam);
 [getHold()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCCallItem.html#getHold--)
 方法获得
 
-
-
-```java 
+```java
 /**
  * 呼叫保持，通过 JCCallItem 对象中的呼叫保持状态来决定开启关闭呼叫保持
  * 只针对音频，如果是视频通话则要上层处理视频逻辑
@@ -145,19 +105,11 @@ void onCallItemUpdate(JCCallItem item, JCCallItem.ChangeParam changeParam);
 public abstract boolean hold(JCCallItem item);
 ```
 
-
-
-
-
-
-
 ### 切换活跃通话
 
 调用下面的方法对通话中被保持的对象和活跃的通话对象进行切换
 
-
-
-```java 
+```java
 /**
  * 切换活跃通话
  *
@@ -167,19 +119,11 @@ public abstract boolean hold(JCCallItem item);
 public abstract boolean becomeActive(JCCallItem item);
 ```
 
-
-
-
-
-
-
 ### 通话中发送消息
 
 调用下面的接口在通话中实现发消息的功能
 
-
-
-```java 
+```java
 /**
  * 通过通话建立的通道发送数据
  *
@@ -191,13 +135,9 @@ public abstract boolean becomeActive(JCCallItem item);
 public abstract boolean sendMessage(JCCallItem item, String type, String content);
 ```
 
-
-
 当通话中收到消息时，会收到 onMessageReceive 回调
 
-
-
-```java 
+```java
 /**
  * 通话中收到消息的回调
  *
@@ -208,32 +148,20 @@ public abstract boolean sendMessage(JCCallItem item, String type, String content
 void onMessageReceive(String type, String content, JCCallItem item);
 ```
 
-
-
 示例代码:
 
-
-
-```java 
+```java
 JCCallItem item = call.getActiveCallItem();
 call.sendMessage("text", "消息内容", item);
 ```
 
-
-
-
-
 -----
-
-
 
 ### 相关回调
 
 通话过程中，如果通话状态发生了改变，如开启关闭静音、开启关闭通话保持、活跃状态切换、网络变化等，将会收到通话状态更新的回调。
 
-
-
-```java 
+```java
 /**
  * 通话状态更新回调（当上层收到此回调时，可以根据 JCCallItem 对象获得该通话的所有信息及状态，从而更新该通话相关UI）
  *
@@ -243,11 +171,7 @@ call.sendMessage("text", "消息内容", item);
 void onCallItemUpdate(JCCallItem item, JCCallItem.ChangeParam changeParam);
 ```
 
-
-
 ::: tip
-
-
 
 静音状态、通话保持状态、活跃状态可通过
 [JCCallItem](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCCallItem.html)
@@ -257,9 +181,7 @@ void onCallItemUpdate(JCCallItem item, JCCallItem.ChangeParam changeParam);
 
 示例代码:
 
-
-
-```java 
+```java
 public void onCallItemUpdate(JCCallItem item, JCCallItem.ChangeParam changeParam) {
     if (item.mute) { // 开启静音
         ...
@@ -276,21 +198,3 @@ public void onCallItemUpdate(JCCallItem item, JCCallItem.ChangeParam changeParam
     }
 }
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
