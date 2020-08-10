@@ -67,6 +67,41 @@ title: 产品概述
 
 ## 特性指标
 
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><p>特性</p></th>
+<th><p>指标</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p>多方视频</p></td>
+<td><p>支持16人同时视频通话</p></td>
+</tr>
+<tr class="even">
+<td><p>视频质量</p></td>
+<td><p>分辨率、帧率可自定义，最高支持1080P</p></td>
+</tr>
+<tr class="odd">
+<td><p>音频质量</p></td>
+<td><p>音频采样率：16k～48k，支持单、双声道</p></td>
+</tr>
+<tr class="even">
+<td><p>音频抗丢包率</p></td>
+<td><p>上下行抗丢包率70%</p></td>
+</tr>
+<tr class="odd">
+<td><p>运维稳定</p></td>
+<td><p>全球200+节点部署，超优通信保障</p></td>
+</tr>
+</tbody>
+</table>
+
 
 
 

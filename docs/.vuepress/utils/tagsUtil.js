@@ -19,6 +19,7 @@ module.exports = {
       return tags;
     }
 }
+
 /**
  * 递归文件夹
  * @param {入口路径} filePath 
@@ -43,9 +44,9 @@ function recursion(filePath, callback){
               // 文件名
               var basename = path.basename(fileDir);
               // 如果在平台中
-              if(platformUtil.has(basename) || basename == "Android.md"){
+              if(platformUtil.has(basename)){
                   // console.log("basename: "+ basename);
-                  var basename = path.basename(basename, ".md");
+                  basename = path.basename(basename, ".md");
                   // 没有文件名的路径
                   var basedir = path.dirname(fileDir, basename)+"/";
                   // 去除上面路径的前缀,并调整系统路径符号,作为 map 的 key
@@ -58,6 +59,8 @@ function recursion(filePath, callback){
                       tagMap.set(relativePath, platforms);
                   }else{
                       platforms = new Array();
+                      // 先添加一个 Android
+                      platforms.push("Android");
                       platforms.push(basename);
                       tagMap.set(relativePath, platforms);
                   }
