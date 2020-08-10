@@ -973,8 +973,6 @@ JCManager.getInstance().call.updateMediaConfig(mediaConfig);
     
     
 
-<!-- end list -->
-
 3.  手表收到厂家自身 push 后调起菊风模块进行初始化、登录等操作，登录成功后就会收到来电；
 
 4.  通话结束后可以 destroy 菊风的模块。
