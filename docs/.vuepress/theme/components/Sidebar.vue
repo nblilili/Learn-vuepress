@@ -30,6 +30,24 @@
         <SidebarLinks :depth="0" :items="items" />
         <slot name="bottom" />
       </div>
+      <div class="left-line"></div>
+      <div id="left-about" class="left-about" style="margin-top: 9px;padding: 18px;">
+        <div class="left-title left-title_1 abline">
+          相关链接
+          <i class="iconfont" :class="showmenu?'icon-shangla':'icon-xiala'"></i>
+          <div class="left-title-menu">
+            <div class="left-title left-title_2">
+              <a href="/cn/document/V2.1/portal.php">控制台说明</a>
+            </div>
+            <div class="left-title left-title_2">
+              <a href="/cn/document/V2.1/qualities.php">天塞鹰眼</a>
+            </div>
+            <div class="left-title left-title_2">
+              <a href="/cn/document/V2.1/portal/cn/bbs/" target="_blank">技术支持社区</a>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -45,49 +63,63 @@ export default {
   props: ["items", "scollpage", "isMenuShow"],
   data() {
     return {
-      MenuName:'',
+      MenuName: "",
       showmenu: false,
       menulist: MenuList,
+      friendLink: [
+        {
+          type: "group",
+          title: "下载",
+          children: [
+            {
+              title: "SDK 下载",
+              frontmatter: { title: "SDK 下载" },
+              regularPath:
+                "/cn/00_o2o_audio/02_download/00_download/Android.html",
+              relativePath:
+                "cn/00_o2o_audio/02_download/00_download/Android.md",
+              key: "v-fb73cf46",
+              path: "/cn/00_o2o_audio/02_download/00_download/Android.html",
+              type: "page",
+            },
+          ],
+          collapsable: true,
+        },
+      ],
     };
   },
   watch: {
-    $route(newValue,oldValue) {
-      console.log(newValue)
-      if (window.innerWidth < 800) {
-        this.$emit("MenuHide");
-      }
+    $route(newValue, oldValue) {
+      let menulist = JSON.parse(JSON.stringify(MenuList));
+      this.setMenuList(menulist);
+      if (window.innerWidth < 800) this.$emit("MenuHide");
     },
-    items(newValue, oldValue) {},
+    items(newValue, oldValue) {
+      console.log(JSON.stringify(newValue[2]));
+    },
     scollpage(newValue, oldValue) {},
   },
   destroyed() {
     window.removeEventListener("resize", this.getWidth);
   },
   mounted() {
-    if(window.innerWidth < 800){
+    if (window.innerWidth < 800) {
       this.$emit("MenuHide");
     }
-    console.log(JSON.parse(JSON.stringify(MenuList)))
-
-
-    let menulist = JSON.parse(JSON.stringify(MenuList))
-    this.setMenuList(menulist)
+    let menulist = JSON.parse(JSON.stringify(MenuList));
+    this.setMenuList(menulist);
     window.addEventListener("resize", this.getWidth);
     this.getWidth();
     this.$EventBus.$on("changeMenu", (res) => {
-      if(res){
-        this.$emit("MenuShow");
-      }else{
-        this.$emit("MenuHide");
-      }
+      if (res) this.$emit("MenuShow");
+      else this.$emit("MenuHide");
     });
   },
   methods: {
-    setMenuList(menulist){
-      menulist[1].children.forEach(item => {
-        if(item.url.indexOf(this.$route.path)> -1){
-          this.MenuName = item.title
-        }
+    setMenuList(menulist) {
+      menulist[1].children.forEach((item) => {
+        let this_url = item.url.substr(4);
+        if (this.$route.path.indexOf(this_url) > -1) this.MenuName = item.title;
       });
     },
     MenuHide() {
@@ -96,7 +128,7 @@ export default {
     getWidth() {
       if (window.innerWidth > 800) {
         this.$EventBus.$emit("changeMenu", true);
-      }else{
+      } else {
         this.$EventBus.$emit("changeMenu", false);
       }
     },
