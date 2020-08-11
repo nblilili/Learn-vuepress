@@ -3,15 +3,9 @@ title: 频道管理
 ---
 # 频道管理
 
-
-
-
-
 ## 频道信息查询
 
 如需查询频道相关信息，例如频道名称、是否存在、成员名、成员数，可以调用 query 接口进行查询操作。
-
-
 
 ```objectivec
 /**
@@ -23,21 +17,13 @@ title: 频道管理
 public abstract int query(String channelId);
 ```
 
-
-
 示例代码
-
-
 
 ```objectivec
 mediaChannel.query("channelId");
 ```
 
-
-
 查询操作发起后，UI 通过以下方法监听回调查询的结果：
-
-
 
 ```objectivec
 /**
@@ -51,11 +37,7 @@ mediaChannel.query("channelId");
 public void onQuery(int operationId, boolean result, @JCMediaChannel.MediaChannelReason int reason, JCMediaChannelQueryInfo queryInfo);
 ```
 
-
-
 示例代码
-
-
 
 ```objectivec
 public void onQuery(int operationId, boolean result, @JCMediaChannel.MediaChannelReason int reason, JCMediaChannelQueryInfo queryInfo) {
@@ -75,27 +57,13 @@ public void onQuery(int operationId, boolean result, @JCMediaChannel.MediaChanne
 }
 ```
 
-
-
 -----
 
-
-
-
-
-
-
 ## 频道成员管理
-
-
-
-
 
 ### 获取成员对象
 
 通过 userId 获取频道成员对象。
-
-
 
 ```objectivec
 /**
@@ -106,21 +74,11 @@ public void onQuery(int operationId, boolean result, @JCMediaChannel.MediaChanne
 -(JCMediaChannelParticipant* __nullable)getParticipant:(NSString* __nonnull)userId;
 ```
 
-
-
 -----
-
-
-
-
-
-
 
 ### 踢出成员
 
 调用下面的方法将成员踢出会议。
-
-
 
 ```objectivec
 /**
@@ -132,11 +90,7 @@ public void onQuery(int operationId, boolean result, @JCMediaChannel.MediaChanne
 -(BOOL)kick:(JCMediaChannelParticipant * __nonnull)participant;
 ```
 
-
-
 示例代码
-
-
 
 ```objectivec
 JCMediaChannelParticipant* participant = [mediaChannel getParticipant:@"userId"];
@@ -145,19 +99,11 @@ if (participant != nil) {
 }
 ```
 
-
-
-
-
 -----
-
-
 
 ### 给其他成员发消息
 
 如果想在频道中给其他成员发送消息，可以调用下面的接口。
-
-
 
 ```objectivec
 /**
@@ -171,13 +117,9 @@ if (participant != nil) {
 -(bool)sendMessage:(NSString * __nonnull)type content:(NSString * __nonnull)content toUserId:(NSString * __nullable)toUserId;
 ```
 
-
-
 其中，消息类型（type）为自定义类型。
 
 示例代码
-
-
 
 ```objectivec
 -(void)onJoin:(bool)result reason:(JCMediaChannelReason)reason channelId:(NSString*)channelId {
@@ -188,11 +130,7 @@ if (participant != nil) {
 }
 ```
 
-
-
 当频道中的其他成员收到消息时，会收到 onMessageReceive 回调。
-
-
 
 ```objectivec
 /**
@@ -205,22 +143,4 @@ if (participant != nil) {
 -(void)onMessageReceive:(NSString *)type content:(NSString *)content fromUserId:(NSString *)fromUserId;
 ```
 
-
-
 -----
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

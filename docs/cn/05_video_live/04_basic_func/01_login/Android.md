@@ -5,8 +5,6 @@ title: 登录
 
 本章节将介绍如何初始化 SDK 并登录。
 
-
-
 ## 初始化
 
 在主线程调用
@@ -17,9 +15,7 @@ title: 登录
 [JCClient](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCClient.html)
 。
 
-
-
-```java 
+```java
 // JCClient 对象
 JCClient mClient;
 
@@ -46,14 +42,8 @@ public boolean initialize(Context context) {
 }
 ```
 
-
-
 初始化成功后，JCClient.ClientState 状态从 JCClientStateNotInit（未初始化） 变为
 JCClientStateIdle（未登录）。
-
-
-
-
 
 ## 发起登录
 
@@ -67,9 +57,7 @@ SDK 初始化之后，即可进行登录的集成。 登出接口调用流程如
 [login()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCClient.html#login-java.lang.String-java.lang.String-com.juphoon.cloud.JCClient.LoginParam-)
 ，发起登录:
 
-
-
-```java 
+```java
 JCClient.LoginParam loginParam = new JCClient.LoginParam();
 // 1. 设置服务器环境。
 loginParam.serverAddress = "服务器地址";
@@ -77,31 +65,27 @@ loginParam.serverAddress = "服务器地址";
 mClient.login(userID, password, loginParam);
 ```
 
-
-
 ::: tip
 
+1. 环境设置
 
-
-1.  环境设置
-    
-    > 
-    > 
-    > 
-    > 
+    >
+    >
+    >
+    >
     >   - 国内环境 `http:cn.router.justalkcloud.com:8080` （默认）
-    > 
+    >
     >   - 国际环境 `http:intl.router.justalkcloud.com:8080`
-    > 
-    > 
+    >
+    >
 
-2.  userID 不能为空，可由英文、数字和 `+` 、 `-` 、 `_` 、 `.`
+2. userID 不能为空，可由英文、数字和 `+` 、 `-` 、 `_` 、 `.`
     组成（特殊字符不能作为第一个字符），大小写不敏感，长度不能超过
     64 个字符。
 
-3.  password 不能超过 128 个字符。
+3. password 不能超过 128 个字符。
 
-4.  调用该接口返回 true 时只代表调用接口成功，并不代表登录成功。登录的结果会通过 onLogin 回调上报。
+4. 调用该接口返回 true 时只代表调用接口成功，并不代表登录成功。登录的结果会通过 onLogin 回调上报。
 
 :::
 
@@ -111,9 +95,7 @@ mClient.login(userID, password, loginParam);
 [onClientStateChange()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCClientCallback.html#onClientStateChange-int-int-)
 执行逻辑操作。
 
-
-
-```java 
+```java
 @Override
 public void onClientStateChange(@JCClient.ClientState int state, @JCClient.ClientState int oldState) {
      if (state == JCClient.STATE_IDLE) { // 未登录
@@ -128,17 +110,13 @@ public void onClientStateChange(@JCClient.ClientState int state, @JCClient.Clien
 }
 ```
 
-
-
 之后触发
 [onLogin()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCClientCallback.html#onLogin-boolean-int-)
 回调。您可以通过重写
 [onLogin()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCClientCallback.html#onLogin-boolean-int-)
 执行逻辑操作。
 
-
-
-```java 
+```java
 @Override
 public void onLogin(boolean result, @JCClient.ClientReason int reason) {
     if (result) {// 登录成功
@@ -151,14 +129,8 @@ public void onLogin(boolean result, @JCClient.ClientReason int reason) {
 }
 ```
 
-
-
 登录成功之后，SDK 会自动保持与服务器的连接状态，直到用户主动调用登出接口，或者因为帐号在其他设备登录导致该设备登出。登录成功/失败原因 参考
 [JCClient.ClientReason](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCClient.html#REASON_ANOTHER_DEVICE_LOGINED)。
-
-
-
-
 
 ## 登出
 
@@ -171,9 +143,7 @@ public void onLogin(boolean result, @JCClient.ClientReason int reason) {
 可以发起登出。更多登出原因参考：
 [JCClient.ClientReason](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCClient.html#REASON_ANOTHER_DEVICE_LOGINED)
 
-
-
-```java 
+```java
 @Override
 public void onLogout(@JCClient.ClientReason int reason) {
     if (reason == REASON_SERVER_LOGOUT) {// 强制登出
@@ -181,19 +151,3 @@ public void onLogout(@JCClient.ClientReason int reason) {
     }
 }
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

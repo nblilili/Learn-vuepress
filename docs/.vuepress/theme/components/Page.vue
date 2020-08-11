@@ -108,7 +108,6 @@ export default {
       let that = this;
       let sidebarItems = this.sidebarItems;
       let path = this.$route.path;
-      console.log(sidebarItems, path);
       var targetPath = path;
       function findPath(array, path = []) {
         for (const data of array) {
@@ -130,7 +129,6 @@ export default {
         }
         return [];
       }
-      // console.log("findPath(sidebarItems)=>", findPath(sidebarItems));
       this.title = findPath(sidebarItems);
     },
 

@@ -3,38 +3,30 @@ title: 音频管理
 ---
 # 音频管理
 
-
-
-
-
 ## 音频数据管理
-
-
 
 ### 原始音频数据
 
 在音频传输过程中，可以对采集的音频数据进行处理，以获取不同的播放效果。有两个时机可以进行处理。
 
-1.  在音频采集之后，编码之前进行处理；
+1. 在音频采集之后，编码之前进行处理；
 
-2.  在传输完成，解码后播放前进行处理。
+2. 在传输完成，解码后播放前进行处理。
 
 具体如下：
 
-  - 音频采集之后，编码之前的处理
+- 音频采集之后，编码之前的处理
 
 参考如下步骤，在你的项目中实现原始音频数据功能：
 
-1.  发起业务前通过 Zmf\_AudioInputAddCallback 注册音频采集回调，并在该函数中实现一个
+1. 发起业务前通过 Zmf\_AudioInputAddCallback 注册音频采集回调，并在该函数中实现一个
     ZmfAudioInputCallback 类型的回调函数
 
-2.  成功注册后，JC SDK 会在捕捉到音频数据时通过回调函数回调采集到的原始音频数据相对应参数
+2. 成功注册后，JC SDK 会在捕捉到音频数据时通过回调函数回调采集到的原始音频数据相对应参数
 
-3.  用户拿到音频数据后，根据场景需要自行在回调函数中进行参数处理，处理后数据通过该回调函数返回给JC SDK。
+3. 用户拿到音频数据后，根据场景需要自行在回调函数中进行参数处理，处理后数据通过该回调函数返回给JC SDK。
 
 首先注册音频输入回调。
-
-
 
 ```cpp
 /**
@@ -48,11 +40,7 @@ title: 音频管理
 int Zmf_AudioInputAddCallback(void *pUser, ZmfAudioInputCallback pfnCb);
 ```
 
-
-
 回调类型说明:
-
-
 
 ```cpp
 /** the callback to receive audio input data
@@ -73,13 +61,9 @@ typedef void (*ZmfAudioInputCallback)(void* pUser, const char* inputId, int iSam
                                    int playDelayMS, int recDelayMS, int clockDrift);
 ```
 
-
-
 回调注册后，当有音频数据采集进来时，可以对音频数据进行处理。
 
 示例代码
-
-
 
 ```cpp
 static void zmfAudioInputCallback(void* pUser, const char* inputId, int iSampleRateHz, int iChannels,
@@ -97,11 +81,7 @@ void JCSampleDlg::OnBnClickedButtonCall()
 }
 ```
 
-
-
 如果想移除回调，调用下面的接口。
-
-
 
 ```cpp
 /**
@@ -114,11 +94,7 @@ void JCSampleDlg::OnBnClickedButtonCall()
 int Zmf_AudioInputRemoveCallback(void *pUser);
 ```
 
-
-
 示例代码
-
-
 
 ```cpp
 void JCSampleDlg::OnBnClickedButtonEndCall()
@@ -130,22 +106,18 @@ void JCSampleDlg::OnBnClickedButtonEndCall()
 }
 ```
 
-
-
-  - 解码后播放前的处理
+- 解码后播放前的处理
 
 参考如下步骤，在你的项目中实现原始音频数据处理功能：
 
-1.  发起业务前通过 Zmf\_AudioOutputAddCallback 注册音频输出回调，并在该函数中实现一个
+1. 发起业务前通过 Zmf\_AudioOutputAddCallback 注册音频输出回调，并在该函数中实现一个
     ZmfAudioOutputCallback 类型的回调函数。
 
-2.  成功注册后，JC SDK 会在捕捉到音频数据时通过回调函数回调采集到的原始音频数据。
+2. 成功注册后，JC SDK 会在捕捉到音频数据时通过回调函数回调采集到的原始音频数据。
 
-3.  用户拿到音频数据后，根据场景需要自行在回调函数中进行音频数据的处理，处理后的数据通过该回调函数返回给 JC SDK。
+3. 用户拿到音频数据后，根据场景需要自行在回调函数中进行音频数据的处理，处理后的数据通过该回调函数返回给 JC SDK。
 
 首先注册音频输出回调。
-
-
 
 ```cpp
 /**
@@ -158,11 +130,7 @@ void JCSampleDlg::OnBnClickedButtonEndCall()
 int  Zmf_AudioOutputAddCallback     (void *pUser, ZmfAudioOutputCallback pfnCb);
 ```
 
-
-
 回调类型说明：
-
-
 
 ```cpp
 /** the callback to get audio output buffer, when Zmf_OnAudioOutput() invoked.
@@ -182,13 +150,9 @@ typedef int  (*ZmfAudioOutputCallback)(void* pUser, const char* outputId, int iS
                                      unsigned char *buf, int len);
 ```
 
-
-
 回调注册后，当有解码后的音频数据进来时，可以进行对应的音频数据处理。
 
 示例代码
-
-
 
 ```cpp
 static void zmfAudioOutputCallback(void* pUser, const char* outputId, int iSampleRateHz, int iChannels,
@@ -205,11 +169,7 @@ void JCSampleDlg::OnBnClickedButtonCall()
 }
 ```
 
-
-
 如果想移除回调，调用下面的接口。
-
-
 
 ```cpp
 /**
@@ -222,11 +182,7 @@ void JCSampleDlg::OnBnClickedButtonCall()
 int  Zmf_AudioOutputRemoveCallback  (void *pUser);
 ```
 
-
-
 取消注册回调。
-
-
 
 ```cpp
 void JCSampleDlg::OnBnClickedButtonEndCall()
@@ -238,13 +194,7 @@ void JCSampleDlg::OnBnClickedButtonEndCall()
 }
 ```
 
-
-
-
-
 -----
-
-
 
 ### 自定义音频采集和渲染
 
@@ -254,17 +204,15 @@ Juphoon 对应的接口中进行后续操作。
 
 参考如下步骤，在你的项目中实现自定义音频源功能：
 
-1.  通过 JC SDK 提供的接口将外部设备采集/自定义的播放数据输入到 JC SDK 进行后续操作。
+1. 通过 JC SDK 提供的接口将外部设备采集/自定义的播放数据输入到 JC SDK 进行后续操作。
 
-2.  如果想停止外部设备采集/自定义的播放数据的输入，则调用 JC SDK 提供的接口停止数据输入即可。
+2. 如果想停止外部设备采集/自定义的播放数据的输入，则调用 JC SDK 提供的接口停止数据输入即可。
 
 自定义音频采集接口如下（在收到登录成功的回调后调用）：
 
 若需要使用自己的音视频设备并且 Zmf\_AudioInitialize 初始化成功，在下面的回调函数中操作音频设备；
 
 音频设备初始化接口。
-
-
 
 ```cpp
 /**
@@ -279,11 +227,7 @@ Juphoon 对应的接口中进行后续操作。
 int Zmf_AudioInitialize(void *applicationContext);
 ```
 
-
-
 采集数据输入接口。
-
-
 
 ```cpp
 /**
@@ -305,11 +249,7 @@ int Zmf_AudioInitialize(void *applicationContext);
  void Zmf_OnAudioInput (const char *inputId, int sampleRateHz, int iChannels, unsigned char *buf, int len, int *micLevel, int playDelayMS, int recDelayMS, int clockDrift);
 ```
 
-
-
 示例代码
-
-
 
 ```cpp
 //初始化音频设备
@@ -323,19 +263,13 @@ void JCSampleDlg::OnBnClickedButtonCall()
 }
 ```
 
-
-
 ::: tip
-
-
 
 此接口为将自己采集的音频数据输入到 JC SDK。
 
 :::
 
 采集停止接口。
-
-
 
 ```cpp
 /**
@@ -346,11 +280,7 @@ void JCSampleDlg::OnBnClickedButtonCall()
 void Zmf_OnAudioInputDidStop(const char *inputId);
 ```
 
-
-
 示例代码
-
-
 
 ```cpp
 void JCSampleDlg::OnBnClickedButtonEndCall()
@@ -362,13 +292,9 @@ void JCSampleDlg::OnBnClickedButtonEndCall()
 }
 ```
 
-
-
 如果想在音频输出端使用自定义的播放数据，则调用下面的接口：
 
 播放数据输入接口。
-
-
 
 ```cpp
 /**
@@ -383,11 +309,7 @@ void JCSampleDlg::OnBnClickedButtonEndCall()
  void Zmf_OnAudioOutput (const char *outputId, int sampleRateHz, int iChannels, unsigned char *buf, int len);
 ```
 
-
-
 示例代码
-
-
 
 ```cpp
 //初始化音频设备
@@ -401,19 +323,13 @@ void JCSampleDlg::OnBnClickedButtonCall()
 }
 ```
 
-
-
 ::: tip
-
-
 
 此接口为将自定义音频输出数据输入到 JC SDK。
 
 :::
 
 播放数据停止接口。
-
-
 
 ```cpp
 /**
@@ -424,11 +340,7 @@ void JCSampleDlg::OnBnClickedButtonCall()
 void Zmf_OnAudioOutputDidStop(const char *outputId);
 ```
 
-
-
 示例代码
-
-
 
 ```cpp
 void JCSampleDlg::OnBnClickedButtonEndCall()
@@ -440,29 +352,15 @@ void JCSampleDlg::OnBnClickedButtonEndCall()
 }
 ```
 
-
-
 ::: tip
-
-
 
 在自定义音频采集场景中，开发者需要自行管理音频数据的采集。在自定义音频渲染场景中，开发者需要自行管理音频数据的播放。
 
 :::
 
-
-
-
-
-
-
-
-
 ## 音频设备管理
 
 音频设备管理主要用到 JCMediaDevice 类中的方法，包括获取音频输入、输出设备列表、开启/关闭音频设备。
-
-
 
 ### 获取音频输入设备列表
 
@@ -470,17 +368,9 @@ void JCSampleDlg::OnBnClickedButtonEndCall()
 [getAudioInputs](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_device.html#ab177fc54d666d727ece18588268fd203)
 接口获取音频输入设备列表。
 
-
-
 ```cpp
 std::list<JCMediaDeviceAudio>* audios = JCManager::shared()->mediaDevice->getAudioInputs();
 ```
-
-
-
-
-
-
 
 ### 获取音频输出设备列表
 
@@ -488,17 +378,9 @@ std::list<JCMediaDeviceAudio>* audios = JCManager::shared()->mediaDevice->getAud
 [getAudioOutputs](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_device.html#a72ba20f63202cbc61bf2cfc8170045b3)
 接口获取音频输出设备列表。
 
-
-
 ```cpp
 std::list<JCMediaDeviceAudio>* audios = JCManager::shared()->mediaDevice->getAudioOutputs();
 ```
-
-
-
-
-
-
 
 ### 开启/关闭音频设备
 
@@ -506,38 +388,14 @@ std::list<JCMediaDeviceAudio>* audios = JCManager::shared()->mediaDevice->getAud
 [startAudio](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_device.html#a3e5dbd693aa7d245377e78cb78902018)
 接口开启音频设备。
 
-
-
 ```cpp
 JCManager::shared()->mediaDevice->startAudio();
 ```
-
-
 
 调用
 [stopAudio](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_device.html#a007283dc73188577ae32b50849d3d3fd)
 接口关闭音频设备。
 
-
-
 ```cpp
 JCManager::shared()->mediaDevice->stopAudio();
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

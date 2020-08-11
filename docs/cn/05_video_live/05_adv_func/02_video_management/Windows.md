@@ -3,11 +3,7 @@ title: 视频管理
 ---
 # 视频管理
 
-
-
 ## 视频数据采集管理
-
-
 
 ### 设置要开启的摄像头类型
 
@@ -15,22 +11,16 @@ title: 视频管理
 
 首先，获取摄像头列表
 
-
-
-```csharp 
+```csharp
 /// <summary>
 /// 摄像头列表
 /// </summary>
 public List<JCMediaDeviceCamera> cameras
 ```
 
-
-
 其中，JCMediaDeviceCamera 有以下几个变量
 
-
-
-```csharp 
+```csharp
 /// <summary>
 /// 名称
 /// </summary>
@@ -41,13 +31,9 @@ public string cameraName { get; internal set; }
 public string cameraId
 ```
 
-
-
 切换摄像头
 
-
-
-```csharp 
+```csharp
 /// <summary>
 /// 切换摄像头
 /// </summary>
@@ -56,13 +42,9 @@ public string cameraId
 public bool switchCamera(JCMediaDeviceCamera camera)
 ```
 
-
-
 **示例代码**
 
-
-
-```csharp 
+```csharp
 // 获取摄像头列表
 List<JCMediaDeviceCamera> cameraDevices = mediaDevice.cameraDevices;
 
@@ -70,21 +52,13 @@ List<JCMediaDeviceCamera> cameraDevices = mediaDevice.cameraDevices;
 mediaDevice.switchCamera(mediaDevice.cameras[0]);
 ```
 
-
-
-
-
-
-
 ### 设置摄像头采集分辨率
 
 您可以通过自定义摄像头采集参数实现不同的视频分辨率，如采集的高度、宽度和帧速率。
 
 摄像头采集属性设置接口如下：
 
-
-
-```csharp 
+```csharp
 /// <summary>
 /// 设定摄像头分辨率，请在调用startCamera()接口之前调用才会生效
 /// </summary>
@@ -94,38 +68,24 @@ mediaDevice.switchCamera(mediaDevice.cameras[0]);
 public void setCameraProperty(int width, int height, int framerate)
 ```
 
-
-
 **示例代码**
 
-
-
-```csharp 
+```csharp
 // 设置摄像头采集属性
 mediaDevice.setCameraProperty(640, 360, 30);
 ```
-
-
-
-
-
-
 
 ### 设置 Canvas 旋转角度
 
 如果想设置Canvas中画布的角度，需要调用 JCMediaDeviceVideoCanvas 类中的 rotate 接口
 
-
-
-```csharp 
+```csharp
 /// <summary>
 /// 旋转画面
 /// </summary>
 /// <param name="angle">旋转角度</param>
 public void rotate(JCMediaDeviceVideoCanvasRoatate angle)
 ```
-
-
 
 其中，角度需为 90 的倍数。调用该接口后，本端显示的本地视频画面和远端视频画面会同时旋转相同的角度，而对端显示的画面不受影响。
 
@@ -135,9 +95,7 @@ public void rotate(JCMediaDeviceVideoCanvasRoatate angle)
 
 JCMediaDeviceVideoCanvasRoatate 枚举值如下
 
-
-
-```csharp 
+```csharp
 /// <summary>
 /// 0
 /// </summary>
@@ -156,40 +114,22 @@ Angle180 = 180,
 Angle270 = 270
 ```
 
-
-
 **示例代码**
 
-
-
-```csharp 
+```csharp
 // 设置摄像头采集属性
 mediaDevice.rotate(JCMediaDeviceVideoCanvasRoatate.Angle0);
 ```
 
-
-
-
-
-
-
-
-
 ## 视频渲染管理
-
-
-
-
 
 ### 创建本地和远端视频画面
 
-  - 本地视频渲染
+- 本地视频渲染
 
 本地视频渲染通过调用 startCameraVideo 接口获得本地视频对象用于 UI 界面显示，**该接口会打开摄像头**
 
-
-
-```csharp 
+```csharp
 /// <summary>
 /// 获取预览视频对象，通过此对象能获得视图用于UI显示
 /// </summary>
@@ -197,8 +137,6 @@ mediaDevice.rotate(JCMediaDeviceVideoCanvasRoatate.Angle0);
 /// <returns>JCMediaDeviceVideoCanvas对象</returns>
 public JCMediaDeviceVideoCanvas startCameraVideo(JCMediaDeviceRenderMode mode)
 ```
-
-
 
 其中，渲染模式（JCMediaDeviceRenderMode)有以下三种
 
@@ -229,13 +167,11 @@ public JCMediaDeviceVideoCanvas startCameraVideo(JCMediaDeviceRenderMode mode)
 </tbody>
 </table>
 
-  - 远端视频渲染
+- 远端视频渲染
 
 您可以调用 startVideo 方法获取对端视频对象并进行渲染
 
-
-
-```csharp 
+```csharp
 /// <summary>
 /// 获得视频对象，通过此对象能获得视图用于UI显示
 /// </summary>
@@ -245,13 +181,9 @@ public JCMediaDeviceVideoCanvas startCameraVideo(JCMediaDeviceRenderMode mode)
 public JCMediaDeviceVideoCanvas startVideo(string videoSource, JCMediaDeviceRenderMode mode)
 ```
 
-
-
 **示例代码**
 
-
-
-```csharp 
+```csharp
 // 获取摄像头列表
 List<JCMediaDeviceCamera> cameraDevices = mediaDevice.cameras;
 
@@ -268,23 +200,13 @@ image.Stretch = Stretch.Uniform;
 this.label.Background = image;
 ```
 
-
-
 -----
-
-
-
-
-
-
 
 ### 销毁本地和远端视频画面
 
 在视频通话结束或者视频通话中，如果想销毁视频画面，可以调用下面的接口
 
-
-
-```csharp 
+```csharp
 /// <summary>
 /// 停止视频
 /// </summary>
@@ -292,13 +214,9 @@ this.label.Background = image;
 public void stopVideo(JCMediaDeviceVideoCanvas canvas)
 ```
 
-
-
 示例代码:
 
-
-
-```csharp 
+```csharp
 JCMediaDeviceVideoCanvas localCanvas = mediaDevice.startCameraVideo(JCMediaDeviceRenderMode.FULLCONTENT);
 JCMediaDeviceVideoCanvas remoteCanvas = mediaDevice.startVideo(renderId, JCMediaDeviceRenderMode.FULLSCREEN);
 if (localCanvas != null)
@@ -315,19 +233,11 @@ if (remoteCanvas != null)
     }
 ```
 
-
-
-
-
 -----
-
-
 
 ### 视频通话截图
 
-
-
-```csharp 
+```csharp
 /// <summary>
 /// 视频通话截图
 /// </summary>
@@ -338,21 +248,13 @@ if (remoteCanvas != null)
 public bool snapshot(int width, int height, string filePath)
 ```
 
-
-
-
-
 -----
-
-
 
 ### 更新视频渲染标识
 
 如果想替换当前摄像头视频画面，可以调用下面的接口
 
-
-
-```csharp 
+```csharp
 /// <summary>
 /// 更新视频渲染标识
 /// </summary>
@@ -361,19 +263,11 @@ public bool snapshot(int width, int height, string filePath)
 public bool replace(string videoSource)
 ```
 
-
-
-
-
-
-
 ### 暂停渲染
 
 如果想暂停画面的渲染可以调用如下接口
 
-
-
-```csharp 
+```csharp
 /// <summary>
 /// 暂停渲染
 /// </summary>
@@ -381,19 +275,11 @@ public bool replace(string videoSource)
 public bool pause()
 ```
 
-
-
-
-
-
-
 ### 恢复渲染
 
 如果想对已暂停的画面继续进行渲染，可以调用下面的接口
 
-
-
-```csharp 
+```csharp
 /// <summary>
 /// 恢复渲染
 /// </summary>
@@ -401,27 +287,15 @@ public bool pause()
 public bool resume()
 ```
 
-
-
 -----
-
-
-
-
-
-
 
 ## 视频设备管理
 
 视频设备管理主要用到 JCMediaDevice 类中的方法，具体如下：
 
-
-
 ### 获取当前使用摄像头和默认摄像头
 
-
-
-```csharp 
+```csharp
 /// <summary>
 /// 当前使用摄像头
 /// </summary>
@@ -433,17 +307,9 @@ public JCMediaDeviceCamera camera
 public JCMediaDeviceCamera defaultCamera
 ```
 
-
-
-
-
-
-
 ### 开启关闭摄像头
 
-
-
-```csharp 
+```csharp
 /// <summary>
 /// 开启摄像头
 /// </summary>
@@ -457,17 +323,9 @@ public bool startCamera()
 public bool stopCamera()
 ```
 
-
-
-
-
-
-
 ### 切换摄像头
 
-
-
-```csharp 
+```csharp
 /// <summary>
 /// 切换摄像头
 /// </summary>
@@ -476,13 +334,9 @@ public bool stopCamera()
 public bool switchCamera(JCMediaDeviceCamera camera)
 ```
 
-
-
 **示例代码**
 
-
-
-```csharp 
+```csharp
 // 打开摄像头
 mediaDevice.startCamera();
 
@@ -492,21 +346,3 @@ mediaDevice.stopCamera();
 // 切换摄像头
 mediaDevice.switchCamera(mediaDevice.cameras[0]);
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

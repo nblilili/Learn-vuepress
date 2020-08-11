@@ -3,41 +3,27 @@ title: 通话管理
 ---
 # 通话管理
 
-
-
 ## 通话人数设置
 
 发起通话前可以通过 maxCallNum 属性设置通话的最大人数，默认为 1。如果是视频通话，最大人数只能是 1，如果是语音通话，最大人数为
 2。
 
-
-
 ```objectivec
 call.maxCallNum = 1;
 ```
 
-
-
 当通话超过最大人数时：
 
-  - 呼出会失败，原因为 JCCallReasonCallOverLimit（超过通话数限制）。
+- 呼出会失败，原因为 JCCallReasonCallOverLimit（超过通话数限制）。
 
-  - 收到来电会自动拒绝，原因为 JCCallReasonBusy（忙）。
-
-
-
-
+- 收到来电会自动拒绝，原因为 JCCallReasonBusy（忙）。
 
 ## 通话过程控制
-
-
 
 ### 通话静音
 
 通过下面的方法开启或关闭静音，开启关闭静音需要根据 JCCallItem
 中的静音状态（[mute](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCCallItem.html#//api/name/mute:)）来决定，静音开启后，对方将听不到您的声音。
-
-
 
 ```objectivec
 /**
@@ -48,14 +34,6 @@ call.maxCallNum = 1;
 -(bool)mute:(JCCallItem* __nonnull)item;
 ```
 
-
-
-
-
-
-
-
-
 ### 通话录音
 
 可以在通话中进行录音，开启或关闭录音需要根据当前的录音状态（audioRecord）来决定。如果正在录制或者通话被挂起或者挂起的情况下，不能进行音频录制。录音状态可通过
@@ -63,8 +41,6 @@ call.maxCallNum = 1;
 对象获取。
 
 开启或关闭录音接口如下：
-
-
 
 ```objectivec
 /**
@@ -78,11 +54,7 @@ call.maxCallNum = 1;
 -(bool)audioRecord:(JCCallItem* __nonnull)item enable:(bool)enable filePath:(NSString* __nullable)filePath;
 ```
 
-
-
 示例代码
-
-
 
 ```objectivec
 // 语音录制
@@ -105,11 +77,7 @@ call.maxCallNum = 1;
 }
 ```
 
-
-
 开启或关闭录音时，录音状态会发生改变，并通过 onCallItemUpdate 回调上报。
-
-
 
 ```objectivec
 /**
@@ -120,21 +88,13 @@ call.maxCallNum = 1;
 -(void)onCallItemUpdate:(JCCallItem* __nonnull)item changeParam:(JCCallChangeParam * __nullable)changeParam;
 ```
 
-
-
-
-
 -----
-
-
 
 ### 开启/关闭呼叫保持
 
 调用下面的方法对通话对象进行呼叫保持或解除呼叫保持（当通话对象处于被保持状态（即状态为held）时不可以进行此操作），开启或关闭呼叫保持需要根据
 JCCallItem
 对象中（[hold](http://developer.juphoon.com/portal/reference/ios/Classes/JCCallItem.html#//api/name/hold)）的呼叫保持状态来决定。
-
-
 
 ```objectivec
 /**
@@ -145,17 +105,9 @@ JCCallItem
 -(bool)hold:(JCCallItem* __nonnull)item;
 ```
 
-
-
-
-
-
-
 ### 切换活跃通话
 
 调用下面的方法对通话中被保持的对象和活跃的通话对象进行切换。
-
-
 
 ```objectivec
 /**
@@ -166,19 +118,11 @@ JCCallItem
 -(bool)becomeActive:(JCCallItem* __nonnull)item;
 ```
 
-
-
-
-
 -----
-
-
 
 ### 通话中发送消息
 
 调用下面的接口在通话中实现发消息的功能。
-
-
 
 ```objectivec
 /**
@@ -191,11 +135,7 @@ JCCallItem
 -(bool)sendMessage:(JCCallItem * __nonnull)item type:(NSString * __nonnull)type content:(NSString * __nonnull)content;
 ```
 
-
-
 当通话中收到消息时，会收到 onMessageReceive 回调。
-
-
 
 ```objectivec
 /**
@@ -207,29 +147,17 @@ JCCallItem
 -(void)onMessageReceive:(JCCallItem * __nonnull)item type:(NSString * __nonnull)type content:(NSString * __nonnull)content;
 ```
 
-
-
 示例代码
-
-
 
 ```objectivec
 [call sendMessage:item type:@"text" content:@"消息内容"];
 ```
 
-
-
-
-
 -----
-
-
 
 ### 相关回调
 
 通话过程中，如果通话状态发生了改变，如开启关闭静音、开启关闭通话保持、活跃状态切换、网络变化等，将会收到通话状态更新的回调。
-
-
 
 ```objectivec
 /**
@@ -240,13 +168,9 @@ JCCallItem
 -(void)onCallItemUpdate:(JCCallItem* __nonnull)item changeParam:(JCCallChangeParam * __nullable)changeParam;
 ```
 
-
-
 关于 JCCallChangeParam 的说明请参考 JCCallItem.h 文件。
 
 ::: tip
-
-
 
 静音状态、通话保持状态、活跃状态可通过
 [JCCallItem](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCCallItem.html)
@@ -255,8 +179,6 @@ JCCallItem
 :::
 
 示例代码
-
-
 
 ```objectivec
 -(void)onCallItemUpdate:(JCCallItem* __nonnull)item changeParam:(JCCallChangeParam * __nullable)changeParam {
@@ -276,22 +198,4 @@ JCCallItem
 }
 ```
 
-
-
 -----
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

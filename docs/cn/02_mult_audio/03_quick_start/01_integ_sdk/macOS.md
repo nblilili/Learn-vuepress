@@ -5,35 +5,25 @@ title: 一分钟集成 SDK
 
 本章将介绍如何将 SDK 集成到您自己创建的项目中。
 
-
-
 ## 前提条件
 
-  - Microsoft Visual Studio 2013 或以上版本
+- Microsoft Visual Studio 2013 或以上版本
 
-  - 支持 Windows 7 或以上版本的 Windows 设备
+- 支持 Windows 7 或以上版本的 Windows 设备
 
-  - 有效的菊风开发者账号（[免费注册](http:///developer.juphoon.com/signup) ）
+- 有效的菊风开发者账号（[免费注册](http:///developer.juphoon.com/signup) ）
 
-  - 有效的菊风 [AppKey](https://developer.juphoon.com/cn/document/V2.1/create-application.php)
-
-
-
-
+- 有效的菊风 [AppKey](https://developer.juphoon.com/cn/document/V2.1/create-application.php)
 
 ## 创建 Windows 项目
 
 参考以下步骤创建一个 Windows 项目。若已有 Windows 项目，可以直接查看集成 SDK。
 
-  - 打开 **Microsoft Visual Studio** 并点击新建项目。
+- 打开 **Microsoft Visual Studio** 并点击新建项目。
 
-  - 进入 **新建项目** 窗口，选择项目类型为 **MFC 应用程序**，输入项目名称，选择项目存储路径，并点击 **确认**。
+- 进入 **新建项目** 窗口，选择项目类型为 **MFC 应用程序**，输入项目名称，选择项目存储路径，并点击 **确认**。
 
-  - 进入 **MFC 应用程序** 窗口，选择应用程序类型为 **基于对话框**，并点击完成。
-
-
-
-
+- 进入 **MFC 应用程序** 窗口，选择应用程序类型为 **基于对话框**，并点击完成。
 
 ## 集成 SDK
 
@@ -55,22 +45,6 @@ title: 一分钟集成 SDK
 
 ::: tip
 
-
-
 SDK 路径为相对路径，开发者需要根据 SDK 实际存放的路径进行调整。
 
 :::
-
-
-
-
-
-
-
-
-
-
-
-
-
-

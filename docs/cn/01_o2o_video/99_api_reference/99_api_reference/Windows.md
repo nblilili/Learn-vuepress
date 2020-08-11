@@ -3,8 +3,6 @@ title: Windows
 ---
 # Windows
 
-
-
 ## 登录类
 
 [JCClient（登录类）](http://developer.juphoon.com/portal/reference/V2.1/windows/html/a01b672a-1c8a-18a7-b550-727bbcad2f52.htm)
@@ -14,10 +12,6 @@ title: Windows
 [JCClientState（登录状态）](http://developer.juphoon.com/portal/reference/V2.1/windows/html/c2d749fb-1adc-2709-77a2-c968185ca303.htm)
 
 [JCClientReason（原因枚举）](http://developer.juphoon.com/portal/reference/V2.1/windows/html/9d6e6243-1b3f-55a6-7d0a-3158812dfc6f.htm)
-
-
-
-
 
 ## 多方视频通话类
 
@@ -56,10 +50,6 @@ title: Windows
 [JCMediaChannelConstants
 （配置关键字）](http://developer.juphoon.com/portal/reference/V2.1/windows/html/4ac01302-00da-b4a9-2ca8-4799b81e8863.htm)
 
-
-
-
-
 ## 媒体设备类
 
 [JCMediaDevice（设备模块）](http://developer.juphoon.com/portal/reference/V2.1/windows/html/034d5af6-ec04-5148-7ec5-04e27e93e8c2.htm)
@@ -83,17 +73,3 @@ title: Windows
 [JCMediaDeviceInput（输入设备类）](http://developer.juphoon.com/portal/reference/V2.1/windows/html/542401cb-34eb-6f34-607c-cff5a291f329.htm)
 
 [JCMediaDeviceOutput（输出设备类）](http://developer.juphoon.com/portal/reference/V2.1/windows/html/65f0091d-e96e-e7bb-2df2-4648256e97e3.htm)
-
-
-
-
-
-
-
-
-
-
-
-
-
-

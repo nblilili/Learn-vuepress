@@ -50,9 +50,8 @@ export default {
     };
   },
   watch: {
-    $route() {
-      console.log(123);
-      // console.log(this.innerWidth)
+    $route(newValue,oldValue) {
+      console.log(newValue)
       if (window.innerWidth < 800) {
         this.$emit("MenuHide");
       }

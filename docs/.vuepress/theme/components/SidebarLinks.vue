@@ -56,6 +56,7 @@ export default {
     },
 
     toggleGroup(index) {
+      console.log(123123123)
       this.openGroupIndex = index === this.openGroupIndex ? -1 : index;
     },
 

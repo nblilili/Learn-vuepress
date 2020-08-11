@@ -3,38 +3,32 @@ title: 音频管理
 ---
 # 音频管理
 
-
-
 ## 音频数据管理
-
-
 
 ### 原始音频数据
 
 在音频传输过程中，可以对采集的音频数据进行处理，以获取不同的播放效果。有两个时机可以进行处理。
 
-1.  在音频采集之后，编码之前进行处理；
+1. 在音频采集之后，编码之前进行处理；
 
-2.  在传输完成，解码后播放前进行处理。
+2. 在传输完成，解码后播放前进行处理。
 
 具体如下：
 
-  - 音频采集之后，编码之前的处理
+- 音频采集之后，编码之前的处理
 
 参考如下步骤，在你的项目中实现原始音频数据功能：
 
-1.  发起业务前通过 ZmfAudio.inputAddCallback 注册音频采集回调，并在该函数中实现一个
+1. 发起业务前通过 ZmfAudio.inputAddCallback 注册音频采集回调，并在该函数中实现一个
     ZmfAudio.InputCallback 类型的回调函数
 
-2.  成功注册后，JC SDK 会在捕捉到音频数据时通过回调函数回调采集到的原始音频数据相对应参数
+2. 成功注册后，JC SDK 会在捕捉到音频数据时通过回调函数回调采集到的原始音频数据相对应参数
 
-3.  用户拿到音频数据后，根据场景需要自行在回调函数中进行参数处理，处理后数据通过该回调函数返回给JC SDK。
+3. 用户拿到音频数据后，根据场景需要自行在回调函数中进行参数处理，处理后数据通过该回调函数返回给JC SDK。
 
 首先注册音频输入回调
 
-
-
-```java 
+```java
 /**
  * add audio input data callback
  *
@@ -45,13 +39,9 @@ title: 音频管理
 ZmfAudio.inputAddCallback(ZmfAudio.InputCallback var0);
 ```
 
-
-
 回调类型说明
 
-
-
-```java 
+```java
 /** the callback to receive audio input data
  * @param[in] inputId         unique name of the audio input
  * @param[in] iSampleRateHz   the sample rate of the pcm data
@@ -68,13 +58,9 @@ public interface InputCallback
 }
 ```
 
-
-
 示例代码
 
-
-
-```java 
+```java
 public void onAudioInputFrame(String inputId, int sampleRateHz, int iChannels, ByteBuffer data, int playDelayMS, int recDelayMS, int clockDrift) {
     System.out.println("音频采集数据处理");
 }
@@ -86,15 +72,11 @@ public void call() {
 }
 ```
 
-
-
 回调注册后，当有音频数据采集进来时，可以对音频数据进行处理。
 
 如果想移除回调，调用下面的接口
 
-
-
-```java 
+```java
 /**
  * remove input audio data callback
  *
@@ -105,13 +87,9 @@ public void call() {
 ZmfAudio.inputRemoveCallback(ZmfAudio.InputCallback var0);
 ```
 
-
-
 示例代码
 
-
-
-```java 
+```java
 public void endCall() {
     //移除回调
     ZmfAudio.inputRemoveCallback(onAudioInputFrame);
@@ -121,24 +99,20 @@ public void endCall() {
 }
 ```
 
-
-
-  - 解码后播放前的处理
+- 解码后播放前的处理
 
 参考如下步骤，在你的项目中实现原始音频数据功能：
 
-1.  发起业务前通过 ZmfAudio.outputAddCallback 注册音频输出回调，并在该函数中实现一个
+1. 发起业务前通过 ZmfAudio.outputAddCallback 注册音频输出回调，并在该函数中实现一个
     ZmfAudio.OutputCallback 类型的回调函数
 
-2.  成功注册后，JC SDK 会在捕捉到音频数据时通过回调函数回调采集到的原始音频数据相对应参数
+2. 成功注册后，JC SDK 会在捕捉到音频数据时通过回调函数回调采集到的原始音频数据相对应参数
 
-3.  用户拿到音频数据后，根据场景需要自行在回调函数中进行参数处理，处理后数据通过该回调函数返回给JC SDK。
+3. 用户拿到音频数据后，根据场景需要自行在回调函数中进行参数处理，处理后数据通过该回调函数返回给JC SDK。
 
 首先注册音频输出回调
 
-
-
-```java 
+```java
 /**
  * add audio output data callback
  *
@@ -149,13 +123,9 @@ public void endCall() {
 ZmfAudio.outputAddCallback(ZmfAudio.OutputCallback var0);
 ```
 
-
-
 回调类型说明
 
-
-
-```java 
+```java
 /**
  * The callback to receive audio output data
  *
@@ -172,15 +142,11 @@ public interface OutputCallback
 }
 ```
 
-
-
 回调注册后，当有解码后的音频数据进来时，可以进行对应的音频数据处理。
 
 示例代码
 
-
-
-```java 
+```java
 public void void onAudioOutputFrame(String outputId, int sampleRateHz, int iChannels, ByteBuffer data) {
     System.out.println("音频解码后的数据处理");
 }
@@ -192,13 +158,9 @@ public void call() {
 }
 ```
 
-
-
 如果想移除回调，调用下面的接口
 
-
-
-```java 
+```java
 /**
  * remove output audio data callback
  *
@@ -209,13 +171,9 @@ public void call() {
 ZmfAudio.outputRemoveCallback(ZmfAudio.OutputCallback var0)
 ```
 
-
-
 示例代码
 
-
-
-```java 
+```java
 public void endCall() {
     //移除回调
     ZmfAudio.outputRemoveCallback(onAudioOutputFrame);
@@ -225,13 +183,7 @@ public void endCall() {
 }
 ```
 
-
-
-
-
 -----
-
-
 
 ### 自定义音频采集和渲染
 
@@ -243,7 +195,7 @@ Juphoon 对应的接口中进行后续操作。
 
 1.通过 JC SDK 提供的接口将外部设备采集/自定义的播放数据输入到 JC SDK 进行后续操作。
 
-2.  如果想停止外部设备采集/自定义的播放数据的输入，则调用 JC SDK 提供的接口停止数据输入即可。
+2. 如果想停止外部设备采集/自定义的播放数据的输入，则调用 JC SDK 提供的接口停止数据输入即可。
 
 自定义音频采集接口如下（在收到登录成功的回调后调用）：
 
@@ -251,9 +203,7 @@ Juphoon 对应的接口中进行后续操作。
 
 采集数据输入接口
 
-
-
-```java 
+```java
 /**
  * The audio input data entry to ZMF
  *
@@ -270,11 +220,7 @@ static public void onInput (String inputId, int sampleRateHz, int iChannels, Byt
                                                      int playDelayMS, int recDelayMS, int clockDrift)
 ```
 
-
-
 ::: tip
-
-
 
 此接口为将自己采集的音频数据输入到 JC SDK。
 
@@ -282,9 +228,7 @@ static public void onInput (String inputId, int sampleRateHz, int iChannels, Byt
 
 示例代码
 
-
-
-```java 
+```java
 //初始化音频设备
 android.content.Context activity;
 ZmfAudio.initialize(activity);
@@ -296,13 +240,9 @@ public void call() {
 }
 ```
 
-
-
 采集停止接口
 
-
-
-```java 
+```java
 /**
  * tell ZMF the audio input has stopped
  *
@@ -311,13 +251,9 @@ public void call() {
 static public void onInputDidStop(String inputId)
 ```
 
-
-
 示例代码
 
-
-
-```java 
+```java
 public void endCall() {
     //停止采集
     onInputDidStop("Test");
@@ -326,15 +262,11 @@ public void endCall() {
 }
 ```
 
-
-
 如果想在音频输出端使用自定义的播放数据，则调用下面的接口：
 
 播放数据输入接口
 
-
-
-```java 
+```java
 **
  * The outlet which audio output can get data from.
  *
@@ -346,11 +278,7 @@ public void endCall() {
 static public void onOutput (String outputId, int sampleRateHz, int iChannels, ByteBuffer data);
 ```
 
-
-
 ::: tip
-
-
 
 此接口为将自定义音频输出数据输入到 JC SDK。
 
@@ -358,9 +286,7 @@ static public void onOutput (String outputId, int sampleRateHz, int iChannels, B
 
 示例代码
 
-
-
-```java 
+```java
 //初始化音频设备
 android.content.Context activity;
 ZmfAudio.initialize(activity);
@@ -372,13 +298,9 @@ public void call() {
 }
 ```
 
-
-
 播放数据停止接口
 
-
-
-```java 
+```java
 /**
  * tell ZMF the audio output has stopped
  *
@@ -387,11 +309,7 @@ public void call() {
 static public void onOutputDidStop(String outputId)
 ```
 
-
-
 ::: tip
-
-
 
 在自定义音频采集场景中，开发者需要自行管理音频数据的采集。在自定义音频渲染场景中，开发者需要自行管理音频数据的播放。
 
@@ -399,9 +317,7 @@ static public void onOutputDidStop(String outputId)
 
 示例代码
 
-
-
-```java 
+```java
 public void endCall() {
     //停止播放数据，业务中或者业务结束时均可以调用
     onOutputDidStop("Test");
@@ -410,27 +326,15 @@ public void endCall() {
 }
 ```
 
-
-
 -----
-
-
-
-
-
-
 
 ## 音频设备管理
 
 音频设备管理主要用到 JCMediaDevice 类中的方法，具体如下：
 
-
-
 ### 获取音频路由类型
 
-
-
-```java 
+```java
 /**
  * 音频路由类型
  *
@@ -439,13 +343,9 @@ public void endCall() {
 public abstract int getAudioRouteType();
 ```
 
-
-
 音频输出类型（AudioRouteType）有以下几种
 
-
-
-```java 
+```java
 /** 听筒 */
 public static final int AUDIO_ROUTE_RECEIVER = 0;
 /** 扬声器 */
@@ -456,17 +356,9 @@ public static final int AUDIO_ROUTE_HEADSET = 2;
 public static final int AUDIO_ROUTE_BLUETOOTH = 3;
 ```
 
-
-
-
-
-
-
 ### 开启/关闭扬声器
 
-
-
-```java 
+```java
 /**
  * 开启/关闭扬声器
  *
@@ -475,17 +367,9 @@ public static final int AUDIO_ROUTE_BLUETOOTH = 3;
 public abstract void enableSpeaker(boolean enable);
 ```
 
-
-
-
-
-
-
 ### 开启/关闭音频设备
 
-
-
-```java 
+```java
 /**
  * 启动音频，一般正式开启通话前需要调用此接口
  *
@@ -501,13 +385,9 @@ public abstract boolean startAudio();
 public abstract boolean stopAudio();
 ```
 
-
-
 **示例代码**
 
-
-
-```java 
+```java
 // 开启扬声器
 mediaDevice.enableSpeaker(true);
 // 开启音频设备
@@ -515,21 +395,3 @@ mediaDevice.startAudio();
 // 关闭音频设备
 mediaDevice.stopAudio();
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -5,19 +5,73 @@ title: 产品概述
 
 菊风云一对一语音通话支持双人纯语音一对一单聊模式，为开发者提供极简接入、高音质、超流畅、低延时的语音通话体验效果。
 
-
-
 ## 功能与场景
 
-
-
-
+<table style="width:99%;">
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><p>功能</p></th>
+<th><p>功能描述</p></th>
+<th><p>适用场景</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p>视频加解密</p></td>
+<td><p>可对获取到的视频数据进行自定义处理，支持第三方加密算法</p></td>
+<td><p>安全通话</p></td>
+</tr>
+<tr class="even">
+<td><p>音效变声</p></td>
+<td><p>通过获取媒体引擎的原始数据，对接第三方对声音进行特效处理</p></td>
+<td><p>语音社交，聊天变声</p></td>
+</tr>
+<tr class="odd">
+<td><p>广播级音质</p></td>
+<td><p>采用自适应回声消除技术，超强噪音抑制，为用户提供广播级音质</p></td>
+<td><p>国际通话，私人语聊房</p></td>
+</tr>
+<tr class="even">
+<td><p>本地录制</p></td>
+<td><p>可获取本端或对端的音频文件</p></td>
+<td><p>全场景</p></td>
+</tr>
+</tbody>
+</table>
 
 ## 特性指标
 
-
-
-
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><p>特性</p></th>
+<th><p>指标</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p>音频质量</p></td>
+<td><p>音频采样率：16k～48k，支持单、双声道</p></td>
+</tr>
+<tr class="even">
+<td><p>音频抗丢包率</p></td>
+<td><p>上下行抗丢包率70%</p></td>
+</tr>
+<tr class="odd">
+<td><p>运维稳定</p></td>
+<td><p>全球200+节点部署，超优通信保障</p></td>
+</tr>
+</tbody>
+</table>
 
 ## 平台兼容
 
@@ -76,17 +130,3 @@ title: 产品概述
 </tr>
 </tbody>
 </table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-

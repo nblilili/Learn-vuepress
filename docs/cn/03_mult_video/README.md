@@ -5,8 +5,6 @@ title: 产品概述
 
 多方视频通话指多人参与的视频通话，参与者通过加入同一个频道进行聊天或会议。可以应用在娱乐直播、在线大班课、会议、大型语聊房等多样化场景。ARC传输机制，确保视频清晰不卡顿。
 
-
-
 ## 功能与场景
 
 <table style="width:99%;">
@@ -61,15 +59,42 @@ title: 产品概述
 </tbody>
 </table>
 
-
-
-
-
 ## 特性指标
 
-
-
-
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><p>特性</p></th>
+<th><p>指标</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p>多方视频</p></td>
+<td><p>支持16人同时视频通话</p></td>
+</tr>
+<tr class="even">
+<td><p>视频质量</p></td>
+<td><p>分辨率、帧率可自定义，最高支持1080P</p></td>
+</tr>
+<tr class="odd">
+<td><p>音频质量</p></td>
+<td><p>音频采样率：16k～48k，支持单、双声道</p></td>
+</tr>
+<tr class="even">
+<td><p>音频抗丢包率</p></td>
+<td><p>上下行抗丢包率70%</p></td>
+</tr>
+<tr class="odd">
+<td><p>运维稳定</p></td>
+<td><p>全球200+节点部署，超优通信保障</p></td>
+</tr>
+</tbody>
+</table>
 
 ## 平台兼容
 
@@ -128,17 +153,3 @@ title: 产品概述
 </tr>
 </tbody>
 </table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -3,17 +3,11 @@ title: API 参考
 ---
 # API 参考
 
-
-
 ## 登录类
 
 [JCClient（登录类）](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCClient.html)
 
 [JCClientCallback（回调代理）](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCClientCallback.html)
-
-
-
-
 
 ## 多方视频通话类
 
@@ -27,10 +21,6 @@ title: API 参考
 
 [JCMediaChannelCallback（回调代理）](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannelCallback.html)
 
-
-
-
-
 ## 媒体设备类
 
 [JCMediaDevice（设备模块）](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaDevice.html)
@@ -40,17 +30,3 @@ title: API 参考
 [JCMediaDeviceVideoCanvas（视频对象）](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaDeviceVideoCanvas.html)
 
 -----
-
-
-
-
-
-
-
-
-
-
-
-
-
-

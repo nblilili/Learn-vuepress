@@ -3,19 +3,11 @@ title: 音频管理
 ---
 # 音频管理
 
-
-
-
-
 ## 音频设备管理
-
-
 
 ### 当前音频输入输出设备
 
-
-
-```csharp 
+```csharp
 /// <summary>
 /// 当前输入设备
 /// </summary>
@@ -27,30 +19,18 @@ public JCMediaDeviceAudio audioInput
 public JCMediaDeviceAudio audioOutput
 ```
 
-
-
-
-
-
-
 ### 获取音频输入设备列表
 
-
-
-```csharp 
+```csharp
 /// <summary>
 /// 音频输入设备列表
 /// </summary>
 public List<JCMediaDeviceAudio> audioInputs
 ```
 
-
-
 其中，JCMediaDeviceAudio 有以下几个变量
 
-
-
-```csharp 
+```csharp
 /// <summary>
 /// 名称
 /// </summary>
@@ -61,30 +41,18 @@ public string audioName
 public string audioId
 ```
 
-
-
-
-
-
-
 ### 获取音频输出设备列表
 
-
-
-```csharp 
+```csharp
 /// <summary>
 /// 音频输出设备列表
 /// </summary>
 public List<JCMediaDeviceAudio> audioOutputs
 ```
 
-
-
 其中，JCMediaDeviceAudio 有以下几个变量
 
-
-
-```csharp 
+```csharp
 /// <summary>
 /// 名称
 /// </summary>
@@ -95,13 +63,9 @@ public string audioName
 public string audioId
 ```
 
-
-
 示例代码:
 
-
-
-```csharp 
+```csharp
 // 获取音频输入设备列表
 List<JCMediaDeviceAudio> audioInputDevices = mediaDevice.audioInputs;
 
@@ -109,17 +73,9 @@ List<JCMediaDeviceAudio> audioInputDevices = mediaDevice.audioInputs;
 List<JCMediaDeviceAudio> audioOutputDevices = mediaDevice.audioOutputs;
 ```
 
-
-
-
-
-
-
 ### 开启/关闭音频设备
 
-
-
-```csharp 
+```csharp
 /// <summary>
 /// 启动音频，一般正式开启通话前需要调用此接口
 ///</summary>
@@ -133,17 +89,9 @@ public bool startAudio()
 public bool stopAudio()
 ```
 
-
-
-
-
-
-
 ### 获取当前音频输出等级
 
-
-
-```csharp 
+```csharp
 /// <summary>
 /// 获取当前输出等级
 /// </summary>
@@ -151,13 +99,9 @@ public bool stopAudio()
 public int getSpkLevel()
 ```
 
-
-
 示例代码:
 
-
-
-```csharp 
+```csharp
 // 打开音频
 mediaDevice.startAudio();
 
@@ -167,21 +111,3 @@ mediaDevice.stopAudio();
 // 获取当前输出等级
 int level = mediaDevice.getSpkLevel();
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

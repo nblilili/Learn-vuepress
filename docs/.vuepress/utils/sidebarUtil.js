@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
-var translatorUtil = require('../map/translatorMap.js');
-var platformUtil = require('../map/platformMap.js');
+var translatorMap = require('../map/translatorMap.js');
+var platformSet = require('../map/platformSet.js');
 var folderFilterSet = require('../map/folderFilterSet.js');
 
 var sidebar = new Object();
@@ -43,6 +43,8 @@ function divideProducts(filePath){
             if (stats.isDirectory() && fileDir!=filePath){
               // 展示所有的文件
               fileDisplay(fileDir, sidebar);
+            }else{
+              //is file do nothing
             }
           }
         })
@@ -88,7 +90,7 @@ function makeDirObj(objTitle, children, collapsible){
 function translateGroupTitle(objTitle){
   var cnTitle = "no matched name"
   // 对 title 进行判断
-  translatorUtil.has(objTitle)? cnTitle = translatorUtil.get(objTitle) : cnTitle = objTitle;
+  translatorMap.has(objTitle)? cnTitle = translatorMap.get(objTitle) : cnTitle = objTitle;
   
   return cnTitle
 }
@@ -99,44 +101,31 @@ function translateGroupTitle(objTitle){
  * @param {子数组} childArr 
  */
 function getChildren(filePath, childArr){
-  fs.readdir(filePath,function(err,files){
-    if(err){
-      console.warn(err)
+  // 这里使用同步方法，防止顺序出错
+  var files = fs.readdirSync(filePath);
+  files.forEach( (filename) => {
+    //获取当前文件的绝对路径
+    var fileDir = path.join(filePath, filename);
+    //根据文件路径获取文件信息，返回一个fs.Stats对象
+    var stats = fs.statSync(fileDir);
+    if(stats.isFile()){
+      // console.log("fileDir: "+ fileDir);
+      var relativePath = path.relative(basePath, fileDir).split(path.sep).join('/');
+      if(!platformSet.has(filename)){
+        filename == 'README.md' ? childArr.splice(0,0,''):childArr.push(relativePath);
+      }else {
+        // console.log("fileDir: " + fileDir + " and do nothing");
+      }
     }else{
-      files.forEach( (filename) => {
-        //获取当前文件的绝对路径
-        var fileDir = path.join(filePath, filename);
-        //根据文件路径获取文件信息，返回一个fs.Stats对象
-        fs.stat(fileDir,function(eror,stats){
-          if(eror){
-              console.warn('获取文件stats失败');
-          }else{
-            if(stats.isFile()){
-              // console.log("fileDir: "+ fileDir);
-              var relativePath = path.relative(basePath, fileDir).split(path.sep).join('/');
-              // // console.log(childArr);
-              // // console.log(sidebar);
-              // console.log("----------------");
-              // console.log(JSON.stringify(sidebar,null,4));
-              if(!platformUtil.has(filename)){
-                filename == 'README.md' ? childArr.splice(0,0,''):childArr.push(relativePath);
-              }else {
-                // console.log("fileDir: " + fileDir + " and do nothing");
-              }
-            }else{
-              // folder
-              if(folderFilterSet.has(filename)){
-                // console.log("floderDir: "+ fileDir);
-                getChildren(fileDir, childArr);
-              }else{
-                var subChildArr = new Array();
-                childArr.push(makeDirObj(filename, subChildArr, true));
-                getChildren(fileDir, subChildArr);
-              }
-            }
-          }
-        })
-      })      
+      // folder
+      if(folderFilterSet.has(filename)){
+        // console.log("floderDir: "+ fileDir);
+        getChildren(fileDir, childArr);
+      }else{
+        var subChildArr = new Array();
+        childArr.push(makeDirObj(filename, subChildArr, true));
+        getChildren(fileDir, subChildArr);
+      }
     }
-  })
+  })   
 }
