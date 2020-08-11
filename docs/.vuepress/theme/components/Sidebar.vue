@@ -6,7 +6,7 @@
 
       <div id="left-top" class="left-top">
         <div class="left-top-title_1" @click="showmenu?showmenu=false:showmenu=true">
-          <span class="title_name">菊风云平台</span>
+          <span class="title_name">{{MenuName}}</span>
           <i class="iconfont" :class="showmenu?'icon-shangla':'icon-xiala'"></i>
         </div>
         <div class="left-top-menu" v-show="showmenu">
@@ -45,6 +45,7 @@ export default {
   props: ["items", "scollpage", "isMenuShow"],
   data() {
     return {
+      MenuName:'',
       showmenu: false,
       menulist: MenuList,
     };
@@ -66,7 +67,11 @@ export default {
     if(window.innerWidth < 800){
       this.$emit("MenuHide");
     }
-    console.log(this.$themeConfig);
+    console.log(JSON.parse(JSON.stringify(MenuList)))
+
+
+    let menulist = JSON.parse(JSON.stringify(MenuList))
+    this.setMenuList(menulist)
     window.addEventListener("resize", this.getWidth);
     this.getWidth();
     this.$EventBus.$on("changeMenu", (res) => {
@@ -78,6 +83,13 @@ export default {
     });
   },
   methods: {
+    setMenuList(menulist){
+      menulist[1].children.forEach(item => {
+        if(item.url.indexOf(this.$route.path)> -1){
+          this.MenuName = item.title
+        }
+      });
+    },
     MenuHide() {
       this.$emit("MenuHide");
     },

@@ -7,15 +7,18 @@
           <a class="navbar-brand" href="/">
             <img src="../assets/image/juphoon cloud developer@2x.png" />
           </a>
-          <div class="nav">
+          <div class="nav" :class="showNav?'active':''">
             <div class="nav-item" v-for="(item,index) in site" :key="item.text">
               <a class="header-line this_line" :href="item.link" v-if="!item.items">{{item.text}}</a>
-              <div v-if="item.items">
+              <div v-if="item.items" @click="changshowitem(item,index)">
                 <a class="header-line this_line" :href="item.link" v-if="item.items">
                   {{item.text}}
-                  <i class="arrow fa fa-angle-down"></i>
+                  <i class="arrow iconfont" :class="item.showitem?'icon-shangla':'icon-xiala'"></i>
                 </a>
-                <div class="nav-child navChild dev">
+                <div
+                  class="nav-child navChild dev"
+                  :style="{'display':item.showitem?'block':'none'}"
+                >
                   <table>
                     <tr v-for="(items,index) in item.items" :key="items.text">
                       <td>
@@ -29,7 +32,7 @@
               </div>
             </div>
             <div
-              class="links"
+              class="nav-item links"
               style="margin: 0 20px;
               font-size: 16px;
               text-align: center;
@@ -41,25 +44,8 @@
                 v-else-if="$site.themeConfig.search !== false && $page.frontmatter.search !== false"
               />
             </div>
-            <div class="nav-item">
+            <div class="nav-item olddoc">
               <a class="header-line this_line" href="/olddoc">切换到老文档中心</a>
-              <!-- <div>
-                <a class="header-line this_line">
-                  切换到老文档中心
-                  <i class="arrow fa fa-angle-down"></i>
-                </a>
-                <div class="nav-child navChild dev">
-                  <table>
-                    <tr v-for="(item2,index) in switchList" :key="item2.text">
-                      <td>
-                        <a :href="item2.link" target="_blank">
-                          <div class="nav-tit">{{item2.text}}</div>
-                        </a>
-                      </td>
-                    </tr>
-                  </table>
-                </div>
-              </div>-->
             </div>
             <div class="nav-btn" v-if="!user_type">
               <div class="nlogin">
@@ -92,7 +78,11 @@
             </div>
           </div>
           <div class="headerIcon">
-            <i class="iconfont icon-home_shousuo_h_icon"></i>
+            <i
+              class="iconfont"
+              :class="showNav?'icon-quxiao':'icon-home_shousuo_h_icon'"
+              @click="$EventBus.$emit('changeNav')"
+            ></i>
           </div>
         </nav>
       </div>
@@ -123,8 +113,7 @@ export default {
           link: "/2.0",
         },
       ],
-
-      // linksWrapMaxWidth:null
+      showNav: false,
     };
   },
   computed: {
@@ -139,25 +128,12 @@ export default {
     },
   },
   mounted() {
-    // const MOBILE_DESKTOP_BREAKPOINT = 719; // refer to config.styl
-    // const NAVBAR_VERTICAL_PADDING =
-    //   parseInt(css(this.$el, "paddingLeft")) +
-    //   parseInt(css(this.$el, "paddingRight"));
-    // const handleLinksWrapWidth = () => {
-    //   if (document.documentElement.clientWidth < MOBILE_DESKTOP_BREAKPOINT) {
-    //     this.linksWrapMaxWidth = null;
-    //   } else {
-    //     this.linksWrapMaxWidth =
-    //       this.$el.offsetWidth -
-    //       NAVBAR_VERTICAL_PADDING -
-    //       ((this.$refs.siteName && this.$refs.siteName.offsetWidth) || 0);
-    //   }
-    // };
-    // handleLinksWrapWidth();
-    // window.addEventListener("resize", handleLinksWrapWidth, false);
-
-    console.log(this.$themeLocaleConfig.algolia);
-    console.log(this.$site.themeConfig.algolia);
+    this.$EventBus.$on("changeNav", () => {
+      console.log();
+      this.showNav = !this.showNav;
+    });
+    // console.log(this.$themeLocaleConfig.algolia);
+    // console.log(this.$site.themeConfig.algolia);
     let that = this;
     this.site = this.$site.themeConfig.nav;
     var user_type = localStorage.getItem("user_type");
@@ -181,6 +157,10 @@ export default {
     }
   },
   methods: {
+    changshowitem(item, index) {
+      item.showitem = !item.showitem;
+      this.site = JSON.parse(JSON.stringify(this.site));
+    },
     log_out() {
       var url = "/portal/cn/message/?a=ajax_login_out";
       let user_type = localStorage.getItem("user_type");
@@ -219,6 +199,16 @@ export default {
 @import url('../styles/header_footer.styl');
 // @import url('../assets/css/font/iconfont.css');
 @import url('//at.alicdn.com/t/font_1986404_8fs7crvc73y.css');
+
+@media (max-width: 1600px) {
+  .nav-item.links, .nav-item.olddoc {
+    display: none !important;
+  }
+}
+
+.nav.active {
+  display: block;
+}
 
 .search-box input {
   cursor: text;
