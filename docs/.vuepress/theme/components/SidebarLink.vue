@@ -29,7 +29,6 @@ export default {
     }
     if (check_path_0($route.path) == check_path_0(item.path)) {
       if (check_path(item.path) == "Android.html") {
-        console.log(TagsConfig)
         let array = ["iOS", "Android", "C++", "macOS", "Windows"];
         array.forEach((e) => {
           if (check_path($route.path) == e + ".html") {

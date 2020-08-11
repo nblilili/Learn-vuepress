@@ -11,17 +11,15 @@
           </span>
         </section>-->
         <!-- <div>{{title}}</div>  -->
-        <span class="layui-breadcrumb" style="padding: 30px 0 15px 30px;">
-          <a v-for="(item,i) in title" :key="item" href="javascript:;">
-            {{item}}
-            <i v-if="i!=title.length-1" class="iconfont icon-jiantou" />
-          </a>
-          <!-- <a href="javascript:;">菊风云平台</a>
-          <i class="iconfont icon-jiantou" />
-          <a href="javascript:;">下载</a>
-          <i class="iconfont icon-jiantou" />
-          <a href="javascript:;">SDK 下载</a>-->
-        </span>
+        <div style="padding-top:30px ">
+          <i class="left-menu-btn" @click="clickmenu()"></i>
+          <span class="layui-breadcrumb">
+            <a v-for="(item,i) in title" :key="item" href="javascript:;">
+              {{item}}
+              <span v-if="i!=title.length-1" lay-separator>&gt;</span>
+            </a>
+          </span>
+        </div>
         <!-- <span class="layui-breadcrumb" style="padding: 30px 0 15px 30px;">
           <a href="javascript:;">菊风云平台</a>
           <i class="iconfont icon-jiantou" />
@@ -102,20 +100,28 @@ export default {
     );
   },
   methods: {
+    clickmenu() {
+      // this.$emit("clickmenu");
+      this.$EventBus.$emit("changeMenu", true);
+    },
     checkpath() {
       let that = this;
       let sidebarItems = this.sidebarItems;
       let path = this.$route.path;
-      // console.log(sidebarItems, path);
+      console.log(sidebarItems, path);
       var targetPath = path;
       function findPath(array, path = []) {
         for (const data of array) {
           path.push(data.title);
-          if (data.path) {
-            if (check_path_0(data.path) == check_path_0(that.$route.path)) {
-              return path;
+          if (!data.children) {
+            if (data.path) {
+              if (data.path == that.$route.path) return path;
+              if (check_path_0(data.path) == check_path_0(that.$route.path)) {
+                if (data.path == that.$route.path) return path;
+                if (check_path(data.path) == "Android.html") return path;
+              }
             }
-          }
+          } else if (data.path && data.path == that.$route.path) return path;
           if (data.children) {
             const findChildren = findPath(data.children, path);
             if (findChildren.length) return findChildren;
@@ -150,15 +156,14 @@ export default {
     },
     handleScrollx() {
       let that = this;
-      // console.log("滚动高度", window.pageYOffset);
-      // console.log(that.$refs.pronbit.getBoundingClientRect().top);
-      if (that.$refs.pronbit.getBoundingClientRect().top > -1) {
-        that.addclass = "";
-      } else {
-        that.addclass = "fixed";
+      if (window.innerWidth > 800) {
+        if (that.$refs.pronbit.getBoundingClientRect().top > -1) {
+          that.addclass = "";
+        } else {
+          that.addclass = "fixed";
+        }
+        that.$emit("addclass", that.addclass);
       }
-      // console.log("addclass", that.addclass);
-      that.$emit("addclass", that.addclass);
     },
     throttle(fn, delay, atleast) {
       /**函数节流方法
@@ -241,6 +246,15 @@ function check_path(data) {
 }
 
 @media screen and (max-width: 800px) {
+  .page {
+    background: #fff;
+  }
+
+  .big-box {
+    margin: 60px 10px 0px 10px;
+    background: #fff;
+  }
+
   .page-left {
     margin: 0;
     padding: 0;
@@ -249,6 +263,7 @@ function check_path(data) {
   }
 
   .page-right {
+    display: none;
     margin-top: 56px;
     float: right;
     width: 0px;

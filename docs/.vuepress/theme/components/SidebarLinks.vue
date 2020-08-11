@@ -49,9 +49,7 @@ export default {
 
   methods: {
     refreshIndex() {
-      console.log(this.$route, this.items);
       const index = resolveOpenGroupIndex(this.$route, this.items);
-      console.log(index);
       if (index > -1) {
         this.openGroupIndex = index;
       }
@@ -71,7 +69,6 @@ function resolveOpenGroupIndex(route, items) {
   for (let i = 0; i < items.length; i++) {
     const item = items[i];
     if (descendantIsActive(route, item)) {
-      console.log(i);
       return i;
     }
   }

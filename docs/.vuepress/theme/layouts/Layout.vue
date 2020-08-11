@@ -12,13 +12,16 @@
     <div class="all">
       <!-- 左侧 -->
       <Sidebar
+        :isMenuShow="isMenuShow"
         :items="sidebarItems"
         @toggle-sidebar="toggleSidebar"
+        @MenuHide="MenuHide"
+        @MenuShow="MenuShow"
         v-if="!$page.frontmatter.home"
         :scollpage="scollpage"
       >
         <template #top>
-          <slot name="sidebar-top" />                             
+          <slot name="sidebar-top" />
         </template>
         <template #bottom>
           <slot name="sidebar-bottom" />
@@ -33,6 +36,7 @@
         :sidebar-items="sidebarItems"
         :toggleSidebar="toggleSidebar"
         @addclass="addclass"
+        @clickmenu="clickmenu"
       >
         <template #top>
           <slot name="page-top" />
@@ -52,7 +56,7 @@ import Navbar from "@theme/components/Navbar.vue";
 import Page from "@theme/components/Page.vue";
 import Sidebar from "@theme/components/Sidebar.vue";
 // import Tags from "@theme/components/Tags.vue";
-
+import { mapState } from "vuex";
 import { resolveSidebarItems } from "../util";
 
 export default {
@@ -70,7 +74,8 @@ export default {
     return {
       isSidebarOpen: false,
       scollpage: "", // 用于判断滚动
-      tags: false
+      tags: false,
+      isMenuShow: true,
     };
   },
   created() {
@@ -116,11 +121,11 @@ export default {
         {
           "no-navbar": !this.shouldShowNavbar,
           "sidebar-open": this.isSidebarOpen,
-          "no-sidebar": !this.shouldShowSidebar
+          "no-sidebar": !this.shouldShowSidebar,
         },
-        userPageClass
+        userPageClass,
       ];
-    }
+    },
   },
 
   mounted() {
@@ -130,10 +135,23 @@ export default {
   },
 
   methods: {
+    clickmenu() {
+      console.log(123123);
+      console.log(this.$store.state)
+      console.log("mapState",mapState)
+      this.isMenuShow = true;
+    },
+    MenuShow(){
+      this.isMenuShow = true;
+    },
+    MenuHide() {
+      this.isMenuShow = false;
+    },
+    
     checkTags() {
       let path = this.$route.path;
-      let tags = this.$site.themeConfig.nav.filter(v => v.tags); //判断tags
-      console.log(tags)
+      let tags = this.$site.themeConfig.nav.filter((v) => v.tags); //判断tags
+      console.log(tags);
       if (tags[0].link === path) {
         this.tags = true;
         this.$page.frontmatter.sidebar = false; //tags不需要侧标栏
@@ -166,7 +184,7 @@ export default {
     onTouchStart(e) {
       this.touchStart = {
         x: e.changedTouches[0].clientX,
-        y: e.changedTouches[0].clientY
+        y: e.changedTouches[0].clientY,
       };
     },
 
@@ -180,7 +198,7 @@ export default {
           this.toggleSidebar(false);
         }
       }
-    }
-  }
+    },
+  },
 };
 </script>

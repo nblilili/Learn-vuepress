@@ -1,14 +1,15 @@
 <template>
   <div>
-    <div id="left" class="left" :class="scollpage">
+    <div class="backgrey" :style="{'display':isMenuShow?'block':'none'}" @click="MenuHide"></div>
+    <div id="left" class="left" :class="scollpage" :style="{'display':isMenuShow?'block':'none'}">
       <!-- 头部跳转选择 -->
-      
+
       <div id="left-top" class="left-top">
         <div class="left-top-title_1" @click="showmenu?showmenu=false:showmenu=true">
           <span class="title_name">菊风云平台</span>
           <i class="iconfont" :class="showmenu?'icon-shangla':'icon-xiala'"></i>
         </div>
-        <div class="left-top-menu" v-show="showmenu" style="display:block">
+        <div class="left-top-menu" v-show="showmenu">
           <div v-for="(item,index) in menulist" :key="item.title">
             <div class="left-top-title_2">{{item.title}}</div>
             <div class="left-top-title-menu">
@@ -41,22 +42,53 @@ import MenuList from "../../config/sidebarSelect.js";
 export default {
   name: "Sidebar",
   components: { SidebarLinks, NavLinks },
-  props: ["items", "scollpage"],
-  watch: {
-    scollpage(newValue, oldValue) {
-      // console.log(newValue);
-    },
-  },
-  mounted() {
-    // console.log(MenuList);
-    // console.log((this.menulist = MenuList));
-    console.log(this.$themeConfig)
-  },
+  props: ["items", "scollpage", "isMenuShow"],
   data() {
     return {
       showmenu: false,
       menulist: MenuList,
     };
+  },
+  watch: {
+    $route() {
+      console.log(123);
+      // console.log(this.innerWidth)
+      if (window.innerWidth < 800) {
+        this.$emit("MenuHide");
+      }
+    },
+    items(newValue, oldValue) {},
+    scollpage(newValue, oldValue) {},
+  },
+  destroyed() {
+    window.removeEventListener("resize", this.getWidth);
+  },
+  mounted() {
+    if(window.innerWidth < 800){
+      this.$emit("MenuHide");
+    }
+    console.log(this.$themeConfig);
+    window.addEventListener("resize", this.getWidth);
+    this.getWidth();
+    this.$EventBus.$on("changeMenu", (res) => {
+      if(res){
+        this.$emit("MenuShow");
+      }else{
+        this.$emit("MenuHide");
+      }
+    });
+  },
+  methods: {
+    MenuHide() {
+      this.$emit("MenuHide");
+    },
+    getWidth() {
+      if (window.innerWidth > 800) {
+        this.$EventBus.$emit("changeMenu", true);
+      }else{
+        this.$EventBus.$emit("changeMenu", false);
+      }
+    },
   },
 };
 </script>
@@ -96,9 +128,9 @@ export default {
 }
 
 // .sidebar-group {
-//   li :first-child {
-//     margin: 20px 0 !important;
-//   }
+// li :first-child {
+// margin: 20px 0 !important;
+// }
 // }
 
 // li {

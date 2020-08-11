@@ -4,6 +4,7 @@ const tagsUtil = require('./utils/tagsUtil');
 const navConf = require('./config/navConf.js');
 
 module.exports = {
+  plugins: [['vuepress-plugin-code-copy', true]],
   host:"0.0.0.0",
   base:'/doc/',
   devServer:{
