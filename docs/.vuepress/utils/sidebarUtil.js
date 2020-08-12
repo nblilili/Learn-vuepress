@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 var translatorMap = require('../map/translatorMap.js');
-var platformSet = require('../map/platformSet.js');
+var platformMap = require('../map/platformMap.js');
 var folderFilterSet = require('../map/folderFilterSet.js');
 
 var sidebar = new Object();
@@ -110,9 +110,10 @@ function getChildren(filePath, childArr) {
     var stats = fs.statSync(fileDir);
     if (stats.isFile()) {
       // console.log("fileDir: "+ fileDir);
+      filename= path.basename(filename, ".md");
       var relativePath = path.relative(basePath, fileDir).split(path.sep).join('/');
-      if (!platformSet.has(filename)) {
-        filename == 'README.md' ? childArr.splice(0, 0, '') : childArr.push(relativePath);
+      if (!platformMap.has(filename)) {
+        filename == 'README' ? childArr.splice(0, 0, '') : childArr.push(relativePath);
       } else {
         // console.log("fileDir: " + fileDir + " and do nothing");
       }
