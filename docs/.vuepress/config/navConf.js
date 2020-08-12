@@ -5,7 +5,7 @@ module.exports = [
   },
   {
     text: '文档中心',
-    link: '/cn/00_o2o_audio/'
+    link: '/doc/cn/00_o2o_audio/'
   },
   {
     text: '下载',

@@ -20,13 +20,6 @@
             </a>
           </span>
         </div>
-        <!-- <span class="layui-breadcrumb" style="padding: 30px 0 15px 30px;">
-          <a href="javascript:;">菊风云平台</a>
-          <i class="iconfont icon-jiantou" />
-          <a href="javascript:;">下载</a>
-          <i class="iconfont icon-jiantou" />
-          <a href="javascript:;">SDK 下载</a>
-        </span>-->
         <div style="padding: 2.5rem 2.5rem 0px 2.5rem" v-if="needTags">
           <div class="mbtns">
             <router-link

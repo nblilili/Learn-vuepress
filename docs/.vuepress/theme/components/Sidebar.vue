@@ -32,7 +32,7 @@
       </div>
       <div class="left-line"></div>
       <div id="left-about" class="left-about" style="margin-top: 9px;padding: 18px;">
-        <div class="left-title left-title_1 abline">
+        <div class="left-title left-title_1 abline" @click="showselect=!showselect" :class="showselect?'act':''">
           相关链接
           <i class="iconfont" :class="showmenu?'icon-shangla':'icon-xiala'"></i>
           <div class="left-title-menu">
@@ -65,6 +65,7 @@ export default {
     return {
       MenuName: "",
       showmenu: false,
+      showselect:false,
       menulist: MenuList,
       friendLink: [
         {
@@ -169,23 +170,6 @@ export default {
     }
   }
 }
-
-// .sidebar-group {
-// li :first-child {
-// margin: 20px 0 !important;
-// }
-// }
-
-// li {
-// margin: 20px 0;
-// cursor: pointer;
-// position: relative;
-// font-size: 16px;
-// font-weight: 400;
-// color: #68758D;
-// line-height: 24px;
-// display: block;
-// }
 .sidebar {
   ul {
     padding: 0;

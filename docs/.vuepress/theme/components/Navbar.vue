@@ -13,7 +13,10 @@
               <div v-if="item.items" @click="changshowitem(item,index)">
                 <a class="header-line this_line" :href="item.link" v-if="item.items">
                   {{item.text}}
-                  <i class="arrow iconfont" :class="item.showitem?'icon-shangla':'icon-xiala'"></i>
+                  <i
+                    class="arrow iconfont"
+                    :class="item.showitem?'icon-shangla':'icon-xiala'"
+                  ></i>
                 </a>
                 <div
                   class="nav-child navChild dev"
@@ -199,6 +202,10 @@ export default {
 @import url('../styles/header_footer.styl');
 // @import url('../assets/css/font/iconfont.css');
 @import url('//at.alicdn.com/t/font_1986404_8fs7crvc73y.css');
+
+.nav-item.links, .nav-item.olddoc {
+  display: none !important;
+}
 
 @media (max-width: 1600px) {
   .nav-item.links, .nav-item.olddoc {
