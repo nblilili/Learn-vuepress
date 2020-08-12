@@ -91,7 +91,7 @@ JCCallItem* item = JCManager::shared()->call->getActiveCallItem();
 
 该接口的具体作用机制如下图所示：
 
-![../../../../\_images/enablevideostream.png](../../../../_images/enablevideostream.png)
+![../../../../\_images/enablevideostream.jpg](../../../../_images/enablevideostream.jpg)
 
 - 如果 A 开启发送视频流，则 A 的 item-\>getUploadVideoStreamSelf() 返回值为 true，B 则通过
     item-\>getUploadVideoStreamOther() 方法（此处返回值为 true）判断 A 的视频流发送状态。

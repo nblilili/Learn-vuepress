@@ -27,6 +27,6 @@ title: 一分钟跑通 Demo
 
 2. 设置自己的 AppKey：在下图红框标记的代码中输入自己的 AppKey
 
-    ![duokey2](../../../../_images/duokey2.png)
+![duokey2](../../../../_images/duokey2.png)
 
 3. 连接安卓真机，编译运行 Demo 。
