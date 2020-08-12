@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const platformSet = require('../map/platformSet');
+const platformMap = require('../map/platformMap');
 
 var tagMap = new Map();
 
@@ -32,11 +32,11 @@ function recursion(filePath, callback) {
     if (stats.isFile()) {
       // file
       // 文件名
-      var basename = path.basename(fileDir);
+      var basename = path.basename(fileDir, ".md");
       // 如果在平台中
-      if (platformSet.has(basename)) {
+      if (platformMap.has(basename)) {
         // console.log("basename: "+ basename);
-        basename = path.basename(basename, ".md");
+        // basename = path.basename(basename, ".md");
         // 没有文件名的路径
         var basedir = path.dirname(fileDir, basename) + "/";
         // 去除上面路径的前缀,并调整系统路径符号,作为 map 的 key
@@ -47,6 +47,8 @@ function recursion(filePath, callback) {
           platforms = tagMap.get(relativePath);
           platforms.push(basename);
           tagMap.set(relativePath, platforms);
+          // 重新排序
+          platforms.sort((a, b) => platformMap.get(a)- platformMap.get(b));
         } else {
           platforms = new Array();
           // 先添加一个 Android
@@ -64,13 +66,4 @@ function recursion(filePath, callback) {
     //结束后返回回调
   })
   callback(null, tagMap);
-}
-
-/**
- * 
- * @param {*} x 
- * @param {*} y 
- */
-function sortTagsArray(x, y){
-  return x.weight - weight.weight;
 }
