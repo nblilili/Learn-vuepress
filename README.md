@@ -26,7 +26,7 @@
 
   ![](https://nblilili-1300722586.cos.ap-shanghai.myqcloud.com/pics/20200810113123.png)
 
-- [x] 将 Android 平台放至最前面
+- [x] 将 iSO 平台放至最前面
 
   ![](https://nblilili-1300722586.cos.ap-shanghai.myqcloud.com/pics/20200810113358.png)
 
@@ -39,3 +39,13 @@
   ![](https://nblilili-1300722586.cos.ap-shanghai.myqcloud.com/pics/20200810133457.png)
 
 - 粘合布局需要修改
+
+- 代码块颜色高亮自定义
+
+- 版本切换
+
+- 粘合布局修改
+
+- 自定义tips
+
+- 生成的文件命名规则导致没有下一页了

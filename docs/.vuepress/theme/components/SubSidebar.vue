@@ -105,6 +105,9 @@ export default {
 
     &.level-3 {
       padding-left: 1.5rem;
+      font-weight: 400;
+      font-size: 14px;
+      opacity: 0.5;
     }
   }
 }

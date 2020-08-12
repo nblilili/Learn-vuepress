@@ -96,6 +96,11 @@ a
   font-weight 500
   color $accentColor
   text-decoration none
+p 
+  margin: 10px 0px
+
+.odd p 
+  margin: 0px
 
 p a code
   font-weight 400
@@ -127,11 +132,11 @@ strong
 h1, h2, h3, h4, h5, h6
   font-weight 600
   line-height 1.25
+  
 
   {$contentClass}:not(.custom) > &
-    margin-top (0.5rem - $navbarHeight)
-    // padding-top ($navbarHeight - 1rem)
-    padding-top ($navbarHeight)
+    padding-top 24px
+
     margin-bottom 10px
 
     &:first-child
@@ -139,22 +144,27 @@ h1, h2, h3, h4, h5, h6
       margin-bottom 1rem
 
       + p, + pre, + .custom-block
-        margin-top 2rem
+        margin 10px 0px
 
   &:hover .header-anchor
     opacity: 1
 
 {$contentClass}:not(.custom) > h1
   padding-top 1rem
-  font-size 2.2rem
+  display: inline-block;
+  margin-top: 15px;
+  margin-bottom: 10px;
+  color: #000;
+  font-weight: 300;
+  font-size: 28px;
+  line-height: 40px;
 
 h2
-  font-size 1.65rem
+  font-size 150%
   padding-bottom .3rem
-  border-bottom 1px solid $borderColor
 
 h3
-  font-size 1.35rem
+  font-size 125%;
 
 a.header-anchor
   font-size 0.85em
@@ -186,8 +196,8 @@ table
 tr
   border-top 1px solid #dfe2e5
 
-  &:nth-child(2n)
-    background-color #f6f8fa
+thead
+  background: #e4eaf3;
 
 th, td
   border 1px solid #dfe2e5
