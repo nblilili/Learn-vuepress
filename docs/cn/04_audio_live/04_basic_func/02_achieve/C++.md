@@ -15,7 +15,7 @@ title: 实现互动直播
 [JCMediaDeviceCallback](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_device_callback.html)
 对象，并实现这两个对象中的纯虚函数。
 
-```cpp
+``````cpp
 class JCManager : public JCMediaDeviceCallback, public JCMediaChannelCallback
 {
 public:
@@ -51,7 +51,7 @@ public:
     //媒体通道对象
     JCMediaChannel* mediaChannel;
 };
-```
+``````
 
 然后调用
 [createJCMediaDevice](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/_j_c_media_device_8h.html#a96a10766264f3c12af531b70cb9c9749)
@@ -59,7 +59,7 @@ public:
 [createJCMediaChannel](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/_j_c_media_channel_8h.html#acaca886fc345f798056ff2b9c2ee11ac)
 以初始化多方视频通话需要的模块：
 
-```cpp
+``````cpp
 //初始化
 bool JCManager::initialize()
 {
@@ -69,7 +69,7 @@ bool JCManager::initialize()
     mediaChannel = createJCMediaChannel(client, mediaDevice, this);
     return true;
 }
-```
+``````
 
 其中：
 
@@ -101,21 +101,21 @@ bool JCManager::initialize()
 [JCMediaChannelCustomRole](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/_j_c_media_channel_constants_8h.html#aa5042852bc565ec1e596a7c286ad3c64)
 枚举值进行自定义，例如
 
-```cpp
+``````cpp
 //自定义主播角色
 JCMediaChannelCustomRole ROLE_BROASCASTER = JCMediaChannelCustomRole0;
 //自定义观众角色
 JCMediaChannelCustomRole ROLE_AUDIENCE = JCMediaChannelCustomRole1;
-```
+``````
 
 调用
 [setCustomRole](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel.html#a7b6b97e8193f2cf7f2819ec3ca49b813)
 设置自己的角色以进入频道。
 
-```cpp
+``````cpp
 // 设置角色，participant(第二个参数） 值为 NULL 代表设置自身的角色
 JCManager::shared()->mediaChannel->setCustomRole(ROLE_BROASCASTER, NULL);
-```
+``````
 
 ::: tip
 
@@ -131,17 +131,17 @@ JCManager::shared()->mediaChannel->setCustomRole(ROLE_BROASCASTER, NULL);
 [enableUploadAudioStream](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel.html#a2b08d87b38fe2fd7a394e2786241cc4c)
 开启音频流
 
-```cpp
+``````cpp
 //根据角色上传本地音视频流
 JCManager::shared()->mediaChannel->enableUploadVideoStream(customRole == ROLE_BROASCASTER);
-```
+``````
 
 由于 SDK 默认上传视频流，因此需要在加入频道前关闭上传视频流的标识以进行语音互动直播
 
-```cpp
+``````cpp
 //关闭视频流上传
 JCManager::shared()->mediaChannel->enableUploadAudioStream(false);
-```
+``````
 
 ::: tip
 
@@ -170,16 +170,16 @@ JCManager::shared()->mediaChannel->enableUploadAudioStream(false);
     [JCMediaChannelJoinParam](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel_join_param.html)
     对象。
 
-```cpp
+``````cpp
 // 加入频道
 JCManager::shared()->mediaChannel->join("频道 ID", NULL);
-```
+``````
 
 3\. 加入频道后收到
 [onJoin](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel_callback.html#a430bd78b28e189ee3c9564ddb7db213d)
 回调。
 
-```cpp
+``````cpp
 // 加入频道结果回调
 void JCManager::onJoin(bool result, JCMediaChannelReason reason, const char* channelId)
 {
@@ -191,7 +191,7 @@ void JCManager::onJoin(bool result, JCMediaChannelReason reason, const char* cha
     ...
     }
 }
-```
+``````
 
 ## 离开频道
 
@@ -199,9 +199,9 @@ void JCManager::onJoin(bool result, JCMediaChannelReason reason, const char* cha
 [leave](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel.html#a93c19137044fec1568f73f1f6dbfee84)
 方法离开当前频道。
 
-```cpp
+``````cpp
 JCManager::shared()->mediaChannel->leave();
-```
+``````
 
 离开频道后，自身收到
 [onLeave](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel_callback.html#a18bc4fae89f0d56fb849075f1603ac71)
@@ -209,22 +209,22 @@ JCManager::shared()->mediaChannel->leave();
 [onParticipantLeft](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel_callback.html#a5888058878f3aaa382b3ede94228a6e8)
 回调。
 
-```cpp
+``````cpp
 // 离开频道回调
 void JCManager::onLeave(JCMediaChannelReason reason, const char* channelId);
 {
     //离开频道的逻辑
 }
-```
+``````
 
 ## 解散频道
 
 如果想解散频道，可以调用下面的接口，此时所有成员都将被退出。
 
-```cpp
+``````cpp
 // 结束频道
 JCManager::shared()->mediaChannel->stop();
-```
+``````
 
 解散频道后，发起结束的成员收到
 [onStop](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel_callback.html#a61a1d5a81563d34f80e70541a114a74a)
@@ -234,9 +234,9 @@ JCManager::shared()->mediaChannel->stop();
 [JCMediaChannelReason](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/_j_c_media_channel_constants_8h.html#a24a2154e4bb2db63c75b31cd2b021fc3)
 。
 
-```cpp
+``````cpp
 void JCManager::onStop(bool result, JCMediaChannelReason reason)
 {
     //结束频道的处理逻辑
 }
-```
+``````

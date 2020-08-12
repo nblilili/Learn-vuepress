@@ -11,7 +11,7 @@ title: 智能硬件
 
 菊风提供不同的媒体配置模式供开发者根据不同的场景选择，同时开放媒体设置参数供开发者灵活设置。具体如下:
 
-```java
+``````java
 // 360P
 public static final int MODE_360P = 0;
 // 720P
@@ -20,7 +20,7 @@ public static final int MODE_720P = MODE_360P + 1;
 public static final int MODE_INTELLINGENT_HARDWARE_SMALL = MODE_720P + 1;
 // 大屏智能设备
 public static final int MODE_INTELLINGENT_HARDWARE_LARGE = MODE_INTELLINGENT_HARDWARE_SMALL + 1;
-```
+``````
 
 手机端通话任选其一；
 
@@ -29,21 +29,21 @@ MODE\_INTELLINGENT\_HARDWARE\_LARGE 模式。
 
 调用 generateByMode 选择模式，返回值是媒体配置参数:
 
-```java
+``````java
 /**
   * 根据模式生成配置参数
   * @param mode
   * @return
   */
 public static MediaConfig generateByMode(@Mode int mode);
-```
+``````
 
 生成配置参数后调用 JCCall 中的 updateMediaConfig 方法更新媒体参数
 
-```java
+``````java
 JCCall.MediaConfig mediaConfig = JCCall.MediaConfig.generateByMode(JCCall.MediaConfig.MODE_INTELLINGENT_HARDWARE_SMALL);
 JCManager.getInstance().call.updateMediaConfig(mediaConfig);
-```
+``````
 
 ### 参数详情
 
@@ -798,7 +798,7 @@ JCManager.getInstance().call.updateMediaConfig(mediaConfig);
 
 其中，AecMode 有以下值:
 
-```java
+``````java
 // 声学回声消除。支持在免提状态下的通话，对于iOS和Windows等性能较好的机型有效。
 public static final int AEC_MODE_AEC = MtcCallDb.EN_MTC_EC_AEC;
 // 使用操作系统提供的声学回声消除功能，支持在免提状态下的通话。对于多数iOS和Android等品牌手机有效，但部分机型可能无效。
@@ -809,13 +809,13 @@ public static final int AEC_MODE_AES = MtcCallDb.EN_MTC_EC_AES;
 public static final int AEC_MODE_FDE = MtcCallDb.EN_MTC_EC_AEC_FDE;
 // 软件自适应声学回声消除，对于大多数所有机型有效。但计算量比AEC稍大一些。SDE追踪延迟精度高，FDE能适应更大的延迟。
 public static final int AEC_MODE_SDE = MtcCallDb.EN_MTC_EC_AEC_SDE;
-```
+``````
 
 开发者可根据具体的需求自行配置。
 
 示例代码:
 
-```java
+``````java
 //音频参数
 JCCall.MediaConfig mediaConfig = JCCall.MediaConfig.generateByMode(JCCall.MediaConfig.MODE_INTELLINGENT_HARDWARE_LARGE);
 mediaConfig.audioEnableCodecs = "opus";
@@ -851,7 +851,7 @@ mediaConfig.videoSmallNalu  = true;
 mediaConfig.videoResolutionControl  = true;
 
 JCManager.getInstance().call.updateMediaConfig(mediaConfig);
-```
+``````
 
 ## 待机功耗优化方案
 
@@ -895,13 +895,13 @@ JCManager.getInstance().call.updateMediaConfig(mediaConfig);
 
 1. 增加创建 JCPush 模块:
 
-    ```java
+    ``````java
     JCPush push = JCPush.create(client);
-    ```
+    ``````
 
 2. 登录成功后向服务器注册个假的push，主要是让服务器认为此用户不是离线状态，这样主叫呼叫就不会被服务器直接拒绝:
 
-    ```java
+    ``````java
     JCPushTemplate pushInfo = new JCPushTemplate();
     pushInfo.initWithMiPush(context.getPackageName(), "随意输入");
     JCManager.getInstance().push.addPushInfo(pushInfo);
@@ -909,7 +909,7 @@ JCManager.getInstance().call.updateMediaConfig(mediaConfig);
     JCManager.getInstance().push.addPushInfo(pushInfo);
     //设置模式，登录成功后、呼叫前或者收到来电前都可以设置
     JCManager.shared.call.mediaConfig = JCCall.MediaConfig.generateByMode(JCCall.MediaConfig.MODE_INTELLINGENT_HARDWARE_SMALL);
-    ```
+    ``````
 
 3. 手表收到厂家自身 push 后调起菊风模块进行初始化、登录等操作，登录成功后就会收到来电；
 

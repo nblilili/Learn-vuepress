@@ -15,7 +15,7 @@ create](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaD
 create](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCCall.html#//api/name/create:mediaDevice:callback:)
 以初始化实现一对一通话需要的模块
 
-```objectivec
+``````objectivec
 //初始化
 -(bool)initialize {
    //1. 媒体类
@@ -24,7 +24,7 @@ create](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCCall.h
    JCCall *call = [JCCall create:client mediaDevice:mediaDevice callback:self];
    return client.state == JCClientStateLogined;
 }
-```
+``````
 
 其中：
 
@@ -35,7 +35,7 @@ create](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCCall.h
 
 JCMediaDeviceCallback 中的主要方法如下
 
-```objectivec
+``````objectivec
 //摄像头变化
 -(void)onCameraUpdate;
 
@@ -44,7 +44,7 @@ JCMediaDeviceCallback 中的主要方法如下
 
 //声音中断恢复
 -(void)onAudioInerruptAndResume:(BOOL)interrupt;
-```
+``````
 
 - JCCall create 方法中的 callback 为
     [JCCallCallback](https://developer.juphoon.com/portal/reference/V2.1/ios/Protocols/JCCallCallback.html)
@@ -53,7 +53,7 @@ JCMediaDeviceCallback 中的主要方法如下
 
 JCCallCallback 中的主要方法如下
 
-```objectivec
+``````objectivec
 //新增通话回调
 -(void)onCallItemAdd:(JCCallItem* __nonnull)item;
 
@@ -62,18 +62,18 @@ JCCallCallback 中的主要方法如下
 
 //通话状态更新回调（当上层收到此回调时，可以根据 JCCallItem 对象获得该通话的所有信息及状态，从而更新该通话相关UI）
 -(void)onCallItemUpdate:(JCCallItem* __nonnull)item changeParam:(JCCallChangeParam * __nullable)changeParam;
-```
+``````
 
 ## 媒体参数设置
 
 一对一视频通话支持智能硬件设备集成，需要在发起通话前设置媒体参数:
 
-```objectivec
+``````objectivec
 // 根据模式生成配置参数
 JCCallMediaConfig *mediaConfig = [JCCallMediaConfig generateByMode:JCCallMediaConfigModeIntelligentHardware];
 // 设置媒体参数
 JCManager.shared.call.mediaConfig = mediaConfig;
-```
+``````
 
 菊风提供三种配置模式供开发者选择，并开放相关属性供开发者进行灵活的自定义配置，具体方法请查看
 [<span class="std std-ref">媒体参数设置</span>](../../05_adv_func/iOS/03_intelligent_hardware.html#ios)
@@ -91,10 +91,10 @@ JCManager.shared.call.mediaConfig = mediaConfig;
 
 - `extraParam` 为自定义透传字符串， 可通过 JCCallItem 对象中的 extraParam 属性获得。
 
-```objectivec
+``````objectivec
 // 发起视频呼叫
 [call call:@"userID" video:true extraParam:@"自定义透传字符串"];
-```
+``````
 
 拨打通话后，主叫和被叫均会收到新增通话的回调
 [onCallItemAdd](https://developer.juphoon.com/portal/reference/V2.1/ios/Protocols/JCCallCallback.html#//api/name/onCallItemAdd:)
@@ -104,7 +104,7 @@ JCManager.shared.call.mediaConfig = mediaConfig;
 
 示例代码:
 
-```objectivec
+``````objectivec
 // 收到新增通话回调
 -(void)onCallItemAdd:(JCCallItem* __nonnull)item {
     // 业务逻辑
@@ -116,7 +116,7 @@ JCManager.shared.call.mediaConfig = mediaConfig;
         ...
     }
 }
-```
+``````
 
 ::: tip
 
@@ -136,14 +136,14 @@ JCManager.shared.call.mediaConfig = mediaConfig;
 
 示例代码:
 
-```objectivec
+``````objectivec
 -(void)onCallItemAdd:(JCCallItem* __nonnull)item {
     if (item.state == JCCallStateTalking && localCanvas == nil && item.uploadVideoStreamSelf) {
         // 创建本地视频画面
         JCMediaDeviceVideoCanvas *localCanvas = [item startSelfVideo:JCMediaDeviceRenderFullScreen];
     }
 }
-```
+``````
 
 ## 应答通话
 
@@ -155,7 +155,7 @@ JCManager.shared.call.mediaConfig = mediaConfig;
 
 示例代码:
 
-```objectivec
+``````objectivec
 -(void)onCallItemAdd:(JCCallItem* __nonnull)item {
     // 如果是视频呼入且在振铃中
     if (item && item.direction == JCCallDirectionIn && item.video) {
@@ -163,16 +163,16 @@ JCManager.shared.call.mediaConfig = mediaConfig;
          ...
     }
 }
-```
+``````
 
 2\. 调用
 [answer](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCCall.html#//api/name/answer:video:)
 接听通话，**视频通话既可语音应答也可视频应答**
 
-```objectivec
+``````objectivec
 // 应答通话
 [call answer:item video:true];
-```
+``````
 
 通话应答后，通话状态变为 JCCallStateConnecting。
 
@@ -197,7 +197,7 @@ JCCallStateTalking。
 
 示例代码:
 
-```objectivec
+``````objectivec
 -(void)onCallItemUpdate:(JCCallItem* __nonnull)item changeParam:(JCCallChangeParam * __nullable)changeParam {
     JCMediaDeviceVideoCanvas *remoteCanvas;
     // 如果对端在上传视频流（uploadVideoStreamOther）
@@ -206,7 +206,7 @@ JCCallStateTalking。
         remoteCanvas = [item startOtherVideo:JCMediaDeviceRenderFullScreen];
     }
 }
-```
+``````
 
 ## 挂断通话
 
@@ -220,12 +220,12 @@ JCCallStateTalking。
     [term](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCCall.html#//api/name/term:reason:description:)
     挂断当前活跃通话:
 
-    ```objectivec
+    ``````objectivec
     // 1. 获取当前活跃通话
     JCCallItem *item = [call getActiveCallItem];
     // 2. 挂断当前活跃通话
     [call term:item reason:JCCallReasonNone description:@"主叫挂断"];
-    ```
+    ``````
 
 ## 销毁本地和远端视频画面
 
@@ -239,10 +239,9 @@ JCCallStateTalking。
 
 示例代码:
 
-```objectivec
+``````objectivec
 ```
-
- -(void)onCallItemRemove:(JCCallItem*__nonnull)item reason:(JCCallReason)reason description:(NSString* __nullable)description { //移除通话回调
+ -(void)onCallItemRemove:(JCCallItem* __nonnull)item reason:(JCCallReason)reason description:(NSString * __nullable)description { //移除通话回调
 // 界面处理
 if (localCanvas) {
     // 本端视频销毁
@@ -253,6 +252,5 @@ if (remoteCanvas) {
     [item stopOtherVideo];
 }
 }
-
 ```
-```
+``````

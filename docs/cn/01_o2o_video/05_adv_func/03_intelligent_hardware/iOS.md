@@ -9,30 +9,30 @@ title: 智能硬件
 
 菊风提供不同的媒体配置模式供开发者根据不同的场景选择，同时开放媒体设置参数供开发者灵活设置。具体如下:
 
-```objectivec
+``````objectivec
 /// 360P
 JCCallMediaConfigMode360P,
 /// 720P
 JCCallMediaConfigMode720P,
 /// 智能硬件场景，比如会和手表通话等
 JCCallMediaConfigModeIntelligentHardware,
-```
+``````
 
 手机端通话任选其一； 智能硬件通话，一般选择 JCCallMediaConfigModeIntelligentHardware 模式。
 
 发起通话前，开发者可以根据具体的场景选择一种媒体配置模式并通过下面的接口生成配置参数:
 
-```objectivec
+``````objectivec
 /// 根据模式生成配置参数
 /// @param mode 模式
 +(JCCallMediaConfig* __nonnull)generateByMode:(JCCallMediaConfigMode)mode;
-```
+``````
 
 生成配置参数后调用 JCCall 里的 mediaConfig 属性进行设置:
 
-```objectivec
+``````objectivec
 JCManager.shared.call.mediaConfig = [JCCallMediaConfig generateByMode:JCCallMediaConfigModeIntelligentHardware];
-```
+``````
 
 其中，三种模式的媒体参数设置如下：
 
@@ -638,7 +638,7 @@ JCManager.shared.call.mediaConfig = [JCCallMediaConfig generateByMode:JCCallMedi
 
 其中，JCCallAecMode 有以下值:
 
-```objectivec
+``````objectivec
 /// 声学回声消除。支持在免提状态下的通话，对于iOS和Windows等性能较好的机型有效。
 JCCallAecModeAEC = 0, // MtcCallDb.EN_MTC_EC_AEC;
 /// 使用操作系统提供的声学回声消除功能，支持在免提状态下的通话。对于多数iOS和Android等品牌手机有效，但部分机型可能无效。
@@ -649,13 +649,13 @@ JCCallAecModeAES = 2, // MtcCallDb.EN_MTC_EC_AES;
 JCCallAecModeFDE = 3, // MtcCallDb.EN_MTC_EC_AEC_FDE;
 /// 软件自适应声学回声消除，对于大多数所有机型有效。但计算量比AEC稍大一些。SDE追踪延迟精度高，FDE能适应更大的延迟。
 JCCallAecModeSDE = 4, // MtcCallDb.EN_MTC_EC_AEC_SDE;
-```
+``````
 
 开发者可根据具体的需求自行配置。
 
 示例代码:
 
-```objectivec
+``````objectivec
 //音频参数
 JCCallMediaConfig* mediaConfig = [JCCallMediaConfig new];
 mediaConfig.audioEnableCodecs = @"opus";
@@ -691,4 +691,4 @@ mediaConfig.videoSmallNalu  = true;
 mediaConfig.videoResolutionControl  = true;
 
 JCManager.shared.call.mediaConfig = mediaConfig;
-```
+``````

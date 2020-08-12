@@ -11,18 +11,18 @@ title: 视频管理
 [getCameras](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_device.html#af5d7b21bf998890a10bbf4ea5c3984da)
 方法获取摄像头列表。
 
-```cpp
+``````cpp
 std::list<JCMediaDeviceCamera>* cameras = JCManager::shared()->mediaDevice->getCameras();
-```
+``````
 
 摄像头列表获取后，调用
 [switchCamera](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_device.html#a0716deb7c816c605444f2bb3202e9ef5)
 方法切换指定的摄像头。
 
-```cpp
+``````cpp
 /// 切换指定摄像头
 JCManager::shared()->mediaDevice->switchCamera(cameras[0]);
-```
+``````
 
 ### 设置摄像头采集分辨率
 
@@ -30,9 +30,9 @@ JCManager::shared()->mediaDevice->switchCamera(cameras[0]);
 [setCameraProperty](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_device.html#a2ec180f6fc51367007b854dd0bc2866b)
 接口自定义摄像头采集参数，如采集的高度、宽度和帧速率，以实现不同的采集分辨率。
 
-```cpp
+``````cpp
 JCManager::shared()->mediaDevice->setCameraProperty(640, 360, 24);
-```
+``````
 
 ### 设置 Canvas 旋转角度
 
@@ -40,9 +40,9 @@ JCManager::shared()->mediaDevice->setCameraProperty(640, 360, 24);
 [rotate](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_device_video_canvas.html#a44d1073788a9cd3c6620c839eea76ffa)
 接口设置 Canvas 中画布的旋转角度。其中，旋转角度必须是 90 的倍数，该角度表示与屏幕正方向旋转后的夹角。
 
-```cpp
+``````cpp
 JCManager::shared()->mediaDeviceCanvas->rotate(Angle90);
-```
+``````
 
 调用该接口后，本端显示的本地视频画面和远端视频画面会同时旋转相同的角度，而对端显示的画面不受影响。
 
@@ -52,7 +52,7 @@ JCManager::shared()->mediaDeviceCanvas->rotate(Angle90);
 
 角度值参考下如下
 
-```cpp
+``````cpp
 // 窗口与屏幕角度 0
 Angle0 = 0,
 // 窗口与屏幕角度 90
@@ -61,7 +61,7 @@ Angle90 = 90,
 Angle180 = 180,
 // 窗口与屏幕角度 270
 Angle270 = 270
-```
+``````
 
 -----
 
@@ -90,18 +90,18 @@ Angle270 = 270
 
 首先注册视频采集回调，在登录成功后即可调用。
 
-```cpp
+``````cpp
 /** add capture data callback
  * @param[in] pUser     the callback user data
  * @param[in] pfnCb     the callback
  * returns 0 on succeed, otherwise failed
  */
 int Zmf_VideoCaptureAddCallback (void *pUser, ZmfVideoCaptureCallback pfnCb)
-```
+``````
 
 回调类型说明：
 
-```cpp
+``````cpp
 /** the callback to receive captured image
  * iImgAngle - iCamOrient equal to device rotate angle.
  * if encoder is NULL, the pixel format of buf must be ZmfPixelFormatI420
@@ -119,11 +119,11 @@ int Zmf_VideoCaptureAddCallback (void *pUser, ZmfVideoCaptureCallback pfnCb)
  typedef void (*ZmfVideoCaptureCallback)(void* pUser, const char* captureId, int iFace,
                                        int iImgAngle, int iCaptureOrient, int* iWidth, int* iHeight,
                                        unsigned char *buf, ZmfVideoCaptureEncoder* encoder);
-```
+``````
 
 示例代码
 
-```cpp
+``````cpp
 static void zmfVideoCaptureCallback(void* pUser, const char* captureId, int iFace,
                                     int iImgAngle, int iCaptureOrient, int* iWidth, int* iHeight,
                                     unsigned char *buf, ZmfVideoCaptureEncoder* encoder) {
@@ -137,28 +137,25 @@ void JCSampleDlg::OnBnClickedButtonCall()
     //发起呼叫
     ...
 }
-```
+``````
 
 注册后，每帧采集的视频数据通过 ZmfVideoCaptureCallback 回调，可以处理对应的视频数据。
 
 如果想移除回调，调用下面的接口。
 
-```cpp
+``````cpp
 ```
-
  /** remove capture data callback
-
-* @param[in] pUser     the callback user data
-* returns 0 on succeed, otherwise failed
+  * @param[in] pUser     the callback user data
+  * returns 0 on succeed, otherwise failed
   */
-int Zmf_VideoCaptureRemoveCallback (void*pUser)
-
+int Zmf_VideoCaptureRemoveCallback (void *pUser)
 ```
-```
+``````
 
 示例代码
 
-```cpp
+``````cpp
 void JCSampleDlg::OnBnClickedButtonEndCall()
 {
     //移除回调
@@ -166,7 +163,7 @@ void JCSampleDlg::OnBnClickedButtonEndCall()
     //挂断通话
     ...
 }
-```
+``````
 
 **解码后，渲染前处理**
 
@@ -181,7 +178,7 @@ void JCSampleDlg::OnBnClickedButtonEndCall()
 
 首先注册视频输出回调，在登录成功后即可调用。
 
-```cpp
+``````cpp
 /**
  * add render data callback
  *
@@ -191,11 +188,11 @@ void JCSampleDlg::OnBnClickedButtonEndCall()
  * @return               0 on succeed, otherwise failed.
  */
 int Zmf_VideoRenderAddCallback (void *pUser, ZmfVideoRenderCallback pfnCb);
-```
+``````
 
 回调类型说明：
 
-```cpp
+``````cpp
 /**
  * The callback to receive video render data
  *
@@ -217,13 +214,13 @@ int Zmf_VideoRenderAddCallback (void *pUser, ZmfVideoRenderCallback pfnCb);
  typedef int  (*ZmfVideoRenderCallback)(void* pUser, const char* renderId, int sourceType, int iAngle,
                                   int iMirror, int* iWidth, int* iHeight, unsigned char *buf,
                                   unsigned long timeStamp);
-```
+``````
 
 注册后，每帧解码后的视频数据通过 ZmfVideoRenderCallback 回调，可以处理对应的视频数据。
 
 示例代码
 
-```cpp
+``````cpp
 static void zmfVideoRenderCallback(void* pUser, const char* renderId, int sourceType, int iAngle,
                                    int iMirror, int* iWidth, int* iHeight, unsigned char *buf,
                                    unsigned long timeStamp) {
@@ -237,11 +234,11 @@ void JCSampleDlg::OnBnClickedButtonCall()
     //发起呼叫
     ...
 }
-```
+``````
 
 如果想移除回调，调用下面的接口。
 
-```cpp
+``````cpp
 /**
  * remove render data callback
  *
@@ -249,11 +246,11 @@ void JCSampleDlg::OnBnClickedButtonCall()
  * @return               0 on succeed, otherwise failed.
  */
 int Zmf_VideoRenderRemoveCallback (void *pUser)
-```
+``````
 
 示例代码
 
-```cpp
+``````cpp
 void JCSampleDlg::OnBnClickedButtonEndCall()
 {
     //移除回调
@@ -261,7 +258,7 @@ void JCSampleDlg::OnBnClickedButtonEndCall()
     //挂断通话
     ...
 }
-```
+``````
 
 ### 自定义视频采集和渲染
 
@@ -279,7 +276,7 @@ Juphoon 对应的接口中进行后续操作。
 
 在收到登录成功的回调后以及 Zmf\_VideoInitialize 初始化成功后，把采集/准备渲染的数据通过下面的接口输入。
 
-```cpp
+``````cpp
 /**
  * The video capture data entry to ZMF
  * iImgAngle - iCamOrient equal to device rotate angle.
@@ -297,11 +294,11 @@ Juphoon 对应的接口中进行后续操作。
  * @param[in,out] encoder   the capture encoder                        //标识输入图像编码格式
  */
  void Zmf_OnVideoCapture(const char *captureId, int iFace, int iImgAngle, int iCamAngle, int *iWidth, int *iHeight, unsigned char *bufI420, ZmfVideoCaptureEncoder* encoder);
-```
+``````
 
 示例代码
 
-```cpp
+``````cpp
 Zmf_VideoInitialize(NULL);
 void JCSampleDlg::OnBnClickedButtonCall()
 {
@@ -310,22 +307,22 @@ void JCSampleDlg::OnBnClickedButtonCall()
     //发起呼叫
     ...
 }
-```
+``````
 
 采集停止接口。
 
-```cpp
+``````cpp
 /**
  * tell ZMF the video capture has stopped
  *
  * @param[in] captureId     unique name of the device
  */
 void Zmf_OnVideoCaptureDidStop(const char *captureId);
-```
+``````
 
 示例代码
 
-```cpp
+``````cpp
 void JCSampleDlg::OnBnClickedButtonEndCall()
 {
     //停止采集
@@ -333,13 +330,13 @@ void JCSampleDlg::OnBnClickedButtonEndCall()
     //挂断通话
     ...
 }
-```
+``````
 
 如果想在视频渲染端使用自己的渲染方式，则调用下面的接口：
 
 视频数据渲染接口。
 
-```cpp
+``````cpp
 /**
  * The video render data entry to ZMF
  *
@@ -352,11 +349,11 @@ void JCSampleDlg::OnBnClickedButtonEndCall()
  * @param[in] bufI420       the image data I420 buffer                            //渲染数据buffer
  */
  void Zmf_OnVideoRender(const char *renderId, int sourceType, int iAngle, int iMirror, int *iWidth, int *iHeight, unsigned char *bufI420, unsigned long timeStamp);
-```
+``````
 
 示例代码
 
-```cpp
+``````cpp
 Zmf_VideoInitialize(NULL);
 void JCSampleDlg::OnBnClickedButtonCall()
 {
@@ -365,17 +362,17 @@ void JCSampleDlg::OnBnClickedButtonCall()
     //发起呼叫
     ...
 }
-```
+``````
 
 渲染数据停止接口。
 
-```cpp
+``````cpp
 Zmf_OnVideoRender(const char *renderId, 0, 0, 0, 0, 0, 0, 0);
-```
+``````
 
 示例代码
 
-```cpp
+``````cpp
 void JCSampleDlg::OnBnClickedButtonEndCall()
 {
     //停止渲染
@@ -383,7 +380,7 @@ void JCSampleDlg::OnBnClickedButtonEndCall()
     //挂断通话
     ...
 }
-```
+``````
 
 ## 视频渲染管理
 
@@ -395,9 +392,9 @@ void JCSampleDlg::OnBnClickedButtonEndCall()
 [replace](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_device_video_canvas.html#a0f93d017306b5920f3fdccc00e2074f8)
 接口更新视频渲染标识。
 
-```cpp
+``````cpp
 JCManager::shared()->mediaDeviceCanvas->replace(videoSource);
-```
+``````
 
 ### 暂停渲染
 
@@ -405,9 +402,9 @@ JCManager::shared()->mediaDeviceCanvas->replace(videoSource);
 [pause](http://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_device_video_canvas.html#a799b848e69d56d866ec6ff716882a455)
 接口暂停画面的渲染。
 
-```cpp
+``````cpp
 JCManager::shared()->mediaDeviceCanvas->pause();
-```
+``````
 
 ### 恢复渲染
 
@@ -415,9 +412,9 @@ JCManager::shared()->mediaDeviceCanvas->pause();
 [resume](http://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_device_video_canvas.html#ac49c80c2eda55f0225f12c3572b938da)
 接口恢复已暂停的视频渲染。
 
-```cpp
+``````cpp
 JCManager::shared()->mediaDeviceCanvas->resume();
-```
+``````
 
 ## 视频设备管理
 
@@ -433,12 +430,12 @@ JCManager::shared()->mediaDeviceCanvas->resume();
 [stopCamera](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_device.html#a201fd2352117c7fbdc03ef10837fc701)
 接口关闭摄像头。
 
-```cpp
+``````cpp
 //开启摄像头
 JCManager::shared()->mediaDevice->startCamera();
 //关闭摄像头
 JCManager::shared()->mediaDevice->stopCamera();
-```
+``````
 
 ### 获取当前使用的摄像头
 
@@ -446,9 +443,9 @@ JCManager::shared()->mediaDevice->stopCamera();
 [getCamera](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_device.html#acb427f7249ef1e384b1a910c90c31190)
 接口获取当前使用的摄像头。
 
-```cpp
+``````cpp
 JCMediaDeviceCamera camera = JCManager::shared()->mediaDevice->getCamera();
-```
+``````
 
 ### 获取窗口列表
 
@@ -456,9 +453,9 @@ JCMediaDeviceCamera camera = JCManager::shared()->mediaDevice->getCamera();
 [getWindows](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_device.html#aec338b2eea709884722f7c426c924653)
 接口获取窗口列表。
 
-```cpp
+``````cpp
 std::list<JCMediaDeviceWindow>* windows = JCManager::shared()->mediaDevice->getWindows();
-```
+``````
 
 ### 获取桌面列表
 
@@ -466,6 +463,6 @@ std::list<JCMediaDeviceWindow>* windows = JCManager::shared()->mediaDevice->getW
 [getDesktops](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_device.html#a8cbda493ef14c4b97ff022948bb15bf1)
 接口获取桌面列表。
 
-```cpp
+``````cpp
 std::list<JCMediaDeviceWindow>* windows = JCManager::shared()->mediaDevice->getDesktops();
-```
+``````

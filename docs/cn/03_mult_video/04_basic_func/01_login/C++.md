@@ -9,7 +9,7 @@ title: 登录
 
 在调用初始化方法前需要先继承 JCClientCallback 对象，然后实现 JCClientCallback 对象中的纯虚函数。
 
-```cpp
+``````cpp
 class JCManager : public JCClientCallback
 {
 public:
@@ -31,13 +31,13 @@ public:
     //JCClient 对象
     JCClient* client;
 };
-```
+``````
 
 然后在主线程调用 JCClientImpl 类中的
 [createJCClient](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/_j_c_client_8h.html#a2d6fc4f203884536ff69bfe0e0ed300f)
 方法，传入获取到的 `appKey` 进行 JC SDK 的初始化。
 
-```cpp
+``````cpp
 bool JCManager::initialize()
 {
     //初始化
@@ -57,7 +57,7 @@ void JCManager::onLogout(JCClientReason reason) {
 //登录状态变化回调
 void JCManager::onClientStateChange(JCClientState state, JCClientState oldState) {
 }
-```
+``````
 
 初始化成功后，JCClient 状态变为 JCClientStateIdle（未登录状态）。
 
@@ -73,7 +73,7 @@ SDK 初始化之后，即可进行登录的集成。登录接口调用流程如�
 [login](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_client.html#ad612e9957623869289103fbf0721d902)
 发起登录:
 
-```cpp
+``````cpp
 //登录
 void JCSampleDlg::OnBnClickedButtonLogin()
 {
@@ -90,7 +90,7 @@ void JCSampleDlg::OnBnClickedButtonLogin()
         JCManager::shared()->client->logout();
     }
 }
-```
+``````
 
 ::: tip
 
@@ -120,7 +120,7 @@ void JCSampleDlg::OnBnClickedButtonLogin()
 [onClientStateChange](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_client_callback.html#ace087f907d2f8a2413f10d34cfb47337)
 ，你可以在该回调中执行逻辑操作。
 
-```cpp
+``````cpp
 void JCManager::onClientStateChange(JCClientState state, JCClientState oldState) {
      if (state == JCClient.STATE_IDLE) { // 未登录
        ...
@@ -132,13 +132,13 @@ void JCManager::onClientStateChange(JCClientState state, JCClientState oldState)
        ...
     }
 }
-```
+``````
 
 之后触发
 [onLogin](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_client_callback.html#ab2deb2e2d3c95f848d9dc2baa7c6daff)
 回调。你可以在该回调中执行逻辑操作。
 
-```cpp
+``````cpp
 void JCManager::onLogin(bool result, JCClientReason reason) {
     if (result) {/// 登录成功
         ...
@@ -147,7 +147,7 @@ void JCManager::onLogin(bool result, JCClientReason reason) {
         ...
     }
 }
-```
+``````
 
 登录成功后，JCClientState 状态从 JCClientStateIdle（未登录）变为
 JCClientStateLogined（登录成功）。SDK
@@ -166,19 +166,19 @@ JCClientStateLogined（登录成功）。SDK
 [logout](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_client.html#abac015a13078c84b06afac69dcd392ff)
 发起登出
 
-```cpp
+``````cpp
 JCManager::shared()->client->logout();
-```
+``````
 
 登出结果回调
 
-```cpp
+``````cpp
 void JCManager::onLogout(JCClientReason reason) {
     if (reason == JCClientReasonServerLogout) {// 强制登出
         ...
     }
 }
-```
+``````
 
 登出原因请参考：[JCClientReason](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/_j_c_client_constants_8h.html#a8b1b44e57fff02634fd4637428a70020)。
 

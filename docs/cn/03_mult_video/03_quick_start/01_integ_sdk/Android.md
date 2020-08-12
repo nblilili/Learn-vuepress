@@ -60,14 +60,14 @@ title: 一分钟集成 SDK
 
 在项目的 /app/build.gradle 文件中，添加如下行：
 
-```java
+``````java
 ...
 dependencies {
     ...
     // 可通过 JC SDK 发版说明取得最新版本号
     implementation 'com.JuphoonCloud:JC-SDK:2.1'
 }
-```
+``````
 
 ### 方法二：手动导入 JC SDK
 
@@ -80,19 +80,19 @@ dependencies {
 
 3. 为确保能够连接到so库，需要在module 的build.gradle中添加设置:
 
-    ```java
+    ``````java
     sourceSets {
         main {
             jniLibs.srcDirs = ['libs’]
         }
     }
-    ```
+    ``````
 
 ## 添加项目权限
 
 根据场景需要，在 /app/src/main/AndroidManifest.xml 文件中添加如下行，获取相应的设备权限：
 
-```java
+``````java
 <uses-feature android:name="android.hardware.camera" />
 <uses-feature android:name="android.hardware.camera.autofocus" />
 <uses-permission android:name="android.permission.INTERNET" />
@@ -107,7 +107,7 @@ dependencies {
 <uses-permission android:name="android.permission.VIBRATE"/>
 <uses-permission android:name="android.permission.BLUETOOTH" />
 <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
-```
+``````
 
 ::: tip
 
@@ -119,7 +119,7 @@ dependencies {
 
 在 proguard-rules.pro 文件，将 JC SDK 相关类加入不混淆名单。
 
-```java
+``````java
 -dontwarn com.juphoon.*
 -keep class com.juphoon.**{*;}
 //底层sdk
@@ -127,4 +127,4 @@ dependencies {
 -keep class com.justalk.**{*;}
 -keepattributes InnerClasses
 -keep class **.R$* {*;}
-```
+``````

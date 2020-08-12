@@ -28,7 +28,7 @@ title: 音频管理
 
 首先注册音频输入回调。
 
-```cpp
+``````cpp
 /**
  * add mic data callback
  *
@@ -38,11 +38,11 @@ title: 音频管理
  * @return                  0 on succeed, otherwise failed.
  */
 int Zmf_AudioInputAddCallback(void *pUser, ZmfAudioInputCallback pfnCb);
-```
+``````
 
 回调类型说明:
 
-```cpp
+``````cpp
 /** the callback to receive audio input data
  *
  * @param[in] pUser  the user data registered by Zmf_AddAudioInputCallback
@@ -59,13 +59,13 @@ int Zmf_AudioInputAddCallback(void *pUser, ZmfAudioInputCallback pfnCb);
 typedef void (*ZmfAudioInputCallback)(void* pUser, const char* inputId, int iSampleRateHz, int iChannels,
                                    unsigned char *buf, int len, int *micLevel,
                                    int playDelayMS, int recDelayMS, int clockDrift);
-```
+``````
 
 回调注册后，当有音频数据采集进来时，可以对音频数据进行处理。
 
 示例代码
 
-```cpp
+``````cpp
 static void zmfAudioInputCallback(void* pUser, const char* inputId, int iSampleRateHz, int iChannels,
                                    unsigned char *buf, int len, int *micLevel,
                                    int playDelayMS, int recDelayMS, int clockDrift) {
@@ -79,11 +79,11 @@ void JCSampleDlg::OnBnClickedButtonCall()
     //发起呼叫
     ...
 }
-```
+``````
 
 如果想移除回调，调用下面的接口。
 
-```cpp
+``````cpp
 /**
  * remove mic data callback
  *
@@ -92,11 +92,11 @@ void JCSampleDlg::OnBnClickedButtonCall()
  * @return                  0 on succeed, otherwise failed.
  */
 int Zmf_AudioInputRemoveCallback(void *pUser);
-```
+``````
 
 示例代码
 
-```cpp
+``````cpp
 void JCSampleDlg::OnBnClickedButtonEndCall()
 {
     //移除回调
@@ -104,7 +104,7 @@ void JCSampleDlg::OnBnClickedButtonEndCall()
     //挂断通话
     ...
 }
-```
+``````
 
 - 解码后播放前的处理
 
@@ -119,7 +119,7 @@ void JCSampleDlg::OnBnClickedButtonEndCall()
 
 首先注册音频输出回调。
 
-```cpp
+``````cpp
 /**
  * add fill speak callback
  *
@@ -128,11 +128,11 @@ void JCSampleDlg::OnBnClickedButtonEndCall()
  * @return                  0 on succeed, otherwise failed.
  */
 int  Zmf_AudioOutputAddCallback     (void *pUser, ZmfAudioOutputCallback pfnCb);
-```
+``````
 
 回调类型说明：
 
-```cpp
+``````cpp
 /** the callback to get audio output buffer, when Zmf_OnAudioOutput() invoked.
  *
  * @param[in] pUser          the callback user data
@@ -148,13 +148,13 @@ int  Zmf_AudioOutputAddCallback     (void *pUser, ZmfAudioOutputCallback pfnCb);
  */
 typedef int  (*ZmfAudioOutputCallback)(void* pUser, const char* outputId, int iSampleRateHz, int iChannels,
                                      unsigned char *buf, int len);
-```
+``````
 
 回调注册后，当有解码后的音频数据进来时，可以进行对应的音频数据处理。
 
 示例代码
 
-```cpp
+``````cpp
 static void zmfAudioOutputCallback(void* pUser, const char* outputId, int iSampleRateHz, int iChannels,
                                      unsigned char *buf, int len) {
 
@@ -167,11 +167,11 @@ void JCSampleDlg::OnBnClickedButtonCall()
     //发起呼叫
     ...
 }
-```
+``````
 
 如果想移除回调，调用下面的接口。
 
-```cpp
+``````cpp
 /**
  * remove fill speak callback
  *
@@ -180,11 +180,11 @@ void JCSampleDlg::OnBnClickedButtonCall()
  * @return                  0 on succeed, otherwise failed.
  */
 int  Zmf_AudioOutputRemoveCallback  (void *pUser);
-```
+``````
 
 取消注册回调。
 
-```cpp
+``````cpp
 void JCSampleDlg::OnBnClickedButtonEndCall()
 {
     //取消注册回调
@@ -192,7 +192,7 @@ void JCSampleDlg::OnBnClickedButtonEndCall()
     //挂断通话
     ...
 }
-```
+``````
 
 -----
 
@@ -214,7 +214,7 @@ Juphoon 对应的接口中进行后续操作。
 
 音频设备初始化接口。
 
-```cpp
+``````cpp
 /**
  * @brief Initialize Audio module of ZMF(Zero Media Framework).
  * @param  applicationContext For Windows, it can be the handle of the window,
@@ -225,11 +225,11 @@ Juphoon 对应的接口中进行后续操作。
  * @return                    0 on succeed, otherwise failed.
  */
 int Zmf_AudioInitialize(void *applicationContext);
-```
+``````
 
 采集数据输入接口。
 
-```cpp
+``````cpp
 /**
  * The audio input data entry to ZMF, each callback will obtain the data.
  * Multiple data will mix in the callback of the jssmme Engine,
@@ -247,11 +247,11 @@ int Zmf_AudioInitialize(void *applicationContext);
  *
  */
  void Zmf_OnAudioInput (const char *inputId, int sampleRateHz, int iChannels, unsigned char *buf, int len, int *micLevel, int playDelayMS, int recDelayMS, int clockDrift);
-```
+``````
 
 示例代码
 
-```cpp
+``````cpp
 //初始化音频设备
 Zmf_AudioInitialize(NULL);
 void JCSampleDlg::OnBnClickedButtonCall()
@@ -261,7 +261,7 @@ void JCSampleDlg::OnBnClickedButtonCall()
     //发起呼叫
     ...
 }
-```
+``````
 
 ::: tip
 
@@ -271,18 +271,18 @@ void JCSampleDlg::OnBnClickedButtonCall()
 
 采集停止接口。
 
-```cpp
+``````cpp
 /**
  * tell ZMF the audio input has stopped
  *
  * @param[in] inputId       unique name of the device  //输入设备id
  */
 void Zmf_OnAudioInputDidStop(const char *inputId);
-```
+``````
 
 示例代码
 
-```cpp
+``````cpp
 void JCSampleDlg::OnBnClickedButtonEndCall()
 {
     //停止采集
@@ -290,13 +290,13 @@ void JCSampleDlg::OnBnClickedButtonEndCall()
     //挂断通话
     ...
 }
-```
+``````
 
 如果想在音频输出端使用自定义的播放数据，则调用下面的接口：
 
 播放数据输入接口。
 
-```cpp
+``````cpp
 /**
  * The outlet which audio output can get data from.
  *
@@ -307,11 +307,11 @@ void JCSampleDlg::OnBnClickedButtonEndCall()
  * @param[in] len           the pcm data length                   //对应数据buf长度
  */
  void Zmf_OnAudioOutput (const char *outputId, int sampleRateHz, int iChannels, unsigned char *buf, int len);
-```
+``````
 
 示例代码
 
-```cpp
+``````cpp
 //初始化音频设备
 Zmf_AudioInitialize(NULL);
 void JCSampleDlg::OnBnClickedButtonCall()
@@ -321,7 +321,7 @@ void JCSampleDlg::OnBnClickedButtonCall()
     //发起呼叫
     ...
 }
-```
+``````
 
 ::: tip
 
@@ -331,18 +331,18 @@ void JCSampleDlg::OnBnClickedButtonCall()
 
 播放数据停止接口。
 
-```cpp
+``````cpp
 /**
  * tell ZMF the audio output has stopped
  *
  * @param[in] outputId      unique name of the device    //输出设备id
  */
 void Zmf_OnAudioOutputDidStop(const char *outputId);
-```
+``````
 
 示例代码
 
-```cpp
+``````cpp
 void JCSampleDlg::OnBnClickedButtonEndCall()
 {
     //停止播放数据
@@ -350,7 +350,7 @@ void JCSampleDlg::OnBnClickedButtonEndCall()
     //挂断通话
     ...
 }
-```
+``````
 
 ::: tip
 
@@ -368,9 +368,9 @@ void JCSampleDlg::OnBnClickedButtonEndCall()
 [getAudioInputs](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_device.html#ab177fc54d666d727ece18588268fd203)
 接口获取音频输入设备列表。
 
-```cpp
+``````cpp
 std::list<JCMediaDeviceAudio>* audios = JCManager::shared()->mediaDevice->getAudioInputs();
-```
+``````
 
 ### 获取音频输出设备列表
 
@@ -378,9 +378,9 @@ std::list<JCMediaDeviceAudio>* audios = JCManager::shared()->mediaDevice->getAud
 [getAudioOutputs](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_device.html#a72ba20f63202cbc61bf2cfc8170045b3)
 接口获取音频输出设备列表。
 
-```cpp
+``````cpp
 std::list<JCMediaDeviceAudio>* audios = JCManager::shared()->mediaDevice->getAudioOutputs();
-```
+``````
 
 ### 开启/关闭音频设备
 
@@ -388,14 +388,14 @@ std::list<JCMediaDeviceAudio>* audios = JCManager::shared()->mediaDevice->getAud
 [startAudio](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_device.html#a3e5dbd693aa7d245377e78cb78902018)
 接口开启音频设备。
 
-```cpp
+``````cpp
 JCManager::shared()->mediaDevice->startAudio();
-```
+``````
 
 调用
 [stopAudio](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_device.html#a007283dc73188577ae32b50849d3d3fd)
 接口关闭音频设备。
 
-```cpp
+``````cpp
 JCManager::shared()->mediaDevice->stopAudio();
-```
+``````

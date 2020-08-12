@@ -15,7 +15,7 @@ title: 登录
 [JCClient](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCClient.html)
 。
 
-```java
+``````java
 // JCClient 对象
 JCClient mClient;
 
@@ -40,7 +40,7 @@ public boolean initialize(Context context) {
     mInit = mClient.getState() == JCClient.STATE_IDLE;
     return mInit;
 }
-```
+``````
 
 初始化成功后，JCClient.ClientState 状态从 JCClientStateNotInit（未初始化） 变为
 JCClientStateIdle（未登录）。
@@ -57,13 +57,13 @@ SDK 初始化之后，即可进行登录的集成。 登出接口调用流程如
 [login()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCClient.html#login-java.lang.String-java.lang.String-com.juphoon.cloud.JCClient.LoginParam-)
 ，发起登录:
 
-```java
+``````java
 JCClient.LoginParam loginParam = new JCClient.LoginParam();
 // 1. 设置服务器环境。
 loginParam.serverAddress = "服务器地址";
 // 2. 发起登录
 mClient.login(userID, password, loginParam);
-```
+``````
 
 ::: tip
 
@@ -95,7 +95,7 @@ mClient.login(userID, password, loginParam);
 [onClientStateChange()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCClientCallback.html#onClientStateChange-int-int-)
 执行逻辑操作。
 
-```java
+``````java
 @Override
 public void onClientStateChange(@JCClient.ClientState int state, @JCClient.ClientState int oldState) {
      if (state == JCClient.STATE_IDLE) { // 未登录
@@ -108,7 +108,7 @@ public void onClientStateChange(@JCClient.ClientState int state, @JCClient.Clien
        ...
     }
 }
-```
+``````
 
 之后触发
 [onLogin()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCClientCallback.html#onLogin-boolean-int-)
@@ -116,7 +116,7 @@ public void onClientStateChange(@JCClient.ClientState int state, @JCClient.Clien
 [onLogin()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCClientCallback.html#onLogin-boolean-int-)
 执行逻辑操作。
 
-```java
+``````java
 @Override
 public void onLogin(boolean result, @JCClient.ClientReason int reason) {
     if (result) {// 登录成功
@@ -127,7 +127,7 @@ public void onLogin(boolean result, @JCClient.ClientReason int reason) {
     }
 
 }
-```
+``````
 
 登录成功之后，SDK 会自动保持与服务器的连接状态，直到用户主动调用登出接口，或者因为帐号在其他设备登录导致该设备登出。登录成功/失败原因 参考
 [JCClient.ClientReason](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCClient.html#REASON_ANOTHER_DEVICE_LOGINED)。
@@ -143,11 +143,11 @@ public void onLogin(boolean result, @JCClient.ClientReason int reason) {
 可以发起登出。更多登出原因参考：
 [JCClient.ClientReason](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCClient.html#REASON_ANOTHER_DEVICE_LOGINED)
 
-```java
+``````java
 @Override
 public void onLogout(@JCClient.ClientReason int reason) {
     if (reason == REASON_SERVER_LOGOUT) {// 强制登出
         ...
     }
 }
-```
+``````

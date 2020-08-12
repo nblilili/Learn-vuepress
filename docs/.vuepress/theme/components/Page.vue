@@ -40,7 +40,7 @@
         <Content class="theme-default-content"></Content>
         <!-- <Content slot-key="head" /> -->
         <PageEdit />
-        <PageNav v-if="($route.path.indexOf('Android') <= -1)" v-bind="{ sidebarItems }" />
+        <PageNav v-if="($route.path.indexOf('iOS') <= -1)" v-bind="{ sidebarItems }" />
       </div>
       <div class="page-right">
         <SidebarRight
@@ -117,7 +117,7 @@ export default {
               if (data.path == that.$route.path) return path;
               if (check_path_0(data.path) == check_path_0(that.$route.path)) {
                 if (data.path == that.$route.path) return path;
-                if (check_path(data.path) == "Android.html") return path;
+                if (check_path(data.path) == "iOS.html") return path;
               }
             }
           } else if (data.path && data.path == that.$route.path) return path;

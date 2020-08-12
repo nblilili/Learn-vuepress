@@ -28,7 +28,7 @@ title: 音频管理
 
 首先注册音频输入回调
 
-```java
+``````java
 /**
  * add audio input data callback
  *
@@ -37,11 +37,11 @@ title: 音频管理
  * @return                  void.
  */
 ZmfAudio.inputAddCallback(ZmfAudio.InputCallback var0);
-```
+``````
 
 回调类型说明
 
-```java
+``````java
 /** the callback to receive audio input data
  * @param[in] inputId         unique name of the audio input
  * @param[in] iSampleRateHz   the sample rate of the pcm data
@@ -56,11 +56,11 @@ public interface InputCallback
 {
     void onAudioInputFrame(String inputId, int sampleRateHz, int iChannels, ByteBuffer data, int playDelayMS, int recDelayMS, int clockDrift);
 }
-```
+``````
 
 示例代码
 
-```java
+``````java
 public void onAudioInputFrame(String inputId, int sampleRateHz, int iChannels, ByteBuffer data, int playDelayMS, int recDelayMS, int clockDrift) {
     System.out.println("音频采集数据处理");
 }
@@ -70,13 +70,13 @@ public void call() {
     //发起呼叫
     call.call("peer number", true, "自定义透传字符串");
 }
-```
+``````
 
 回调注册后，当有音频数据采集进来时，可以对音频数据进行处理。
 
 如果想移除回调，调用下面的接口
 
-```java
+``````java
 /**
  * remove input audio data callback
  *
@@ -85,11 +85,11 @@ public void call() {
  * @return                  void.
  */
 ZmfAudio.inputRemoveCallback(ZmfAudio.InputCallback var0);
-```
+``````
 
 示例代码
 
-```java
+``````java
 public void endCall() {
     //移除回调
     ZmfAudio.inputRemoveCallback(onAudioInputFrame);
@@ -97,7 +97,7 @@ public void endCall() {
     // 挂断通话
     call.term(item, JCCall.REASON_NONE, "自己挂断");
 }
-```
+``````
 
 - 解码后播放前的处理
 
@@ -112,7 +112,7 @@ public void endCall() {
 
 首先注册音频输出回调
 
-```java
+``````java
 /**
  * add audio output data callback
  *
@@ -121,11 +121,11 @@ public void endCall() {
  * @return                  >= 0 on succeed is handle, otherwise failed.
  */
 ZmfAudio.outputAddCallback(ZmfAudio.OutputCallback var0);
-```
+``````
 
 回调类型说明
 
-```java
+``````java
 /**
  * The callback to receive audio output data
  *
@@ -140,13 +140,13 @@ public interface OutputCallback
 {
     void onAudioOutputFrame(String outputId, int sampleRateHz, int iChannels, ByteBuffer data);
 }
-```
+``````
 
 回调注册后，当有解码后的音频数据进来时，可以进行对应的音频数据处理。
 
 示例代码
 
-```java
+``````java
 public void void onAudioOutputFrame(String outputId, int sampleRateHz, int iChannels, ByteBuffer data) {
     System.out.println("音频解码后的数据处理");
 }
@@ -156,11 +156,11 @@ public void call() {
     //发起通话
     call.call("peer number", true, "自定义透传字符串");
 }
-```
+``````
 
 如果想移除回调，调用下面的接口
 
-```java
+``````java
 /**
  * remove output audio data callback
  *
@@ -169,11 +169,11 @@ public void call() {
  * @return                  void.
  */
 ZmfAudio.outputRemoveCallback(ZmfAudio.OutputCallback var0)
-```
+``````
 
 示例代码
 
-```java
+``````java
 public void endCall() {
     //移除回调
     ZmfAudio.outputRemoveCallback(onAudioOutputFrame);
@@ -181,7 +181,7 @@ public void endCall() {
     //挂断通话
     call.term(item, JCCall.REASON_NONE, "自己挂断");
 }
-```
+``````
 
 -----
 
@@ -203,7 +203,7 @@ Juphoon 对应的接口中进行后续操作。
 
 采集数据输入接口
 
-```java
+``````java
 /**
  * The audio input data entry to ZMF
  *
@@ -218,7 +218,7 @@ Juphoon 对应的接口中进行后续操作。
  */
 static public void onInput (String inputId, int sampleRateHz, int iChannels, ByteBuffer data,
                                                      int playDelayMS, int recDelayMS, int clockDrift)
-```
+``````
 
 ::: tip
 
@@ -228,7 +228,7 @@ static public void onInput (String inputId, int sampleRateHz, int iChannels, Byt
 
 示例代码
 
-```java
+``````java
 //初始化音频设备
 android.content.Context activity;
 ZmfAudio.initialize(activity);
@@ -238,35 +238,35 @@ public void call() {
     //发起呼叫
     call.call("peer number", true, "自定义透传字符串");
 }
-```
+``````
 
 采集停止接口
 
-```java
+``````java
 /**
  * tell ZMF the audio input has stopped
  *
  * @param[in] inputId       unique name of the device              //输出设备id
  */
 static public void onInputDidStop(String inputId)
-```
+``````
 
 示例代码
 
-```java
+``````java
 public void endCall() {
     //停止采集
     onInputDidStop("Test");
     //挂断通话
     call.term(item, JCCall.REASON_NONE, "自己挂断");
 }
-```
+``````
 
 如果想在音频输出端使用自定义的播放数据，则调用下面的接口：
 
 播放数据输入接口
 
-```java
+``````java
 **
  * The outlet which audio output can get data from.
  *
@@ -276,7 +276,7 @@ public void endCall() {
  * @param[in] data          the pcm data to be filled             //外部采集数据源
  */
 static public void onOutput (String outputId, int sampleRateHz, int iChannels, ByteBuffer data);
-```
+``````
 
 ::: tip
 
@@ -286,7 +286,7 @@ static public void onOutput (String outputId, int sampleRateHz, int iChannels, B
 
 示例代码
 
-```java
+``````java
 //初始化音频设备
 android.content.Context activity;
 ZmfAudio.initialize(activity);
@@ -296,18 +296,18 @@ public void call() {
     //发起呼叫
     call.call("peer number", true, "自定义透传字符串");
 }
-```
+``````
 
 播放数据停止接口
 
-```java
+``````java
 /**
  * tell ZMF the audio output has stopped
  *
  * @param[in] inputId       unique name of the device         //输入设备id
  */
 static public void onOutputDidStop(String outputId)
-```
+``````
 
 ::: tip
 
@@ -317,14 +317,14 @@ static public void onOutputDidStop(String outputId)
 
 示例代码
 
-```java
+``````java
 public void endCall() {
     //停止播放数据，业务中或者业务结束时均可以调用
     onOutputDidStop("Test");
     //挂断通话
     call.term(item, JCCall.REASON_NONE, "自己挂断");
 }
-```
+``````
 
 -----
 
@@ -334,18 +334,18 @@ public void endCall() {
 
 ### 获取音频路由类型
 
-```java
+``````java
 /**
  * 音频路由类型
  *
  * @return 音频路由类型
  */
 public abstract int getAudioRouteType();
-```
+``````
 
 音频输出类型（AudioRouteType）有以下几种
 
-```java
+``````java
 /** 听筒 */
 public static final int AUDIO_ROUTE_RECEIVER = 0;
 /** 扬声器 */
@@ -354,22 +354,22 @@ public static final int AUDIO_ROUTE_SPEAKER = 1;
 public static final int AUDIO_ROUTE_HEADSET = 2;
 /** 蓝牙耳机 */
 public static final int AUDIO_ROUTE_BLUETOOTH = 3;
-```
+``````
 
 ### 开启/关闭扬声器
 
-```java
+``````java
 /**
  * 开启/关闭扬声器
  *
  * @param enable 是否开启
  */
 public abstract void enableSpeaker(boolean enable);
-```
+``````
 
 ### 开启/关闭音频设备
 
-```java
+``````java
 /**
  * 启动音频，一般正式开启通话前需要调用此接口
  *
@@ -383,15 +383,15 @@ public abstract boolean startAudio();
  * @return 成功返回 true，失败返回 false
  */
 public abstract boolean stopAudio();
-```
+``````
 
 **示例代码**
 
-```java
+``````java
 // 开启扬声器
 mediaDevice.enableSpeaker(true);
 // 开启音频设备
 mediaDevice.startAudio();
 // 关闭音频设备
 mediaDevice.stopAudio();
-```
+``````
