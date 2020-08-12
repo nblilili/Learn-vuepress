@@ -2,13 +2,7 @@
   <aside class="sidebar-right">
   
     <slot name="top" />
-
     <SubSidebar class="side-bar" />
-    
-    <!-- <ModuleTransition>
-      <SubSidebar class="side-bar" />
-    </ModuleTransition> -->
-
     <slot name="bottom" />
   </aside>
 </template>

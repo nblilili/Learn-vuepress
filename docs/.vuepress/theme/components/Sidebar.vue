@@ -32,7 +32,11 @@
       </div>
       <div class="left-line"></div>
       <div id="left-about" class="left-about" style="margin-top: 9px;padding: 18px;">
-        <div class="left-title left-title_1 abline" @click="showselect=!showselect" :class="showselect?'act':''">
+        <div
+          class="left-title left-title_1 abline"
+          @click="showselect=!showselect"
+          :class="showselect?'act':''"
+        >
           相关链接
           <i class="iconfont" :class="showmenu?'icon-shangla':'icon-xiala'"></i>
           <div class="left-title-menu">
@@ -67,16 +71,15 @@ export default {
       showmenu: false,
       showselect:false,
       menulist: MenuList,
-    };
-  },
-  watch: {
-    $route(newValue, oldValue) {
-      let menulist = JSON.parse(JSON.stringify(MenuList));
+      friendLink: [
+        {
+          type: "group",
+          titlSON.stringify(MenuList));
       this.setMenuList(menulist);
       if (window.innerWidth < 800) this.$emit("MenuHide");
     },
     items(newValue, oldValue) {
-      // console.log(JSON.stringify(newValue[2]));
+      console.log(JSON.stri// ngify(newValue[2]));
     },
     scollpage(newValue, oldValue) {},
   },
@@ -150,6 +153,7 @@ export default {
     }
   }
 }
+
 .sidebar {
   ul {
     padding: 0;

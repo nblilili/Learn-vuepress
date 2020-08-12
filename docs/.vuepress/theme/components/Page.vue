@@ -134,7 +134,6 @@ export default {
           this.needTags = true;
           let array = [];
           TagsConfig[i].forEach((e) => {
-            console.log(e);
             let name = e;
             if (name == "C++") name = "Windows C++";
             else if (name == "Windows") name = "Windows C#";
