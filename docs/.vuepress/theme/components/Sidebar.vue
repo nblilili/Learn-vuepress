@@ -76,7 +76,7 @@ export default {
       if (window.innerWidth < 800) this.$emit("MenuHide");
     },
     items(newValue, oldValue) {
-      console.log(JSON.stringify(newValue[2]));
+      // console.log(JSON.stringify(newValue[2]));
     },
     scollpage(newValue, oldValue) {},
   },
