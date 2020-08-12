@@ -15,7 +15,7 @@ create](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaD
 create](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaChannel.html#//api/name/create:mediaDevice:callback:)
 以初始化实现多方通话需要的模块：
 
-```objectivec
+``````objectivec
 //初始化
 -(bool)initialize {
    //1. 媒体类
@@ -24,7 +24,7 @@ create](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaC
    JCMediaChannel *mediaChannel = [JCMediaChannel create:client mediaDevice:mediaDevice callback:self];
    return client.state == JCClientStateLogined;
 }
-```
+``````
 
 其中：
 
@@ -35,7 +35,7 @@ create](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaC
 
 JCMediaDeviceCallback 中的主要方法如下
 
-```objectivec
+``````objectivec
 //摄像头变化
 -(void)onCameraUpdate;
 
@@ -44,7 +44,7 @@ JCMediaDeviceCallback 中的主要方法如下
 
 //声音中断恢复
 -(void)onAudioInerruptAndResume:(BOOL)interrupt;
-```
+``````
 
 - JCMediaChannel create 方法中的 callback 为
     [JCMediaChannelCallback](https://developer.juphoon.com/portal/reference/V2.1/ios/Protocols/JCMediaChannelCallback.html)
@@ -53,7 +53,7 @@ JCMediaDeviceCallback 中的主要方法如下
 
 JCMediaChannel 中的主要方法如下
 
-```objectivec
+``````objectivec
 //自身状态变化回调
 -(void)onMediaChannelStateChange:(JCMediaChannelState)state oldState:(JCMediaChannelState)oldState;
 
@@ -77,7 +77,7 @@ JCMediaChannel 中的主要方法如下
 
 //成员声音变化
 -(void)onParticipantVolumeChange:(JCMediaChannelParticipant*)participant;
-```
+``````
 
 ## 加入频道
 
@@ -87,10 +87,10 @@ JCMediaChannel 中的主要方法如下
     [enableUploadAudioStream](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaChannel.html#//api/name/enableUploadAudioStream:)
     开启音频流。返回 true 表示正常执行调用流程，false 表示调用异常。
 
-    ```objectivec
+    ``````objectivec
     // 1. 开启音频流
     [mediaDeviceChannel enableUploadAudioStream:true];
-    ```
+    ``````
 
 2. 调用
     [join](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaChannel.html#//api/name/join:joinParam:)
@@ -105,16 +105,16 @@ JCMediaChannel 中的主要方法如下
     [JCMediaChannelJoinParam](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaChannelJoinParam.html)
     对象。
 
-```objectivec
+``````objectivec
 // 加入频道
 [mediaChannel join:@"222" joinParam:nil];
-```
+``````
 
 3. 加入频道后收到
     [onJoin](https://developer.juphoon.com/portal/reference/V2.1/ios/Protocols/JCMediaChannelCallback.html#//api/name/onJoin:reason:channelId:)
     回调。
 
-    ```objectivec
+    ``````objectivec
     // 加入频道结果回调
     -(void)onJoin:(bool)result reason:(JCMediaChannelReason)reason channelId:(NSString*)channelId
     {
@@ -124,7 +124,7 @@ JCMediaChannel 中的主要方法如下
           // 加入失败
         }
     }
-    ```
+    ``````
 
 ## 离开频道
 
@@ -132,9 +132,9 @@ JCMediaChannel 中的主要方法如下
 [leave](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaChannel.html#//api/name/leave)
 方法离开当前频道。
 
-```objectivec
+``````objectivec
 [mediaChannel leave];
-```
+``````
 
 离开频道后，自身收到
 [onLeave](https://developer.juphoon.com/portal/reference/V2.1/ios/Protocols/JCMediaChannelCallback.html#//api/name/onLeave:channelId:)
@@ -146,10 +146,10 @@ JCMediaChannel 中的主要方法如下
 
 如果想解散频道，可以调用下面的接口，此时所有成员都将被退出。
 
-```objectivec
+``````objectivec
 // 结束频道
 [mediaChannel stop];
-```
+``````
 
 解散频道后，发起结束的成员收到
 [onStop](https://developer.juphoon.com/portal/reference/V2.1/ios/Protocols/JCMediaChannelCallback.html#//api/name/onStop:reason:)

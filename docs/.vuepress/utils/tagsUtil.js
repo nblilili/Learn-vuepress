@@ -50,7 +50,7 @@ function recursion(filePath, callback) {
         } else {
           platforms = new Array();
           // 先添加一个 Android
-          platforms.push("Android");
+          platforms.push("iOS");
           platforms.push(basename);
           tagMap.set(relativePath, platforms);
         }
@@ -64,4 +64,13 @@ function recursion(filePath, callback) {
     //结束后返回回调
   })
   callback(null, tagMap);
+}
+
+/**
+ * 
+ * @param {*} x 
+ * @param {*} y 
+ */
+function sortTagsArray(x, y){
+  return x.weight - weight.weight;
 }

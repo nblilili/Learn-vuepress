@@ -15,7 +15,7 @@ title: 实现多方视频通话
 [JCMediaChannel.create()](https://developer.juphoon.com/portal/reference/V2.1/windows/html/03ba7506-bd05-93a0-ddd6-605eea7c7ee6.htm)
 以初始化实现多方通话需要的模块:
 
-```csharp
+``````csharp
 /// 声明对象
 JCMediaDevice mMediaDevice;
 JCMediaChannel mMediaChannel;
@@ -28,7 +28,7 @@ public bool initialize(Context context) {
     /// 2. 媒体通道类
     mMediaChannel = JCMediaChannel.create(client, mediaDevice, this);
 }
-```
+``````
 
 其中：
 
@@ -38,7 +38,7 @@ public bool initialize(Context context) {
 
 JCMediaDeviceCallback 中的主要方法如下
 
-```csharp
+``````csharp
 //摄像头变化
 public void onCameraUpdate()
 {
@@ -47,7 +47,7 @@ public void onCameraUpdate()
 public void onAudioOutputTypeChange(string audioOutputType)
 {
 }
-```
+``````
 
 - JCMediaChannel create 方法中的 this 为实现
     [<span id="id10" class="problematic">|JCMediaChannelCallback|</span>](#id9)
@@ -55,7 +55,7 @@ public void onAudioOutputTypeChange(string audioOutputType)
 
 JCMediaChannelCallback 中的主要方法如下
 
-```csharp
+``````csharp
 //自身状态变化回调
 public void onMediaChannelStateChange(JCMediaChannelState state, JCMediaChannelState oldState)
 {
@@ -96,7 +96,7 @@ public void onParticipantUpdate(JCMediaChannelParticipant participant, JCMediaCh
 public void onParticipantVolumeChange(JCMediaChannelParticipant participant)
 {
 }
-```
+``````
 
 ## 加入频道
 
@@ -106,12 +106,12 @@ public void onParticipantVolumeChange(JCMediaChannelParticipant participant)
 [enableUploadVideoStream()](https://developer.juphoon.com/portal/reference/V2.1/windows/html/75fc5ba5-75a9-c704-5bd2-bf011fb8a082.htm)
 开启视频流。
 
-```csharp
+``````csharp
 /// 1. 开启音频流
 mMediaDeviceChannel.enableUploadAudioStream(true);
 /// 2. 开启视频流
 mMediaDeviceChannel.enableUploadVIdeoStream(true);
-```
+``````
 
 1. 创建并加入频道，需要传入 `channelIdOrUri` 和
     [JCMediaChannel.JoinParam](https://developer.juphoon.com/portal/reference/V2.1/windows/html/af4ac634-bbe3-76e3-d1f8-120213ef2fff.htm)
@@ -128,11 +128,11 @@ mMediaDeviceChannel.enableUploadVIdeoStream(true);
     >
     >
     >
-    > ```csharp
+    > ``````csharp
     >
 >     mMediaChannel.join("222", null);
     >
-    > ```
+    > ``````
     > 
     > 
     > 
@@ -142,7 +142,7 @@ mMediaDeviceChannel.enableUploadVIdeoStream(true);
 [onJoin()](https://developer.juphoon.com/portal/reference/V2.1/windows/html/535cbae7-841e-ca31-32ea-87c1a840eff1.htm)
 回调。
 
-```csharp
+``````csharp
 public void onJoin(bool result, JCMediaChannelReason reason, String channelId) {
     if (result) {
         /// 加入频道成功
@@ -150,7 +150,7 @@ public void onJoin(bool result, JCMediaChannelReason reason, String channelId) {
         /// 加入频道失败
     }
 }
-```
+``````
 
 ## 创建本地视频画面
 
@@ -165,10 +165,10 @@ public void onJoin(bool result, JCMediaChannelReason reason, String channelId) {
 方法打开本地视频预览。返回对象为
 [JCMediaDeviceVideoCanvas](https://developer.juphoon.com/portal/reference/V2.1/windows/html/6a5b853c-d890-c30e-d236-5728d789ace1.htm)。（调用此方法会打开摄像头）
 
-```csharp
+``````csharp
 /// 打开本地视频预览
 mMediaChannel.getSelfParticipant().startVideo(JCMediaDevice.RENDER_FULL_CONTENT, JCMediaChannel.PICTURESIZE_NONE);
-```
+``````
 
 ## 创建远端视频画面
 
@@ -192,14 +192,14 @@ mMediaChannel.getSelfParticipant().startVideo(JCMediaDevice.RENDER_FULL_CONTENT,
 [requestVideo()](https://developer.juphoon.com/portal/reference/V2.1/windows/html/1a89408a-468e-73b8-6b6c-376811a18dda.htm)
 方法请求频道中其他用户的视频流。
 
-```csharp
+``````csharp
 /// 获取所有成员对象
 List<JCMediaChannelParticipant> participants = mMediaChannel.getSelfParticipant();
 /// 调用创建视频画面的方法
 participants.get(0).startVideo(JCMediaDevice.RENDER_FULL_CONTENT, JCMediaChannel.PICTURESIZE_NONE);
 /// 请求远端视频流, 此处调用大尺寸视频窗口
 mMediaChannel.requestVideo(participants.get(0), Large);
-```
+``````
 
 ## 离开频道
 
@@ -207,17 +207,17 @@ mMediaChannel.requestVideo(participants.get(0), Large);
 [leave()](https://developer.juphoon.com/portal/reference/V2.1/windows/html/7f034b94-15ee-8d49-48e3-905fff27f31f.htm)
 方法可以离开当前频道。
 
-```csharp
+``````csharp
 mMediaChannel.leave();
-```
+``````
 
 在多方视频通话中，离开频道还需要调用
 [stopVideo()](https://developer.juphoon.com/portal/reference/V2.1/windows/html/851cc6d3-1b5a-8e26-ce3c-a3c1780936d2.htm)
 移除视频画面。
 
-```csharp
+``````csharp
 mParticipant.stopVideo();
-```
+``````
 
 离开频道后，自身收到
 [onLeave()](https://developer.juphoon.com/portal/reference/V2.1/windows/html/f356aba3-ebed-a72c-4e34-02a684925a15.htm)
@@ -225,7 +225,7 @@ mParticipant.stopVideo();
 [onParticipantLeft()](https://developer.juphoon.com/portal/reference/V2.1/windows/html/89a35b12-8c2c-247d-e90c-ebe04f3e4521.htm)
 回调
 
-```csharp
+``````csharp
 /// 离开频道结果回调
 
 public void onLeave(JCMediaChannelReason reason, String channelId) {
@@ -233,7 +233,7 @@ public void onLeave(JCMediaChannelReason reason, String channelId) {
     /// 销毁视频画面
     mParticipant.stopVideo();
 }
-```
+``````
 
 ## 销毁本地和远端视频画面
 
@@ -243,26 +243,26 @@ public void onLeave(JCMediaChannelReason reason, String channelId) {
 [stopVideo()](https://developer.juphoon.com/portal/reference/V2.1/windows/html/851cc6d3-1b5a-8e26-ce3c-a3c1780936d2.htm)
 销毁本地和远端视频画面。
 
-```csharp
+``````csharp
 mParticipant.stopVideo();
-```
+``````
 
 ## 解散频道
 
 如果想解散频道，可以调用下面的接口，此时所有成员都将被退出。
 
-```csharp
+``````csharp
 /// 结束频道
 mMediaChannel.stop();
-```
+``````
 
 在多方视频通话中，离开频道还需要调用
 [stopVideo()](https://developer.juphoon.com/portal/reference/V2.1/windows/html/851cc6d3-1b5a-8e26-ce3c-a3c1780936d2.htm)
 移除视频画面。
 
-```csharp
+``````csharp
 mParticipant.stopVideo();
-```
+``````
 
 解散频道后，发起结束的成员收到
 [onStop()](https://developer.juphoon.com/portal/reference/V2.1/windows/html/d3732af7-2770-2d00-e4cb-e8f658da6c48.htm)
@@ -272,10 +272,10 @@ mParticipant.stopVideo();
 [MediaChannelReason](https://developer.juphoon.com/portal/reference/V2.1/windows/html/4481d778-9d4d-43fe-f94d-fdfa690dd939.htm)
 。
 
-```csharp
+``````csharp
 public void onStop(bool result, JCMediaChannelReason reason) {
     /// 销毁视频， canvas 为 JCMediaDeviceVideoCanvas 对象实例
     mParticipant.stopVideo();
     canvas = null;
 }
-```
+``````

@@ -20,20 +20,20 @@ create](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCClient
 
 :::
 
-```objectivec
+``````objectivec
 //初始化
 -(bool)initialize {
    JCClient *client = [JCClient create:"创建应用获取的 AppKey" callback:self creatParam:nil];
    return client.state == JCClientStateIdle;
 }
-```
+``````
 
 其中，callback 为 JCClientCallback 协议的代理对象，该协议用于将 client 的状态变化通知给上层。因此需要先指定
 callback 的代理对象，然后在该代理对象中实现 JCClientCallback 的方法。
 
 JCClientCallback 中的主要方法如下
 
-```objectivec
+``````objectivec
 //登陆结果回调
 -(void)onLogin:(bool)result reason:(JCClientReason)reason;
 
@@ -42,7 +42,7 @@ JCClientCallback 中的主要方法如下
 
 //登陆状态变化通知
 -(void)onClientStateChange:(JCClientState)state oldState:(JCClientState)oldState;
-```
+``````
 
 初始化成功后，JCClientState 状态从 JCClientStateNotInit（未初始化） 变为
 JCClientStateIdle（未登录）。
@@ -61,14 +61,14 @@ SDK 初始化之后，即可进行登录的集成。
 [login](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCClient.html#//api/name/login:password:loginParam:)
 ，发起登录:
 
-```objectivec
+``````objectivec
 JCClientLoginParam* loginParam = [[JCClientLoginParam alloc] init];
 // 1. 设置服务器环境
 loginParam.serverAddress = @"服务器地址";
 
 // 2. 发起登录
 [client login:userID password:password loginParam:loginParam];
-```
+``````
 
 ::: tip
 
@@ -102,7 +102,7 @@ loginParam.serverAddress = @"服务器地址";
 [onClientStateChange](https://developer.juphoon.com/portal/reference/V2.1/ios/Protocols/JCClientCallback.html#//api/name/onClientStateChange:oldState:)
 方法并处理相关的逻辑。
 
-```objectivec
+``````objectivec
 -(void)onClientStateChange:(JCClientState)state oldState:(JCClientState)oldState
 {
     if (state == JCClientStateIdle) { // 未登录
@@ -115,7 +115,7 @@ loginParam.serverAddress = @"服务器地址";
     ...
     }
 }
-```
+``````
 
 之后会触发 JCClientCallback 中的
 [onLogin](https://developer.juphoon.com/portal/reference/V2.1/ios/Protocols/JCClientCallback.html#//api/name/onLogin:reason:)
@@ -123,7 +123,7 @@ loginParam.serverAddress = @"服务器地址";
 [onLogin](https://developer.juphoon.com/portal/reference/V2.1/ios/Protocols/JCClientCallback.html#//api/name/onLogin:reason:)
 方法并处理相关的逻辑。
 
-```objectivec
+``````objectivec
 -(void)onLogin:(bool)result reason:(JCClientReason)reason {
     if (result) {// 登录成功
         ...
@@ -132,7 +132,7 @@ loginParam.serverAddress = @"服务器地址";
         ...
     }
 }
-```
+``````
 
 登录成功后，JCClientState 状态从 JCClientStateIdle（未登录）变为
 JCClientStateLogined（登录成功）。 SDK
@@ -150,19 +150,19 @@ JCClientStateLogined（登录成功）。 SDK
 [logout](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCClient.html#//api/name/logout)
 可以发起登出，登出后不能进行平台上的各种业务操作
 
-```objectivec
+``````objectivec
 [client logout];
-```
+``````
 
 登出同样会触发登录状态改变(onClientStateChange)回调，之后将通过 onlogout 回调上报登出结果。
 
-```objectivec
+``````objectivec
 -(void)onLogout:(JCClientReason)reason {
     if (reason == JCClientReasonServerLogout) {// 强制登出
         ...
     }
 }
-```
+``````
 
 更多登出原因参考：[JCClientClientReason](https://developer.juphoon.com/portal/reference/V2.1/ios/Constants/JCClientReason.html)
 

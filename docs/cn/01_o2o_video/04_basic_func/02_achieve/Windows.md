@@ -15,7 +15,7 @@ title: 实现一对一通话
 [JCCall.create()](https://developer.juphoon.com/portal/reference/V2.1/windows/html/eef10110-a3f7-b505-26fa-4b9ec1e2b998.htm)
 以初始化实现一对一通话需要的模块。
 
-```csharp
+``````csharp
 /// 声明对象
 JCMediaDevice mMediaDevice;
 JCCall mCall;
@@ -28,7 +28,7 @@ public bool initialize() {
     /// 2. 通话类
     mCall = JCCall.create(mClient, mMediaDevice, this);
 }
-```
+``````
 
 其中：
 
@@ -38,7 +38,7 @@ public bool initialize() {
 
 JCMediaDeviceCallback 中的主要方法如下
 
-```csharp
+``````csharp
 //摄像头变化
 public void onCameraUpdate()
 {
@@ -47,7 +47,7 @@ public void onCameraUpdate()
 public void onAudioOutputTypeChange(string audioOutputType)
 {
 }
-```
+``````
 
 - JCCall create 方法中的 this 为实现
     [JCCallCallback](https://developer.juphoon.com/portal/reference/V2.1/windows/html/25bca4ea-ad43-2cbb-42a8-b4e626739711.htm)
@@ -55,7 +55,7 @@ public void onAudioOutputTypeChange(string audioOutputType)
 
 JCCallCallback 中的主要方法如下
 
-```csharp
+``````csharp
 //新增通话回调
 public void onCallItemAdd(JCCallItem item)
 {
@@ -76,7 +76,7 @@ public void onMessageReceive(string type, string content, JCCallItem item)
 public void onMissedCallItem(JCCallItem item)
 {
 }
-```
+``````
 
 ## 拨打通话
 
@@ -91,10 +91,10 @@ public void onMissedCallItem(JCCallItem item)
 - [extraParam()](https://developer.juphoon.com/portal/reference/V2.1/windows/html/e0226cbc-1ca1-ef9c-5e8e-d3dc853d618d.htm)
     为自定义透传字符串， 可通过 `item.extraParam` 获取该属性。
 
-```csharp
+``````csharp
 /// 发起语音呼叫
 mCall.call(userID, isVideo, null);
-```
+``````
 
 拨打通话后，主叫和被叫均会收到新增通话的回调
 [onCallItemAdd()](https://developer.juphoon.com/portal/reference/V2.1/windows/html/5e605b62-c8dc-4dde-2480-8fdcbbfc2f48.htm)
@@ -104,7 +104,7 @@ mCall.call(userID, isVideo, null);
 [onCallItemAdd()](https://developer.juphoon.com/portal/reference/V2.1/windows/html/5e605b62-c8dc-4dde-2480-8fdcbbfc2f48.htm)
 执行逻辑操作。
 
-```csharp
+``````csharp
 public void onCallItemAdd(JCCallItem item) {
     /// 业务逻辑
     if (item.direction == JCCall.DIRECTION_IN) {
@@ -115,7 +115,7 @@ public void onCallItemAdd(JCCallItem item) {
         ...
     }
 }
-```
+``````
 
 ::: tip
 
@@ -135,14 +135,14 @@ public void onCallItemAdd(JCCallItem item) {
 
 示例代码:
 
-```csharp
+``````csharp
 /// 1. 发起视频呼叫
 mCall.call("222", true, null);
 /// 2. 获取当前活跃通话
 JCCallItem mCallItem = mCall.getActiveCallItem();
 /// 3. 打开本地视频预览，这里选择的是自适应模式
 mCallItem.startSelfVideo(JCMediaDevice.RENDER_FULL_AUTO);
-```
+``````
 
 ## 应答通话
 
@@ -152,7 +152,7 @@ mCallItem.startSelfVideo(JCMediaDevice.RENDER_FULL_AUTO);
 [JCCallItem](https://developer.juphoon.com/portal/reference/V2.1/windows/html/0267696e-79ee-8d46-c086-3c071a2b2b3a.htm)
 属性来判断是视频呼入还是语音呼入，从而做出相应的处理。
 
-```csharp
+``````csharp
 public void onCallItemAdd(JCCallItem item) {
     /// 1. 如果是视频呼入且在振铃中
     if (item.direction == JCCall.DIRECTION_IN && item.video) {
@@ -160,15 +160,15 @@ public void onCallItemAdd(JCCallItem item) {
         ...
     }
 }
-```
+``````
 
 调用
 [answer()](https://developer.juphoon.com/portal/reference/V2.1/windows/html/7211e914-c311-4457-4b0e-bc4ef46c7733.htm)
 接听通话。
 
-```csharp
+``````csharp
 mCall.answer(item, true);
-```
+``````
 
 通话接听后，通话状态变为 Connecting。
 
@@ -191,7 +191,7 @@ mCall.answer(item, true);
 
 示例代码:
 
-```csharp
+``````csharp
 public void onCallItemUpdate(JCCallItem item) {
     /// 如果对端在上传视频流（uploadVideoStreamOther）
     /// mRemoteCanvas 为 JCMediaDeviceVideoCanvas 对象实例，请在方法前声明。
@@ -201,7 +201,7 @@ public void onCallItemUpdate(JCCallItem item) {
         ...
     }
 }
-```
+``````
 
 ## 挂断通话
 
@@ -211,26 +211,26 @@ public void onCallItemUpdate(JCCallItem item) {
     [getActiveCallItem()](https://developer.juphoon.com/portal/reference/V2.1/windows/html/6df31ff9-272f-c7cc-1da6-2755c5aad5e0.htm)
     获取当前活跃的通话对象:
 
-    ```csharp
+    ``````csharp
     mCall.getActiveCallItem();
-    ```
+    ``````
 
 2. 调用
     [term()](https://developer.juphoon.com/portal/reference/V2.1/windows/html/70758778-1450-172d-8684-3dd2818f2a84.htm)
     挂断当前活跃通话:
 
-    ```csharp
+    ``````csharp
     mCall.term(item, reason, description);
-    ```
+    ``````
 
 示例代码:
 
-```csharp
+``````csharp
 /// 1. 获取当前活跃通话
 JCCallItem item = mCall.getActiveCallItem();
 /// 2. 挂断当前活跃通话
 mCall.term(item, JCCall.REASON_NONE, null);
-```
+``````
 
 ## 销毁本地和远端视频画面
 
@@ -244,11 +244,11 @@ mCall.term(item, JCCall.REASON_NONE, null);
 
 示例代码:
 
-```csharp
+``````csharp
 public void onCallItemRemove(JCCallItem item, JCCallReason reason, String description) {
     /// 销毁本地视频画面
     item.stopSelfVideo();
     /// 销毁远端视频画面
     item.stopOtherVideo();
 }
-```
+``````

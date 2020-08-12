@@ -172,7 +172,7 @@ title: 常见问题
 
 其中，setVideoFileFrame 接口如下
 
-```java
+``````java
 /**
  * 逐帧采集视频画面
  *
@@ -189,7 +189,7 @@ title: 常见问题
  * @param keyFrame 是否为关键帧，针对 format 为 H264
  */
 public abstract void setVideoFileFrame(byte[] data, @VideoPixelFormat int format, int width, int height, int angle, int mirror, boolean keyFrame);
-```
+``````
 
 **关于 H264的说明：**
 
@@ -200,13 +200,13 @@ public abstract void setVideoFileFrame(byte[] data, @VideoPixelFormat int format
 
 解决方案2: SDK初始化成功后调用以下代码
 
-```java
+``````java
 mediaDevice.startVideoFile();
 byte[] buf = new byte[10];
 buf[0] = 0x5;
 mediaDevice.setVideoFileFrame(buf, JCMediaDevice.H264, 1, 1, 0, 0, false);
 mediaDevice.stopVideoFile();
-```
+``````
 
 -----
 

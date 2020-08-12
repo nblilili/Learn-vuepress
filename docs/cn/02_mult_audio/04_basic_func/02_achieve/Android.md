@@ -15,7 +15,7 @@ title: 实现多方语音通话
 [JCMediaChannel.create()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannel.html#create-com.juphoon.cloud.JCClient-com.juphoon.cloud.JCMediaDevice-com.juphoon.cloud.JCMediaChannelCallback-)
 以初始化实现多方通话需要的模块：:
 
-```java
+``````java
 // 声明对象
 JCMediaDevice mMediaDevice;
 JCMediaChannel mMediaChannel;
@@ -94,7 +94,7 @@ public boolean initialize(Context context) {
         }
     });
 }
-```
+``````
 
 ## 加入频道
 
@@ -102,10 +102,10 @@ public boolean initialize(Context context) {
     [enableUploadAudioStream()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannel.html#enableUploadAudioStream-boolean-)
     开启音频流。
 
-    ```java
+    ``````java
     // 1. 开启音频流
     mMediaDeviceChannel.enableUploadAudioStream(true);
-    ```
+    ``````
 
 2. 创建并加入频道，需要传入 `channelIdOrUri` 和
     [JCMediaChannel.JoinParam](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannel.JoinParam.html)
@@ -122,11 +122,11 @@ public boolean initialize(Context context) {
     >
     >
     >
-    > ```java
+    > ``````java
     >
 >     mMediaChannel.join("222", null);
     >
-    > ```
+    > ``````
     > 
     > 
     > 
@@ -136,7 +136,7 @@ public boolean initialize(Context context) {
     [onJoin()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannelCallback.html#onJoin-boolean-int-java.lang.String-)
     回调。
 
-    ```java
+    ``````java
     @Override
     public void onJoin(boolean result, @JCMediaChannel MediaChannelReason int reason, String channelId) {
         if (result) {
@@ -145,7 +145,7 @@ public boolean initialize(Context context) {
             // 加入频道失败
         }
     }
-    ```
+    ``````
 
 ## 离开频道
 
@@ -153,17 +153,17 @@ public boolean initialize(Context context) {
 [leave()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannel.html#leave--)
 方法可以离开当前频道。
 
-```java
+``````java
 mMediaChannel.leave();
-```
+``````
 
 在多方视频通话中，离开频道还需要调用
 [stopVideo()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannelParticipant.html#stopVideo--)
 移除视频画面。
 
-```java
+``````java
 mParticipant.stopVideo();
-```
+``````
 
 离开频道后，自身收到
 [onLeave()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannelCallback.html#onLeave-int-java.lang.String-)
@@ -175,18 +175,18 @@ mParticipant.stopVideo();
 
 如果想解散频道，可以调用下面的接口，此时所有成员都将被退出。
 
-```java
+``````java
 // 结束频道
 mMediaChannel.stop();
-```
+``````
 
 在多方视频通话中，离开频道还需要调用
 [stopVideo()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannelParticipant.html#stopVideo--)
 移除视频画面。
 
-```java
+``````java
 mParticipant.stopVideo();
-```
+``````
 
 解散频道后，发起结束的成员收到
 [onStop()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannelCallback.html#onStop-boolean-int-)
@@ -196,11 +196,11 @@ mParticipant.stopVideo();
 [MediaChannelReason](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannel.html#REASON_ALREADY_JOINED)
 。
 
-```java
+``````java
 @Override
 public void onStop(boolean result, @JCMediaChannel.MediaChannelReason int reason) {
     // 销毁视频， canvas 为 JCMediaDeviceVideoCanvas 对象实例
     mParticipant.stopVideo();
     canvas = null;
 }
-```
+``````

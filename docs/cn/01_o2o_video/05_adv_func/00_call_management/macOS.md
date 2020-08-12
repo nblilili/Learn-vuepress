@@ -8,9 +8,9 @@ title: 通话管理
 发起通话前可以通过 maxCallNum 属性设置通话的最大人数，默认为 1。如果是视频通话，最大人数只能是 1，如果是语音通话，最大人数为
 2。
 
-```objectivec
+``````objectivec
 call.maxCallNum = 1;
-```
+``````
 
 当通话超过最大人数时：
 
@@ -25,14 +25,14 @@ call.maxCallNum = 1;
 通过下面的方法开启或关闭静音，开启关闭静音需要根据 JCCallItem
 中的静音状态（[mute](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCCallItem.html#//api/name/mute)）来决定，静音开启后，对方将听不到您的声音
 
-```objectivec
+``````objectivec
 /**
  *  @brief 静音，通过 JCCallItem 对象中的静音状态来决定开启关闭静音
  *  @param item JCCallItem 对象
  *  @return 返回 true 表示正常执行调用流程，false 表示调用异常
  */
 -(bool)mute:(JCCallItem* __nonnull)item;
-```
+``````
 
 ### 通话录音
 
@@ -46,7 +46,7 @@ call.maxCallNum = 1;
 
 开启或关闭录音接口如下
 
-```objectivec
+``````objectivec
 /**
  * 语音通话录音，通过 JCCallItem 对象中的audioRecord状态来决定开启关闭录音
  *
@@ -56,11 +56,11 @@ call.maxCallNum = 1;
  * @return                  返回 true 表示正常执行调用流程，false 表示调用异常
  */
 -(bool)audioRecord:(JCCallItem* __nonnull)item enable:(bool)enable filePath:(NSString* __nullable)filePath;
-```
+``````
 
 示例代码
 
-```objectivec
+``````objectivec
 // 语音录制
 - (void)audioRecord:(JCCallItem* __nonnull)item {
     if (item.audioRecord) { // 正在录制中
@@ -79,18 +79,18 @@ call.maxCallNum = 1;
         }
     }
 }
-```
+``````
 
 开启或关闭录音时，录音状态会发生改变，并通过 onCallItemUpdate 回调上报
 
-```objectivec
+``````objectivec
 /**
  *  @brief 通话状态更新回调（当上层收到此回调时，可以根据 JCCallItem 对象获得该通话的所有信息及状态，从而更新该通话相关UI）
  *  @param item JCCallItem 对象
  *  @param changeParam 更新标识类
  */
 -(void)onCallItemUpdate:(JCCallItem* __nonnull)item changeParam:(JCCallChangeParam * __nullable)changeParam;
-```
+``````
 
 -----
 
@@ -100,31 +100,31 @@ call.maxCallNum = 1;
 JCCallItem
 对象中（[hold](http://developer.juphoon.com/portal/reference/ios/Classes/JCCallItem.html#//api/name/hold)）的呼叫保持状态来决定
 
-```objectivec
+``````objectivec
 /**
  *  @brief                  呼叫保持，通过 JCCallItem 对象中的呼叫保持状态来决定开启关闭呼叫保持
  *  @param item             JCCallItem 对象
  *  @return                 返回 true 表示正常执行调用流程，false 表示调用异常
  */
 -(bool)hold:(JCCallItem* __nonnull)item;
-```
+``````
 
 ### 切换活跃通话
 
 调用下面的方法对通话中被保持的对象和活跃的通话对象进行切换
 
-```objectivec
+``````objectivec
 /**
  *  @brief 切换活跃通话
  *  @param item 需要变为活跃状态的 JCCallItem 对象
  *  @return 返回 true 表示正常执行调用流程，false 表示调用异常
  */
 -(bool)becomeActive:(JCCallItem* __nonnull)item;
-```
+``````
 
 示例代码
 
-```objectivec
+``````objectivec
 //获取活跃通话对象
 JCCallItem *item = [call getActiveCallItem];;
 //开启或关闭静音
@@ -133,13 +133,13 @@ JCCallItem *item = [call getActiveCallItem];;
 [call hold:item];
 //切换活跃通话
 [call becomeActive:item];
-```
+``````
 
 ### 通话中发送消息
 
 调用下面的接口在通话中实现发消息的功能
 
-```objectivec
+``````objectivec
 /**
  *  @brief 通过通话建立的通道发送数据
  *  @param item 需要发送数据的 JCCallItem 对象
@@ -148,11 +148,11 @@ JCCallItem *item = [call getActiveCallItem];;
  *  @return 返回 true 表示正常执行调用流程，false 表示调用异常
  */
 -(bool)sendMessage:(JCCallItem * __nonnull)item type:(NSString * __nonnull)type content:(NSString * __nonnull)content;
-```
+``````
 
 当通话中收到消息时，会收到 onMessageReceive 回调
 
-```objectivec
+``````objectivec
 /**
  *  @brief 通话中收到消息的回调
  *  @param item JCCallItem 对象
@@ -160,26 +160,26 @@ JCCallItem *item = [call getActiveCallItem];;
  *  @param content 消息内容
  */
 -(void)onMessageReceive:(JCCallItem * __nonnull)item type:(NSString * __nonnull)type content:(NSString * __nonnull)content;
-```
+``````
 
 示例代码
 
-```objectivec
+``````objectivec
 [call sendMessage:item type:@"text" content:@"消息内容"];
-```
+``````
 
 ### 相关回调
 
 通话过程中，如果通话状态发生了改变，如开启关闭静音、开启关闭通话保持、活跃状态切换、网络变化等，将会收到通话状态更新的回调
 
-```objectivec
+``````objectivec
 /**
  *  @brief 通话状态更新回调（当上层收到此回调时，可以根据 JCCallItem 对象获得该通话的所有信息及状态，从而更新该通话相关UI）
  *  @param item JCCallItem 对象
  *  @param changeParam 更新标识类
  */
 -(void)onCallItemUpdate:(JCCallItem* __nonnull)item changeParam:(JCCallChangeParam * __nullable)changeParam;
-```
+``````
 
 关于 JCCallChangeParam 的说明请参考 JCCallItem.h 文件。
 
@@ -193,7 +193,7 @@ JCCallItem *item = [call getActiveCallItem];;
 
 示例代码
 
-```objectivec
+``````objectivec
 -(void)onCallItemUpdate:(JCCallItem* __nonnull)item changeParam:(JCCallChangeParam * __nullable)changeParam {
     JCCallItem* callItem = item;
     if (changeParam.mute) { // 开启静音
@@ -209,6 +209,6 @@ JCCallItem *item = [call getActiveCallItem];;
     }
     ...
 }
-```
+``````
 
 -----

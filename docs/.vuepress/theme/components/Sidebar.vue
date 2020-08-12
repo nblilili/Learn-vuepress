@@ -67,26 +67,6 @@ export default {
       showmenu: false,
       showselect:false,
       menulist: MenuList,
-      friendLink: [
-        {
-          type: "group",
-          title: "下载",
-          children: [
-            {
-              title: "SDK 下载",
-              frontmatter: { title: "SDK 下载" },
-              regularPath:
-                "/cn/00_o2o_audio/02_download/00_download/Android.html",
-              relativePath:
-                "cn/00_o2o_audio/02_download/00_download/Android.md",
-              key: "v-fb73cf46",
-              path: "/cn/00_o2o_audio/02_download/00_download/Android.html",
-              type: "page",
-            },
-          ],
-          collapsable: true,
-        },
-      ],
     };
   },
   watch: {

@@ -15,7 +15,7 @@ title: 实现一对一通话
 [JCCallCallback](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_call_callback.html)
 对象，并实现这两个对象中的纯虚函数。
 
-```cpp
+``````cpp
 class JCManager : public JCMediaDeviceCallback, public JCCallCallback
 {
 public:
@@ -38,7 +38,7 @@ public:
     //JCCall 对象
     JCCall* call;
 };
-```
+``````
 
 ::: tip
 
@@ -52,7 +52,7 @@ public:
 [createJCCall](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/_j_c_call_8h.html#a29320972a659ce8eaf4994576103a62c)
 以初始化实现一对一通话需要的模块
 
-```cpp
+``````cpp
 bool JCManager::initialize()
 {
   //1. 媒体类
@@ -61,7 +61,7 @@ bool JCManager::initialize()
   call = createJCCall(client, mediaDevice, this);
   return true;
 }
-```
+``````
 
 其中：
 
@@ -88,13 +88,13 @@ bool JCManager::initialize()
 
 - `extraParam` 为自定义透传字符串， 可通过 JCCallItem 对象中的 extraParam 属性获得。
 
-```cpp
+``````cpp
 // 发起语音呼叫
 void JCSampleDlg::OnBnClickedButtonVoicecall()
 {
   JCManager::shared()->call->call("userID", false, "自定义透传字符串");
 }
-```
+``````
 
 拨打通话后，主叫和被叫均会收到新增通话的回调
 [onCallItemAdd](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_call_callback.html#a2188f777767ca071c145d4a50687ce63)
@@ -104,7 +104,7 @@ void JCSampleDlg::OnBnClickedButtonVoicecall()
 
 示例代码:
 
-```cpp
+``````cpp
 // 收到新增通话回调
 void JCManager::onCallItemAdd(JCCallItem* item) {
     // 业务逻辑
@@ -116,7 +116,7 @@ void JCManager::onCallItemAdd(JCCallItem* item) {
         ...
     }
 }
-```
+``````
 
 ::: tip
 
@@ -134,7 +134,7 @@ void JCManager::onCallItemAdd(JCCallItem* item) {
 
 示例代码:
 
-```cpp
+``````cpp
 void JCManager::onCallItemAdd(JCCallItem* item) {
     // 1. 如果是呼入且在振铃中
     if (item->getDirection() == JCCallDirectionIn && item->getState() == JCCallStatePending) {
@@ -142,18 +142,18 @@ void JCManager::onCallItemAdd(JCCallItem* item) {
          ...
     }
 }
-```
+``````
 
 2\. 调用
 [answer](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_call.html#a8e44cef3051dba33a600042c7a5bf987)
 接听通话，**语音通话只能进行语音应答**
 
-```cpp
+``````cpp
 // 获取活跃通话
 JCCallItem* item = JCManager::shared()->call->getActiveCallItem();
 // 应答通话
 JCManager::shared()->call->answer(item, item->getVideo());
-```
+``````
 
 通话应答后，通话状态变为 JCCallStateConnecting。
 
@@ -175,7 +175,7 @@ JCManager::shared()->call->answer(item, item->getVideo());
     [term](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_call.html#a168fd884512bfd5451ffa5fac83c598b)
     挂断当前活跃通话:
 
-    ```cpp
+    ``````cpp
     void JCSampleDlg::OnBnClickedButtonTermcall()
     {
       // 1. 获取当前活跃通话
@@ -186,6 +186,6 @@ JCManager::shared()->call->answer(item, item->getVideo());
         JCManager::shared()->call->term(item, JCCallReasonNone, "term");
       }
     }
-    ```
+    ``````
 
 至此，你就完成了基础的一对一语音通话功能。

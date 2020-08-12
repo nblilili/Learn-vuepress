@@ -15,7 +15,7 @@ create](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaD
 create](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCCall.html#//api/name/create:mediaDevice:callback:)
 以初始化实现一对一通话需要的模块
 
-```objectivec
+``````objectivec
 //初始化
 -(bool)initialize {
    //1. 媒体类
@@ -24,7 +24,7 @@ create](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCCall.h
    JCCall *call = [JCCall create:client mediaDevice:mediaDevice callback:self];
    return client.state == JCClientStateLogined;
 }
-```
+``````
 
 其中：
 
@@ -35,7 +35,7 @@ create](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCCall.h
 
 JCMediaDeviceCallback 中的主要方法如下
 
-```objectivec
+``````objectivec
 //摄像头变化
 -(void)onCameraUpdate;
 
@@ -44,7 +44,7 @@ JCMediaDeviceCallback 中的主要方法如下
 
 //声音中断恢复
 -(void)onAudioInerruptAndResume:(BOOL)interrupt;
-```
+``````
 
 - JCCall create 方法中的 callback 为
     [JCCallCallback](https://developer.juphoon.com/portal/reference/V2.1/ios/Protocols/JCCallCallback.html)
@@ -53,7 +53,7 @@ JCMediaDeviceCallback 中的主要方法如下
 
 JCCallCallback 中的主要方法如下
 
-```objectivec
+``````objectivec
 //新增通话回调
 -(void)onCallItemAdd:(JCCallItem* __nonnull)item;
 
@@ -62,7 +62,7 @@ JCCallCallback 中的主要方法如下
 
 //通话状态更新回调（当上层收到此回调时，可以根据 JCCallItem 对象获得该通话的所有信息及状态，从而更新该通话相关UI）
 -(void)onCallItemUpdate:(JCCallItem* __nonnull)item changeParam:(JCCallChangeParam * __nullable)changeParam;
-```
+``````
 
 ## 拨打通话
 
@@ -76,10 +76,10 @@ JCCallCallback 中的主要方法如下
 
 - `extraParam` 为自定义透传字符串， 可通过 JCCallItem 对象中的 extraParam 属性获得。
 
-```objectivec
+``````objectivec
 // 发起语音呼叫
 [call call:@"userID" video:false extraParam:@"自定义透传字符串"];
-```
+``````
 
 拨打通话后，主叫和被叫均会收到新增通话的回调
 [onCallItemAdd](https://developer.juphoon.com/portal/reference/V2.1/ios/Protocols/JCCallCallback.html#//api/name/onCallItemAdd:)
@@ -89,7 +89,7 @@ JCCallCallback 中的主要方法如下
 
 示例代码:
 
-```objectivec
+``````objectivec
 // 收到新增通话回调
 -(void)onCallItemAdd:(JCCallItem* __nonnull)item {
     // 业务逻辑
@@ -101,7 +101,7 @@ JCCallCallback 中的主要方法如下
         ...
     }
 }
-```
+``````
 
 ::: tip
 
@@ -119,7 +119,7 @@ JCCallCallback 中的主要方法如下
 
 示例代码:
 
-```objectivec
+``````objectivec
 -(void)onCallItemAdd:(JCCallItem* __nonnull)item {
     // 1. 如果是语音呼入且在振铃中
     if (item && item.direction == JCCallDirectionIn && !item.video) {
@@ -127,16 +127,16 @@ JCCallCallback 中的主要方法如下
         ...
     }
 }
-```
+``````
 
 2. 调用
     [answer](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCCall.html#//api/name/answer:video:)
     接听通话，**语音通话只能进行语音应答**
 
-```objectivec
+``````objectivec
 // 应答通话
 [call answer:item video:false];
-```
+``````
 
 通话应答后，通话状态变为 JCCallStateConnecting。
 
@@ -158,12 +158,12 @@ JCCallCallback 中的主要方法如下
     [term](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCCall.html#//api/name/term:reason:description:)
     挂断当前活跃通话:
 
-    ```objectivec
+    ``````objectivec
     // 1. 获取当前活跃通话
     JCCallItem *item = [call getActiveCallItem];
     // 2. 挂断当前活跃通话
     [call term:item reason:JCCallReasonNone description:@"主叫挂断"];
-    ```
+    ``````
 
 通话挂断后，会触发 JCCallCallback 中的 onCallItemRemove（通话移除回调），通话状态变为
 JCCallStateOk。

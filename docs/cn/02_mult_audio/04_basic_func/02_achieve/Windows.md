@@ -15,7 +15,7 @@ title: 实现多方语音通话
 [JCMediaChannel.create()](https://developer.juphoon.com/portal/reference/V2.1/windows/html/03ba7506-bd05-93a0-ddd6-605eea7c7ee6.htm)
 以初始化实现多方通话需要的模块:
 
-```csharp
+``````csharp
 /// 声明对象
 JCMediaDevice mMediaDevice;
 JCMediaChannel mMediaChannel;
@@ -28,7 +28,7 @@ public bool initialize(Context context) {
     /// 2. 媒体通道类
     mMediaChannel = JCMediaChannel.create(client, mediaDevice, this);
 }
-```
+``````
 
 其中：
 
@@ -38,7 +38,7 @@ public bool initialize(Context context) {
 
 JCMediaDeviceCallback 中的主要方法如下
 
-```csharp
+``````csharp
 //摄像头变化
 public void onCameraUpdate()
 {
@@ -47,7 +47,7 @@ public void onCameraUpdate()
 public void onAudioOutputTypeChange(string audioOutputType)
 {
 }
-```
+``````
 
 - JCMediaChannel create 方法中的 this 为实现
     [<span id="id7" class="problematic">|JCMediaChannelCallback|</span>](#id6)
@@ -55,7 +55,7 @@ public void onAudioOutputTypeChange(string audioOutputType)
 
 JCMediaChannelCallback 中的主要方法如下
 
-```csharp
+``````csharp
 //自身状态变化回调
 public void onMediaChannelStateChange(JCMediaChannelState state, JCMediaChannelState oldState)
 {
@@ -96,7 +96,7 @@ public void onParticipantUpdate(JCMediaChannelParticipant participant, JCMediaCh
 public void onParticipantVolumeChange(JCMediaChannelParticipant participant)
 {
 }
-```
+``````
 
 ## 加入频道
 
@@ -104,10 +104,10 @@ public void onParticipantVolumeChange(JCMediaChannelParticipant participant)
 [enableUploadAudioStream()](https://developer.juphoon.com/portal/reference/V2.1/windows/html/70f2d136-ebf6-12fc-eb1e-2a90622caca7.htm)
 开启音频流。
 
-```csharp
+``````csharp
 /// 1. 开启音频流
 mMediaDeviceChannel.enableUploadAudioStream(true);
-```
+``````
 
 1. 创建并加入频道，需要传入 `channelIdOrUri` 和
     [JCMediaChannel.JoinParam](https://developer.juphoon.com/portal/reference/V2.1/windows/html/af4ac634-bbe3-76e3-d1f8-120213ef2fff.htm)
@@ -124,11 +124,11 @@ mMediaDeviceChannel.enableUploadAudioStream(true);
     >
     >
     >
-    > ```csharp
+    > ``````csharp
     >
 >     mMediaChannel.join("222", null);
     >
-    > ```
+    > ``````
     > 
     > 
     > 
@@ -138,7 +138,7 @@ mMediaDeviceChannel.enableUploadAudioStream(true);
 [onJoin()](https://developer.juphoon.com/portal/reference/V2.1/windows/html/535cbae7-841e-ca31-32ea-87c1a840eff1.htm)
 回调。
 
-```csharp
+``````csharp
 public void onJoin(bool result, JCMediaChannelReason reason, String channelId) {
     if (result) {
         /// 加入频道成功
@@ -146,7 +146,7 @@ public void onJoin(bool result, JCMediaChannelReason reason, String channelId) {
         /// 加入频道失败
     }
 }
-```
+``````
 
 ## 离开频道
 
@@ -154,9 +154,9 @@ public void onJoin(bool result, JCMediaChannelReason reason, String channelId) {
 [leave()](https://developer.juphoon.com/portal/reference/V2.1/windows/html/7f034b94-15ee-8d49-48e3-905fff27f31f.htm)
 方法可以离开当前频道。
 
-```csharp
+``````csharp
 mMediaChannel.leave();
-```
+``````
 
 离开频道后，自身收到
 [onLeave()](https://developer.juphoon.com/portal/reference/V2.1/windows/html/f356aba3-ebed-a72c-4e34-02a684925a15.htm)
@@ -164,22 +164,22 @@ mMediaChannel.leave();
 [onParticipantLeft()](https://developer.juphoon.com/portal/reference/V2.1/windows/html/89a35b12-8c2c-247d-e90c-ebe04f3e4521.htm)
 回调
 
-```csharp
+``````csharp
 /// 离开频道结果回调
 
 public void onLeave(JCMediaChannelReason reason, String channelId) {
     ...
 }
-```
+``````
 
 ## 解散频道
 
 如果想解散频道，可以调用下面的接口，此时所有成员都将被退出。
 
-```csharp
+``````csharp
 /// 结束频道
 mMediaChannel.stop();
-```
+``````
 
 解散频道后，发起结束的成员收到
 [onStop()](https://developer.juphoon.com/portal/reference/V2.1/windows/html/d3732af7-2770-2d00-e4cb-e8f658da6c48.htm)
@@ -189,8 +189,8 @@ mMediaChannel.stop();
 [MediaChannelReason](https://developer.juphoon.com/portal/reference/V2.1/windows/html/4481d778-9d4d-43fe-f94d-fdfa690dd939.htm)
 。
 
-```csharp
+``````csharp
 public void onStop(bool result, JCMediaChannelReason reason) {
     ...
 }
-```
+``````
