@@ -1,41 +1,42 @@
 <template>
-  <main class="page">
-    <slot name="top" />
-    <div class="big-box">
-      <div class="page-left" ref="pronbit">
-        <!-- tags是this.$page.frontmatter.tags，这是通过vuepress编译markdown文件中的tags生成的标签数组。 -->
-        <!-- $site.themeConfig.tags是config.js中配置的tags目录 -->
-        <!-- <section class="tags" v-if="this.$site.themeConfig.tags&&tags&&tags.length>0">
+  <div>
+    <main class="page">
+      <slot name="top" />
+      <div class="big-box">
+        <div class="page-left" ref="pronbit">
+          <!-- tags是this.$page.frontmatter.tags，这是通过vuepress编译markdown文件中的tags生成的标签数组。 -->
+          <!-- $site.themeConfig.tags是config.js中配置的tags目录 -->
+          <!-- <section class="tags" v-if="this.$site.themeConfig.tags&&tags&&tags.length>0">
           <span class="tagPopup" v-for="tag in tags">
             <router-link :to="'/'+$site.themeConfig.tags+'/?tag='+tag" class="tag">{{tag}}</router-link>
           </span>
-        </section>-->
-        <!-- <div>{{title}}</div>  -->
-        <div style="padding-top:30px ">
-          <i class="left-menu-btn" @click="clickmenu()"></i>
-          <span class="layui-breadcrumb">
-            <a v-for="(item,i) in title" :key="item" href="javascript:;">
-              {{item}}
-              <span v-if="i!=title.length-1" lay-separator>&gt;</span>
-            </a>
-          </span>
-        </div>
-        <div style="padding: 2.5rem 2.5rem 0px 2.5rem" v-if="needTags">
-          <div class="mbtns">
-            <router-link
-              :class="item.active?'active':''"
-              v-for="item in CardName"
-              :key="item.name"
-              :to="item.href"
-            >{{item.name}}</router-link>
+          </section>-->
+          <!-- <div>{{title}}</div>  -->
+          <div style="padding-top:30px ">
+            <i class="left-menu-btn" @click="clickmenu()"></i>
+            <span class="layui-breadcrumb">
+              <a v-for="(item,i) in title" :key="item" href="javascript:;">
+                {{item}}
+                <span v-if="i!=title.length-1" lay-separator>&gt;</span>
+              </a>
+            </span>
           </div>
+          <div style="padding: 2.5rem 2.5rem 0px 2.5rem" v-if="needTags">
+            <div class="mbtns">
+              <router-link
+                :class="item.active?'active':''"
+                v-for="item in CardName"
+                :key="item.name"
+                :to="item.href"
+              >{{item.name}}</router-link>
+            </div>
+          </div>
+          <Content class="theme-default-content"></Content>
+          <!-- <Content slot-key="head" /> -->
+          <PageEdit />
+          <PageNav v-if="($route.path.indexOf('iOS') <= -1)" v-bind="{ sidebarItems }" />
         </div>
-        <Content class="theme-default-content"></Content>
-        <!-- <Content slot-key="head" /> -->
-        <PageEdit />
-        <PageNav v-if="($route.path.indexOf('iOS') <= -1)" v-bind="{ sidebarItems }" />
-      </div>
-      <div class="page-right">
+        <!-- <div class="page-right">
         <SidebarRight
           :items="sidebarItems"
           @toggle-sidebar="toggleSidebar"
@@ -49,11 +50,27 @@
             <slot name="sidebar-bottom" />
           </template>
         </SidebarRight>
+        </div>-->
+        <div class="clear"></div>
       </div>
-      <div class="clear"></div>
-    </div>
-    <slot name="bottom" />
-  </main>
+      <slot name="bottom" />
+    </main>
+    <!-- <div class="page-right">
+      <SidebarRight
+        :items="sidebarItems"
+        @toggle-sidebar="toggleSidebar"
+        v-if="!$page.frontmatter.home"
+        :class="addclass"
+      >
+        <template #top>
+          <slot name="sidebar-top" />
+        </template>
+        <template #bottom>
+          <slot name="sidebar-bottom" />
+        </template>
+      </SidebarRight>
+    </div> -->
+  </div>
 </template>
 
 <script>
@@ -86,15 +103,15 @@ export default {
     this.needTags = false;
     this.checkroute();
     // console.log(this.$site);
-    window.addEventListener(
-      "scroll",
-      this.throttle(this.handleScrollx, 200),
-      false
-    );
+    // window.addEventListener(
+    //   "scroll",
+    //   this.throttle(this.handleScrollx, 200),
+    //   false
+    // );
+    // window.addEventListener("scroll",this.handleScrollx);
   },
   methods: {
     clickmenu() {
-      // this.$emit("clickmenu");
       this.$EventBus.$emit("changeMenu", true);
     },
     checkpath() {
@@ -148,43 +165,43 @@ export default {
         }
       }
     },
-    handleScrollx() {
-      let that = this;
-      if (window.innerWidth > 800) {
-        if (that.$refs.pronbit.getBoundingClientRect().top > -1) {
-          that.addclass = "";
-        } else {
-          that.addclass = "fixed";
-        }
-        that.$emit("addclass", that.addclass);
-      }
-    },
-    throttle(fn, delay, atleast) {
-      /**函数节流方法
-        @param Function fn 延时调用函数
-        @param Number dalay 延迟多长时间
-        @param Number atleast 至少多长时间触发一次
-        @return Function 延迟执行的方法
-      */
-      let timer = null;
-      let previous = null;
-      return function () {
-        var now = +new Date();
-        if (!previous) previous = now;
-        if (atleast && now - previous > atleast) {
-          fn();
-          // 重置上一次开始时间为本次结束时间
-          previous = now;
-          clearTimeout(timer);
-        } else {
-          clearTimeout(timer);
-          timer = setTimeout(function () {
-            fn();
-            previous = null;
-          }, delay);
-        }
-      };
-    },
+    // handleScrollx() {
+    //   let that = this;
+    //   if (window.innerWidth > 800) {
+    //     if (that.$refs.pronbit.getBoundingClientRect().top > -1) {
+    //       that.addclass = "";
+    //     } else {
+    //       that.addclass = "fixed";
+    //     }
+    //     that.$emit("addclass", that.addclass);
+    //   }
+    // },
+    // throttle(fn, delay, atleast) {
+    //   /**函数节流方法
+    //     @param Function fn 延时调用函数
+    //     @param Number dalay 延迟多长时间
+    //     @param Number atleast 至少多长时间触发一次
+    //     @return Function 延迟执行的方法
+    //   */
+    //   let timer = null;
+    //   let previous = null;
+    //   return function () {
+    //     var now = +new Date();
+    //     if (!previous) previous = now;
+    //     if (atleast && now - previous > atleast) {
+    //       fn();
+    //       // 重置上一次开始时间为本次结束时间
+    //       previous = now;
+    //       clearTimeout(timer);
+    //     } else {
+    //       clearTimeout(timer);
+    //       timer = setTimeout(function () {
+    //         fn();
+    //         previous = null;
+    //       }, delay);
+    //     }
+    //   };
+    // },
   },
 };
 function check_path_0(data) {
@@ -212,23 +229,28 @@ function check_path(data) {
 }
 
 .big-box {
-  margin: 40px 10px 0px 10px;
+  margin: 40px 0px 0px 10px;
   background: #fff;
 }
 
 .page-left {
   margin: 0;
   padding: 0;
-  width: calc(100% - 220px);
+  width: 100%
   float: left;
 }
 
 .page-right {
-  margin-top: 56px;
-  float: right;
   width: 220px;
-  padding: 0 0 0 20px;
-  position: relative;
+  height: calc(100vh - 60px);
+  padding: 16px;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 60px;
+  bottom: 0;
+  overflow-y: auto;
+  transition: all 0.3s;
+  margin-top: 40px;
 }
 
 .fixed {

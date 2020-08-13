@@ -32,7 +32,11 @@
       </div>
       <div class="left-line"></div>
       <div id="left-about" class="left-about" style="margin-top: 9px;padding: 18px;">
-        <div class="left-title left-title_1 abline" @click="showselect=!showselect" :class="showselect?'act':''">
+        <div
+          class="left-title left-title_1 abline"
+          @click="showselect=!showselect"
+          :class="showselect?'act':''"
+        >
           相关链接
           <i class="iconfont" :class="showmenu?'icon-shangla':'icon-xiala'"></i>
           <div class="left-title-menu">
@@ -65,7 +69,7 @@ export default {
     return {
       MenuName: "",
       showmenu: false,
-      showselect:false,
+      showselect: false,
       menulist: MenuList,
     };
   },
@@ -150,6 +154,7 @@ export default {
     }
   }
 }
+
 .sidebar {
   ul {
     padding: 0;

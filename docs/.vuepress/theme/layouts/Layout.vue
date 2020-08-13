@@ -45,6 +45,22 @@
           <slot name="page-bottom" />
         </template>
       </Page>
+      <div class="page-right">
+        <!-- 右侧 -->
+        <SidebarRight
+          :items="sidebarItems"
+          @toggle-sidebar="toggleSidebar"
+          v-if="!$page.frontmatter.home"
+          :class="addclass"
+        >
+          <template #top>
+            <slot name="sidebar-top" />
+          </template>
+          <template #bottom>
+            <slot name="sidebar-bottom" />
+          </template>
+        </SidebarRight>
+      </div>
     </div>
   </div>
 </template>
@@ -55,6 +71,8 @@ import Home from "@theme/components/Home.vue";
 import Navbar from "@theme/components/Navbar.vue";
 import Page from "@theme/components/Page.vue";
 import Sidebar from "@theme/components/Sidebar.vue";
+import SidebarRight from "@theme/components/SidebarRight.vue";
+
 // import Tags from "@theme/components/Tags.vue";
 import { mapState } from "vuex";
 import { resolveSidebarItems } from "../util";
@@ -67,6 +85,7 @@ export default {
     Page,
     Sidebar,
     Navbar,
+    SidebarRight
     // Tags
   },
 
@@ -137,17 +156,17 @@ export default {
   methods: {
     clickmenu() {
       console.log(123123);
-      console.log(this.$store.state)
-      console.log("mapState",mapState)
+      console.log(this.$store.state);
+      console.log("mapState", mapState);
       this.isMenuShow = true;
     },
-    MenuShow(){
+    MenuShow() {
       this.isMenuShow = true;
     },
     MenuHide() {
       this.isMenuShow = false;
     },
-    
+
     checkTags() {
       let path = this.$route.path;
       let tags = this.$site.themeConfig.nav.filter((v) => v.tags); //判断tags
@@ -202,3 +221,19 @@ export default {
   },
 };
 </script>
+
+<style lang="stylus" scoped>
+.page-right {
+  background #fff
+  width: 220px;
+  height: calc(100vh - 60px);
+  padding: 16px;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 60px;
+  bottom: 0;
+  overflow-y: auto;
+  transition: all 0.3s;
+  margin-top: 40px;
+}
+</style>

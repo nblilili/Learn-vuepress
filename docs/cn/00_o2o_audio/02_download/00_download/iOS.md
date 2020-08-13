@@ -12,6 +12,6 @@ SDK](https://developer.juphoon.com/portal/cn/downloadsdk/download_sdk.php?filena
 
 - [更新日志](https://developer.juphoon.com/cn/document/V2.1/sdk/log/ios.php)
 
-- [历史版本](https://developer.juphoon.com/cn/document/V2.1/sdk/version/ios.php)
+- [历史版本](/cn/document/V2.1/sdk/version/ios.php)
 
 - [接口说明](https://developer.juphoon.com/portal/reference/V2.1/ios/)

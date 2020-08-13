@@ -82,7 +82,7 @@ export default {
 
     &:hover {
       a {
-        color: $accentColor;
+        color: #000;
       }
     }
 
@@ -91,7 +91,7 @@ export default {
       border-left: 3px solid $accentColor;
 
       a {
-        color: $accentColor;
+        color: #2c3e50;
       }
     }
 
@@ -107,7 +107,7 @@ export default {
       padding-left: 1.5rem;
       font-weight: 400;
       font-size: 14px;
-      opacity: 0.5;
+      opacity: 0.7;
     }
   }
 }

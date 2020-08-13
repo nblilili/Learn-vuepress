@@ -153,7 +153,7 @@ a.sidebar-link {
   box-sizing: border-box;
 
   &:hover {
-    color: $accentColor;
+    color: #000;
   }
 
   &.active {
