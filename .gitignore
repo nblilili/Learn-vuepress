@@ -2,7 +2,9 @@
 node_modules
 /dist
 /docs/.vuepress/dist
+/docs/cn
 
+.gitignore
 # local env files
 .env.local
 .env.*.local

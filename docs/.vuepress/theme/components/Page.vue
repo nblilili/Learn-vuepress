@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <main class="page">
+  <div class="pagefor800">
+    <main class="page" ref="Page">
       <slot name="top" />
       <div class="big-box">
         <div class="page-left" ref="pronbit">
@@ -69,7 +69,7 @@
           <slot name="sidebar-bottom" />
         </template>
       </SidebarRight>
-    </div> -->
+    </div>-->
   </div>
 </template>
 
@@ -91,6 +91,11 @@ export default {
     };
   },
   watch: {
+    $route(newValue, oldValue) {
+      this.$nextTick(() => {
+        this.$EventBus.$emit("pageHeight", this.$refs.Page.clientHeight);
+      });
+    },
     sidebarItems(newValue, oldValue) {
       this.needTags = false;
       this.checkroute();
@@ -102,13 +107,11 @@ export default {
     var that = this;
     this.needTags = false;
     this.checkroute();
-    // console.log(this.$site);
-    // window.addEventListener(
-    //   "scroll",
-    //   this.throttle(this.handleScrollx, 200),
-    //   false
-    // );
-    // window.addEventListener("scroll",this.handleScrollx);
+    this.$nextTick(() => {
+      setTimeout(() => {
+        this.$EventBus.$emit("pageHeight", this.$refs.Page.clientHeight);
+      }, 200);
+    });
   },
   methods: {
     clickmenu() {
@@ -224,7 +227,7 @@ function check_path(data) {
 // position: fixed;
 // }
 .page {
-  padding-bottom: 2rem;
+  // padding-bottom: 2rem;
   display: block;
 }
 
@@ -236,7 +239,7 @@ function check_path(data) {
 .page-left {
   margin: 0;
   padding: 0;
-  width: 100%
+  width: 100%;
   float: left;
 }
 
@@ -249,7 +252,6 @@ function check_path(data) {
   top: 60px;
   bottom: 0;
   overflow-y: auto;
-  transition: all 0.3s;
   margin-top: 40px;
 }
 
@@ -320,5 +322,15 @@ a, a:hover, a:focus {
   font-size: 16px;
   font-weight: 500;
   margin-bottom: 15px;
+}
+
+.pagefor800 {
+  width: calc(100% - 480px);
+}
+
+@media (max-width: 800px) {
+  .pagefor800 {
+    width: 100%;
+  }
 }
 </style>

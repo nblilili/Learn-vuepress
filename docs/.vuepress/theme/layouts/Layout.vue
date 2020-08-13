@@ -32,6 +32,7 @@
       <!-- <Tags v-else-if="tags" /> -->
       <!-- 主页 -->
       <Page
+        ref="Page"
         v-else
         :sidebar-items="sidebarItems"
         :toggleSidebar="toggleSidebar"
@@ -45,7 +46,12 @@
           <slot name="page-bottom" />
         </template>
       </Page>
-      <div class="page-right">
+      <div
+        class="page-right"
+        :style="{height:setright?rightheight:'calc(100vh - 60px)'}"
+        ref="pageRight"
+        v-if="!$page.frontmatter.home"
+      >
         <!-- 右侧 -->
         <SidebarRight
           :items="sidebarItems"
@@ -85,7 +91,7 @@ export default {
     Page,
     Sidebar,
     Navbar,
-    SidebarRight
+    SidebarRight,
     // Tags
   },
 
@@ -95,6 +101,8 @@ export default {
       scollpage: "", // 用于判断滚动
       tags: false,
       isMenuShow: true,
+      setright: false,
+      rightheight: "",
     };
   },
   created() {
@@ -151,6 +159,29 @@ export default {
     this.$router.afterEach(() => {
       this.isSidebarOpen = false;
     });
+    this.$EventBus.$on("pageHeight", (res) => {
+      console.log(res);
+      console.log(window.document.body.offsetWidth);
+      if (res < window.document.body.offsetWidth) {
+        console.log("要设置的高度", res);
+        this.setright = true;
+        this.rightheight = res + "px";
+        console.log(this.rightheight);
+      } else {
+        this.setright = false;
+      }
+    });
+
+    // this.$nextTick(()=>{
+    //   // var heightPage = window.getComputedStyle(this.$refs.page).height;
+    //   // console.log(heightPage)
+    //   // var heightCss = window.getComputedStyle(this.$refs.Page).height; // 100px
+    //   // console.log(heightCss)
+    //   console.log(this.$refs.Page)
+    //   console.log(this.$refs.Page.clientHeight)
+    //   console.log(window.document.body.offsetHeight)
+    //   console.log(this.$refs.Page.offsetHeight)
+    // })
   },
 
   methods: {
@@ -224,7 +255,7 @@ export default {
 
 <style lang="stylus" scoped>
 .page-right {
-  background #fff
+  background: #fff;
   width: 220px;
   height: calc(100vh - 60px);
   padding: 16px;
@@ -233,7 +264,12 @@ export default {
   top: 60px;
   bottom: 0;
   overflow-y: auto;
-  transition: all 0.3s;
   margin-top: 40px;
+}
+
+@media (max-width: 800px) {
+  .page-right {
+    display: none;
+  }
 }
 </style>
