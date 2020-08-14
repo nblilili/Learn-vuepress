@@ -1,8 +1,5 @@
-
-module.exports = new Set()
-  .add("iOS.md")
-  .add("macOS.md")
-  .add("Windows.md")
-  .add("C++.md");
-
-
+module.exports = new Map()
+  .set("iOS",1)
+  .set("Windows",2)
+  .set("C++",3)
+  .set("macOS",4);

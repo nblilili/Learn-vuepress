@@ -1,47 +1,25 @@
-
-const navConf = require('./config/navConf.js');
 const sidebarConf = require('./config/sidebarConf.js');
-const sidebarUtil = require('./utils/sidebarUtil.js')
+const sidebarUtil = require('./utils/sidebarUtil');
+const tagsUtil = require('./utils/tagsUtil');
+const navConf = require('./config/navConf.js');
 
 module.exports = {
-  markdown: {
-    lineNumbers: true
-  },
-  locales: {
-    '/': {},
-    '/en/': {},
+  plugins: [['vuepress-plugin-code-copy', true]],
+  host:"0.0.0.0",
+  base:'/doc/',
+  devServer:{
+    proxy:{
+      "/portal/cn/message":"http://developer.juphoon.com:8088"
+    }
   },
   themeConfig: {
-    locales: {
-      '/':  {
-        selectText: '选择语言',
-        label: '简体中文',
-        editLinkText: '在 GitHub 上编辑此页',
-        serviceWorker: {
-          updatePopup: {
-            message: "发现新内容可用.",
-            buttonText: "刷新"
-          }
-        },
-        // 当前 locale 的 algolia docsearch 选项
-        algolia: {},
-        nav: navConf.genNavbar('cn'),
-        sidebar: sidebarUtil.getSidebarConf('docs/cn')
-      },
-      '/en/': {
-        selectText: 'Languages',
-        label: 'English',
-        editLinkText: 'Edit this page on GitHub',
-        serviceWorker: {
-          updatePopup: {
-            message: "New content is available",
-            buttonText: "Refresh"
-          }
-        },
-        nav: navConf.genNavbar('en'),
-        algolia: {},
-        sidebar: sidebarUtil.getSidebarConf('docs/en'),
-      }
+    algolia: {
+      apiKey: '3a539aab83105f01761a137c61004d85',
+      indexName: 'vuepress_doc'
     },
+    nav: navConf.genNavbar('cn'),
+    // sidebar: sidebarConf
+    sidebar: sidebarUtil.getSidebarConf('docs/cn/'),
+    tagConfig: tagsUtil.getTagsConf('docs/cn/')
   }
-}   
+} 
