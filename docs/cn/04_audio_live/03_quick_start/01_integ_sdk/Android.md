@@ -23,26 +23,20 @@ title: 一分钟集成 SDK
 
 - 打开 Android Studio，点击 Start a new Android Studio project。
 
-- 在 Select a Project Template 界面，选择 Phone and Tablet \> Empty
+- 在 Select a Project Template 界面，选择 Phone and Tablet \Empty
     Activity，然后点击 Next。
 
 - 在 Configure Your Project 界面，依次填入以下内容：
 
-    >
-    >
-    >
-    >
-    > - Name：您的 Android 项目名称，如 HelloJuphoon。
-    >
-    > - Package name：您的项目包的名称，如 io.helloJuphoon。
-    >
-    > - Save location：项目的存储路径
-    >
-    > - Language：项目的编程语言，如 Java
-    >
-    > - Minimum API level：项目的最低 API 等级
-    >
-    >
+  - Name：您的 Android 项目名称，如 HelloJuphoon。
+
+  - Package name：您的项目包的名称，如 io.helloJuphoon。
+
+  - Save location：项目的存储路径
+
+  - Language：项目的编程语言，如 Java
+
+  - Minimum API level：项目的最低 API 等级
 
 - 然后点击 Finish。根据屏幕提示，安装可能需要的插件。
 

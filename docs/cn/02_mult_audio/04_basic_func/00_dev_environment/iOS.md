@@ -25,7 +25,7 @@ title: 准备开发环境
 
 ::: tip
 
-如果您没有添加过开发团队信息，点击 Xcode \> Preferences… \> Accounts，点击左下角加号并按照屏幕提示登入
+如果您没有添加过开发团队信息，点击 Xcode \Preferences… \Accounts，点击左下角加号并按照屏幕提示登入
 Apple ID，完成后即可选择您的账户作为开发团队。
 
 :::
@@ -34,7 +34,7 @@ Apple ID，完成后即可选择您的账户作为开发团队。
 
 - 将您的 iOS 设备连接至电脑。
 
-- 进入 TARGETS \> Project Name \> Signing & Capabilities 菜单，勾选
+- 进入 TARGETS \Project Name \Signing & Capabilities 菜单，勾选
     Automatically manage signing。
 
 ## 集成 SDK
@@ -63,7 +63,7 @@ CocoaPods 环境安装好后，执行以下操作：
 
 修改后内容如下所示，注意将 Your App 替换为您的 Target 名称。
 
-``````default
+``````
 platform :ios, '9.0'
 #use_frameworks!
 target 'Your App' do
@@ -89,154 +89,102 @@ end
 
 3. 导入 SDK
 
-    >
-    >
-    >
-    >
-    > 打开 Xcode，进入 TARGETS \> Project Name \> Build Phases \> Link Binary
-    > with Libraries 菜单，点击 ‘+’ 符号，导入 sdk 文件夹下的 `JCSDKOC.framework`、lib
-    > 文件夹下的 `libmtc.a` 和 `libzmf.a` 文件。
-    >
-    >
+    打开 Xcode，进入 TARGETS \Project Name \Build Phases \Link Binary
+    with Libraries 菜单，点击 ‘+’ 符号，导入 sdk 文件夹下的 `JCSDKOC.framework`、lib
+    文件夹下的 `libmtc.a` 和 `libzmf.a` 文件。
 
 4. 导入 SDK 依赖的库
 
-    >
-    >
-    >
-    >
-    > 继续点击 ‘+’ 符号，导入如下系统依赖的库：
-    >
-    >   - AssetsLibrary.framework
-    >
-    >   - AudioToolbox.framework
-    >
-    >   - VideoToolBox.framework
-    >
-    >   - AVFoundation.framework
-    >
-    >   - CFNetwork.framework
-    >
-    >   - CoreMedia.framework
-    >
-    >   - CoreMotion.framework
-    >
-    >   - CoreVideo.framework
-    >
-    >   - GLKit.framework
-    >
-    >   - PushKit.framework（推送使用）
-    >
-    >   - ReplayKit.framework
-    >
-    >   - Security.framework
-    >
-    >   - SystemConfiguration.framework
-    >
-    >   - libc++.tbd
-    >
-    >   - libz.tbd
-    >
-    >   - libresolv.tbd
-    >
-    >
+    继续点击 ‘+’ 符号，导入如下系统依赖的库：
+
+      - AssetsLibrary.framework
+
+      - AudioToolbox.framework
+
+      - VideoToolBox.framework
+
+      - AVFoundation.framework
+
+      - CFNetwork.framework
+
+      - CoreMedia.framework
+
+      - CoreMotion.framework
+
+      - CoreVideo.framework
+
+      - GLKit.framework
+
+      - PushKit.framework（推送使用）
+
+      - ReplayKit.framework
+
+      - Security.framework
+
+      - SystemConfiguration.framework
+
+      - libc++.tbd
+
+      - libz.tbd
+
+      - libresolv.tbd
 
 5. 设置路径
 
-    >
-    >
-    >
-    >
-    > 点击 ‘Build Settings’，找到 Search Paths，设置 Framework Search Paths
-    > 、Header Search Paths（头文件路径） 和 Library Search Paths（库文件路径）：
-    >
-    >   - Framework Search Paths：$(PROJECT\_DIR)/../sdk
-    >
-    >   - Header Search Paths：$(PROJECT\_DIR)/../sdk/include
-    >
-    >   - Library Search Paths：$(PROJECT\_DIR)/../sdk/lib/ios
-    >
-    > ::: tip
-    >
-    >
-    >
-    > 在完成第 1 步导入 JCSDKOC.framework 和两个 .a 文件后，Xcode 会自动生成该路径，如果 Xcode
-    > 没有自动生成路径，用户要根据 `JCSDKOC.framework` 、`include` 和 `lib`
-    > 文件所在目录，手动设置路径。
-    >
-    > :::
-    >
-    >
+    点击 ‘Build Settings’，找到 Search Paths，设置 Framework Search Paths
+    、Header Search Paths（头文件路径） 和 Library Search Paths（库文件路径）：
+
+      - Framework Search Paths：$(PROJECT\_DIR)/../sdk
+
+      - Header Search Paths：$(PROJECT\_DIR)/../sdk/include
+
+      - Library Search Paths：$(PROJECT\_DIR)/../sdk/lib/ios
+
+    ::: tip
+
+    在完成第 1 步导入 JCSDKOC.framework 和两个 .a 文件后，Xcode 会自动生成该路径，如果 Xcode
+    没有自动生成路径，用户要根据 `JCSDKOC.framework` 、`include` 和 `lib`
+    文件所在目录，手动设置路径。
+
+    :::
 
 6. 设置 Enable Bitcode 为 NO
 
-    >
-    >
-    >
-    >
-    > 进入工程中 Target -\> Build Settings -\> Enable Bitcode，将此项设置为 NO。
-    >
-    >
+    进入工程中 Target -\Build Settings -\Enable Bitcode，将此项设置为 NO。
 
 7. 设置 Other Linker Flags 的参数为 -ObjC
 
-    >
-    >
-    >
-    >
-    > 进入工程中的 Target -\> Build Settings -\> Other Linker Flags，在此项中添加
-    > -ObjC。
-    >
-    >
+    进入工程中的 Target -\Build Settings -\Other Linker Flags，在此项中添加
+    -ObjC。
 
 8. 设置预处理宏定义
 
-    >
-    >
-    >
-    >
-    > 点击 ‘Build Settings’，找到 Preprocessor Macros，在右侧输入
-    > ZPLATFORM=ZPLATFORM\_IOS 。
-    >
-    > **如果设置了 APNs 推送**，则还需要在 Preprocessor Macros 下的 Debug 中输入
-    > DEBUG，如下图：
-    >
-    > ![../../../../\_images/pushset.png](../../../../_images/pushset.png)
-    >
-    > ::: tip
-    >
-    >
-    >
-    > DEBUG 宏定义的目的是为了区分推送环境是 release 还是 debug，环境不对会导致推送失败。
-    >
-    > :::
-    >
-    >
+    点击 ‘Build Settings’，找到 Preprocessor Macros，在右侧输入
+    ZPLATFORM=ZPLATFORM\_IOS 。
+
+    **如果设置了 APNs 推送**，则还需要在 Preprocessor Macros 下的 Debug 中输入
+    DEBUG，如下图：
+
+    ![../../../../\_images/pushset.png](../../../../_images/pushset.png)
+
+    ::: tip
+
+    DEBUG 宏定义的目的是为了区分推送环境是 release 还是 debug，环境不对会导致推送失败。
+
+    :::
 
 9. 设置 Documentation Comments 为 NO
 
-    >
-    >
-    >
-    >
-    > 点击 ‘Build Settings’，找到 Documentation Comments 并设置为 NO。
-    >
-    >
+    点击 ‘Build Settings’，找到 Documentation Comments 并设置为 NO。
 
 10. 设置后台运行模式
 
-    >
-    >
-    >
-    >
-    > 进入工程的 Target -\> Signing & Capabilities -\> Background
-    > Modes，勾选如下两项内容:
-    >
-    >   - Audio, AirPlay, and Picture in Picture
-    >
-    >   - Voice over IP
-    >
-    >
+    进入工程的 Target -\Signing & Capabilities -\Background
+    Modes，勾选如下两项内容:
+
+      - Audio, AirPlay, and Picture in Picture
+
+      - Voice over IP
 
 ### 方法三：手动导入动态库
 
@@ -246,148 +194,96 @@ end
 
 3. 导入 SDK
 
-    >
-    >
-    >
-    >
-    > 打开 Xcode，进入 TARGETS \> Project Name \> General，在 “Embedded
-    > Binaries” 一栏，点击 ‘+’ 符号，然后导入 JCSDK 文件夹下的 JCSDKOC.framework。
-    >
-    >
+    打开 Xcode，进入 TARGETS \Project Name \General，在 “Embedded
+    Binaries” 一栏，点击 ‘+’ 符号，然后导入 JCSDK 文件夹下的 JCSDKOC.framework。
 
 4. 导入 SDK 依赖的库
 
-    >
-    >
-    >
-    >
-    > 继续点击 ‘+’ 符号，导入如下系统依赖的库：
-    >
-    >   - AssetsLibrary.framework
-    >
-    >   - AudioToolbox.framework
-    >
-    >   - VideoToolBox.framework
-    >
-    >   - AVFoundation.framework
-    >
-    >   - CFNetwork.framework
-    >
-    >   - CoreMedia.framework
-    >
-    >   - CoreMotion.framework
-    >
-    >   - CoreVideo.framework
-    >
-    >   - GLKit.framework
-    >
-    >   - PushKit.framework（推送使用）
-    >
-    >   - ReplayKit.framework
-    >
-    >   - Security.framework
-    >
-    >   - SystemConfiguration.framework
-    >
-    >   - libc++.tbd
-    >
-    >   - libz.tbd
-    >
-    >   - libresolv.tbd
-    >
-    >
+    继续点击 ‘+’ 符号，导入如下系统依赖的库：
+
+      - AssetsLibrary.framework
+
+      - AudioToolbox.framework
+
+      - VideoToolBox.framework
+
+      - AVFoundation.framework
+
+      - CFNetwork.framework
+
+      - CoreMedia.framework
+
+      - CoreMotion.framework
+
+      - CoreVideo.framework
+
+      - GLKit.framework
+
+      - PushKit.framework（推送使用）
+
+      - ReplayKit.framework
+
+      - Security.framework
+
+      - SystemConfiguration.framework
+
+      - libc++.tbd
+
+      - libz.tbd
+
+      - libresolv.tbd
 
 5. 设置路径
 
-    >
-    >
-    >
-    >
-    > 点击 ‘Build Settings’，找到 Search Paths，设置 Framework Search Paths
-    > 、Header Search Paths（头文件路径） 和 Library Search Paths（库文件路径）：
-    >
-    >   - Framework Search Paths：$(PROJECT\_DIR)/../sdk
-    >
-    > ::: tip
-    >
-    >
-    >
-    > 在完成第 1 步导入 JCSDKOC.framework 和两个 .a 文件后，Xcode 会自动生成该路径，如果 Xcode
-    > 没有自动生成路径，用户要根据 `JCSDKOC.framework` 文件所在目录，手动设置路径。
-    >
-    > :::
-    >
-    >
+    点击 ‘Build Settings’，找到 Search Paths，设置 Framework Search Paths
+    、Header Search Paths（头文件路径） 和 Library Search Paths（库文件路径）：
+
+      - Framework Search Paths：$(PROJECT\_DIR)/../sdk
+
+    ::: tip
+
+    在完成第 1 步导入 JCSDKOC.framework 和两个 .a 文件后，Xcode 会自动生成该路径，如果 Xcode
+    没有自动生成路径，用户要根据 `JCSDKOC.framework` 文件所在目录，手动设置路径。
+
+    :::
 
 6. 设置 Enable Bitcode 为 NO
 
-    >
-    >
-    >
-    >
-    > 进入工程中 Target -\> Build Settings -\> Enable Bitcode，将此项设置为 NO。
-    >
-    >
+    进入工程中 Target -\Build Settings -\Enable Bitcode，将此项设置为 NO。
 
 7. 设置 Other Linker Flags 的参数为 -ObjC
 
-    >
-    >
-    >
-    >
-    > 进入工程中的 Target -\> Build Settings -\> Other Linker Flags，在此项中添加
-    > -ObjC。
-    >
-    >
+    进入工程中的 Target -\Build Settings -\Other Linker Flags，在此项中添加
+    -ObjC。
 
 8. 设置预处理宏定义
 
-    >
-    >
-    >
-    >
-    > 点击 ‘Build Settings’，找到 Preprocessor Macros，在右侧输入
-    > ZPLATFORM=ZPLATFORM\_IOS 。
-    >
-    > **如果设置了 APNs 推送**，则还需要在 Preprocessor Macros 下的 Debug 中输入
-    > DEBUG，如下图：
-    >
-    > ![../../../../\_images/pushset.png](../../../../_images/pushset.png)
-    >
-    > ::: tip
-    >
-    >
-    >
-    > DEBUG 宏定义的目的是为了区分推送环境是 release 还是 debug，环境不对会导致推送失败。
-    >
-    > :::
-    >
-    >
+    点击 ‘Build Settings’，找到 Preprocessor Macros，在右侧输入
+    ZPLATFORM=ZPLATFORM\_IOS 。
+
+    **如果设置了 APNs 推送**，则还需要在 Preprocessor Macros 下的 Debug 中输入
+    DEBUG，如下图：
+
+    ![../../../../\_images/pushset.png](../../../../_images/pushset.png)
+
+    ::: tip
+
+    DEBUG 宏定义的目的是为了区分推送环境是 release 还是 debug，环境不对会导致推送失败。
+
+    :::
 
 9. 设置 Documentation Comments 为 NO
 
-    >
-    >
-    >
-    >
-    > 点击 ‘Build Settings’，找到 Documentation Comments 并设置为 NO。
-    >
-    >
+    点击 ‘Build Settings’，找到 Documentation Comments 并设置为 NO。
 
 10. 设置后台运行模式
 
-    >
-    >
-    >
-    >
-    > 进入工程的 Target -\> Signing & Capabilities -\> Background
-    > Modes，勾选如下两项内容:
-    >
-    >   - Audio, AirPlay, and Picture in Picture
-    >
-    >   - Voice over IP
-    >
-    >
+    进入工程的 Target -\Signing & Capabilities -\Background
+    Modes，勾选如下两项内容:
+
+      - Audio, AirPlay, and Picture in Picture
+
+      - Voice over IP
 
 ## 添加项目权限
 

@@ -115,26 +115,14 @@ public boolean initialize(Context context) {
     [JCMediaChannel.JoinParam](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannel.JoinParam.html)
     。
 
-    >
-    >
-    >
-    >
-    >   - `channelIdOrUri` 表示频道 ID 或频道 Uri。
-    >
-    >   - `JCMediaChannelJoinParam` 中 `uriMode` 参数设置为 true 时表示传入频道
-    >     Uri，设置其他参数时表示传入频道 ID。传入相同的频道 ID 或相同的频道 Uri 的用户会进入同一个频道。
-    >
-    >
-    >
-    > ``````java
-    >
->     mMediaChannel.join("222", null);
-    >
-    > ``````
-    > 
-    > 
-    > 
-    >
+      - `channelIdOrUri` 表示频道 ID 或频道 Uri。
+
+      - `JCMediaChannelJoinParam` 中 `uriMode` 参数设置为 true 时表示传入频道
+        Uri，设置其他参数时表示传入频道 ID。传入相同的频道 ID 或相同的频道 Uri 的用户会进入同一个频道。
+
+    ``````java
+    mMediaChannel.join("222", null);
+    ``````
 
 3. 加入频道后收到
     [onJoin()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannelCallback.html#onJoin-boolean-int-java.lang.String-)
@@ -193,7 +181,7 @@ mMediaChannel.getSelfParticipant().startVideo(JCMediaDevice.RENDER_FULL_CONTENT,
 
 ``````java
 // 获取所有成员对象
-List<JCMediaChannelParticipant> participants = mMediaChannel.getSelfParticipant();
+List<JCMediaChannelParticipantparticipants = mMediaChannel.getSelfParticipant();
 // 调用创建视频画面的方法
 participants.get(0).startVideo(JCMediaDevice.RENDER_FULL_CONTENT, JCMediaChannel.PICTURESIZE_NONE);
 // 请求远端视频流, 此处调用大尺寸视频窗口
