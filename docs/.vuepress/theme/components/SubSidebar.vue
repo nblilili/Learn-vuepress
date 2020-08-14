@@ -11,8 +11,13 @@ export default {
     },
   },
   methods: {
-    isLinkActive(header) {
-      return isActive(this.$route, this.$page.path + "#" + header.slug);
+    isLinkActive(header, index) {
+      var hash = this.$route.hash
+      let active = false;
+      if (hash)
+        active = isActive(this.$route, this.$page.path + "#" + header.slug);
+      else if (!index) active = true;
+      return active;
     },
   },
   render(h) {
@@ -23,12 +28,13 @@ export default {
         style: { width: (this.$page.headers || []).length > 0 ? "12rem" : "0" },
       },
       [
-        ...(this.$page.headers || []).map((header) => {
+        ...(this.$page.headers || []).map((header, index) => {
+          // console.log(header,index)
           return h(
             "li",
             {
               class: {
-                active: this.isLinkActive(header),
+                active: this.isLinkActive(header, index),
                 [`level-${header.level}`]: true,
               },
               attr: { key: header.title },
@@ -49,6 +55,13 @@ export default {
     );
   },
 };
+const hashRE = /#.*$/;
+function getHash(path) {
+  const match = path.match(hashRE);
+  if (match) {
+    return match[0];
+  }
+}
 </script>
 
 <style lang="stylus" scoped>

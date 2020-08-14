@@ -97,6 +97,11 @@ export default {
           this.$EventBus.$emit("pageHeight", this.$refs.Page.clientHeight);
         });
       }, 0);
+      setTimeout(() => {
+        this.$nextTick(() => {
+          this.$EventBus.$emit("pageHeight", this.$refs.Page.clientHeight);
+        });
+      }, 200);
     },
     sidebarItems(newValue, oldValue) {
       this.needTags = false;
@@ -113,7 +118,7 @@ export default {
       this.$nextTick(() => {
         this.$EventBus.$emit("pageHeight", this.$refs.Page.clientHeight);
       });
-    }, 0);
+    }, 200);
   },
   methods: {
     clickmenu() {

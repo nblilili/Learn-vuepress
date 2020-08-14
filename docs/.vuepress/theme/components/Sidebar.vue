@@ -151,6 +151,25 @@ export default {
 
     li :last-child {
       margin-bottom: 0;
+
+      ul {
+        margin-top: 0px;
+        padding: 0px;
+
+        li {
+          padding: 0px;
+
+          ul {
+            margin-top: 0px;
+            padding: 0px;
+
+            li {
+              display: none;
+              padding: 0px;
+            }
+          }
+        }
+      }
     }
   }
 }
