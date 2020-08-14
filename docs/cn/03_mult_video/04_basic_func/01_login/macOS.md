@@ -74,15 +74,9 @@ loginParam.serverAddress = @"服务器地址";
 
 1. 环境设置：
 
-    >
-    >
-    >
-    >
-    >   - 国内环境 `http:cn.router.justalkcloud.com:8080` （默认）
-    >
-    >   - 国际环境 `http:intl.router.justalkcloud.com:8080`
-    >
-    >
+      - 国内环境 `http:cn.router.justalkcloud.com:8080` （默认）
+
+      - 国际环境 `http:intl.router.justalkcloud.com:8080`
 
 2. userID 不能为空，可由英文、数字和 `+` 、 `-` 、 `_` 、 `.`
     组成（特殊字符不能作为第一个字符），大小写不敏感，长度不能超过

@@ -25,14 +25,14 @@ title: 准备开发环境
 
 ::: tip
 
-如果您没有添加过开发团队信息，点击 Xcode \> Preferences… \> Accounts，点击左下角加号并按照屏幕提示登入
+如果您没有添加过开发团队信息，点击 Xcode \Preferences… \Accounts，点击左下角加号并按照屏幕提示登入
 Apple ID，完成后即可选择您的账户作为开发团队。
 
 :::
 
 - 选择项目存储路径，并点击 Create。
 
-- 进入 TARGETS \> Project Name \> Signing & Capabilities 菜单，勾选
+- 进入 TARGETS \Project Name \Signing & Capabilities 菜单，勾选
     Automatically manage signing。
 
 ## 集成SDK
@@ -46,135 +46,87 @@ mac 端使用的动态库集成 SDK。
 
 3. 导入 SDK
 
-    >
-    >
-    >
-    >
-    > 点击 ‘General’，在 “Embedded Binaries” 一栏，点击 ‘+’ 符号，然后导入 sdk 文件夹下的
-    > JCSDKOC.framework 和 lib 文件夹下的 libmtc.dylib、libzmf.dylib。
-    >
-    >
+    点击 ‘General’，在 “Embedded Binaries” 一栏，点击 ‘+’ 符号，然后导入 sdk 文件夹下的
+    JCSDKOC.framework 和 lib 文件夹下的 libmtc.dylib、libzmf.dylib。
 
 4. 导入 SDK 依赖的库
 
-    >
-    >
-    >
-    >
-    > 继续点击 ‘+’ 符号，导入如下系统依赖的库：
-    >
-    >   - AudioToolbox.framework
-    >
-    >   - VideoToolBox.framework
-    >
-    >   - AVFoundation.framework
-    >
-    >   - CFNetwork.framework
-    >
-    >   - CoreMedia.framework
-    >
-    >   - CoreVideo.framework
-    >
-    > 导入完后的效果如下图：
-    >
-    > ![../../../../\_images/macdyliblist.png](../../../../_images/macdyliblist.png)
-    >
-    >
+    继续点击 ‘+’ 符号，导入如下系统依赖的库：
+
+      - AudioToolbox.framework
+
+      - VideoToolBox.framework
+
+      - AVFoundation.framework
+
+      - CFNetwork.framework
+
+      - CoreMedia.framework
+
+      - CoreVideo.framework
+
+    导入完后的效果如下图：
+
+    ![../../../../\_images/macdyliblist.png](../../../../_images/macdyliblist.png)
 
 5. 设置路径
 
-    >
-    >
-    >
-    >
-    > 点击 ‘Build Settings’，找到 Search Paths，设置 Framework Search Paths
-    > 、Header Search Paths（头文件路径） 和 Library Search Paths（库文件路径）：
-    >
-    >   - Framework Search Paths：$(PROJECT\_DIR)/../sdk
-    >
-    >   - Header Search Paths：$(PROJECT\_DIR)/../sdk/include
-    >
-    >   - Library Search Paths：$(PROJECT\_DIR)/../sdk/lib/ios
-    >
-    > ::: tip
-    >
-    >
-    >
-    > 在完成第 1 步导入 JCSDKOC.framework 和两个 .dylib 文件后，Xcode 会自动生成该路径，如果
-    > Xcode 没有自动生成路径，用户要根据 `JCSDKOC.framework` 、`include` 和 `lib`
-    > 文件所在目录，手动设置路径。
-    >
-    >
-    >
-    >
+    点击 ‘Build Settings’，找到 Search Paths，设置 Framework Search Paths
+    、Header Search Paths（头文件路径） 和 Library Search Paths（库文件路径）：
+
+      - Framework Search Paths：$(PROJECT\_DIR)/../sdk
+
+      - Header Search Paths：$(PROJECT\_DIR)/../sdk/include
+
+      - Library Search Paths：$(PROJECT\_DIR)/../sdk/lib/ios
+
+    ::: tip
+
+    在完成第 1 步导入 JCSDKOC.framework 和两个 .dylib 文件后，Xcode 会自动生成该路径，如果
+    Xcode 没有自动生成路径，用户要根据 `JCSDKOC.framework` 、`include` 和 `lib`
+    文件所在目录，手动设置路径。
+
+    :::
 
 6. 设置 Enable Bitcode 为 NO
 
-    >
-    >
-    >
-    >
-    > 进入工程中 Target -\> Build Settings -\> Enable Bitcode，将此项设置为 NO。
-    >
-    >
+    进入工程中 Target -\Build Settings -\Enable Bitcode，将此项设置为 NO。
 
 7. 设置 Other Linker Flags 的参数为 -ObjC
 
-    >
-    >
-    >
-    >
-    > 点击 ‘Build Settings’，找到 Other Linker Flags 并添加参数 -ObjC。
-    >
-    >
+    点击 ‘Build Settings’，找到 Other Linker Flags 并添加参数 -ObjC。
 
 8. 设置预处理宏定义
 
-    >
-    >
-    >
-    >
-    > 点击 ‘Build Settings’，找到 Preprocessor Macros，在右侧输入
-    > ZPLATFORM=ZPLATFORM\_OSX。
-    >
-    >
-
-:::
+    点击 ‘Build Settings’，找到 Preprocessor Macros，在右侧输入
+    ZPLATFORM=ZPLATFORM\_OSX。
 
 ## 添加项目权限
 
 1. 获取设备权限
 
-    >
-    >
-    >
-    >
-    > 若您的项目已启用 App Sandbox 或 Hardened Runtime 设置，则需勾选如下内容，获取相应的设备权限：
-    >
-    > ![../../../../\_images/sandboxset.png](../../../../_images/sandboxset.png)
-    > ![../../../../\_images/hardrunset.png](../../../../_images/hardrunset.png)
-    >
-    > ::: tip
-    >
-    >
-    >
-    > 根据 Apple 官方要求：
-    >
-    >   - 对于在 Mac App Store 发布的软件，需要启用 App Sandbox 设置。详见 [Apple
-    >     官方声明](https://developer.apple.com/app-sandboxing/)。
-    >
-    >   - 对于不在 Mac App Store 发布的软件，需要启用 Hardened Runtime 设置。详见 [Apple
-    >     官方声明](https://developer.apple.com/news/?id=09032019a)。
-    >
-    >   - Hardened Runtime 设置中的 Library Validation 会阻止 app
-    >     加载框架、插件或库，除非框架、插件或库是由 Apple 或是与
-    >     app 相同的团队 ID 签名的。当遇到需要取消该安全限制的场景（例如无法枚举到第三方虚拟摄像头）时，请勾选
-    >     Hardened Runtime -\> Runtime Exceptions -\> Disable Library
-    >     Validation。
-    >
-    >
-    >
-    >
+    若您的项目已启用 App Sandbox 或 Hardened Runtime 设置，则需勾选如下内容，获取相应的设备权限：
+
+    ![../../../../\_images/sandboxset.png](../../../../_images/sandboxset.png)
+    ![../../../../\_images/hardrunset.png](../../../../_images/hardrunset.png)
+
+    ::: tip
+
+    根据 Apple 官方要求：
+
+      - 对于在 Mac App Store 发布的软件，需要启用 App Sandbox 设置。详见 [Apple
+        官方声明](https://developer.apple.com/app-sandboxing/)。
+
+      - 对于不在 Mac App Store 发布的软件，需要启用 Hardened Runtime 设置。详见 [Apple
+        官方声明](https://developer.apple.com/news/?id=09032019a)。
+
+      - Hardened Runtime 设置中的 Library Validation 会阻止 app
+        加载框架、插件或库，除非框架、插件或库是由 Apple 或是与
+        app 相同的团队 ID 签名的。当遇到需要取消该安全限制的场景（例如无法枚举到第三方虚拟摄像头）时，请勾选
+        Hardened Runtime -\Runtime Exceptions -\Disable Library
+        Validation。
+
+    :::
 
 2. 在工程的 info.plist 中添加如下键值:
 
@@ -204,5 +156,3 @@ mac 端使用的动态库集成 SDK。
 </tr>
 </tbody>
 </table>
-
-:::

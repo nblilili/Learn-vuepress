@@ -135,26 +135,14 @@ mMediaDeviceChannel.enableUploadAudioStream(true);
     [JCMediaChannel.JoinParam](https://developer.juphoon.com/portal/reference/V2.1/windows/html/af4ac634-bbe3-76e3-d1f8-120213ef2fff.htm)
     。
 
-    >
-    >
-    >
-    >
-    >   - `channelIdOrUri` 表示频道 ID 或频道 Uri。
-    >
-    >   - `JCMediaChannelJoinParam` 中 `uriMode` 参数设置为 true 时表示传入频道
-    >     Uri，设置其他参数时表示传入频道 ID。传入相同的频道 ID 或相同的频道 Uri 的用户会进入同一个频道。
-    >
-    >
-    >
-    > ``````csharp
-    >
->     mMediaChannel.join("222", null);
-    >
-    > ``````
-    > 
-    > 
-    > 
-    >
+      - `channelIdOrUri` 表示频道 ID 或频道 Uri。
+
+      - `JCMediaChannelJoinParam` 中 `uriMode` 参数设置为 true 时表示传入频道
+        Uri，设置其他参数时表示传入频道 ID。传入相同的频道 ID 或相同的频道 Uri 的用户会进入同一个频道。
+
+    ``````csharp
+    mMediaChannel.join("222", null);
+    ``````
 
 \#. 加入频道后收到
 [onJoin()](https://developer.juphoon.com/portal/reference/V2.1/windows/html/535cbae7-841e-ca31-32ea-87c1a840eff1.htm)
