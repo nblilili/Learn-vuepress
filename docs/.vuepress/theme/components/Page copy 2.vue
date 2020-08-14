@@ -36,21 +36,21 @@
           <PageEdit />
           <PageNav v-if="($route.path.indexOf('iOS') <= -1)" v-bind="{ sidebarItems }" />
         </div>
-        <!-- <div class="page-right">
-        <SidebarRight
-          :items="sidebarItems"
-          @toggle-sidebar="toggleSidebar"
-          v-if="!$page.frontmatter.home"
-          :class="addclass"
-        >
-          <template #top>
-            <slot name="sidebar-top" />
-          </template>
-          <template #bottom>
-            <slot name="sidebar-bottom" />
-          </template>
-        </SidebarRight>
-        </div>-->
+        <div class="page-right">
+          <SidebarRight
+            :items="sidebarItems"
+            @toggle-sidebar="toggleSidebar"
+            v-if="!$page.frontmatter.home"
+            :class="addclass"
+          >
+            <template #top>
+              <slot name="sidebar-top" />
+            </template>
+            <template #bottom>
+              <slot name="sidebar-bottom" />
+            </template>
+          </SidebarRight>
+        </div>
         <div class="clear"></div>
       </div>
       <slot name="bottom" />
@@ -92,11 +92,9 @@ export default {
   },
   watch: {
     $route(newValue, oldValue) {
-      setTimeout(() => {
-        this.$nextTick(() => {
-          this.$EventBus.$emit("pageHeight", this.$refs.Page.clientHeight);
-        });
-      }, 0);
+      this.$nextTick(() => {
+        this.$EventBus.$emit("pageHeight", this.$refs.Page.clientHeight);
+      });
     },
     sidebarItems(newValue, oldValue) {
       this.needTags = false;
@@ -109,11 +107,11 @@ export default {
     var that = this;
     this.needTags = false;
     this.checkroute();
-    setTimeout(() => {
-      this.$nextTick(() => {
+    this.$nextTick(() => {
+      setTimeout(() => {
         this.$EventBus.$emit("pageHeight", this.$refs.Page.clientHeight);
-      });
-    }, 0);
+      }, 200);
+    });
   },
   methods: {
     clickmenu() {
@@ -234,6 +232,7 @@ function check_path(data) {
 }
 
 .big-box {
+  display: flex;
   margin: 40px 0px 0px 10px;
   background: #fff;
 }
@@ -247,7 +246,6 @@ function check_path(data) {
 
 .page-right {
   width: 220px;
-  height: calc(100vh - 60px);
   padding: 16px;
   position: -webkit-sticky;
   position: sticky;
@@ -327,7 +325,7 @@ a, a:hover, a:focus {
 }
 
 .pagefor800 {
-  width: calc(100% - 480px);
+  width: calc(100% - 260px);
 }
 
 @media (max-width: 800px) {

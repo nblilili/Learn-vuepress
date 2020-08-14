@@ -52,7 +52,6 @@
         ref="pageRight"
         v-if="!$page.frontmatter.home"
       >
-        <!-- 右侧 -->
         <SidebarRight
           :items="sidebarItems"
           @toggle-sidebar="toggleSidebar"
@@ -160,13 +159,12 @@ export default {
       this.isSidebarOpen = false;
     });
     this.$EventBus.$on("pageHeight", (res) => {
-      console.log(res);
-      console.log(window.document.body.offsetWidth);
+      console.log(res)
+      console.log(window.document.body.offsetWidth)
       if (res < window.document.body.offsetWidth) {
-        console.log("要设置的高度", res);
+        console.log("shezhigaodu =>",res + "px")
         this.setright = true;
         this.rightheight = res + "px";
-        console.log(this.rightheight);
       } else {
         this.setright = false;
       }
