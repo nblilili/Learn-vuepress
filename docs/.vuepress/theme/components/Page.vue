@@ -31,7 +31,7 @@
               >{{item.name}}</router-link>
             </div>
           </div>
-          <Content class="theme-default-content"></Content>
+          <Content class="theme-default-content DocSearch-content"></Content>
           <!-- <Content slot-key="head" /> -->
           <PageEdit />
           <PageNav v-if="($route.path.indexOf('iOS') <= -1)" v-bind="{ sidebarItems }" />
