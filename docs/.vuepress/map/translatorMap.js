@@ -4,6 +4,7 @@ module.exports = new Map()
   .set("04_basic_func", "基本功能集成")
   .set("05_adv_func", "进阶功能集成")
   .set("99_api_reference", "API 参考")
+  .set("03_console_description","控制台说明")
   .set("04_TianSai_eagle_eyes", "天塞鹰眼")
   .set("05_download", "下载")
   .set("06_FAQ", "FAQ");
