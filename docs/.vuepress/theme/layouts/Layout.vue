@@ -159,10 +159,10 @@ export default {
       this.isSidebarOpen = false;
     });
     this.$EventBus.$on("pageHeight", (res) => {
-      console.log(res)
-      console.log(window.document.body.offsetWidth)
-      if (res < window.document.body.offsetWidth) {
-        console.log("shezhigaodu =>",res + "px")
+      console.log(res);
+      console.log(window.document.body.offsetHeight);
+      if (res + 60 < window.document.body.offsetHeight) {
+        console.log("shezhigaodu =>", res + "px");
         this.setright = true;
         this.rightheight = res + "px";
       } else {
