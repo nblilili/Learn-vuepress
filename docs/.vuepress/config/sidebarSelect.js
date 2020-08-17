@@ -2,7 +2,7 @@ module.exports = [{
     title: "平台",
     children: [{
       title: "菊风云平台",
-      url: "/cn/document/V2.1/index.php"
+      url: "/doc/cn/juphoon_platform/"
     }]
   },
   {
