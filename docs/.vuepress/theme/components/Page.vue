@@ -134,7 +134,7 @@ export default {
           path.push(data.title);
           if (!data.children) {
             if (data.path) {
-              if (data.path == that.$route.path) return path;
+              if (data.path == decodeURI(that.$route.path)) return path;
               if (check_path_0(data.path) == check_path_0(that.$route.path)) {
                 if (data.path == that.$route.path) return path;
                 if (check_path(data.path) == "iOS.html") return path;
@@ -166,11 +166,10 @@ export default {
             else if (name == "Windows") name = "Windows C#";
             array.push({
               name: name,
-              active: url.indexOf(e) > -1 ? true : false,
+              active: decodeURI(url).indexOf(e) > -1 ? true : false,
               href: e,
             });
           });
-          // console.log(array);
           this.CardName = array;
         }
       }

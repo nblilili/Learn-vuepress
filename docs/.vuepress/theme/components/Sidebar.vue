@@ -102,10 +102,18 @@ export default {
   },
   methods: {
     setMenuList(menulist) {
-      menulist[1].children.forEach((item) => {
-        let this_url = item.url.substr(4);
-        if (this.$route.path.indexOf(this_url) > -1) this.MenuName = item.title;
-      });
+      let that= this
+      setSildertitle(menulist[0].children);
+      setSildertitle(menulist[1].children);
+      function setSildertitle(data) {
+        data.forEach((item) => {
+          let this_url = item.url.substr(4);
+          if (that.$route.path.indexOf(this_url) > -1) {
+            that.MenuName = item.title;
+            return;
+          }
+        });
+      }
     },
     MenuHide() {
       this.$emit("MenuHide");

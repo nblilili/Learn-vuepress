@@ -29,7 +29,7 @@ export default {
     }
     if (check_path_0($route.path) == check_path_0(item.path)) {
       if (check_path(item.path) == "iOS.html") {
-        let array = ["iOS", "Android", "C++", "macOS", "Windows"];
+        let array = ["iOS", "Android", "C++", "macOS", "Windows","通用问题"];
         array.forEach((e) => {
           if (check_path($route.path) == e + ".html") {
             selfActive = true;
