@@ -6,9 +6,6 @@ var folderFilterSet = require('../map/folderFilterSet.js');
 
 var sidebar = new Object();
 var basePath = '';
-var tags = [];
-
-
 
 module.exports = {
   getSidebarConf(filePath) {

@@ -3,7 +3,7 @@ title:  场景 Demo 体验
 ---
 # 场景 Demo 体验
 
-![img](https://developer.juphoon.com/style/images/document/otovideo/%E7%BC%96%E7%BB%84%203@2x.png)
+<img src="https://developer.juphoon.com/style/images/document/otovideo/%E7%BC%96%E7%BB%84%203@2x.png" alt="img" style="width:240px" />
 
 ![img](https://developer.juphoon.com/style/images/document/otovideo/download_juphoonDuo@2x.png)（菊风云一对一通话）
 
@@ -11,7 +11,7 @@ title:  场景 Demo 体验
 
 iOS Android
 
-![img](https://developer.juphoon.com/style/images/document/multvideo/%E7%BC%96%E7%BB%84%206@2x.png)
+<img src="https://developer.juphoon.com/style/images/document/multvideo/%E7%BC%96%E7%BB%84%206@2x.png" alt="img" style="width:240px" />
 
 ![img](https://developer.juphoon.com/style/images/document/multvideo/download_juphoonRoom@2x.png)（菊风云多方通话）
 
@@ -19,7 +19,7 @@ iOS Android
 
 iOS Android [WebRTC](https://developer.juphoon.com/webrtc/)
 
-![img](https://developer.juphoon.com/style/images/document/audiolive/juphoonLive@2x.png)
+<img src="https://developer.juphoon.com/style/images/document/audiolive/juphoonLive@2x.png" alt="img" style="width:240px" />
 
 ![img](https://developer.juphoon.com/style/images/document/audiolive/download_juphoonLive@2x.png)（菊风云互动直播）
 
