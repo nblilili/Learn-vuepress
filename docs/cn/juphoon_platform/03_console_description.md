@@ -194,11 +194,9 @@ Push 设置可以配置所需的 Push 服务
 
 ### 账号安全
 
-您可以对密码进行修改
+您可以在登录后，点击右上角账号名，出现下拉框，点击基本信息进入账号安全页面。您可以在此页面对密码进行修改。
 
 ![img](https://developer.juphoon.com/style/images/document/portal/m.png)
-
-点击保存即可完成修改。
 
 ## 鉴权配置
 
