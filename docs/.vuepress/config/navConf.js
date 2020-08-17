@@ -6,6 +6,7 @@ module.exports = {
         text: '产品',
         ariaLabel: '产品列表',
         items: [
+          { text: '菊风云平台', link: '/'+ language + '/juphoon_platform/' },
           { text: '一对一语音', link: '/'+ language + '/00_o2o_audio/' },
           { text: '一对一视频', link: '/'+ language + '/01_o2o_video/' },
           { text: '多方语音', link: '/'+ language + '/02_mult_audio/' },

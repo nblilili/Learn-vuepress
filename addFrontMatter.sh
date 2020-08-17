@@ -1,17 +1,9 @@
 #!/bin/bash
 
-# 生成 markdown
-function genMarkdown()  
+# 添加 FrontMatter
+function addFrontMatter()  
 {  
-  # change from old to new
-  old='.md'
-  new='.md'
-
-  # pandoc 的转换
-  #   old_format="html"
-  #   # new_format="markdown_strict"
-  #   new_format="commonmark"
-
+  # 递归文件夹
   for file in `ls $1`  
   do  
     local path=$1"/"$file
@@ -19,37 +11,29 @@ function genMarkdown()
     if [ -d $path ]
       then  
       echo "DIR $path"   
-      echo "delete index$old"
-      genMarkdown $path 
+      
+      addFrontMatter $path 
     else  
       echo "FILE $path" 
-      if [ ."${path##*.}"x = "$old"x ];then
-        # 新旧路径
-        oldName=${path%.*}$old
-        newName=${path%.*}$new
-        
-        # 处理错误内容
-        # sed -i "" "s|<span.*></span>||g" ${newName}
-        # sed -i "" "s|\[¶\]\(.*\)||g" ${newName}
-        # sed -i "" "s|<div.*>||g" ${newName}
-        # sed -i "" "s|<\/div.*>||g" ${newName}
-        # sed -i "" 's|](\/cn\/document\/V2.1|](https:\/\/developer.juphoon.com\/cn\/document\/V2.1|g' ${newName}
-
-        
+      if [ ."${path##*.}"x = ".md"x ];then
         # 清空标题上的内容
-        lineNum=$(grep -n -m 1 "# .*" ${newName} | cut -f1 -d:)
+        lineNum=$(grep -n -m 1 "# .*" ${path} | cut -f1 -d:)
         echo linenum:$lineNum
-        title=$(basename $path $old)
-        echo title:$title
-        let $lineNum--
-        sed -i "" "1,$lineNum"d"" ${newName}
+        # 以路径为 title
+        # title=$(basename $path ".md")
+        # 以一级标题为title
+        title=$(grep -n -m 1 "# .*" ${path} | cut -f2 -d#)
+        echo title: $title
+        let lineNum--
+        sed -i "" "1,$lineNum"d"" ${path}
         # front matter
-        gsed -i '1 i ---' ${newName}
-        gsed -i "1 i title:${title}" ${newName}
-        gsed -i '1 i ---' ${newName}
+        gsed -i '1 i ---' ${path}
+        # gsed -i "1 i date: \{\{ date \}\}" ${path}
+        gsed -i "1 i title: ${title}" ${path}
+        gsed -i '1 i ---' ${path}
 
-        # 删除原有内容
-        #rm -rf ${name}$old 
+        # 最后使用markdownlint-cli 整理 md
+        markdownlint -f ${path}
       else
         echo "非${old}文件"
       fi
@@ -64,16 +48,5 @@ if [ $# -ne 1 ]
 then  
   echo "USAGE: $0 TOP_DIR"  
 else  
-  genMarkdown $1  
+  addFrontMatter $1  
 fi
-
-
-
-# if [$new_format = "markdown_strict"];then
-#           # 将网址相对路径调整为绝对路径
-#           sed -i "" 's|href="/cn/document/V2.1/|href="https://developer.juphoon.com/cn/document/V2.1/|g' $name$new
-#           # 删除 span
-#           sed -i "" "s|<span.*></span>||g" $name$new
-#           # 删除 a
-#           sed -i "" "s|<a href=.*>¶</a>||g" $name$new
-#         else

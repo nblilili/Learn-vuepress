@@ -10,4 +10,5 @@ module.exports = new Set()
   .add("02_video_management")
   .add("03_intelligent_hardware")
   .add("05_channel_management")
-  .add("99_api_reference");
+  .add("99_api_reference")
+  .add("00_sdk_download");
