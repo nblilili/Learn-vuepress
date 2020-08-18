@@ -56,27 +56,27 @@
                 <a class="regBtn" href="/signup">注册</a>
               </div>
             </div>
-          </div>
-          <div class="nav-btn" v-if="user_type">
-            <div class="more-item">
-              <div class="more">
-                <div style="float: right;">
-                  <i class="layui-icon layui-icon-triangle-d"></i>
+            <div class="nav-btn" v-if="user_type">
+              <div class="more-item">
+                <div class="more">
+                  <div style="float: right;">
+                    <i class="layui-icon layui-icon-triangle-d"></i>
+                  </div>
+                  <div class="nicheng" title>{{UserInfo.company}}</div>
                 </div>
-                <div class="nicheng" title>{{UserInfo.company}}</div>
-              </div>
-              <div class="more-toggle">
-                <div class="ylogin_1" v-if="user_type == 'manager'">
-                  <a href="/portal/cn/console/apps/admin_index.php">应用管理</a>
-                  <a href="/portal/admin/info/account.php">系统管理</a>
+                <div class="more-toggle">
+                  <div class="ylogin_1" v-if="user_type == 'manager'">
+                    <a href="/portal/cn/console/apps/admin_index.php">应用管理</a>
+                    <a href="/portal/admin/info/account.php">系统管理</a>
+                  </div>
+                  <div class="ylogin_2" v-else-if="user_type != 'police'">
+                    <a href="/cn/console/">管理控制台</a>
+                  </div>
+                  <div class="yl_police" v-if="user_type == 'police'">
+                    <a href="/portal/cn/console/my_app/otoDetail.php">数据查询</a>
+                  </div>
+                  <a href="javascript:;" @click="log_out()">退出</a>
                 </div>
-                <div class="ylogin_2" v-if="user_type != 'police'">
-                  <a href="/cn/console/">管理控制台</a>
-                </div>
-                <div class="yl_police" v-if="user_type == 'police'">
-                  <a href="/portal/cn/console/my_app/otoDetail.php">数据查询</a>
-                </div>
-                <a href="javascript:;" onclick="log_out()">退出</a>
               </div>
             </div>
           </div>
@@ -125,18 +125,14 @@ export default {
         this.$themeLocaleConfig.algolia || this.$site.themeConfig.algolia || {}
       );
     },
-
     isAlgoliaSearch() {
       return this.algolia && this.algolia.apiKey && this.algolia.indexName;
     },
   },
   mounted() {
     this.$EventBus.$on("changeNav", () => {
-      console.log();
       this.showNav = !this.showNav;
     });
-    // console.log(this.$themeLocaleConfig.algolia);
-    // console.log(this.$site.themeConfig.algolia);
     let that = this;
     this.site = this.$site.themeConfig.nav;
     var user_type = localStorage.getItem("user_type");

@@ -16,10 +16,24 @@
     background: #E9FBFF;
     border-color: #0072ff;
 
-    p {
-      background: #E9FBFF url('//developer.juphoon.com/style/images/document/otovideo/zs@2x.png') no-repeat 0 0;
+    .custom-block-title {
+      position: absolute;
+      background: #e9fbff url('//developer.juphoon.com/style/images/document/otovideo/zs@2x.png') no-repeat 0 0;
       background-size: 1.5rem 1.5rem;
-      padding-left: 2rem;
+      color: transparent;
+      width: 1.5rem;
+    }
+
+    p {
+      background-size: 1.5rem 1.5rem;
+      padding-left: 2em;
+    }
+
+    ul, ol {
+      margin-left: 2em;
+      p {
+        padding-left: 0em;
+      }
     }
   }
 
@@ -38,7 +52,7 @@
     }
 
     p {
-      background: rgb(255, 229, 100) url('//developer.juphoon.com/style/images/document/otovideo/zs@2x.png') no-repeat 0 0;
+      // background: rgb(255, 229, 100) url('//developer.juphoon.com/style/images/document/otovideo/zs@2x.png') no-repeat 0 0;
       background-size: 1.5rem 1.5rem;
       padding-left: 2rem;
     }
@@ -89,8 +103,4 @@
       cursor: pointer;
     }
   }
-}
-
-.custom-block-title {
-  display: none;
 }

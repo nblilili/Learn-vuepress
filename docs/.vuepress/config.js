@@ -14,8 +14,8 @@ module.exports = {
   },
   themeConfig: {
     algolia: {
-      apiKey: '3a539aab83105f01761a137c61004d85',
-      indexName: 'vuepress_doc'
+      apiKey: '48aefdd5edf4e5a94a5ffee6f59e5271',
+      indexName: 'juphoon_developer'
     },
     nav: navConf,
     // sidebar: sidebarConf

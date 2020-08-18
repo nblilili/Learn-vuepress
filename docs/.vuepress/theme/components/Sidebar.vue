@@ -30,8 +30,13 @@
         <SidebarLinks :depth="0" :items="items" />
         <slot name="bottom" />
       </div>
-      <div class="left-line"></div>
-      <div id="left-about" class="left-about" style="margin-top: 9px;padding: 18px;">
+      <div class="left-line" v-if="needfriend"></div>
+      <div
+        id="left-about"
+        class="left-about"
+        style="margin-top: 9px;padding: 18px;"
+        v-if="needfriend"
+      >
         <div
           class="left-title left-title_1 abline"
           @click="showselect=!showselect"
@@ -71,6 +76,7 @@ export default {
       showmenu: false,
       showselect: false,
       menulist: MenuList,
+      needfriend: false,
     };
   },
   watch: {
@@ -102,9 +108,19 @@ export default {
   },
   methods: {
     setMenuList(menulist) {
-      let that= this
+      let that = this;
       setSildertitle(menulist[0].children);
       setSildertitle(menulist[1].children);
+      needfriend(menulist[1].children);
+      function needfriend(data) {
+        data.forEach((item) => {
+          let this_url = item.url.substr(4);
+          if (that.$route.path.indexOf(this_url) > -1) {
+            that.needfriend = true;
+            return;
+          }
+        });
+      }
       function setSildertitle(data) {
         data.forEach((item) => {
           let this_url = item.url.substr(4);
