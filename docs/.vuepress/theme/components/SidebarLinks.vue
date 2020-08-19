@@ -44,7 +44,6 @@ export default {
 
   created() {
     this.refreshIndex();
-    console.log(this.items, this.openGroupIndex);
   },
 
   methods: {
@@ -56,7 +55,6 @@ export default {
     },
 
     toggleGroup(index) {
-      console.log(123123123)
       this.openGroupIndex = index === this.openGroupIndex ? -1 : index;
     },
 
@@ -67,7 +65,6 @@ export default {
 };
 
 function resolveOpenGroupIndex(route, items) {
-  console.log(items)
   for (let i = 0; i < items.length; i++) {
     const item = items[i];
     if (descendantIsActive(route, item)) {

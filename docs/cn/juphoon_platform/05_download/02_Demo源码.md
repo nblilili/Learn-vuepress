@@ -21,28 +21,28 @@ import Demo from '../../../components/Demo';
           img:"https://developer.juphoon.com/style/images/download/developer_ios@2x.png",
           child:[{
             type:'1-1通话',
-            url:'/cn/document/V2.1/oto_video/demo/ios.php'
+            url:'https://developer.juphoon.com/cn/document/V2.1/o2o_video/quick_start/iOS/run_demo.php'
           },
           {
             type:'多方通话',
-            url:'/cn/document/V2.1/oto_video/demo/ios.php'
+            url:'https://developer.juphoon.com/cn/document/V2.1/mult_video/quick_start/iOS/run_demo.php'
           },{
             type:'互动直播',
-            url:'/cn/document/V2.1/oto_video/demo/ios.php'
+            url:'https://developer.juphoon.com/cn/document/V2.1/video_live/quick_start/iOS/run_demo.php'
           }]
         },{
           type:"Android",
           img:"https://developer.juphoon.com/style/images/download/developer_android@2x.png",
           child:[{
             type:'1-1通话',
-            url:'https://developer.juphoon.com/cn/document/V2.1/oto_video/demo/android.php'
+            url:'https://developer.juphoon.com/cn/document/V2.1/o2o_video/quick_start/Android/run_demo.php'
           },
           {
             type:'多方通话',
-            url:'https://developer.juphoon.com/cn/document/V2.1/mult_video/demo/android.php'
+            url:'https://developer.juphoon.com/cn/document/V2.1/mult_video/quick_start/Android/run_demo.php'
           },{
             type:'互动直播',
-            url:'https://developer.juphoon.com/cn/document/V2.1/video_live/demo/android.php'
+            url:'https://developer.juphoon.com/cn/document/V2.1/video_live/quick_start/Android/run_demo.php'
           }]
         }]
       }

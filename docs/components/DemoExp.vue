@@ -57,10 +57,10 @@ export default {
   height: 150px;
   position: absolute;
   left: -20px;
-  bottom: 0px;
+  bottom: 19px;
   display: none;
 }
-.experience .web img,
+/* .experience .web img,
 .demoexp .web img {
   width: 100%;
   height: 100%;
@@ -68,7 +68,7 @@ export default {
   left: -20px;
   bottom: 0px;
   display: block;
-}
+} */
 .col-sm-6 {
   float: left;
 }
