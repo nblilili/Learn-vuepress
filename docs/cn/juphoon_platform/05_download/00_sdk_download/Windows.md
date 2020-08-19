@@ -11,4 +11,4 @@ title:  SDK 下载
 
 用于移动端通讯产品开发
 
-[更新日志](http://developer.juphoon.com:8088/cn/document/V2.1/sdk/log/ios.php)[历史版本](http://developer.juphoon.com:8088/cn/document/V2.1/sdk/version/ios.php)[接口说明](http://developer.juphoon.com:8088/portal/reference/V2.0/ios/)
+[更新日志](https://developer.juphoon.com/cn/document/V2.1/sdk/log/ios.php)[历史版本](https://developer.juphoon.com/cn/document/V2.1/sdk/version/ios.php)[接口说明](https://developer.juphoon.com/portal/reference/V2.0/ios/)
