@@ -92,16 +92,22 @@ export default {
   },
   watch: {
     $route(newValue, oldValue) {
+      let that = this;
       setTimeout(() => {
         this.$nextTick(() => {
           this.$EventBus.$emit("pageHeight", this.$refs.Page.clientHeight);
         });
       }, 0);
-      setTimeout(() => {
-        this.$nextTick(() => {
-          this.$EventBus.$emit("pageHeight", this.$refs.Page.clientHeight);
+      var setHight = setInterval(set(), 200);
+      var i = 1;
+      function set() {
+        that.$nextTick(() => {
+          that.$EventBus.$emit("pageHeight", that.$refs.Page.clientHeight);
         });
-      }, 200);
+        i++;
+        console.log(i)
+        if (i > 5) clearInterval(setHight);
+      }
     },
     sidebarItems(newValue, oldValue) {
       this.needTags = false;

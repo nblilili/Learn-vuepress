@@ -248,6 +248,7 @@ export default {
 
 <style lang="stylus" scoped>
 .page-right {
+  overflow-x: hidden;
   background: #fff;
   width: 220px;
   height: calc(100vh - 60px);

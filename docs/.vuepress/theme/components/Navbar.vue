@@ -62,7 +62,7 @@
                   <div style="float: right;">
                     <i class="layui-icon layui-icon-triangle-d"></i>
                   </div>
-                  <div class="nicheng" title>{{UserInfo.company}}</div>
+                  <div class="nicheng" title>{{UserInfo.user_name}}</div>
                 </div>
                 <div class="more-toggle">
                   <div class="ylogin_1" v-if="user_type == 'manager'">
@@ -138,22 +138,20 @@ export default {
     var user_type = localStorage.getItem("user_type");
     this.user_type = user_type;
     console.log("user_type", user_type);
-    if (user_type) {
-      axios({
-        method: "POST",
-        url: "/portal/cn/message/?c=POverview&a=getUserInfo",
+    // if (user_type) {
+    axios({
+      method: "POST",
+      url: "/portal/cn/message/?c=PChoocesql&a=P_return_userinfo",
+    })
+      .then(function (response) {
+        if (response.data.result) {
+          that.UserInfo = response.data.info;
+        }
       })
-        .then(function (response) {
-          console.log(response);
-          if (response.data.result) {
-            console.log(response.data.data);
-            that.UserInfo = response.data.data;
-          }
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
-    }
+      .catch(function (error) {
+        console.log(error);
+      });
+    // }
   },
   methods: {
     changshowitem(item, index) {
