@@ -32,7 +32,7 @@ import Demo from '../../../components/Demo';
           }]
         },{
           type:"Android",
-          img:"https://developer.juphoon.com/style/images/download/developer_ios@2x.png",
+          img:"https://developer.juphoon.com/style/images/download/developer_android@2x.png",
           child:[{
             type:'1-1通话',
             url:'https://developer.juphoon.com/cn/document/V2.1/oto_video/demo/android.php'
