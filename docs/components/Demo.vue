@@ -19,7 +19,9 @@ export default {
   props: {
     list: {
       type: Array,
-      default: [],
+      default() {
+        return [];
+      },
     },
   },
 };
@@ -29,8 +31,8 @@ export default {
 .col-sm-6 {
   float: left;
 }
-.sdkbtn:before{
-    text-decoration:none
+.sdkbtn:before {
+  text-decoration: none;
 }
 @media (min-width: 800px) {
   .col-sm-6 {

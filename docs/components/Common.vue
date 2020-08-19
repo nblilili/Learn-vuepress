@@ -19,7 +19,9 @@ export default {
   props: {
     CardName: {
       type: Array,
-      default: []
+      default() {
+        return [];
+      },
     }
   }
 };
