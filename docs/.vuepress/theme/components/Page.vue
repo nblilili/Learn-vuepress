@@ -98,15 +98,16 @@ export default {
           this.$EventBus.$emit("pageHeight", this.$refs.Page.clientHeight);
         });
       }, 0);
-      var setHight = setInterval(set(), 200);
       var i = 1;
+      var setHight = setInterval(() => {
+        set();
+      }, 200);
       function set() {
         that.$nextTick(() => {
           that.$EventBus.$emit("pageHeight", that.$refs.Page.clientHeight);
         });
         i++;
-        console.log(i)
-        if (i > 5) clearInterval(setHight);
+        if (i == 5) clearInterval(setHight);
       }
     },
     sidebarItems(newValue, oldValue) {
