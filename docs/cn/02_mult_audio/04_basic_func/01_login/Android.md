@@ -69,9 +69,15 @@ mClient.login(userID, password, loginParam);
 
 1. 环境设置
 
-      - 国内环境 `http:cn.router.justalkcloud.com:8080` （默认）
-
-      - 国际环境 `http:intl.router.justalkcloud.com:8080`
+    >
+    >
+    >
+    >
+    >   - 国内环境 `http:cn.router.justalkcloud.com:8080` （默认）
+    >
+    >   - 国际环境 `http:intl.router.justalkcloud.com:8080`
+    >
+    > :::
 
 2. userID 不能为空，可由英文、数字和 `+` 、 `-` 、 `_` 、 `.`
     组成（特殊字符不能作为第一个字符），大小写不敏感，长度不能超过
@@ -80,8 +86,6 @@ mClient.login(userID, password, loginParam);
 3. password 不能超过 128 个字符。
 
 4. 调用该接口返回 true 时只代表调用接口成功，并不代表登录成功。登录的结果会通过 onLogin 回调上报。
-
-:::
 
 调用接口成功后，首先会触发登录状态改变回调
 [onClientStateChange()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCClientCallback.html#onClientStateChange-int-int-)

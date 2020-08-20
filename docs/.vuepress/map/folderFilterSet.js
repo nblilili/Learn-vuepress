@@ -1,3 +1,10 @@
+/**
+ * 作用
+ *   隐藏不想显示在 sidebar 中的文件夹
+ * 使用方式
+ *   添加文件夹名称即可。这样做文件夹中的子元素会被加给上级。
+ */
+
 module.exports = new Set()
   .add("00_download")
   .add("00_run_demo")

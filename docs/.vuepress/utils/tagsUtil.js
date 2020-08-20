@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const platformMap = require('../map/platformMap');
+const platformSelectorMap = require('../map/platformSelectorMap');
 
 var tagMap = new Map();
 
@@ -34,7 +34,7 @@ function recursion(filePath, callback) {
             // 文件名
             var basename = path.basename(fileDir, ".md");
             // 如果在平台中
-            if (platformMap.has(basename)) {
+            if (platformSelectorMap.has(basename)) {
                 // console.log("basename: "+ basename);
                 // basename = path.basename(basename, ".md");
                 // 没有文件名的路径
@@ -48,7 +48,7 @@ function recursion(filePath, callback) {
                     platforms.push(basename);
                     tagMap.set(relativePath, platforms);
                     // 重新排序
-                    platforms.sort((a, b) => platformMap.get(a) - platformMap.get(b));
+                    platforms.sort((a, b) => platformSelectorMap.get(a) - platformSelectorMap.get(b));
                 } else {
                     platforms = new Array();
                     // 先添加一个 iOS

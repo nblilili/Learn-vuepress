@@ -117,14 +117,26 @@ mMediaDeviceChannel.enableUploadVIdeoStream(true);
     [JCMediaChannel.JoinParam](https://developer.juphoon.com/portal/reference/V2.1/windows/html/af4ac634-bbe3-76e3-d1f8-120213ef2fff.htm)
     。
 
-      - `channelIdOrUri` 表示频道 ID 或频道 Uri。
-
-      - `JCMediaChannelJoinParam` 中 `uriMode` 参数设置为 true 时表示传入频道
-        Uri，设置其他参数时表示传入频道 ID。传入相同的频道 ID 或相同的频道 Uri 的用户会进入同一个频道。
-
-    ``````csharp
-    mMediaChannel.join("222", null);
-    ``````
+    >
+    >
+    >
+    >
+    >   - `channelIdOrUri` 表示频道 ID 或频道 Uri。
+    >
+    >   - `JCMediaChannelJoinParam` 中 `uriMode` 参数设置为 true 时表示传入频道
+    >     Uri，设置其他参数时表示传入频道 ID。传入相同的频道 ID 或相同的频道 Uri 的用户会进入同一个频道。
+    >
+    >
+    >
+    > ``````csharp
+    >
+>     mMediaChannel.join("222", null);
+    >
+    > ``````
+    > 
+    > 
+    > 
+    >
 
 \#. 加入频道后收到
 [onJoin()](https://developer.juphoon.com/portal/reference/V2.1/windows/html/535cbae7-841e-ca31-32ea-87c1a840eff1.htm)
@@ -182,7 +194,7 @@ mMediaChannel.getSelfParticipant().startVideo(JCMediaDevice.RENDER_FULL_CONTENT,
 
 ``````csharp
 /// 获取所有成员对象
-List<JCMediaChannelParticipantparticipants = mMediaChannel.getSelfParticipant();
+List<JCMediaChannelParticipant> participants = mMediaChannel.getSelfParticipant();
 /// 调用创建视频画面的方法
 participants.get(0).startVideo(JCMediaDevice.RENDER_FULL_CONTENT, JCMediaChannel.PICTURESIZE_NONE);
 /// 请求远端视频流, 此处调用大尺寸视频窗口
