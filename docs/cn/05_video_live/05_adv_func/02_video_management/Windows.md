@@ -68,57 +68,11 @@ mediaDevice.switchCamera(mediaDevice.cameras[0]);
 public void setCameraProperty(int width, int height, int framerate)
 ``````
 
-**示例代码**
+示例代码
 
 ``````csharp
 // 设置摄像头采集属性
 mediaDevice.setCameraProperty(640, 360, 30);
-``````
-
-### 设置 Canvas 旋转角度
-
-如果想设置Canvas中画布的角度，需要调用 JCMediaDeviceVideoCanvas 类中的 rotate 接口
-
-``````csharp
-/// <summary>
-/// 旋转画面
-/// </summary>
-/// <param name="angle">旋转角度</param>
-public void rotate(JCMediaDeviceVideoCanvasRoatate angle)
-``````
-
-其中，角度需为 90 的倍数。调用该接口后，本端显示的本地视频画面和远端视频画面会同时旋转相同的角度，而对端显示的画面不受影响。
-
-例如 A 设置旋转 90 度，则 A 端显示的 A 和 B 视频画面会同时旋转 90 度。而 B 端的视频画面则不会发生任何改变。如下图所示：
-
-![../../../../\_images/rotateset.png](../../../../_images/rotateset.png)
-
-JCMediaDeviceVideoCanvasRoatate 枚举值如下
-
-``````csharp
-/// <summary>
-/// 0
-/// </summary>
-Angle0 = 0,
-/// <summary>
-/// 90
-/// </summary>
-Angle90 = 90,
-/// <summary>
-/// 180
-/// </summary>
-Angle180 = 180,
-/// <summary>
-/// 270
-/// </summary>
-Angle270 = 270
-``````
-
-**示例代码**
-
-``````csharp
-// 设置摄像头采集属性
-mediaDevice.rotate(JCMediaDeviceVideoCanvasRoatate.Angle0);
 ``````
 
 ## 视频渲染管理

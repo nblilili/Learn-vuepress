@@ -196,7 +196,7 @@ public void onCallItemUpdate(JCCallItem item) {
     /// 如果对端在上传视频流（uploadVideoStreamOther）
     /// mRemoteCanvas 为 JCMediaDeviceVideoCanvas 对象实例，请在方法前声明。
     if (item.state == JCCall.STATE_TALKING && mRemoteCanvas == null && item.getUploadVideoStreamOther()) {
-        /// 获取远端视频画面，renderId来源JCCallItem对象
+        ///
         JCMediaDeviceVideoCanvas mRemoteCanvas = item.startOtherVideo(JCMediaDevice.RENDER_FULL_CONTENT);
         ...
     }

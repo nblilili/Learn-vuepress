@@ -72,15 +72,9 @@ mClient.login(userID, password, loginParam);
 
 1. 环境设置
 
-    >
-    >
-    >
-    >
-    >   - 国内环境 `http:cn.router.justalkcloud.com:8080` （默认）
-    >
-    >   - 国际环境 `http:intl.router.justalkcloud.com:8080`
-    >
-    > :::
+      - 国内环境 `http:cn.router.justalkcloud.com:8080` （默认）
+
+      - 国际环境 `http:intl.router.justalkcloud.com:8080`
 
 2. userID 不能为空，可由英文、数字和 `+` 、 `-` 、 `_` 、 `.`
     组成（特殊字符不能作为第一个字符），大小写不敏感，长度不能超过
@@ -89,6 +83,8 @@ mClient.login(userID, password, loginParam);
 3. password 不能超过 128 个字符。
 
 4. 调用该接口返回 true 时只代表调用接口成功，并不代表登录成功。登录的结果会通过 onLogin 回调上报。
+
+:::
 
 调用接口成功后，首先会触发登录状态改变回调
 [onClientStateChange()](https://developer.juphoon.com/portal/reference/V2.1/windows/html/91ac4180-d727-d901-a06b-3ed4a675f4fb.htm)
@@ -129,7 +125,8 @@ public void onLogin(bool result, JCClientReason reason) {
 ``````
 
 登录成功之后，SDK 会自动保持与服务器的连接状态，直到用户主动调用登出接口，或者因为帐号在其他设备登录导致该设备登出。登录成功/失败原因 参考
-[JCClient.ClientReason](https://developer.juphoon.com/portal/reference/V2.1/windows/html/9d6e6243-1b3f-55a6-7d0a-3158812dfc6f.htm)。
+[JCClient.ClientReason](https://developer.juphoon.com/portal/reference/V2.1/windows/html/9d6e6243-1b3f-55a6-7d0a-3158812dfc6f.htm)
+。
 
 ## 登出
 
@@ -140,6 +137,9 @@ public void onLogin(bool result, JCClientReason reason) {
 调用
 [logout()](https://developer.juphoon.com/portal/reference/V2.1/windows/html/4b7a3fd4-f6bf-fc4e-8cf9-78023f69b459.htm)
 可以发起登出。更多登出原因参考：[JCClient.ClientReason](https://developer.juphoon.com/portal/reference/V2.1/windows/html/9d6e6243-1b3f-55a6-7d0a-3158812dfc6f.htm)
+。
+
+登出同样会触发登录状态改变(onClientStateChange)回调，之后将通过 onLogout 回调上报登出结果。
 
 ``````csharp
 public void onLogout(JCClientReason reason) {

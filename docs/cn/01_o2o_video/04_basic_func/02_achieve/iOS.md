@@ -240,17 +240,15 @@ JCCallStateTalking。
 示例代码:
 
 ``````objectivec
-```
- -(void)onCallItemRemove:(JCCallItem* __nonnull)item reason:(JCCallReason)reason description:(NSString * __nullable)description { //移除通话回调
-// 界面处理
-if (localCanvas) {
-    // 本端视频销毁
-    [item stopSelfVideo];
+-(void)onCallItemRemove:(JCCallItem* __nonnull)item reason:(JCCallReason)reason description:(NSString * __nullable)description { //移除通话回调
+    // 界面处理
+    if (localCanvas) {
+        // 本端视频销毁
+        [item stopSelfVideo];
+    }
+    if (remoteCanvas) {
+        // 远端视频销毁
+        [item stopOtherVideo];
+    }
 }
-if (remoteCanvas) {
-    // 远端视频销毁
-    [item stopOtherVideo];
-}
-}
-```
 ``````

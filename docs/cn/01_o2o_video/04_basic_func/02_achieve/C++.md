@@ -134,9 +134,7 @@ JCCallStateCancel。
 [startSelfVideo](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_call_item.html#a16fadea791640b31f32c6075f9233578)
 方法创建本地视频画面，该方法会返回一个
 [JCMediaDeviceVideoCanvas](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_device_video_canvas.html)
-对象。该对象用于将视频渲染到画布上，并管理渲染的方式。（调用此方法会打开摄像头）
-
-示例代码:
+对象。该对象用于将视频渲染到画布上，并管理渲染的方式。（调用此方法会打开摄像头）：
 
 ``````cpp
 void JCManager::onCallItemAdd(JCCallItem* item) {
@@ -155,30 +153,28 @@ void JCManager::onCallItemAdd(JCCallItem* item) {
     [onCallItemAdd](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_call_callback.html#a2188f777767ca071c145d4a50687ce63)
     回调，此时可以通过回调中的
     [JCCallItem](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_call_item.html)
-    对象中的 getVideo() 方法以及 getDirection() 方法判断是视频呼入还是语音呼入，从而做出相应的处理:
+    对象中的 getVideo() 方法以及 getDirection() 方法判断是视频呼入还是语音呼入，从而做出相应的处理：
 
-示例代码:
-
-``````cpp
-void JCManager::onCallItemAdd(JCCallItem* item) {
-    // 1. 如果是视频呼入且在振铃中
-    if (item->getDirection() == JCCallDirectionIn && item->getState() == JCCallStatePending) {
-        // 2. 做出相应的处理，如在界面上显示“振铃中”
-         ...
+    ``````cpp
+    void JCManager::onCallItemAdd(JCCallItem* item) {
+        // 1. 如果是视频呼入且在振铃中
+        if (item->getDirection() == JCCallDirectionIn && item->getState() == JCCallStatePending) {
+            // 2. 做出相应的处理，如在界面上显示“振铃中”
+             ...
+        }
     }
-}
-``````
+    ``````
 
-2\. 调用
-[answer](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_call.html#a8e44cef3051dba33a600042c7a5bf987)
-接听通话，**视频通话既可语音应答也可视频应答**
+2. 调用
+    [answer](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_call.html#a8e44cef3051dba33a600042c7a5bf987)
+    接听通话，**视频通话既可语音应答也可视频应答**：
 
-``````cpp
-// 获取活跃通话
-JCCallItem* item = JCManager::shared()->call->getActiveCallItem();
-// 应答通话
-JCManager::shared()->call->answer(item, item->getVideo());
-``````
+    ``````cpp
+    // 获取活跃通话
+    JCCallItem* item = JCManager::shared()->call->getActiveCallItem();
+    // 应答通话
+    JCManager::shared()->call->answer(item, item->getVideo());
+    ``````
 
 通话应答后，通话状态变为 JCCallStateConnecting。
 
@@ -200,8 +196,6 @@ JCCallStateTalking。
 方法创建远端视频画面，该方法会返回一个
 [JCMediaDeviceVideoCanvas](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_device_video_canvas.html)
 对象，该对象用于将视频渲染到画布上，并管理渲染的方式。
-
-示例代码:
 
 ``````cpp
 void JCManager::onCallItemUpdate(JCCallItem* item, JCCallItemChangeParam changeParam) {
@@ -225,7 +219,7 @@ void JCManager::onCallItemUpdate(JCCallItem* item, JCCallItemChangeParam changeP
 
 2. 当前活跃通话对象获取后，调用
     [term](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_call.html#a168fd884512bfd5451ffa5fac83c598b)
-    挂断当前活跃通话:
+    挂断当前活跃通话：
 
     ``````cpp
     void JCSampleDlg::OnBnClickedButtonTermcall()
@@ -248,9 +242,7 @@ void JCManager::onCallItemUpdate(JCCallItem* item, JCCallItemChangeParam changeP
 [stopSelfVideo](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_call_item.html#a8d6f702c5e477f60df2e671e9392ce76)
 和
 [stopOtherVideo](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_call_item.html#a1c58b54ed0f4aac1bef8383ede0f7651)
-方法销毁本地和远端视频画面。
-
-示例代码:
+方法销毁本地和远端视频画面：:
 
 ``````cpp
 void JCManager::onCallItemRemove(JCCallItem* item, JCCallReason reason, const char* description) { //移除通话回调

@@ -40,7 +40,7 @@ public:
 ``````cpp
 bool JCManager::initialize()
 {
-    //初始化
+    // 初始化
     client = createJCClient("用户 appKey", this, NULL);
     if (client->getState() == JCClientStateNotInit) {
         return false;
@@ -48,13 +48,13 @@ bool JCManager::initialize()
     return true;
 }
 
-//登录结果回调
+// 登录结果回调
 void JCManager::onLogin(bool result, JCClientReason reason) {
 }
-//登出结果回调
+// 登出结果回调
 void JCManager::onLogout(JCClientReason reason) {
 }
-//登录状态变化回调
+// 登录状态变化回调
 void JCManager::onClientStateChange(JCClientState state, JCClientState oldState) {
 }
 ``````
@@ -104,7 +104,7 @@ void JCSampleDlg::OnBnClickedButtonLogin()
 >
 > - 国际环境 `http:intl.router.justalkcloud.com:8080`
 >
-> :::
+>
 
 2. userID 不能为空，可由英文、数字和 `+` 、 `-` 、 `_` 、 `.`
     组成（特殊字符不能作为第一个字符），大小写不敏感，长度不能超过
@@ -113,6 +113,8 @@ void JCSampleDlg::OnBnClickedButtonLogin()
 3. password 不能超过 128 个字符。
 
 4. 调用该接口返回 true 时只代表调用接口成功，并不代表登录成功。登录的结果会通过 onLogin 回调上报。
+
+:::
 
 调用接口成功后，首先会触发登录状态改变回调
 [onClientStateChange](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_client_callback.html#ace087f907d2f8a2413f10d34cfb47337)
@@ -162,13 +164,13 @@ JCClientStateLogined（登录成功）。SDK
 
 调用
 [logout](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_client.html#abac015a13078c84b06afac69dcd392ff)
-发起登出
+发起登出：
 
 ``````cpp
 JCManager::shared()->client->logout();
 ``````
 
-登出结果回调
+登出同样会触发登录状态改变(onClientStateChange)回调，之后将通过 onLogout 回调上报登出结果：
 
 ``````cpp
 void JCManager::onLogout(JCClientReason reason) {
@@ -178,7 +180,8 @@ void JCManager::onLogout(JCClientReason reason) {
 }
 ``````
 
-登出原因请参考：[JCClientReason](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/_j_c_client_constants_8h.html#a8b1b44e57fff02634fd4637428a70020)。
+登出原因请参考：[JCClientReason](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/_j_c_client_constants_8h.html#a8b1b44e57fff02634fd4637428a70020)
+。
 
 登出成功后，JCClientState 状态从 JCClientStateLogined（登录成功） 变为
 JCClientStateIdle（未登录）。

@@ -13,7 +13,7 @@ title: 实现一对一视频通话
 [JCMediaDevice.create()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaDevice.html#create-com.juphoon.cloud.JCClient-com.juphoon.cloud.JCMediaDeviceCallback-)
 和
 [JCCall.create()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCCall.html#create-com.juphoon.cloud.JCClient-com.juphoon.cloud.JCMediaDevice-com.juphoon.cloud.JCCallCallback-)
-以初始化实现一对一通话需要的模块
+以初始化实现一对一通话需要的模块：
 
 ``````java
 // 声明对象
@@ -73,7 +73,7 @@ public boolean initialize(Context context) {
 
 ## 媒体参数设置
 
-一对一视频通话支持智能硬件设备集成，需要在发起通话前设置媒体参数
+一对一视频通话支持智能硬件设备集成，需要在发起通话前设置媒体参数：
 
 ``````java
 // 根据模式生成配置参数
@@ -142,9 +142,7 @@ public void onCallItemAdd(JCCallItem item) {
 [startSelfVideo()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCCallItem.html#startSelfVideo-int-)
 方法打开本地视频预览。需要填入参数
 [JCMediaDevice.RenderType](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaDevice.html#RENDER_FULL_AUTO)
-以选择渲染模式。
-
-示例代码:
+以选择渲染模式：
 
 ``````java
 // 1. 发起视频呼叫
@@ -202,9 +200,7 @@ STATE\_TALKING。
 类中的
 [startOtherVideo()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCCallItem.html#startOtherVideo-int-)
 获取远端视频画面。返回对象为
-[JCMediaDeviceVideoCanvas](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaDeviceVideoCanvas.html)。
-
-示例代码:
+[JCMediaDeviceVideoCanvas](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaDeviceVideoCanvas.html)：
 
 ``````java
 @Override
@@ -212,7 +208,7 @@ public void onCallItemUpdate(JCCallItem item) {
     // 如果对端在上传视频流（uploadVideoStreamOther）
     // mRemoteCanvas 为 JCMediaDeviceVideoCanvas 对象实例，请在方法前声明。
     if (item.getState() == JCCall.STATE_TALKING && mRemoteCanvas == null && item.getUploadVideoStreamOther()) {
-        // 获取远端视频画面，renderId来源JCCallItem对象
+        //
         JCMediaDeviceVideoCanvas mRemoteCanvas = item.startOtherVideo(JCMediaDevice.RENDER_FULL_CONTENT);
         ...
     }
@@ -258,9 +254,7 @@ mCall.term(item, JCCall.REASON_NONE, null);
 [stopSelfVideo()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCCallItem.html#stopSelfVideo--)
 和
 [stopOtherVideo()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCCallItem.html#stopOtherVideo--)
-销毁本地和远端视频画面。
-
-示例代码:
+销毁本地和远端视频画面：:
 
 ``````java
 @Override

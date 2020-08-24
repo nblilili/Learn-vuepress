@@ -21,30 +21,24 @@ title: 准备开发环境
 
 参考以下步骤创建一个 Android 项目。若已有 Android 项目，可以直接查看【集成 SDK】。
 
-- 打开 Android Studio，点击 Start a new Android Studio project。
+- 打开 **Android Studio**，点击 **Start a new Android Studio project**。
 
-- 在 Select a Project Template 界面，选择 Phone and Tablet \> Empty
-    Activity，然后点击 Next。
+- 在 **Select a Project Template** 界面，选择 **Phone and Tablet \Empty
+    Activity**，然后点击 **Next**。
 
-- 在 Configure Your Project 界面，依次填入以下内容：
+- 在 **Configure Your Project** 界面，依次填入以下内容：
 
-    >
-    >
-    >
-    >
-    > - Name：您的 Android 项目名称，如 HelloJuphoon。
-    >
-    > - Package name：您的项目包的名称，如 io.helloJuphoon。
-    >
-    > - Save location：项目的存储路径
-    >
-    > - Language：项目的编程语言，如 Java
-    >
-    > - Minimum API level：项目的最低 API 等级
-    >
-    >
+  - **Name**：您的 Android 项目名称，如 HelloJuphoon。
 
-- 然后点击 Finish。根据屏幕提示，安装可能需要的插件。
+  - **Package name**：您的项目包的名称，如 io.helloJuphoon。
+
+  - **Save location**：项目的存储路径
+
+  - **Language**：项目的编程语言，如 Java
+
+  - **Minimum API level**：项目的最低 API 等级
+
+- 然后点击 **Finish**。根据屏幕提示，安装可能需要的插件。
 
 ## 集成 SDK
 
@@ -58,7 +52,7 @@ title: 准备开发环境
 
 :::
 
-在项目的 /app/build.gradle 文件中，添加如下行：
+在项目的 **/app/build.gradle** 文件中，添加如下行：
 
 ``````java
 ...
@@ -75,10 +69,10 @@ dependencies {
     SDK](https://developer.juphoon.com/portal/cn/downloadsdk/download_sdk.php?filename=JC-SDK-Android-V2_1.tar.gz)
     并解压。
 
-2. 拷贝 libs 文件夹内的 arm64-v8a、armeabi-v7a、x86、x86\_64、JCSDK.jar、mtc.jar 和
-    zmf.jar 到您工程目录中的 libs 目录下。
+2. 拷贝 libs 文件夹内的 **arm64-v8a、armeabi-v7a、x86、x86\_64、JCSDK.jar、mtc.jar
+    和 zmf.jar** 到您工程目录中的 **libs** 目录下。
 
-3. 为确保能够连接到so库，需要在module 的build.gradle中添加设置:
+3. 为确保能够连接到 **so 库**，需要在 **module** 的 **build.gradle** 中添加设置:
 
     ``````java
     sourceSets {
@@ -90,7 +84,7 @@ dependencies {
 
 ## 添加项目权限
 
-根据场景需要，在 /app/src/main/AndroidManifest.xml 文件中添加如下行，获取相应的设备权限：
+根据场景需要，在 **/app/src/main/AndroidManifest.xml** 文件中添加如下行，获取相应的设备权限：
 
 ``````java
 <uses-feature android:name="android.hardware.camera" />
@@ -111,13 +105,13 @@ dependencies {
 
 ::: tip
 
-您在 AndroidManifest 中进行权限配置时，请确保您能够获得打开摄像头、音视频录制等相关权限。
+您在 **AndroidManifest** 中进行权限配置时，请确保您能够获得打开摄像头、音视频录制等相关权限。
 
 :::
 
 ## 设置混淆规则
 
-在 proguard-rules.pro 文件，将 JC SDK 相关类加入不混淆名单。
+在 **proguard-rules.pro** 文件，将 JC SDK 相关类加入不混淆名单。
 
 ``````java
 -dontwarn com.juphoon.*

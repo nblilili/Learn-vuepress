@@ -66,49 +66,6 @@ JCMediaDeviceCameraTypeUnknown = 3
 - (void)setCameraProperty:(int)width height:(int)height framerate:(int)framerate;
 ``````
 
-### 设置摄像头采集角度
-
-您可以调用下面的接口设置摄像头采集的角度，其中，角度需为 90 的倍数。
-
-``````objectivec
-/**
- * @breif 指定摄像头采集角度，为90的倍数
- * @param angle 角度
- */
--(void)specifyCameraAngle:(int)angle;
-``````
-
-### 设置 Canvas 旋转角度
-
-如果想设置Canvas中画布的角度，需要调用 JCMediaDeviceVideoCanvas 类中的 rotate 接口。
-
-``````objectivec
-/**
- * @brief 旋转角度，必须是90的倍数，该角度表示画面与屏幕正方向旋转后的夹角
- * @param angle 角度值
- */
--(void)rotate:(int)angle;
-``````
-
-其中，角度需为 90 的倍数。调用该接口后，本端显示的本地视频画面和远端视频画面会同时旋转相同的角度，而对端显示的画面不受影响。
-
-例如 A 设置旋转 90 度，则 A 端显示的 A 和 B 视频画面会同时旋转 90 度。而 B 端的视频画面则不会发生任何改变。如下图所示：
-
-![../../../../\_images/rotateset.png](../../../../_images/rotateset.png)
-
-角度值参考下如下：
-
-``````objectivec
-/// 窗口与屏幕角度 0
-JCMediaDeviceRotateAngle0 = 0,
-/// 窗口与屏幕角度 90
-JCMediaDeviceRotateAngle90 = 90,
-/// 窗口与屏幕角度 180
-JCMediaDeviceRotateAngle180 = 180,
-/// 窗口与屏幕角度 270
-JCMediaDeviceRotateAngle270 = 270,
-``````
-
 示例代码
 
 ``````objectivec
@@ -116,12 +73,8 @@ JCMediaDeviceRotateAngle270 = 270,
 NSArray<JCMediaDeviceCamera*> * cameras = mediaDevice.cameras;
 // 设置要切换的摄像头
 [mediaDevice switchCamera:cameras[1]];
-
 // 设置摄像头采集属性
 [mediaDevice setCameraProperty:640 height:360 framerate:30];
-
-// 设置Canvas旋转角度
-[canvas rotate:90];
 ``````
 
 -----

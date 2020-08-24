@@ -13,6 +13,7 @@ create](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCClient
 [JCClient](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCClient.html)
 实例对象。传入获取到的 `appKey` ，即可初始化
 [JCClient](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCClient.html)
+。
 
 ::: tip
 
@@ -31,7 +32,7 @@ create](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCClient
 其中，callback 为 JCClientCallback 协议的代理对象，该协议用于将 client 的状态变化通知给上层。因此需要先指定
 callback 的代理对象，然后在该代理对象中实现 JCClientCallback 的方法。
 
-JCClientCallback 中的主要方法如下
+JCClientCallback 中的主要方法如下：
 
 ``````objectivec
 //登陆结果回调
@@ -74,15 +75,9 @@ loginParam.serverAddress = @"服务器地址";
 
 1. 环境设置：
 
-    >
-    >
-    >
-    >
-    >   - 国内环境 `http:cn.router.justalkcloud.com:8080` （默认）
-    >
-    >   - 国际环境 `http:intl.router.justalkcloud.com:8080`
-    >
-    > :::
+      - 国内环境 `http:cn.router.justalkcloud.com:8080` （默认）
+
+      - 国际环境 `http:intl.router.justalkcloud.com:8080`
 
 2. userID 不能为空，可由英文、数字和 `+` 、 `-` 、 `_` 、 `.`
     组成（特殊字符不能作为第一个字符），大小写不敏感，长度不能超过
@@ -91,6 +86,8 @@ loginParam.serverAddress = @"服务器地址";
 3. password 不能超过 128 个字符。
 
 4. 调用该接口返回 true 时只代表调用接口成功，并不代表登录成功。登录的结果会通过 onLogin 回调上报。
+
+:::
 
 调用发起登录接口成功后，会触发 JCClientCallback 回调中的方法将 client 的状态通知给上层。具体逻辑如下：
 
@@ -153,7 +150,7 @@ JCClientStateLogined（登录成功）。SDK
 [client logout];
 ``````
 
-登出同样会触发登录状态改变(onClientStateChange)回调，之后将通过 onlogout 回调上报登出结果。
+登出同样会触发登录状态改变(onClientStateChange)回调，之后将通过 onLogout 回调上报登出结果。
 
 ``````objectivec
 -(void)onLogout:(JCClientReason)reason {

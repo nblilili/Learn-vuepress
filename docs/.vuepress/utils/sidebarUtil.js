@@ -13,9 +13,6 @@ module.exports = {
     divideProducts(filePath);
     // console.log("----- this is sidebar!-----");
     return sidebar;
-  },
-  getSidebarSelect(filePath) {
-
   }
 }
 
