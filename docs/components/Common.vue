@@ -27,7 +27,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .theme-default-content{
   background: #fff;
 }

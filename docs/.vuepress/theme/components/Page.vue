@@ -31,7 +31,7 @@
               >{{item.name}}</router-link>
             </div>
           </div>
-          <Content class="theme-default-content DocSearch-content"></Content>
+          <Content class="theme-default-content mcont DocSearch-content"></Content>
           <!-- <Content slot-key="head" /> -->
           <PageEdit />
           <PageNav v-if="($route.path.indexOf('iOS') <= -1)" v-bind="{ sidebarItems }" />
@@ -282,7 +282,7 @@ function check_path(data) {
   }
 
   .big-box {
-    margin: 60px 10px 0px 10px;
+    margin: 60px 0px 0px 0px;
     background: #fff;
   }
 

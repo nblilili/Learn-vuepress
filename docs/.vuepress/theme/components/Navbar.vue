@@ -34,14 +34,7 @@
                 </div>
               </div>
             </div>
-            <div
-              class="nav-item links"
-              style="margin: 0 20px;
-              font-size: 16px;
-              text-align: center;
-              position: relative;
-              float: left;"
-            >
+            <div class="nav-item search">
               <AlgoliaSearchBox v-if="isAlgoliaSearch" :options="algolia" />
               <SearchBox
                 v-else-if="$site.themeConfig.search !== false && $page.frontmatter.search !== false"
@@ -88,6 +81,12 @@
             ></i>
           </div>
         </nav>
+        <!-- <div class="searchBar">
+          <AlgoliaSearchBox v-if="isAlgoliaSearch" :options="algolia" />
+          <SearchBox
+            v-else-if="$site.themeConfig.search !== false && $page.frontmatter.search !== false"
+          />
+        </div> -->
       </div>
     </header>
   </div>
@@ -197,8 +196,26 @@ export default {
 // @import url('../assets/css/font/iconfont.css');
 @import url('//at.alicdn.com/t/font_1986404_8fs7crvc73y.css');
 
+.nav-item.search {
+  margin: 10px;
+  font-size: 16px;
+  text-align: center;
+  position: relative;
+  float: left;
+}
+
+.searchBar {
+  position: fixed;
+}
+
 .nav-item.links, .nav-item.olddoc {
   display: none !important;
+}
+
+@media (max-width: 800px) {
+  .nav-item.search {
+    display: none !important;
+  }
 }
 
 @media (max-width: 1600px) {
