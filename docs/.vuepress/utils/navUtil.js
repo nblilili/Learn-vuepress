@@ -7,7 +7,7 @@ module.exports = {
       },
       {
         text: '文档中心',
-        link: '/doc/'+ locale +'/00_o2o_audio/'
+        link: '/'+ locale +'/00_o2o_audio/'
       },
       {
         text: '下载',

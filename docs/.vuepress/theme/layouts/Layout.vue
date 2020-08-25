@@ -8,8 +8,8 @@
     <Navbar v-if="shouldShowNavbar" @toggle-sidebar="toggleSidebar" />
 
     <div class="sidebar-mask" @click="toggleSidebar(false)" />
-
-    <div class="all">
+    <Home v-if="$page.frontmatter.home" />
+    <div v-else class="all">
       <!-- 左侧 -->
       <Sidebar
         :isMenuShow="isMenuShow"
@@ -28,12 +28,11 @@
         </template>
       </Sidebar>
 
-      <Home v-if="$page.frontmatter.home" />
+      <!-- <Home v-if="$page.frontmatter.home" /> -->
       <!-- <Tags v-else-if="tags" /> -->
       <!-- 主页 -->
       <Page
         ref="Page"
-        v-else
         :sidebar-items="sidebarItems"
         :toggleSidebar="toggleSidebar"
         @addclass="addclass"

@@ -3,7 +3,7 @@
     class="home"
     aria-labelledby="main-title"
   >
-    <header class="hero">
+    <!-- <header class="hero">
       <img
         v-if="data.heroImage"
         :src="$withBase(data.heroImage)"
@@ -33,8 +33,8 @@
           :item="actionLink"
         />
       </p>
-    </header>
-
+    </header> -->
+    <HomeSearch />
     <div
       v-if="data.features && data.features.length"
       class="features"
@@ -62,11 +62,11 @@
 
 <script>
 import NavLink from '@theme/components/NavLink.vue'
-
+import HomeSearch from '@theme/components/HomeSearch.vue';
 export default {
   name: 'Home',
 
-  components: { NavLink },
+  components: { NavLink,HomeSearch },
 
   computed: {
     data () {
@@ -83,11 +83,12 @@ export default {
 }
 </script>
 
-<style lang="stylus">
+<style lang="stylus" scoped>
 .home
-  padding $navbarHeight 2rem 0
-  max-width $homePageWidth
-  margin 0px auto
+  // padding $navbarHeight 0px 0px 0px
+  // padding 60px 0px 0px 0px
+  // max-width $homePageWidth
+  margin 60px auto 0 auto
   display block
   .hero
     text-align center

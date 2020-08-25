@@ -1,100 +1,96 @@
 
 <template>
-  <div>
-    <header class="site-header">
-      <div class="container">
-        <nav class="navbar">
-          <a class="navbar-brand" href="/">
-            <img src="../assets/image/juphoon cloud developer@2x.png" />
-          </a>
-          <div class="nav" :class="showNav?'active':''">
-            <div class="nav-item" v-for="(item,index) in site" :key="item.text">
-              <a class="header-line this_line" :href="item.link" v-if="!item.items">{{item.text}}</a>
-              <div v-if="item.items" @click="changshowitem(item,index)">
-                <a class="header-line this_line" :href="item.link" v-if="item.items">
-                  {{item.text}}
-                  <i
-                    class="arrow iconfont"
-                    :class="item.showitem?'icon-shangla':'icon-xiala'"
-                  ></i>
-                </a>
-                <div
-                  class="nav-child navChild dev"
-                  :style="{'display':item.showitem?'block':'none'}"
-                >
-                  <table>
-                    <tr v-for="(items,index) in item.items" :key="items.text">
-                      <td>
-                        <a :href="items.link" target="_blank">
-                          <div class="nav-tit">{{items.text}}</div>
-                        </a>
-                      </td>
-                    </tr>
-                  </table>
-                </div>
-              </div>
-            </div>
-            <div class="nav-item search">
-              <AlgoliaSearchBox v-if="isAlgoliaSearch" :options="algolia" />
-              <SearchBox
-                v-else-if="$site.themeConfig.search !== false && $page.frontmatter.search !== false"
-              />
-            </div>
-            <div class="nav-item olddoc">
-              <a class="header-line this_line" href="/olddoc">切换到老文档中心</a>
-            </div>
-            <div class="nav-btn" v-if="!user_type">
-              <div class="nlogin">
-                <a class="loginBtn" href="/signin">登录</a>
-                <a class="regBtn" href="/signup">注册</a>
-              </div>
-            </div>
-            <div class="nav-btn" v-if="user_type">
-              <div class="more-item">
-                <div class="more">
-                  <div style="float: right;">
-                    <i class="layui-icon layui-icon-triangle-d"></i>
-                  </div>
-                  <div class="nicheng" title>{{UserInfo.user_name}}</div>
-                </div>
-                <div class="more-toggle">
-                  <div class="ylogin_1" v-if="user_type == 'manager'">
-                    <a href="/portal/cn/console/apps/admin_index.php">应用管理</a>
-                    <a href="/portal/admin/info/account.php">系统管理</a>
-                  </div>
-                  <div class="ylogin_2" v-else-if="user_type != 'police'">
-                    <a href="/cn/console/">管理控制台</a>
-                  </div>
-                  <div class="yl_police" v-if="user_type == 'police'">
-                    <a href="/portal/cn/console/my_app/otoDetail.php">数据查询</a>
-                  </div>
-                  <a href="javascript:;" @click="log_out()">退出</a>
-                </div>
+  <header class="site-header">
+    <div class="container">
+      <nav class="navbar">
+        <a class="navbar-brand" href="/">
+          <img src="../assets/image/juphoon cloud developer@2x.png" />
+        </a>
+        <div class="nav" :class="showNav?'active':''">
+          <div class="nav-item" v-for="(item,index) in userLinks" :key="item.text">
+            <a class="header-line this_line" :href="item.link" v-if="!item.items">{{item.text}}</a>
+            <div v-if="item.items" @click="changshowitem(item,index)">
+              <a class="header-line this_line" :href="item.link" v-if="item.items">
+                {{item.text}}
+                <i
+                  class="arrow iconfont"
+                  :class="item.showitem?'icon-shangla':'icon-xiala'"
+                ></i>
+              </a>
+              <div class="nav-child navChild dev" :style="{'display':item.showitem?'block':''}">
+                <table>
+                  <tr v-for="(items,index) in item.items" :key="items.text">
+                    <td>
+                      <a :href="items.link" target="_blank">
+                        <div class="nav-tit">{{items.text}}</div>
+                      </a>
+                    </td>
+                  </tr>
+                </table>
               </div>
             </div>
           </div>
-          <div class="headerIcon">
-            <i
-              class="iconfont"
-              :class="showNav?'icon-quxiao':'icon-home_shousuo_h_icon'"
-              @click="$EventBus.$emit('changeNav')"
-            ></i>
+          <div class="nav-item search" v-if="!$page.frontmatter.home">
+            <AlgoliaSearchBox v-if="isAlgoliaSearch" :options="algolia" />
+            <SearchBox
+              v-else-if="$site.themeConfig.search !== false && $page.frontmatter.search !== false"
+            />
           </div>
-        </nav>
-        <!-- <div class="searchBar">
+          <div class="nav-item olddoc">
+            <a class="header-line this_line" href="/olddoc">切换到老文档中心</a>
+          </div>
+          <div class="nav-btn" v-if="!user_type">
+            <div class="nlogin">
+              <a class="loginBtn" href="/signin">登录</a>
+              <a class="regBtn" href="/signup">注册</a>
+            </div>
+          </div>
+          <div class="nav-btn" v-if="user_type">
+            <div class="more-item">
+              <div class="more">
+                <div style="float: right;">
+                  <i class="layui-icon layui-icon-triangle-d"></i>
+                </div>
+                <div class="nicheng" title>{{UserInfo.user_name}}</div>
+              </div>
+              <div class="more-toggle">
+                <div class="ylogin_1" v-if="user_type == 'manager'">
+                  <a href="/portal/cn/console/apps/admin_index.php">应用管理</a>
+                  <a href="/portal/admin/info/account.php">系统管理</a>
+                </div>
+                <div class="ylogin_2" v-else-if="user_type != 'police'">
+                  <a href="/cn/console/">管理控制台</a>
+                </div>
+                <div class="yl_police" v-if="user_type == 'police'">
+                  <a href="/portal/cn/console/my_app/otoDetail.php">数据查询</a>
+                </div>
+                <a href="javascript:;" @click="log_out()">退出</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="headerIcon">
+          <i
+            class="iconfont"
+            :class="showNav?'icon-quxiao':'icon-home_shousuo_h_icon'"
+            @click="$EventBus.$emit('changeNav')"
+          ></i>
+        </div>
+      </nav>
+      <!-- <div class="searchBar">
           <AlgoliaSearchBox v-if="isAlgoliaSearch" :options="algolia" />
           <SearchBox
             v-else-if="$site.themeConfig.search !== false && $page.frontmatter.search !== false"
           />
-        </div> -->
-      </div>
-    </header>
-  </div>
+      </div>-->
+    </div>
+  </header>
 </template>
 
 <script>
 import axios from "axios";
 import AlgoliaSearchBox from "@AlgoliaSearchBox";
+import { resolveNavLinkItem } from "../util";
 export default {
   name: "NavBar",
   components: {
@@ -127,8 +123,51 @@ export default {
     isAlgoliaSearch() {
       return this.algolia && this.algolia.apiKey && this.algolia.indexName;
     },
+    userNav() {
+      return this.$themeLocaleConfig.nav || this.$site.themeConfig.nav || [];
+    },
+    nav() {
+      const { locales } = this.$site;
+      if (locales && Object.keys(locales).length > 1) {
+        const currentLink = this.$page.path;
+        const routes = this.$router.options.routes;
+        const themeLocales = this.$site.themeConfig.locales || {};
+        const languageDropdown = {
+          text: this.$themeLocaleConfig.selectText || "Languages",
+          ariaLabel: this.$themeLocaleConfig.ariaLabel || "Select language",
+          items: Object.keys(locales).map((path) => {
+            const locale = locales[path];
+            const text =
+              (themeLocales[path] && themeLocales[path].label) || locale.lang;
+            let link;
+            // Stay on the current page
+            if (locale.lang === this.$lang) {
+              link = currentLink;
+            } else {
+              // Try to stay on the same page
+              link = currentLink.replace(this.$localeConfig.path, path);
+              // fallback to homepage
+              if (!routes.some((route) => route.path === link)) {
+                link = path;
+              }
+            }
+            return { text, link };
+          }),
+        };
+        return [...this.userNav, languageDropdown];
+      }
+      return this.userNav;
+    },
+    userLinks() {
+      return (this.nav || []).map((link) => {
+        return Object.assign(resolveNavLinkItem(link), {
+          items: (link.items || []).map(resolveNavLinkItem),
+        });
+      });
+    },
   },
   mounted() {
+    console.log(this.userLinks);
     this.$EventBus.$on("changeNav", () => {
       this.showNav = !this.showNav;
     });
@@ -154,8 +193,10 @@ export default {
   },
   methods: {
     changshowitem(item, index) {
-      item.showitem = !item.showitem;
-      this.site = JSON.parse(JSON.stringify(this.site));
+      // item.showitem = !item.showitem;
+      // console.log(this.userLinks);
+      // this.userLinks = JSON.parse(JSON.stringify(this.site));
+      // console.log(this.userLinks);
     },
     log_out() {
       var url = "/portal/cn/message/?a=ajax_login_out";
