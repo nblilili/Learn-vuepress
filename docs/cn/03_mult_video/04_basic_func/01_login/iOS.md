@@ -13,6 +13,7 @@ create](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCClient
 [JCClient](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCClient.html)
 实例对象。传入获取到的 `appKey` ，即可初始化
 [JCClient](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCClient.html)
+。
 
 ::: tip
 
@@ -31,7 +32,7 @@ create](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCClient
 其中，callback 为 JCClientCallback 协议的代理对象，该协议用于将 client 的状态变化通知给上层。因此需要先指定
 callback 的代理对象，然后在该代理对象中实现 JCClientCallback 的方法。
 
-JCClientCallback 中的主要方法如下
+JCClientCallback 中的主要方法如下：
 
 ``````objectivec
 //登陆结果回调
@@ -149,7 +150,7 @@ JCClientStateLogined（登录成功）。SDK
 [client logout];
 ``````
 
-登出同样会触发登录状态改变(onClientStateChange)回调，之后将通过 onlogout 回调上报登出结果。
+登出同样会触发登录状态改变(onClientStateChange)回调，之后将通过 onLogout 回调上报登出结果。
 
 ``````objectivec
 -(void)onLogout:(JCClientReason)reason {

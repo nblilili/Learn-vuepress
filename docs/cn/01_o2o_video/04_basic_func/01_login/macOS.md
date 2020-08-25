@@ -148,7 +148,7 @@ JCClientStateLogined（登录成功）。 SDK
 [client logout];
 ``````
 
-登出同样会触发登录状态改变(onClientStateChange)回调，之后将通过 onlogout 回调上报登出结果。
+登出同样会触发登录状态改变(onClientStateChange)回调，之后将通过 onLogout 回调上报登出结果。
 
 ``````objectivec
 -(void)onLogout:(JCClientReason)reason {

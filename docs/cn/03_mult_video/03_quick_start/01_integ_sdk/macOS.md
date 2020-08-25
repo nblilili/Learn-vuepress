@@ -17,23 +17,23 @@ title: 一分钟集成 SDK
 
 参考以下步骤创建一个 macOS 项目。若已有 macOS 项目，可以直接查看集成 JC SDK。
 
-- 打开 Xcode 并点击 Create a new Xcode project。
+- 打开 **Xcode** 并点击 **Create a new Xcode project**。
 
-- 选择项目类型为 Cocoa App，并点击 Next。
+- 选择项目类型为 **Cocoa App**，并点击 **Next**。
 
-- 输入项目信息，如项目名称、开发团队信息、组织名称和语言，并点击 Next。
+- 输入项目信息，如项目名称、开发团队信息、组织名称和语言，并点击 **Next**。
 
 ::: tip
 
-如果您没有添加过开发团队信息，点击 Xcode \Preferences… \Accounts，点击左下角加号并按照屏幕提示登入
+如果您没有添加过开发团队信息，点击 **Xcode \Preferences… \Accounts**，点击左下角加号并按照屏幕提示登入
 Apple ID，完成后即可选择您的账户作为开发团队。
 
 :::
 
-- 选择项目存储路径，并点击 Create。
+- 选择项目存储路径，并点击 **Create**。
 
-- 进入 TARGETS \Project Name \Signing & Capabilities 菜单，勾选
-    Automatically manage signing。
+- 进入 **TARGETS \Project Name \Signing & Capabilities** 菜单，勾选
+    **Automatically manage signing**。
 
 ## 集成SDK
 

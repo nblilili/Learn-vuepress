@@ -25,7 +25,7 @@ title: 一分钟跑通 Demo
 
 1. 解压下载的 Demo 源码压缩包，并打开工程。
 
-2. 设置自己的 AppKey：在下图红框标记的代码中输入自己的 AppKey
+2. 设置自己的 AppKey：在下图红框标记的代码中输入自己的 AppKey：
 
 ![duokey2](../../../../_images/roomkey2.png)
 

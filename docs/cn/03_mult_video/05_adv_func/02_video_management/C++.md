@@ -34,35 +34,6 @@ JCManager::shared()->mediaDevice->switchCamera(cameras[0]);
 JCManager::shared()->mediaDevice->setCameraProperty(640, 360, 24);
 ``````
 
-### 设置 Canvas 旋转角度
-
-调用
-[rotate](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_device_video_canvas.html#a44d1073788a9cd3c6620c839eea76ffa)
-接口设置 Canvas 中画布的旋转角度。其中，旋转角度必须是 90 的倍数，该角度表示与屏幕正方向旋转后的夹角。
-
-``````cpp
-JCManager::shared()->mediaDeviceCanvas->rotate(Angle90);
-``````
-
-调用该接口后，本端显示的本地视频画面和远端视频画面会同时旋转相同的角度，而对端显示的画面不受影响。
-
-例如 A 设置旋转 90 度，则 A 端显示的 A 和 B 视频画面会同时旋转 90 度。而 B 端的视频画面则不会发生任何改变。如下图所示：
-
-![../../../../\_images/rotateset.png](../../../../_images/rotateset.png)
-
-角度值参考下如下
-
-``````cpp
-// 窗口与屏幕角度 0
-Angle0 = 0,
-// 窗口与屏幕角度 90
-Angle90 = 90,
-// 窗口与屏幕角度 180
-Angle180 = 180,
-// 窗口与屏幕角度 270
-Angle270 = 270
-``````
-
 -----
 
 ## 视频数据管理

@@ -1,14 +1,11 @@
 const fs = require('fs');
 const path = require('path');
 var translatorMap = require('../map/translatorMap.js');
-var platformMap = require('../map/platformMap.js');
+var platformSelectorMap = require('../map/platformSelectorMap.js');
 var folderFilterSet = require('../map/folderFilterSet.js');
 
 var sidebar = new Object();
 var basePath = '';
-var tags = [];
-
-
 
 module.exports = {
   getSidebarConf(filePath) {
@@ -16,9 +13,6 @@ module.exports = {
     divideProducts(filePath);
     // console.log("----- this is sidebar!-----");
     return sidebar;
-  },
-  getSidebarSelect(filePath) {
-
   }
 }
 
@@ -112,7 +106,7 @@ function getChildren(filePath, childArr) {
       // console.log("fileDir: "+ fileDir);
       filename= path.basename(filename, ".md");
       var relativePath = path.relative(basePath, fileDir).split(path.sep).join('/');
-      if (!platformMap.has(filename)) {
+      if (!platformSelectorMap.has(filename)) {
         filename == 'README' ? childArr.splice(0, 0, '') : childArr.push(relativePath);
       } else {
         // console.log("fileDir: " + fileDir + " and do nothing");
