@@ -3,7 +3,6 @@
     <div class="backgrey" :style="{'display':isMenuShow?'block':'none'}" @click="MenuHide"></div>
     <div id="left" class="left" :class="scollpage" :style="{'display':isMenuShow?'block':'none'}">
       <!-- 头部跳转选择 -->
-
       <div id="left-top" class="left-top">
         <div class="left-top-title_1" tabindex="0" @click="showmenu?showmenu=false:showmenu=true"  @blur="hidemenu()">
           <!-- showmenu?showmenu=false:showmenu=true -->
