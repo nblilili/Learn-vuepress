@@ -1,7 +1,7 @@
 <script>
 import { isActive, hashRE, groupHeaders } from "../util";
 import { map } from "../../config/sidebarSelect";
-import TagsConfig from "../../config/TagsConfig"
+// import TagsConfig from "../../config/TagsConfig"
 export default {
   functional: true,
 
