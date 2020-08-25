@@ -8,9 +8,9 @@
         </a>
         <div class="nav" :class="showNav?'active':''">
           <div class="nav-item" v-for="(item,index) in userLinks" :key="item.text">
-            <a class="header-line this_line" :href="item.link" v-if="!item.items">{{item.text}}</a>
-            <div v-if="item.items" @click="changshowitem(item,index)">
-              <a class="header-line this_line" :href="item.link" v-if="item.items">
+            <a class="header-line this_line" :href="item.link" v-if="!item.items.length">{{item.text}}</a>
+            <div v-if="item.items.length" @click="changshowitem(item,index)">
+              <a class="header-line this_line" :href="item.link" v-if="item.items.length">
                 {{item.text}}
                 <i
                   class="arrow iconfont"

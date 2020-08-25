@@ -161,8 +161,14 @@ export default {
 
     checkroute() {
       let that = this;
-      var TagsConfig = this.$themeConfig.tagConfig;
+      var TagsConfig = {};
       var url = this.$route.path;
+      if(url.indexOf('/cn/')>-1){
+        TagsConfig = this.$themeConfig.locales['/cn/'].tagConfig
+      }else if(url.indexOf('/en/'>-1)){
+        TagsConfig = this.$themeConfig.locales['/en/'].tagConfig
+      }
+      console.log(TagsConfig)
       for (let i in TagsConfig) {
         if (url.indexOf(i) > -1) {
           this.needTags = true;

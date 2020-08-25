@@ -50,7 +50,7 @@
     </div>
 
     <Content class="theme-default-content DocSearch-content mcont custom " />
-
+    <!-- <HomeFooter class="footer" /> -->
     <div
       v-if="data.footer"
       class="footer"
@@ -140,7 +140,7 @@ export default {
     p
       color lighten($textColor, 25%)
   .footer
-    padding 2.5rem
+    // padding 2.5rem
     border-top 1px solid $borderColor
     text-align center
     color lighten($textColor, 25%)
@@ -155,8 +155,6 @@ export default {
 
 @media (max-width: $MQMobileNarrow)
   .home
-    padding-left 1.5rem
-    padding-right 1.5rem
     .hero
       img
         max-height 210px

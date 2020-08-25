@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="all">
-      <div class="top_content">
+      <div class="top_content" style="width:100%">
         <div class="bac">
           <img src="https://developer.juphoon.com/style/images/home/developer_bg@2x.png" />
           <div class="bactxt">
@@ -26,43 +26,43 @@
           <div class="part-cont">
             <div class="inner-cont">
               <div class="pt-img">
-                <img src="/style/images/home/developer_pt@2x.png" />
+                <img src="https://developer.juphoon.com/style/images/home/developer_pt@2x.png" />
               </div>
               <div class="pt-cont">
                 <h3>菊风云平台</h3>
                 <div class="pt-mark">
                   <div class="pt-item">
-                    <a href="/cn/document/index.php">
+                    <a href="https://developer.juphoon.com/cn/document/index.php">
                       平台概述
                       <i></i>
                     </a>
                   </div>
                   <div class="pt-item">
-                    <a href="/cn/document/key-terms.php">
+                    <a href="https://developer.juphoon.com/cn/document/key-terms.php">
                       关键术语
                       <i></i>
                     </a>
                   </div>
                   <div class="pt-item">
-                    <a href="/cn/document/create-application.php">
+                    <a href="https://developer.juphoon.com/cn/document/create-application.php">
                       创建应用
                       <i></i>
                     </a>
                   </div>
                   <div class="pt-item">
-                    <a href="/cn/document/portal.php">
+                    <a href="https://developer.juphoon.com/cn/document/portal.php">
                       Portal 说明
                       <i></i>
                     </a>
                   </div>
                   <div class="pt-item">
-                    <a href="/cn/document/qualities.php">
+                    <a href="https://developer.juphoon.com/cn/document/qualities.php">
                       天塞鹰眼
                       <i></i>
                     </a>
                   </div>
                   <div class="pt-item">
-                    <a href="/cn/download/">
+                    <a href="https://developer.juphoon.com/cn/download/">
                       下载
                       <i></i>
                     </a>
@@ -78,11 +78,13 @@
             <div class="inner-cont">
               <div class="in-item">
                 <div class="pt-img">
-                  <img src="/style/images/home/developer_1to1 voicecall @2x.png" />
+                  <img
+                    src="https://developer.juphoon.com/style/images/home/developer_1to1 voicecall @2x.png"
+                  />
                 </div>
                 <div class="pt-cont">
                   <h3>
-                    <a href="/cn/document/oto_audio/">一对一语音通话</a>
+                    <a href="https://developer.juphoon.com/cn/document/oto_audio/">一对一语音通话</a>
                   </h3>
                   <div class="pt-info">
                     <div>适用场景</div>
@@ -99,11 +101,13 @@
               </div>
               <div class="in-item">
                 <div class="pt-img">
-                  <img src="/style/images/home/developer_1to1 videocall @2x.png" />
+                  <img
+                    src="https://developer.juphoon.com/style/images/home/developer_1to1 videocall @2x.png"
+                  />
                 </div>
                 <div class="pt-cont">
                   <h3>
-                    <a href="/cn/document/oto_video/">一对一视频通话</a>
+                    <a href="https://developer.juphoon.com/cn/document/oto_video/">一对一视频通话</a>
                   </h3>
                   <div class="pt-info">
                     <div class="pt-iother">适用场景</div>
@@ -133,11 +137,13 @@
               </div>
               <div class="in-item">
                 <div class="pt-img">
-                  <img src="/style/images/home/developer_multi-point voicecall @2x.png" />
+                  <img
+                    src="https://developer.juphoon.com/style/images/home/developer_multi-point voicecall @2x.png"
+                  />
                 </div>
                 <div class="pt-cont">
                   <h3>
-                    <a href="/cn/document/mult_audio/">多方语音通话</a>
+                    <a href="https://developer.juphoon.com/cn/document/mult_audio/">多方语音通话</a>
                   </h3>
                   <div class="pt-info">
                     <div>适用场景</div>
@@ -154,11 +160,13 @@
               </div>
               <div class="in-item">
                 <div class="pt-img">
-                  <img src="/style/images/home/developer_multi-point videocall @2x.png" />
+                  <img
+                    src="https://developer.juphoon.com/style/images/home/developer_multi-point videocall @2x.png"
+                  />
                 </div>
                 <div class="pt-cont">
                   <h3>
-                    <a href="/cn/document/mult_video/">多方视频通话</a>
+                    <a href="https://developer.juphoon.com/cn/document/mult_video/">多方视频通话</a>
                   </h3>
                   <div class="pt-info">
                     <div>适用场景</div>
@@ -184,11 +192,13 @@
               </div>
               <div class="in-item">
                 <div class="pt-img">
-                  <img src="/style/images/home/developer_voicelive@2x.png" />
+                  <img
+                    src="https://developer.juphoon.com/style/images/home/developer_voicelive@2x.png"
+                  />
                 </div>
                 <div class="pt-cont">
                   <h3>
-                    <a href="/cn/document/audio_live/">语音互动直播</a>
+                    <a href="https://developer.juphoon.com/cn/document/audio_live/">语音互动直播</a>
                   </h3>
                   <div class="pt-info">
                     <div>适用场景</div>
@@ -211,11 +221,13 @@
               </div>
               <div class="in-item">
                 <div class="pt-img">
-                  <img src="/style/images/home/developer_videolive@2x.png" />
+                  <img
+                    src="https://developer.juphoon.com/style/images/home/developer_videolive@2x.png"
+                  />
                 </div>
                 <div class="pt-cont">
                   <h3>
-                    <a href="/cn/document/video_live/">视频互动直播</a>
+                    <a href="https://developer.juphoon.com/cn/document/video_live/">视频互动直播</a>
                   </h3>
                   <div class="pt-info">
                     <div>适用场景</div>
@@ -244,26 +256,30 @@
           <div class="part-cont">
             <div class="inner-cont">
               <div class="col-sm-3 in-cont">
-                <a href="/cn/document/webrtc/">
-                  <img src="/style/images/home/developer_WebRTC@2x.png" />
+                <a href="https://developer.juphoon.com/cn/document/webrtc/">
+                  <img
+                    src="https://developer.juphoon.com/style/images/home/developer_WebRTC@2x.png"
+                  />
                   <div class="tit">WebRTC</div>
                 </a>
               </div>
               <div class="col-sm-3 in-cont">
-                <a href="/cn/document/server_rec/">
-                  <img src="/style/images/home/developer_rec@2x.png" />
+                <a href="https://developer.juphoon.com/cn/document/server_rec/">
+                  <img src="https://developer.juphoon.com/style/images/home/developer_rec@2x.png" />
                   <div class="tit">服务器录制</div>
                 </a>
               </div>
               <div class="col-sm-3 in-cont">
-                <a href="/cn/document/screen_share/">
-                  <img src="/style/images/home/developer_screen sharing@2x.png" />
+                <a href="https://developer.juphoon.com/cn/document/screen_share/">
+                  <img
+                    src="https://developer.juphoon.com/style/images/home/developer_screen sharing@2x.png"
+                  />
                   <div class="tit">屏幕共享</div>
                 </a>
               </div>
               <div class="col-sm-3 in-cont">
-                <a href="/cn/document/cdn/">
-                  <img src="/style/images/home/developer_CDN@2x.png" />
+                <a href="https://developer.juphoon.com/cn/document/cdn/">
+                  <img src="https://developer.juphoon.com/style/images/home/developer_CDN@2x.png" />
                   <div class="tit">CDN 推流</div>
                 </a>
               </div>
@@ -272,9 +288,9 @@
         </div>
         <div class="part part_four">
           <div class="part-cont">
-            <img src="/style/images/home/developer_experience@2x.png" />
+            <img src="https://developer.juphoon.com/style/images/home/developer_experience@2x.png" />
             <p>遇到问题，您还可以选择</p>
-            <a class="button" href="/portal/cn/bbs/">社区发帖</a>
+            <a class="button" href="https://developer.juphoon.com/portal/cn/bbs/">社区发帖</a>
             <a
               class="contactline"
               href="http://wpa.qq.com/msgrd?v=3&amp;uin=2703650800&amp;site=qq&amp;menu=yes"
@@ -403,20 +419,54 @@
           </div>
         </div>
         <div class="toTop" style="display: block;">
-          <img src="/style/images/zd@2x.png" />
+          <img src="https://developer.juphoon.com/style/images/zd@2x.png" />
         </div>
       </div>
     </div>
+    <HomeFooter/>
   </div>
 </template>
 
 <script>
-export default {};
+import HomeFooter from "@theme/components/HomeFooter.vue";
+export default {
+  components: { HomeFooter },
+};
 </script>
 
 <style lang="stylus" scoped>
 @require '../styles/HomeSearch.styl';
+@require '../styles/header_footer.styl';
+
+blockquote, body, button, dd, div, dl, dt, form, h1, h2, h3, h4, h5, h6, input, li, ol, p, pre, td, textarea, th, ul {
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
 .all {
   min-width: 100%;
+  width: 100%;
+  display: block;
+}
+
+#footer {
+  margin-top: 0px;
+}
+
+.footer-other ul {
+  padding: 0;
+  margin: 0 auto;
+}
+
+#footer li {
+  float: none;
+}
+
+@media (min-width: 800px) {
+  .col-sm-3 {
+    float: left;
+    width: 25%;
+  }
 }
 </style>

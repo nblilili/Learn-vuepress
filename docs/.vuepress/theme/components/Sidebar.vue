@@ -5,7 +5,8 @@
       <!-- 头部跳转选择 -->
 
       <div id="left-top" class="left-top">
-        <div class="left-top-title_1" @click="showmenu?showmenu=false:showmenu=true">
+        <div class="left-top-title_1" tabindex="0" @click="showmenu?showmenu=false:showmenu=true"  @blur="hidemenu()">
+          <!-- showmenu?showmenu=false:showmenu=true -->
           <span class="title_name">{{MenuName}}</span>
           <i class="iconfont" :class="showmenu?'icon-shangla':'icon-xiala'"></i>
         </div>
@@ -107,6 +108,11 @@ export default {
     });
   },
   methods: {
+    hidemenu(){
+      setTimeout(() => {
+        this.showmenu=false
+      }, 100);
+    },
     setMenuList(menulist) {
       let that = this;
       setSildertitle(menulist[0].children);
