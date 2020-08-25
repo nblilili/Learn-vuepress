@@ -1,3 +1,12 @@
+
+/**
+ * 作用
+ *   源文件夹为英文名称，使其在网页上显示应为中文。
+ * 使用方式
+ *   map 的 key 表示需要文件夹的英文名称
+ *   map 的 value 表示在 sidebar 中显示的中文名称（或其他的自定义名称）
+ */
+
 module.exports = new Map()
   .set("02_download", "下载")
   .set("03_quick_start", "快速开始")

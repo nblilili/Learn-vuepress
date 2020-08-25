@@ -40,7 +40,7 @@ public:
 ``````cpp
 bool JCManager::initialize()
 {
-    //初始化
+    // 初始化
     client = createJCClient("用户 appKey", this, NULL);
     if (client->getState() == JCClientStateNotInit) {
         return false;
@@ -48,13 +48,13 @@ bool JCManager::initialize()
     return true;
 }
 
-//登录结果回调
+// 登录结果回调
 void JCManager::onLogin(bool result, JCClientReason reason) {
 }
-//登出结果回调
+// 登出结果回调
 void JCManager::onLogout(JCClientReason reason) {
 }
-//登录状态变化回调
+// 登录状态变化回调
 void JCManager::onClientStateChange(JCClientState state, JCClientState oldState) {
 }
 ``````
@@ -164,13 +164,13 @@ JCClientStateLogined（登录成功）。SDK
 
 调用
 [logout](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_client.html#abac015a13078c84b06afac69dcd392ff)
-发起登出
+发起登出：
 
 ``````cpp
 JCManager::shared()->client->logout();
 ``````
 
-登出结果回调
+登出同样会触发登录状态改变(onClientStateChange)回调，之后将通过 onLogout 回调上报登出结果：
 
 ``````cpp
 void JCManager::onLogout(JCClientReason reason) {
@@ -180,7 +180,8 @@ void JCManager::onLogout(JCClientReason reason) {
 }
 ``````
 
-登出原因请参考：[JCClientReason](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/_j_c_client_constants_8h.html#a8b1b44e57fff02634fd4637428a70020)。
+登出原因请参考：[JCClientReason](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/_j_c_client_constants_8h.html#a8b1b44e57fff02634fd4637428a70020)
+。
 
 登出成功后，JCClientState 状态从 JCClientStateLogined（登录成功） 变为
 JCClientStateIdle（未登录）。

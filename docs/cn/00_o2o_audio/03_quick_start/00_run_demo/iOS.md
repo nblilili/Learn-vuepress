@@ -39,7 +39,7 @@ JuphoonCommon.framework 为工程提供 http 账号管理功能。
 
 ### 运行 Demo
 
-连接 iOS 真机，点击 run，编译运行 Demo 程序。
+连接 iOS 真机，点击 `run` ，编译运行 Demo 程序。
 
 ::: tip
 

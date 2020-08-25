@@ -19,23 +19,22 @@ title: 准备开发环境
 
 参考以下步骤创建一个 Windows 项目。若已有 Windows 项目，可以直接查看集成 SDK。
 
-- 打开 **Microsoft Visual Studio** 并点击新建项目。
+1. 打开 **Microsoft Visual Studio** 并点击新建项目。
 
-- 进入 **新建项目** 窗口，选择项目类型为 **MFC 应用程序**，输入项目名称，选择项目存储路径，并点击 **确认**。
+2. 进入 **新建项目** 窗口，选择项目类型为 **MFC 应用程序**，输入项目名称，选择项目存储路径，并点击 **确认**。
 
-- 进入 **MFC 应用程序** 窗口，选择应用程序类型为 **基于对话框**，并点击完成。
+3. 进入 **MFC 应用程序** 窗口，选择应用程序类型为 **基于对话框**，并点击完成。
 
 ## 集成 SDK
 
-**1. 拷贝 SDK**
+1. 拷贝 SDK
 
 将下载的 SDK 文件夹复制到你的项目文件夹下，SDK 中包含 include 和 x86 两个文件夹。
 
-其中， x86 中的目录中包含
-`JCSDK.lib，mtcdll.lib，zmfdii.lib，bzip2.dll，JCSDK.dll，jssmme.dll，mtc.dll，zmf.dll`
-八个文件。
+其中， `x86` 中的目录中包含 `JCSDK.lib` ，`mtcdll.lib` ，`zmfdii.lib` ， `bzip2.dll`
+，`JCSDK.dll` ， `jssmme.dll` ，`mtc.dll` ，`zmf.dll` 八个文件。
 
-**2. 配置项目属性**
+2. 配置项目属性
 
 在 **解决方案资源管理器** 窗口中，右击项目名称并点击属性进行以下配置，配置完成后点击确定。
 
