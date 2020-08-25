@@ -1,8 +1,9 @@
 const sidebarConf = require('./config/sidebarConf.js');
+const navConf = require('./config/navConf.js');
 const sidebarUtil = require('./utils/sidebarUtil');
 const tagsUtil = require('./utils/tagsUtil');
-const navConf = require('./config/navConf.js');
 const navUtil = require('./utils/navUtil.js');
+const sidebarSelectUtil = require('./utils/sidebarSelectUtil.js');
 
 module.exports = {
   locales: {
@@ -44,6 +45,7 @@ module.exports = {
           indexName: 'juphoon_developer'
         },
         nav: navUtil.getNavConf('cn'),
+        sidebarSelect: sidebarSelectUtil.getSidebarSelectConf('cn'),
         sidebar: sidebarUtil.getSidebarConf('docs/cn/'),
         tagConfig: tagsUtil.getTagsConf('docs/cn/')
       },
@@ -63,6 +65,7 @@ module.exports = {
           indexName: 'juphoon_developer'
         },
         nav: navUtil.getNavConf('cn'),
+        sidebarSelect: sidebarSelectUtil.getSidebarSelectConf('cn'),
         sidebar: sidebarUtil.getSidebarConf('docs/cn/'),
         tagConfig: tagsUtil.getTagsConf('docs/cn/')
       },
@@ -76,11 +79,12 @@ module.exports = {
             buttonText: "Refresh"
           }
         },
-        nav: navUtil.getNavConf('en'),
         algolia: {
           apiKey: '48aefdd5edf4e5a94a5ffee6f59e5271',
           indexName: 'juphoon_developer'
         },
+        nav: navUtil.getNavConf('cn'),
+        sidebarSelect: sidebarSelectUtil.getSidebarSelectConf('cn'),
         sidebar: sidebarUtil.getSidebarConf('docs/en/'),
         tagConfig: tagsUtil.getTagsConf('docs/en/')
       }
