@@ -7,7 +7,7 @@
           <img src="../assets/image/juphoon cloud developer@2x.png" />
         </a>
         <div class="nav" :class="showNav?'active':''">
-          <div class="nav-item" v-for="(item,index) in site" :key="item.text">
+          <div class="nav-item" v-for="(item,index) in userLinks" :key="item.text">
             <a class="header-line this_line" :href="item.link" v-if="!item.items">{{item.text}}</a>
             <div v-if="item.items" @click="changshowitem(item,index)">
               <a class="header-line this_line" :href="item.link" v-if="item.items">
@@ -17,7 +17,7 @@
                   :class="item.showitem?'icon-shangla':'icon-xiala'"
                 ></i>
               </a>
-              <div class="nav-child navChild dev" :style="{'display':item.showitem?'block':'none'}">
+              <div class="nav-child navChild dev" :style="{'display':item.showitem?'block':''}">
                 <table>
                   <tr v-for="(items,index) in item.items" :key="items.text">
                     <td>
@@ -167,7 +167,7 @@ export default {
     },
   },
   mounted() {
-    console.log(this.userLinks)
+    console.log(this.userLinks);
     this.$EventBus.$on("changeNav", () => {
       this.showNav = !this.showNav;
     });
@@ -193,8 +193,10 @@ export default {
   },
   methods: {
     changshowitem(item, index) {
-      item.showitem = !item.showitem;
-      this.site = JSON.parse(JSON.stringify(this.site));
+      // item.showitem = !item.showitem;
+      // console.log(this.userLinks);
+      // this.userLinks = JSON.parse(JSON.stringify(this.site));
+      // console.log(this.userLinks);
     },
     log_out() {
       var url = "/portal/cn/message/?a=ajax_login_out";
