@@ -20,4 +20,7 @@ module.exports = new Set()
   .add("05_channel_management")
   .add("99_api_reference")
   .add("06_FAQ")
-  .add("00_sdk_download");
+  .add("00_sdk_download")
+  .add("01_服务器音视频录制集成")
+  .add("01_屏幕共享集成")
+  .add("01_CDN 推流集成");

@@ -46,8 +46,7 @@ module.exports = {
         },
         nav: navUtil.getNavConf('cn'),
         sidebarSelect: sidebarSelectUtil.getSidebarSelectConf('cn'),
-        sidebar: sidebarUtil.getSidebarConf('docs/cn/'),
-        tagConfig: tagsUtil.getTagsConf('docs/cn/')
+        sidebar: sidebarUtil.getSidebarConf('docs/cn/')
       },
       '/cn/':  {
         selectText: '选择语言',

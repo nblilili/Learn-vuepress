@@ -39,19 +39,19 @@ module.exports = {
         title: "扩展功能",
         children: [{
             title: "WebRTC",
-            url: "/cn/document/V2.1/webrtc/index.php"
+            url: "/doc/cn/扩展功能/WebRTC"
           },
           {
             title: "服务器录制",
-            url: "/cn/document/V2.1/server_rec/index.php"
+            url: "/doc/cn/扩展功能/服务器录制"
           },
           {
             title: "屏幕共享",
-            url: "/cn/document/V2.1/screen_share/index.php"
+            url: "/doc/cn/扩展功能/屏幕共享"
           },
           {
             title: "CDN 推流",
-            url: "/cn/document/V2.1/cdn/index.php"
+            url: "/doc/cn/扩展功能/CDN 推流"
           }
         ]
       }

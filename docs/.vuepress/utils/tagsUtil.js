@@ -7,7 +7,7 @@ var tagMap = new Map();
 module.exports = {
 
     getTagsConf(filePath) {
-        var tags = new Object();
+        let tags = new Object();
         recursion(filePath, function callback(err, data) {
             for (let [k, v] of data) {
                 tags[k] = v;

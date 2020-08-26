@@ -1,8 +1,6 @@
 .DS_Store
 node_modules
 /dist
-/docs/cn
-/docs/en
 /docs/.vuepress/dist
 
 .gitignore
