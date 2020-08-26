@@ -1,210 +1,223 @@
 ---
-title: 通话管理
+title: Call Management
 ---
-# 通话管理
+# Call Management
 
-## 通话人数设置
+## Set the number of callers
 
-发起通话前可以通过 maxCallNum 属性设置通话的最大人数，默认为 1。如果是视频通话，最大人数只能是 1，如果是语音通话，最大人数为
-2。
+Before initiating a call, you can set the maximum number of people using
+the maxCallNum and the default is 1. If it is a video call, the maximum
+number of people can only be 1. If it is a voice call, the maximum
+number of people is 2:
 
 ``````objectivec
 call.maxCallNum = 1;
 ``````
 
-当通话超过最大人数时：
+When the call exceeds the maximum number of people:
 
-- 呼出会失败，原因为 JCCallReasonCallOverLimit（超过通话数限制）。
+- Outgoing calls will fail due to JCCallReasonCallOverLimit (exceeded
+    call limit).
 
-- 收到来电会自动拒绝，原因为 JCCallReasonBusy（忙）。
+- The incoming call will be rejected automatically because of the
+    JCCallReasonBusy (busy).
 
-## 通话过程控制
+## Control call process
 
-### 通话静音
+### Call mute
 
-通过下面的方法开启或关闭静音，开启关闭静音需要根据 JCCallItem
-中的静音状态（[mute](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCCallItem.html#//api/name/mute)）来决定，静音开启后，对方将听不到您的声音
+Use the following methods to turn mute on or off. Turning mute on and
+off depends on the mute state in
+JCCallItem([mute](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCCallItem.html#//api/name/mute)).
+After mute is turned on, the other party will not hear your voice.
 
 ``````objectivec
 /**
- *  @brief 静音，通过 JCCallItem 对象中的静音状态来决定开启关闭静音
- *  @param item JCCallItem 对象
- *  @return 返回 true 表示正常执行调用流程，false 表示调用异常
+ *  @brief Mute, through the mute state in the JCCallItem object to decide to turn mute on and off
+ *  @param item JCCallItem object
+ *  @return return true to indicate normal execution of the call flow, and false to indicate abnormal call
  */
 -(bool)mute:(JCCallItem* __nonnull)item;
 ``````
 
-### 通话录音
+### Call recording
 
-可以在通话中进行录音，开启或关闭录音需要根据当前的录音状态（audioRecord）来决定。
-
-如果正在录制或者通话被挂起或者挂起的情况下，不能进行音频录制。
-
-录音状态可通过
+You can record during a call. Turning recording on or off depends on the
+current recording status (audioRecord). If recording is in progress or
+the call is suspended, audio recording cannot be performed. The
+recording status can be obtained through the
 [JCCallItem](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCCallItem.html)
-对象获取。
+object.
 
-开启或关闭录音接口如下
+Open or close the recording interface as follows:
 
 ``````objectivec
 /**
- * 语音通话录音，通过 JCCallItem 对象中的audioRecord状态来决定开启关闭录音
+ * Voice call recording, through the audioRecord state in the JCCallItem object to decide to turn on or off the recording
  *
- * @param item              JCCallItem 对象
- * @param enable            开启关闭录音
- * @param filePath          录音文件路径
- * @return                  返回 true 表示正常执行调用流程，false 表示调用异常
+ * @param item              JCCallItem object
+ * @param enable            turn recording on and off
+ * @param filePath          recording file path
+ * @return                  return true to indicate normal execution of the call flow, and false to indicate abnormal call
  */
 -(bool)audioRecord:(JCCallItem* __nonnull)item enable:(bool)enable filePath:(NSString* __nullable)filePath;
 ``````
 
-示例代码
+Sample code:
 
 ``````objectivec
-// 语音录制
+// Voice recording
 - (void)audioRecord:(JCCallItem* __nonnull)item {
-    if (item.audioRecord) { // 正在录制中
-       //可以做录音结束的处理
+    if (item.audioRecord) { // Recording
+       //Process the end of recording
        [call audioRecord:item enable:false filePath:@"your filePath"];
         ...
-    } else { // 未在录制中
-        // 创建录音文件
-        NSString *filePath; // 录音文件的绝对路径，SDK会自动创建录音文件
+    } else { // Not recording
+        // Create recording file
+        NSString *filePath; // Absolute path of the recording file, the SDK will automatically create the recording file
         if (filePath != nil) {
-           // 开始录音
+           // Start recording
            [call audioRecord:item enable:true filePath:filePath];
             ...
         } else {
-            // 录音失败的处理
+            // Handling recording failure
         }
     }
 }
 ``````
 
-开启或关闭录音时，录音状态会发生改变，并通过 onCallItemUpdate 回调上报
+When the recording is turned on or off, the recording status will be
+changed and reported through the onCallItemUpdate callback:
 
 ``````objectivec
 /**
- *  @brief 通话状态更新回调（当上层收到此回调时，可以根据 JCCallItem 对象获得该通话的所有信息及状态，从而更新该通话相关UI）
- *  @param item JCCallItem 对象
- *  @param changeParam 更新标识类
+ *  @brief The callback of call status update (When the upper layer receives this callback, you can obtain all the information and status of the call according to the JCCallItem object, thereby updating the call related UI)
+ *  @param item JCCallItem object
+ *  @param changeParam update logo class
  */
 -(void)onCallItemUpdate:(JCCallItem* __nonnull)item changeParam:(JCCallChangeParam * __nullable)changeParam;
 ``````
 
 -----
 
-### 开启/关闭呼叫保持
+### Turn on/off call hold
 
-调用下面的方法对通话对象进行呼叫保持或解除呼叫保持（当通话对象处于被保持状态（即状态为held）时不可以进行此操作），开启或关闭呼叫保持需要根据
-JCCallItem
-对象中（[hold](http://developer.juphoon.com/portal/reference/ios/Classes/JCCallItem.html#//api/name/hold)）的呼叫保持状态来决定
+Call the following method to call hold or release call hold for the call
+object (this operation cannot be performed when the call object is held
+(ie, the state is held)), open or close call hold needs to be based on
+the call hold of the JCCallItem object
+([hold](http://developer.juphoon.com/portal/reference/ios/Classes/JCCallItem.html#//api/name/hold))
 
 ``````objectivec
 /**
- *  @brief                  呼叫保持，通过 JCCallItem 对象中的呼叫保持状态来决定开启关闭呼叫保持
- *  @param item             JCCallItem 对象
- *  @return                 返回 true 表示正常执行调用流程，false 表示调用异常
+ *  @brief                  Call hold, through the call hold state in the JCCallItem object to decide to turn call hold on and off
+ *  @param item             JCCallItem object
+ *  @return                 return true to indicate normal execution of the call flow, and false to indicate abnormal call
  */
 -(bool)hold:(JCCallItem* __nonnull)item;
 ``````
 
-### 切换活跃通话
+### Switch active call
 
-调用下面的方法对通话中被保持的对象和活跃的通话对象进行切换
+Call the following method to switch between the held object and the
+active call object during the call:
 
 ``````objectivec
 /**
- *  @brief 切换活跃通话
- *  @param item 需要变为活跃状态的 JCCallItem 对象
- *  @return 返回 true 表示正常执行调用流程，false 表示调用异常
+ *  @brief Switch active call
+ *  @param item item needs to become active JCCallItem object object
+ *  @return return true to indicate normal execution of the call flow, and false to indicate abnormal call
  */
 -(bool)becomeActive:(JCCallItem* __nonnull)item;
 ``````
 
-示例代码
+Sample code:
 
 ``````objectivec
-//获取活跃通话对象
+//Get active call object
 JCCallItem *item = [call getActiveCallItem];;
-//开启或关闭静音
+//Turn on/off mute
 [call mute:item];
-//开启关闭呼叫保持
+//Turn on/off call hold
 [call hold:item];
-//切换活跃通话
+//Switch active call
 [call becomeActive:item];
 ``````
 
-### 通话中发送消息
+### Send messages during a call
 
-调用下面的接口在通话中实现发消息的功能
+Call the following interface to realize the function of sending messages
+during the call:
 
 ``````objectivec
 /**
- *  @brief 通过通话建立的通道发送数据
- *  @param item 需要发送数据的 JCCallItem 对象
- *  @param type 文本消息类型，用户可以自定义，例如text、xml等
- *  @param content 消息内容
- *  @return 返回 true 表示正常执行调用流程，false 表示调用异常
+ *  @brief Send data through the channel established by the call
+ *  @param item JCCallItem object that needs to send data
+ *  @param type the user can customize text message types, such as text, xml, etc.
+ *  @param content message content
+ *  @return return true to indicate normal execution of the call flow, and false to indicate abnormal call
  */
 -(bool)sendMessage:(JCCallItem * __nonnull)item type:(NSString * __nonnull)type content:(NSString * __nonnull)content;
 ``````
 
-当通话中收到消息时，会收到 onMessageReceive 回调
+When a message is received during a call, an onMessageReceive callback
+is received:
 
 ``````objectivec
 /**
- *  @brief 通话中收到消息的回调
- *  @param item JCCallItem 对象
- *  @param type 消息类型
- *  @param content 消息内容
+ *  @brief Callback for messages received during a call
+ *  @param item JCCallItem object
+ *  @param type message type
+ *  @param content message content
  */
 -(void)onMessageReceive:(JCCallItem * __nonnull)item type:(NSString * __nonnull)type content:(NSString * __nonnull)content;
 ``````
 
-示例代码
+Sample code:
 
 ``````objectivec
-[call sendMessage:item type:@"text" content:@"消息内容"];
+[call sendMessage:item type:@"text" content:@"message content"];
 ``````
 
-### 相关回调
+### Related callbacks
 
-通话过程中，如果通话状态发生了改变，如开启关闭静音、开启关闭通话保持、活跃状态切换、网络变化等，将会收到通话状态更新的回调
+During a call, if the call status changes, such as turning on/off mute,
+turning on/off call hold, active status switching, network change, etc.,
+you will receive a callback for the call status update:
 
 ``````objectivec
 /**
- *  @brief 通话状态更新回调（当上层收到此回调时，可以根据 JCCallItem 对象获得该通话的所有信息及状态，从而更新该通话相关UI）
- *  @param item JCCallItem 对象
- *  @param changeParam 更新标识类
+ *  @brief The callback of call status update (When the upper layer receives this callback, you can obtain all the information and status of the call according to the JCCallItem object, thereby updating the call related UI)
+ *  @param item JCCallItem object
+ *  @param changeParam update logo class
  */
 -(void)onCallItemUpdate:(JCCallItem* __nonnull)item changeParam:(JCCallChangeParam * __nullable)changeParam;
 ``````
 
-关于 JCCallChangeParam 的说明请参考 JCCallItem.h 文件。
+For the description of JCCallChangeParam, please refer to the
+JCCallItem.h file.
 
 ::: tip
 
-静音状态、通话保持状态、活跃状态可通过
-[JCCallItem](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCCallItem.html)
-对象获得。
+The mute state, call hold state, and active state can be obtained
+through the JCCallItem object.
 
 :::
 
-示例代码
+Sample code:
 
 ``````objectivec
 -(void)onCallItemUpdate:(JCCallItem* __nonnull)item changeParam:(JCCallChangeParam * __nullable)changeParam {
     JCCallItem* callItem = item;
-    if (changeParam.mute) { // 开启静音
+    if (changeParam.mute) { // Turn on mute
         ...
-    } else if (changeParam.sate) { // 通话状态变化
+    } else if (changeParam.sate) { // When call status changed
         ...
-    } else if (changeParam.held) { // 被挂起变化
+    } else if (changeParam.held) { // When held changed
         ...
-    } else if (changeParam.active) { // 活跃状态变化
+    } else if (changeParam.active) { // When active state changed
         ...
-    } else if (changeParam.netStatus) { // 网络状态变化
+    } else if (changeParam.netStatus) { // When network status changed
         ...
     }
     ...

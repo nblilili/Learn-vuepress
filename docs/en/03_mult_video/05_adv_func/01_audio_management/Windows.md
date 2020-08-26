@@ -1,113 +1,114 @@
 ---
-title: 音频管理
+title: Audio Management
 ---
-# 音频管理
+# Audio Management
 
-## 音频设备管理
+## Audio device management
 
-### 当前音频输入输出设备
+Current audio input and output devices
+\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>:
 
 ``````csharp
 /// <summary>
-/// 当前输入设备
+/// Current input device
 /// </summary>
 public JCMediaDeviceAudio audioInput
 
 /// <summary>
-/// 当前输出设备
+/// Current output device
 /// </summary>
 public JCMediaDeviceAudio audioOutput
 ``````
 
-### 获取音频输入设备列表
+### Audio device management
 
 ``````csharp
 /// <summary>
-/// 音频输入设备列表
+/// Audio input device list
 /// </summary>
 public List<JCMediaDeviceAudio> audioInputs
 ``````
 
-其中，JCMediaDeviceAudio 有以下几个变量
+Among them, JCMediaDeviceAudio has the following variables:
 
 ``````csharp
 /// <summary>
-/// 名称
+/// Name
 /// </summary>
 public string audioName
 /// <summary>
-/// id
+/// ID
 /// </summary>
 public string audioId
 ``````
 
-### 获取音频输出设备列表
+### Get a list of audio output devices
 
 ``````csharp
 /// <summary>
-/// 音频输出设备列表
+/// Audio output device list
 /// </summary>
 public List<JCMediaDeviceAudio> audioOutputs
 ``````
 
-其中，JCMediaDeviceAudio 有以下几个变量
+Among them, JCMediaDeviceAudio has the following variables:
 
 ``````csharp
 /// <summary>
-/// 名称
+/// Name
 /// </summary>
 public string audioName
 /// <summary>
-/// id
+/// ID
 /// </summary>
 public string audioId
 ``````
 
-示例代码:
+Sample code:
 
 ``````csharp
-// 获取音频输入设备列表
+// Audio device management
 List<JCMediaDeviceAudio> audioInputDevices = mediaDevice.audioInputs;
 
-// 获取音频输出设备列表
+// Get a list of audio output devices
 List<JCMediaDeviceAudio> audioOutputDevices = mediaDevice.audioOutputs;
 ``````
 
-### 开启/关闭音频设备
+### Turn on/off audio device
 
 ``````csharp
 /// <summary>
-/// 启动音频，一般正式开启通话前需要调用此接口
+/// Start audio (generally need to call this interface before officially starting a call)
 ///</summary>
-///<returns>启动成功失败</returns>
+///<returns>true/false</returns>
 public bool startAudio()
 
 /// <summary>
-/// 停止音频，一般在通话结束时调用
+/// Stop audio (usually called at the end of the call)
 /// </summary>
-/// <returns>停止音频成功失败</returns>
+/// <returns>true/false</returns>
 public bool stopAudio()
 ``````
 
-### 获取当前音频输出等级
+### Get the current audio output level
 
 ``````csharp
 /// <summary>
-/// 获取当前输出等级
+/// Get the current output leve
 /// </summary>
-/// <returns>音频输出等级</returns>
+/// <returns>Audio output level</returns>
 public int getSpkLevel()
 ``````
 
-示例代码:
+Sample code:
 
 ``````csharp
-// 打开音频
+// Turn on audio
 mediaDevice.startAudio();
 
-// 关闭音频
+// Turn off audio
 mediaDevice.stopAudio();
 
-// 获取当前输出等级
+// Get the current output level
 int level = mediaDevice.getSpkLevel();
 ``````

@@ -193,7 +193,7 @@ Juphoon 对应的接口中进行后续操作。
 
 参考如下步骤，在你的项目中实现自定义音频源功能：
 
-1.通过 JC SDK 提供的接口将外部设备采集/自定义的播放数据输入到 JC SDK 进行后续操作。
+1. 通过 JC SDK 提供的接口将外部设备采集/自定义的播放数据输入到 JC SDK 进行后续操作。
 
 2. 如果想停止外部设备采集/自定义的播放数据的输入，则调用 JC SDK 提供的接口停止数据输入即可。
 
@@ -246,7 +246,7 @@ public void call() {
 /**
  * tell ZMF the audio input has stopped
  *
- * @param[in] inputId       unique name of the device              //输出设备id
+ * @param[in] inputId       unique name of the device              //输入设备 id
  */
 static public void onInputDidStop(String inputId)
 ``````
@@ -304,7 +304,7 @@ public void call() {
 /**
  * tell ZMF the audio output has stopped
  *
- * @param[in] inputId       unique name of the device         //输入设备id
+ * @param[in] outputId       unique name of the device         //输出设备 id
  */
 static public void onOutputDidStop(String outputId)
 ``````

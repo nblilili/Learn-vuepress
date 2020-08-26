@@ -1,28 +1,27 @@
 ---
-title: 登录
+title: Log in
 ---
-# 登录
+# Log in
 
-本章节将介绍如何初始化 SDK 并登录。
+This guide introduces how to initialize JC SDK and log in.
 
-## 初始化
+## Initialize
 
-在主线程调用
+Call
 [JCClient.create()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCClient.html#create-android.content.Context-java.lang.String-com.juphoon.cloud.JCClientCallback-com.juphoon.cloud.JCClient.CreateParam-)
-，创建
+on the main thread to create a
 [JCClient](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCClient.html)
-实例对象。传入获取到的 `appKey` ，即可初始化
-[JCClient](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCClient.html)
-。
+instance object. Pass in the obtained `appKey` to initialize the
+[JCClient](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCClient.html):
 
 ``````java
-// JCClient 对象
+// JCClient object
 JCClient mClient;
 
-// 初始化函数
+// Initialization function
 public boolean initialize(Context context) {
-    // 登录类
-    mClient = JCClient.create(context, "用户 appKey", new JCClientCallback() {
+    // Login class
+    mClient = JCClient.create(context, "User appKey", new JCClientCallback() {
         @Override
         public void onLogin(boolean result, int reason) {
 
@@ -36,115 +35,120 @@ public boolean initialize(Context context) {
 
         }
     }, null);
-    // 获取初始化状态（用来判断初始化状态）
+    // Get the initialization state (used to judge the initialization state)
     mInit = mClient.getState() == JCClient.STATE_IDLE;
     return mInit;
 }
 ``````
 
-初始化成功后，JCClient.ClientState 状态从 JCClientStateNotInit（未初始化） 变为
-JCClientStateIdle（未登录）。
+After successful initialization, the state of JCClient.ClientState
+changes from JCClientStateNotInit (not initialized) to JCClientStateIdle
+(not logged in).
 
-## 发起登录
+## Initiate login
 
-SDK 初始化之后，即可进行登录的集成。 登出接口调用流程如下所示：
+After the SDK is initialized, login integration is possible. The call
+flow of the login interface is as follows:
 
 ![../../../../\_images/workflow\_login\_android.png](../../../../_images/workflow_login_android.png)
 
-先创建
+First create a
 [JCClient.LoginParam](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCClient.LoginParam.html)
-实例以调整登录参数。后调用
+instance to adjust the login parameters. Then call
 [login()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCClient.html#login-java.lang.String-java.lang.String-com.juphoon.cloud.JCClient.LoginParam-)
-，发起登录:
+to initiate login:
 
 ``````java
 JCClient.LoginParam loginParam = new JCClient.LoginParam();
-// 1. 设置服务器环境。
-loginParam.serverAddress = "服务器地址";
-// 2. 发起登录
+// 1. Set the server environment.
+loginParam.serverAddress = "Server address";
+// 2. Initiate login
 mClient.login(userID, password, loginParam);
 ``````
 
 ::: tip
 
-1. 环境设置
+1. Environment settings:
 
-      - 国内环境 `http:cn.router.justalkcloud.com:8080` （默认）
+      - Domestic environment `http:cn.router.justalkcloud.com:8080`
+        (Default)
 
-      - 国际环境 `http:intl.router.justalkcloud.com:8080`
+      - International environment
+        `http:intl.router.justalkcloud.com:8080`
 
-2. userID 不能为空，可由英文、数字和 `+` 、 `-` 、 `_` 、 `.`
-    组成（特殊字符不能作为第一个字符），大小写不敏感，长度不能超过
-    64 个字符。
+2. userID is English, numbers and `+` `-` `_` `.` , case-insensitive,
+    the length should not exceed 64 characters, `-` `_` `.` cannot be
+    the first character.
 
-3. password 不能超过 128 个字符。
+3. password the length should not exceed 128 characters.
 
-4. 调用该接口返回 true 时只代表调用接口成功，并不代表登录成功。登录的结果会通过 onLogin 回调上报。
+4. When calling this interface returns true, it only means that the
+    interface is called successfully, not that the login is successful.
+    The result of the login will be reported through the onLogin
+    callback.
 
 :::
 
-调用接口成功后，首先会触发登录状态改变回调
+After the interface is successfully called, the login state change
+callback
 [onClientStateChange()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCClientCallback.html#onClientStateChange-int-int-)
-。您可以通过重写
-[onClientStateChange()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCClientCallback.html#onClientStateChange-int-int-)
-执行逻辑操作。
+will be triggered first. You can perform logical operations by
+overriding
+[onClientStateChange()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCClientCallback.html#onClientStateChange-int-int-):
 
 ``````java
 @Override
 public void onClientStateChange(@JCClient.ClientState int state, @JCClient.ClientState int oldState) {
-     if (state == JCClient.STATE_IDLE) { // 未登录
-       ...
-    } else if (state == JCClient.STATE_LOGINING) { // 正在登录
-       ...
-    } else if (state == JCClient.STATE_LOGINED) { // 登录成功
-       ...
-    } else if (state == JCClient.STATE_LOGOUTING) { // 登出中
-       ...
+     if (state == JCClient.STATE_IDLE) { // Not logged in
+        ...
+    } else if (state == JCClient.STATE_LOGINING) { // Logging in
+        ...
+    } else if (state == JCClient.STATE_LOGINED) { // Login successful
+        ...
+    } else if (state == JCClient.STATE_LOGOUTING) { // Logout
+        ...
     }
 }
 ``````
 
-之后触发
+Then trigger the
 [onLogin()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCClientCallback.html#onLogin-boolean-int-)
-回调。您可以通过重写
-[onLogin()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCClientCallback.html#onLogin-boolean-int-)
-执行逻辑操作。
+callback. You can perform logical operations by overriding
+[onLogin()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCClientCallback.html#onLogin-boolean-int-):
 
 ``````java
 @Override
 public void onLogin(boolean result, @JCClient.ClientReason int reason) {
-    if (result) {// 登录成功
+    if (result) {// Login successful
         ...
     }
-    if (reason == REASON_AUTH) {// 账号密码错误
+    if (reason == REASON_AUTH) {// Account password is wrong
         ...
     }
-
 }
 ``````
 
-登录成功之后，SDK 会自动保持与服务器的连接状态，直到用户主动调用登出接口，或者因为帐号在其他设备登录导致该设备登出。登录成功/失败原因 参考
-[JCClient.ClientReason](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCClient.html#REASON_ANOTHER_DEVICE_LOGINED)
-。
+After the login is successful, the SDK will automatically maintain the
+connection status with the server until the user actively calls the
+logout interface, or the device is logged out because the account is
+logged in on another device. Login success/failure reason Refer to
+[JCClient.ClientReason](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCClient.html#REASON_ANOTHER_DEVICE_LOGINED).
 
-## 登出
+## Log out
 
-登出接口调用流程如下所示：
+The call flow of the logout interface is as follows:
 
 ![../../../../\_images/workflow\_logout\_android.png](../../../../_images/workflow_logout_android.png)
 
-调用
+Call
 [logout()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCClient.html#logout--)
-可以发起登出。更多登出原因参考：
-[JCClient.ClientReason](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCClient.html#REASON_ANOTHER_DEVICE_LOGINED)
-。
-
-登出同样会触发登录状态改变(onClientStateChange)回调，之后将通过 onLogout 回调上报登出结果。
+to initiate logout. More logout reasons reference:
+[JCClient.ClientReason](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCClient.html#REASON_ANOTHER_DEVICE_LOGINED):
 
 ``````java
 @Override
 public void onLogout(@JCClient.ClientReason int reason) {
-    if (reason == REASON_SERVER_LOGOUT) {// 强制登出
+    if (reason == REASON_SERVER_LOGOUT) {// Force logout
         ...
     }
 }

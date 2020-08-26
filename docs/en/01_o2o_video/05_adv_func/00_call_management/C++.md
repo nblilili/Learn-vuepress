@@ -1,85 +1,92 @@
 ---
-title: 通话管理
+title: Call Management
 ---
-# 通话管理
+# Call Management
 
-## 通话人数设置
+## Set the number of callers
 
-发起通话前可以通过 maxCallNum 属性设置通话的最大人数，默认为 1。如果是视频通话，最大人数只能是 1，如果是语音通话，最大人数为
-2。
+Before initiating a call, you can set the maximum number of people using
+the maxCallNum and the default is 1. If it is a video call, the maximum
+number of people can only be 1. If it is a voice call, the maximum
+number of people is 2:
 
 ``````cpp
 JCManager::shared()->call->maxCallNum = 1;
 ``````
 
-当通话超过最大数时，呼出会失败，收到来电会自动拒绝。
+When the call number exceeds the maximum number, the outgoing call will
+fail, and the incoming call will be automatically rejected.
 
-## 通话过程控制
+## Control call process
 
-### 通话静音
+### Call mute
 
-调用
+Call the
 [mute](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_call.html#a62d7c7454fae84422579e3a6275af243)
-方法开启或关闭静音，开启关闭静音需要根据 JCCallItem 对象当前的静音状态来决定，静音开启后，对方将听不到您的声音。
+method to turn on/off mute. Turn on/off mute must be determined
+according to the current mute state of the JCCallItem object. After the
+mute is turned on, the other party will not hear your voice.:
 
 ``````cpp
-//获取活跃通话对象
+//Get active call object
 JCCallItem* item = JCManager::shared()->call->getActiveCallItem();
-//获取通话对象的静音状态
+//Get the mute state of the caller
 bool isMute = item->getMute();
     if (item != NULL)
     {
-    //开启或关闭静音
+    //Turn on/off mute
             JCManager::shared()->call->mute(item);
     }
 ``````
 
-该方法调用后会触发
+After calling this method, the
 [onCallItemUpdate](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_call_callback.html#a1ba1c4f09c1f573d9fe2acb5057d6c18)
-回调。
+callback will be triggered.
 
 -----
 
-### 开启/关闭呼叫保持
+### Turn on/off call hold
 
-调用
+Call the
 [hold](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_call.html#aae536642d3d5c785c2ce7d9275f8653a)
-方法对通话对象进行呼叫保持或解除呼叫保持（当通话对象处于被保持状态（即状态为held）时不可以进行此操作），开启或关闭呼叫保持需要根据
-JCCallItem 对象当前的呼叫保持状态来决定。
+method to hold or release the call on the call object (this operation
+cannot be performed when the call object is in the held state), and the
+call hold needs to be turned on or off according to the current call
+hold of the JCCallItem object State to decide:
 
 ``````cpp
-//获取活跃通话对象
+//Get active call object
 JCCallItem* item = JCManager::shared()->call->getActiveCallItem();
-//获取通话对象的呼叫保持状态
+//Get the call hold status of the caller
 bool isHeld = item->getHold();
 if (item != NULL)
     {
-    //开启或关闭呼叫保持
+    //Turn on/off call hold
             JCManager::shared()->call->hold(item);
     }
 ``````
 
-### 切换活跃通话
+### Switch active call
 
-调用
+Call the
 [becomeActive](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_call.html#ae45d0744f3df39cc2c6dc3bb00bb7354)
-方法对通话中被保持的对象和活跃的通话对象进行切换。
+method to switch between the held call and the ongoing call:
 
 ``````cpp
-//获取通话对象列表
+//Get the list of callers
 std::list<JCCallItem*>* callItems = JCManager::shared()->call->getCallItems();
 JCManager::shared()->call->becomeActive(callItems[1]);
 ``````
 
 -----
 
-### 开启/关闭视频流发送
+### Turn on/off sending video streams
 
-调用
+Call the
 [enableUploadVideoStream](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_call.html#adcd6dd97b6737909ae0348a0e714d754)
-方法开启或关闭视频流发送，该方法调用后会触发
+method to turn on/off sending video streams, which will trigger
 [onCallItemUpdate](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_call_callback.html#a1ba1c4f09c1f573d9fe2acb5057d6c18)
-回调。
+callback after being called:
 
 ``````cpp
 JCCallItem* item = JCManager::shared()->call->getActiveCallItem();
@@ -89,37 +96,43 @@ JCCallItem* item = JCManager::shared()->call->getActiveCallItem();
     }
 ``````
 
-该接口的具体作用机制如下图所示：
+The specific mechanism of this interface is shown in the figure below:
 
 ![../../../../\_images/enablevideostream.jpg](../../../../_images/enablevideostream.jpg)
 
-- 如果 A 开启发送视频流，则 A 的 item-\>getUploadVideoStreamSelf() 返回值为 true，B 则通过
-    item-\>getUploadVideoStreamOther() 方法（此处返回值为 true）判断 A 的视频流发送状态。
+- If A starts sending video streams, the return value of A’s
+    item-\>getUploadVideoStreamSelf() is true, and B uses the
+    item-\>getUploadVideoStreamOther() method (the return value is true)
+    to determine the sending status of A’s video streams.
 
-- 如果 A 关闭发送视频流，则 A 的 item-\>getUploadVideoStreamSelf() 返回值为 false，B
-    则通过 item-\>getUploadVideoStreamOther() 方法（此处返回值为 false）判断 A
-    的视频流发送状态。此时 B 将看不到 A 的画面。
+- If A closes sending video streams, the return value of A’s
+    item-\>getUploadVideoStreamSelf() is false, and B uses the
+    item-\>getUploadVideoStreamOther() method (the return value is
+    false) to determine the sending status of A’s video streams. B will
+    not see A’s image.
 
 -----
 
-### 相关回调
+### Related callbacks
 
-通话过程中，如果通话状态发生了改变，如开启关闭静音、开启关闭通话保持、活跃状态切换、开启关闭音视频流发送等，均会触发
+During a call, if the call status changes, such as turning on/off mute,
+turning on/off call hold, switching between active status, turning
+on/off audio and video streaming, etc., the
 [onCallItemUpdate](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_call_callback.html#a1ba1c4f09c1f573d9fe2acb5057d6c18)
-回调。
+callback will be triggered:
 
 ``````cpp
 void JCManager::onCallItemUpdate(JCCallItem* item, JCCallItemChangeParam changeParam)
 {
-    if (changeParam.mute) { // 开启静音
+    if (changeParam.mute) { // Turn on mute
         ...
-    } else if (changeParam.sate) { // 通话状态变化
+    } else if (changeParam.sate) { // When call status changed
         ...
-    } else if (changeParam.held) { // 被挂起变化
+    } else if (changeParam.held) { // When held changed
         ...
-    } else if (changeParam.active) { // 活跃状态变化
+    } else if (changeParam.active) { // When active state changed
         ...
-    } else if (changeParam.netStatus) { // 网络状态变化
+    } else if (changeParam.netStatus) { // When network status changed
         ...
     }
     ...
@@ -128,15 +141,18 @@ void JCManager::onCallItemUpdate(JCCallItem* item, JCCallItemChangeParam changeP
 
 -----
 
-### 通话录音
+### Call recording
 
-可以在通话中进行录音，开启或关闭录音需要根据当前的录音状态来决定。如果正在录制或者通话被挂起或者挂起的情况下，不能进行音频录制。录音状态可通过
+.You can record during a call. The current recording status determines
+to turn on or off recording. If recording is in progress or the call is
+hanged or suspended, audio recording cannot be performed. The recording
+status can be obtained through the
 [getAudioRecord](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_call_item.html#ad8b5118a3c06a156e917f59625bcc73d)
-方法获取。
+method.
 
-调用
+Call the
 [audioRecord](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_call.html#a058fb76428f0a77f4bbbb8670eec2868)
-方法开启或关闭通话录音。
+method to turn on or off call recording:
 
 ``````cpp
 void JCSampleDlg::OnBnClickedButton1Callrecordaudio()
@@ -146,22 +162,23 @@ void JCSampleDlg::OnBnClickedButton1Callrecordaudio()
     {
         if (item->getAudioRecord())
         {
-            //如果正在录制，则停止音频录制
+            //If it is recording, stop audio recording
             JCManager::shared()->call->audioRecord(item, false, "");
         }
         else
         {
-            std::string filePath = "录制音频文件保存路径";
-            //开始音频录制
+            std::string filePath = "Recording audio file path";
+            //Start audio recording
             JCManager::shared()->call->audioRecord(item, true, filePath);
         }
     }
 }
 ``````
 
-开启或关闭录音时，录音状态会发生改变，并通过
+When the recording is turned on or off, the recording status will change
+and be reported through the
 [onCallItemUpdate](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_call_callback.html#a1ba1c4f09c1f573d9fe2acb5057d6c18)
-回调上报。
+callback:
 
 ``````cpp
 void JCManager::onCallItemUpdate(JCCallItem* item, JCCallItemChangeParam changeParam) {
@@ -170,24 +187,24 @@ void JCManager::onCallItemUpdate(JCCallItem* item, JCCallItemChangeParam changeP
 
 -----
 
-### 通话中发送消息
+### Send messages during a call
 
-调用
+Call the
 [sendMessage](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_call.html#a94e37abb045b901e1703b7534f4cc379)
-方法在通话中实现发消息的功能。
+method to realize the function of sending messages during a call:
 
 ``````cpp
 JCCallItem* item = JCManager::shared()->call->getActiveCallItem();
-JCManager::shared()->call->sendMessage(item, "text", "消息内容");
+JCManager::shared()->call->sendMessage(item, "text", "message content");
 ``````
 
-当通话中收到消息时，会收到
+When a message is received during a call, you will receive the
 [onMessageReceive](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_call_callback.html#afb8281abd54bc8c18b77aadfe234a882)
-回调。
+callback:
 
 ``````cpp
 void JCManager::onMessageReceive(const char* type, const char* content, JCCallItem* item)
 {
-    cout << "收到Call消息 " << item->getDisplayName() << " type:" << type << endl;
+    cout << "Call message received" << item->getDisplayName() << "type:" << type << endl;
 }
 ``````

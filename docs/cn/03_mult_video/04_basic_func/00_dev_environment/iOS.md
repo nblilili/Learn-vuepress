@@ -61,7 +61,7 @@ CocoaPods 环境安装好后，执行以下操作：
 
 修改后内容如下所示，注意将 Your App 替换为您的 Target 名称：
 
-``````
+``````default
 platform :ios, '9.0'
 #use_frameworks!
 target 'Your App' do

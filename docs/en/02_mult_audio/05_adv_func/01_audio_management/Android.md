@@ -1,36 +1,46 @@
 ---
-title: 音频管理
+title: Audio Management
 ---
-# 音频管理
+# Audio Management
 
-## 音频数据管理
+## Audio Data Management
 
-### 原始音频数据
+### Raw audio data
 
-在音频传输过程中，可以对采集的音频数据进行处理，以获取不同的播放效果。有两个时机可以进行处理。
+During the audio transmission process, the collected audio data can be
+processed to obtain different playback effects. There are two
+circumstances for processing.
 
-1. 在音频采集之后，编码之前进行处理；
+1. Process after audio collection and before encoding;
 
-2. 在传输完成，解码后播放前进行处理。
+2. Process after decoding and before playback when the transmission is
+    completed.
 
-具体如下：
+Details are as follows:
 
-- 音频采集之后，编码之前的处理
+- Processing after audio collection and before encoding
 
-参考如下步骤，在你的项目中实现原始音频数据功能：
+Refer to the following steps to implement the original audio data
+function in your project:
 
-1. 发起业务前通过 ZmfAudio.inputAddCallback 注册音频采集回调，并在该函数中实现一个
-    ZmfAudio.InputCallback 类型的回调函数
+1. Register the audio collection callback through
+    ZmfAudio.inputAddCallback before initiating business, and implement
+    a callback function of ZmfAudio.InputCallback in this function
 
-2. 成功注册后，JC SDK 会在捕捉到音频数据时通过回调函数回调采集到的原始音频数据相对应参数
+2. After successful registration, the JC SDK will call back the
+    corresponding parameters of the original audio data collected
+    through the callback function when the audio data is captured
 
-3. 用户拿到音频数据后，根据场景需要自行在回调函数中进行参数处理，处理后数据通过该回调函数返回给JC SDK。
+3. After the user obtains the audio data, he/she processes parameters
+    in the callback function according to the needs of the scenrio, and
+    the processed data is returned to the JC SDK through the callback
+    function.
 
-首先注册音频输入回调
+Register the audio input callback at first:
 
 ``````java
 /**
- * add audio input data callback
+ * Add audio input data callback
  *
  * @param[in] callback      the callback user data
  *
@@ -39,10 +49,10 @@ title: 音频管理
 ZmfAudio.inputAddCallback(ZmfAudio.InputCallback var0);
 ``````
 
-回调类型说明
+Callback type description:
 
 ``````java
-/** the callback to receive audio input data
+/** The callback to receive audio input data
  * @param[in] inputId         unique name of the audio input
  * @param[in] iSampleRateHz   the sample rate of the pcm data
  * @param[in] iChannels       the channel number of the pcm data
@@ -58,27 +68,28 @@ public interface InputCallback
 }
 ``````
 
-示例代码
+Sample code:
 
 ``````java
 public void onAudioInputFrame(String inputId, int sampleRateHz, int iChannels, ByteBuffer data, int playDelayMS, int recDelayMS, int clockDrift) {
-    System.out.println("音频采集数据处理");
+    System.out.println("process captured audio data processing");
 }
 public void call() {
-    //注册回调
+    //Register callback
     ZmfAudio.inputAddCallback(onAudioInputFrame);
-    //发起呼叫
-    call.call("peer number", true, "自定义透传字符串");
+    //Initiate a call
+    call.call("peer number", true, "custom pass-through string");
 }
 ``````
 
-回调注册后，当有音频数据采集进来时，可以对音频数据进行处理。
+After the callback registration, you can process audio data when audio
+data is collected.
 
-如果想移除回调，调用下面的接口
+If you want to remove the callback, call the following interface:
 
 ``````java
 /**
- * remove input audio data callback
+ * Remove input audio data callback
  *
  * @param[in]  callback      the callback user data
  *
@@ -87,30 +98,37 @@ public void call() {
 ZmfAudio.inputRemoveCallback(ZmfAudio.InputCallback var0);
 ``````
 
-示例代码
+Sample code:
 
 ``````java
 public void endCall() {
-    //移除回调
+    //Remove the callback
     ZmfAudio.inputRemoveCallback(onAudioInputFrame);
     JCCallItem item = call.getCallItems().get(0);
-    // 挂断通话
-    call.term(item, JCCall.REASON_NONE, "自己挂断");
+    // Hang up the call
+    call.term(item, JCCall.REASON_NONE, "hang up by yourself");
 }
 ``````
 
-- 解码后播放前的处理
+- Process after decoding and before playback
 
-参考如下步骤，在你的项目中实现原始音频数据功能：
+Refer to the following steps to implement the original audio data
+function in your project:
 
-1. 发起业务前通过 ZmfAudio.outputAddCallback 注册音频输出回调，并在该函数中实现一个
-    ZmfAudio.OutputCallback 类型的回调函数
+1. Register the audio output callback through
+    ZmfAudio.outputAddCallback before initiating business, and implement
+    a callback function of ZmfAudio.OutputCallback in this function
 
-2. 成功注册后，JC SDK 会在捕捉到音频数据时通过回调函数回调采集到的原始音频数据相对应参数
+2. After successful registration, the JC SDK will call back the
+    corresponding parameters of the original audio data collected
+    through the callback function when the audio data is captured
 
-3. 用户拿到音频数据后，根据场景需要自行在回调函数中进行参数处理，处理后数据通过该回调函数返回给JC SDK。
+3. After the user obtains the audio data, he/she processes parameters
+    in the callback function according to the needs of the scenrio, and
+    the processed data is returned to the JC SDK through the callback
+    function.
 
-首先注册音频输出回调
+Register the audio output callback at first:
 
 ``````java
 /**
@@ -123,7 +141,7 @@ public void endCall() {
 ZmfAudio.outputAddCallback(ZmfAudio.OutputCallback var0);
 ``````
 
-回调类型说明
+Callback type description:
 
 ``````java
 /**
@@ -142,23 +160,24 @@ public interface OutputCallback
 }
 ``````
 
-回调注册后，当有解码后的音频数据进来时，可以进行对应的音频数据处理。
+After the callback registration, you can process the corresponding audio
+data when receive the decoded audio data.
 
-示例代码
+Sample code:
 
 ``````java
 public void void onAudioOutputFrame(String outputId, int sampleRateHz, int iChannels, ByteBuffer data) {
-    System.out.println("音频解码后的数据处理");
+    System.out.println("process data after audio decoding");
 }
 public void call() {
-    //注册回调
+    //Register the callback
     ZmfAudio.outputAddCallback(onAudioOutputFrame);
-    //发起通话
-    call.call("peer number", true, "自定义透传字符串");
+    //Initiate a call
+    call.call("peer number", true, "custom pass-through string");
 }
 ``````
 
-如果想移除回调，调用下面的接口
+If you want to remove the callback, call the following interface:
 
 ``````java
 /**
@@ -171,49 +190,61 @@ public void call() {
 ZmfAudio.outputRemoveCallback(ZmfAudio.OutputCallback var0)
 ``````
 
-示例代码
+Sample code:
 
 ``````java
 public void endCall() {
-    //移除回调
+    //Remove the callback
     ZmfAudio.outputRemoveCallback(onAudioOutputFrame);
     JCCallItem item = call.getCallItems().get(0);
-    //挂断通话
-    call.term(item, JCCall.REASON_NONE, "自己挂断");
+    //Hang up the call
+    call.term(item, JCCall.REASON_NONE, "hang up by yourself");
 }
 ``````
 
 -----
 
-### 自定义音频采集和渲染
+### Custom audio capture and rendering
 
-在实时音频传输过程中，JC SDK 会启动默认的音频模块进行音频采集。但是对于不支持系统标准 API
-的音频设备，或者想利用自己已经拥有的音频模块进行音频的采集和传输前处理时，可另起采集/播放线程，把自己采集/需要播放的音频数据放入
-Juphoon 对应的接口中进行后续操作。
+During real-time audio transmission, the JC SDK will start the default
+audio module for audio collection. However, for audio devices that do
+not support the system’s standard API, or if you want to use the audio
+module you already have for audio collection and pre-transmission
+processing, you can start a separate capture/play thread to put the
+audio data you collect/need to play into the correponding interface of
+Juphoon to do subsequent operations.
 
-参考如下步骤，在你的项目中实现自定义音频源功能：
+Refer to the following steps to implement the custom audio source
+function in your project:
 
-1.通过 JC SDK 提供的接口将外部设备采集/自定义的播放数据输入到 JC SDK 进行后续操作。
+1. Input the playback data collected/customized by the external device
+    to the JC SDK through the interface provided by the JC SDK for
+    subsequent operations.
 
-2. 如果想停止外部设备采集/自定义的播放数据的输入，则调用 JC SDK 提供的接口停止数据输入即可。
+2. If you want to stop the input of the playback data
+    collected/customized by the external device, you can call the
+    interface provided by the JC SDK to stop the data input.
 
-自定义音频采集接口如下（在收到登录成功的回调后调用）：
+The custom audio capture interface is as follows (call after receiving a
+login success callback):
 
-若需要使用自己的音视频设备并且 Zmf\_AudioInitialize 初始化成功，在下面的回调函数中操作音频设备；
+If you need to use your own audio and video device and
+Zmf\_AudioInitialize is initialized successfully, operate the audio
+device in the following callback function;
 
-采集数据输入接口
+The interface of collecting input data:
 
 ``````java
 /**
  * The audio input data entry to ZMF
  *
- * @param[in] inputId       unique name of the audio input                       //输入设备id
- * @param[in] sampleRateHz  the sample rating of the pcm data                    //采样率 取值范围：8000，16000，32000，44100，48000取决于外部
- * @param[in] iChannels     the channel number of the pcm data                   //通道数量 取值范围：1或2
- * @param[in] data          the pcm data                                         //外部采集数据源
- * @param[in] playDelayMS   playout delay in ms                                  //播放时延 通常取0
- * @param[in] recDelayMS    record delay in ms                                   //采集时延 通常取0
- * @param[in] clockDrift    clock drift between playout and record timestamp //时钟漂移 通常取0
+ * @param[in] inputId       unique name of the audio input                       //Input device id
+ * @param[in] sampleRateHz  the sample rating of the pcm data                    //value range: 8000, 16000, 32000, 44100, 48000 depends on external)
+ * @param[in] iChannels     the channel number of the pcm data                   //value range: 1 or 2
+ * @param[in] data          the pcm data                                         //External collection data source
+ * @param[in] playDelayMS   playout delay in ms                                  // Usually 0
+ * @param[in] recDelayMS    record delay in ms                                   // Usually 0
+ * @param[in] clockDrift    clock drift between playout and record timestamp //usually 0
  *
  */
 static public void onInput (String inputId, int sampleRateHz, int iChannels, ByteBuffer data,
@@ -222,176 +253,183 @@ static public void onInput (String inputId, int sampleRateHz, int iChannels, Byt
 
 ::: tip
 
-此接口为将自己采集的音频数据输入到 JC SDK。
+This interface is to input the audio data collected by yourself to the
+JC SDK.
 
 :::
 
-示例代码
+Sample code:
 
 ``````java
-//初始化音频设备
+//Initialize audio devices
 android.content.Context activity;
 ZmfAudio.initialize(activity);
 public void call() {
-    // 输入长度为length，采样频率16000，通道数为1的pcm数据片段
+    // Pass in the length parameter as length, 16000 sampling frequency and 1 channel
+ onInput("Test",16000,1,pcmdata,length,0,0,0,0);
     onInput("Test",16000,1,pcmdata,length,0,0,0,0);
-    //发起呼叫
-    call.call("peer number", true, "自定义透传字符串");
+    //Initiate a call
+    call.call("peer number", true, "custom pass-through string");
 }
 ``````
 
-采集停止接口
+Collection stop interface:
 
 ``````java
 /**
- * tell ZMF the audio input has stopped
+ * Tell ZMF the audio input has stopped
  *
- * @param[in] inputId       unique name of the device              //输出设备id
+ * @param[in] inputId       unique name of the device              ////Output device id
  */
 static public void onInputDidStop(String inputId)
 ``````
 
-示例代码
+Sample code:
 
 ``````java
 public void endCall() {
-    //停止采集
+    //Stop collection
     onInputDidStop("Test");
-    //挂断通话
-    call.term(item, JCCall.REASON_NONE, "自己挂断");
+    //Hang up the call
+    call.term(item, JCCall.REASON_NONE, "hang up by yourself");
 }
 ``````
 
-如果想在音频输出端使用自定义的播放数据，则调用下面的接口：
+If you want to use custom playback data at the audio output, call the
+following interface:
 
-播放数据输入接口
+Play data input interface:
 
 ``````java
 **
  * The outlet which audio output can get data from.
  *
- * @param[in] outputId      unique name of the audio output       //输出设备id
- * @param[in] sampleRateHz  the sample rating of the pcm data     //采样率 取值范围：8000，16000，32000，44100，48000取决于外部
- * @param[in] iChannels     the channel number of the pcm data    //通道数量 取值范围：1或2
- * @param[in] data          the pcm data to be filled             //外部采集数据源
+ * @param[in] outputId      unique name of the audio output       //Output device id
+ * @param[in] sampleRateHz  the sample rating of the pcm data     //value range: 8000, 16000, 32000, 44100, 48000 depends on external)
+ * @param[in] iChannels     the channel number of the pcm data    //value range: 1 or 2
+ * @param[in] data          the pcm data to be filled             //External collection data source
  */
 static public void onOutput (String outputId, int sampleRateHz, int iChannels, ByteBuffer data);
 ``````
 
 ::: tip
 
-此接口为将自定义音频输出数据输入到 JC SDK。
+This interface is to input custom audio output data to JC SDK.
 
 :::
 
-示例代码
+Sample code:
 
 ``````java
-//初始化音频设备
+//Initialize audio devices
 android.content.Context activity;
 ZmfAudio.initialize(activity);
 public void call() {
-    // 输入长度为length，采样频率16000，通道数为1的pcm数据片段
-    onOutput("Test"，16000，1，buf，length);
-    //发起呼叫
-    call.call("peer number", true, "自定义透传字符串");
+    // Input the pcm data fragment with length, 16000 sampling frequency, and 1 channel
+ onInput("Test",16000,1,pcmdata,length,0,0,0,0);
+    onOutput("Test",16000,1,buf,length);
+    //Initiate a call
+    call.call("peer number", true, "custom pass-through string");
 }
 ``````
 
-播放数据停止接口
+Play data stop interface:
 
 ``````java
 /**
  * tell ZMF the audio output has stopped
  *
- * @param[in] inputId       unique name of the device         //输入设备id
+ * @param[in] inputId       unique name of the device         //Input device id
  */
 static public void onOutputDidStop(String outputId)
 ``````
 
 ::: tip
 
-在自定义音频采集场景中，开发者需要自行管理音频数据的采集。在自定义音频渲染场景中，开发者需要自行管理音频数据的播放。
+In custom audio collection scenarios, developers need to manage the
+collection of audio data by themselves. In a custom audio rendering
+scene, developers need to manage the playback of audio data themselves.
 
 :::
 
-示例代码
+Sample code:
 
 ``````java
 public void endCall() {
-    //停止播放数据，业务中或者业务结束时均可以调用
+    //Stop playing data, which can be called during or at the end of business
     onOutputDidStop("Test");
-    //挂断通话
-    call.term(item, JCCall.REASON_NONE, "自己挂断");
+    //Hang up the call
+    call.term(item, JCCall.REASON_NONE, "hang up by yourself");
 }
 ``````
 
 -----
 
-## 音频设备管理
+## Audio device management
 
-音频设备管理主要用到 JCMediaDevice 类中的方法，具体如下：
+Audio device management mainly uses the methods in the JCMediaDevice
+class, as follows:
 
-### 获取音频路由类型
+### Get audio routing type
 
 ``````java
 /**
- * 音频路由类型
+ * Audio routing type
  *
- * @return 音频路由类型
+ * @return Audio routing type
  */
 public abstract int getAudioRouteType();
 ``````
 
-音频输出类型（AudioRouteType）有以下几种
+The audio output type (AudioRouteType) has the following:
 
 ``````java
-/** 听筒 */
+/** handset  */
 public static final int AUDIO_ROUTE_RECEIVER = 0;
-/** 扬声器 */
+/** speaker  */
 public static final int AUDIO_ROUTE_SPEAKER = 1;
-/** 有线耳机 */
+/** Wired headset */
 public static final int AUDIO_ROUTE_HEADSET = 2;
-/** 蓝牙耳机 */
+/** Bluetooth earphone */
 public static final int AUDIO_ROUTE_BLUETOOTH = 3;
 ``````
 
-### 开启/关闭扬声器
+### Turn on/off the speaker
 
 ``````java
 /**
- * 开启/关闭扬声器
+ * Turn on/off the speaker
  *
- * @param enable 是否开启
+ * @param enable Turn on/off
  */
 public abstract void enableSpeaker(boolean enable);
 ``````
 
-### 开启/关闭音频设备
+### Turn on/off audio
 
 ``````java
 /**
- * 启动音频，一般正式开启通话前需要调用此接口
+ * Start audio (generally need to call this interface before starting a call)
  *
- * @return 成功返回 true，失败返回 false
+ * @return return true/false
  */
 public abstract boolean startAudio();
 
 /**
- * 停止音频，一般在通话结束时调用
+ * Stop audio (usually be called at the end of the call)
  *
- * @return 成功返回 true，失败返回 false
+ * @return return true/false
  */
 public abstract boolean stopAudio();
 ``````
 
-**示例代码**
+Sample code
 
 ``````java
-// 开启扬声器
+// Turn on the speaker
 mediaDevice.enableSpeaker(true);
-// 开启音频设备
+// Turn on the audio device
 mediaDevice.startAudio();
-// 关闭音频设备
+// Turn off the audio device
 mediaDevice.stopAudio();
 ``````

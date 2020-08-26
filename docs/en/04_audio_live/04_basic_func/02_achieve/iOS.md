@@ -1,193 +1,209 @@
 ---
-title: 实现互动直播
+title: Realize Live Interactive Streaming
 ---
-# 实现互动直播
+# Realize Live Interactive Streaming
 
-本章将介绍如何实现互动直播，互动直播的 API 调用时序见下图：
+This guide introduces how to implement live interactive streaming. The
+API call sequence of live interactive streaming is shown in the figure
+below:
 
 ![../../../../\_images/multivideoworkflow.png](../../../../_images/multivideoworkflow.png)
 
-## 初始化
+## Initialize
 
-调用 [JCMediaDevice
+Call [JCMediaDevice
 create](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaDevice.html#//api/name/create:callback:)
-和 [JCMediaChannel
-create](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaChannel.html#//api/name/create:mediaDevice:callback:)
-以初始化实现多方通话需要的模块：:
+and [JCCall
+create](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCCall.html#//api/name/create:mediaDevice:callback:)
+to initialize modules needed to implement group calls:
 
 ``````objectivec
-//初始化
+//Initialize
 -(bool)initialize {
-   //1. 媒体类
+   //1. Media class
    JCMediaDevice *mediaDevice = [JCMediaDevice create:client callback:self];
-   //2. 媒体通道类
+   //2. Media channel lass
    JCMediaChannel *mediaChannel = [JCMediaChannel create:client mediaDevice:mediaDevice callback:self];
    return client.state == JCClientStateLogined;
 }
 ``````
 
-其中：
+Among them:
 
-- JCMediaDevice create 方法中的 callback 为
+- The callback in the JCMediaDevice create is the proxy object of the
     [JCMediaDeviceCallback](https://developer.juphoon.com/portal/reference/V2.1/ios/Protocols/JCMediaDeviceCallback.html)
-    协议的代理对象，该协议用于将媒体设备相关的事件通知给上层。因此需要先指定 callback 的代理对象，然后在该代理对象中实现
-    JCMediaDeviceCallback 的方法。
+    protocol, which is used to notify the upper layer of media device
+    related events. Therefore, you need to specify the proxy object of
+    callback first, and then implement the JCMediaDeviceCallback in the
+    proxy object.
 
-JCMediaDeviceCallback 中的主要方法如下
+The main methods in the JCMediaDeviceCallback are as follows:
 
 ``````objectivec
-//摄像头变化
+//Camera changes
 -(void)onCameraUpdate;
 
-//音频输出变化
+//Audio output changes
 -(void)onAudioOutputTypeChange:(NSString*)audioOutputType;
 
-//声音中断恢复
+//Sound interruption recovery
 -(void)onAudioInerruptAndResume:(BOOL)interrupt;
 ``````
 
-- JCMediaChannel create 方法中的 callback 为
+- The callback in the JCMediaChannel create method is the proxy object
+    of the
     [JCMediaChannelCallback](https://developer.juphoon.com/portal/reference/V2.1/ios/Protocols/JCMediaChannelCallback.html)
-    协议的代理对象，该协议用于将频道中的相关事件通知给上层。因此需要先指定 callback 的代理对象，然后在该代理对象中实现
-    JCMediaChannelCallback 的方法。
+    protocol, which is used to notify the relevant events in the channel
+    to the upper layer. Therefore, you need to specify the proxy object
+    of the callback first, and then implement the JCMediaChannelCallback
+    method in the proxy object.
 
-JCMediaChannel 中的主要方法如下
+The main methods in JCMediaChannel are as follows:
 
 ``````objectivec
-//自身状态变化回调
+//The callback of MediaChannel state change
 -(void)onMediaChannelStateChange:(JCMediaChannelState)state oldState:(JCMediaChannelState)oldState;
 
-//加入频道结果回调
+//The callback of joining ChannelReason
 -(void)onJoin:(bool)result reason:(JCMediaChannelReason)reason channelId:(NSString*)channelId;
 
-//离开频道结果回调
+//The callback of leaving the ChannelReason
 -(void)onLeave:(JCMediaChannelReason)reason channelId:(NSString*)channelId;
 
-//解散频道结果回调
+//The callback of channel Stop result
 -(void)onStop:(bool)result reason:(JCMediaChannelReason)reason;
 
-//新成员加入回调
+//The callback of ParticipantJoin
 -(void)onParticipantJoin:(JCMediaChannelParticipant*)participant;
 
-//成员离开回调
+//The callback of ParticipantLeft
 -(void)onParticipantLeft:(JCMediaChannelParticipant*)participant;
 
-//成员更新回调
+//The callback of ParticipantUpdate
 -(void)onParticipantUpdate:(JCMediaChannelParticipant*)participant participantChangeParam:(JCMediaChannelParticipantChangeParam *)participantChangeParam;
 
-//成员声音变化
+//The volume change of participants
 -(void)onParticipantVolumeChange:(JCMediaChannelParticipant*)participant;
 ``````
 
-## 角色设置
+## Role setting
 
-直播有两种用户角色：主播和观众。加入频道前要先进行角色的设置。默认的角色为观众。其中主播可以上传本地音视频流，观众只能看到主播的画面、听到主播的声音。
+There are two roles for users in live streaming: the host and audience.
+The role setting must be done before joining the channel. The host can
+upload local audio and video streams, and the audience can only see the
+image of the host and hear the voice of the host.
 
-角色值可以根据
+The role value can be customized according to the
 [JCMediaChannelCustomRole](https://developer.juphoon.com/portal/reference/V2.1/ios/Constants/JCMediaChannelCustomRole.html)
-枚举值进行自定义，例如
+enumeration value, such as:
 
 ``````objectivec
-//自定义主播角色
+//Customize the role of the host according to the CustomState enumeration value
 JCMediaChannelCustomRole ROLE_BROASCASTER = JCMediaChannelCustomRole0;
-//自定义观众角色
+//Customize the role of audiences according to the CustomState enumeration value
 JCMediaChannelCustomRole ROLE_AUDIENCE = JCMediaChannelCustomRole1;
 ``````
 
-调用
+Call
 [setCustomRole](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaChannel.html#//api/name/setCustomRole:participant:)
-设置自己的角色以进入频道。
+to set your own role to enter the channel:
 
 ``````objectivec
-// 设置角色，participant(第二个参数） 值为 nil 代表设置自身的角色
+// Set the role, and the value of participant (the second parameter) is nil, which means setting your own role
 [mediaChannel setCustomRole:ROLE_BROASCASTER participant:nil];
 ``````
 
-## 加入频道
+## Join a channel
 
-加入频道前需根据成员角色进行音视频流上传的控制，语音互动直播中，主播只需要上传本地音频流，观众则不需要。
+Before joining the channel, you need to control the upload of audio and
+video streams according to the role of the member.In the live interactie
+voice streaming, the host only needs to upload the local audio stream,
+and the audience does not.
 
-1\. 调用
-[enableUploadAudioStream](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaChannel.html#//api/name/enableUploadAudioStream:)
-开启音频流。
-
-``````objectivec
--(void)joinRoom:(JCMediaChannelCustomRole)customRole {
-    //根据角色上传本地音视频流
-    [mediaChannel enableUploadVideoStream:false];
-    [mediaChannel enableUploadAudioStream:customRole == ROLE_BROASCASTER];
-    [mediaChannel enableAudioOutput:true];
-}
-``````
-
-2. 角色设置后，调用
-    [join](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaChannel.html#//api/name/join:joinParam:)
-    方法创建并加入频道。您需要在该方法中传入如下参数：
-
-<!-- end list -->
-
-- channelIdOrUri：频道 ID 或频道 Uri，当 param 中 uriMode 设置为 true 时表示频道
-    Uri，其他表示频道 ID。频道 ID 或 Uri 相同的用户会进入同一个频道。
-
-- joinParam：加入参数，没有则填 nil。 详见
-    [JCMediaChannelJoinParam](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaChannelJoinParam.html)
-    对象。
-
-``````objectivec
-[mediaChannel join:@"222" joinParam:nil];
-``````
-
-3. 加入频道后收到
-    [onJoin](https://developer.juphoon.com/portal/reference/V2.1/ios/Protocols/JCMediaChannelCallback.html#//api/name/onJoin:reason:channelId:)
-    回调。
+1. Enable audio streaming to call
+    [enableUploadAudioStream](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaChannel.html#//api/name/enableUploadAudioStream:)
+    to enable audio streaming:
 
     ``````objectivec
-    // 加入频道结果回调
+    -(void)joinRoom:(JCMediaChannelCustomRole)customRole {
+        //Upload local audio and video streams according to roles
+        [mediaChannel enableUploadVideoStream:false];
+        [mediaChannel enableUploadAudioStream:customRole == ROLE_BROASCASTER];
+        [mediaChannel enableAudioOutput:true];
+    }
+    ``````
+
+2. After the role is set, call the
+    [join](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaChannel.html#//api/name/join:joinParam:)
+    method to create and join a channel. You need to pass in the
+    following parameters in the method:
+
+      - channelIdOrUri: Channel ID or channel Uri. When uriMode in
+        param is set to true, it means channel Uri, and others mean
+        channel ID. Users with the same channel ID or Uri will enter
+        the same channel.
+
+      - joinParam: Join parameters, if not, fill in nil. See
+        [JCMediaChannelJoinParam](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaChannelJoinParam.html)
+        object for details.
+
+    ``````objectivec
+    [mediaChannel join:@"222" joinParam:nil];
+    ``````
+
+3. The
+    [onJoin](https://developer.juphoon.com/portal/reference/V2.1/ios/Protocols/JCMediaChannelCallback.html#//api/name/onJoin:reason:channelId:)
+    callback triggers after joining the channel:
+
+    ``````objectivec
+    // The callback of joining ChannelReason
     -(void)onJoin:(bool)result reason:(JCMediaChannelReason)reason channelId:(NSString*)channelId
     {
         if (result) {
-          // 加入成功
+          // Join successful
         } else {
-          // 加入失败
+          // Join failed
         }
     }
     ``````
 
-## 离开频道
+## Leave a channel
 
-调用
+Call the
 [leave](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaChannel.html#//api/name/leave)
-方法离开当前频道。
+method to leave the current channel:
 
 ``````objectivec
 [mediaChannel leave];
 ``````
 
-离开频道后，自身收到
+After leaving the channel, they receive the
 [onLeave](https://developer.juphoon.com/portal/reference/V2.1/ios/Protocols/JCMediaChannelCallback.html#//api/name/onLeave:channelId:)
-回调，其他成员同时收到
+callback, and other members receive the
 [onParticipantLeft](https://developer.juphoon.com/portal/reference/V2.1/ios/Protocols/JCMediaChannelCallback.html#//api/name/onParticipantLeft:)
-回调。
+callback at the same time.
 
-## 解散频道
+## Destroy a channel
 
-如果想解散频道，可以调用下面的接口，此时所有成员都将被退出。
+If you want to destroy a channel, you can call the following interface,
+and all members will be quit.
 
 ``````objectivec
-// 结束频道
+// End a channel
 [mediaChannel stop];
 ``````
 
-解散频道后，发起结束的成员收到
+After the channel is stopped, the member that initiated the termination
+receives the
 [onStop](https://developer.juphoon.com/portal/reference/V2.1/ios/Protocols/JCMediaChannelCallback.html#//api/name/onStop:reason:)
-回调，其他成员同时收到
+callback, and other members receive the
 [onLeave](https://developer.juphoon.com/portal/reference/V2.1/ios/Protocols/JCMediaChannelCallback.html#//api/name/onLeave:channelId:)
-回调。 解散失败原因枚举值请参考
+callback at the same time. Please refer to
 [JCMediaChannelReason](https://developer.juphoon.com/portal/reference/V2.1/ios/Constants/JCMediaChannelReason.html)
-。
+for the enumeration value of the reason for failure.
 
-解散频道后，同样需要调用
-[JCMediaChannelParticipant](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaChannelParticipant.html)
-里的
+After dstorying the channel, you also need to call
 [stopVideo](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaDevice.html#//api/name/stopVideo:)
-销毁本地和远端视频画面。
+in the
+[JCMediaChannelParticipant](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaChannelParticipant.html)
+to destroy local and remote video images.

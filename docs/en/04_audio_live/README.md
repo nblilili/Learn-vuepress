@@ -1,19 +1,28 @@
 ---
-title: 产品概述
+title: Product Overview
 ---
-# 产品概述
+# Product Overview
 
-语音互动直播不用颜值，靠音值，是新的社交方式，参与者通过语音连麦与主播进行互动。
+Live interactive audio streaming is a new social way for you to use
+sound rather than your figure. Participants interact with the host
+through voice co-hosting.
 
-语音互动直播将用户分为主播与观众，观众选择实时观看直播的同时，主播与观众间可进行语音连麦互动，可适用于游戏语音、线上KTV等语音直播场景。
+Live interactive audio streaming divides users into the host and
+audiences. When audiences choose to watch the live streaming in real
+time, the host and the audiences can interact with co-hosting, which is
+suitable for gaming, online KTV and other audio live broadcasting
+scenarios.
 
-相较于普通的语音通话，Juphoon 语音互动直播的特点是：
+Compared with ordinary voice calls, the features of Juphoon live
+interactive audio streaming are:
 
-- 区分主播和观众，主播可以自由发言，其他用户需要通过连麦与主播进行互动。
+- Distinguish between the host and the audiences, the host can speak
+    freely, and other users need to interact with the host through
+    co-hosting.
 
-- 用户可以随时加入观看直播。
+- Users can join and watch the live streaming at any time.
 
-## 功能与场景
+## Functions and scenarios
 
 <table style="width:99%;">
 <colgroup>
@@ -23,41 +32,41 @@ title: 产品概述
 </colgroup>
 <thead>
 <tr class="header">
-<th><p>功能</p></th>
-<th><p>功能描述</p></th>
-<th><p>适用场景</p></th>
+<th><p>Functions</p></th>
+<th><p>Description</p></th>
+<th><p>Use Cases</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><p>音效变声</p></td>
-<td><p>通过获取媒体引擎的原始数据，对接第三方对声音进行特效处理</p></td>
-<td><p>互动直播，游戏语音</p></td>
+<td><p>Voice changer</p></td>
+<td><p>Connect with third parties to process special effects on the sound by acquiring the original data of the media engine</p></td>
+<td><p>Live interactive streaming, gaming</p></td>
 </tr>
 <tr class="even">
-<td><p>广播级音质</p></td>
-<td><p>采用自适应回声消除技术，超强噪音抑制，为用户提供广播级音质</p></td>
-<td><p>全场景</p></td>
+<td><p>Broadcast-grade sound quality</p></td>
+<td><p>Use adaptive echo cancellation technology and super noise suppression, providing users with broadcast-grade sound quality</p></td>
+<td><p>All use cases</p></td>
 </tr>
 <tr class="odd">
-<td><p>本地录制</p></td>
-<td><p>可获取本端或对端的音频文件</p></td>
-<td><p>全场景</p></td>
+<td><p>Local recording</p></td>
+<td><p>Access local or peer audio files</p></td>
+<td><p>All use cases</p></td>
 </tr>
 <tr class="even">
-<td><p>服务器录制</p></td>
-<td><p>实时录制，通话结束后可立即调取录制文件</p></td>
-<td><p>全场景</p></td>
+<td><p>Cloud rrecording</p></td>
+<td><p>Real-time recording; the recording file can be retrieved immediately after the call</p></td>
+<td><p>All use cases</p></td>
 </tr>
 <tr class="odd">
-<td><p>CDN推流</p></td>
-<td><p>将通话内的音视频内容通过 CDN 推送到其他 RTMP 服务器</p></td>
-<td><p>朋友圈、公众号、微博、浏览器等快速观看</p></td>
+<td><p>CDN push</p></td>
+<td><p>Push the audio and video content in the call to other RTMP servers via CDN</p></td>
+<td><p>Quick viewing in Wechat Moments, Wechat official accounts, Weibo, browsers, etc.</p></td>
 </tr>
 </tbody>
 </table>
 
-## 特性指标
+## Key properties
 
 <table>
 <colgroup>
@@ -66,41 +75,43 @@ title: 产品概述
 </colgroup>
 <thead>
 <tr class="header">
-<th><p>特性</p></th>
-<th><p>指标</p></th>
+<th><p>Property</p></th>
+<th><p>Juphoon Voice Calling Specifications</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><p>音频质量</p></td>
-<td><p>音频采样率：16k～48k，支持单、双声道</p></td>
+<td><p>Audio quality</p></td>
+<td><p>Audio sampling rate: 16k ~ 48k Support single and dual channels</p></td>
 </tr>
 <tr class="even">
-<td><p>音频抗丢包率</p></td>
-<td><p>上下行抗丢包率70%</p></td>
+<td><p>Audio anti-packet-loss rate</p></td>
+<td><p>70% (uplink and downlink)</p></td>
 </tr>
 <tr class="odd">
-<td><p>运维稳定</p></td>
-<td><p>全球200+节点部署，超优通信保障</p></td>
+<td><p>Stability</p></td>
+<td><p>Global 200+ node deployment, guaranteeing excellent communication</p></td>
 </tr>
 <tr class="even">
-<td><p>多人互动</p></td>
-<td><p>支持16方同时语音互动</p></td>
+<td><p>Multiplayer interaction</p></td>
+<td><p>Support 16 synchronous voice interactions</p></td>
 </tr>
 <tr class="odd">
-<td><p>高并发</p></td>
-<td><p>支持万级并发同时直播</p></td>
+<td><p>High concurrency</p></td>
+<td><p>Support tens of thousands of concurrent live broadcasts</p></td>
 </tr>
 <tr class="even">
-<td><p>连麦</p></td>
-<td><p>支持主播或观众主动发起连麦</p></td>
+<td><p>Co-hosting</p></td>
+<td><p>Support hosts or audiences to initiate co-hosting</p></td>
 </tr>
 </tbody>
 </table>
 
-## 平台兼容
+## Compatibility
 
-语音互动直播支持多种开发平台，具体的兼容性要求见下表。
+Live ineractive voice streaming supports multiple development platforms,
+and the specific compatibility requirements are shown in the table
+below.
 
 <table>
 <colgroup>
@@ -109,46 +120,46 @@ title: 产品概述
 </colgroup>
 <thead>
 <tr class="header">
-<th><p>平台</p></th>
-<th><p>支持版本</p></th>
+<th><p>Platform</p></th>
+<th><p>Supported Version</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td><p>iOS</p></td>
-<td><p>8.0及以上系统</p></td>
+<td><p>8.0+</p></td>
 </tr>
 <tr class="even">
 <td><p>Android</p></td>
-<td><p>4.0及以上系统</p></td>
+<td><p>4.0+</p></td>
 </tr>
 <tr class="odd">
 <td><p>Windows</p></td>
-<td><p>XP及以上系统</p></td>
+<td><p>XP+</p></td>
 </tr>
 <tr class="even">
 <td><p>Web</p></td>
 <td><dl>
-<dt>桌上 PC 端</dt>
+<dt>Desktop PC</dt>
 <dd><ul>
 <li><p>Microsoft Edge 12</p></li>
-<li><p>Google Chrome 59.0.3071.115 及以上</p></li>
-<li><p>Mozilla Firefox 54.0.1 及以上</p></li>
-<li><p>Opera 20 及以上</p></li>
-<li><p>Safari 11 及以上</p></li>
-<li><p>360 7.1.2 及以上（极速模式）</p></li>
+<li><p>Google Chrome 59.0.3071.115 and above</p></li>
+<li><p>Mozilla Firefox 54.0.1 and above</p></li>
+<li><p>Opera 20 and above</p></li>
+<li><p>Safari 11 and above</p></li>
+<li><p>360 7.1.2 and above (Speed mode)</p></li>
 </ul>
 </dd>
-<dt>Android端</dt>
+<dt>Android</dt>
 <dd><ul>
-<li><p>Google Google Chrome 29 及以上</p></li>
-<li><p>Mozilla Firefox 24 及以上</p></li>
-<li><p>微信 7.0 及以上</p></li>
+<li><p>Google Google Chrome 29 and above</p></li>
+<li><p>Mozilla Firefox 24 and above</p></li>
+<li><p>Wechat 7.0 and above</p></li>
 </ul>
 </dd>
-<dt>iOS端</dt>
+<dt>iOS</dt>
 <dd><ul>
-<li><p>Safari 11 及以上，12 以后iPhone只支持Safari</p></li>
+<li><p>Safari 11 and above, and iOS 12+ only supports Safari</p></li>
 </ul>
 </dd>
 </dl></td>

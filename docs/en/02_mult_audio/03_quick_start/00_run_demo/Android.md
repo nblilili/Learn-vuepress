@@ -1,32 +1,35 @@
 ---
-title: 一分钟跑通 Demo
+title: Run through demo in one minute
 ---
-# 一分钟跑通 Demo
+# Run through demo in one minute
 
-想要快速体验 Demo，请按以下步骤操作：
+To quickly experience the Demo, please follow the steps below:
 
-## 获取 AppKey
+## Get AppKey
 
-请参考 [AppKey](https://developer.juphoon.com/cn/document/V2.1/create-application.php) 来获取您的 AppKey 。
+Please refer to [AppKey](https://developer.juphoon.com/cn/document/V2.1/create-application.php) to
+get your AppKey.
 
 ::: tip
 
-同一个账号下创建的应用属于同一个域，同域中的应用可以互通。
+Applications created under the same account are interconnected and
+belong to the same domain.
 
 :::
 
-## Demo 源码下载
+## Demo source code download
 
-请点击
+Please click
 [Demo](http://developer.juphoon.com/portal/cn/downloadsdk/download_demo.php?filename=JuphoonRoom-Android.tar.gz)
-进行 Demo 源码下载。
+to download the Demo source code.
 
-## 编译运行
+## Compile and run
 
-1. 解压下载的 Demo 源码压缩包，并打开工程。
+1. Unzip the downloaded Demo source code package and open the project.
 
-2. 设置自己的 AppKey：在下图红框标记的代码中输入自己的 AppKey：
+2. Set your own AppKey: Enter your own AppKey in the code marked in the
+    red box in the figure below:
 
-![duokey2](../../../../_images/roomkey2.png)
+    ![../../../../\_images/duokey2.png](../../../../_images/duokey2.png)
 
-3. 连接安卓真机，编译运行 Demo 。
+3. Connect to a real Android device, compile and run Demo.

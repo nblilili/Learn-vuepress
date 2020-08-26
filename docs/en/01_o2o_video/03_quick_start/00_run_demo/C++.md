@@ -1,6 +1,6 @@
 ---
-title: 一分钟跑通 Demo
+title: Run through demo in one minute
 ---
-# 一分钟跑通 Demo
+# Run through demo in one minute
 
-C++ 版本尚未出版 Demo 源码，敬请期待。
+The C++ version has not yet published the Demo source code. Stay tuned.

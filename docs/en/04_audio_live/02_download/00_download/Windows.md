@@ -1,17 +1,19 @@
 ---
-title: SDK 下载
+title: SDK Download
 ---
-# SDK 下载
+# SDK Download
 
-为您的用户带来清晰流畅的通话体验，实现多人在线畅聊，会议等功能。
+Provide a clear and smooth call experience for your users, realizing
+group online chat, conferences and other functions.
 
-[点击下载 JC
+[Click to download JC
 SDK](https://developer.juphoon.com/portal/cn/downloadsdk/download_sdk.php?filename=JC-SDK-Windows-V2_1.tar.gz)
 
-您可以通过以下内容了解更多 JC SDK 相关信息：
+You can learn more about JC SDK through the following content:
 
-- [更新日志](https://developer.juphoon.com/cn/document/V2.1/sdk/log/windows.php)
+- [Updated log](https://developer.juphoon.com/cn/document/V2.1/sdk/log/windows.php)
 
-- [历史版本](https://developer.juphoon.com/cn/document/V2.1/sdk/version/windows.php)
+- [Historic version](https://developer.juphoon.com/cn/document/V2.1/sdk/version/windows.php)
 
-- [接口说明](https://developer.juphoon.com/portal/reference/V2.1/windows/html/e36ffb00-647f-0198-a895-56556009f19d.htm)
+- [Interface
+    description](https://developer.juphoon.com/portal/reference/V2.1/windows/html/e36ffb00-647f-0198-a895-56556009f19d.htm)

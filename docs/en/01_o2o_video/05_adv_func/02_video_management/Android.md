@@ -1,92 +1,97 @@
 ---
-title: 视频管理
+title: Video Management
 ---
-# 视频管理
+# Video Management
 
-## 视频数据采集管理
+## Video Data Collection Management
 
-### 设置要开启的摄像头类型
+### Set the type of camera to turn on
 
-视频采集设置前，可以通过 JCMediaDevice 类中的属性和方法获取摄像头列表、当前摄像头以及默认摄像头，具体如下：
+Before video capture settings, you can get the camera list, current
+camera, and default camera through the properties and methods in the
+JCMediaDevice class, as follows:
 
 ``````java
 /**
- * 获取摄像头列表
+ * Get camera list
  *
- * @return 摄像头列表
+ * @return camera list
  */
 public abstract List<JCMediaDeviceCamera> getCameras();
 
 /**
- * 当前默认的摄像头
+ * Current default camera
  *
- * @return 当前摄像头
+ * @return current camera
  */
 public abstract JCMediaDeviceCamera getCamera();
 
 /**
- * 默认摄像头
+ * Default camera
  */
 public JCMediaDeviceCamera defaultCamera;
 ``````
 
-其中，摄像头对象（JCMediaDeviceCamera）有以下属性
+Among them, the camera object (JCMediaDeviceCamera) has the following
+properties:
 
 ``````java
-/*摄像头id*/
+/*Camera id*/
 public String cameraId;
-/*摄像头名字*/
+/*Camera name*/
 public String cameraName;
-/*摄像头类型*/
+/*Camera type*/
 public @CameraType int cameraType;
 ``````
 
-CameraType（摄像头类型）有以下几种
+CameraType(The types of camera) are as follows:
 
 ``````java
 /**
- * 未获取到摄像头
+ * The camera is not obtained
  */
 public static final int CAMERA_NONE = 0;
 /**
- * 前置摄像头
+ * Front camera
  */
 public static final int CAMERA_FRONT = 1;
 /**
- * 后置摄像头
+ * Rear camera
  */
 public static final int CAMERA_BACK = 2;
 /**
- * 未知摄像头
+ * Unknown  camera
  */
 public static final int CAMERA_UNKNOWN = 3;
 ``````
 
-获取摄像头列表后，可以调用下面的方法获得列表中的摄像头类型
+After obtaining the camera list, you can call the following method to
+obtain the camera type in the list:
 
 ``````java
 /**
- * 获得摄像头类型
+ * Get camera type
  *
- * @param cameraIndex 摄像头队列索引
- * @return 摄像头类型
+ * @param cameraIndex camera queue index
+ * @return camera type
  */
 @CameraType
 public abstract int getCameraType(int cameraIndex);
 ``````
 
-如果想切换摄像头，调用下面的方法切换指定的摄像头
+If you want to switch the camera, call the following method to switch
+the specified camera:
 
 ``````java
 /**
- * 切换摄像头
- * @param camera 摄像头
- * @return 成功返回 true，失败返回 false
+ * Switch the camera
+ * @param camera camera
+ * @return return true/false
  */
 public abstract boolean switchCamera(JCMediaDeviceCamera camera);
 ``````
 
-示例代码:
+Sample code:
 
 ``````java
 JCMediaDeviceCamera item = new JCMediaDeviceCamera();
@@ -95,53 +100,135 @@ List<JCMediaDevice.JCMediaDeviceCamera> cameras = mediaDevice.getCameras();
 mediaDevice.defaultCamera = cameras.get(0);
 ``````
 
-### 设置摄像头采集分辨率
+### Set camera capture resolution
 
-您可以通过自定义摄像头采集参数实现不同的视频分辨率，如采集的高度、宽度和帧速率。
+You can achieve different video resolutions by customizing camera
+acquisition parameters, such as acquisition height, width, and frame
+rate.
 
-摄像头采集属性设置接口如下：
+The camera collection property setting interface is as follows:
 
 ``````java
 /**
- * 设置摄像头采集属性
- * @param width     采集宽度，默认640
- * @param height    采集高度，默认360
- * @param frameRate 采集帧速率，默认30
+ * Set camera collection property
+ * @param width     collection width, default 640
+ * @param height    collection height, default 360
+ * @param frameRate acquisition frame rate, default 30
  */
 public abstract void setCameraProperty(int width, int height, int frameRate);
 ``````
 
-示例代码
+Sample code:
 
 ``````java
-// 设置摄像头采集属性
+// Set camera collection properties
 mediaDevice.setCameraProperty(640, 360, 30);
+``````
+
+### Set video window angle
+
+Call the following interface to set the video window angle:
+
+``````java
+/**
+ * Set video window angle
+ *
+ * @param angle  See @VideoAngle
+ */
+public abstract void setlVideoAngle(@VideoAngle int angle);
+``````
+
+Among them, VideoAngle has the following types:
+
+``````java
+/** automatic  */
+public static final int VIDEO_ANGLE_AUTO = -1;
+/** 0 degrees   */
+public static final int VIDEO_ANGLE_0 = 0;
+/** 90 degree   */
+public static final int VIDEO_ANGLE_90 = 90;
+/** 180 degree   */
+public static final int VIDEO_ANGLE_180 = 180;
+/** 270 degree   */
+public static final int VIDEO_ANGLE_270 = 270;
+``````
+
+Sample code:
+
+``````java
+// Set camera collection properties
+mediaDevice.setlVideoAngle(JCMediaDevice.VIDEO_ANGLE_0);
+``````
+
+### Set canvas rotation angle
+
+If you want to set the angle of the canvas in Canvas, you need to call
+the rotate interface in the JCMediaDeviceVideoCanvas class:
+
+``````java
+/**
+ * The rotation angle must be a multiple of 90, and the angle represents the angle after rotation with the positive direction of the screen
+ *
+ * @param angle angle value
+ */
+public void rotate(int angle)
+``````
+
+Among them, the angle needs to be a multiple of 90. After calling this
+interface, the local video image displayed on the local end and the
+remote video image will rotate the same angle at the same time, but the
+screen displayed on the opposite end will not be affected.
+
+For example, if A is set to rotate 90 degrees, the A and B video images
+displayed on the A side will rotate 90 degrees at the same time. The
+video image on the B side will not change. As shown below:
+
+![../../../../\_images/rotateset.png](../../../../_images/rotateset.png)
+
+Sample code:
+
+``````java
+// Set Canvas rotation angle
+JCMediaDeviceVideoCanvas canvas = mediaDevice.startCameraVideo(JCMediaDevice.RENDER_FULL_CONTENT));
+canvas.rotate(90);
 ``````
 
 -----
 
-### 原始视频数据
+### Raw video data
 
-在视频传输过程中，可以对每帧视频数据进行图像处理，以实现美颜等需求。有以下两种处理时机：
+In the process of video transmission, you can perform image processing
+on each frame of video data to achieve beauty mode and other needs.
+There are two processingcircumstances:
 
-1、在视频采集后编码前处理；会影响本地预览和对端接收视频。
+1. Process before pre-encoding and after video capture which affects
+    local preview and peer receiving video.
 
-2、在解码后渲染前处理；影响本地接收视频。
+2. Process after decoding and before rendering which affects the local
+    video reception.
 
-具体如下：
+Details are as follows:
 
-**视频采集后，编码前处理**
+**Process after video capture and before pre-coding**
 
-参考如下步骤，在你的项目中实现原始视频数据功能：
+Refer to the following steps to implement the original video data
+function in your project:
 
-1.发起业务前通过 ZmfVideo.captureAddCallback 注册视频采集回调，并在该函数中实现一个
-CaptureCallback 类型的回调函数
+1. Register the video capture callback through
+    ZmfVideo.captureAddCallback before initiating the business, and
+    implement a callback function of type CaptureCallback in this
+    function
 
-2.成功注册后，JC SDK 会在捕捉到每个视频帧时通过回调函数回调采集到的原始视频数据相对应参数
+2. After successful registration, the JC SDK will call back the
+    corresponding parameters of the original video data collected
+    through the callback function when each video frame is captured
 
-3.用户拿到视频数据后，根据场景需要自行在回调函数中进行参数处理，处理后数据通过该回调函数返回给 JC SDK。
+3. After the user gets the video data, he/she performs parameter
+    processing in the callback function according to the needs of the
+    scene, and the processed data is returned to the JC SDK through the
+    callback function.
 
-首先注册视频采集回调
+Register the video capture callback at first:
 
 ``````java
 /**
@@ -154,7 +241,7 @@ CaptureCallback 类型的回调函数
 ZmfVideo.captureAddCallback(CaptureCallback callback);
 ``````
 
-回调类型说明
+Callback type description:
 
 ``````java
 /**
@@ -175,24 +262,26 @@ public interface CaptureCallback
 }
 ``````
 
-注册后，每帧采集的视频数据通过 onFrame 回调，可以处理对应的视频数据。
+After registration, the video data collected in each frame can be
+processed through the onFrame callback, and the corresponding video data
+can be processed.
 
-示例代码
+Sample code:
 
 ``````java
 public boolean onFrame(String captureId, int iFace, int iImgAngle, int iCaptureOrient, int[] iWidthHeight, ByteBuffer data) {
-    System.out.println("视频采集数据处理");
+    System.out.println("video acquisition data processing");
     return true;
 }
 public void call() {
-    //注册回调
+    //Register callback
     ZmfVideo.captureAddCallback(onFrame);
-    //发起呼叫
-    call.call("peer number", true, "自定义透传字符串");
+    //Initiate the call
+    call.call("peer number", true, "custom pass-through string");
 }
 ``````
 
-如果想移除回调，调用下面的接口
+If you want to remove the callback, call the following interface:
 
 ``````java
 /**
@@ -205,30 +294,37 @@ public void call() {
 ZmfVideo.captureRemoveCallback(int handle)
 ``````
 
-示例代码
+Sample code:
 
 ``````java
 public void endCall() {
     int handle = ZmfVideo.captureAddCallback(onFrame);
-    //移除回调
+    //Remove callback
     ZmfVideo.captureRemoveCallback(handle);
-    //挂断通话
-    call.term(item, JCCall.REASON_NONE, "自己挂断");
+    //Hang up the call
+    call.term(item, JCCall.REASON_NONE, "hang up by yourself");
 }
 ``````
 
-**解码后，渲染前处理**
+**Process after decoding and before pre-rendering**
 
-参考如下步骤，在你的项目中实现原始视频数据功能：
+Refer to the following steps to implement the original video data
+function in your project:
 
-1.发起业务前通过 ZmfVideo.renderAddCallback 注册视频输出回调，并在该函数中实现一个 RenderCallback
-类型的回调函数
+1. Register the video output callback through
+    ZmfVideo.renderAddCallback before initiating the business, and
+    implement a RenderCallback type callback function in this function
 
-2.成功注册后，JC SDK 会在捕捉到每个视频帧时通过回调函数回调输出的原始视频数据相对应参数
+2. After successful registration, the JC SDK will call back the
+    corresponding parameters of the original video data output through
+    the callback function when each video frame is captured
 
-3.用户拿到视频数据后，根据场景需要自行在回调函数中进行参数处理，处理后数据通过该回调函数返回给JC SDK。
+3. After the user gets the video data, he/she will perform parameter
+    processing in the callback function according to the needs of the
+    scenario, and the processed data will be returned to the JC SDK
+    through the callback function.
 
-首先注册视频输出回调
+Register the video output callback at first:
 
 ``````java
 /**
@@ -241,7 +337,7 @@ public void endCall() {
 ZmfVideo.renderAddCallback(RenderCallback callback);
 ``````
 
-回调类型说明
+Callback type description:
 
 ``````java
 /**
@@ -267,24 +363,25 @@ public interface RenderCallback
 }
 ``````
 
-注册后，每帧解码后的视频数据通过onFrame回调，可以处理对应的视频数据。
+After registration, the decoded video data of each frame can process the
+corresponding video data through the onFrame callback.
 
-示例代码
+Sample code:
 
 ``````java
 public boolean onFrame(String renderId, int sourceType, int iAngle, int iMirror, int iWidth, int iHeight, ByteBuffer data, int timeStampMs) {
-    System.out.println("解码后的视频数据处理");
+    System.out.println("decoded video data processing");
     return true;
 }
 public void call() {
-    //注册回调
+    //Register callback
     ZmfVideo.renderAddCallback(onFrame);
-    //发起呼叫
-    call.call("peer number", true, "自定义透传字符串");
+    //Initiate the call
+    call.call("peer number", true, "custom pass-through string");
 }
 ``````
 
-如果想移除回调，调用下面的接口
+If you want to remove the callback, call the following interface:
 
 ``````java
 /**
@@ -297,66 +394,75 @@ public void call() {
 ZmfVideo.renderRemoveCallback(int handle)
 ``````
 
-示例代码
+Sample code:
 
 ``````java
 public void endCall() {
     int handle = ZmfVideo.renderAddCallback(onFrame);
-    //移除回调
+    //Remove callback
     ZmfVideo.renderRemoveCallback(handle)
-    //挂断通话
-    call.term(item, JCCall.REASON_NONE, "自己挂断");
+    //Hang up the call
+    call.term(item, JCCall.REASON_NONE, "hang up by yourself");
 }
 ``````
 
-### 自定义视频采集和渲染
+### Custom video capture and rendering
 
-自定义视频采集和渲染
+Custom video capture and rendering
 
-对于不支持系统标准 API 的视频采集/渲染设备，或者想利用已经采集好的 I420 或 h264
-数据，可另起采集/渲染线程，把采集/渲染数据放入
-Juphoon 对应的接口中进行后续操作。
+For video capture/rendering devices that do not support the system’s
+standard APIs, or if you want to use the already collected I420 or h264
+data, you can start a separate capture/rendering thread and put the
+capture/rendering data into the corresponding interface of Juphoon for
+subsequent operations.
 
-参考如下步骤，在你的项目中实现自定义视频源功能：
+Refer to the following steps to implement the custom video source
+function in your project:
 
-1.通过JC SDK 提供的接口将外部设备采集/准备渲染的数据输入到 JC SDK 进行后续操作。
+1. Input the data collected/ready to be rendered by the external device
+    to the JC SDK through the interface provided by the JC SDK for
+    subsequent operations.
 
-2. 如果想停止外部设备采集/准备渲染的数据输入，则调用JC SDK 提供的接口停止数据输入即可。
+2. If you want to stop the data input collected/ready to be rendered by
+    the external device, you can call the interface provided by the JC
+    SDK to stop the data input.
 
-在登录成功后，Zmf\_VideoInitialize 初始化成功后，把采集/准备渲染的数据通过下面的接口输入；
+After successful login and Zmf\_VideoInitialize is initialized
+successfully, input the data to be collected/prepared for rendering
+through the following interface:
 
 ``````java
 /**
  * The video capture data entry to ZMF
  *
- * @param[in] captureId     unique name of the video capture               //标识外部采集的ID
- * @param[in] iCaptureFace the capture face, @see ZmfVideoFaceType         //外部视频的朝向，一般取0
- * @param[in] iImgAngle     the image rotated angle (CW)                   //输入的外部视频正立所需旋转角度，顺时针为正， 取值范围0，90，180，270
- * @param[in] iCamAngle     the camera fixed orient                        //外部镜头固定角度，同iImgAngle，取值范围0，90，180，270
+ * @param[in] captureId     unique name of the video capture               //Identify the external ID
+ * @param[in] iCaptureFace the capture face, @see ZmfVideoFaceType         //The orientation of the external video, generally 0
+ * @param[in] iImgAngle     the image rotated angle (CW)                   // The rotation angle required for the input external video to stand upright, clockwise is positive, the value range is 0, 90, 180, 270
+ * @param[in] iCamAngle     the camera fixed orient                        //External camera fixed angle, same as iImgAngle, value range 0, 90, 180, 270
  * @param[in,out] iWidthHeight the image input size, at least align 4.
- *                             return the cropped height of data           //图像宽高，0为宽，1为高
- * @param[in] data          the image data buffer                          //图像buffer
- * @param[in] encoderName  the image ecoder type buffer                    //图像编码类型，H264为h264,其他为I420
+ *                             return the cropped height of data           //Image width and height; 0 is wide; 1 is high
+ * @param[in] data          the image data buffer                          //Image buffer
+ * @param[in] encoderName  the image ecoder type buffer                    //Image encoding type, H264 is h264, others are I420
  */
 static public void onVideoCapture (String captureId, int iCaptureFace,
         int iImgAngle, int iCamAngle, int[] iWidthHeight, ByteBuffer data, String encoderName, int[] encoderCfg)
 ``````
 
-示例代码
+Sample code:
 
 ``````java
-// 初始化视频设备
+// Initialize the video device
 android.content.Context activity;
 ZmfVideo.initialize(activity);
 public void call() {
-    //输入分辨率为640*360，编码为I420无需额外旋转的图像
+    //The input resolution of the image is 640*360 with I420 code, without additional rotation
     onVideoCapture("Test",0,0,0,640,360,buf,0);
-    //发起通话
-    call.call("peer number", true, "自定义透传字符串");
+    //Initiate a call
+    call.call("peer number", true, "custom pass-through string");
 }
 ``````
 
-采集停止接口
+Collection stop interface:
 
 ``````java
 /**
@@ -367,91 +473,95 @@ public void call() {
 void Zmf_OnVideoCaptureDidStop(const char *captureId);
 ``````
 
-示例代码
+Sample code:
 
 ``````java
 public void endCall() {
-    //停止视频采集
+    //Stop video capture
     Zmf_OnVideoCaptureDidStop("Test");
-    //挂断通话
-    call.term(item, JCCall.REASON_NONE, "自己挂断");
+    //Hang up the call
+    call.term(item, JCCall.REASON_NONE, "hang up by yourself");
 }
 ``````
 
-如果想在视频渲染端使用自己的渲染方式，则调用下面的接口：
+If you want to use your own rendering method on the video rendering
+side, call the following interface:
 
-视频数据渲染接口
+Video data rendering interface:
 
 ``````java
 /**
  * The video render data entry to ZMF
  *
- * @param[in] renderId      unique name of the render source            //标识渲染的ID
- * @param[in] sourceType    the source type, @see ZmfRenderSource       //渲染源类型，一般为0
- * @param[in] iAngle        the image rotated angle (CW)                //渲染正立所需角度，一般为0 取值范围0，90，180，270
- * @param[in] iMirror       the camera fixed orient                     //渲染镜像类型，一般为0
- * @param[in] iWidth        the image width                             //渲染图像宽
- * @param[in] iHeight       the image height                            //渲染图像高
- * @param[in] data          the image data buffer                       //渲染数据buffer
+ * @param[in] renderId      unique name of the render source            //Identify the rendering ID
+ * @param[in] sourceType    the source type, @see ZmfRenderSource       //Render source type, generally 0
+ * @param[in] iAngle        the image rotated angle (CW)                //The angle required for rendering upright, generally 0, value range 0, 90, 180, 270
+ * @param[in] iMirror       the camera fixed orient                     //Render mirror type, generally 0
+ * @param[in] iWidth        the image width                             //Render image width
+ * @param[in] iHeight       the image height                            //Render image height
+ * @param[in] data          the image data buffer                       //Renderibg data buffer
  */
 static public void onRender(String renderId, int sourceType, int iAngle, int iMirror,
                                             int iWidth, int iHeight, ByteBuffer data)
 ``````
 
-示例代码
+Sample code:
 
 ``````java
-// 初始化视频设备
+// Initialize the video device
 android.content.Context activity;
 ZmfVideo.initialize(activity);
 public void call() {
-    //输入分辨率为640*360，编码为I420无需额外旋转的图像
+    //The input resolution of the image is 640*360 with I420 code, without additional rotation
     onRender("Test",0,0,0,640,360,buf,0);
-    //发起呼叫
-    call.call("peer number", true, "自定义透传字符串");
+    //Initiate the call
+    call.call("peer number", true, "custom pass-through string");
 }
 ``````
 
-渲染数据停止接口
+Render data stop interface:
 
 ``````java
-//Zmf_OnVideoRender，renderId/sourceType同上，后面传0。
+//Zmf_OnVideoRender, renderId/sourceType is the same as above, and 0 is passed later.
 ZmfVideo.onRender(String renderId, 0, 0, 0, 0, 0, 0, 0);
 ``````
 
-示例代码
+Sample code:
 
 ``````java
 public void endCall() {
-    //停止渲染
+    //Stop rendering
     ZmfVideo.onRender("Test", 0, 0, 0, 0, 0, 0, 0);
-    挂断通话
-    call.term(item, JCCall.REASON_NONE, "自己挂断");
+    //Stop rendering
+    call.term(item, JCCall.REASON_NONE, "hang up by yourself");
 }
 ``````
 
 -----
 
-## 视频渲染管理
+## Video Rendering Management
 
-### 创建本地和远端视频画面
+### Create local and remote video images
 
-- 本地视频渲染
+- Local video rendering
 
-本地视频渲染通过调用 startCameraVideo 接口获得本地视频对象用于 UI 界面显示，**该接口会打开摄像头**
+Local video rendering obtains local video objects for UI interface
+display by calling the startCameraVideo interface, which opens the
+camera:
 
 ``````java
 /**
- * 获得视频预览对象，通过此对象能获得视频用于UI显示
+ * Obtain video preview object, and you can get video for UI display through this object
  *
- * @param renderType    渲染模式
- * @return              JCMediaDeviceVideoCanvas 对象
+ * @param renderType rendering mode
+ * @return              JCMediaDeviceVideoCanvas object
  * @see RenderType
  */
 public abstract JCMediaDeviceVideoCanvas startCameraVideo(@RenderType int renderType);
 ``````
 
-其中，渲染模式（JCMediaDeviceRender)有以下三种
+Among them, the rendering mode (JCMediaDeviceRender) has the following
+three
 
 <table>
 <colgroup>
@@ -460,37 +570,38 @@ public abstract JCMediaDeviceVideoCanvas startCameraVideo(@RenderType int render
 </colgroup>
 <thead>
 <tr class="header">
-<th><p>名称</p></th>
-<th><p>描述</p></th>
+<th><p>Name</p></th>
+<th><p>Description</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td><p>public static final int RENDER_FULL_SCREEN = 0</p></td>
-<td><p>铺满窗口</p></td>
+<td><p>Window covering</p></td>
 </tr>
 <tr class="even">
 <td><p>public static final int RENDER_FULL_CONTENT = 1</p></td>
-<td><p>全图像显示，会有黑边，但在窗口跟图像比例相同的情况下不会有黑边</p></td>
+<td><p>The whole image is displayed, there will be black borders, but there will be no black borders when the window is the same as the image ratio</p></td>
 </tr>
 <tr class="odd">
 <td><p>public static final int RENDER_FULL_AUTO = 2</p></td>
-<td><p>自适应</p></td>
+<td><p>Adaptive</p></td>
 </tr>
 </tbody>
 </table>
 
-- 远端视频渲染
+- Remote video rendering
 
-您可以调用 startVideo 方法获取对端视频对象并进行渲染
+You can call the startVideo method to get the peer video object and
+render:
 
 ``````java
 /**
- * 获得视频对象，通过此对象能获得视频用于UI显示
+ * Obtain a video object, through which you can obtain video for UI display
  *
- * @param videoSource   渲染标识串，比如 JCMediaChannelParticipant JCCallItem 中的 renderId
- * @param renderType    渲染模式
- * @return              JCMediaDeviceVideoCanvas 对象
+ * @param videoSource rendering identifier string, such as renderId in JCMediaChannelParticipant JCCallItem
+ * @param renderType rendering mode
+ * @return              JCMediaDeviceVideoCanvas object
  * @see RenderType
  */
 public abstract JCMediaDeviceVideoCanvas startVideo(String videoSource, @RenderType int renderType);
@@ -498,33 +609,34 @@ public abstract JCMediaDeviceVideoCanvas startVideo(String videoSource, @RenderT
 
 -----
 
-**示例代码**
+Sample code:
 
 ``````java
-// 打开本地视频预览
+// Open local video preview
 JCMediaDeviceVideoCanvas localCanvas = mediaDevice.startCameraVideo(JCMediaDevice.RENDER_FULL_CONTENT);
 viewGroup.addView(localCanvas.getVideoView(), 0);
-// 远端视频渲染，renderId来源于通话对象，一对一为JCCallItem对象，多方为JCMediaChannelParticipant对象
+// Remote video rendering; renderId comes from the call object; one-to-one is JCCallItem object, multi-party is JCMediaChannelParticipant object
 JCMediaDeviceVideoCanvas remoteCanvas = mediaDevice.startVideo(renderId, JCMediaDevice.RENDER_FULL_CONTENT);
 viewGroup.addView(remoteCanvas.getVideoView(), 0);
 ``````
 
 -----
 
-### 销毁本地和远端视频画面
+### Destroy local and remote video images
 
-在视频通话结束或者视频通话中，如果想销毁视频画面，可以调用下面的接口
+At the end of a video call or during a video call, if you want to
+destroy the video image, you can call the following interface:
 
 ``````java
 /**
- * 停止视频
+ * Stop video
  *
- * @param canvas JCMediaDeviceVideoCanvas 对象，由 startVideo 获得
+ * @param canvas JCMediaDeviceVideoCanvas object, obtained by startVideo
  */
 public abstract void stopVideo(JCMediaDeviceVideoCanvas canvas);
 ``````
 
-示例代码:
+Sample code:
 
 ``````java
 JCMediaDeviceVideoCanvas localCanvas = mediaDevice.startCameraVideo(JCMediaDevice.RENDER_FULL_CONTENT);
@@ -543,106 +655,110 @@ if (remoteCanvas != null) {
 
 -----
 
-### 暂停渲染
+### Pause rendering
 
-如果暂停画面的渲染，可以调用下面的接口：
+If you pause the rendering of the screen, you can call the following
+interface:
 
 ``````java
 /**
- * 暂停视频渲染
+ * Pause video rendering
  */
 public void pause();
 ``````
 
-### 恢复渲染
+### Resume rendering
 
-如果想对已暂停的画面继续进行渲染，可以调用下面的接口：
+If you want to continue rendering the paused picture, you can call the
+following interface:
 
 ``````java
 /**
- * 继续视频渲染
+ * Continue video rendering
  */
 public void resume();
 ``````
 
 -----
 
-## 视频设备管理
+## Video Equipment Management
 
-视频设备管理主要用到 JCMediaDevice 类中的方法，具体如下：
+Video device management mainly uses the methods in the JCMediaDevice
+class, as follows:
 
-### 获取摄像头列表
+### Get camera list
 
 ``````java
 /**
- * 获取摄像头列表
+ * Get camera list
  *
- * @return 摄像头列表
+ * @return camera list
  */
 public abstract List<JCMediaDeviceCamera> getCameras();
 ``````
 
-示例代码
+Sample code:
 
 ``````java
-获取摄像头列表
+Get camera list
 List<JCMediaDeviceCamera> cameras = mediaDevice.getCameras();
 ``````
 
-### 获取当前默认的摄像头
+Get the current default camera
+\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>:
 
 ``````java
 /**
- * 当前默认的摄像头
+ * Current default camera
  *
- * @return 当前摄像头
+ * @return current camera
  */
 public abstract JCMediaDeviceCamera getCamera();
 ``````
 
-示例代码
+Sample code:
 
 ``````java
-获取摄像头列表
+Get camera list
 JCMediaDeviceCamera camera = mediaDevice.getCamera();
 ``````
 
-### 开启关闭摄像头
+### Turn camera on and off
 
 ``````java
 /**
- * 开启摄像头
+ * Turn on the camera
  *
- * @return 成功返回 true，失败返回 false
+ * @return return true/false
  */
 public abstract boolean startCamera();
 
 /**
- * 关闭摄像头
+ * Turn off the camera
  *
- * @return 成功返回 true，失败返回 false
+ * @return return true/false
  */
 public abstract boolean stopCamera();
 ``````
 
-### 切换摄像头
+### Switch the camera
 
 ``````java
 /**
- * 切换摄像头，内部会根据当前摄像头类型来进行切换
+ * Switch the camera,SDK will switch the camera according to the current camera type
  *
- * @return 成功返回 true，失败返回 false
+ * @return return true/false
  */
 public abstract boolean switchCamera();
 ``````
 
-**示例代码**
+Sample code:
 
 ``````java
-// 打开摄像头
+// Turn on the camera
 mediaDevice.startCamera();
-// 关闭摄像头
+// Turn off the camera
 mediaDevice.stopCamera();
-// 切换摄像头
+// Switch the camera
 mediaDevice.switchCamera();
 ``````

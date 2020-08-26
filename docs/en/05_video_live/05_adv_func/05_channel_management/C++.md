@@ -1,30 +1,32 @@
 ---
-title: 频道管理
+title: Channel Management
 ---
-# 频道管理
+# Channel Management
 
-## 频道信息查询
+## Channel Information Query
 
-调用
+call
 [query](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel.html#af7ccf465a6ddb05aa4ff22f5f61eab10)
-接口查询频道相关信息，例如频道名称、频道是否存在、成员名以及成员数。
+interface to query relevant channel information, such as such as channel
+name, existence, member name and number of members:
 
 ``````cpp
 JCManager::shared()->mediaChannel->query("channelId");
 ``````
 
-查询操作发起后，查询的结果通过
+After the query is initiated, the result of the query is reported
+through the
 [onQuery](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel_callback.html#a864db3251f12affc38f7c95c7fdccab1)
-回调上报。
+callback:
 
 ``````cpp
 void JCManager::onQuery(int operationId, bool result, JCMediaChannelReason reason, JCMediaChannelQueryInfo* queryInfo)
 {
-    //查询结果
+    //Query result
     if (result) {
-        //查询到的 channelId
+        //Queried channelId
         CString channelId = queryInfo->getChannelId();
-        //查询到的成员数
+        //Queried number of members
         int number = queryInfo->getClientCount();
     }
 }
@@ -32,38 +34,43 @@ void JCManager::onQuery(int operationId, bool result, JCMediaChannelReason reaso
 
 -----
 
-## 发送消息
+## Send messages
 
-如果想在频道中给其他成员发送消息，可以调用
+If you want to send messages to other members in the channel, you can
+call the
 [sendMessage](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel.html#aa67711141ad0883ad8f2dce0ea631b48)
-方法。
+method:
 
 ``````cpp
-//最后一个参数为接收者 id，如果为空则会发给频道所有人员
-JCManager::shared()->mediaChannel->sendMessage(type, "消息内容", NULL);
+//The last parameter is the receiver id; if it is empty, it will be sent to all members in the channel
+JCManager::shared()->mediaChannel->sendMessage(type, "message content", NULL);
 ``````
 
-其中，type（消息类型）为自定义类型。例如 text、image、file 等类型，在对收到的消息进行解析时消息类型需要保持一致。
+Among them, type (message type) is a custom type. For types like text,
+image, file, etc., the message type needs to be consistent when parsing
+the received message.
 
-当频道中的其他成员收到消息时，会收到
+When other members in the channel receive the message, they will receive
+the
 [onMessageReceive](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel_callback.html#a6f6b72922ebc576d94f55dc153b1209d)
-回调。
+callback:
 
 ``````cpp
 void JCManager::onMessageReceive(const char* type, const char* content, const char* fromUserId)
 {
     std::stringstream s;
-    s << "收到Conf消息 " << fromUserId << " type:" << type << " content:" << JCTool::Utf8ToGB2312(content);
+    s << "Conf message received " << fromUserId << " type:" << type << " content:" << JCTool::Utf8ToGB2312(content);
 }
 ``````
 
-## 频道成员管理
+## Channel Member Management
 
-### 获取频道成员
+### Access channel members
 
-调用
+Call the
 [getParticipant](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel.html#a0fd6477db77a60df91fa615b814ac796)
-方法，传入成员的 userId 获取频道成员对象。
+method and pass in the userId of the member to get the channel member
+object:
 
 ``````cpp
 JCMediaChannelParticipant* participant = JCManager::shared()->mediaChannel->getParticipant(userId);
@@ -71,11 +78,11 @@ JCMediaChannelParticipant* participant = JCManager::shared()->mediaChannel->getP
 
 -----
 
-### 获取频道所有成员对象
+### Access all member objects of the channel
 
-调用
+Call the
 [getParticipants](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel.html#a3baccb9d05486fb20ff8d206284f609e)
-方法获取频道所有成员对象。
+method to get all the member objects of the channel:
 
 ``````cpp
 std::list<JCMediaChannelParticipant*>* participants = JCManager::shared()->mediaChannel->getParticipants();
@@ -83,15 +90,15 @@ std::list<JCMediaChannelParticipant*>* participants = JCManager::shared()->media
 
 -----
 
-### 踢出成员
+### Kick out members
 
-调用
+Call the
 [kick](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel.html#aa5ee1e5334beb9ca63a8dc7110aaf6c0)
-方法将成员踢出会议。
+method to kick a member out of the conference:
 
 ``````cpp
-//获取成员对象
+//Access memeber objects
 JCMediaChannelParticipant* participant = JCManager::shared()->mediaChannel->getParticipant(userId);
-//踢除成员
+//Kick out a member
 JCManager::shared()->mediaChannel->kick(participant);
 ``````

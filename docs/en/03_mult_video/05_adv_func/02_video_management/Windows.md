@@ -1,98 +1,155 @@
 ---
-title: 视频管理
+title: Video Management
 ---
-# 视频管理
+# Video Management
 
-## 视频数据采集管理
+## Video Data Collection Management
 
-### 设置要开启的摄像头类型
+### Set the type of camera to turn on
 
-视频采集前，可以指定要开启的摄像头
+Before video capture, you can specify the camera to be turned on
 
-首先，获取摄像头列表
+Get the camera list at first
 
 ``````csharp
 /// <summary>
-/// 摄像头列表
+/// Camera list
 /// </summary>
 public List<JCMediaDeviceCamera> cameras
 ``````
 
-其中，JCMediaDeviceCamera 有以下几个变量
+Among them, JCMediaDeviceCamera has the following variables:
 
 ``````csharp
 /// <summary>
-/// 名称
+/// Name
 /// </summary>
 public string cameraName { get; internal set; }
 /// <summary>
-/// id
+/// ID
 /// </summary>
 public string cameraId
 ``````
 
-切换摄像头
+Switch the camera:
 
 ``````csharp
 /// <summary>
-/// 切换摄像头
+/// Switch the camera
 /// </summary>
-/// <param name="camera">要切换的摄像头</param>
-/// <returns>true为切换成功，false为切换失败</returns>
+/// <param name="camera">The camera to switch</param>
+/// <returns>true(switchover success), false (switchover failure)</returns>
 public bool switchCamera(JCMediaDeviceCamera camera)
 ``````
 
-**示例代码**
+Sample code:
 
 ``````csharp
-// 获取摄像头列表
+// Get camera list
 List<JCMediaDeviceCamera> cameraDevices = mediaDevice.cameraDevices;
 
-// 切换摄像头
+// Switch the camera
 mediaDevice.switchCamera(mediaDevice.cameras[0]);
 ``````
 
-### 设置摄像头采集分辨率
+### Set camera capture resolution
 
-您可以通过自定义摄像头采集参数实现不同的视频分辨率，如采集的高度、宽度和帧速率。
+You can achieve different video resolutions by customizing camera
+acquisition parameters, such as acquisition height, width, and frame
+rate.
 
-摄像头采集属性设置接口如下：
+The camera collection property setting interface is as follows:
 
 ``````csharp
 /// <summary>
-/// 设定摄像头分辨率，请在调用startCamera()接口之前调用才会生效
+/// Set the camera resolution (please call it before calling startCamera() interface)
 /// </summary>
-/// <param name="width">摄像头分辨率宽</param>
-/// <param name="height">摄像头分辨率高</param>
-/// <param name="framerate">帧速率</param>
+/// <param name="width">Wide camera resolution</param>
+/// <param name="height">High camera resolution</param>
+/// <param name="framerate">Frame rate</param>
 public void setCameraProperty(int width, int height, int framerate)
 ``````
 
-示例代码
+Sample code:
 
 ``````csharp
-// 设置摄像头采集属性
+// Set camera collection properties
 mediaDevice.setCameraProperty(640, 360, 30);
 ``````
 
-## 视频渲染管理
+### Set canvas rotation angle
 
-### 创建本地和远端视频画面
-
-- 本地视频渲染
-
-本地视频渲染通过调用 startCameraVideo 接口获得本地视频对象用于 UI 界面显示，**该接口会打开摄像头**
+If you want to set the angle of the canvas in Canvas, you need to call
+the rotate interface in the JCMediaDeviceVideoCanvas class:
 
 ``````csharp
 /// <summary>
-/// 获取预览视频对象，通过此对象能获得视图用于UI显示
+/// Rotate the picture
 /// </summary>
-/// <param name="mode">渲染方式</param>
-/// <returns>JCMediaDeviceVideoCanvas对象</returns>
+/// <param name="angle">Rotation angle</param>
+public void rotate(JCMediaDeviceVideoCanvasRoatate angle)
+``````
+
+Among them, the angle needs to be a multiple of 90. After calling this
+interface, the local video image displayed on the local end and the
+remote video image will rotate the same angle at the same time, but the
+screen displayed on the opposite end will not be affected.
+
+For example, if A is set to rotate 90 degrees, the A and B video images
+displayed on the A side will rotate 90 degrees at the same time. The
+video image on the B side will not change. As shown below:
+
+![../../../../\_images/rotateset.png](../../../../_images/rotateset.png)
+
+JCMediaDeviceVideoCanvasRoatate
+
+``````csharp
+/// <summary>
+/// 0
+/// </summary>
+Angle0 = 0,
+/// <summary>
+/// 90
+/// </summary>
+Angle90 = 90,
+/// <summary>
+/// 180
+/// </summary>
+Angle180 = 180,
+/// <summary>
+/// 270
+/// </summary>
+Angle270 = 270
+``````
+
+Sample code:
+
+``````csharp
+// Set camera collection properties
+mediaDevice.rotate(JCMediaDeviceVideoCanvasRoatate.Angle0);
+``````
+
+## Video Rendering Management
+
+### Create local and remote video images
+
+- Local video rendering
+
+Local video rendering obtains local video objects for UI interface
+display by calling the startCameraVideo interface, which opens the
+camera:
+
+``````csharp
+/// <summary>
+/// Local video rendering obtains local video objects for UI interface display by calling the startCameraVideo interface, which opens the camera
+/// </summary>
+/// <param name="mode">Rendering method</param>
+/// <returns>JCMediaDeviceVideoCanvas object</returns>
 public JCMediaDeviceVideoCanvas startCameraVideo(JCMediaDeviceRenderMode mode)
 ``````
 
-其中，渲染模式（JCMediaDeviceRenderMode)有以下三种
+Among them, the rendering mode (JCMediaDeviceRenderMode) has the
+following three types
 
 <table>
 <colgroup>
@@ -101,53 +158,54 @@ public JCMediaDeviceVideoCanvas startCameraVideo(JCMediaDeviceRenderMode mode)
 </colgroup>
 <thead>
 <tr class="header">
-<th><p>名称</p></th>
-<th><p>描述</p></th>
+<th><p>Name</p></th>
+<th><p>Description</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td><p>FULLSCREEN</p></td>
-<td><p>铺满窗口</p></td>
+<td><p>Window covering</p></td>
 </tr>
 <tr class="even">
 <td><p>FULLCONTENT</p></td>
-<td><p>全图像显示，会有黑边，但在窗口跟图像比例相同的情况下不会有黑边</p></td>
+<td><p>The whole image is displayed, there will be black borders, but there will be no black borders when the window is the same as the image ratio</p></td>
 </tr>
 <tr class="odd">
 <td><p>AUTO</p></td>
-<td><p>自适应</p></td>
+<td><p>Adaptive</p></td>
 </tr>
 </tbody>
 </table>
 
-- 远端视频渲染
+- Remote video rendering
 
-您可以调用 startVideo 方法获取对端视频对象并进行渲染
+You can call the startVideo method to get the peer video object and
+render:
 
 ``````csharp
 /// <summary>
-/// 获得视频对象，通过此对象能获得视图用于UI显示
+/// Obtain a video object, through which you can get a view for UI display
 /// </summary>
-/// <param name="videoSource">渲染标识串，比如 JCMediaChannelParticipant JCCallItem 中的 renderId，当videoSource 为 videoFileId 时，内部会调用 startVideoFile</param>
-/// <param name="mode">渲染模式</param>
-/// <returns>JCMediaDeviceVideoCanvas对象</returns>
+/// <param name="videoSource">rendering identifier string, such as renderId in JCMediaChannelParticipant JCCallItem, when videoSource is videoFileId, startVideoFile will be called internally</param>
+/// <param name="mode">Render mode</param>
+/// <returns>JCMediaDeviceVideoCanvas object</returns>
 public JCMediaDeviceVideoCanvas startVideo(string videoSource, JCMediaDeviceRenderMode mode)
 ``````
 
-**示例代码**
+Sample code:
 
 ``````csharp
-// 获取摄像头列表
+// Get camera list
 List<JCMediaDeviceCamera> cameraDevices = mediaDevice.cameras;
 
-// 打开本地视频预览
+// Open local video preview
 JCMediaDeviceVideoCanvas localCanvas = mediaDevice.startCameraVideo(JCMediaDeviceRenderMode.FULLCONTENT);
 ImageBrush image = new ImageBrush(localCanvas.videoView);
 image.Stretch = Stretch.Uniform;
 this.label.Background = image;
 
-// 远端视频渲染，renderId来源于通话对象，一对一为JCCallItem对象，多方为JCMediaChannelParticipant对象
+// Remote video rendering; renderId comes from the call object; one-to-one is JCCallItem object, multi-party is JCMediaChannelParticipant object
 JCMediaDeviceVideoCanvas remoteCanvas = mediaDevice.startVideo(renderId, JCMediaDeviceRenderMode.FULLSCREEN);
 ImageBrush image = new ImageBrush(remoteCanvas.videoView);
 image.Stretch = Stretch.Uniform;
@@ -156,19 +214,20 @@ this.label.Background = image;
 
 -----
 
-### 销毁本地和远端视频画面
+### Destroy local and remote video images
 
-在视频通话结束或者视频通话中，如果想销毁视频画面，可以调用下面的接口
+At the end of a video call or during a video call, if you want to
+destroy the video image, you can call the following interface:
 
 ``````csharp
 /// <summary>
-/// 停止视频
+/// Stop video
 /// </summary>
-/// <param name="canvas">JCMediaDeviceVideoCanvas对象，由startVideo获得</param>
+/// <param name="canvas">JCMediaDeviceVideoCanvas object, obtained by startVideo</param>
 public void stopVideo(JCMediaDeviceVideoCanvas canvas)
 ``````
 
-示例代码:
+Sample code:
 
 ``````csharp
 JCMediaDeviceVideoCanvas localCanvas = mediaDevice.startCameraVideo(JCMediaDeviceRenderMode.FULLCONTENT);
@@ -189,114 +248,120 @@ if (remoteCanvas != null)
 
 -----
 
-### 视频通话截图
+Video call screenshot
+\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>:
 
 ``````csharp
 /// <summary>
-/// 视频通话截图
+/// Video call screenshot
 /// </summary>
-/// <param name="width">截屏宽度像素，-1为视频源像素</param>
-/// <param name="height">截屏高度像素，-1为视频源像素</param>
-/// <param name="filePath">文件路径</param>
-/// <returns>是否成功</returns>
+/// <param name="width">Screen capture width pixels; -1 is the video source pixel</param>
+/// <param name="height">Screen capture height pixel; -1 is the video source pixel</param>
+/// <param name="filePath">File Path</param>
+/// <returns>success or failure</returns>
 public bool snapshot(int width, int height, string filePath)
 ``````
 
 -----
 
-### 更新视频渲染标识
+### Update video rendering logo
 
-如果想替换当前摄像头视频画面，可以调用下面的接口
+If you want to replace the current camera video image, you can call the
+following interface:
 
 ``````csharp
 /// <summary>
-/// 更新视频渲染标识
+/// Update video rendering logo
 /// </summary>
-/// <param name="videoSource">渲染标识</param>
-/// <returns>成功失败</returns>
+/// <param name="videoSource">videoSource video source</param>
+/// <returns>true/ false</returns>
 public bool replace(string videoSource)
 ``````
 
-### 暂停渲染
+### Pause rendering
 
-如果想暂停画面的渲染可以调用如下接口
+If you want to pause the rendering of the screen, you can call the
+following interface:
 
 ``````csharp
 /// <summary>
-/// 暂停渲染
+/// Pause rendering
 /// </summary>
-/// <returns>成功失败</returns>
+/// <returns>true/ false</returns>
 public bool pause()
 ``````
 
-### 恢复渲染
+### Resume rendering
 
-如果想对已暂停的画面继续进行渲染，可以调用下面的接口
+If you want to continue rendering the paused picture, you can call the
+following interface:
 
 ``````csharp
 /// <summary>
-/// 恢复渲染
+/// Resume rendering
 /// </summary>
-/// <returns>成功失败</returns>
+/// <returns>true/ false</returns>
 public bool resume()
 ``````
 
 -----
 
-## 视频设备管理
+## Video Equipment Management
 
-视频设备管理主要用到 JCMediaDevice 类中的方法，具体如下：
+Video device management mainly uses the methods in the JCMediaDevice
+class, as follows:
 
-### 获取当前使用摄像头和默认摄像头
+Get current camera and default camera
+\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>:
 
 ``````csharp
 /// <summary>
-/// 当前使用摄像头
+/// Currently used camera
 /// </summary>
 public JCMediaDeviceCamera camera
 
 /// <summary>
-/// 默认摄像头
+/// Default camera
 /// </summary>
 public JCMediaDeviceCamera defaultCamera
 ``````
 
-### 开启关闭摄像头
+### Turn camera on and off
 
 ``````csharp
 /// <summary>
-/// 开启摄像头
+///  Turn on the camera
 /// </summary>
-/// <returns>true为开启成功，false为开启失败</returns>
+/// <returns>true (open success), false (open failure)</returns>
 public bool startCamera()
 
 /// <summary>
-/// 关闭摄像头
+/// Turn off the camera
 /// </summary>
-/// <returns>true为关闭成功，false为关闭失败</returns>
+/// <returns>true is closed successfully, and false is closed failed</returns>
 public bool stopCamera()
 ``````
 
-### 切换摄像头
+### Switch the camera
 
 ``````csharp
 /// <summary>
-/// 切换摄像头
+/// Switch the camera
 /// </summary>
-/// <param name="camera">要切换的摄像头</param>
-/// <returns>true为切换成功，false为切换失败</returns>
+/// <param name="camera">The camera to switch</param>
+/// <returns>true(switchover success), false (switchover failure)</returns>
 public bool switchCamera(JCMediaDeviceCamera camera)
 ``````
 
-**示例代码**
+Sample code:
 
 ``````csharp
-// 打开摄像头
+// Turn on the camera
 mediaDevice.startCamera();
 
-// 关闭摄像头
+// Turn off the camera
 mediaDevice.stopCamera();
 
-// 切换摄像头
+// Switch the camera
 mediaDevice.switchCamera(mediaDevice.cameras[0]);
 ``````

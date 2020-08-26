@@ -1,118 +1,126 @@
 ---
-title: 实现一对一通话
+title: Realize One-to-One Video Calling
 ---
-# 实现一对一通话
+# Realize One-to-One Video Calling
 
-本章将介绍如何实现一对一视频通话，一对一通话的 API 调用时序见下图：
+This guide introduces how to achieve one-to-one video calling. API call
+sequence for one-to-one call is as shown below:
 
 ![../../../../\_images/1-1workflowios.png](../../../../_images/1-1workflowios.png)
 
-## 初始化
+## Initialize
 
-首先继承
+Extend the
 [JCMediaDeviceCallback](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_device_callback.html)
-对象和
+object and
 [JCCallCallback](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_call_callback.html)
-对象，并实现这两个对象中的纯虚函数。
+object, and implement the pure virtual functions in these two objects:
 
 ``````cpp
 class JCManager : public JCMediaDeviceCallback, public JCCallCallback
 {
 public:
-  //新增通话回调
+  //This callback triggers when the callItem is added
   virtual void onCallItemAdd(JCCallItem* item);
-  //移除通话回调
+  //This callback triggers when the callItem is removed
   virtual void onCallItemRemove(JCCallItem* item, JCCallReason reason, const char* description);
-  //通话状态更新回调
+  //This callback triggers when the callItem‘s status is updated
   virtual void onCallItemUpdate(JCCallItem* item, JCCallItemChangeParam changeParam);
-  //通话中收到消息回调
+  //This callback triggers when messages are received
   virtual void onMessageReceive(const char* type, const char* content, JCCallItem* item);
-  //上报服务器拉取的未接来电
+  //This callback triggers when get missed calls
   virtual void onMissedCallItem(JCCallItem* item);
-  //摄像头变化回调
+  //This callback triggers when the camera is switched
   virtual void onCameraUpdate();
 
 public:
-    //JCMediaDevice 对象
+    //JCMediaDevice object
     JCMediaDevice* mediaDevice;
-    //JCCall 对象
+    //JCCall object
     JCCall* call;
 };
 ``````
 
 ::: tip
 
-回调中的对象只能在该回调中使用，不能保存，上层可通过对应的方法获取通话对象。
+The object in the callback can only be used in the callback and cannot
+be saved. The upper layer can obtain the call object through the
+corresponding method.
 
 :::
 
-然后调用
+Call
 [createJCMediaDevice](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/_j_c_media_device_8h.html#a96a10766264f3c12af531b70cb9c9749)
-和
+and
 [createJCCall](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/_j_c_call_8h.html#a29320972a659ce8eaf4994576103a62c)
-以初始化一对一通话需要的模块
+to initialize the modules needed for one-to-one calling:
 
 ``````cpp
 bool JCManager::initialize()
 {
-  //1. 媒体类
+  //1. Media class
   mediaDevice = createJCMediaDevice(client, this);
-  //2. 通话类
+  //2. Call class
   call = createJCCall(client, mediaDevice, this);
   return true;
 }
 ``````
 
-其中：
+Among them:
 
-- JCMediaDevice create 方法中的 this 为
+- This in the JCMediaDevice create method is a derived class of
     [JCMediaDeviceCallback](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_device_callback.html)
-    的派生类，该类于将媒体设备相关的事件通知给上层。因此需要先创建 JCMediaDeviceCallback
-    的派生类，然后在该派生类中实现 JCMediaDeviceCallback
-    的纯虚函数。
+    , which is used to notify the upper layer of media device-related
+    events. Therefore, you need to create a derived class of
+    JCMediaDeviceCallback, and then implement the pure virtual function
+    of JCMediaDeviceCallback in the derived class.
 
-- JCCall create 方法中的 this 为
-    [JCCallCallback](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_call_callback.html)
-    的派生类，该类用于将通话相关的事件通知给上层。因此需要先创建 JCCallCallback 的派生类，然后在该派生类中实现
-    JCCallCallback 的纯虚函数。
+- This in the JCCall create method is a derived class of
+    [JCCallCallback](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_call_callback.html),
+    which is used to notify call-related events to the upper layer.
+    Therefore, you need to create a derived class of JCCallback, and
+    then implement the pure virtual function of JCCallCallback in the
+    derived class.
 
-## 拨打通话
+## Make a call
 
-调用
+To call
 [call](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_call.html#a7b2d614431cb23e82ea18b77deb50549)
-发起视频通话，需要填写的参数有：
+to initiate a video call, the parameters to be filled are:
 
-- `userID` 填写对方的用户ID。
+- `userID` Fill in the user ID of the other party.
 
-- `video` 选择是否为视频通话， true 表示拨打视频通话， false 表示拨打语音通话。
+- `video` Select whether to call a video call, and true means to make
+    a video call, while false means to make a voice call.
 
-- `extraParam` 为自定义透传字符串， 可通过 JCCallItem 对象中的 extraParam 属性获得。
+- `extraParam` is a custom pass-through string, which can be obtained
+    through the extraParam property in the JCCallItem object.
 
 ``````cpp
-// 发起视频呼叫
+// Initiate a video call
 void JCSampleDlg::OnBnClickedButtonVideocall()
 {
-  JCManager::shared()->call->call("userID", true, "自定义透传字符串");
+  JCManager::shared()->call->call("userID", true, "custom pass-through string");
 }
 ``````
 
-拨打通话后，主叫和被叫均会收到新增通话的回调
+After making a call, both the caller and the called party will receive
+the callback
 [onCallItemAdd](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_call_callback.html#a2188f777767ca071c145d4a50687ce63)
-，此时通话状态变为 JCCallStatePending 。你可以在上层实现
+for the new call, and the call state will change to JCCallStatePending.
+You can implement the
 [onCallItemAdd](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_call_callback.html#a2188f777767ca071c145d4a50687ce63)
-方法并处理相关的逻辑。
-
-示例代码:
+method in the upper layer and process related logic:
 
 ``````cpp
-// 收到新增通话回调
+// Receive a new call callback
 void JCManager::onCallItemAdd(JCCallItem* item) {
-    // 业务逻辑
+    // Business logic
     if (item->direction == JCCallDirectionIn) {
-        // 如果是呼入
+        // If it is an incoming call
         ...
     } else {
-        // 如果是呼出
+        // If it is an outgoing call
         ...
     }
 }
@@ -120,140 +128,154 @@ void JCManager::onCallItemAdd(JCCallItem* item) {
 
 ::: tip
 
-回调中的对象只能在该回调中使用，不能保存，上层可通过对应的方法获取通话对象。
-如果主叫想取消通话，可以直接转到挂断通话部分。调用挂断接口后，通话状态变为
-JCCallStateCancel。
+The object in the callback can only be used in the callback and cannot
+be saved. The upper layer can obtain the call object through the
+corresponding method. If the caller wants to cancel the call, he/she can
+go directly to the hang up part. After calling the hang up interface,
+the call status becomes the JCCallStateCancel.
 
 :::
 
-## 创建本地视频画面
+## Create local and remote video images
 
-发起通话后，调用
-[JCCallItem](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_call_item.html)
-类中的
+After initiating a call, call the
 [startSelfVideo](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_call_item.html#a16fadea791640b31f32c6075f9233578)
-方法创建本地视频画面，该方法会返回一个
+in the
+[JCCallItem](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_call_item.html)
+class to create a local video image. This method returns a
 [JCMediaDeviceVideoCanvas](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_device_video_canvas.html)
-对象。该对象用于将视频渲染到画布上，并管理渲染的方式。（调用此方法会打开摄像头）：
+object. This object is used to render the video to the canvas and manage
+the rendering method. (Calling this method will open the camera):
 
 ``````cpp
 void JCManager::onCallItemAdd(JCCallItem* item) {
     JCMediaDeviceVideoCanvas* mCallLocalCanvas;
     if (mCallLocalCanvas == NULL && item->getUploadVideoStreamSelf())
                 {
-        // 创建本地视频画面
+        // Create local and remote video images
         mCallLocalCanvas = item->startSelfVideo((void*)mWndCallLocalVideo.m_hWnd, (JCMediaDeviceRenderMode)JCMediaDeviceRenderModeFullContent);
     }
 }
 ``````
 
-## 应答通话
+## Answer the call
 
-1. 主叫发起呼叫成功后，被叫会收到
+1. After the caller initiates the call successfully, the called party
+    will receive the
     [onCallItemAdd](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_call_callback.html#a2188f777767ca071c145d4a50687ce63)
-    回调，此时可以通过回调中的
+    callback. At this time, the getVideo() method and getDirection()
+    method in the
     [JCCallItem](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_call_item.html)
-    对象中的 getVideo() 方法以及 getDirection() 方法判断是视频呼入还是语音呼入，从而做出相应的处理：
+    object in the callback can be used to determine whether it is a
+    video call or a voice call. Deal with it accordingly:
 
     ``````cpp
     void JCManager::onCallItemAdd(JCCallItem* item) {
-        // 1. 如果是视频呼入且在振铃中
+        // 1. If it is a video call and is ringing
         if (item->getDirection() == JCCallDirectionIn && item->getState() == JCCallStatePending) {
-            // 2. 做出相应的处理，如在界面上显示“振铃中”
+            // 2. Make corresponding processing, such as "ringing" on the interface
              ...
         }
     }
     ``````
 
-2. 调用
+2. Call
     [answer](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_call.html#a8e44cef3051dba33a600042c7a5bf987)
-    接听通话，**视频通话既可语音应答也可视频应答**：
+    to answer the call, **the video call can be answered by voice or
+    video**:
 
     ``````cpp
-    // 获取活跃通话
+    // Get active calls
     JCCallItem* item = JCManager::shared()->call->getActiveCallItem();
-    // 应答通话
+    // Answer the call
     JCManager::shared()->call->answer(item, item->getVideo());
     ``````
 
-通话应答后，通话状态变为 JCCallStateConnecting。
+After the call is answered, the call status changes to
+JCCallStateConnecting.
 
 ::: tip
 
-如果被叫要在此时拒绝通话，可以直接转到挂断通话部分。调用挂断接口后，通话状态变为 JCCallStateCanceled。
+If you want to reject the call at this time, you can go directly to the
+hang up part. After calling the hang up interface, the call state
+becomes JCCallStateCanceled.
 
 :::
 
-## 创建远端视频画面
+## Create remote video images
 
-被叫接听通话后，双方将建立连接，此时，主叫和被叫都将会收到通话更新的回调（onCallItemUpdate），通话状态变为
-JCCallStateTalking。
+After the called party answers the call, the two parties will establish
+a connection. At this time, both the caller and the called party will
+receive the updated callback of the call (onCallItemUpdate), and the
+call state will change to the JCCallStateTalking.
 
-调用
-[JCCallItem](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_call_item.html)
-类中的
+Call the
 [startOtherVideo](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_call_item.html#ac3ccc64bbb7ebebaa3ca3219b21d4ce9)
-方法创建远端视频画面，该方法会返回一个
+in the
+[JCCallItem](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_call_item.html)
+class to create a remote video streaming. This method returns a
 [JCMediaDeviceVideoCanvas](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_device_video_canvas.html)
-对象，该对象用于将视频渲染到画布上，并管理渲染的方式。
+object, which is used to render the video to the canvas and manage the
+rendering method:
 
 ``````cpp
 void JCManager::onCallItemUpdate(JCCallItem* item, JCCallItemChangeParam changeParam) {
     JCMediaDeviceVideoCanvas *mCallRemoteCanvas;
-    // 如果对端在上传视频流（uploadVideoStreamOther）
+    // If the peer is uploading a video streaming (uploadVideoStreamOther)
     if (mCallRemoteCanvas == NULL && item->getUploadVideoStreamOther())
     {
-      // 创建远端视频画面
+      // Remote video rendering
       mCallRemoteCanvas = item->startOtherVideo(mWndCallRemoteVideo.m_hWnd, (JCMediaDeviceRenderMode)JCMediaDeviceRenderModeFullContent);
     }
 }
 ``````
 
-## 挂断通话
+## Hang up the call
 
-主叫或者被叫均可以挂断通话。
+Both the calling party and the called party can hang up the call.
 
-1. 首先调用
+1. First call
     [getActiveCallItem](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_call.html#a4b5e8afc43bd12f877e37a97fec2ff7a)
-    获取当前活跃的通话对象；
+    to get the currently active call object;
 
-2. 当前活跃通话对象获取后，调用
+2. After obtaining the current active call object, call
     [term](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_call.html#a168fd884512bfd5451ffa5fac83c598b)
-    挂断当前活跃通话：
+    to hang up the current active call:
 
     ``````cpp
     void JCSampleDlg::OnBnClickedButtonTermcall()
     {
-      // 1. 获取当前活跃通话
+      // 1. Get the current active call
       JCCallItem* item = JCManager::shared()->call->getActiveCallItem();
       if (item != NULL)
       {
-        // 2. 挂断当前活跃通话
+        // 2. Hang up the current active call
         JCManager::shared()->call->term(item, JCCallReasonNone, "term");
       }
     }
     ``````
 
-## 销毁本地和远端视频画面
+## Destroy local and remote video images
 
-通话挂断后，会触发
+After the call is hung up, the onCallItemRemove callback in
 [JCCallCallback](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_call_callback.html)
-中的 onCallItemRemove（通话移除回调），通话状态变为 JCCallStateOk，此时您需要调用
+will be triggered, and the call state will change to JCCallStateOk. At
+this time, you need to call the
 [stopSelfVideo](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_call_item.html#a8d6f702c5e477f60df2e671e9392ce76)
-和
+and
 [stopOtherVideo](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_call_item.html#a1c58b54ed0f4aac1bef8383ede0f7651)
-方法销毁本地和远端视频画面：:
+methods to destroy the local and remote video images:
 
 ``````cpp
-void JCManager::onCallItemRemove(JCCallItem* item, JCCallReason reason, const char* description) { //移除通话回调
-  // 本端视频销毁
+void JCManager::onCallItemRemove(JCCallItem* item, JCCallReason reason, const char* description) { //This callback triggers when the call is removed callback
+  // Local video destruction
   if (mCallLocalCanvas != NULL && !item->getUploadVideoStreamSelf())
   {
     item->stopSelfVideo();
     mCallLocalCanvas = NULL;
     mWndCallLocalVideo.Invalidate();
   }
-  // 远端视频销毁
+  // Remote video destruction
   if (mCallRemoteCanvas != NULL && !item->getUploadVideoStreamOther())
   {
     item->stopOtherVideo();
@@ -263,4 +285,4 @@ void JCManager::onCallItemRemove(JCCallItem* item, JCCallReason reason, const ch
 }
 ``````
 
-至此，你就完成了基础的一对一视频通话功能。
+Now, you have completed the basic function of one-to-one video calling.

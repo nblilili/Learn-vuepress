@@ -1,32 +1,43 @@
 ---
-title: 音频管理
+title: Audio Management
 ---
-# 音频管理
+# Audio Management
 
-## 音频数据管理
+## Audio data management
 
-### 原始音频数据
+### Raw audio data
 
-在音频传输过程中，可以对采集的音频数据进行处理，以获取不同的播放效果。有两个时机可以进行处理。
+During the audio transmission process, the collected audio data can be
+processed to obtain different playback effects. There are two
+circumstances for processing.
 
-1. 在音频采集之后，编码之前进行处理；
+1. Process after audio collection and before encoding;
 
-2. 在传输完成，解码后播放前进行处理。
+2. When the transmission is completed, process after decoding and
+    before playback.
 
-具体如下：
+Details are as follows:
 
-- 音频采集之后，编码之前的处理
+- Processing after audio collection and before encoding
 
-参考如下步骤，在你的项目中实现原始音频数据功能：
+Refer to the following steps to implement the original audio data
+function in your project:
 
-1. 发起业务前通过 Zmf\_AudioInputAddCallback 注册音频采集回调，并在该函数中实现一个
-    ZmfAudioInputCallback 类型的回调函数
+1. Register the audio collection callback through
+    ZmfAudio.inputAddCallback before initiating the business, and
+    implement a callback function of type ZmfAudio.InputCallback in this
+    function
 
-2. 成功注册后，JC SDK 会在捕捉到音频数据时通过回调函数回调采集到的原始音频数据相对应参数
+2. After successful registration, the JC SDK will call back the
+    corresponding parameters of the original audio data collected
+    through the callback function when the audio data is captured
 
-3. 用户拿到音频数据后，根据场景需要自行在回调函数中进行参数处理，处理后数据通过该回调函数返回给JC SDK。
+3. After the user obtains the audio data, he/she performs parameter
+    processing in the callback function according to the needs of the
+    scenrio, and the processed data is returned to the JC SDK through
+    the callback function.
 
-首先注册音频输入回调。
+Register the audio input callback at first:
 
 ``````objectivec
 /**
@@ -40,10 +51,10 @@ title: 音频管理
 int Zmf_AudioInputAddCallback(void *pUser, ZmfAudioInputCallback pfnCb);
 ``````
 
-回调类型说明:
+Callback type description:
 
 ``````objectivec
-/** the callback to receive audio input data
+/** The callback to receive audio input data
  *
  * @param[in] pUser  the user data registered by Zmf_AddAudioInputCallback
  * @param[in] inputId       unique name of the audio input
@@ -61,28 +72,29 @@ typedef void (*ZmfAudioInputCallback)(void* pUser, const char* inputId, int iSam
                                    int playDelayMS, int recDelayMS, int clockDrift);
 ``````
 
-回调注册后，当有音频数据采集进来时，可以对音频数据进行处理。
+After the callback registration, when audio data is collected, the audio
+data can be processed.
 
-示例代码
+Sample code:
 
 ``````objectivec
-id data; //采集的音频数据对象
+id data; //Collected audio data object
 void* p = (__bridge void *)data;
 static void zmfAudioInputCallback(void* pUser, const char* inputId, int iSampleRateHz, int iChannels,
                                    unsigned char *buf, int len, int *micLevel,
                                    int playDelayMS, int recDelayMS, int clockDrift) {
 
-    NSLog(@"音频数据处理");
+    NSLog(@"Audio data processing");
 }
 - (void)call {
-    //注册回调
+    //Register callback
     Zmf_AudioInputAddCallback(p, zmfAudioInputCallback);
-    //发起呼叫
-    [call call:@"对端号码" video:true extraParam:@"自定义透传字符串"];
+    //Initiate the call
+    [call call:@"Peer number" video:true extraParam:@"custom pass-through string"];
 }
 ``````
 
-如果想移除回调，调用下面的接口。
+If you want to remove the callback, call the following interface:
 
 ``````objectivec
 /**
@@ -95,31 +107,39 @@ static void zmfAudioInputCallback(void* pUser, const char* inputId, int iSampleR
 int Zmf_AudioInputRemoveCallback(void *pUser);
 ``````
 
-示例代码
+Sample code:
 
 ``````objectivec
-id data; //采集的音频数据对象
+id data; //Collected audio data object
 void* p = (__bridge void *)data;
 -(void)endCall {
-    //移除回调
+    //Remove callback
     Zmf_AudioInputRemoveCallback(p);
-    //挂断通话
-    [call term:item reason:JCCallReasonNone description:@"自己挂断"];
+    //Hang up the call
+    [call term:item reason:JCCallReasonNone description:@"hang up by yourself"];
 }
 ``````
 
-- 解码后播放前的处理
+- Process after decoding and before playback
 
-参考如下步骤，在你的项目中实现原始音频数据处理功能：
+Refer to the following steps to implement the original audio data
+processing function in your project:
 
-1. 发起业务前通过 Zmf\_AudioOutputAddCallback 注册音频输出回调，并在该函数中实现一个
-    ZmfAudioOutputCallback 类型的回调函数。
+1. Register the audio output callback through
+    Zmf\_AudioOutputAddCallback before initiating the business, and
+    implement a callback function of type ZmfAudioOutputCallback in this
+    function.
 
-2. 成功注册后，JC SDK 会在捕捉到音频数据时通过回调函数回调采集到的原始音频数据。
+2. After successful registration, the JC SDK will callback the
+    collected original audio data through the callback function when the
+    audio data is captured.
 
-3. 用户拿到音频数据后，根据场景需要自行在回调函数中进行音频数据的处理，处理后的数据通过该回调函数返回给 JC SDK。
+3. After the user gets the audio data, he/she will process the audio
+    data in the callback function according to the needs of the
+    scenario. The processed data is returned to the JC SDK through the
+    callback function.
 
-首先注册音频输出回调。
+First register the audio output callback:
 
 ``````objectivec
 /**
@@ -132,7 +152,7 @@ void* p = (__bridge void *)data;
 int  Zmf_AudioOutputAddCallback     (void *pUser, ZmfAudioOutputCallback pfnCb);
 ``````
 
-回调类型说明:
+Callback type description:
 
 ``````objectivec
 /** the callback to get audio output buffer, when Zmf_OnAudioOutput() invoked.
@@ -152,27 +172,28 @@ typedef int  (*ZmfAudioOutputCallback)(void* pUser, const char* outputId, int iS
                                      unsigned char *buf, int len);
 ``````
 
-回调注册后，当有解码后的音频数据进来时，可以进行对应的音频数据处理。
+After the callback registration, when the decoded audio data comes in,
+the corresponding audio data processing can be performed.
 
-示例代码
+Sample code:
 
 ``````objectivec
 static void zmfAudioOutputCallback(void* pUser, const char* outputId, int iSampleRateHz, int iChannels,
                                      unsigned char *buf, int len) {
 
-    NSLog(@"音频数据处理");
+    NSLog(@"Audio data processing");
 }
-id data; //解码后的音频数据
+id data; //Decoded audio data
 void* p = (__bridge void *)data;
 - (void)call {
-    //注册回调
+    //Register callback
     Zmf_AudioOutputAddCallback(p, zmfAudioOutputCallback);
-    //发起业务
-    [call call:@"对端号码" video:true extraParam:@"自定义透传字符串"];
+    //Initiate business
+    [call call:@"Peer number" video:true extraParam:@"custom pass-through string"];
 }
 ``````
 
-如果想移除回调，调用下面的接口。
+If you want to remove the callback, call the following interface:
 
 ``````objectivec
 /**
@@ -185,38 +206,50 @@ void* p = (__bridge void *)data;
 int  Zmf_AudioOutputRemoveCallback  (void *pUser);
 ``````
 
-取消注册回调
+Initiate business:
 
 ``````objectivec
-id data; //解码后的音频数据
+id data; //Decoded audio data
 void* p = (__bridge void *)data;
 - (void)endCall {
-    //取消注册回调
+    //Initiate business
     Zmf_AudioOutputRemoveCallback(p);
-    //挂断通话
-    [call term:item reason:JCCallReasonNone description:@"自己挂断"];
+    //Hang up the call
+    [call term:item reason:JCCallReasonNone description:@"hang up by yourself"];
 }
 ``````
 
 -----
 
-### 自定义音频采集和渲染
+### Custom audio capture and rendering
 
-在实时音频传输过程中，JC SDK 会启动默认的音频模块进行音频采集。但是对于不支持系统标准 API
-的音频设备，或者想利用自己已经拥有的音频模块进行音频的采集和传输前处理时，可另起采集/播放线程，把自己采集/需要播放的音频数据放入
-Juphoon 对应的接口中进行后续操作。
+During real-time audio transmission, the JC SDK will start the default
+audio module for audio collection. However, for audio devices that do
+not support the system’s standard API, or if you want to use the audio
+module you already have for audio collection and pre-transmission
+processing, you can start a separate acquisition/play thread to put the
+audio data you collect/need to play into Juphoon Perform subsequent
+operations on the corresponding interface.
 
-参考如下步骤，在你的项目中实现自定义音频源功能：
+Refer to the following steps to implement the custom audio source
+function in your project:
 
-1. 通过 JC SDK 提供的接口将外部设备采集/自定义的播放数据输入到 JC SDK 进行后续操作。
+1. Input the playback data collected/customized by the external device
+    to the JC SDK through the interface provided by the JC SDK for
+    subsequent operations.
 
-2. 如果想停止外部设备采集/自定义的播放数据的输入，则调用 JC SDK 提供的接口停止数据输入即可。
+2. If you want to stop the input of the playback data
+    collected/customized by the external device, you can call the
+    interface provided by the JC SDK to stop the data input.
 
-自定义音频采集接口如下（在收到登录成功的回调后调用）：
+The custom audio collection interface is as follows (called after
+receiving a login success callback):
 
-若需要使用自己的音视频设备并且 Zmf\_AudioInitialize 初始化成功，在下面的回调函数中操作音频设备；
+If you need to use your own audio and video equipment and
+Zmf\_AudioInitialize is initialized successfully, operate the audio
+equipment in the following callback function;
 
-音频设备初始化接口。
+Audio device initialization interface:
 
 ``````objectivec
 /**
@@ -231,7 +264,7 @@ Juphoon 对应的接口中进行后续操作。
 int Zmf_AudioInitialize(void *applicationContext);
 ``````
 
-采集数据输入接口。
+The interface of collecting input data:
 
 ``````objectivec
 /**
@@ -239,190 +272,197 @@ int Zmf_AudioInitialize(void *applicationContext);
  * Multiple data will mix in the callback of the jssmme Engine,
  * and the first input will be main channel.
  *
- * @param[in] inputId       unique name of the audio input       //输入设备id
- * @param[in] sampleRateHz  the sample rating of the pcm data    //外部采样率 取值范围：8000，16000，32000，44100，48000取决于外部
- * @param[in] iChannels     the channel number of the pcm data   //通道数量 取值范围：1或2
- * @param[in] buf           the pcm data                         //外部采集数据源
- * @param[in] len           the pcm data length                  //对应数据长度
- * @param[in,out] micLevel                                       //音量，取值范围：0-100，会根据实际输入音频返回音量值
- * @param[in] playDelayMS                                        //播放时延 通常取0
- * @param[in] recDelayMS                                         //采集时延 通常取0
- * @param[in] clockDrift                                         //时钟漂移 通常取0
+ * @param[in] inputId       unique name of the audio input       //Input device id
+ * @param[in] sampleRateHz  the sample rating of the pcm data    //Value range: 8000, 16000, 32000, 44100, 48000 depends on the samplimg rate of the external playback device
+ * @param[in] iChannels     the channel number of the pcm data   //Value range: 1 or 2
+ * @param[in] buf           the pcm data                         //External collection data source
+ * @param[in] len           the pcm data length //Corresponding with data length
+ * @param[in,out] micLevel                                       //Volume, value range: 0-100, will return the volume value according to the actual input audio
+ * @param[in] playDelayMS                                        // Usually 0
+ * @param[in] recDelayMS                                         // Usually 0
+ * @param[in] clockDrift                                         // Usually 0
  *
  */
  void Zmf_OnAudioInput (const char *inputId, int sampleRateHz, int iChannels, unsigned char *buf, int len, int *micLevel, int playDelayMS, int recDelayMS, int clockDrift);
 ``````
 
-示例代码
+Sample code:
 
 ``````objectivec
-//初始化音频设备
+//Initialize audio devices
 Zmf_AudioInitialize(NULL);
 -(void)voiceCall {
-    // 输入长度为length，采样频率16000，通道数为1的pcm数据片段
+    // Input the pcm data fragment length, 16000 sampling frequency, and 1 channel
+ onInput("Test",16000,1,pcmdata,length,0,0,0,0);
     Zmf_OnAudioInput("Test",16000,1,pcmdata,length,0,0,0,0);
-    //发起呼叫
-    [call call:@"对端号码" video:true extraParam:@"自定义透传字符串"];
+    //Initiate the call
+    [call call:@"Peer number" video:true extraParam:@"custom pass-through string"];
 }
 ``````
 
 ::: tip
 
-此接口为将自己采集的音频数据输入到 JC SDK。
+This interface is to input the audio data collected by yourself to the
+JC SDK.
 
 :::
 
-采集停止接口。
+Collection stop interface:
 
 ``````objectivec
 /**
- * tell ZMF the audio input has stopped
+ * Tell ZMF the audio input has stopped
  *
- * @param[in] inputId       unique name of the device  //输入设备id
+ * @param[in] inputId       unique name of the device  //Input device id
  */
 void Zmf_OnAudioInputDidStop(const char *inputId);
 ``````
 
-示例代码
+Sample code:
 
 ``````objectivec
 -(void)endCall {
-    //停止采集
+    //Stop collection
     Zmf_OnAudioInputDidStop("Test");
-    //挂断通话
-    [call term:item reason:JCCallReasonNone description:@"自己挂断"];
+    //Hang up the call
+    [call term:item reason:JCCallReasonNone description:@"hang up by yourself"];
 }
 ``````
 
-如果想在音频输出端使用自定义的播放数据，则调用下面的接口：
+If you want to use custom playback data at the audio output, call the
+following interface:
 
-播放数据输入接口。
+Play data input interface:
 
 ``````objectivec
 /**
  * The outlet which audio output can get data from.
  *
- * @param[in] outputId      unique name of the audio output       //输出设备id
- * @param[in] sampleRateHz  the sample rating of the pcm data     //采样率  取值范围：8000，16000，32000，44100，48000取决于外部
- * @param[in] iChannels     the channel number of the pcm data    //通道数量 取值范围：1或2
- * @param[in] buf           the pcm data to be filled             //外部采集数据源
- * @param[in] len           the pcm data length                   //对应数据buf长度
+ * @param[in] outputId      unique name of the audio output       ////Output device id
+ * @param[in] sampleRateHz  the sample rating of the pcm data     //Value range: 8000,
+ * @param[in] iChannels     the channel number of the pcm data    //Value range: 1 or 2
+ * @param[in] buf           the pcm data to be filled             //External collection data source
+ * @param[in] len           the pcm data length                   //Corresponding with data length
  */
  void Zmf_OnAudioOutput (const char *outputId, int sampleRateHz, int iChannels, unsigned char *buf, int len);
 ``````
 
-示例代码
+Sample code:
 
 ``````objectivec
-//初始化音频设备
+//Initialize audio devices
 Zmf_AudioInitialize(NULL);
 -(void)call {
-    // 输入长度为length，采样频率16000，通道数为1的pcm数据片段
+    // Input the pcm data fragment length, 16000 sampling frequency, and 1 channel
+ onInput("Test",16000,1,pcmdata,length,0,0,0,0);
     Zmf_OnAudioOutput("Test",16000,1,buf,length);
-    //发起呼叫
-    [call call:@"对端号码" video:true extraParam:@"自定义透传字符串"];
+    //Initiate the call
+    [call call:@"Peer number" video:true extraParam:@"custom pass-through string"];
 }
 ``````
 
 ::: tip
 
-此接口为将自定义音频输出数据输入到 JC SDK。
+This interface is to input custom audio output data to JC SDK.
 
 :::
 
-播放数据停止接口。
+Play data stop interface:
 
 ``````objectivec
 /**
  * tell ZMF the audio output has stopped
  *
- * @param[in] outputId      unique name of the device    //输出设备id
+ * @param[in] outputId      unique name of the device    ////Output device id
  */
 void Zmf_OnAudioOutputDidStop(const char *outputId);
 ``````
 
-示例代码
+Sample code:
 
 ``````objectivec
 -(void)endCall {
-    //停止播放数据
+    //Stop collection
     Zmf_OnAudioOutputDidStop("Test");
-    //挂断通话
-    [call term:item reason:JCCallReasonNone description:@"自己挂断"];
+    //Hang up the call
+    [call term:item reason:JCCallReasonNone description:@"hang up by yourself"];
 }
 ``````
 
 ::: tip
 
-在自定义音频采集场景中，开发者需要自行管理音频数据的采集。在自定义音频渲染场景中，开发者需要自行管理音频数据的播放。
+In custom audio collection scenarios, developers need to manage the
+collection of audio data by themselves. In a custom audio rendering
+scene, developers need to manage the playback of audio data themselves.
 
 :::
 
 -----
 
-## 音频设备管理
+## Audio device management
 
-音频设备管理主要用到 JCMediaDevice 类中的方法，具体如下：
+Audio device management mainly uses the methods in the JCMediaDevice
+class, as follows:
 
-### 开启/关闭扬声器
+### Turn on/off the speaker
 
-UI 通过下面的方法开启和关闭扬声器。
+The UI turns the speaker on and off in the following ways:
 
 ``````objectivec
 /**
- *  @brief 开启关闭扬声器
- *  @param enable 是否开启
+ *  @brief Turn on/off the speaker
+ *  @param enable Turn on/off
  */
 -(void)enableSpeaker:(bool)enable;
 ``````
 
-### 开启/关闭音频设备
+### Turn on/off audio device
 
 ``````objectivec
 /**
- *  @brief 启动音频，一般正式开启通话前需要调用此接口
- *  @return 成功返回 true，失败返回 false
+ *  @brief Start audio (generally need to call this interface before officially starting a call)
+ *  @return return true/ false
  */
 -(bool)startAudio;
 
 /**
- *  @brief 停止音频，一般在通话结束时调用
- *  @return 成功返回 true，失败返回 false
+ *  @brief Stop audio (usually called at the end of the call)
+ *  @return return true/ false
  */
 -(bool)stopAudio;
 ``````
 
-### 获得当前音频模式
+### Get current audio mode
 
-目前只支持听筒和扬声器。
+Only support earpieces and speakers currently:
 
 ``````objectivec
 /**
- *  @brief 获得当前音频模式，目前只支持听筒和扬声器，iOS 使用
- *  @return 音频模式
+ *  @brief get the current audio mode (currently only supports the earpiece and speaker, iOS
+ *  @return audio mode
  */
 -(NSString* __nullable)getAudioOutputType;
 ``````
 
-### 是否开启了扬声器
+### Turn on/off the speaker
 
 ``````objectivec
 /**
- *  @brief 是否开启了扬声器，iOS 使用
- *  @return ture表示开启，false表示未开启
+ *  @brief whether the speaker is turned on (for iOS)
+ *  @return ture/false
  */
 -(bool)isSpeakerOn;
 ``````
 
-**示例代码**
+Sample code:
 
 ``````objectivec
-// 开启关闭扬声器
+// Turn on/off the speaker
 [mediaDevice enableSpeaker:true];
 
-// 关闭音频设备
+// Turn off the audio device
 [mediaDevice stopAudio];
 
-// 开启音频设备
+// Turn on the audio device
 [mediaDevice startAudio]
 ``````

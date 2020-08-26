@@ -1,14 +1,14 @@
 ---
-title: Demo 体验
+title: Demo Project
 ---
-# Demo 体验
+# Demo Project
 
-菊风云互动直播应用——Juphoon Live
+Juphoon live interactive streaming app——Juphoon Live
 
 [![../../\_images/live\_iOS.png](../../_images/live_iOS.png)](../../_images/live_iOS.png)
 
-直播互动 iOS
+Live interactive streaming iOS
 
 [![../../\_images/live\_Android.png](../../_images/live_Android.png)](../../_images/live_Android.png)
 
-直播互动 Android
+Live interactive streaming Android
