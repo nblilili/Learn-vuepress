@@ -23,12 +23,13 @@ title: 一分钟集成 SDK
 
 - 输入项目信息，如项目名称、开发团队信息、组织名称和语言，并点击 **Next**。
 
-::: tip
+    ::: tip
 
-如果您没有添加过开发团队信息，点击 **Xcode \Preferences… \Accounts**，点击左下角加号并按照屏幕提示登入
-Apple ID，完成后即可选择您的账户作为开发团队。
+    如果您没有添加过开发团队信息，点击 **Xcode \Preferences… \>
+    Accounts**，点击左下角加号并按照屏幕提示登入 Apple
+    ID，完成后即可选择您的账户作为开发团队。
 
-:::
+    :::
 
 - 选择项目存储路径，并点击 **Create**。
 
@@ -85,30 +86,32 @@ end
 
 2. 将 `sdk` 文件夹拷贝到您工程所在的目录下。
 
-3. - 导入 SDK  
-    打开 Xcode，进入 TARGETS \Project Name \Build Phases \Link
-    Binary with Libraries 菜单，点击 ‘+’ 符号，导入 sdk 文件夹下的
-    `JCSDKOC.framework`、lib 文件夹下的 `libmtc.a` 和 `libzmf.a` 文件。
+3. 导入 SDK
 
-4. - 导入 SDK 依赖的库  
+    打开 Xcode，进入 TARGETS \Project Name \Build Phases \Link Binary
+    with Libraries 菜单，点击 ‘+’ 符号，导入 sdk 文件夹下的 `JCSDKOC.framework`、lib
+    文件夹下的 `libmtc.a` 和 `libzmf.a` 文件。
+
+4. 导入 SDK 依赖的库
+
     继续点击 ‘+’ 符号，导入如下系统依赖的库： - AssetsLibrary.framework -
     AudioToolbox.framework - VideoToolBox.framework -
-    AVFoundation.framework - CFNetwork.framework -
-    CoreMedia.framework - CoreMotion.framework - CoreVideo.framework
-    - GLKit.framework - PushKit.framework（推送使用） -
-    ReplayKit.framework - Security.framework -
-    SystemConfiguration.framework - libc++.tbd - libz.tbd -
+    AVFoundation.framework - CFNetwork.framework - CoreMedia.framework
+    - CoreMotion.framework - CoreVideo.framework - GLKit.framework -
+    PushKit.framework（推送使用） - ReplayKit.framework - Security.framework
+    - SystemConfiguration.framework - libc++.tbd - libz.tbd -
     libresolv.tbd
 
-5. - 设置路径  
+5. 设置路径
+
     点击 ‘Build Settings’，找到 Search Paths，设置 Framework Search Paths
     、Header Search Paths（头文件路径） 和 Library Search Paths（库文件路径）：
 
-        - Framework Search Paths：$(PROJECT\_DIR)/../sdk
+      - Framework Search Paths：$(PROJECT\_DIR)/../sdk
 
-        - Header Search Paths：$(PROJECT\_DIR)/../sdk/include
+      - Header Search Paths：$(PROJECT\_DIR)/../sdk/include
 
-        - Library Search Paths：$(PROJECT\_DIR)/../sdk/lib/ios
+      - Library Search Paths：$(PROJECT\_DIR)/../sdk/lib/ios
 
     ::: tip
 

@@ -23,12 +23,13 @@ title: 准备开发环境
 
 - 输入项目信息，如项目名称、开发团队信息、组织名称和语言，并点击 **Next**。
 
-::: tip
+    ::: tip
 
-如果您没有添加过开发团队信息，点击 **Xcode \Preferences… \Accounts**，点击左下角加号并按照屏幕提示登入
-Apple ID，完成后即可选择您的账户作为开发团队。
+    如果您没有添加过开发团队信息，点击 **Xcode \Preferences… \>
+    Accounts**，点击左下角加号并按照屏幕提示登入 Apple
+    ID，完成后即可选择您的账户作为开发团队。
 
-:::
+    :::
 
 - 选择项目存储路径，并点击 **Create**。
 
@@ -85,36 +86,40 @@ end
 
 2. 将 `sdk` 文件夹拷贝到您工程所在的目录下。
 
-3. - 导入 SDK  
-        打开 Xcode，进入 TARGETS \Project Name \Build Phases \Link
-        Binary with Libraries 菜单，点击 ‘+’ 符号，导入 sdk 文件夹下的
-        `JCSDKOC.framework`、lib 文件夹下的 `libmtc.a` 和 `libzmf.a` 文件。
+3. 导入 SDK
 
-4. - 导入 SDK 依赖的库  
-        继续点击 ‘+’ 符号，导入如下系统依赖的库： - AssetsLibrary.framework -
-        AudioToolbox.framework - VideoToolBox.framework -
-        AVFoundation.framework - CFNetwork.framework -
-        CoreMedia.framework - CoreMotion.framework - CoreVideo.framework
-        - GLKit.framework - PushKit.framework（推送使用） -
-        ReplayKit.framework - Security.framework -
-        SystemConfiguration.framework - libc++.tbd - libz.tbd -
-        libresolv.tbd
+    打开 Xcode，进入 TARGETS \Project Name \Build Phases \Link Binary
+    with Libraries 菜单，点击 ‘+’ 符号，导入 sdk 文件夹下的 `JCSDKOC.framework`、lib
+    文件夹下的 `libmtc.a` 和 `libzmf.a` 文件。
 
-5. - 设置路径  
-        点击 ‘Build Settings’，找到 Search Paths，设置 Framework Search Paths
-        、Header Search Paths（头文件路径） 和 Library Search Paths（库文件路径）：
+4. 导入 SDK 依赖的库
 
-          - Framework Search Paths：$(PROJECT\_DIR)/../sdk
+    继续点击 ‘+’ 符号，导入如下系统依赖的库： - AssetsLibrary.framework -
+    AudioToolbox.framework - VideoToolBox.framework -
+    AVFoundation.framework - CFNetwork.framework - CoreMedia.framework
+    - CoreMotion.framework - CoreVideo.framework - GLKit.framework -
+    PushKit.framework（推送使用） - ReplayKit.framework - Security.framework
+    - SystemConfiguration.framework - libc++.tbd - libz.tbd -
+    libresolv.tbd
 
-          - Header Search Paths：$(PROJECT\_DIR)/../sdk/include
+5. 设置路径
 
-          - Library Search Paths：$(PROJECT\_DIR)/../sdk/lib/ios
+    点击 ‘Build Settings’，找到 Search Paths，设置 Framework Search Paths
+    、Header Search Paths（头文件路径） 和 Library Search Paths（库文件路径）：
 
-        ::: tip
+      - Framework Search Paths：$(PROJECT\_DIR)/../sdk
 
-        在完成第 1 步导入 JCSDKOC.framework 和两个 .a 文件后，Xcode 会自动生成该路径，如果 Xcode
-        没有自动生成路径，用户要根据 `JCSDKOC.framework` 、`include` 和 `lib`
-        文件所在目录，手动设置路径。
+      - Header Search Paths：$(PROJECT\_DIR)/../sdk/include
+
+      - Library Search Paths：$(PROJECT\_DIR)/../sdk/lib/ios
+
+    ::: tip
+
+    在完成第 1 步导入 JCSDKOC.framework 和两个 .a 文件后，Xcode 会自动生成该路径，如果 Xcode
+    没有自动生成路径，用户要根据 `JCSDKOC.framework` 、`include` 和 `lib`
+    文件所在目录，手动设置路径。
+
+    :::
 
 6. 设置 Enable Bitcode 为 NO
 
@@ -153,8 +158,6 @@ end
       - Audio, AirPlay, and Picture in Picture
 
       - Voice over IP
-
-:::
 
 ### 方法三：手动导入动态库
 
