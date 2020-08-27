@@ -88,6 +88,10 @@ module.exports = {
         tagConfig: tagsUtil.getTagsConf('docs/en/')
       }
     }
+  },
+  siteConfig:{
+    title: "菊风云平台"
+    
   }
   
 }

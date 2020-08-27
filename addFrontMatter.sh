@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# 添加 FrontMatter
+# 添加 FrontMatter，并且使用 markdownlint 整理了 md 文档
 function addFrontMatter()  
 {  
   # 递归文件夹
