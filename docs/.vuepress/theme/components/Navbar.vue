@@ -167,7 +167,8 @@ export default {
     },
   },
   mounted() {
-    console.log(this.userLinks);
+    console.log(this.$themeLocaleConfig)
+    console.log(this.userLinks)
     this.$EventBus.$on("changeNav", () => {
       this.showNav = !this.showNav;
     });

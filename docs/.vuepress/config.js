@@ -44,8 +44,8 @@ module.exports = {
           apiKey: '48aefdd5edf4e5a94a5ffee6f59e5271',
           indexName: 'juphoon_developer'
         },
-        nav: navUtil.getNavConf('cn'),
-        sidebarSelect: sidebarSelectUtil.getSidebarSelectConf('cn'),
+        nav: navUtil.getNavConf('cn',this.base),
+        sidebarSelect: sidebarSelectUtil.getSidebarSelectConf('cn',this.base),
         sidebar: sidebarUtil.getSidebarConf('docs/cn/')
       },
       '/cn/':  {
@@ -63,8 +63,8 @@ module.exports = {
           apiKey: '48aefdd5edf4e5a94a5ffee6f59e5271',
           indexName: 'juphoon_developer'
         },
-        nav: navUtil.getNavConf('cn'),
-        sidebarSelect: sidebarSelectUtil.getSidebarSelectConf('cn'),
+        nav: navUtil.getNavConf('cn',this.base),
+        sidebarSelect: sidebarSelectUtil.getSidebarSelectConf('cn',this.base),
         sidebar: sidebarUtil.getSidebarConf('docs/cn/'),
         tagConfig: tagsUtil.getTagsConf('docs/cn/')
       },
@@ -82,8 +82,8 @@ module.exports = {
           apiKey: '48aefdd5edf4e5a94a5ffee6f59e5271',
           indexName: 'juphoon_developer'
         },
-        nav: navUtil.getNavConf('cn'),
-        sidebarSelect: sidebarSelectUtil.getSidebarSelectConf('cn'),
+        nav: navUtil.getNavConf('cn',this.base),
+        sidebarSelect: sidebarSelectUtil.getSidebarSelectConf('cn',this.base),
         sidebar: sidebarUtil.getSidebarConf('docs/en/'),
         tagConfig: tagsUtil.getTagsConf('docs/en/')
       }
