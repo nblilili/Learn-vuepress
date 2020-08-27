@@ -9,7 +9,6 @@ title:  功能简介
 
 WebRTC 的优势是在浏览器中集成了媒体引擎，从而不需要另外安装插件或代理程序，可实现免安装使用；但并不是所有的浏览器都能够支持 WebRTC，目前 WebRTC 支持以下浏览器版本：
 
-
 | 平台       | 实现功能                                                     |
 | :--------- | :----------------------------------------------------------- |
 | 桌上 PC 端 | Google Chrome 59.0.3071.115 及以上<br/>Mozilla Firefox 54.0.1 及以上<br/>Opera 20 及以上<br/>Safari 11 及以上<br/>360 7.1.2 及以上（极速模式） |
@@ -55,4 +54,3 @@ BASE64 编码的 JSON 串，适合由代码构造，可以处理特殊字符，�
 | :---------------------- | :----------------------------------------------------------- |
 | @ 开头的明文格式        | @ 开头的明文格式之后必须紧跟 ConfDelivery 的短名,然后是指令<br/>形式如下：<br/>'@'+peer+cmd+param<br/>peer 为指令发送的目标<br/>cmd 为指令,大小写不敏感<br/>param 为相应参数<br/>举例：<br/>ConfDelivery 的账户 ID 是[username:delivery0121@101055.cloud.justalk.com]，则如下打印帮助的指令都是正确的：<br/>@delivery0121 help<br/>@delivery0121help<br/> |
 | BASE64 编码的 JSON 格式 | 格式为：{“cmd”:”cmd”,param}<br/>cmd 为指令, param 为相应参数<br/>举例：<br/>修改成员昵称的指令：<br/>{“cmd”:”setnick”, “nick”:%s, “target”:%s} |
-

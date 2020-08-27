@@ -2,12 +2,17 @@
 title:  CDN 推流集成
 
 
-
 ---
 
 # CDN 推流集成
 
 集成 CDN 推流功能前，请确保您已经集成了基础的多方音视频通话功能。
+
+::: tip
+
+SDK 不支持模拟器运行，请使用真机。
+
+:::
 
 CDN 推流服务适用于各类音视频直播场景，如企业级音视频会议、赛事、游戏直播、在线教育、娱乐直播等。
 
@@ -15,11 +20,11 @@ CDN 推流集成简单高效，开发者只需调用相关 API 即可将 CDN 推
 
 ## 设置推流地址
 
-如要开启 CDN 推流，需在 加入频道前 进行 CDN 推流地址的设置。推流地址是将音视频流数据推送到的地址，用户通过输入该地址就可以在线观看。推流地址的设置具体为通过 JCMediaChannelJoinParam 对象中的 cdn 属性进行设置。
+如要开启 CDN 推流，需在 加入频道前 进行 CDN 推流地址的设置。具体为通过 JCMediaChannelJoinParamCdn 关键字进行配置。
 
 示例代码
 
-```objective-c
+```objectivec
 // 设置 CDN 推流地址
 JCMediaChannelJoinParam *joinParam = [[JCMediaChannelJoinParam alloc] init];
 joinParam.cdn = @"推流地址";
@@ -29,9 +34,9 @@ joinParam.cdn = @"推流地址";
 
 ## 获取 CDN 推流状态
 
-开启 CDN 推流前需要判断 CDN 的状态，通过 JCMediaChannel 类的 cdnState 属性获取推流器状态。只有 CDN 当前状态不为 JCMediaChannelCdnStateNone 时才可以进行 CDN 推流。其中，CDN 推流状态有以下几种
+开启 CDN 推流前需要判断 CDN 的状态，通过 cdnState 属性获取推流器状态。只有 CDN 当前状态不为 JCMediaChannelCdnStateNone 时才可以进行 CDN 推流。其中，CDN 推流状态有以下几种
 
-```objective-c
+```objectivec
 /// 无法进行CDN推流
 JCMediaChannelCdnStateNone,
 /// 可以开启CDN推流
@@ -42,7 +47,7 @@ JCMediaChannelCdnStateRunning,
 
 当 CDN 状态发生改变时，会触发 onMediaChannelPropertyChange 回调
 
-```objective-c
+```objectivec
 /**
  *  @brief 属性变化回调，目前主要关注屏幕共享状态的更新
  *  @param changeParam 变化标识集合
@@ -50,11 +55,13 @@ JCMediaChannelCdnStateRunning,
 -(void)onMediaChannelPropertyChange:(JCMediaChannelPropChangeParam *)changeParam;
 ```
 
+
+
 ## 开启或关闭 CDN 推流
 
 CDN 状态获取后，即可根据 CDN 的状态开启或关闭 CDN 推流，接口如下
 
-```objective-c
+```objectivec
 /**
  *  @brief              开关Cdn推流
  *  @param enable       是否开启Cdn推流
@@ -67,7 +74,7 @@ CDN 状态获取后，即可根据 CDN 的状态开启或关闭 CDN 推流，接
 
 示例代码
 
-```objective-c
+```objectivec
 -(void)onMediaChannelPropertyChange:(JCMediaChannelPropChangeParam *)changeParam {
     if (changeParam.cdnState) {  // CDN 状态变化
        JCMediaChannelCdnState cdnState =  mediaChannel.cdnState;

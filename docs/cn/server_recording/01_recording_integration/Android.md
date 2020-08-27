@@ -15,8 +15,6 @@ SDK 不支持模拟器运行，请使用真机。
 
 :::
 
-
-
 ## 设置录制参数
 
 服务器音频视频录制将录制的文件保存在七牛云上，因此，需要在七牛云注册账号并获取 AccessKey、SecretKey、BucketName、fileKey。
@@ -135,4 +133,3 @@ public abstract boolean enableRecord(boolean enable, RecordParam recordParam);
  */
 public abstract boolean enableRecord(boolean enable, RecordParam recordParam);
 ```
-

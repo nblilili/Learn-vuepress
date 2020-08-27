@@ -1,20 +1,8 @@
----
-title:  服务器音视频录制集成
 
-
----
 
 # 服务器音视频录制集成
 
 集成服务器音视频录制功能前，请确保您已经集成了基础的多方音视频通话功能。
-
-::: tip
-
-SDK 不支持模拟器运行，请使用真机。
-
-:::
-
-
 
 ## 设置录制参数
 
@@ -22,9 +10,7 @@ SDK 不支持模拟器运行，请使用真机。
 
 AccessKey、SecretKey、BucketName、fileKey 获取之后，利用 JCMediaChannelRecordParam 对象中的 buildQiniuRecordParam 方法构造七牛录制参数
 
-示例代码
-
-```objective-c
+```objectivec
 /**
  * @brief 七牛录制参数构造
  *
@@ -42,17 +28,36 @@ AccessKey、SecretKey、BucketName、fileKey 获取之后，利用 JCMediaChanne
 
 其中，JCMediaChannelRecordParam 对象有以下属性
 
-```objective-c
+```objectivec
+/**
+ *  @brief 录制分辨率，参见 JCMediaChannelRecordResolution
+ */
+@property (nonatomic) JCMediaChannelRecordResolution resolution;
+
 /// 录制字符串
 @property (nonatomic, strong) NSString* __nonnull recoredString;
 ```
 
+JCMediaChannelRecordResolution 枚举值如下
+
+```objectivec
+/// 180p
+JCMediaChannelRecordResolution180p = 0x100,
+/// 360p
+JCMediaChannelRecordResolution360p = 0x200,
+/// 720p
+JCMediaChannelRecordResolution720p = 0x300,
+/// 1080p
+JCMediaChannelRecordResolution1080p = 0x400,
+```
+
 示例代码
 
-```objective-c
+```objectivec
 // 设置录制参数
 JCMediaChannelJoinParam *joinParam = [[JCMediaChannelJoinParam alloc] init];
 joinParam.record = [[JCMediaChannelRecordParam alloc] init];
+joinParam.record.resolution = JCMediaChannelRecordResolution360p;
 joinParam.record.recoredString = [JCMediaChannelRecordParam buildQiniuRecordParam:true bucketName:@"QiNiuBucketName" secretKey:@"QiNiuSecretKey" accessKey:@"QiNiuAccessKey" fileName:@"QiNiuFilename"];
 // 加入频道
 [mediaChannel join:@"channelId" joinParam:joinParam];
@@ -70,7 +75,7 @@ joinParam.record.recoredString = [JCMediaChannelRecordParam buildQiniuRecordPara
 
 recordState 有
 
-```objective-c
+```objectivec
 /// 无法进行视频录制
 JCMediaChannelRecordStateNone,
 /// 可以开启视频录制
@@ -81,7 +86,7 @@ JCMediaChannelRecordStateRunning,
 
 录制状态的变化通过 onMediaChannelPropertyChange 回调上报
 
-```objective-c
+```objectivec
 /**
  *  @brief 属性变化回调，目前主要关注屏幕共享状态的更新
  *  @param changeParam 变化标识集合
@@ -93,7 +98,7 @@ JCMediaChannelRecordStateRunning,
 
 录制状态获取后，即可根据录制状态调用下面的接口开启或关闭音视频录制
 
-```objective-c
+```objectivec
 /**
  *  @brief 开关视频录制
  *  @param enable 是否开启屏幕录制
@@ -111,7 +116,7 @@ recordParam 录制参数，当 enable 为 true 时，可以更改由 join 时传
 
 示例代码
 
-```objective-c
+```objectivec
 -(void)onMediaChannelPropertyChange:(JCMediaChannelPropChangeParam *)changeParam {
     if (changeParam.recordState) { // 录制状态变化
         // 根据音视频录制状态判断是否开启音视频录制
@@ -119,10 +124,10 @@ recordParam 录制参数，当 enable 为 true 时，可以更改由 join 时传
             // 无法进行音视频录制
         } else if (mediaChannel.recordState == JCMediaChannelRecordStateReady) {
             // 可以开启音视频录制
-            [mediaChannel enableRecord:true recordParam:nil otherParams:nil];
+            [mediaChannel enableRecord:true recordParam:nil];
         } else if (mediaChannel.recordState == JCMediaChannelRecordStateRunning) {
             // 音视频录制中，可以关闭音视频录制
-            [mediaChannel enableRecord:false recordParam:nil otherParams:nil];
+            [mediaChannel enableRecord:false recordParam:nil];
         }
     }
 }

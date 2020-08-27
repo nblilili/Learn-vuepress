@@ -49,6 +49,7 @@ function recursion(filePath, callback) {
                     tagMap.set(relativePath, platforms);
                     // 重新排序
                     platforms.sort((a, b) => platformSelectorMap.get(a) - platformSelectorMap.get(b));
+                    
                 } else {
                     platforms = new Array();
                     // 先添加一个 iOS

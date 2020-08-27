@@ -1,6 +1,7 @@
 ---
 title:  通话集成
 
+
 ---
 
 # 通话集成
@@ -220,6 +221,13 @@ text    具体的指令协议,参考文档下方说明
 ##### 调整智能模式的布局
 
 调整智能模式的布局之前，需要确保收到视频的布局为智能模式(@setmergemode 5)才能看到效果。
+
+| 指令格式                                                     | 参数说明                                                     |
+| :----------------------------------------------------------- | :----------------------------------------------------------- |
+| **明文格式**<br/>setmergemode_i <mode> <scsMode> [uri]<br/>例如：设置智能模式为“自由模式”，带屏幕共享为“主持人模式”，大小屏放大用户默认为qqqq，则指令为：<br/>@setmergemode_i 1 3 [username:qqqq@sample.cloud.justalk.com] | **mode:智能分屏模式**<br/>1 freeLayout<br/>2 rectLayout<br/>3 bigSmallX2<br/>4 bigSmallX3<br/>......<br/>11 bigSmallX10<br/>12 bigSmallTop<br/>13 bigSmallBotto<br/><br/>**scsMode：智能分屏带屏幕共享模式**<br/>1 screen<br/>2 platform<br/>3 platformCover<br/>4 speaker<br/>uri: 大小屏默认放大的用户 uri |
+
+
+##### 调整智能模式的详细参数
 
 | 指令格式                                                     | 参数说明                                                     |
 | :----------------------------------------------------------- | :----------------------------------------------------------- |
@@ -570,6 +578,16 @@ actor用户显示在底部，其它用户显示小屏在顶部
 @setmergemode_i 1 3 [username:actor@sample.cloud.justalk.com]
 
 屏幕共享显示在顶部，其它用户显示小屏在底部并且遮盖大屏
+```
+
+![img](../../_images/teachermode.png)
+
+#### 主持人模式
+
+```js
+在收到屏幕共享时
+
+@setmergemode_i 1 4 [username:actor@sample.cloud.justalk.com]
 ```
 
 ![img](../../_images/hostmode.png)

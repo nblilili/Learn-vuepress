@@ -41,15 +41,15 @@ module.exports = [{
     },
     {
       title: "服务器录制",
-      url: "/doc/cn/服务器录制"
+      url: "/doc/cn/server_recording"
     },
     {
       title: "屏幕共享",
-      url: "/doc/cn/屏幕共享"
+      url: "/doc/cn/screen_share"
     },
     {
       title: "CDN 推流",
-      url: "/doc/cn/CDN 推流"
+      url: "/doc/cn/CDN_push"
     }
   ]
 }
