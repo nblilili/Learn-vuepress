@@ -1,5 +1,6 @@
 ---
 title: 菊风开发者平台
+metaTitle: 菊风开发者平台
 home: true
 # actionText: 快速上手 →
 # actionLink: /document/
@@ -14,18 +15,17 @@ home: true
 ---
 
 <!-- <template>
-    <home-page />
+    <HomeSearch />
 </template>
 
 <script>
-import HomePage from './components/Home.vue';
+import HomeSearch from './components/HomeSearch.vue';
 export default {
   components: {
-    HomePage
+    HomeSearch
   },
   mounted () {
     console.log(1111)
-    console.log(this)
     // window.location.href="/"
   }
 }

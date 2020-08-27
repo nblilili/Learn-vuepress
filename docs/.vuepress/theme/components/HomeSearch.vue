@@ -12,15 +12,28 @@
             </div>
             <p>
               搜索关键词：
-              <span data-bind="click:function(){keySearch('语音直播')}">语音直播</span>&nbsp;&nbsp;&nbsp;&nbsp;
-              <span data-bind="click:function(){keySearch('视频直播')}">视频直播</span>&nbsp;&nbsp;&nbsp;&nbsp;
-              <span data-bind="click:function(){keySearch('一对一语音')}">一对一语音</span>&nbsp;&nbsp;&nbsp;&nbsp;
-              <span data-bind="click:function(){keySearch('多方视频')}">多方视频</span>
+              <span
+                data-bind="click:function(){keySearch('语音直播')}"
+                @click="keySearch('语音直播')"
+              >语音直播</span>&nbsp;&nbsp;&nbsp;&nbsp;
+              <span
+                data-bind="click:function(){keySearch('视频直播')}"
+                @click="keySearch('视频直播')"
+              >视频直播</span>&nbsp;&nbsp;&nbsp;&nbsp;
+              <span
+                data-bind="click:function(){keySearch('一对一语音')}"
+                @click="keySearch('一对一语音')"
+              >一对一语音</span>&nbsp;&nbsp;&nbsp;&nbsp;
+              <span
+                data-bind="click:function(){keySearch('多方视频')}"
+                @click="keySearch('多方视频')"
+              >多方视频</span>
             </p>
           </div>
         </div>
       </div>
       <div class="pcont" data-bind="visible:isShow()[0]">
+        <!-- 平台部分 -->
         <div class="part part_one">
           <h2>平台</h2>
           <div class="part-cont">
@@ -31,39 +44,9 @@
               <div class="pt-cont">
                 <h3>菊风云平台</h3>
                 <div class="pt-mark">
-                  <div class="pt-item">
-                    <a href="https://developer.juphoon.com/cn/document/index.php">
-                      平台概述
-                      <i></i>
-                    </a>
-                  </div>
-                  <div class="pt-item">
-                    <a href="https://developer.juphoon.com/cn/document/key-terms.php">
-                      关键术语
-                      <i></i>
-                    </a>
-                  </div>
-                  <div class="pt-item">
-                    <a href="https://developer.juphoon.com/cn/document/create-application.php">
-                      创建应用
-                      <i></i>
-                    </a>
-                  </div>
-                  <div class="pt-item">
-                    <a href="https://developer.juphoon.com/cn/document/portal.php">
-                      Portal 说明
-                      <i></i>
-                    </a>
-                  </div>
-                  <div class="pt-item">
-                    <a href="https://developer.juphoon.com/cn/document/qualities.php">
-                      天塞鹰眼
-                      <i></i>
-                    </a>
-                  </div>
-                  <div class="pt-item">
-                    <a href="https://developer.juphoon.com/cn/download/">
-                      下载
+                  <div class="pt-item" v-for="item1 in first_data" :key="item1.title">
+                    <a :href="item1.url">
+                      {{item1.title}}
                       <i></i>
                     </a>
                   </div>
@@ -72,177 +55,25 @@
             </div>
           </div>
         </div>
+        <!-- 产品部分 -->
         <div class="part part_two">
           <h2>产品</h2>
           <div class="part-cont">
             <div class="inner-cont">
-              <div class="in-item">
+              <div class="in-item" v-for="item2 in second_data" :key="item2.title">
                 <div class="pt-img">
-                  <img
-                    src="https://developer.juphoon.com/style/images/home/developer_1to1 voicecall @2x.png"
-                  />
+                  <img :src="item2.img" />
                 </div>
                 <div class="pt-cont">
                   <h3>
-                    <a href="https://developer.juphoon.com/cn/document/oto_audio/">一对一语音通话</a>
+                    <a :href="item2.url">{{item2.title}}</a>
                   </h3>
-                  <div class="pt-info">
-                    <div>适用场景</div>
+                  <div class="pt-info" v-for="item3 in item2.children" :key="item3.title">
+                    <div>{{item3.title}}</div>
                     <div class="ptc-cont">
-                      <div>
-                        <i></i>私人语聊房
-                      </div>
-                      <div>
-                        <i></i>国际通话
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="in-item">
-                <div class="pt-img">
-                  <img
-                    src="https://developer.juphoon.com/style/images/home/developer_1to1 videocall @2x.png"
-                  />
-                </div>
-                <div class="pt-cont">
-                  <h3>
-                    <a href="https://developer.juphoon.com/cn/document/oto_video/">一对一视频通话</a>
-                  </h3>
-                  <div class="pt-info">
-                    <div class="pt-iother">适用场景</div>
-                    <div class="pt-icont ptc-cont">
-                      <div>
-                        <i></i>一对一视频
-                      </div>
-                      <div>
-                        <i></i>随机匹配视频
-                      </div>
-                      <div>
-                        <i></i>视频监控
-                      </div>
-                      <div class="clear"></div>
-                      <div>
-                        <i></i>私教一对一
-                      </div>
-                      <div>
-                        <i></i>智能终端通话
-                      </div>
-                      <div>
-                        <i></i>视频客服
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="in-item">
-                <div class="pt-img">
-                  <img
-                    src="https://developer.juphoon.com/style/images/home/developer_multi-point voicecall @2x.png"
-                  />
-                </div>
-                <div class="pt-cont">
-                  <h3>
-                    <a href="https://developer.juphoon.com/cn/document/mult_audio/">多方语音通话</a>
-                  </h3>
-                  <div class="pt-info">
-                    <div>适用场景</div>
-                    <div class="ptc-cont">
-                      <div>
-                        <i></i>连麦 PK
-                      </div>
-                      <div>
-                        <i></i>多人语聊房
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="in-item">
-                <div class="pt-img">
-                  <img
-                    src="https://developer.juphoon.com/style/images/home/developer_multi-point videocall @2x.png"
-                  />
-                </div>
-                <div class="pt-cont">
-                  <h3>
-                    <a href="https://developer.juphoon.com/cn/document/mult_video/">多方视频通话</a>
-                  </h3>
-                  <div class="pt-info">
-                    <div>适用场景</div>
-                    <div class="ptc-cont">
-                      <div>
-                        <i></i>娱乐直播
-                      </div>
-                      <div>
-                        <i></i>直播课堂
-                      </div>
-                      <div>
-                        <i></i>视频会议
-                      </div>
-                      <div>
-                        <i></i>连麦 PK
-                      </div>
-                      <div>
-                        <i></i>电商导购
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="in-item">
-                <div class="pt-img">
-                  <img
-                    src="https://developer.juphoon.com/style/images/home/developer_voicelive@2x.png"
-                  />
-                </div>
-                <div class="pt-cont">
-                  <h3>
-                    <a href="https://developer.juphoon.com/cn/document/audio_live/">语音互动直播</a>
-                  </h3>
-                  <div class="pt-info">
-                    <div>适用场景</div>
-                    <div class="ptc-cont">
-                      <div>
-                        <i></i>语音直播
-                      </div>
-                      <div>
-                        <i></i>游戏语音
-                      </div>
-                      <div>
-                        <i></i>线上 KTV
-                      </div>
-                      <div>
-                        <i></i>语音聊天室
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="in-item">
-                <div class="pt-img">
-                  <img
-                    src="https://developer.juphoon.com/style/images/home/developer_videolive@2x.png"
-                  />
-                </div>
-                <div class="pt-cont">
-                  <h3>
-                    <a href="https://developer.juphoon.com/cn/document/video_live/">视频互动直播</a>
-                  </h3>
-                  <div class="pt-info">
-                    <div>适用场景</div>
-                    <div class="ptc-cont">
-                      <div>
-                        <i></i>娱乐社交
-                      </div>
-                      <div>
-                        <i></i>直播课堂
-                      </div>
-                      <div>
-                        <i></i>会议直播
-                      </div>
-                      <div>
-                        <i></i>新闻媒体
+                      <div v-for="item4 in item3.children" :key="item4.title">
+                        <i></i>
+                        {{item4.title}}
                       </div>
                     </div>
                   </div>
@@ -251,41 +82,21 @@
             </div>
           </div>
         </div>
+        <!-- 扩展功能 -->
         <div class="part part_three">
           <h2>扩展功能</h2>
           <div class="part-cont">
             <div class="inner-cont">
-              <div class="col-sm-3 in-cont">
-                <a href="https://developer.juphoon.com/cn/document/webrtc/">
-                  <img
-                    src="https://developer.juphoon.com/style/images/home/developer_WebRTC@2x.png"
-                  />
-                  <div class="tit">WebRTC</div>
-                </a>
-              </div>
-              <div class="col-sm-3 in-cont">
-                <a href="https://developer.juphoon.com/cn/document/server_rec/">
-                  <img src="https://developer.juphoon.com/style/images/home/developer_rec@2x.png" />
-                  <div class="tit">服务器录制</div>
-                </a>
-              </div>
-              <div class="col-sm-3 in-cont">
-                <a href="https://developer.juphoon.com/cn/document/screen_share/">
-                  <img
-                    src="https://developer.juphoon.com/style/images/home/developer_screen sharing@2x.png"
-                  />
-                  <div class="tit">屏幕共享</div>
-                </a>
-              </div>
-              <div class="col-sm-3 in-cont">
-                <a href="https://developer.juphoon.com/cn/document/cdn/">
-                  <img src="https://developer.juphoon.com/style/images/home/developer_CDN@2x.png" />
-                  <div class="tit">CDN 推流</div>
+              <div class="col-sm-3 in-cont" v-for="item_3 in third_data" :key="item_3.title">
+                <a :href="item_3.url">
+                  <img :src="item_3.img" />
+                  <div class="tit">{{item_3.title}}</div>
                 </a>
               </div>
             </div>
           </div>
         </div>
+        <!-- 遇到问题，您还可以选择 -->
         <div class="part part_four">
           <div class="part-cont">
             <img src="https://developer.juphoon.com/style/images/home/developer_experience@2x.png" />
@@ -302,7 +113,13 @@
           </div>
         </div>
       </div>
-      <div class="pcont secondp" style="display: none;" data-bind="visible:isShow()[1]">
+      <div class="pcont secondp" style="display: block;" data-bind="visible:isShow()[1]">
+        <div class="top_search">
+          <div class="search_div">
+            <input class="form-control bacinp" data-bind="value:key,search_c:c_key" />
+            <i class="bsearchBtn" data-bind="search_c:c_key"></i>
+          </div>
+        </div>
         <div class="spcont">
           <div
             class="group group_one"
@@ -423,14 +240,36 @@
         </div>
       </div>
     </div>
-    <HomeFooter/>
+    <HomeFooter />
   </div>
 </template>
 
 <script>
 import HomeFooter from "@theme/components/HomeFooter.vue";
+import {
+  first_pcont,
+  second_pcont,
+  third_pcont,
+  forth_pcont,
+} from "@theme/components/HomeSearch/config.js";
 export default {
   components: { HomeFooter },
+  data() {
+    return {
+      first_data: first_pcont,
+      second_data: second_pcont,
+      third_data: third_pcont,
+      forth_data: forth_pcont,
+    };
+  },
+  mounted() {
+    console.log(third_pcont);
+  },
+  methods: {
+    keySearch(str) {
+      console.log("str=>", str);
+    },
+  },
 };
 </script>
 

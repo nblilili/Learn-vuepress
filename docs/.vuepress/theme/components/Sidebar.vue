@@ -4,7 +4,12 @@
     <div id="left" class="left" :class="scollpage" :style="{'display':isMenuShow?'block':'none'}">
       <!-- 头部跳转选择 -->
       <div id="left-top" class="left-top">
-        <div class="left-top-title_1" tabindex="0" @click="showmenu?showmenu=false:showmenu=true"  @blur="hidemenu()">
+        <div
+          class="left-top-title_1"
+          tabindex="0"
+          @click="showmenu?showmenu=false:showmenu=true"
+          @blur="hidemenu()"
+        >
           <!-- showmenu?showmenu=false:showmenu=true -->
           <span class="title_name">{{MenuName}}</span>
           <i class="iconfont" :class="showmenu?'icon-shangla':'icon-xiala'"></i>
@@ -81,24 +86,34 @@ export default {
   },
   watch: {
     $route(newValue, oldValue) {
-      let menulist = JSON.parse(JSON.stringify(MenuList));
-      this.setMenuList(menulist);
+      let sidebarSelect;
+      var url = this.$route.path;
+      if (url.indexOf("/cn/") > -1) {
+        sidebarSelect = this.$themeConfig.locales["/cn/"].sidebarSelect;
+      } else if (url.indexOf("/en/" > -1)) {
+        sidebarSelect = this.$themeConfig.locales["/en/"].sidebarSelect;
+      }
+      this.setMenuList(sidebarSelect);
       if (window.innerWidth < 800) this.$emit("MenuHide");
     },
-    items(newValue, oldValue) {
-      // console.log(JSON.stringify(newValue[2]));
-    },
+    items(newValue, oldValue) {},
     scollpage(newValue, oldValue) {},
   },
   destroyed() {
     window.removeEventListener("resize", this.getWidth);
   },
-  mounted() {
-    if (window.innerWidth < 800) {
-      this.$emit("MenuHide");
+  created() {
+    let sidebarSelect;
+    var url = this.$route.path;
+    if (url.indexOf("/cn/") > -1) {
+      sidebarSelect = this.$themeConfig.locales["/cn/"].sidebarSelect;
+    } else if (url.indexOf("/en/" > -1)) {
+      sidebarSelect = this.$themeConfig.locales["/en/"].sidebarSelect;
     }
-    let menulist = JSON.parse(JSON.stringify(MenuList));
-    this.setMenuList(menulist);
+    console.log(sidebarSelect)
+    this.setMenuList(sidebarSelect);
+  },
+  mounted() {
     window.addEventListener("resize", this.getWidth);
     this.getWidth();
     this.$EventBus.$on("changeMenu", (res) => {
@@ -107,20 +122,21 @@ export default {
     });
   },
   methods: {
-    hidemenu(){
+    hidemenu() {
       setTimeout(() => {
-        this.showmenu=false
-      }, 100);
+        this.showmenu = false;
+      }, 300);
     },
     setMenuList(menulist) {
       let that = this;
       setSildertitle(menulist[0].children);
       setSildertitle(menulist[1].children);
+      setSildertitle(menulist[2].children);
       needfriend(menulist[1].children);
       function needfriend(data) {
         data.forEach((item) => {
           let this_url = item.url.substr(4);
-          if (that.$route.path.indexOf(this_url) > -1) {
+          if (decodeURI(that.$route.path).indexOf(decodeURI(this_url)) > -1) {
             that.needfriend = true;
             return;
           }
@@ -129,7 +145,7 @@ export default {
       function setSildertitle(data) {
         data.forEach((item) => {
           let this_url = item.url.substr(4);
-          if (that.$route.path.indexOf(this_url) > -1) {
+          if (decodeURI(that.$route.path).indexOf(decodeURI(this_url)) > -1) {
             that.MenuName = item.title;
             return;
           }

@@ -168,7 +168,6 @@ export default {
       }else if(url.indexOf('/en/'>-1)){
         TagsConfig = this.$themeConfig.locales['/en/'].tagConfig
       }
-      console.log(TagsConfig)
       for (let i in TagsConfig) {
         if (url.indexOf(i) > -1) {
           this.needTags = true;
