@@ -8,7 +8,9 @@
         </a>
         <div class="nav" :class="showNav?'active':''">
           <div class="nav-item" v-for="(item,index) in userLinks" :key="item.text">
-            <a class="header-line this_line" :href="item.link" v-if="!item.items.length">{{item.text}}</a>
+            <!-- <a class="header-line this_line" :href="item.link" v-if="!item.items.length">{{item.text}}</a> -->
+            <XRouter :to="{path:item.link}" v-if="!item.items.length" >{{item.text}}</XRouter>
+            <!-- <router-link :to="item.link" v-if="!item.items.length" >{{item.text}}</router-link> -->
             <div v-if="item.items.length" @click="changshowitem(item,index)">
               <a class="header-line this_line" :href="item.link" v-if="item.items.length">
                 {{item.text}}
@@ -90,11 +92,13 @@
 <script>
 import axios from "axios";
 import AlgoliaSearchBox from "@AlgoliaSearchBox";
+import XRouter from '@theme/components/XRouterLink'
 import { resolveNavLinkItem } from "../util";
 export default {
   name: "NavBar",
   components: {
     AlgoliaSearchBox,
+    XRouter
   },
   data() {
     return {

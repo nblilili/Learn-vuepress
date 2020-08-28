@@ -41,10 +41,13 @@ export default {
 
   methods: {
     initialize (userOptions, lang) {
+      console.log(userOptions)
+      console.log(import(/* webpackChunkName: "docsearch" */ 'docsearch.js/dist/cdn/docsearch.min.js'))
       Promise.all([
         import(/* webpackChunkName: "docsearch" */ 'docsearch.js/dist/cdn/docsearch.min.js'),
         import(/* webpackChunkName: "docsearch" */ 'docsearch.js/dist/cdn/docsearch.min.css')
       ]).then(([docsearch]) => {
+        console.log([docsearch])
         docsearch = docsearch.default
         const { algoliaOptions = {}} = userOptions
         docsearch(Object.assign(

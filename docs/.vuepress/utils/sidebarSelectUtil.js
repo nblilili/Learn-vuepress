@@ -1,8 +1,5 @@
 module.exports = {
-  getSidebarSelectConf(locale, base) {
-    if(!base){
-      base = "/"
-    }
+  getSidebarSelectConf(locale) {
     let cnObj = [{
         title: "平台",
         children: [{
