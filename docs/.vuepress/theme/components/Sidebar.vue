@@ -23,7 +23,8 @@
                 v-for="(items,index) in item.children"
                 :key="items.title"
               >
-                <a :href="items.url">{{items.title}}</a>
+                <XRouter :to="{path:items.url}">{{items.title}}</XRouter>
+                <!-- <a :href="items.url">{{items.title}}</a> -->
               </div>
             </div>
           </div>
@@ -70,23 +71,25 @@
 import SidebarLinks from "@theme/components/SidebarLinks.vue";
 import NavLinks from "@theme/components/NavLinks.vue";
 import MenuList from "../../config/sidebarSelect.js";
+import XRouter from "@theme/components/XRouterLink";
 
 export default {
   name: "Sidebar",
-  components: { SidebarLinks, NavLinks },
+  components: { SidebarLinks, NavLinks, XRouter },
   props: ["items", "scollpage", "isMenuShow"],
   data() {
     return {
       MenuName: "",
       showmenu: false,
       showselect: false,
-      menulist: MenuList,
+      menulist: [],
       needfriend: false,
     };
   },
   watch: {
     $route(newValue, oldValue) {
       let sidebarSelect;
+      this.needfriend = false;
       var url = this.$route.path;
       if (url.indexOf("/cn/") > -1) {
         sidebarSelect = this.$themeConfig.locales["/cn/"].sidebarSelect;
@@ -110,7 +113,7 @@ export default {
     } else if (url.indexOf("/en/" > -1)) {
       sidebarSelect = this.$themeConfig.locales["/en/"].sidebarSelect;
     }
-    console.log(sidebarSelect)
+    this.menulist = sidebarSelect
     this.setMenuList(sidebarSelect);
   },
   mounted() {

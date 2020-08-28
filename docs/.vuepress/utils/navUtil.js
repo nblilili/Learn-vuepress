@@ -1,16 +1,16 @@
 module.exports = {
-  getNavConf(locale, base) {
+  getNavConf(locale) {
     return [{
         text: 'FAQ',
         link: "/" + locale + '/document/V2.1/faq/ios.php'
       },
       {
         text: '文档中心',
-        link: base + locale + '/00_o2o_audio/'
+        link: "/" + locale + '/00_o2o_audio/'
       },
       {
         text: '下载',
-        link: "/" + locale + '/download/'
+        link: "https://developer.juphoon.com/cn/download/"
       },
       {
         text: '技术支持与服务',
