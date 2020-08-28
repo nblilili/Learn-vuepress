@@ -91,11 +91,10 @@ export default {
       let sidebarSelect;
       this.needfriend = false;
       var url = this.$route.path;
-      if (url.indexOf("/cn/") > -1) {
+      if (url.indexOf("/cn/") > -1)
         sidebarSelect = this.$themeConfig.locales["/cn/"].sidebarSelect;
-      } else if (url.indexOf("/en/" > -1)) {
+      else if (url.indexOf("/en/" > -1))
         sidebarSelect = this.$themeConfig.locales["/en/"].sidebarSelect;
-      }
       this.setMenuList(sidebarSelect);
       if (window.innerWidth < 800) this.$emit("MenuHide");
     },
@@ -108,12 +107,12 @@ export default {
   created() {
     let sidebarSelect;
     var url = this.$route.path;
-    if (url.indexOf("/cn/") > -1) {
+    if (url.indexOf("/cn/") > -1)
       sidebarSelect = this.$themeConfig.locales["/cn/"].sidebarSelect;
-    } else if (url.indexOf("/en/" > -1)) {
+    else if (url.indexOf("/en/" > -1))
       sidebarSelect = this.$themeConfig.locales["/en/"].sidebarSelect;
-    }
-    this.menulist = sidebarSelect
+
+    this.menulist = sidebarSelect;
     this.setMenuList(sidebarSelect);
   },
   mounted() {
@@ -132,9 +131,9 @@ export default {
     },
     setMenuList(menulist) {
       let that = this;
-      setSildertitle(menulist[0].children);
-      setSildertitle(menulist[1].children);
-      setSildertitle(menulist[2].children);
+      menulist.forEach((item) => {
+        setSildertitle(item.children);
+      });
       needfriend(menulist[1].children);
       function needfriend(data) {
         data.forEach((item) => {

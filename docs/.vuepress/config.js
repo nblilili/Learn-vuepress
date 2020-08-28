@@ -41,12 +41,12 @@ module.exports = {
         },
         // 当前 locale 的 algolia docsearch 选项
         algolia: {
-          apiId: 'BF4RDO0EYD',
-          apiKey: '4a2857c7afb83b2687a2922aaaf56bcf',
+          appId: 'BF4RDO0EYD',
+          apiKey: 'd02d64058b08646fc04cf361671ec59c',
           indexName: 'juphoon',
           algoliaOptions: {
             hitsPerPage: 10,
-            removeWordIfNoResults: 'allOptional'
+            removeWordsIfNoResults: 'allOptional'
           }
         },
         nav: navUtil.getNavConf('cn'),
@@ -64,19 +64,19 @@ module.exports = {
           }
         },
         // 当前 locale 的 algolia docsearch 选项
-        // algolia: {
-        //   apiId: 'BF4RDO0EYD',
-        //   apiKey: '4a2857c7afb83b2687a2922aaaf56bcf',
-        //   indexName: 'juphoon',
-        //   algoliaOptions: {
-        //     hitsPerPage: 10,
-        //     removeWordIfNoResults: 'allOptional'
-        //   }
-        // },
         algolia: {
-          apiKey: '48aefdd5edf4e5a94a5ffee6f59e5271',
-          indexName: 'juphoon_developer'
+          appId: 'BF4RDO0EYD',
+          apiKey: 'd02d64058b08646fc04cf361671ec59c',
+          indexName: 'juphoon',
+          algoliaOptions: {
+            hitsPerPage: 10,
+            removeWordsIfNoResults: 'allOptional'
+          }
         },
+        // algolia: {
+        //   apiKey: '48aefdd5edf4e5a94a5ffee6f59e5271',
+        //   indexName: 'juphoon_developer'
+        // },
         nav: navUtil.getNavConf('cn'),
         sidebarSelect: sidebarSelectUtil.getSidebarSelectConf('cn'),
         sidebar: sidebarUtil.getSidebarConf('docs/cn/'),
@@ -93,12 +93,12 @@ module.exports = {
           }
         },
         algolia: {
-          apiId: 'BF4RDO0EYD',
+          appId: 'BF4RDO0EYD',
           apiKey: 'd02d64058b08646fc04cf361671ec59c',
           indexName: 'juphoon',
           algoliaOptions: {
             hitsPerPage: 10,
-            removeWordIfNoResults: 'allOptional'
+            removeWordsIfNoResults: 'allOptional'
           }
         },
         // algolia: {
@@ -110,7 +110,7 @@ module.exports = {
         //   indexName: 'juphoon_developer'
         // },
         nav: navUtil.getNavConf('cn'),
-        sidebarSelect: sidebarSelectUtil.getSidebarSelectConf('cn'),
+        sidebarSelect: sidebarSelectUtil.getSidebarSelectConf('en'),
         sidebar: sidebarUtil.getSidebarConf('docs/en/'),
         tagConfig: tagsUtil.getTagsConf('docs/en/')
       }
