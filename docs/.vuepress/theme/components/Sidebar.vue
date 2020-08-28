@@ -107,12 +107,14 @@ export default {
   },
   created() {
     let sidebarSelect;
+    console.log(this.$themeConfig)
     var url = this.$route.path;
     if (url.indexOf("/cn/") > -1) {
       sidebarSelect = this.$themeConfig.locales["/cn/"].sidebarSelect;
     } else if (url.indexOf("/en/" > -1)) {
       sidebarSelect = this.$themeConfig.locales["/en/"].sidebarSelect;
     }
+    console.log(sidebarSelect)
     this.menulist = sidebarSelect
     this.setMenuList(sidebarSelect);
   },
@@ -132,9 +134,9 @@ export default {
     },
     setMenuList(menulist) {
       let that = this;
-      setSildertitle(menulist[0].children);
-      setSildertitle(menulist[1].children);
-      setSildertitle(menulist[2].children);
+      menulist.forEach(item => {
+         setSildertitle(item.children);
+      });
       needfriend(menulist[1].children);
       function needfriend(data) {
         data.forEach((item) => {
