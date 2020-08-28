@@ -91,11 +91,10 @@ export default {
       let sidebarSelect;
       this.needfriend = false;
       var url = this.$route.path;
-      if (url.indexOf("/cn/") > -1) {
+      if (url.indexOf("/cn/") > -1)
         sidebarSelect = this.$themeConfig.locales["/cn/"].sidebarSelect;
-      } else if (url.indexOf("/en/" > -1)) {
+      else if (url.indexOf("/en/" > -1))
         sidebarSelect = this.$themeConfig.locales["/en/"].sidebarSelect;
-      }
       this.setMenuList(sidebarSelect);
       if (window.innerWidth < 800) this.$emit("MenuHide");
     },
@@ -107,15 +106,13 @@ export default {
   },
   created() {
     let sidebarSelect;
-    console.log(this.$themeConfig)
     var url = this.$route.path;
-    if (url.indexOf("/cn/") > -1) {
+    if (url.indexOf("/cn/") > -1)
       sidebarSelect = this.$themeConfig.locales["/cn/"].sidebarSelect;
-    } else if (url.indexOf("/en/" > -1)) {
+    else if (url.indexOf("/en/" > -1))
       sidebarSelect = this.$themeConfig.locales["/en/"].sidebarSelect;
-    }
-    console.log(sidebarSelect)
-    this.menulist = sidebarSelect
+
+    this.menulist = sidebarSelect;
     this.setMenuList(sidebarSelect);
   },
   mounted() {
@@ -134,8 +131,8 @@ export default {
     },
     setMenuList(menulist) {
       let that = this;
-      menulist.forEach(item => {
-         setSildertitle(item.children);
+      menulist.forEach((item) => {
+        setSildertitle(item.children);
       });
       needfriend(menulist[1].children);
       function needfriend(data) {
