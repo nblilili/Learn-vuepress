@@ -9,7 +9,7 @@ title:  屏幕共享集成
 
 集成服务器音视频录制功能前，请确保您已经集成了基础的多方音视频通话功能。
 
-::: tip
+::: error
 
 SDK 不支持模拟器运行，请使用真机。
 
@@ -60,12 +60,6 @@ public abstract void setScreenCaptureProperty(int width, int height, int frameRa
 void onMediaChannelPropertyChange(JCMediaChannel.PropChangeParam propChangeParam);
 ```
 
-::: tip
-
-如果进行音频录制，需要将构造方法中的 video 值设为 false。
-
-:::
-
 如果当前不存在屏幕共享或者自己发起了屏幕共享，可以调用下面的方法开启或关闭屏幕共享
 
 ```java
@@ -78,7 +72,7 @@ void onMediaChannelPropertyChange(JCMediaChannel.PropChangeParam propChangeParam
 public abstract boolean enableScreenShare(boolean enable);
 ```
 
-::: tip
+::: error
 
 屏幕共享发送方需要在 manifest 文件中做以下声明，否则无法发送本地视频桌面的视频流
 

@@ -27,14 +27,14 @@ function in your project:
     Zmf\_AudioInputAddCallback before initiating business, and implement
     a callback function of type ZmfAudioInputCallback in this function.
 
-2. After successful registration, the JC SDK will call back the
+2. After successful registration, the JC SDK will return to the
     corresponding parameters of the original audio data collected
     through the callback function when the audio data is captured.
 
-3. After the user obtains the audio data, he/she processes parameter in
-    the callback function according to the needs of the scenrio, and the
-    processed data is returned to the JC SDK through the callback
-    function.
+3. After the user obtains the audio data, he/she will processes
+    parameters in the callback function according to the needs of the
+    scenrio, and the processed data is returned to the JC SDK through
+    the callback function.
 
 Register the audio input callback at first:
 
@@ -71,8 +71,8 @@ typedef void (*ZmfAudioInputCallback)(void* pUser, const char* inputId, int iSam
                                    int playDelayMS, int recDelayMS, int clockDrift);
 ``````
 
-After callback registration, the audio data can be processed when audio
-data is collected.
+After the callback registration, the audio data can be processed when
+audio data is collected.
 
 Sample code:
 
@@ -131,7 +131,7 @@ processing function in your project:
     collected original audio data through the callback function when the
     audio data is captured.
 
-3. After the user gets the audio data, he/she can process the audio
+3. After the user gets the audio data, he/she will process the audio
     data in the callback function according to the needs of the
     scenario. The processed data is returned to the JC SDK through the
     callback function.
@@ -156,7 +156,7 @@ processing function in your project:
     [<span id="id4" class="problematic">\*</span>](#id3)pUser,
     ZmfAudioOutputCallback pfnCb);
 
-Callback type description::
+Callback type description:
 
 ``````cpp
 /** the callback to get audio output buffer, when Zmf_OnAudioOutput() invoked.
@@ -185,7 +185,7 @@ Sample code:
 static void zmfAudioOutputCallback(void* pUser, const char* outputId, int iSampleRateHz, int iChannels,
                                      unsigned char *buf, int len) {
 
-    cout << "Process audio data" << endl;
+    cout << "process audio data" << endl;
 }
 void JCSampleDlg::OnBnClickedButtonCall()
 {
@@ -209,7 +209,7 @@ If you want to remove the callback, call the following interface:
 int  Zmf_AudioOutputRemoveCallback  (void *pUser);
 ``````
 
-Remove the callback:
+Remove callback:
 
 ``````cpp
 void JCSampleDlg::OnBnClickedButtonEndCall()
@@ -251,7 +251,7 @@ If you need to use your own audio and video device and
 Zmf\_AudioInitialize is initialized successfully, operate the audio
 device in the following callback function;
 
-The inteface of audio device initialization:
+The interface of audio device initialization:
 
 ``````cpp
 /**
@@ -266,37 +266,36 @@ The inteface of audio device initialization:
 int Zmf_AudioInitialize(void *applicationContext);
 ``````
 
-The input interface of collecting data:
+The interface of collecting input data:
 
 ``````cpp
 /**
- * The audio input data entry to ZMF, each callback will obtain the data.
- * Multiple data will mix in the callback of the jssmme Engine,
- * and the first input will be main channel.
- *
- * @param[in] inputId       unique name of the audio input       //Input device id
- * @param[in] sampleRateHz  the sample rating of the pcm data    //value range: 8000, 16000, 32000, 44100, 48000 depends on the samplimg rate of the external playback device
- * @param[in] iChannels     the channel number of the pcm data   //Value range: 1 or 2
- * @param[in] buf           the pcm data                         //External collection data source
- * @param[in] len           the pcm data length //Corresponding with data length
- * @param[in,out] micLevel                                       //Volume, value range: 0-100, will return the volume value according to the actual input audio
- * @param[in] playDelayMS                                        // Usually 0
- * @param[in] recDelayMS                                         // Usually 0
- * @param[in] clockDrift                                         // Usually 0
- *
- */
- void Zmf_OnAudioInput (const char *inputId, int sampleRateHz, int iChannels, unsigned char *buf, int len, int *micLevel, int playDelayMS, int recDelayMS, int clockDrift);
+    * The audio input data entry to ZMF, each callback will obtain the data.
+    * Multiple data will mix in the callback of the jssmme Engine,
+    * and the first input will be main channel.
+    *
+    * @param[in] inputId       unique name of the audio input       //Input device id
+    * @param[in] sampleRateHz  the sample rating of the pcm data    //value range: 8000, 16000, 32000, 44100, 48000 depends on the samplimg rate of the external playback device
+    * @param[in] iChannels     the channel number of the pcm data   //Value range: 1 or 2
+    * @param[in] buf           the pcm data                         //External collection data source
+    * @param[in] len           the pcm data length //Corresponding with data length
+    * @param[in,out] micLevel                                       //Volume, value range: 0-100, will return the volume value according to the actual input audio
+    * @param[in] playDelayMS                                        // Usually 0
+    * @param[in] recDelayMS                                         // Usually 0
+    * @param[in] clockDrift                                         // Usually 0
+    *
+    */
+    void Zmf_OnAudioInput (const char *inputId, int sampleRateHz, int iChannels, unsigned char *buf, int len, int *micLevel, int playDelayMS, int recDelayMS, int clockDrift);
 ``````
 
 Sample code:
 
 ``````cpp
-//Initialize audio devices
+//Initialize the audio device
 Zmf_AudioInitialize(NULL);
 void JCSampleDlg::OnBnClickedButtonCall()
 {
-    // Input the pcm data fragment length, 16000 sampling frequency, and 1 channel
- onInput("Test",16000,1,pcmdata,length,0,0,0,0);
+    // Input the pcm data fragment with length of 'length', sampling frequency of 16000, and channel number of 1
     Zmf_OnAudioInput("Test",16000,1,pcmdata,length,0,0,0,0);
     //Initiate the call
     ...
@@ -310,7 +309,7 @@ JC SDK.
 
 :::
 
-Collection stop interface:
+The interface of stopping collection:
 
 ``````cpp
 /**
@@ -336,17 +335,17 @@ void JCSampleDlg::OnBnClickedButtonEndCall()
 If you want to use custom playback data at the audio output, call the
 following interface:
 
-Play data input interface:
+The interface of playing input data:
 
 ``````cpp
 /**
  * The outlet which audio output can get data from.
  *
  * @param[in] outputId      unique name of the audio output       ////Output device id
- * @param[in] sampleRateHz  the sample rating of the pcm data     //Value range: 8000,
- * @param[in] iChannels     the channel number of the pcm data    //Value range: 1 or 2
- * @param[in] buf           the pcm data to be filled             //External collection data source
- * @param[in] len           the pcm data length                   //Corresponding with data length
+ * @param[in] sampleRateHz  the sample rating of the pcm data     //value range: 8000,
+ * @param[in] iChannels     the channel number of the pcm data    //value range: 1 or 2
+ * @param[in] buf           the pcm data to be filled             //the data source of the external collection
+ * @param[in] len           the pcm data length                   //the buf length of the corresponding data
  */
  void Zmf_OnAudioOutput (const char *outputId, int sampleRateHz, int iChannels, unsigned char *buf, int len);
 ``````
@@ -354,14 +353,14 @@ Play data input interface:
 Sample code:
 
 ``````cpp
-//Initialize audio devices
+//Initialize the audio device
 Zmf_AudioInitialize(NULL);
 void JCSampleDlg::OnBnClickedButtonCall()
 {
-    // Input the pcm data fragment length, 16000 sampling frequency, and 1 channel
+    // Input the pcm data fragment with length of 'length', sampling frequency of 16000, and channel number of 1
  onInput("Test",16000,1,pcmdata,length,0,0,0,0);
     Zmf_OnAudioOutput("Test",16000,1,buf,length);
-    //Initiate the call
+    //Initiate a call
     ...
 }
 ``````
@@ -372,7 +371,7 @@ This interface is to input custom audio output data to JC SDK.
 
 :::
 
-Play data stop interface:
+The interface to stop outputting data:
 
 ``````cpp
 /**
@@ -388,7 +387,7 @@ Sample code:
 ``````cpp
 void JCSampleDlg::OnBnClickedButtonEndCall()
 {
-    //Stop collection
+    //Stop playing data
     Zmf_OnAudioOutputDidStop("Test");
     //Hang up the call
     ...
@@ -403,11 +402,11 @@ scene, developers need to manage the playback of audio data themselves.
 
 :::
 
-## Audio device management
+## Audio Device Management
 
 Audio device management mainly uses the methods in the JCMediaDevice
-class, including obtaining audio input, the list of output devices, and
-turn on/off audio device.
+class, including obtaining audio input, a list of output devices, and
+turning on/off audio devices.
 
 ### Audio device management
 
@@ -429,7 +428,7 @@ interface to get a list of audio output devices.
 std::list<JCMediaDeviceAudio>* audios = JCManager::shared()->mediaDevice->getAudioOutputs();
 ``````
 
-### Turn on/off audio device
+### Turn on/off audio devices
 
 Call the
 [startAudio](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_device.html#a3e5dbd693aa7d245377e78cb78902018)

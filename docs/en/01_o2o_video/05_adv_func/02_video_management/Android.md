@@ -299,7 +299,7 @@ Sample code:
 ``````java
 public void endCall() {
     int handle = ZmfVideo.captureAddCallback(onFrame);
-    //Remove callback
+    //Remove the callback
     ZmfVideo.captureRemoveCallback(handle);
     //Hang up the call
     call.term(item, JCCall.REASON_NONE, "hang up by yourself");
@@ -399,7 +399,7 @@ Sample code:
 ``````java
 public void endCall() {
     int handle = ZmfVideo.renderAddCallback(onFrame);
-    //Remove callback
+    //Remove the callback
     ZmfVideo.renderRemoveCallback(handle)
     //Hang up the call
     call.term(item, JCCall.REASON_NONE, "hang up by yourself");

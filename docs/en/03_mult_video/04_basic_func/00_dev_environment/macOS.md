@@ -101,7 +101,7 @@ The dynamic library used on the mac integrates SDK.
 
 6. Set Enable Bitcode to NO
 
-    Enter Target -\Build Settings -\Enable Bitcode in the project
+    Enter Target \Build Settings \Enable Bitcode in the project
     and set this item to NO.
 
 7. Set the parameters of Other Linker Flags to -ObjC
@@ -145,7 +145,7 @@ The dynamic library used on the mac integrates SDK.
         the same team ID as the app. When encountering a scenario
         where the security restriction needs to be removed (for
         example, it cannot be enumerated to a third-party virtual
-        camera), check Hardened Runtime -\Runtime Exceptions -\>
+        camera), check Hardened Runtime \Runtime Exceptions \>
         Disable Library Validation.
 
     :::
@@ -169,7 +169,7 @@ The dynamic library used on the mac integrates SDK.
 <tr class="odd">
 <td><p>Privacy - Microphone Usage Description</p></td>
 <td><p>String</p></td>
-<td><p>Use the microphone for purposes like voice calls.</p></td>
+<td><p>Use the microphone for purposes like voice call s.</p></td>
 </tr>
 <tr class="even">
 <td><p>Privacy - Camera Usage Description</p></td>

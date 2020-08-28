@@ -40,7 +40,7 @@ that, you can choose your account as the development team.
 
 - Connect your iOS device to the computer.
 
-- Go to the TARGETS\Project Name\Signing & Capabilities menu and
+- Go to the TARGETS \Project Name \Signing & Capabilities menu and
     check Automatically manage signing.
 
 ## Integrate SDK
@@ -74,7 +74,7 @@ After the CocoaPods environment is installed, take the following steps:
 The revised content is as follows. Pay attention to replace Your App
 with your Target name:
 
-``````
+``````default
 platform :ios, '9.0'
 #use_frameworks!
 target 'Your App' do
@@ -103,7 +103,7 @@ command before executing pod install.
 
 3. Import SDK
 
-    Open Xcode, go to TARGETS\Project Name\Build Phases\Link
+    Open Xcode, go to TARGETS \Project Name \Build Phases \Link
     Binary with Libraries menu, click the ‘+’ symbol, and import
     `JCSDKOC.framework` in the sdk folder and `libmtc.a` and
     `libzmf.a` files in the lib folder.
@@ -169,12 +169,12 @@ command before executing pod install.
 
 6. Set Enable Bitcode to NO
 
-    Enter Target -\Build Settings -\Enable Bitcode in the project
+    Enter Target \Build Settings \Enable Bitcode in the project
     and set this item to NO.
 
 7. Set the parameters of Other Linker Flags to -ObjC
 
-    Go to Target -\Build Settings -\Other Linker Flags in the
+    Go to Target \Build Settings \Other Linker Flags in the
     project and add -ObjC to this item.
 
 8. Set Preprocessor Macros
@@ -201,8 +201,8 @@ command before executing pod install.
 
 10. Set the background operation mode
 
-    Enter Target -\Signing & Capabilities -\Background Modes of
-    the project, check the following two items:
+    Enter Target \Signing & Capabilities \Background Modes of the
+    project, check the following two items:
 
       - Audio, AirPlay, and Picture in Picture
 
@@ -279,12 +279,12 @@ command before executing pod install.
 
 6. Set Enable Bitcode to NO
 
-    Enter Target -\Build Settings -\Enable Bitcode in the project
+    Enter Target \Build Settings \Enable Bitcode in the project
     and set this item to NO.
 
 7. Set the parameters of Other Linker Flags to -ObjC
 
-    Go to Target -\Build Settings -\Other Linker Flags in the
+    Go to Target \Build Settings \Other Linker Flags in the
     project and add -ObjC to this item.
 
 8. Set Preprocessor Macros
@@ -311,8 +311,8 @@ command before executing pod install.
 
 10. Set the background operation mode
 
-    Enter Target -\Signing & Capabilities -\Background Modes of
-    the project, check the following two items:
+    Enter Target \Signing & Capabilities \Background Modes of the
+    project, check the following two items:
 
       - Audio, AirPlay, and Picture in Picture
 

@@ -9,7 +9,7 @@ title:  服务器音视频录制集成
 
 集成服务器音视频录制功能前，请确保您已经集成了基础的多方音视频通话功能。
 
-::: tip
+::: error
 
 SDK 不支持模拟器运行，请使用真机。
 
@@ -124,12 +124,19 @@ public abstract boolean enableRecord(boolean enable, RecordParam recordParam);
 示例代码
 
 ```java
-/**
- * 开关视频录制
- *
- * @param enable 是否开启视频录制
- * @param recordParam 录制参数，当 enable 为 true 时，可以更改由 join 时传入的录制参数，不需更改则填 null
- * @return 返回 true 表示正常执行调用流程，false 表示调用异常
- */
-public abstract boolean enableRecord(boolean enable, RecordParam recordParam);
+public void onMediaChannelPropertyChange(JCMediaChannel.PropChangeParam propChangeParam) {
+    if (changeParam.recordState) { // 录制状态变化
+        // 根据音视频录制状态判断是否开启音视频录制
+        if (mediaChannel.getRecordState() = JCMediaChannel.RECORD_STATE_NONE) {
+            // 无法进行音视频录制
+        } else if (mediaChannel.getRecordState() = JCMediaChannel.RECORD_STATE_READY) {
+            // 可以开启音视频录制
+            mediaChannel.enableRecord(true, null, null);
+        } else if (mediaChannel.getRecordState() = JCMediaChannel.RECORD_STATE_RUNNING) {
+            // 音视频录制中，可以关闭音视频录制
+            mediaChannel.enableRecord(false, null, null);
+        }
+    }
+}
 ```
+

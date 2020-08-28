@@ -18,23 +18,23 @@ circumstances for processing.
 
 Details are as follows:
 
-- Processing after audio collection and before encoding
+- Process after audio collection and before encoding
 
 Refer to the following steps to implement the original audio data
 function in your project:
 
 1. Register the audio collection callback through
     ZmfAudio.inputAddCallback before initiating business, and implement
-    a callback function of ZmfAudio.InputCallback in this function
+    a callback function of ZmfAudio.InputCallback in this function.
 
-2. After successful registration, the JC SDK will call back the
+2. After successful registration, the JC SDK will return to the
     corresponding parameters of the original audio data collected
-    through the callback function when the audio data is captured
+    through the callback function when the audio data is captured.
 
-3. After the user obtains the audio data, he/she processes parameters
-    in the callback function according to the needs of the scenrio, and
-    the processed data is returned to the JC SDK through the callback
-    function.
+3. After the user obtains the audio data, he/she will process
+    parameters in the callback function according to the needs of the
+    scenario, and the processed data is returned to the JC SDK through
+    the callback function.
 
 Register the audio input callback at first:
 
@@ -117,11 +117,11 @@ function in your project:
 
 1. Register the audio output callback through
     ZmfAudio.outputAddCallback before initiating business, and implement
-    a callback function of ZmfAudio.OutputCallback in this function
+    a callback function of ZmfAudio.OutputCallback in this function.
 
-2. After successful registration, the JC SDK will call back the
+2. After successful registration, the JC SDK will return to the
     corresponding parameters of the original audio data collected
-    through the callback function when the audio data is captured
+    through the callback function when the audio data is captured.
 
 3. After the user obtains the audio data, he/she processes parameters
     in the callback function according to the needs of the scenrio, and
@@ -206,12 +206,12 @@ public void endCall() {
 
 ### Custom audio capture and rendering
 
-During real-time audio transmission, the JC SDK will start the default
-audio module for audio collection. However, for audio devices that do
-not support the system’s standard API, or if you want to use the audio
-module you already have for audio collection and pre-transmission
+During the real-time audio transmission, the JC SDK will start the
+default audio module for audio collection. However, for audio devices
+that do not support the system’s standard API, or if you want to use the
+audio module you already have for audio collection and pre-transmission
 processing, you can start a separate capture/play thread to put the
-audio data you collect/need to play into the correponding interface of
+audio data you collect/need to play into the corresponding interface of
 Juphoon to do subsequent operations.
 
 Refer to the following steps to implement the custom audio source
@@ -225,7 +225,7 @@ function in your project:
     collected/customized by the external device, you can call the
     interface provided by the JC SDK to stop the data input.
 
-The custom audio capture interface is as follows (call after receiving a
+The custom audio capture interface is as follows (call after receiving
 login success callback):
 
 If you need to use your own audio and video device and
@@ -239,7 +239,7 @@ The interface of collecting input data:
  * The audio input data entry to ZMF
  *
  * @param[in] inputId       unique name of the audio input                       //Input device id
- * @param[in] sampleRateHz  the sample rating of the pcm data                    //value range: 8000, 16000, 32000, 44100, 48000 depends on external)
+ * @param[in] sampleRateHz  the sample rating of the pcm data                    //value range: 8000, 16000, 32000, 44100 and 48000 depends on the external device)
  * @param[in] iChannels     the channel number of the pcm data                   //value range: 1 or 2
  * @param[in] data          the pcm data                                         //External collection data source
  * @param[in] playDelayMS   playout delay in ms                                  // Usually 0
@@ -261,19 +261,18 @@ JC SDK.
 Sample code:
 
 ``````java
-//Initialize audio devices
+//Initialize the audio device
 android.content.Context activity;
 ZmfAudio.initialize(activity);
 public void call() {
-    // Pass in the length parameter as length, 16000 sampling frequency and 1 channel
- onInput("Test",16000,1,pcmdata,length,0,0,0,0);
+    // Input the pcm data fragment with length of 'length', sampling frequency of 16000, and channel number of 1("Test",16000,1,pcmdata,length,0,0,0,0);
     onInput("Test",16000,1,pcmdata,length,0,0,0,0);
     //Initiate a call
     call.call("peer number", true, "custom pass-through string");
 }
 ``````
 
-Collection stop interface:
+The interface of stopping collection:
 
 ``````java
 /**
@@ -298,14 +297,14 @@ public void endCall() {
 If you want to use custom playback data at the audio output, call the
 following interface:
 
-Play data input interface:
+The interface of playing input data:
 
 ``````java
 **
  * The outlet which audio output can get data from.
  *
  * @param[in] outputId      unique name of the audio output       //Output device id
- * @param[in] sampleRateHz  the sample rating of the pcm data     //value range: 8000, 16000, 32000, 44100, 48000 depends on external)
+ * @param[in] sampleRateHz  the sample rating of the pcm data     //value range: 8000, 16000, 32000, 44100 and 48000 depends on the external device)
  * @param[in] iChannels     the channel number of the pcm data    //value range: 1 or 2
  * @param[in] data          the pcm data to be filled             //External collection data source
  */
@@ -321,25 +320,24 @@ This interface is to input custom audio output data to JC SDK.
 Sample code:
 
 ``````java
-//Initialize audio devices
+//Initialize the audio device
 android.content.Context activity;
 ZmfAudio.initialize(activity);
 public void call() {
-    // Input the pcm data fragment with length, 16000 sampling frequency, and 1 channel
- onInput("Test",16000,1,pcmdata,length,0,0,0,0);
+    // Input the pcm data fragment with length of 'length', sampling frequency of 16000, and channel number of 1("Test",16000,1,pcmdata,length,0,0,0,0);
     onOutput("Test",16000,1,buf,length);
     //Initiate a call
     call.call("peer number", true, "custom pass-through string");
 }
 ``````
 
-Play data stop interface:
+The interface to stop outputting data:
 
 ``````java
 /**
  * tell ZMF the audio output has stopped
  *
- * @param[in] inputId       unique name of the device         //Input device id
+ * @param[in] outputId       unique name of the device         //Output device id
  */
 static public void onOutputDidStop(String outputId)
 ``````
@@ -365,18 +363,18 @@ public void endCall() {
 
 -----
 
-## Audio device management
+## Audio Device Management
 
 Audio device management mainly uses the methods in the JCMediaDevice
 class, as follows:
 
-### Get audio routing type
+### Get audio route type
 
 ``````java
 /**
- * Audio routing type
+ * Audio route type
  *
- * @return Audio routing type
+ * @return Audio route type
  */
 public abstract int getAudioRouteType();
 ``````
@@ -405,7 +403,7 @@ public static final int AUDIO_ROUTE_BLUETOOTH = 3;
 public abstract void enableSpeaker(boolean enable);
 ``````
 
-### Turn on/off audio
+### Turn on/off audio devices
 
 ``````java
 /**
@@ -423,7 +421,7 @@ public abstract boolean startAudio();
 public abstract boolean stopAudio();
 ``````
 
-Sample code
+Sample code:
 
 ``````java
 // Turn on the speaker

@@ -3,7 +3,7 @@ title: Audio Management
 ---
 # Audio Management
 
-## Audio data management
+## Audio Data Management
 
 ### Raw audio data
 
@@ -13,27 +13,26 @@ circumstances for processing.
 
 1. Process after audio collection and before encoding;
 
-2. When the transmission is completed, process after decoding and
-    before playback.
+2. Process after decoding and before playback when the transmission is
+    completed.
 
 Details are as follows:
 
-- Processing after audio collection and before encoding
+- Process after audio collection and before encoding
 
 Refer to the following steps to implement the original audio data
 function in your project:
 
 1. Register the audio collection callback through
-    Zmf\_AudioInputAddCallback before initiating the business, and
-    implement a callback function of type ZmfAudioInputCallback in this
-    function
+    Zmf\_AudioInputAddCallback before initiating business, and implement
+    a callback function of type ZmfAudioInputCallback in this function
 
-2. After successful registration, the JC SDK will call back the
+2. After successful registration, the JC SDK will return to the
     corresponding parameters of the original audio data collected
     through the callback function when the audio data is captured
 
-3. After the user obtains the audio data, he/she performs parameter
-    processing in the callback function according to the needs of the
+3. After the user obtains the audio data, he/she will process
+    parameters in the callback function according to the needs of the
     scenrio, and the processed data is returned to the JC SDK through
     the callback function.
 
@@ -72,8 +71,8 @@ typedef void (*ZmfAudioInputCallback)(void* pUser, const char* inputId, int iSam
                                    int playDelayMS, int recDelayMS, int clockDrift);
 ``````
 
-After the callback registration, when audio data is collected, the audio
-data can be processed.
+After the callback registration, you can process the audio data when
+audio data is collected.
 
 Sample code:
 
@@ -84,12 +83,12 @@ static void zmfAudioInputCallback(void* pUser, const char* inputId, int iSampleR
                                    unsigned char *buf, int len, int *micLevel,
                                    int playDelayMS, int recDelayMS, int clockDrift) {
 
-    NSLog(@"Audio data processing");
+    NSLog(@"process audio data");
 }
 - (void)call {
     //Register callback
     Zmf_AudioInputAddCallback(p, zmfAudioInputCallback);
-    //Initiate the call
+    //Initiate a call
     [call call:@"Peer number" video:true extraParam:@"custom pass-through string"];
 }
 ``````
@@ -113,7 +112,7 @@ Sample code:
 id data; //Collected audio data object
 void* p = (__bridge void *)data;
 -(void)endCall {
-    //Remove callback
+    //Remove the callback
     Zmf_AudioInputRemoveCallback(p);
     //Hang up the call
     [call term:item reason:JCCallReasonNone description:@"hang up by yourself"];
@@ -126,11 +125,11 @@ Refer to the following steps to implement the original audio data
 processing function in your project:
 
 1. Register the audio output callback through
-    Zmf\_AudioOutputAddCallback before initiating the business, and
+    Zmf\_AudioOutputAddCallback before initiating business, and
     implement a callback function of type ZmfAudioOutputCallback in this
     function.
 
-2. After successful registration, the JC SDK will callback the
+2. After successful registration, the JC SDK will return to the
     collected original audio data through the callback function when the
     audio data is captured.
 
@@ -139,18 +138,25 @@ processing function in your project:
     scenario. The processed data is returned to the JC SDK through the
     callback function.
 
-First register the audio output callback:
+<!-- end list -->
 
-``````objectivec
-/**
- * add fill speak callback
- *
- * @param[in]  pUser        the callback user data
- *
- * @return                  0 on succeed, otherwise failed.
- */
-int  Zmf_AudioOutputAddCallback     (void *pUser, ZmfAudioOutputCallback pfnCb);
-``````
+- Register the audio output callback at first::
+
+  - /\*\*
+
+    - add fill speak callback
+
+    -
+    - @param\[in\] pUser the callback user data
+
+    -
+    - @return 0 on succeed, otherwise failed.
+
+        [<span id="id2" class="problematic">\*</span>](#id1)/
+
+    int Zmf\_AudioOutputAddCallback (void
+    [<span id="id4" class="problematic">\*</span>](#id3)pUser,
+    ZmfAudioOutputCallback pfnCb);
 
 Callback type description:
 
@@ -172,8 +178,8 @@ typedef int  (*ZmfAudioOutputCallback)(void* pUser, const char* outputId, int iS
                                      unsigned char *buf, int len);
 ``````
 
-After the callback registration, when the decoded audio data comes in,
-the corresponding audio data processing can be performed.
+After the callback registration, you can process the corresponding audio
+data when receive the decoded audio data.
 
 Sample code:
 
@@ -181,7 +187,7 @@ Sample code:
 static void zmfAudioOutputCallback(void* pUser, const char* outputId, int iSampleRateHz, int iChannels,
                                      unsigned char *buf, int len) {
 
-    NSLog(@"Audio data processing");
+    NSLog(@"process audio data");
 }
 id data; //Decoded audio data
 void* p = (__bridge void *)data;
@@ -223,13 +229,13 @@ void* p = (__bridge void *)data;
 
 ### Custom audio capture and rendering
 
-During real-time audio transmission, the JC SDK will start the default
-audio module for audio collection. However, for audio devices that do
-not support the system’s standard API, or if you want to use the audio
-module you already have for audio collection and pre-transmission
-processing, you can start a separate acquisition/play thread to put the
-audio data you collect/need to play into Juphoon Perform subsequent
-operations on the corresponding interface.
+During the real-time audio transmission, the JC SDK will start the
+default audio module for audio collection. However, for audio devices
+that do not support the system’s standard API, or if you want to use the
+audio module you already have for audio collection and pre-transmission
+processing, you can start a separate capture/play thread to put the
+audio data you collect/need to play into the corresponding interface of
+Juphoon to do subsequent operations.
 
 Refer to the following steps to implement the custom audio source
 function in your project:
@@ -242,14 +248,14 @@ function in your project:
     collected/customized by the external device, you can call the
     interface provided by the JC SDK to stop the data input.
 
-The custom audio collection interface is as follows (called after
-receiving a login success callback):
+The custom audio collection interface is as follows (be called after
+receiving login success callback):
 
 If you need to use your own audio and video equipment and
 Zmf\_AudioInitialize is initialized successfully, operate the audio
 equipment in the following callback function;
 
-Audio device initialization interface:
+The interface of audio device initialization:
 
 ``````objectivec
 /**
@@ -268,34 +274,34 @@ The interface of collecting input data:
 
 ``````objectivec
 /**
- * The audio input data entry to ZMF, each callback will obtain the data.
- * Multiple data will mix in the callback of the jssmme Engine,
- * and the first input will be main channel.
- *
- * @param[in] inputId       unique name of the audio input       //Input device id
- * @param[in] sampleRateHz  the sample rating of the pcm data    //Value range: 8000, 16000, 32000, 44100, 48000 depends on the samplimg rate of the external playback device
- * @param[in] iChannels     the channel number of the pcm data   //Value range: 1 or 2
- * @param[in] buf           the pcm data                         //External collection data source
- * @param[in] len           the pcm data length //Corresponding with data length
- * @param[in,out] micLevel                                       //Volume, value range: 0-100, will return the volume value according to the actual input audio
- * @param[in] playDelayMS                                        // Usually 0
- * @param[in] recDelayMS                                         // Usually 0
- * @param[in] clockDrift                                         // Usually 0
- *
- */
- void Zmf_OnAudioInput (const char *inputId, int sampleRateHz, int iChannels, unsigned char *buf, int len, int *micLevel, int playDelayMS, int recDelayMS, int clockDrift);
+    * The audio input data entry to ZMF, each callback will obtain the data.
+    * Multiple data will mix in the callback of the jssmme Engine,
+    * and the first input will be main channel.
+    *
+    * @param[in] inputId       unique name of the audio input       //Input device id
+    * @param[in] sampleRateHz  the sample rating of the pcm data    //Value range: 8000, 16000, 32000, 44100 and 48000 depend on the samplimg rate of the external device
+    * @param[in] iChannels     the channel number of the pcm data   //value range: 1 or 2
+    * @param[in] buf           the pcm data                         //External collection data source
+    * @param[in] len           the pcm data length //Corresponding with data length
+    * @param[in,out] micLevel                                       //Volume, value range: 0-100, will return the volume value according to the actual input audio
+    * @param[in] playDelayMS                                        // Usually 0
+    * @param[in] recDelayMS                                         // Usually 0
+    * @param[in] clockDrift                                         // Usually 0
+    *
+    */
+    void Zmf_OnAudioInput (const char *inputId, int sampleRateHz, int iChannels, unsigned char *buf, int len, int *micLevel, int playDelayMS, int recDelayMS, int clockDrift);
 ``````
 
 Sample code:
 
 ``````objectivec
-//Initialize audio devices
+//Initialize the audio device
 Zmf_AudioInitialize(NULL);
 -(void)voiceCall {
-    // Input the pcm data fragment length, 16000 sampling frequency, and 1 channel
- onInput("Test",16000,1,pcmdata,length,0,0,0,0);
+    // Input the pcm data fragment with length of 'length', sampling frequency of 16000, and channel number of 1
+onInput("Test",16000,1,pcmdata,length,0,0,0,0);
     Zmf_OnAudioInput("Test",16000,1,pcmdata,length,0,0,0,0);
-    //Initiate the call
+    //Initiate a call
     [call call:@"Peer number" video:true extraParam:@"custom pass-through string"];
 }
 ``````
@@ -307,7 +313,7 @@ JC SDK.
 
 :::
 
-Collection stop interface:
+The interface of stopping collection:
 
 ``````objectivec
 /**
@@ -336,15 +342,15 @@ Play data input interface:
 
 ``````objectivec
 /**
- * The outlet which audio output can get data from.
- *
- * @param[in] outputId      unique name of the audio output       ////Output device id
- * @param[in] sampleRateHz  the sample rating of the pcm data     //Value range: 8000,
- * @param[in] iChannels     the channel number of the pcm data    //Value range: 1 or 2
- * @param[in] buf           the pcm data to be filled             //External collection data source
- * @param[in] len           the pcm data length                   //Corresponding with data length
- */
- void Zmf_OnAudioOutput (const char *outputId, int sampleRateHz, int iChannels, unsigned char *buf, int len);
+    * The outlet which audio output can get data from.
+    *
+    * @param[in] outputId      unique name of the audio output       ////Output device id
+    * @param[in] sampleRateHz  the sample rating of the pcm data     //Value range: 8000,
+    * @param[in] iChannels     the channel number of the pcm data    //Value range: 1 or 2
+    * @param[in] buf           the pcm data to be filled             //External collection data source
+    * @param[in] len           the pcm data length                   //Corresponding with data length
+    */
+    void Zmf_OnAudioOutput (const char *outputId, int sampleRateHz, int iChannels, unsigned char *buf, int len);
 ``````
 
 Sample code:
@@ -353,8 +359,8 @@ Sample code:
 //Initialize audio devices
 Zmf_AudioInitialize(NULL);
 -(void)call {
-    // Input the pcm data fragment length, 16000 sampling frequency, and 1 channel
- onInput("Test",16000,1,pcmdata,length,0,0,0,0);
+    // Input the pcm data fragment with length of 'length', sampling frequency of 16000, and channel number of 1
+onInput("Test",16000,1,pcmdata,length,0,0,0,0);
     Zmf_OnAudioOutput("Test",16000,1,buf,length);
     //Initiate the call
     [call call:@"Peer number" video:true extraParam:@"custom pass-through string"];
@@ -367,7 +373,7 @@ This interface is to input custom audio output data to JC SDK.
 
 :::
 
-Play data stop interface:
+The interface to stop outputting data:
 
 ``````objectivec
 /**
@@ -382,7 +388,7 @@ Sample code:
 
 ``````objectivec
 -(void)endCall {
-    //Stop collection
+    //Stop playing data
     Zmf_OnAudioOutputDidStop("Test");
     //Hang up the call
     [call term:item reason:JCCallReasonNone description:@"hang up by yourself"];
@@ -399,7 +405,7 @@ scene, developers need to manage the playback of audio data themselves.
 
 -----
 
-## Audio device management
+## Audio Device Management
 
 Audio device management mainly uses the methods in the JCMediaDevice
 class, as follows:
@@ -411,7 +417,7 @@ device through the audioInputs attribute and audioInput attribute of the
 JCMediaDevice class, and a JCMediaDeviceAudio object will be returned.
 
 ``````objectivec
-/// Audio input device list
+/// A list of audio input devices
 NSArray<JCMediaDeviceAudio*>* __nonnull audioInputs;
 
 /// Current audio input device
@@ -459,7 +465,7 @@ through the audioOutputs attribute and audioOutput attribute of the
 JCMediaDevice class:
 
 ``````objectivec
-/// Audio output device list
+/// A list of audio output devices
 NSArray<JCMediaDeviceAudio*>* __nonnull audioOutputs;
 
 /// Current audio output device
@@ -503,14 +509,14 @@ The properties of the JCMediaDeviceAudio object are as follows:
 Sample code:
 
 ``````objectivec
-// Audio device management
+// Get a list of audio input devices
 NSArray<JCMediaDeviceAudio*>* audioInputDevices = mediaDevice.audioInputs;
 
 // Get a list of audio output devices
 NSArray<JCMediaDeviceAudio*>* audioOutputDevices = mediaDevice.audioOutputs;
 ``````
 
-### Turn on/off audio device
+### Turn on/off audio devices
 
 ``````objectivec
 /**
@@ -520,7 +526,7 @@ NSArray<JCMediaDeviceAudio*>* audioOutputDevices = mediaDevice.audioOutputs;
 -(bool)startAudio;
 
 /**
- *  @brief Stop audio (usually called at the end of the call)
+ *  @brief Stop audio (usually be called at the end of the call)
  *  @return return true/ false
  */
 -(bool)stopAudio;

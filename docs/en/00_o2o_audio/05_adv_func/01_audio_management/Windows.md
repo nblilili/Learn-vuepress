@@ -3,7 +3,7 @@ title: Audio Management
 ---
 # Audio Management
 
-## Audio device management
+## Audio Device Management
 
 Current audio input and output devices
 \>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>:
@@ -20,11 +20,11 @@ public JCMediaDeviceAudio audioInput
 public JCMediaDeviceAudio audioOutput
 ``````
 
-### Audio device management
+### Get a list of audio input devices
 
 ``````csharp
 /// <summary>
-/// Audio input device list
+/// A list of audio input devices
 /// </summary>
 public List<JCMediaDeviceAudio> audioInputs
 ``````
@@ -46,7 +46,7 @@ public string audioId
 
 ``````csharp
 /// <summary>
-/// Audio output device list
+/// A list of audio output devices
 /// </summary>
 public List<JCMediaDeviceAudio> audioOutputs
 ``````
@@ -67,14 +67,14 @@ public string audioId
 Sample code:
 
 ``````csharp
-// Audio device management
+// Get a list of audio input devices
 List<JCMediaDeviceAudio> audioInputDevices = mediaDevice.audioInputs;
 
 // Get a list of audio output devices
 List<JCMediaDeviceAudio> audioOutputDevices = mediaDevice.audioOutputs;
 ``````
 
-### Turn on/off audio device
+### Turn on/off audio devices
 
 ``````csharp
 /// <summary>
@@ -84,7 +84,7 @@ List<JCMediaDeviceAudio> audioOutputDevices = mediaDevice.audioOutputs;
 public bool startAudio()
 
 /// <summary>
-/// Stop audio (usually called at the end of the call)
+/// Stop audio (usually be called at the end of the call)
 /// </summary>
 /// <returns>true/false</returns>
 public bool stopAudio()
@@ -94,7 +94,7 @@ public bool stopAudio()
 
 ``````csharp
 /// <summary>
-/// Get the current output leve
+/// Get the current output level
 /// </summary>
 /// <returns>Audio output level</returns>
 public int getSpkLevel()

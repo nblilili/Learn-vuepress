@@ -96,15 +96,15 @@ specific compatibility requirements.
 <tbody>
 <tr class="odd">
 <td><p>iOS</p></td>
-<td><p>8.0+</p></td>
+<td><p>8.0 and above</p></td>
 </tr>
 <tr class="even">
 <td><p>Android</p></td>
-<td><p>4.0+</p></td>
+<td><p>4.0 and above</p></td>
 </tr>
 <tr class="odd">
 <td><p>Windows</p></td>
-<td><p>XP+</p></td>
+<td><p>XP and above</p></td>
 </tr>
 <tr class="even">
 <td><p>Web</p></td>

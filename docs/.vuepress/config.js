@@ -64,7 +64,7 @@ module.exports = {
           indexName: 'juphoon_developer'
         },
         nav: navUtil.getNavConf('cn',this.base),
-        sidebarSelect: sidebarSelectUtil.getSidebarSelectConf('cn',this.base),
+        sidebarSelect: sidebarSelectUtil.getSidebarSelectConf('cn'),
         sidebar: sidebarUtil.getSidebarConf('docs/cn/'),
         tagConfig: tagsUtil.getTagsConf('docs/cn/')
       },

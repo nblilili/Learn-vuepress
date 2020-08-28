@@ -181,7 +181,7 @@ Sample code:
 ``````cpp
 void JCSampleDlg::OnBnClickedButtonEndCall()
 {
-    //Remove callback
+    //Remove the callback
     Zmf_VideoCaptureRemoveCallback(p);
     //Hang up the call
     ...
@@ -287,7 +287,7 @@ Sample code:
 ``````cpp
 void JCSampleDlg::OnBnClickedButtonEndCall()
 {
-    //Remove callback
+    //Remove the callback
     Zmf_VideoRenderRemoveCallback(p);
     //Hang up the call
     ...

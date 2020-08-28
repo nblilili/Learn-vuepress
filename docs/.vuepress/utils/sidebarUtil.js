@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
-var translatorMap = require('../map/translatorMap.js');
+var translatorMapEN = require('../map/translatorMapEN.js');
+var translatorMapCN = require('../map/translatorMapCN.js');
 var platformSelectorMap = require('../map/platformSelectorMap.js');
 var folderFilterSet = require('../map/folderFilterSet.js');
 
@@ -69,9 +70,9 @@ function fileDisplay(filePath, sidebar) {
  * @param { group 中的 children } children 
  * @param {是否能折叠} collapsible 
  */
-function makeDirObj(objTitle, children, collapsible) {
+function makeDirObj(objTitle, children, collapsible, filePath) {
   var obj = new Object();
-  obj.title = translateGroupTitle(objTitle);
+  obj.title = translateGroupTitle(objTitle, filePath);
   obj.children = children;
   obj.collapsible = collapsible
   return obj
@@ -79,13 +80,17 @@ function makeDirObj(objTitle, children, collapsible) {
 
 /**
  * 将英文路径改为中文
- * @param { group 对象的 title} objTitle 
+ * @param { group 对象的 title } objTitle 
+ * @param { 文件路径 } filePath 
  */
-function translateGroupTitle(objTitle) {
-  var cnTitle = "no matched name"
+function translateGroupTitle(objTitle, filePath) {
   // 对 title 进行判断
-  translatorMap.has(objTitle) ? cnTitle = translatorMap.get(objTitle) : cnTitle = objTitle;
-
+  var cnTitle = "no matched name"
+  if (filePath.includes("cn")){
+    translatorMapCN.has(objTitle) ? cnTitle = translatorMapCN.get(objTitle) : cnTitle = objTitle;
+  }else if(filePath.includes("en")){
+    translatorMapEN.has(objTitle) ? cnTitle = translatorMapEN.get(objTitle) : cnTitle = objTitle;
+  }
   return cnTitle
 }
 
@@ -119,7 +124,7 @@ function getChildren(filePath, childArr) {
         getChildren(fileDir, childArr);
       } else {
         var subChildArr = new Array();
-        childArr.push(makeDirObj(filename, subChildArr, true));
+        childArr.push(makeDirObj(filename, subChildArr, true, filePath));
         getChildren(fileDir, subChildArr);
       }
     }

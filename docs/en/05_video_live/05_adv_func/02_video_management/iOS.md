@@ -247,7 +247,7 @@ Sample code:
 id render; //The collected video data object
 void* p = (__bridge void *)render;
 -(void)endCall {
-    //Remove callback
+    //Remove the callback
     Zmf_VideoCaptureRemoveCallback(p);
     //Hang up the call
     [call term:item reason:JCCallReasonNone description:@"hang up by yourself"];
@@ -355,7 +355,7 @@ Sample code:
 id render; //The collected video data object
 void* p = (__bridge void *)render;
 -(void)endCall {
-    //Remove callback
+    //Remove the callback
     Zmf_VideoRenderRemoveCallback(p);
     //Hang up the call
     [call term:item reason:JCCallReasonNone description:@"hang up by yourself"];

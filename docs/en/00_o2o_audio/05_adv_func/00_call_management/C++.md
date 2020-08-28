@@ -3,29 +3,29 @@ title: Call Management
 ---
 # Call Management
 
-## Set the number of callers
+## Set the Number of Callers
 
-Before initiating a call, you can set the maximum number of people using
-the maxCallNum and the default is 1. If it is a video call, the maximum
-number of people can only be 1. If it is a voice call, the maximum
-number of people is 2:
+Before initiating a call, you can set the maximum number of callers
+using the maxCallNum and the default is 1. If it is a video call, the
+maximum number can only be 1. If it is a voice call, the maximum number
+is 2:
 
 ``````cpp
 JCManager::shared()->call->maxCallNum = 1;
 ``````
 
-When the call number exceeds the maximum number, the outgoing call will
-fail, and the incoming call will be automatically rejected.
+When exceed the maximum number, outgoing calls will fail, incoming calls
+will be automatically rejected.
 
-## Control call process
+## Control Call Process
 
 ### Call mute
 
 Call the
 [mute](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_call.html#a62d7c7454fae84422579e3a6275af243)
-method to turn on/off mute. Turn on/off mute must be determined
-according to the current mute state of the JCCallItem object. After the
-mute is turned on, the other party will not hear your voice.:
+method to turn on/off mute, which depends on the current mute state of
+the JCCallItem object. After the mute is turned on, another party will
+not hear your voice.:
 
 ``````cpp
 //Get active call object
@@ -49,10 +49,10 @@ callback will be triggered.
 
 Call the
 [hold](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_call.html#aae536642d3d5c785c2ce7d9275f8653a)
-method to hold or release the call on the call object (this operation
-cannot be performed when the call object is in the held state), and the
-call hold needs to be turned on or off according to the current call
-hold of the JCCallItem object State to decide:
+method to maintain or release the call on the call object (this
+operation cannot be performed when the call object is in the held
+state), and the call hold needs to be turned on/off according to the
+current call hold of the JCCallItem object state:
 
 ``````cpp
 //Get active call object
@@ -73,7 +73,7 @@ Call the
 method to switch between the held call and the ongoing call:
 
 ``````cpp
-//Get the list of callers
+//Get a list of callers
 std::list<JCCallItem*>* callItems = JCManager::shared()->call->getCallItems();
 JCManager::shared()->call->becomeActive(callItems[1]);
 ``````
@@ -100,12 +100,12 @@ The specific mechanism of this interface is shown in the figure below:
 
 ![../../../../\_images/enablevideostream.jpg](../../../../_images/enablevideostream.jpg)
 
-- If A starts sending video streams, the return value of A’s
+- If A turns on sending video streams, the return value of A’s
     item-\>getUploadVideoStreamSelf() is true, and B uses the
     item-\>getUploadVideoStreamOther() method (the return value is true)
     to determine the sending status of A’s video streams.
 
-- If A closes sending video streams, the return value of A’s
+- If A turns off sending video streams, the return value of A’s
     item-\>getUploadVideoStreamSelf() is false, and B uses the
     item-\>getUploadVideoStreamOther() method (the return value is
     false) to determine the sending status of A’s video streams. B will
@@ -115,9 +115,9 @@ The specific mechanism of this interface is shown in the figure below:
 
 ### Related callbacks
 
-During a call, if the call status changes, such as turning on/off mute,
-turning on/off call hold, switching between active status, turning
-on/off audio and video streaming, etc., the
+During a call, if the call status changes, like turning on/off mute,
+turning on/off call hold, switching active status, turning on/off
+sending audio and video streams, etc., the
 [onCallItemUpdate](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_call_callback.html#a1ba1c4f09c1f573d9fe2acb5057d6c18)
 callback will be triggered:
 
@@ -126,13 +126,13 @@ void JCManager::onCallItemUpdate(JCCallItem* item, JCCallItemChangeParam changeP
 {
     if (changeParam.mute) { // Turn on mute
         ...
-    } else if (changeParam.sate) { // When call status changed
+    } else if (changeParam.sate) { // hang up
         ...
-    } else if (changeParam.held) { // When held changed
+    } else if (changeParam.held) { // suspended
         ...
-    } else if (changeParam.active) { // When active state changed
+    } else if (changeParam.active) { // active state
         ...
-    } else if (changeParam.netStatus) { // When network status changed
+    } else if (changeParam.netStatus) { // normal network status
         ...
     }
     ...
@@ -143,8 +143,8 @@ void JCManager::onCallItemUpdate(JCCallItem* item, JCCallItemChangeParam changeP
 
 ### Call recording
 
-.You can record during a call. The current recording status determines
-to turn on or off recording. If recording is in progress or the call is
+.You can record during a call. Trun on/off recording depends on the
+current recording status. If recording is in progress or the call is
 hanged or suspended, audio recording cannot be performed. The recording
 status can be obtained through the
 [getAudioRecord](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_call_item.html#ad8b5118a3c06a156e917f59625bcc73d)
@@ -167,7 +167,7 @@ void JCSampleDlg::OnBnClickedButton1Callrecordaudio()
         }
         else
         {
-            std::string filePath = "Recording audio file path";
+            std::string filePath = "the file path of recording audio";
             //Start audio recording
             JCManager::shared()->call->audioRecord(item, true, filePath);
         }
@@ -175,7 +175,7 @@ void JCSampleDlg::OnBnClickedButton1Callrecordaudio()
 }
 ``````
 
-When the recording is turned on or off, the recording status will change
+When the recording is turned on/off, the recording status will change
 and be reported through the
 [onCallItemUpdate](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_call_callback.html#a1ba1c4f09c1f573d9fe2acb5057d6c18)
 callback:
@@ -198,7 +198,7 @@ JCCallItem* item = JCManager::shared()->call->getActiveCallItem();
 JCManager::shared()->call->sendMessage(item, "text", "message content");
 ``````
 
-When a message is received during a call, you will receive the
+When messages are received during a call, you will receive the
 [onMessageReceive](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_call_callback.html#afb8281abd54bc8c18b77aadfe234a882)
 callback:
 
