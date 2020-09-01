@@ -1,11 +1,14 @@
 ---
-title: 产品概述
+title: Product Overview
 ---
-# 产品概述
+# Product Overview
 
-菊风云一对一语音通话支持双人纯语音一对一单聊模式，为开发者提供极简接入、高音质、超流畅、低延时的语音通话体验效果。
+Juphoon cloud one-to-one voice calling supports voice-only one-to-one
+single chat mode with two persons, providing developers with easy
+access, high sound quality, ultra-smooth, and low-latency voice call
+experience.
 
-## 功能与场景
+## Functions and scenarios
 
 <table style="width:99%;">
 <colgroup>
@@ -15,36 +18,36 @@ title: 产品概述
 </colgroup>
 <thead>
 <tr class="header">
-<th><p>功能</p></th>
-<th><p>功能描述</p></th>
-<th><p>适用场景</p></th>
+<th><p>Functions</p></th>
+<th><p>Description</p></th>
+<th><p>Use Cases</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><p>视频加解密</p></td>
-<td><p>可对获取到的视频数据进行自定义处理，支持第三方加密算法</p></td>
-<td><p>安全通话</p></td>
+<td><p>Video encryption and decryption</p></td>
+<td><p>Customize the acquired video data and support the encryption algorithms of the third-party</p></td>
+<td><p>Secure calling</p></td>
 </tr>
 <tr class="even">
-<td><p>音效变声</p></td>
-<td><p>通过获取媒体引擎的原始数据，对接第三方对声音进行特效处理</p></td>
-<td><p>语音社交，聊天变声</p></td>
+<td><p>Voice changer</p></td>
+<td><p>Connect with third parties to process special effects on the sound by acquiring the original data of the media engine</p></td>
+<td><p>Voice social entertainment, voice changer in chat rooms</p></td>
 </tr>
 <tr class="odd">
-<td><p>广播级音质</p></td>
-<td><p>采用自适应回声消除技术，超强噪音抑制，为用户提供广播级音质</p></td>
-<td><p>国际通话，私人语聊房</p></td>
+<td><p>Broadcast-grade sound quality</p></td>
+<td><p>Use adaptive echo cancellation technology and super noise suppression, providing users with broadcast-grade sound quality</p></td>
+<td><p>International calls, private chat rooms</p></td>
 </tr>
 <tr class="even">
-<td><p>本地录制</p></td>
-<td><p>可获取本端或对端的音频文件</p></td>
-<td><p>全场景</p></td>
+<td><p>Local recording</p></td>
+<td><p>Access local or peer audio files</p></td>
+<td><p>All use cases</p></td>
 </tr>
 </tbody>
 </table>
 
-## 特性指标
+## Key properties
 
 <table>
 <colgroup>
@@ -53,29 +56,31 @@ title: 产品概述
 </colgroup>
 <thead>
 <tr class="header">
-<th><p>特性</p></th>
-<th><p>指标</p></th>
+<th><p>Property</p></th>
+<th><p>Juphoon Voice Calling Specifications</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><p>音频质量</p></td>
-<td><p>音频采样率：16k～48k，支持单、双声道</p></td>
+<td><p>Audio quality</p></td>
+<td><p>Audio sampling rate: 16k ~ 48k Support single and dual channels</p></td>
 </tr>
 <tr class="even">
-<td><p>音频抗丢包率</p></td>
-<td><p>上下行抗丢包率70%</p></td>
+<td><p>Audio anti-packet-loss rate</p></td>
+<td><p>70% (uplink and downlink)</p></td>
 </tr>
 <tr class="odd">
-<td><p>运维稳定</p></td>
-<td><p>全球200+节点部署，超优通信保障</p></td>
+<td><p>Stability</p></td>
+<td><p>Global 200+ node deployment, guaranteeing excellent communication</p></td>
 </tr>
 </tbody>
 </table>
 
-## 平台兼容
+## Compatibility
 
-一对一语音通话支持 iOS、Android、Windows、macOS、Linux、Web，并支持平台间互通，具体的兼容性要求见下表。
+One-to-One voice calling supports iOS, Android, Windows, macOS, Linux,
+Web, and interconnectivity between platforms. See the table below for
+specific compatibility requirements.
 
 <table>
 <colgroup>
@@ -84,46 +89,46 @@ title: 产品概述
 </colgroup>
 <thead>
 <tr class="header">
-<th><p>平台</p></th>
-<th><p>支持版本</p></th>
+<th><p>Platform</p></th>
+<th><p>Supported Version</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td><p>iOS</p></td>
-<td><p>8.0及以上系统</p></td>
+<td><p>8.0 and above</p></td>
 </tr>
 <tr class="even">
 <td><p>Android</p></td>
-<td><p>4.0及以上系统</p></td>
+<td><p>4.0 and above</p></td>
 </tr>
 <tr class="odd">
 <td><p>Windows</p></td>
-<td><p>XP及以上系统</p></td>
+<td><p>XP and above</p></td>
 </tr>
 <tr class="even">
 <td><p>Web</p></td>
 <td><dl>
-<dt>桌上 PC 端</dt>
+<dt>Desktop PC</dt>
 <dd><ul>
 <li><p>Microsoft Edge 12</p></li>
-<li><p>Google Chrome 59.0.3071.115 及以上</p></li>
-<li><p>Mozilla Firefox 54.0.1 及以上</p></li>
-<li><p>Opera 20 及以上</p></li>
-<li><p>Safari 11 及以上</p></li>
-<li><p>360 7.1.2 及以上（极速模式）</p></li>
+<li><p>Google Chrome 59.0.3071.115 and above</p></li>
+<li><p>Mozilla Firefox 54.0.1 and above</p></li>
+<li><p>Opera 20 and above</p></li>
+<li><p>Safari 11 and above</p></li>
+<li><p>360 7.1.2 and above (Speed mode)</p></li>
 </ul>
 </dd>
-<dt>Android端</dt>
+<dt>Android</dt>
 <dd><ul>
-<li><p>Google Google Chrome 29 及以上</p></li>
-<li><p>Mozilla Firefox 24 及以上</p></li>
-<li><p>微信 7.0 及以上</p></li>
+<li><p>Google Google Chrome 29 and above</p></li>
+<li><p>Mozilla Firefox 24 and above</p></li>
+<li><p>Wechat 7.0 and above</p></li>
 </ul>
 </dd>
-<dt>iOS端</dt>
+<dt>iOS</dt>
 <dd><ul>
-<li><p>Safari 11 及以上，12 以后iPhone只支持Safari</p></li>
+<li><p>Safari 11 and above, and iOS 12+ only supports Safari</p></li>
 </ul>
 </dd>
 </dl></td>

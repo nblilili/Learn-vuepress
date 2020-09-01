@@ -1,22 +1,27 @@
-
-module.exports = {
-  genNavbar(language){
-    return [
-      { 
-        text: '产品',
-        ariaLabel: '产品列表',
-        items: [
-          { text: '菊风云平台', link: '/'+ language + '/juphoon_platform/' },
-          { text: '一对一语音', link: '/'+ language + '/00_o2o_audio/' },
-          { text: '一对一视频', link: '/'+ language + '/01_o2o_video/' },
-          { text: '多方语音', link: '/'+ language + '/02_mult_audio/' },
-          { text: '多方视频', link: '/'+ language + '/03_mult_video/' },
-          { text: '语音直播', link: '/'+ language + '/04_audio_live/' },
-          { text: '视频直播', link: '/'+ language + '/05_video_live/' },
-        ]
+module.exports = [
+  {
+    text: 'FAQ',
+    link: '/cn/document/V2.1/faq/ios.php'
+  },
+  {
+    text: '文档中心',
+    link: '/doc/cn/00_o2o_audio/'
+  },
+  {
+    text: '下载',
+    link: '/cn/download/'
+  },
+  {
+    text: '技术支持与服务',
+    ariaLabel: '技术支持与服务',
+    items: [{
+        text: '技术支持社区',
+        link: '/portal/cn/bbs/'
       },
-      { text: '测试', link: '/一对一语音通话/'},
+      {
+        text: '服务支持',
+        link: 'http://cloud.juphoon.com/cn/service.html'
+      }
     ]
   }
-}  
-
+]

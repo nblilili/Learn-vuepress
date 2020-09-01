@@ -1,5 +1,5 @@
 {
-  "name": "learn_vuepress",
+  "name": "learn-vuepress",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -8,17 +8,29 @@
     "docs:dev": "vuepress dev docs",
     "docs:build": "vuepress build docs"
   },
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nblilili/Learn-vuepress.git"
+  },
+  "author": "nblilili",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nblilili/Learn-vuepress/issues"
+  },
+  "homepage": "https://github.com/nblilili/Learn-vuepress#readme",
   "devDependencies": {
-    "vuepress": "^1.5.2"
+    "vuepress": "^1.5.2",
+    "vuepress-plugin-autobar": "boboidream/vuepress-bar",
+    "vuex": "^3.5.1"
   },
   "dependencies": {
+    "axios": "^0.19.2",
     "bootstrap": "^4.5.0",
-    "bootstrap-vue": "^2.15.0",
+    "bootstrap-vue": "^2.16.0",
     "element-ui": "^2.13.2",
+    "js-cookie": "^2.2.1",
     "layui-src": "^2.5.5",
-    "markdownlint-cli": "^0.23.2",
-    "vue": "^2.6.11"
+    "vue": "^2.6.11",
+    "vuepress-plugin-code-copy": "^1.0.6"
   }
 }

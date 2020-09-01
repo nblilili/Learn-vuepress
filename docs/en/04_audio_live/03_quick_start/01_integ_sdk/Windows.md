@@ -1,38 +1,49 @@
 ---
-title: 一分钟集成 SDK
+title: Integrate SDK in One Minute
 ---
-# 一分钟集成 SDK
+# Integrate SDK in One Minute
 
-## 前提条件
+## Prerequisites
 
-- Microsoft Visual Studio 2013 或以上版本
+- Microsoft Visual Studio 2013 or above
 
-- 支持 Windows 7 或以上版本的 Windows 设备
+- Supports Windows 7 or above
 
-- 有效的菊风开发者账号（[免费注册](http:///developer.juphoon.com/signup) ）
+- Effective Juphoon Developer Account([free sign
+    up](http:///developer.juphoon.com/signup) )
 
-- 有效的菊风 [AppKey](https://developer.juphoon.com/cn/document/V2.1/create-application.php)
+- Efficient Juphoon [AppKey](https://developer.juphoon.com/cn/document/V2.1/create-application.php)
 
-## 创建 WPF 项目
+## Create a Winform project
 
-参考以下步骤创建一个 Winform 项目。若已有 Winform 项目，可以直接查看集成 SDK。
+Follow the steps below to create a Winform project. If you already have
+a Winform project, you can directly view the integrated SDK.
 
-1. 在【开始】窗口上，选择【创建新项目】 。
+1. On the **Start** window, select **Create a New Project**.
 
-2. 在【创建新项目】屏幕上，搜索【WPF】，选择【WPF 应用(.NET Core)】，然后选择【下一步】 。
+2. Enter or type “Windows Form” in the search box of the **Create a New
+    Project** window. Next, select **Desktop** from the **Project Type**
+    list.
 
-3. 在下一个界面中，为项目指定名称【项目名称】，然后选择【创建】。
+3. After applying the **Project Type** filter, select the **Windows
+    Form Application (.NET Framework)** template for C\# or Visual
+    Basic, and then select **Next**. \* In the **Configure a New
+    Project** window, type or enter “PictureViewer” in the **Project
+    Name** box. Then, select **Create**.
 
-## 集成 SDK
+## Integrate SDK
 
-1. 将 bin 目录中的 **zmfmanaged.dll, zmf.dll, Newtonsoft.Json.dll,
-    mtcwrap.dll, mtcmanaged.dll, mtc.dll, jssmme.dll, JCSDK.dll,
-    bzip2.dll** 九个文件放到应用程序 `../bin/Debug/` 下。（这是默认路径）
+1. Put nine files such as `zmfmanaged.dll` , `zmf.dll` ,
+    `Newtonsoft.Json.dll` , `mtcwrap.dll` , `mtcmanaged.dll` , `mtc.dll`
+    , `jssmme.dll` , `JCSDK.dll` , `bzip2.dll` in the bin directory into
+    the application `../bin/Debug/` binDebug. (This is the default path)
 
-2. 点击【项目】-\>【添加引用】–\>【浏览】–\>【选择dll放置路径】后点击“确定”。
+2. Click **Project** -\> **Add Reference** –\> **Browse** –\> **Select
+    dll placement path** and click “OK”.
 
-3. 确认输出路径与 **dll** 库所在文件夹一致。
+3. Confirm that the output path is the same as the folder where the dll
+    library is located.
 
 ![../../../../\_images/windows\_5.png](../../../../_images/windows_5.png)
 
-编译成功则完成集成内容。
+If the compilation is successful, the integrated content is completed.

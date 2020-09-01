@@ -20,24 +20,19 @@
       @click.native="$emit('toggle')"
     >
       <span>{{ item.title }}</span>
-      <span
+      <i
         v-if="collapsable"
-        class="arrow"
-        :class="open ? 'down' : 'right'"
+        class="silderclass"
+        :class="open ? 'iconfont icon-shangla' : 'iconfont icon-xiala'"
       />
     </RouterLink>
 
-    <p
-      v-else
-      class="sidebar-heading"
-      :class="{ open }"
-      @click="$emit('toggle')"
-    >
+    <p v-else class="sidebar-heading" :class="{ open }" @click="$emit('toggle')">
       <span>{{ item.title }}</span>
-      <span
+      <i
         v-if="collapsable"
-        class="arrow"
-        :class="open ? 'down' : 'right'"
+        class="silderclass"
+        :class="open ? 'iconfont icon-shangla' : 'iconfont icon-xiala'"
       />
     </p>
 
@@ -54,87 +49,117 @@
 </template>
 
 <script>
-import { isActive } from '../util'
-import DropdownTransition from '@theme/components/DropdownTransition.vue'
+import { isActive } from "../util";
+import DropdownTransition from "@theme/components/DropdownTransition.vue";
 
 export default {
-  name: 'SidebarGroup',
+  name: "SidebarGroup",
 
   components: {
-    DropdownTransition
+    DropdownTransition,
   },
 
-  props: [
-    'item',
-    'open',
-    'collapsable',
-    'depth'
-  ],
+  props: ["item", "open", "collapsable", "depth"],
 
   // ref: https://vuejs.org/v2/guide/components-edge-cases.html#Circular-References-Between-Components
-  beforeCreate () {
-    this.$options.components.SidebarLinks = require('@theme/components/SidebarLinks.vue').default
+  beforeCreate() {
+    this.$options.components.SidebarLinks = require("@theme/components/SidebarLinks.vue").default;
   },
 
-  methods: { isActive }
-}
+  methods: { isActive },
+};
 </script>
 
 <style lang="stylus">
-.sidebar-group
-  .sidebar-group
-    padding-left 0.5em
-  &:not(.collapsable)
-    .sidebar-heading:not(.clickable)
-      cursor auto
-      color inherit
+@import url('../assets/css/font/iconfont.css');
+.silderclass{
+  position: absolute;
+  right 0
+}
+
+.sidebar-group {
+  .sidebar-group {
+    padding-left: 0.5em;
+  }
+
+  &:not(.collapsable) {
+    .sidebar-heading:not(.clickable) {
+      cursor: auto;
+      color: inherit;
+    }
+  }
+
   // refine styles of nested sidebar groups
-  &.is-sub-group
-    padding-left 0
-    & > .sidebar-heading
-      font-size 0.95em
-      line-height 1.4
-      font-weight normal
-      padding-left 2rem
-      &:not(.clickable)
-        opacity 0.5
-    & > .sidebar-group-items
-      padding-left 1rem
-      & > li > .sidebar-link
+  &.is-sub-group {
+    padding-left: 0;
+
+    & > .sidebar-heading {
+      font-size: 0.95em;
+      line-height: 1.4;
+      font-weight: normal;
+      padding-left: 2rem;
+
+      &:not(.clickable) {
+        opacity: 0.5;
+      }
+    }
+
+    & > .sidebar-group-items {
+      padding-left: 1rem;
+
+      & > li > .sidebar-link {
         font-size: 0.95em;
-        border-left none
-  &.depth-2
-    & > .sidebar-heading
-      border-left none
+        border-left: none;
+      }
+    }
+  }
 
-.sidebar-heading
-  color $textColor
-  transition color .15s ease
-  cursor pointer
-  font-size 1.1em
-  font-weight bold
+  &.depth-2 {
+    & > .sidebar-heading {
+      border-left: none;
+    }
+  }
+}
+
+.sidebar-heading {
+  color: $textColor;
+  transition: color 0.15s ease;
+  cursor: pointer;
+  font-size: 1em;
+  // font-weight bold
   // text-transform uppercase
-  padding 0.35rem 1.5rem 0.35rem 1.25rem
-  width 100%
-  box-sizing border-box
-  margin 0
-  border-left 0.25rem solid transparent
-  &.open, &:hover
-    color inherit
-  .arrow
-    position relative
-    top -0.12em
-    left 0.5em
-  &.clickable
-    &.active
-      font-weight 600
-      color $accentColor
-      border-left-color $accentColor
-    &:hover
-      color $accentColor
+  // padding 0.35rem 1.5rem 0.35rem 1.25rem
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  border-left: 0.25rem solid transparent;
 
-.sidebar-group-items
-  transition height .1s ease-out
-  font-size 0.95em
-  overflow hidden
+  &.open, &:hover {
+    color: inherit;
+  }
+
+  .arrow {
+    position: relative;
+    top: -0.12em;
+    left: 0.5em;
+  }
+
+  &.clickable {
+    &.active {
+      font-weight: 600;
+      color: $accentColor;
+      border-left-color: $accentColor;
+    }
+
+    &:hover {
+      color: $accentColor;
+    }
+  }
+}
+
+.sidebar-group-items {
+  transition: height 0.1s ease-out;
+  font-size: 0.95em;
+  overflow: hidden;
+}
 </style>

@@ -1,57 +1,65 @@
 ---
-title: 准备开发环境
+title: Prepare the Development Environment
 ---
-# 准备开发环境
+# Prepare the Development Environment
 
-本章将介绍如何将 SDK 集成到您自己创建的项目中。
+This chapter will introduce how to integrate the SDK into a project you
+created.
 
-## 前提条件
+## Prerequisites
 
-- 支持 macOS 10.10 或以上版本的 macOS 设备
+- Supports macOS 10.10 or above
 
-- 有效的菊风开发者账号（[免费注册](http://developer.juphoon.com/signup) ）
+- Effective Juphoon Developer Account ([free sign
+    up](http://developer.juphoon.com/signup) )
 
-- 有效的菊风 [AppKey](https://developer.juphoon.com/cn/document/V2.1/create-application.php)
+- Efficient Juphoon [AppKey](https://developer.juphoon.com/cn/document/V2.1/create-application.php)
 
-## 创建 macOS 项目
+## Create a macOS project
 
-参考以下步骤创建一个 macOS 项目。若已有 macOS 项目，可以直接查看集成 JC SDK。
+Follow the steps below to create a macOS project. If you already have a
+macOS project, you can directly check the step of integrating JC SDK.
 
-- 打开 **Xcode** 并点击 **Create a new Xcode project**。
+- Open Xcode and click Create a new Xcode project.
 
-- 选择项目类型为 **Cocoa App**，并点击 **Next**。
+- Select the project type as Cocoa App and click Next.
 
-- 输入项目信息，如项目名称、开发团队信息、组织名称和语言，并点击 **Next**。
+- Enter the project information, such as project name, development
+    team information, organization name and language, and click Next.
 
 ::: tip
 
-如果您没有添加过开发团队信息，点击 **Xcode \Preferences… \Accounts**，点击左下角加号并按照屏幕提示登入
-Apple ID，完成后即可选择您的账户作为开发团队。
+If you have not added the information of development team, click
+\[Xcode\] \Preferences… \Accounts, click the plus sign in the lower
+left corner and follow the on-screen prompts to log in your Apple ID.
+After that, you can choose your account as the development team.
 
 :::
 
-- 选择项目存储路径，并点击 **Create**。
+- Select the project storage path and click Create.
 
-- 进入 **TARGETS \Project Name \Signing & Capabilities** 菜单，勾选
-    **Automatically manage signing**。
+- Go to the TARGETS\Project Name\Signing & Capabilities menu and
+    check Automatically manage signing.
 
-## 集成SDK
+## Integrate SDK
 
-mac 端使用的动态库集成 SDK。
+The dynamic library used on the mac integrates SDK.
 
-1. 解压并打开下载的 JC SDK 动态库，在 sdk 文件目录下包含 JCSDKOC.framework、include 和 lib
-    三个文件夹。
+1. Unpack and open the downloaded JC SDK dynamic library, including the
+    JCSDKOC.framework file in the sdk file directory.
 
-2. 将 `sdk` 文件夹拷贝到您工程所在的目录下。
+2. Copy the `sdk` folder to the directory where your project is
+    located.
 
-3. 导入 SDK
+3. Import SDK
 
-    点击 ‘General’，在 “Embedded Binaries” 一栏，点击 ‘+’ 符号，然后导入 sdk 文件夹下的
-    JCSDKOC.framework 和 lib 文件夹下的 libmtc.dylib、libzmf.dylib。
+    Click ‘General’ and the ‘+’ symbol in the “Embedded Binaries”
+    column, then import JCSDKOC.framework under the JCSDK folder.
 
-4. 导入 SDK 依赖的库
+4. Import SDK dependency library
 
-    继续点击 ‘+’ 符号，导入如下系统依赖的库：
+    Continue to click the ‘+’ symbol to import the following system
+    dependency libraries:
 
       - AudioToolbox.framework
 
@@ -65,70 +73,84 @@ mac 端使用的动态库集成 SDK。
 
       - CoreVideo.framework
 
-    导入完后的效果如下图：
+    The effect after importing is as follows:
 
     ![../../../../\_images/macdyliblist.png](../../../../_images/macdyliblist.png)
 
-5. 设置路径
+5. Set path
 
-    点击 ‘Build Settings’，找到 Search Paths，设置 Framework Search Paths
-    、Header Search Paths（头文件路径） 和 Library Search Paths（库文件路径）：
+    Click ‘Build Settings’, find Search Paths, set Framework Search
+    Paths, Header Search Paths (header file path) and Library Search
+    Paths (library file path):
 
-      - Framework Search Paths：$(PROJECT\_DIR)/../sdk
+      - Framework Search Paths:$(PROJECT\_DIR)/../sdk
 
-      - Header Search Paths：$(PROJECT\_DIR)/../sdk/include
+      - Header Search Paths:$(PROJECT\_DIR)/../sdk/include
 
-      - Library Search Paths：$(PROJECT\_DIR)/../sdk/lib/ios
+      - Library Search Paths:$(PROJECT\_DIR)/../sdk/lib/ios
 
     ::: tip
 
-    在完成第 1 步导入 JCSDKOC.framework 和两个 .dylib 文件后，Xcode 会自动生成该路径，如果
-    Xcode 没有自动生成路径，用户要根据 `JCSDKOC.framework` 、`include` 和 `lib`
-    文件所在目录，手动设置路径。
+    After completing the first step to import JCSDKOC.framework and
+    two .a files, Xcode will automatically generate the path. If Xcode
+    does not automatically generate the path, the user should manually
+    set the path according to the directory where JCSDKOC.framework,
+    include and lib files are located.
 
     :::
 
-6. 设置 Enable Bitcode 为 NO
+6. Set Enable Bitcode to NO
 
-    进入工程中 Target -\Build Settings -\Enable Bitcode，将此项设置为 NO。
+    Enter Target \Build Settings \Enable Bitcode in the project
+    and set this item to NO.
 
-7. 设置 Other Linker Flags 的参数为 -ObjC
+7. Set the parameters of Other Linker Flags to -ObjC
 
-    点击 ‘Build Settings’，找到 Other Linker Flags 并添加参数 -ObjC。
+    Click ‘Build Settings’, find Other Linker Flags and add the
+    parameter -ObjC.
 
-8. 设置预处理宏定义
+8. Set Preprocessor Macros
 
-    点击 ‘Build Settings’，找到 Preprocessor Macros，在右侧输入
-    ZPLATFORM=ZPLATFORM\_OSX。
+    Click ‘Build Settings’, find Preprocessor Macros, and enter
+    ZPLATFORM=ZPLATFORM\_OSX on the right.
 
-## 添加项目权限
+## Add project permissions
 
-1. 获取设备权限
+1. Get device permissions
 
-    若您的项目已启用 App Sandbox 或 Hardened Runtime 设置，则需勾选如下内容，获取相应的设备权限：
+    If your project has enabled App Sandbox or Hardened Runtime
+    settings, you need to check the following to obtain the
+    corresponding device permissions:
 
     ![../../../../\_images/sandboxset.png](../../../../_images/sandboxset.png)
     ![../../../../\_images/hardrunset.png](../../../../_images/hardrunset.png)
 
     ::: tip
 
-    根据 Apple 官方要求：
+    According to official Apple requirements:
 
-      - 对于在 Mac App Store 发布的软件，需要启用 App Sandbox 设置。详见 [Apple
-        官方声明](https://developer.apple.com/app-sandboxing/)。
+      - For software released on the Mac App Store, the App Sandbox
+        setting needs to be enabled. See [Apple’s
+        official](https://developer.apple.com/app-sandboxing/)
+        statement for details.
 
-      - 对于不在 Mac App Store 发布的软件，需要启用 Hardened Runtime 设置。详见 [Apple
-        官方声明](https://developer.apple.com/news/?id=09032019a)。
+      - For software that is not released on the Mac App Store, the
+        Hardened Runtime setting needs to be enabled. See [Apple’s
+        official](https://developer.apple.com/news/?id=09032019a)
+        statement for details.
 
-      - Hardened Runtime 设置中的 Library Validation 会阻止 app
-        加载框架、插件或库，除非框架、插件或库是由 Apple 或是与
-        app 相同的团队 ID 签名的。当遇到需要取消该安全限制的场景（例如无法枚举到第三方虚拟摄像头）时，请勾选
-        Hardened Runtime -\Runtime Exceptions -\Disable Library
-        Validation。
+      - Library Validation in the Hardened Runtime settings will
+        prevent app from loading frameworks, plugins or libraries
+        unless the framework, plugin or library is signed by Apple or
+        the same team ID as the app. When encountering a scenario
+        where the security restriction needs to be removed (for
+        example, it cannot be enumerated to a third-party virtual
+        camera), check Hardened Runtime \Runtime Exceptions \>
+        Disable Library Validation.
 
     :::
 
-2. 在工程的 info.plist 中添加如下键值:
+2. Add the following keys to the info.plist of the project:
 
 <table style="width:99%;">
 <colgroup>
@@ -147,12 +169,12 @@ mac 端使用的动态库集成 SDK。
 <tr class="odd">
 <td><p>Privacy - Microphone Usage Description</p></td>
 <td><p>String</p></td>
-<td><p>使用麦克风的目的，如语音通话。</p></td>
+<td><p>Use the microphone for purposes like voice call s.</p></td>
 </tr>
 <tr class="even">
 <td><p>Privacy - Camera Usage Description</p></td>
 <td><p>String</p></td>
-<td><p>使用摄像头的目的，如视频通话。</p></td>
+<td><p>Use the camera for purposes like video calls.</p></td>
 </tr>
 </tbody>
 </table>

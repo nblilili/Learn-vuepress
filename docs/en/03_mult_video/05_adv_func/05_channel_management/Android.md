@@ -1,97 +1,100 @@
 ---
-title: 频道管理
+title: Channel Management
 ---
-# 频道管理
+# Channel Management
 
-## 频道信息查询
+## Channel Information Query
 
-如需查询频道相关信息，例如频道名称、是否存在、成员名、成员数，可以调用 query 接口进行查询操作
+If you need to query channel related information, such as channel name,
+existence, member name, and number of members, you can call the query
+interface for query:
 
 ``````java
 /**
- * 查询频道相关信息，例如是否存在，人数等
+ * Query channel related information, such as existence, number of people, etc.
  *
- * @param channelId 频道标识
- * @return          返回操作id，与 onQuery 回调中的 operationId 对应
+ * @param channelId Channel ID
+ * @return          operationId, corresponding to the operationId in the onQuery callback
  */
 public abstract int query(String channelId);
 ``````
 
-示例代码:
+Sample code:
 
 ``````java
 mediaChannel.query("channelId");
 ``````
 
-查询操作发起后，UI 通过以下方法监听回调查询的结果：
+After the query is initiated, the front-end monitors the result of the
+callback query through the following method:
 
 ``````java
 /**
- * 查询频道信息结果回调
+ * The result callback triggers when query channel information
  *
- * @param operationId 操作id，由 query 接口返回
- * @param result      查询结果，true 表示查询成功，false 表示查询失败
- * @param reason      查询失败原因，当 result 为 false 时该值有效
- * @param queryInfo   查询到的频道信息
+ * @param operationId Returned by query interface
+ * @param result      Query result, true/false
+ * @param reason      The reason for the query failure; when result is false, the value is valid
+ * @param queryInfo   Queried channel information
  */
 public void onQuery(int operationId, boolean result, @JCMediaChannel.MediaChannelReason int reason, JCMediaChannelQueryInfo queryInfo);
 ``````
 
-示例代码:
+Sample code:
 
 ``````java
 public void onQuery(int operationId, boolean result, @JCMediaChannel.MediaChannelReason int reason, JCMediaChannelQueryInfo queryInfo) {
-   // 查询成功
-   if (result) {
-        // 频道标识
+    // Query successful
+    if (result) {
+        // Channel ID
         String channelId = queryInfo.getChannelId();
-        // 频道
+        // Channel
         int number = queryInfo.getNumber();
-        // 频道成员数
+        // The number of channel members
         int clientCount = queryInfo.getClientCount();
-        // 频道成员列表
+        // List of channel members
         List<String>  members = queryInfo.getMembers();
-   } else {
-        // 查询失败
-   }
+    } else {
+        // Query failed
+    }
 }
 ``````
 
 -----
 
-## 频道成员管理
+## Channel Member Management
 
-### 获取成员对象
+### Access member objects
 
-通过 userId 获取频道成员对象
+Access channel member object via userId:
 
 ``````java
 /**
- * 获取频道成员
+ * Access channel members
  *
- * @param userId 用户唯一标识
- * @return 成员对象
+ * @param userId unique user ID
+ * @return member objects
  */
 public abstract JCMediaChannelParticipant getParticipant(String userId);
 ``````
 
 -----
 
-### 踢出成员
+### Kick out memebers
 
-调用下面的方法将成员踢出会议
+Call the following method to kick a member out of the meeting:
 
 ``````java
 /**
- * 将成员踢出会议
+ * Kick a member out of the conference
  *
- * @param participant 成员
- * @return true表示成功，false表示失败
+ * @param participant
+ * @return true/false
  */
 public abstract boolean kick(JCMediaChannelParticipant participant);
 ``````
 
-示例代码:
+Sample code:
 
 ``````java
 JCMediaChannelParticipant participant = mediaChannel.getParticipant("userId");
@@ -102,44 +105,46 @@ if (participant != nil) {
 
 -----
 
-### 给其他成员发消息
+### Send messages to other memebers
 
-如果想在频道中给其他成员发送消息，可以调用下面的接口
+If you want to send messages to other members in the channel, you can
+call the following interface:
 
 ``````java
 /**
- * 发送消息
+ * Send messages
  *
- * @param type     消息类型
- * @param content  消息内容，当 toUserId 不为 null 时，content 不能大于 4k
- * @param toUserId 接收者id，null则发给频道所有人员
- * @return true表示成功，false表示失败
+ * @param type     message type
+ * @param content  message content; when toUserId is not null, content cannot be greater than 4k
+ * @param toUserId receiver id; null is sent to all channel members
+ * @return true/false
  */
 public abstract boolean sendMessage(String type, String content, String toUserId);
 ``````
 
-其中，消息类型（type）为自定义类型。
+Among them, message type(type) is a custom type.
 
-示例代码:
+Sample code:
 
 ``````java
 public void onJoin(boolean result, @JCMediaChannel.MediaChannelReason int reason, String channelId) {
-    // 发送给所有成员
+    // Send to all members
     mediaChannel.sendMessage("text", "content", null);
-    // 发送给某个成员
+    // Send to a member
     mediaChannel.sendMessage("text", "content", "userId");
 }
 ``````
 
-当频道中的其他成员收到消息时会收到 onMessageReceive 回调
+When other members in the channel receive a message, they will receive
+the onMessageReceive callback:
 
 ``````java
 /**
- * 接收频道消息的回调
+ * The callback triggers when receive channel messages
  *
- * @param type          消息类型
- * @param content       消息内容
- * @param fromUserId    消息发送成员的userId
+ * @param type          message type
+ * @param content       message content
+ * @param fromUserId    the userId of the sender
  */
 public void onMessageReceive(String type, String content, String fromUserId);
 ``````

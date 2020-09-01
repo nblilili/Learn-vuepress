@@ -1,73 +1,83 @@
 ---
-title: 通话管理
+title: Call Management
 ---
-# 通话管理
+# Call Management
 
-## 通话人数设置
+## Set the Number of Callers
 
-发起通话前可以通过 maxCallNum 属性设置通话的最大人数，默认为 1。如果是视频通话，最大人数只能是 1，如果是语音通话，最大人数为
-2。
+Before initiating a call, you can set the maximum number of callers
+using the maxCallNum and the default is 1. If it is a video call, the
+maximum number can only be 1. If it is a voice call, the maximum number
+is 2:
 
 ``````csharp
 call.maxCallNum = 1;
 ``````
 
-当通话超过最大人数时：
+When exceed the maximum number:
 
-- 呼出会失败，原因为 JCCallReasonCallOverLimit（超过通话数限制）。
+- Outgoing calls will fail due to JCCallReasonCallOverLimit (exceed
+    maximum number).
 
-- 收到来电会自动拒绝，原因为 JCCallReasonBusy（忙）。
+- Incoming calls will be rejected automatically because of the
+    JCCallReasonBusy (busy).
 
-## 通话过程控制
+## Control Call Process
 
-### 通话静音
+### Call mute
 
-通过下面的方法开启或关闭静音，开启关闭静音需要根据 JCCallItem
-中的静音状态（[mute](http://developer.juphoon.com/portal/reference/V2.1/windows/html/bb1ed5b7-2f76-e89d-f964-328e2b746904.htm)）来决定，静音开启后，对方将听不到您的声音
+Use the following method to turn on/off mute, which depends on the mute
+state
+([mute](http://developer.juphoon.com/portal/reference/V2.1/windows/html/bb1ed5b7-2f76-e89d-f964-328e2b746904.htm))
+in the JCCallItem. After turning on mute, another party will not hear
+your voice:
 
 ``````csharp
 /// <summary>
-/// 静音，通过JCCallItem中的静音状态来决定开启关闭
+/// Mute, decide to turn on/off the mute state in JCCallItem
 /// </summary>
-/// <param name="item">JCCallItem对象</param>
-/// <returns>返回true表示正常执行调用流程，false表示调用异常</returns>
+/// <param name="item">JCCallItem object</param>
+/// <returns>Return true to indicate the normal execution of call flow, and false to indicate call failed</returns>
 public bool mute(JCCallItem item)
 ``````
 
-### 通话录音
+### Call recording
 
-可以在通话中进行录音，开启或关闭录音需要根据当前的录音状态（audioRecord）来决定。如果正在录制或者通话被挂起或者挂起的情况下，不能进行音频录制。录音状态可通过
-[JCCallItem](http://developer.juphoon.com/portal/reference/ios/Classes/JCCallItem.html)
-对象获取。
+You can record during a call. Turning on/off recording depends on the
+current recording status (audioRecord). If recording is in progress or
+the call is suspended, audio recording cannot be performed. The
+recording status can be obtained through the
+[<span id="id53" class="problematic">\`JCCallItem\`\_</span>](#id52)
+object.
 
-开启或关闭录音接口如下
+Turn on/off recording interface as follows:
 
 ``````csharp
 /// <summary>
-/// 通话录音，通过JCCallItem对象中的呼叫保持状态来决定开启关闭呼叫保持
+/// Call recording, decide to turn on/off call holding through the call holding state in the JCCallItem object
 /// </summary>
-/// <param name="item">JCCallItem对象</param>
-/// <param name="enable">开启关闭录音</param>
-/// <param name="filePath">录音文件路径</param>
-/// <returns>返回true表示正常执行调用流程，false表示调用异常</returns>
+/// <param name="item">JCCallItem object</param>
+/// <param name="enable">turn on/off recording  </param>
+/// <param name="filePath">recording file path</param>
+/// <returns>Return true to indicate the normal execution of call flow, and false to indicate call failed</returns>
 public bool audioRecord(JCCallItem item, bool enable, string filePath)
 ``````
 
-示例代码:
+Sample code:
 
 ``````csharp
 ```
 JCCallItem item = call.getActiveCallItem();
 if (item.audioRecord)
 {
-    // 录音结束
+    // End recording
     call.audioRecord(item, false, "your filePath");
 } else {
-    // 创建录音文件保存路径
-    String filePath; // 录音文件的绝对路径，SDK会自动创建录音文件
+    // Create a recording file path
+    String filePath; // The absolute path of the recording file, and the SDK will automatically create the recording file
     if (filtPath.Length > 0)
     {
-        // 开始录音
+        // Start recording
         call.audioRecord(item, true, filePath);
     }
 }
@@ -75,131 +85,141 @@ if (item.audioRecord)
 ```
 ``````
 
-开启或关闭录音时，录音状态会发生改变，并通过 onCallItemUpdate 回调上报
+When the recording is turned on or off, the recording status will be
+changed and reported through the onCallItemUpdate callback:
 
 ``````csharp
 /// <summary>
-/// 通话状态更新回调
-/// 当上层收到此回调时，可以根据JCCallItem对象获得该通话所有信息及状态，从而更新通话相关UI
+/// This callback triggers when updating the call status
+/// When this callback is received from the upper level, all the information and status of the call can be obtained based on the JCCallItem Object, thereby updating the call-related UI
 /// </summary>
-/// <param name="item">JCCallItem对象</param>
-/// <param name="changeParam">更新标识类</param>
+/// <param name="item">JCCallItem object</param>
+/// <param name="changeParam">update symbol class</param>
 void onCallItemUpdate(JCCallItem item, JCCallItem.ChangeParam changeParam);
 ``````
 
 -----
 
-### 开启/关闭呼叫保持
+### Turn on/off call hold
 
-调用下面的方法对通话对象进行呼叫保持或解除呼叫保持（当通话对象处于被保持状态（即状态为held）时不可以进行此操作），开启或关闭呼叫保持需要根据
-JCCallItem
-对象中（[hold](http://developer.juphoon.com/portal/reference/V2.1/windows/html/dc13e9d5-2842-1b22-5d6d-9a617d321458.htm)）的呼叫保持状态来决定
+Call the following method to maintain call hold or release call hold of
+the call object (this operation cannot be performed when the call object
+is held). Turn on/off call hold needs to be based on the call hold
+status of
+([hold](http://developer.juphoon.com/portal/reference/V2.1/windows/html/dc13e9d5-2842-1b22-5d6d-9a617d321458.htm))
+in the JCCallItem object:
 
 ``````csharp
 /// <summary>
-/// 呼叫保持，通过JCCallItem对象中的呼叫保持状态来决定开启关闭
+/// Call hold, decide to turn on/off the call hold state in the JCCallItem object
 /// </summary>
-/// <param name="item">JCCallItem对象</param>
-/// <returns>返回true表示正常执行调用流程，false表示调用异常</returns>
+/// <param name="item">JCCallItem object</param>
+/// <returns>Return true to indicate the normal execution of call flow, and false to indicate call failed</returns>
 public bool hold(JCCallItem item)
 ``````
 
-### 切换活跃通话
+### Switch active call
 
-调用下面的方法对通话中被保持的对象和活跃的通话对象进行切换
+Call the following method to change the call on hold and the active
+call:
 
 ``````csharp
 /// <summary>
-/// 切换活跃通话
+/// Switch active call
 /// </summary>
-/// <param name="item">需要变活跃的JCCallItem对象</param>
-/// <returns>返回true表示正常执行调用流程，false表示调用异常</returns>
+/// <param name="item">JCCallItem object that needs to become active</param>
+/// <returns>Return true to indicate the normal execution of call flow, and false to indicate call failed</returns>
 public bool becomeActive(JCCallItem item)
 ``````
 
-示例代码
+Sample code:
 
 ``````csharp
-//获取活跃通话对象
+//Get active call object
 JCCallItem item = call.getActiveCallItem();
 call.mute(item);
 call.hold(item);
 call.becomeActive(item);
 ``````
 
-### 通话中发送消息
+### Send messages during a call
 
-调用下面的接口在通话中实现发消息的功能
+Call the following interface to realize the function of sending messages
+during a call:
 
 ``````csharp
 /// <summary>
-/// 通过通话建立后的通道发送数据
+/// Send data through the channel after the call is established
 /// </summary>
-/// <param name="item">需要发送数据的JCCallItem对象</param>
-/// <param name="type">文本消息类型，用户可以自定义，例如text，xml等</param>
-/// <param name="content">文本内容</param>
-/// <returns>返回 true 表示正常执行调用流程，false 表示调用异常</returns>
+/// <param name="item">JCCallItem object that needs to send data</param>
+/// <param name="type">Users can customize text message types, like text, xml, etc.</param>
+/// <param name="content">text content</param>
+/// <returns>return true to indicate the normal execution of the call flow, and false to indicate call failed</returns>
 public bool sendMessage(JCCallItem item, string type, string content)
 ``````
 
-当通话中收到消息时，会收到 onMessageReceive 回调
-
-``````csharp
-```
- /// <summary>
- /// 通话中收到消息的回调
- /// </summary>
- /// <param name="type">消息类型</param>
- /// <param name="content">消息内容</param>
- /// <param name="item">JCCallItem对象</param>
-void onMessageReceive(string type, string content, JCCallItem item);
-```
-``````
-
-示例代码:
-
-``````csharp
-JCCallItem item = call.getActiveCallItem();
-call.sendMessage(item, "text", "消息内容");
-``````
-
-### 相关回调
-
-通话过程中，如果通话状态发生了改变，如开启关闭静音、开启关闭通话保持、活跃状态切换、开启关闭视频流发送、网络变化等，将会收到通话状态更新的回调
+When messages are received during a call, an onMessageReceive callback
+is received:
 
 ``````csharp
 /// <summary>
-/// 通话状态更新回调
-/// 当上层收到此回调时，可以根据JCCallItem对象获得该通话所有信息及状态，从而更新通话相关UI
+/// the callback triggers when receiving messages during a call
 /// </summary>
-/// <param name="item">JCCallItem对象</param>
-/// <param name="changeParam">更新标识类</param>
+/// <param name="type">message type</param>
+/// <param name="content">message content</param>
+/// <param name="item">JCCallItem object</param>
+void onMessageReceive(string type, string content, JCCallItem item);
+``````
+
+Sample code:
+
+``````csharp
+JCCallItem item = call.getActiveCallItem();
+call.sendMessage(item, "text", "message content");
+``````
+
+### Related callbacks
+
+During a call, if the call status changes, like turning on/off mute,
+turning on/off call hold, switching active status, turning on/off video
+streaming, network changes, etc., the callback triggers when updating
+the call status:
+
+``````csharp
+/// <summary>
+/// This callback triggers when updating the call status
+/// When this callback is received from the upper level, all the information and status of the call can be obtained based on the JCCallItem Object, thereby updating the call-related UI
+/// </summary>
+/// <param name="item">JCCallItem object</param>
+/// <param name="changeParam">update symbol class</param>
 void onCallItemUpdate(JCCallItem item, JCCallItem.ChangeParam changeParam);
 ``````
 
-关于 ChangeParam 的说明请参考 JCCallItem.cs 文件。
+For the description of JCCallChangeParam, please refer to the
+JCCallItem.h file.
 
 ::: tip
 
-静音状态、通话保持状态、活跃状态可通过
+The mute state, call hold state, and active state can be obtained
+through the
 [JCCallItem](http://developer.juphoon.com/portal/reference/V2.1/windows/html/0267696e-79ee-8d46-c086-3c071a2b2b3a.htm)
-对象获得。
+object.
 
 :::
 
-示例代码:
+Sample code:
 
 ``````csharp
 public void onCallItemUpdate(JCCallItem item, JCCallItem.ChangeParam changeParam) {
-    if (item.mute) { // 开启静音
+    if (item.mute) { // Turn on mute
         ...
-    } else if (item.hold) { // 挂起通话变化
+    } else if (item.hold) { // hang up
         ...
-    } else if (item.held) { // 被挂起变化
+    } else if (item.held) { // suspended
         ...
-    } else if (item.active) { // 激活状态变化
+    } else if (item.active) { // active state
         ...
-    } else if (item.netStatus) { // 网络状态变化
+    } else if (item.netStatus) { // normal network statuss
         ...
     }
 }

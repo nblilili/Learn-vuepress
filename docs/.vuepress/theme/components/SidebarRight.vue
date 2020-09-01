@@ -2,13 +2,7 @@
   <aside class="sidebar-right">
   
     <slot name="top" />
-
     <SubSidebar class="side-bar" />
-    
-    <!-- <ModuleTransition>
-      <SubSidebar class="side-bar" />
-    </ModuleTransition> -->
-
     <slot name="bottom" />
   </aside>
 </template>
@@ -26,8 +20,13 @@ export default {
 }
 </script>
 
-<style lang="stylus">
+<style lang="stylus" scoped>
+.sidebar-right.fixed{
+  top 100px
+}
 .sidebar-right
+  top 150px
+  transition all 0.3s
   ul
     padding 0
     margin 0

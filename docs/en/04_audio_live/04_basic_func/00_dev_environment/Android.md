@@ -1,78 +1,91 @@
 ---
-title: 准备开发环境
+title: Prepare the Development Environment
 ---
-# 准备开发环境
+# Prepare the Development Environment
 
-本章将介绍如何将 JC SDK 集成到您自己创建的项目中。
+This chapter will introduce how to integrate the SDK into a project you
+created.
 
-## 前提条件
+## Prerequisites
 
-- Android SDK API 等级 16 或以上
+- Android SDK API level 16 or above
 
-- Android Studio 3.5及以上版本
+- Android Studio 3.5 and above
 
-- 支持 Android 4.1 或以上版本的移动设备
+- Supports mobile devices with Android 4.1 or above
 
-- 有效的菊风开发者账号（[免费注册](http://developer.juphoon.com/signup) ）
+- Effective Juphoon Developer Account ([free sign
+    up](http://developer.juphoon.com/signup))
 
-- 有效的菊风 [AppKey](https://developer.juphoon.com/cn/document/V2.1/create-application.php)
+- Efficient Juphoon [AppKey](https://developer.juphoon.com/cn/document/V2.1/create-application.php)
 
-## 创建 Android 项目
+## Create an Android project
 
-参考以下步骤创建一个 Android 项目。若已有 Android 项目，可以直接查看【集成 SDK】。
+Follow the steps below to create an Android project. If you already have
+an Android project, you can directly check the step of integrating JC
+SDK.
 
-- 打开 **Android Studio**，点击 **Start a new Android Studio project**。
+1. Follow the steps below to create an Android project. If you already
+    have an Android project, you can directly check the step of
+    integrating JC SDK.
 
-- 在 **Select a Project Template** 界面，选择 **Phone and Tablet \Empty
-    Activity**，然后点击 **Next**。
+2. On the Select a Project Template interface, select Phone and
+    Tablet\Empty Activity, and then click Next.
 
-- 在 **Configure Your Project** 界面，依次填入以下内容：
+3. On the Configure Your Project interface, fill in the following in
+    order:
 
-  - **Name**：您的 Android 项目名称，如 HelloJuphoon。
+      - Name: The name of your Android project, such as HelloJuphoon
 
-  - **Package name**：您的项目包的名称，如 io.helloJuphoon。
+      - Package name: The name of your project package, such as
+        io.helloJuphoon.
 
-  - **Save location**：项目的存储路径
+      - Save location: the storage path of the project
 
-  - **Language**：项目的编程语言，如 Java
+      - Language: the programming language of the project, such as
+        Java
 
-  - **Minimum API level**：项目的最低 API 等级
+      - Minimum API level: The minimum API level of the project
 
-- 然后点击 **Finish**。根据屏幕提示，安装可能需要的插件。
+4. Then click Finish. Follow the on-screen instructions to install
+    plug-ins that may be required.
 
-## 集成 SDK
+## Integrate SDK
 
-您可以通过以下两种方式中任意一种集成 JC SDK：
+You can integrate the JC SDK in one of two ways:
 
-### 方法一：使用 JCenter 自动集成
+### Method 1: Use JCenter to automatically integrate
 
 ::: tip
 
-该方法仅适用于 2.1 及以上版本的 JC SDK 集成。
+This method is only applicable to JC SDK integration of version 2.1 and
+above.
 
 :::
 
-在项目的 **/app/build.gradle** 文件中，添加如下行：
+In the `/app/build.gradle` file of the project, add the following line:
 
 ``````java
 ...
 dependencies {
     ...
-    // 可通过 JC SDK 发版说明取得最新版本号
+    // The latest version number can be obtained through JC SDK release instructions
     implementation 'com.JuphoonCloud:JC-SDK:2.1'
 }
 ``````
 
-### 方法二：手动导入 JC SDK
+### Method 2: Manually import JC SDK
 
-1. [下载 JC
+1. [Download JC
     SDK](https://developer.juphoon.com/portal/cn/downloadsdk/download_sdk.php?filename=JC-SDK-Android-V2_1.tar.gz)
-    并解压。
+    and unpack it.
 
-2. 拷贝 libs 文件夹内的 **arm64-v8a、armeabi-v7a、x86、x86\_64、JCSDK.jar、mtc.jar
-    和 zmf.jar** 到您工程目录中的 **libs** 目录下。
+2. Copy `arm64-v8a` , `armeabi-v7a` , `x86` , `x86_64` , `JCSDK.jar` ,
+    `mtc.jar` , and `zmf.jar` in the `libs` folder to the libs directory
+    in your project directory.
 
-3. 为确保能够连接到 **so 库**，需要在 **module** 的 **build.gradle** 中添加设置:
+3. To make sure you can connect to the `so` library, you need to add
+    Settings in the build.Gradle of your module:
 
     ``````java
     sourceSets {
@@ -82,9 +95,11 @@ dependencies {
     }
     ``````
 
-## 添加项目权限
+## Add project permissions
 
-根据场景需要，在 **/app/src/main/AndroidManifest.xml** 文件中添加如下行，获取相应的设备权限：
+According to the needs of scenarios, add the following line in the
+`/app/src/main/AndroidManifest.xml` file to obtain the corresponding
+device permissions:
 
 ``````java
 <uses-feature android:name="android.hardware.camera" />
@@ -105,18 +120,21 @@ dependencies {
 
 ::: tip
 
-您在 **AndroidManifest** 中进行权限配置时，请确保您能够获得打开摄像头、音视频录制等相关权限。
+When you configure permissions in AndroidManifest, please make sure that
+you can get permission to open the camera, audio and video recording and
+other related permissions.
 
 :::
 
-## 设置混淆规则
+## Set obfuscation rules
 
-在 **proguard-rules.pro** 文件，将 JC SDK 相关类加入不混淆名单。
+Add the related classes of JC SDK to the unobfuscated list in the
+proguard-rules.pro file:
 
 ``````java
 -dontwarn com.juphoon.*
 -keep class com.juphoon.**{*;}
-//底层sdk
+// bottom layer sdk
 -dontwarn com.justalk.*
 -keep class com.justalk.**{*;}
 -keepattributes InnerClasses

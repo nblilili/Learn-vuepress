@@ -1,29 +1,31 @@
 ---
-title: 实现语音互动直播
+title: Realize live interactive audio streaming
 ---
-# 实现语音互动直播
+# Realize live interactive audio streaming
 
-本章将介绍如何实现语音互动直播，实现互动直播的 API 调用时序见下图：
+This guide introduces how to implement live interactive audio streaming.
+The API call sequence for live interactive streaming is shown in the
+figure below:
 
 ![../../../../\_images/multiaudioworkflow.png](../../../../_images/multiaudioworkflow.png)
 
-## 初始化
+## Initialize
 
-调用
+Call
 [JCMediaDevice.create()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaDevice.html#create-com.juphoon.cloud.JCClient-com.juphoon.cloud.JCMediaDeviceCallback-)
-和
-[JCMediaChannel.create()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannel.html#create-com.juphoon.cloud.JCClient-com.juphoon.cloud.JCMediaDevice-com.juphoon.cloud.JCMediaChannelCallback-)
-以初始化实现多方通话需要的模块：:
+and
+[JCCall.create()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCCall.html#create-com.juphoon.cloud.JCClient-com.juphoon.cloud.JCMediaDevice-com.juphoon.cloud.JCCallCallback-)
+to initialize Modules needed to implement group calling:
 
 ``````java
-// 声明对象
+// Declare object
 JCMediaDevice mMediaDevice;
 JCMediaChannel mMediaChannel;
 
-// 初始化函数
+// Initialization function
 public boolean initialize(Context context) {
 
-    //1. 媒体类
+    //1. Media class
     mMediaDevice = JCMediaDevice.create(mClient, new JCMediaDeviceCallback() {
         @Override
         public void onCameraUpdate() {
@@ -42,7 +44,7 @@ public boolean initialize(Context context) {
 
         }
     });
-    // 2. 媒体通道类
+    // 2. Media channel lass
     mMediaChannel = JCMediaChannel.create(client, mediaDevice, new JCMediaChannelCallback() {
         @Override
         public void onMediaChannelStateChange(int i, int i1) {
@@ -96,120 +98,127 @@ public boolean initialize(Context context) {
 }
 ``````
 
-## 角色设置
+## Role setting
 
-加入频道前要先进行角色的设置。其中角色设置包括主播和观众。 角色值可以根据
+Before joining the channel, you must set the role first. The role
+setting include the host and audiences. The role value can be customized
+according to the
 [JCMediaChannel.CustomRole](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannel.html#CUSTOM_ROLE_0)
-枚举值进行自定义，例如
+enumeration value, for example:
 
 ``````java
-//自定义主播角色，根据CustomState枚举值自定义角色
+//Customize the role of the host according to the CustomState enumeration value
 int ROLE_BROASCASTER = JCMediaChannel.CUSTOM_ROLE_0;
-//自定义观众角色，根据CustomState枚举值自定义角色
+//Customize the role of audiences according to the CustomState enumeration value
 int ROLE_AUDIENCE = JCMediaChannel.CUSTOM_ROLE_1;
 ``````
 
-调用
+Call
 [setCustomRole()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannel.html#setCustomRole-int-com.juphoon.cloud.JCMediaChannelParticipant-)
-设置自己的角色以进入频道。
+to set your own role to enter the channel:
 
 ``````java
-// 设置角色，participant(第二个参数） 值为 null 代表设置自身的角色
+// Set the role; the value of participant (the second parameter) is null, which means that you set your own role
 mediaChannel.setCustomRole(ROLE_BROASCASTER, null);
 ``````
 
-## 加入频道
+## Join a channel
 
-1. 调用
+1. Call
     [enableUploadAudioStream()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannel.html#enableUploadAudioStream-boolean-)
-    开启音频流。
+    to enable audio streaming:
 
     ``````java
-    // 1. 开启音频流
+    // 1. Enable the audio stream
     mMediaDeviceChannel.enableUploadAudioStream(true);
     ``````
 
-2. 创建并加入频道，需要传入 `channelIdOrUri` 和
-    [JCMediaChannel.JoinParam](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannel.JoinParam.html)
-    。
+2. To create and join a channel, you need to pass in `channelIdOrUri`
+    and
+    [JCMediaChannel.JoinParam](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannel.JoinParam.html):
 
-      - `channelIdOrUri` 表示频道 ID 或频道 Uri。
+      - `channelIdOrUri` refers to the channel ID or channel Uri.
 
-      - `JCMediaChannelJoinParam` 中 `uriMode` 参数设置为 true 时表示传入频道
-        Uri，设置其他参数时表示传入频道 ID。传入相同的频道 ID 或相同的频道 Uri 的用户会进入同一个频道。
+      - In `JCMediaChannelJoinParam`, when the `uriMode` parameter is
+        set to true, it means the incoming channel Uri. When other
+        parameters are set, it means the incoming channel ID. Users
+        who pass in the same channel ID or the same channel Uri will
+        enter the same Channel:
 
-    ``````java
-    mMediaChannel.join("222", null);
-    ``````
+        ``````java
+        mMediaChannel.join("222", null);
+        ``````
 
-3. 加入频道后收到
+3. The
     [onJoin()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannelCallback.html#onJoin-boolean-int-java.lang.String-)
-    回调。
+    callback triggers after joining the channel:
 
     ``````java
     @Override
     public void onJoin(boolean result, @JCMediaChannel MediaChannelReason int reason, String channelId) {
         if (result) {
-            // 加入频道成功
+            // Join the channel successfully
         } else {
-            // 加入频道失败
+            // Join the channel failed
         }
     }
     ``````
 
-## 离开频道
+## Leave a channel
 
-调用
+Call the
 [leave()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannel.html#leave--)
-方法可以离开当前频道。
+method to leave the current channel:
 
 ``````java
 mMediaChannel.leave();
 ``````
 
-在多方视频通话中，离开频道还需要调用
+In a group video call, you need to call
 [stopVideo()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannelParticipant.html#stopVideo--)
-移除视频画面。
+to remove the video image when leaving the channel:
 
 ``````java
 mParticipant.stopVideo();
 ``````
 
-离开频道后，自身收到
+After leaving the channel, they receive the
 [onLeave()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannelCallback.html#onLeave-int-java.lang.String-)
-回调，其他成员同时收到
+callback, and other members receive the
 [onParticipantLeft()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannelCallback.html#onParticipantLeft-com.juphoon.cloud.JCMediaChannelParticipant-)
-回调。
+callback at the same time.
 
-## 解散频道
+## Destroy a channel
 
-如果想解散频道，可以调用下面的接口，此时所有成员都将被退出。
+If you want to destroy a channel, you can call the following interface,
+and all members will be quit:
 
 ``````java
-// 结束频道
+// End a channel
 mMediaChannel.stop();
 ``````
 
-在多方视频通话中，离开频道还需要调用
+In a group video call, you need to call
 [stopVideo()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannelParticipant.html#stopVideo--)
-移除视频画面。
+to remove the video image when leaving the channel:
 
 ``````java
 mParticipant.stopVideo();
 ``````
 
-解散频道后，发起结束的成员收到
+After the channel is stopped, the member who initiated the termination
+receives the
 [onStop()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannelCallback.html#onStop-boolean-int-)
-回调，其他成员同时收到
+callback, and other members also receive the
 [onLeave()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannelCallback.html#onLeave-int-java.lang.String-)
-回调。 解散失败原因枚举值请参考
+callback. Please refer to
 [MediaChannelReason](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannel.html#REASON_ALREADY_JOINED)
-。
+for the enumeration value of the reason for failure:
 
 ``````java
 @Override
 public void onStop(boolean result, @JCMediaChannel.MediaChannelReason int reason) {
-    // 销毁视频， canvas 为 JCMediaDeviceVideoCanvas 对象实例
+    //Destroy the video, canvas is the instance of JCMediaDeviceVideoCanvas object
     mParticipant.stopVideo();
     canvas = null;
 }

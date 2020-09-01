@@ -1,5 +1,6 @@
 ---
 title: SDK 下载
+lang: zh-CN
 ---
 # SDK 下载
 

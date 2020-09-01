@@ -1,103 +1,110 @@
 ---
-title: 实现一对一通话
+title: Realize One-to-One Voice Calling
 ---
-# 实现一对一通话
+# Realize One-to-One Voice Calling
 
-本章将介绍如何实现一对一语音通话，一对一通话的 API 调用时序见下图：
+This guide introduces how to implement one-to-one voice calls. The API
+call sequence of one-to-one calls is shown in the figure below:
 
 ![../../../../\_images/1-1workflowios.png](../../../../_images/1-1workflowios.png)
 
-## 初始化
+## Initialize
 
-调用 [JCMediaDevice
+Call [JCMediaDevice
 create](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaDevice.html#//api/name/create:callback:)
-和 [JCCall
+and [JCCall
 create](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCCall.html#//api/name/create:mediaDevice:callback:)
-以初始化实现一对一通话需要的模块
+to initialize the modules needed for one-to-one calling:
 
 ``````objectivec
-//初始化
+//Initialize
 -(bool)initialize {
-   //1. 媒体类
-   JCMediaDevice *mediaDevice = [JCMediaDevice create:client callback:self];
-   //2. 通话类
-   JCCall *call = [JCCall create:client mediaDevice:mediaDevice callback:self];
-   return client.state == JCClientStateLogined;
+    //1. Media class
+    JCMediaDevice *mediaDevice = [JCMediaDevice create:client callback:self];
+    //2. Call class
+    JCCall *call = [JCCall create:client mediaDevice:mediaDevice callback:self];
+    return client.state == JCClientStateLogined;
 }
 ``````
 
-其中：
+Among them:
 
-- JCMediaDevice create 方法中的 callback 为
+- The callback in the JCMediaDevice create is the proxy object of the
     [JCMediaDeviceCallback](https://developer.juphoon.com/portal/reference/V2.1/ios/Protocols/JCMediaDeviceCallback.html)
-    协议的代理对象，该协议用于将媒体设备相关的事件通知给上层。因此需要先指定 callback 的代理对象，然后在该代理对象中实现
-    JCMediaDeviceCallback 的方法。
+    protocol, which is used to notify the upper layer of media device
+    related events. Therefore, you need to specify the proxy object of
+    callback first, and then implement the JCMediaDeviceCallback in the
+    proxy object.
 
-JCMediaDeviceCallback 中的主要方法如下
+The main methods in the JCMediaDeviceCallback are as follows:
 
 ``````objectivec
-//摄像头变化
+//Camera changes
 -(void)onCameraUpdate;
 
-//音频输出变化
+//Audio output changes
 -(void)onAudioOutputTypeChange:(NSString*)audioOutputType;
 
-//声音中断恢复
+//Sound interruption recovery
 -(void)onAudioInerruptAndResume:(BOOL)interrupt;
 ``````
 
-- JCCall create 方法中的 callback 为
-    [JCCallCallback](https://developer.juphoon.com/portal/reference/V2.1/ios/Protocols/JCCallCallback.html)
-    协议的代理对象，该协议用于将通话相关的事件通知给上层。因此需要先指定 callback 的代理对象，然后在该代理对象中实现
-    JCCallCallback 的方法。
+- The callback in the JCCall create is a proxy object of the
+    [<span id="id3" class="problematic">|</span>](#id2)JCCallCallback
+    protocol, which is used to notify the upper layer of the
+    call-related events. Therefore, you need to specify the proxy object
+    of callback first, and then implement JCCallCallback in the proxy
+    object.
 
-JCCallCallback 中的主要方法如下
+The main methods in the JCCallCallback are as follows:
 
 ``````objectivec
-//新增通话回调
+//This callback triggers when the callItem is added
 -(void)onCallItemAdd:(JCCallItem* __nonnull)item;
 
-//移除通话
+//This callback triggers when the call is removed
 -(void)onCallItemRemove:(JCCallItem* __nonnull)item reason:(JCCallReason)reason description:(NSString * __nullable)description;
 
-//通话状态更新回调（当上层收到此回调时，可以根据 JCCallItem 对象获得该通话的所有信息及状态，从而更新该通话相关UI）
+//The callback of call status update (When the upper layer receives this callback, you can obtain all the information and status of the call according to the JCCallItem object, thereby updating the call related UI)
 -(void)onCallItemUpdate:(JCCallItem* __nonnull)item changeParam:(JCCallChangeParam * __nullable)changeParam;
 ``````
 
-## 拨打通话
+## Make a call
 
-调用
+Call
 [call](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCCall.html#//api/name/call:video:extraParam:)
-发起语音通话，需要填写的参数有：
+to initiate a video call, the parameters that need to be filled are:
 
-- `userID` 填写对方的用户ID。
+- `userID` Fill in the user ID of the other party.
 
-- `video` 选择是否为视频通话， true 表示拨打视频通话， false 表示拨打语音通话。
+- `video` Select whether to call a video call, and true means to make
+    a video call, while false means to make a voice call.
 
-- `extraParam` 为自定义透传字符串， 可通过 JCCallItem 对象中的 extraParam 属性获得。
+- `extraParam` is a custom pass-through string, which can be obtained
+    through the extraParam property in the JCCallItem object.
 
 ``````objectivec
-// 发起语音呼叫
-[call call:@"userID" video:false extraParam:@"自定义透传字符串"];
+// Initiate a voice call
+[call call:@"userID" video:false extraParam:@"custom pass-through string"];
 ``````
 
-拨打通话后，主叫和被叫均会收到新增通话的回调
+After dialing the call, both the caller and the callee will receive the
+callback
 [onCallItemAdd](https://developer.juphoon.com/portal/reference/V2.1/ios/Protocols/JCCallCallback.html#//api/name/onCallItemAdd:)
-，此时通话状态变为 JCCallStatePending 。您可以在上层实现
+for the new call, and the call status will change to JCCallStatePending
+at this time. You can implement the
 [onCallItemAdd](https://developer.juphoon.com/portal/reference/V2.1/ios/Protocols/JCCallCallback.html#//api/name/onCallItemAdd:)
-方法并处理相关的逻辑。
-
-示例代码:
+method in the upper layer and handle the related logic:
 
 ``````objectivec
-// 收到新增通话回调
+// Receive a new call callback
 -(void)onCallItemAdd:(JCCallItem* __nonnull)item {
-    // 业务逻辑
+    // Business logic
     if (item.direction == JCCallDirectionIn) {
-        // 如果是呼入
+        // If it is an incoming call
         ...
     } else {
-        // 如果是呼出
+        // If it is an outgoing call
         ...
     }
 }
@@ -105,65 +112,70 @@ JCCallCallback 中的主要方法如下
 
 ::: tip
 
-如果主叫想取消通话，可以直接转到挂断通话部分。调用挂断接口后，通话状态变为 JCCallStateCancel。
+If the caller wants to cancel the call, he/she can go directly to the
+hang up part. After calling the hang up interface, the call status
+becomes the JCCallStateCancel.
 
 :::
 
-## 应答通话
+## Answer the call
 
-1. 主叫发起呼叫成功后，被叫会收到
+1. After the caller initiates the call successfully, the called party
+    will receive the
     [onCallItemAdd](https://developer.juphoon.com/portal/reference/V2.1/ios/Protocols/JCCallCallback.html#//api/name/onCallItemAdd:)
-    回调，此时可以通过回调中的
+    callback. At this time, the video and direction properties of the
     [JCCallItem](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCCallItem.html)
-    对象的 video 以及 direction 属性判断是视频呼入还是语音呼入，从而做出相应的处理。
-
-示例代码:
-
-``````objectivec
--(void)onCallItemAdd:(JCCallItem* __nonnull)item {
-    // 1. 如果是语音呼入且在振铃中
-    if (item && item.direction == JCCallDirectionIn && !item.video) {
-        // 2. 做出相应的处理，如在界面上显示“振铃中”
-        ...
-    }
-}
-``````
-
-2\. 调用
-[answer](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCCall.html#//api/name/answer:video:)
-接听通话，**语音通话只能进行语音应答**
-
-``````objectivec
-// 应答通话
-[call answer:item video:false];
-``````
-
-通话应答后，通话状态变为 JCCallStateConnecting。
-
-::: tip
-
-如果被叫要在此时拒绝通话，可以直接转到挂断通话部分。调用挂断接口后，通话状态变为 JCCallStateCanceled。
-
-:::
-
-## 挂断通话
-
-主叫或者被叫均可以挂断通话。
-
-1. 首先调用
-    [getActiveCallItem](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCCall.html#//api/name/getActiveCallItem)
-    获取当前活跃的通话对象；
-
-2. 当前活跃通话对象获取后，调用
-    [term](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCCall.html#//api/name/term:reason:description:)
-    挂断当前活跃通话:
+    object in the callback can be used to determine whether it is a
+    video call or a voice call, so as to make corresponding processing:
 
     ``````objectivec
-    // 1. 获取当前活跃通话
-    JCCallItem *item = [call getActiveCallItem];
-    // 2. 挂断当前活跃通话
-    [call term:item reason:JCCallReasonNone description:@"主叫挂断"];
+    -(void)onCallItemAdd:(JCCallItem* __nonnull)item {
+        // 1. If it is an incoming video call and it is ringing
+        if (item && item.direction == JCCallDirectionIn && !item.video) {
+            // 2. Make corresponding processing, such as "ringing" on the interface
+            ...
+        }
+    }
     ``````
 
-通话挂断后，会触发 JCCallCallback 中的 onCallItemRemove（通话移除回调），通话状态变为
-JCCallStateOk。
+2. Call
+    [answer](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCCall.html#//api/name/answer:video:)
+    to answer calls, **Voice calls can only be answered by voice**:
+
+    ``````objectivec
+    // Answer the call
+    [call answer:item video:false];
+    ``````
+
+After the call is answered, the call status changes to
+JCCallStateConnecting.
+
+::: tip
+
+If you want to reject the call at this time, you can go directly to the
+hang up part. After calling the hang up interface, the call state
+becomes JCCallStateCanceled.
+
+:::
+
+## Hang up the call
+
+Both the calling party and the called party can hang up the call.
+
+1. First call
+    [getActiveCallItem](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCCall.html#//api/name/getActiveCallItem)
+    to get the currently active call object.
+
+2. After obtaining the current active call object, call
+    [term](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCCall.html#//api/name/term:reason:description:)
+    to hang up the current active call:
+
+    ``````objectivec
+    // 1. Get the current active call
+    JCCallItem *item = [call getActiveCallItem];
+    // 2. Hang up the current active call
+    [call term:item reason:JCCallReasonNone description:@"the caller hangs up"];
+    ``````
+
+After hanging up the call, the onCallItemRemove in JCCallCallback will
+be triggered, and the call state will change to JCCallStateOk.

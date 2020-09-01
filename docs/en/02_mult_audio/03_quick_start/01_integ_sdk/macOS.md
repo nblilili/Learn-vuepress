@@ -1,49 +1,62 @@
 ---
-title: 一分钟集成 SDK
+title: Integrate SDK in One Minute
 ---
-# 一分钟集成 SDK
+# Integrate SDK in One Minute
 
-本章将介绍如何将 SDK 集成到您自己创建的项目中。
+This chapter will introduce how to integrate the SDK into a project you
+created.
 
-## 前提条件
+## Prerequisites
 
-- Microsoft Visual Studio 2013 或以上版本
+- Microsoft Visual Studio 2013 or above
 
-- 支持 Windows 7 或以上版本的 Windows 设备
+- Support Windows 7 or above
 
-- 有效的菊风开发者账号（[免费注册](http:///developer.juphoon.com/signup) ）
+- Efficient Juphoon developer account ([free sign
+    up](http:///developer.juphoon.com/signup))
 
-- 有效的菊风 [AppKey](https://developer.juphoon.com/cn/document/V2.1/create-application.php)
+- Efficient Juphoon [AppKey](https://developer.juphoon.com/cn/document/V2.1/create-application.php)
 
-## 创建 Windows 项目
+## Create a Windows project
 
-参考以下步骤创建一个 Windows 项目。若已有 Windows 项目，可以直接查看集成 SDK。
+Refer to the following steps to create a Windows project. If you already
+have a Windows project, you can directly check the integrated SDK:
 
-1. 打开 **Microsoft Visual Studio** 并点击新建项目。
+1. Open **Microsoft Visual Studio** and click new project.
 
-2. 进入 **新建项目** 窗口，选择项目类型为 **MFC 应用程序**，输入项目名称，选择项目存储路径，并点击 **确认**。
+2. Enter the **Create a New Project** window, select the project type
+    as **MFC Application**, enter the project name, select the project
+    storage path, and click **Confirm**.
 
-3. 进入 **MFC 应用程序** 窗口，选择应用程序类型为 **基于对话框**，并点击完成。
+3. Enter the **MFC Application** window, select the application type as
+    **Dialog based**, and click Finish.
 
-## 集成 SDK
+## Integrate SDK
 
-1. 拷贝 SDK
+1. Copy SDK
 
-将下载的 SDK 文件夹复制到你的项目文件夹下，SDK 中包含 include 和 x86 两个文件夹。
+Copy the downloaded SDK folder to your project folder. The SDK contains
+include and x86 folders.
 
-其中， `x86` 中的目录中包含 `JCSDK.lib` ，`mtcdll.lib` ，`zmfdii.lib` ， `bzip2.dll`
-，`JCSDK.dll` ， `jssmme.dll` ，`mtc.dll` ，`zmf.dll` 八个文件。
+Among them, the directory in `x86` contains `JCSDK.lib` ，`mtcdll.lib`
+，`zmfdii.lib` ， `bzip2.dll` ，`JCSDK.dll` ， `jssmme.dll` ，`mtc.dll` and
+`zmf.dll` .
 
-2. 配置项目属性
+2. Configure project properties
 
-在 **解决方案资源管理器** 窗口中，右击项目名称并点击属性进行以下配置，配置完成后点击确定。
+In the **Solution Explorer** window, right-click the project name and
+click \[Property\] to do the following configuration, and click \[OK\]
+after the configuration is completed.
 
-进入 **C/C++ \> 常规 \> 附加包含目录** 菜单，点击 **编辑**，并在弹出窗口中输入 ../SDK/include。
+Go to **C/C++\> General\> Additional Include Directories** menu, click
+**Edit**, and enter ../SDK/include in the pop-up window.
 
-进入 **链接器 \> 常规 \> 附加库目录** 菜单，点击 **编辑**，并在弹出窗口中输入 ../SDK/x86。
+Go to the **Linker\> General\> Additional Library Directories** menu,
+click **Edit**, and enter ../SDK/x86 in the pop-up window.
 
 ::: tip
 
-SDK 路径为相对路径，开发者需要根据 SDK 实际存放的路径进行调整。
+The SDK path is a relative path, and developers need to adjust it
+according to the path where the SDK is actually stored.
 
 :::

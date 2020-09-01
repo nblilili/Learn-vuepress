@@ -1,67 +1,80 @@
 ---
-title: 准备开发环境
+title: Prepare the Development Environment
 ---
-# 准备开发环境
+# Prepare the Development Environment
 
-本章将介绍如何将 SDK 集成到您自己创建的项目中。
+This chapter will introduce how to integrate the SDK into a project you
+created.
 
-## 前提条件
+## Prerequisites
 
-- 支持 iOS 8.0 或以上版本的 iOS **真机** 设备
+- Support iOS 8.0 or above iOS **real device**
 
-- 有效的菊风开发者账号（[免费注册](http://developer.juphoon.com/signup) ）
+- Effective Juphoon Developer Account ([free sign
+    up](http://developer.juphoon.com/signup))
 
-- 有效的菊风 [AppKey](https://developer.juphoon.com/cn/document/V2.1/create-application.php)
+- Efficient Juphoon [AppKey](https://developer.juphoon.com/cn/document/V2.1/create-application.php)
 
-## 创建 iOS 项目
+## Create an iOS Project
 
-参考以下步骤创建一个 iOS 项目。若已有 iOS 项目，可以直接查看集成 JC SDK。
+Follow the steps below to create an iOS project. If you have an iOS
+project, you can directly check the step of integrating JC SDK.
 
-- 打开 Xcode 并点击 **Create a new Xcode project**。
+- Open Xcode and click Create a new Xcode project.
 
-- 选择项目类型为 **Single View App**，并点击 **Next**。
+- Select the project type as Single View App and click Next.
 
-- 输入项目信息，如项目名称、开发团队信息、组织名称和语言，并点击 **Next**。
+- Enter the project information, such as project name, development
+    team information, organization name and language, and click Next.
 
 ::: tip
 
-如果您没有添加过开发团队信息，点击 **Xcode \Preferences… \Accounts**，点击左下角加号并按照屏幕提示登入
-Apple ID，完成后即可选择您的账户作为开发团队。
+If you have not added the information of development team, click Xcode
+\Preferences… \Accounts, click the plus sign in the lower left
+corner and follow the on-screen prompts to log in your Apple ID. After
+that, you can choose your account as the development team.
 
 :::
 
-- 选择项目存储路径，并点击 **Create**。
+- Select the project storage path and click Create.
 
-- 进入 **TARGETS \Project Name \Signing & Capabilities** 菜单，勾选
-    **Automatically manage signing**。
+- Connect your iOS device to the computer.
 
-## 集成 SDK
+- Go to the TARGETS \Project Name \Signing & Capabilities menu and
+    check Automatically manage signing.
 
-您可以通过以下三种方式中任意一种集成 JC SDK：
+## Integrate SDK
 
-### 方法一：通过 CocoaPods 自动导入静态库
+You can integrate JC SDK in any of the following three ways:
 
-`V2.0` 及以上的版本支持使用 CocoaPods 导入 SDK。 导入前需要安装 CocoaPods 环境，安装方式参照
-[CocoaPods 官网](https://cocoapods.org) 。
+### Method 1: Automatically import static libraries through CocoaPods
 
-CocoaPods 环境安装好后，执行以下操作：
+Version 2.0 and above support you to import the SDK through CocoaPods.
+Before importing, CocoaPods environment needs to be installed, please
+refer to [CocoaPods official](https://cocoapods.org) website for
+installation method.
 
-1. 打开 Terminal，cd 至项目根目录
+After the CocoaPods environment is installed, take the following steps:
 
-2. 执行 pod init，项目文件夹下会生成一个 Podfile 文本文件
+1. Open Terminal, cd to the project root directory.
 
-3. 执行 open -e Podfile
+2. Execute pod init, a Podfile text file will be generated under the
+    project folder.
 
-4. 添加导入配置 `pod 'JuphoonCloudSDK_iOS', '2.1'`
+3. Run open -e Podfile.
 
-5. 执行 `pod install`，成功安装后，Terminal 中会显示 Pod installation
-    complete\!，此时项目文件夹下会生成一个 xcworkspace 文件。
+4. Add import configuration `pod 'JuphoonCloudSDK_iOS', '2.1'` .
 
-6. 双击打开 `xcworkspace` 文件。
+5. Execute `pod install` .After successful installation, Pod
+    installation complete\! will be displayed in Terminal. At this time,
+    an xcworkspace file will be generated under the project folder.
 
-修改后内容如下所示，注意将 Your App 替换为您的 Target 名称：
+6. Double-click to open the `xcworkspace` file.
 
-``````
+The revised content is as follows. Pay attention to replace Your App
+with your Target name:
+
+``````default
 platform :ios, '9.0'
 #use_frameworks!
 target 'Your App' do
@@ -71,105 +84,34 @@ end
 
 ::: tip
 
-`V2.1` 为当前发布的最新版本，关于指定具体版本请参考 [pod
-使用规范](https://guides.cocoapods.org/using/the-podfile.html) 。
+`Version 2.1` is the latest version currently released, please refer to
+the pod specification for the specific version.
 
-如果需要更新本地库版本，在执行 pod install 之前执行 pod update 命令。
-
-:::
-
-### 方法二：手动导入静态库
-
-1. 解压并打开下载的 JC SDK 静态库，在 sdk 文件目录下包含 include、lib、JCSDKOC.framework 和
-    JCCloudWrapper.framework 四个文件夹。
-
-2. 将 `sdk` 文件夹拷贝到您工程所在的目录下。
-
-3. - 导入 SDK  
-        打开 Xcode，进入 TARGETS \Project Name \Build Phases \Link
-        Binary with Libraries 菜单，点击 ‘+’ 符号，导入 sdk 文件夹下的
-        `JCSDKOC.framework`、lib 文件夹下的 `libmtc.a` 和 `libzmf.a` 文件。
-
-4. - 导入 SDK 依赖的库  
-        继续点击 ‘+’ 符号，导入如下系统依赖的库： - AssetsLibrary.framework -
-        AudioToolbox.framework - VideoToolBox.framework -
-        AVFoundation.framework - CFNetwork.framework -
-        CoreMedia.framework - CoreMotion.framework - CoreVideo.framework
-        - GLKit.framework - PushKit.framework（推送使用） -
-        ReplayKit.framework - Security.framework -
-        SystemConfiguration.framework - libc++.tbd - libz.tbd -
-        libresolv.tbd
-
-5. - 设置路径  
-        点击 ‘Build Settings’，找到 Search Paths，设置 Framework Search Paths
-        、Header Search Paths（头文件路径） 和 Library Search Paths（库文件路径）：
-
-          - Framework Search Paths：$(PROJECT\_DIR)/../sdk
-
-          - Header Search Paths：$(PROJECT\_DIR)/../sdk/include
-
-          - Library Search Paths：$(PROJECT\_DIR)/../sdk/lib/ios
-
-        ::: tip
-
-        在完成第 1 步导入 JCSDKOC.framework 和两个 .a 文件后，Xcode 会自动生成该路径，如果 Xcode
-        没有自动生成路径，用户要根据 `JCSDKOC.framework` 、`include` 和 `lib`
-        文件所在目录，手动设置路径。
-
-6. 设置 Enable Bitcode 为 NO
-
-    进入工程中 Target -\Build Settings -\Enable Bitcode，将此项设置为 NO。
-
-7. 设置 Other Linker Flags 的参数为 -ObjC
-
-    进入工程中的 Target -\Build Settings -\Other Linker Flags，在此项中添加
-    -ObjC。
-
-8. 设置预处理宏定义
-
-    点击 ‘Build Settings’，找到 Preprocessor Macros，在右侧输入
-    ZPLATFORM=ZPLATFORM\_IOS 。
-
-    **如果设置了 APNs 推送**，则还需要在 Preprocessor Macros 下的 Debug 中输入
-    DEBUG，如下图：
-
-    ![../../../../\_images/pushset.png](../../../../_images/pushset.png)
-
-    ::: tip
-
-    DEBUG 宏定义的目的是为了区分推送环境是 release 还是 debug，环境不对会导致推送失败。
-
-    :::
-
-9. 设置 Documentation Comments 为 NO
-
-    点击 ‘Build Settings’，找到 Documentation Comments 并设置为 NO。
-
-10. 设置后台运行模式
-
-    进入工程的 Target -\Signing & Capabilities -\Background
-    Modes，勾选如下两项内容:
-
-      - Audio, AirPlay, and Picture in Picture
-
-      - Voice over IP
+If you need to update the local library version, execute the pod update
+command before executing pod install.
 
 :::
 
-### 方法三：手动导入动态库
+### Method 2: Manually import static library
 
-1. 解压并打开下载的 JC SDK 动态库，在 sdk 文件目录下包含 JCSDKOC.framework 文件。
+1. Unpack and open the downloaded JC SDK static library. The sdk file
+    directory consists of four folders including include, lib,
+    JCSDKOC.framework and JCCloudWrapper.framework.
 
-2. 将 `sdk` 文件夹拷贝到您工程所在的目录下。
+2. Copy the `sdk` folder to the directory where your project is
+    located.
 
-3. 导入 SDK
+3. Import SDK
 
-    打开 Xcode，进入 TARGETS \Project Name \General，在 “Embedded
-    Binaries” 一栏，点击 ‘+’ 符号，然后导入 JCSDK 文件夹下的 JCSDKOC.framework。
+    Open Xcode, go to TARGETS \Project Name \Build Phases \Link
+    Binary with Libraries menu, click the ‘+’ symbol, and import
+    `JCSDKOC.framework` in the sdk folder and `libmtc.a` and
+    `libzmf.a` files in the lib folder.
 
-4. 导入 SDK 依赖的库
+4. Import SDK dependency library
 
-    继续点击 ‘+’ 符号，导入如下系统依赖的库：
+    Continue to click the ‘+’ symbol to import the following system
+    dependency libraries:
 
       - AssetsLibrary.framework
 
@@ -189,7 +131,7 @@ end
 
       - GLKit.framework
 
-      - PushKit.framework（推送使用）
+      - PushKit.framework(used by Push Function)
 
       - ReplayKit.framework
 
@@ -203,61 +145,183 @@ end
 
       - libresolv.tbd
 
-5. 设置路径
+5. Set path
 
-    点击 ‘Build Settings’，找到 Search Paths，设置 Framework Search Paths
-    、Header Search Paths（头文件路径） 和 Library Search Paths（库文件路径）：
+    Click ‘Build Settings’, find Search Paths, set Framework Search
+    Paths, Header Search Paths (header file path) and Library Search
+    Paths (library file path):
 
-      - Framework Search Paths：$(PROJECT\_DIR)/../sdk
+      - Framework Search Paths:$(PROJECT\_DIR)/../sdk
+
+      - Header Search Paths:$(PROJECT\_DIR)/../sdk/include
+
+      - Library Search Paths:$(PROJECT\_DIR)/../sdk/lib/ios
 
     ::: tip
 
-    在完成第 1 步导入 JCSDKOC.framework 和两个 .a 文件后，Xcode 会自动生成该路径，如果 Xcode
-    没有自动生成路径，用户要根据 `JCSDKOC.framework` 文件所在目录，手动设置路径。
+    After importing JCSDKOC.framework and two .a files in Step 1,
+    Xcode will automatically generate the path. If Xcode does not
+    automatically generate the path, the user should manually set the
+    path according to the directory where JCSDKOC.framework, include,
+    and lib files are located.
 
     :::
 
-6. 设置 Enable Bitcode 为 NO
+6. Set Enable Bitcode to NO
 
-    进入工程中 Target -\Build Settings -\Enable Bitcode，将此项设置为 NO。
+    Enter Target \Build Settings \Enable Bitcode in the project
+    and set this item to NO.
 
-7. 设置 Other Linker Flags 的参数为 -ObjC
+7. Set the parameters of Other Linker Flags to -ObjC
 
-    进入工程中的 Target -\Build Settings -\Other Linker Flags，在此项中添加
-    -ObjC。
+    Go to Target \Build Settings \Other Linker Flags in the
+    project and add -ObjC to this item.
 
-8. 设置预处理宏定义
+8. Set Preprocessor Macros
 
-    点击 ‘Build Settings’，找到 Preprocessor Macros，在右侧输入
-    ZPLATFORM=ZPLATFORM\_IOS 。
+    Click ‘Build Settings’, find Preprocessor Macros, and enter
+    ZPLATFORM=ZPLATFORM\_IOS on the right.
 
-    **如果设置了 APNs 推送**，则还需要在 Preprocessor Macros 下的 Debug 中输入
-    DEBUG，如下图：
+    If APNs push is set, you also need to enter DEBUG in Debug under
+    Preprocessor Macros, as shown below:
 
     ![../../../../\_images/pushset.png](../../../../_images/pushset.png)
 
     ::: tip
 
-    DEBUG 宏定义的目的是为了区分推送环境是 release 还是 debug，环境不对会导致推送失败。
+    The purpose of DEBUG Preprocessor Macros is to distinguish whether
+    the push environment is release or debug. If the environment is
+    wrong, the push will fail.
 
     :::
 
-9. 设置 Documentation Comments 为 NO
+9. Set Documentation Comments to NO
 
-    点击 ‘Build Settings’，找到 Documentation Comments 并设置为 NO。
+    Click ‘Build Settings’, find Documentation Comments and set to NO.
 
-10. 设置后台运行模式
+10. Set the background operation mode
 
-    进入工程的 Target -\Signing & Capabilities -\Background
-    Modes，勾选如下两项内容:
+    Enter Target \Signing & Capabilities \Background Modes of the
+    project, check the following two items:
 
       - Audio, AirPlay, and Picture in Picture
 
       - Voice over IP
 
-## 添加项目权限
+### Method 3: Manually import the dynamic library
 
-音视频通话需要用到摄像头和麦克风权限，请在工程的 info.plist 中添加如下键值:
+1. Unpack and open the downloaded JC SDK dynamic library. The sdk file
+    directory includes the JCSDKOC.framework file.
+
+2. Copy the `sdk` folder to the directory where your project is
+    located.
+
+3. Import SDK
+
+    Open Xcode, go to TARGETS\Project Name\General, click the “+”
+    symbol in the “Embedded Binaries” column, and then import
+    JCSDKOC.framework under the JCSDK folder.
+
+4. Import SDK dependency library
+
+    Continue to click the ‘+’ symbol to import the following system
+    dependency libraries:
+
+      - AssetsLibrary.framework
+
+      - AudioToolbox.framework
+
+      - VideoToolBox.framework
+
+      - AVFoundation.framework
+
+      - CFNetwork.framework
+
+      - CoreMedia.framework
+
+      - CoreMotion.framework
+
+      - CoreVideo.framework
+
+      - GLKit.framework
+
+      - PushKit.framework(used by Push Function)
+
+      - ReplayKit.framework
+
+      - Security.framework
+
+      - SystemConfiguration.framework
+
+      - libc++.tbd
+
+      - libz.tbd
+
+      - libresolv.tbd
+
+5. Set path
+
+    Click ‘Build Settings’, find Search Paths, set Framework Search
+    Paths, Header Search Paths (header file path) and Library Search
+    Paths (library file path):
+
+      - Framework Search Paths:$(PROJECT\_DIR)/../sdk
+
+    ::: tip
+
+    After importing JCSDKOC.framework and two .a files in step 1,
+    Xcode will automatically generate the path. If Xcode does not
+    automatically generate the path, the user should manually set the
+    path according to the directory where the `JCSDKOC.framework` file
+    is located.
+
+    :::
+
+6. Set Enable Bitcode to NO
+
+    Enter Target \Build Settings \Enable Bitcode in the project
+    and set this item to NO.
+
+7. Set the parameters of Other Linker Flags to -ObjC
+
+    Go to Target \Build Settings \Other Linker Flags in the
+    project and add -ObjC to this item.
+
+8. Set Preprocessor Macros
+
+    Click ‘Build Settings’, find Preprocessor Macros, and enter
+    ZPLATFORM=ZPLATFORM\_IOS on the right.
+
+    If APNs push is set, you also need to enter DEBUG in Debug under
+    Preprocessor Macros, as shown below:
+
+    ![../../../../\_images/pushset.png](../../../../_images/pushset.png)
+
+    ::: tip
+
+    The purpose of DEBUG Preprocessor Macros is to distinguish whether
+    the push environment is release or debug. If the environment is
+    wrong, the push will fail.
+
+    :::
+
+9. Set Documentation Comments to NO
+
+    Click ‘Build Settings’, find Documentation Comments and set to NO.
+
+10. Set the background operation mode
+
+    Enter Target \Signing & Capabilities \Background Modes of the
+    project, check the following two items:
+
+      - Audio, AirPlay, and Picture in Picture
+
+      - Voice over IP
+
+## Add project permissions
+
+Audio and video calls require camera and microphone permissions. Please
+add the following key values in the info.plist of the project:
 
 <table style="width:99%;">
 <colgroup>
@@ -276,12 +340,12 @@ end
 <tr class="odd">
 <td><p>Privacy - Microphone Usage Description</p></td>
 <td><p>String</p></td>
-<td><p>使用麦克风的目的，如语音通话。</p></td>
+<td><p>Use the microphone for purposes like voice calls.</p></td>
 </tr>
 <tr class="even">
 <td><p>Privacy - Camera Usage Description</p></td>
 <td><p>String</p></td>
-<td><p>使用摄像头的目的，如视频通话。</p></td>
+<td><p>Use the camera for purposes like video calls.</p></td>
 </tr>
 </tbody>
 </table>
