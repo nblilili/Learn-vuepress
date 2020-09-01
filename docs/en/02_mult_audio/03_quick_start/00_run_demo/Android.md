@@ -1,7 +1,7 @@
 ---
-title: Run through demo in one minute
+title: Run Through Demo in One Minute
 ---
-# Run through demo in one minute
+# Run Through Demo in One Minute
 
 To quickly experience the Demo, please follow the steps below:
 

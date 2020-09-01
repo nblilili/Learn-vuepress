@@ -50,11 +50,10 @@ The main methods in the JCMediaDeviceCallback are as follows:
 ``````
 
 - The callback in the JCCall create is a proxy object of the
-    [<span id="id3" class="problematic">|</span>](#id2)JCCallCallback
-    protocol, which is used to notify the upper layer of the
-    call-related events. Therefore, you need to specify the proxy object
-    of callback first, and then implement JCCallCallback in the proxy
-    object.
+    ||JCCallCallback| protocol, which is used to notify the upper layer
+    of the call-related events. Therefore, you need to specify the proxy
+    object of callback first, and then implement JCCallCallback in the
+    proxy object.
 
 The main methods in the JCCallCallback are as follows:
 

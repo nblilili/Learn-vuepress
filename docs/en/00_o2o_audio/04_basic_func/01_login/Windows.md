@@ -1,7 +1,7 @@
 ---
-title: Log in
+title: Log In
 ---
-# Log in
+# Log In
 
 This guide introduces how to initialize JC SDK and log in.
 

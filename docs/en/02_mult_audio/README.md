@@ -27,12 +27,12 @@ voice call experience.
 <tr class="odd">
 <td><p>Audio encryption and decryption</p></td>
 <td><p>Customize the acquired audio data and support the encryption algorithms of the third-party</p></td>
-<td><p>Group secret calls</p></td>
+<td><p>Group secure calls</p></td>
 </tr>
 <tr class="even">
 <td><p>Voice changer</p></td>
-<td><p>Connect with third parties to process special effects on the sound by acquiring the original data of the media engine</p></td>
-<td><p>Stereo surround sound quality, virtual stereo, voice social entertainment</p></td>
+<td><p>Connect with the third party to process special effects on the sound by acquiring the original data of the media engine</p></td>
+<td><p>Surround sound quality, virtual stereo, voice social entertainment</p></td>
 </tr>
 <tr class="odd">
 <td><p>Broadcast-grade sound quality</p></td>
@@ -62,13 +62,13 @@ voice call experience.
 <thead>
 <tr class="header">
 <th><p>Property</p></th>
-<th><p>Juphoon Voice Calling Specifications</p></th>
+<th><p>Specifications</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td><p>Audio quality</p></td>
-<td><p>Audio sampling rate: 16k ~ 48k Support single and dual channels</p></td>
+<td><p>Audio sampling rate: 16k ~ 48k,supporting single and dual channels</p></td>
 </tr>
 <tr class="even">
 <td><p>Audio anti-packet-loss rate</p></td>
@@ -105,15 +105,15 @@ specific compatibility requirements.
 <tbody>
 <tr class="odd">
 <td><p>iOS</p></td>
-<td><p>8.0+</p></td>
+<td><p>8.0 and above</p></td>
 </tr>
 <tr class="even">
 <td><p>Android</p></td>
-<td><p>4.0+</p></td>
+<td><p>4.0 and above</p></td>
 </tr>
 <tr class="odd">
 <td><p>Windows</p></td>
-<td><p>XP+</p></td>
+<td><p>XP and above</p></td>
 </tr>
 <tr class="even">
 <td><p>Web</p></td>

@@ -74,7 +74,7 @@ public boolean initialize(Context context) {
 
 ## Media parameter setting
 
-One-to-One video calls support the integration of smart hardware
+One-to-one video calls support the integration of smart hardware
 devices, and media parameters need to be set before a call is initiated:
 
 ``````java

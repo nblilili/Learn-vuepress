@@ -3,7 +3,7 @@ title: Video Management
 ---
 # Video Management
 
-## Video Data Collection Management
+## Video data collection management
 
 ### Set the type of camera to turn on
 
@@ -426,7 +426,7 @@ void JCSampleDlg::OnBnClickedButtonEndCall()
 }
 ``````
 
-## Video Rendering Management
+## Video rendering management
 
 Rendering management mainly uses the interfaces in the
 JCMediaDeviceVideoCanvas class, including Update video rendering logo,
@@ -462,7 +462,7 @@ interface to resume the paused video rendering.
 JCManager::shared()->mediaDeviceCanvas->resume();
 ``````
 
-## Video Equipment Management
+## Video equipment management
 
 Video device management mainly uses the methods in the JCMediaDevice
 class, as follows:

@@ -16,7 +16,7 @@ scenarios.
 Compared with ordinary voice calls, the features of Juphoon live
 interactive audio streaming are:
 
-- Distinguish between the host and the audiences, the host can speak
+- Distinguish between the host and the audiences. The host can speak
     freely, and other users need to interact with the host through
     co-hosting.
 
@@ -40,7 +40,7 @@ interactive audio streaming are:
 <tbody>
 <tr class="odd">
 <td><p>Voice changer</p></td>
-<td><p>Connect with third parties to process special effects on the sound by acquiring the original data of the media engine</p></td>
+<td><p>Connect with the third party to process special effects on the sound by acquiring the original data of the media engine</p></td>
 <td><p>Live interactive streaming, gaming</p></td>
 </tr>
 <tr class="even">
@@ -76,13 +76,13 @@ interactive audio streaming are:
 <thead>
 <tr class="header">
 <th><p>Property</p></th>
-<th><p>Juphoon Voice Calling Specifications</p></th>
+<th><p>Specifications</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td><p>Audio quality</p></td>
-<td><p>Audio sampling rate: 16k ~ 48k Support single and dual channels</p></td>
+<td><p>Audio sampling rate: 16k ~ 48k,supporting single and dual channels</p></td>
 </tr>
 <tr class="even">
 <td><p>Audio anti-packet-loss rate</p></td>
@@ -127,15 +127,15 @@ below.
 <tbody>
 <tr class="odd">
 <td><p>iOS</p></td>
-<td><p>8.0+</p></td>
+<td><p>8.0 and above</p></td>
 </tr>
 <tr class="even">
 <td><p>Android</p></td>
-<td><p>4.0+</p></td>
+<td><p>4.0 and above</p></td>
 </tr>
 <tr class="odd">
 <td><p>Windows</p></td>
-<td><p>XP+</p></td>
+<td><p>XP and above</p></td>
 </tr>
 <tr class="even">
 <td><p>Web</p></td>

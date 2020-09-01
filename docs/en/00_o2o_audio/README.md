@@ -63,7 +63,7 @@ experience.
 <tbody>
 <tr class="odd">
 <td><p>Audio quality</p></td>
-<td><p>Audio sampling rate: 16k ~ 48k Support single and dual channels</p></td>
+<td><p>Audio sampling rate: 16k ~ 48k,supporting single and dual channels</p></td>
 </tr>
 <tr class="even">
 <td><p>Audio anti-packet-loss rate</p></td>
@@ -78,7 +78,7 @@ experience.
 
 ## Compatibility
 
-One-to-One voice calling supports iOS, Android, Windows, macOS, Linux,
+One-to-one voice calling supports iOS, Android, Windows, macOS, Linux,
 Web, and interconnectivity between platforms. See the table below for
 specific compatibility requirements.
 

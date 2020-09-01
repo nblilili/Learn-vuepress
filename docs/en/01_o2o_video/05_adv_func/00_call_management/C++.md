@@ -3,7 +3,7 @@ title: Call Management
 ---
 # Call Management
 
-## Set the Number of Callers
+## Set the number of callers
 
 Before initiating a call, you can set the maximum number of callers
 using the maxCallNum and the default is 1. If it is a video call, the
@@ -17,7 +17,7 @@ JCManager::shared()->call->maxCallNum = 1;
 When exceed the maximum number, outgoing calls will fail, incoming calls
 will be automatically rejected.
 
-## Control Call Process
+## Control call process
 
 ### Call mute
 

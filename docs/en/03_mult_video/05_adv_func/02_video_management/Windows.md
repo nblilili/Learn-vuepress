@@ -3,7 +3,7 @@ title: Video Management
 ---
 # Video Management
 
-## Video Data Collection Management
+## Video data collection management
 
 ### Set the type of camera to turn on
 
@@ -129,7 +129,7 @@ Sample code:
 mediaDevice.rotate(JCMediaDeviceVideoCanvasRoatate.Angle0);
 ``````
 
-## Video Rendering Management
+## Video rendering management
 
 ### Create local and remote video images
 
@@ -306,7 +306,7 @@ public bool resume()
 
 -----
 
-## Video Equipment Management
+## Video equipment management
 
 Video device management mainly uses the methods in the JCMediaDevice
 class, as follows:

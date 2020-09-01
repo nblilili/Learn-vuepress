@@ -3,7 +3,7 @@ title: Channel Management
 ---
 # Channel Management
 
-## Channel Information Query
+## Channel information query
 
 call
 [query](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel.html#af7ccf465a6ddb05aa4ff22f5f61eab10)
@@ -63,7 +63,7 @@ void JCManager::onMessageReceive(const char* type, const char* content, const ch
 }
 ``````
 
-## Channel Member Management
+## Channel member management
 
 ### Access channel members
 
