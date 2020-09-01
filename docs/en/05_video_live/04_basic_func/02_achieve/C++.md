@@ -214,7 +214,7 @@ upload the local audio and video streams, but the audience does not.
     }
     ``````
 
-## Create local and remote video images
+## Create local video images
 
 1. After joining the channel, call the
     [getSelfParticipant](http://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel.html#afeb3c17dc9d0827fe27fa189cd0a5c9e)

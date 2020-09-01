@@ -90,7 +90,7 @@ public void onCallItemAdd(JCCallItem item) {
 }
 ``````
 
-## Create local and remote video images
+## Create local video images
 
 After initiating a call, call the
 [startSelfVideo()](https://developer.juphoon.com/portal/reference/V2.1/windows/html/d399b6b1-b822-b6aa-de75-f35d6815e93b.htm)
@@ -109,7 +109,7 @@ JCCallItem mCallItem = mCall.getActiveCallItem();
 mCallItem.startSelfVideo(JCMediaDevice.RENDER_FULL_AUTO);
 ``````
 
-## Answer the call
+## Answer a call
 
 The called party receives the
 [onCallItemAdd()](https://developer.juphoon.com/portal/reference/V2.1/windows/html/5e605b62-c8dc-4dde-2480-8fdcbbfc2f48.htm)
@@ -173,7 +173,7 @@ public void onCallItemUpdate(JCCallItem item) {
 }
 ``````
 
-## Hang up the call
+## Hang up a call
 
 Both the calling party and the called party can hang up the call.
 

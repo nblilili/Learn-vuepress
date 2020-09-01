@@ -174,7 +174,7 @@ upload the local audio and video stream, but the audience does not.
     }
     ``````
 
-## Create local and remote video images
+## Create local video images
 
 1. After joining a channel, get the object of the user in the channel
     through the selfParticipant attribute in

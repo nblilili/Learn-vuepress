@@ -139,7 +139,7 @@ The main methods in JCMediaChannel are as follows:
     }
     ``````
 
-## Create local and remote video images
+## Create local video images
 
 1. After joining the channel, obtain the self object in the channel
     through the selfParticipant attribute in

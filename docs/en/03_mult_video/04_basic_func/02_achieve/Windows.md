@@ -94,7 +94,7 @@ class JCManager : JCClientCallback, JCMediaDeviceCallback,JCMediaChannelCallbac{
     }
     ``````
 
-## Create local and remote video images
+## Create local video images
 
 After joining a channel, call
 [<span id="id2" class="problematic">|getSelfParticipant|</span>](#id1)

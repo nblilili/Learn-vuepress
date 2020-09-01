@@ -95,7 +95,7 @@ public void onCallItemAdd(JCCallItem item) {
 }
 ``````
 
-## Answer the call
+## Answer a call
 
 1. The called party receives the
     [onCallItemAdd()](https://developer.juphoon.com/portal/reference/V2.1/windows/html/5e605b62-c8dc-4dde-2480-8fdcbbfc2f48.htm)
@@ -133,7 +133,7 @@ changes to STATE\_CANCELED.
 
 :::
 
-## Hang up the call
+## Hang up a call
 
 Both the calling party and the called party can hang up the call.
 

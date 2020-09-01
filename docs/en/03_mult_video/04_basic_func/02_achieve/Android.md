@@ -141,7 +141,7 @@ public boolean initialize(Context context) {
     }
     ``````
 
-## Create local and remote video images
+## Create local video images
 
 After joining the channel, call
 [getSelfParticipant()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannel.html#getSelfParticipant--)

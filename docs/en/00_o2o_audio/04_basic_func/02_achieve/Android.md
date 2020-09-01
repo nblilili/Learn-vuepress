@@ -119,7 +119,7 @@ public void onCallItemAdd(JCCallItem item) {
 }
 ``````
 
-## Answer the call
+## Answer a call
 
 1. The called party receives the
     [onCallItemAdd()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCCallCallback.html#onCallItemAdd-com.juphoon.cloud.JCCallItem-)
@@ -161,7 +161,7 @@ changes to STATE\_CANCELED.
 
 :::
 
-## Hang up the call
+## Hang up a call
 
 Both the calling party and the called party can hang up the call.
 

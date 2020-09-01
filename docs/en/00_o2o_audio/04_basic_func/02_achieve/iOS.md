@@ -117,7 +117,7 @@ becomes the JCCallStateCancel.
 
 :::
 
-## Answer the call
+## Answer a call
 
 1. After the caller initiates the call successfully, the called party
     will receive the
@@ -157,7 +157,7 @@ becomes JCCallStateCanceled.
 
 :::
 
-## Hang up the call
+## Hang up a call
 
 Both the calling party and the called party can hang up the call.
 
