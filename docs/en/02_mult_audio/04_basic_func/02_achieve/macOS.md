@@ -6,7 +6,7 @@ title: Realize Group Calling
 This guide introduces how to implement group audio and video calls. The
 API call sequence of group calls is shown in the figure below:
 
-![../../../../\_images/multiaudioworkflow.png](../../../../_images/multiaudioworkflow.png)
+![../../../../\_images_en/multiaudioworkflow.png](../../../../_images_en/multiaudioworkflow.png)
 
 ## Initialize
 

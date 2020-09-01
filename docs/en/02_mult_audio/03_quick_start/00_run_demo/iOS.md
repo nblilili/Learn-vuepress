@@ -29,7 +29,7 @@ to download the Demo source code.
 
 The unzipped directory is as follows:
 
-![../../../../\_images/duoiOS.png](../../../../_images/duoiOS.png)
+![../../../../\_images_en/duoiOS.png](../../../../_images_en/duoiOS.png)
 
 JuphoonCommon is an independent module that the project relies on and
 provides http account management functions.
@@ -38,7 +38,7 @@ provides http account management functions.
 
 Enter your AppKey in the code marked in the red box below
 
-![../../../../\_images/duokey1.png](../../../../_images/duokey1.png)
+![../../../../\_images_en/duokey1.png](../../../../_images_en/duokey1.png)
 
 ### Run Demo
 

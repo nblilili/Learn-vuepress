@@ -99,7 +99,7 @@ For example, if A is set to rotate 90 degrees, the A and B video images
 displayed on the A side will rotate 90 degrees at the same time. The
 video image on the B side will not change. As shown below:
 
-![../../../../\_images/rotateset.png](../../../../_images/rotateset.png)
+![../../../../\_images_en/rotateset.png](../../../../_images_en/rotateset.png)
 
 JCMediaDeviceVideoCanvasRoatate
 

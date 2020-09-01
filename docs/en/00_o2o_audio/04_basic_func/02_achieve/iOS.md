@@ -6,7 +6,7 @@ title: Realize One-to-One Voice Calling
 This guide introduces how to implement one-to-one voice calls. The API
 call sequence of one-to-one calls is shown in the figure below:
 
-![../../../../\_images/1-1workflowios.png](../../../../_images/1-1workflowios.png)
+![../../../../\_images_en/1-1workflowios.png](../../../../_images_en/1-1workflowios.png)
 
 ## Initialize
 

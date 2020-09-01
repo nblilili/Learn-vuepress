@@ -186,7 +186,7 @@ command before executing pod install.
     If APNs push is set, you also need to enter DEBUG in Debug under
     Preprocessor Macros, as shown below:
 
-    ![../../../../\_images/pushset.png](../../../../_images/pushset.png)
+    ![../../../../\_images_en/pushset.png](../../../../_images_en/pushset.png)
 
     ::: tip
 
@@ -296,7 +296,7 @@ command before executing pod install.
     If APNs push is set, you also need to enter DEBUG in Debug under
     Preprocessor Macros, as shown below:
 
-    ![../../../../\_images/pushset.png](../../../../_images/pushset.png)
+    ![../../../../\_images_en/pushset.png](../../../../_images_en/pushset.png)
 
     ::: tip
 

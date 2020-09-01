@@ -6,7 +6,7 @@ title: Realize group video calling
 This chapter introduces how to implement group video calling. The API
 call sequence of group video calling is shown in the figure below:
 
-![../../../../\_images/multivideoworkflow.png](../../../../_images/multivideoworkflow.png)
+![../../../../\_images_en/multivideoworkflow.png](../../../../_images_en/multivideoworkflow.png)
 
 ## Initialize
 

@@ -6,7 +6,7 @@ title: Realize group voice calling
 This guide introduces how to implement group voice calling. The API call
 sequence of group voice calls is shown in the figure below:
 
-![../../../../\_images/multiaudioworkflow.png](../../../../_images/multiaudioworkflow.png)
+![../../../../\_images_en/multiaudioworkflow.png](../../../../_images_en/multiaudioworkflow.png)
 
 ## Initialize
 

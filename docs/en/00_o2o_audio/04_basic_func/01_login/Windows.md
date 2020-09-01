@@ -41,7 +41,7 @@ public bool initialize(Application app) {
 After the SDK is initialized, login integration is possible.The call
 flow of the login interface is as follows:
 
-![../../../../\_images/workflow\_login\_android.png](../../../../_images/workflow_login_android.png)
+![../../../../\_images_en/workflow\_login\_android.png](../../../../_images_en/workflow_login_android.png)
 
 First create a
 [JCClient.LoginParam](https://developer.juphoon.com/portal/reference/V2.1/windows/html/bf49d392-d1f9-d885-36e5-4af282fdf4b8.htm)
@@ -129,7 +129,7 @@ logged in on another device. Login success/failure reason Refer to
 
 The call flow of the logout interface is as follows:
 
-![../../../../\_images/workflow\_logout\_android.png](../../../../_images/workflow_logout_android.png)
+![../../../../\_images_en/workflow\_logout\_android.png](../../../../_images_en/workflow_logout_android.png)
 
 Call
 [logout()](https://developer.juphoon.com/portal/reference/V2.1/windows/html/4b7a3fd4-f6bf-fc4e-8cf9-78023f69b459.htm)

@@ -6,7 +6,7 @@ title: Realize group video calling
 This guide introduces how to implement goup audio and video calls. The
 API call sequence of group video calls is shown in the figure below:
 
-![../../../../\_images/multivideoworkflow.png](../../../../_images/multivideoworkflow.png)
+![../../../../\_images_en/multivideoworkflow.png](../../../../_images_en/multivideoworkflow.png)
 
 ## Initialize
 

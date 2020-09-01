@@ -98,7 +98,7 @@ JCCallItem* item = JCManager::shared()->call->getActiveCallItem();
 
 The specific mechanism of this interface is shown in the figure below:
 
-![../../../../\_images/enablevideostream.jpg](../../../../_images/enablevideostream.jpg)
+![../../../../\_images_en/enablevideostream.jpg](../../../../_images_en/enablevideostream.jpg)
 
 - If A turns on sending video streams, the return value of A’s
     item-\>getUploadVideoStreamSelf() is true, and B uses the

@@ -75,7 +75,7 @@ The dynamic library used on the mac integrates SDK.
 
     The effect after importing is as follows:
 
-    ![../../../../\_images/macdyliblist.png](../../../../_images/macdyliblist.png)
+    ![../../../../\_images_en/macdyliblist.png](../../../../_images_en/macdyliblist.png)
 
 5. Set path
 
@@ -122,8 +122,8 @@ The dynamic library used on the mac integrates SDK.
     settings, you need to check the following to obtain the
     corresponding device permissions:
 
-    ![../../../../\_images/sandboxset.png](../../../../_images/sandboxset.png)
-    ![../../../../\_images/hardrunset.png](../../../../_images/hardrunset.png)
+    ![../../../../\_images_en/sandboxset.png](../../../../_images_en/sandboxset.png)
+    ![../../../../\_images_en/hardrunset.png](../../../../_images_en/hardrunset.png)
 
     ::: tip
 

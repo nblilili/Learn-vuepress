@@ -7,7 +7,7 @@ This guide introduces how to implement live interactive streaming. The
 API call sequence of live interactive streaming is shown in the figure
 below:
 
-![../../../../\_images/multivideoworkflow.png](../../../../_images/multivideoworkflow.png)
+![../../../../\_images_en/multivideoworkflow.png](../../../../_images_en/multivideoworkflow.png)
 
 ## Initialize
 

@@ -44,6 +44,6 @@ a Winform project, you can directly view the integrated SDK.
 3. Confirm that the output path is the same as the folder where the dll
     library is located.
 
-![../../../../\_images/windows\_5.png](../../../../_images/windows_5.png)
+![../../../../\_images_en/windows\_5.png](../../../../_images_en/windows_5.png)
 
 If the compilation is successful, the integrated content is completed.

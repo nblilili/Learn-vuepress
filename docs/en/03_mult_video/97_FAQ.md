@@ -260,7 +260,7 @@ mediaDevice.stopVideoFile();
     the country (geographical location), and the domain refers to the
     domain name of the server, as shown in the following figure:
 
-![../../\_images/questions1.png](../../_images/questions1.png)
+![../../\_images_en/questions1.png](../../_images_en/questions1.png)
 
 If the participants are not in the same area, they cannot communicate
 even if the channel ID is the same. The default area of the program is

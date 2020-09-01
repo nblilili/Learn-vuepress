@@ -7,7 +7,7 @@ This guide introduces how to implement live interactive voice streaming.
 The API call sequence of live interactive voice streaming is shown in
 the figure below:
 
-![../../../../\_images/multiaudioworkflow.png](../../../../_images/multiaudioworkflow.png)
+![../../../../\_images_en/multiaudioworkflow.png](../../../../_images_en/multiaudioworkflow.png)
 
 ## Initialize
 

@@ -6,7 +6,7 @@ title: Realize One-to-One Video Calling
 This guide introduces how to achieve one-to-one video calling. API call
 sequence for one-to-one call is as shown below:
 
-![../../../../\_images/1-1workflowios.png](../../../../_images/1-1workflowios.png)
+![../../../../\_images_en/1-1workflowios.png](../../../../_images_en/1-1workflowios.png)
 
 ## Initialize
 
