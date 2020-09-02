@@ -116,11 +116,13 @@ export default {
       this.checkpath();
     },
   },
+  created(){
+    this.needTags = false;
+    this.checkroute();
+  },
   mounted() {
     this.checkpath();
     var that = this;
-    this.needTags = false;
-    this.checkroute();
     setTimeout(() => {
       this.$nextTick(() => {
         this.$EventBus.$emit("pageHeight", this.$refs.Page.clientHeight);

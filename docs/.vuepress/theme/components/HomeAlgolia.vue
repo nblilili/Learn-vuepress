@@ -60,7 +60,7 @@ export default {
     console.log(hash);
     if (hash) {
       // this.placeholder = hash;
-      this.value = hash;
+      this.value = decodeURI(hash);
       this.searchData();
     }
   },
