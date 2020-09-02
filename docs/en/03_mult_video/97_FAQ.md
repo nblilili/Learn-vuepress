@@ -21,12 +21,12 @@ title: FAQ
 
 <!-- end list -->
 
-- In the mode of no authentication, if customers want to use their own
-    account system, but do not want to use their account as the server’s
-    account identifier, they can create a server-side account identifier
-    corresponding to their own account system as their own Id. If your
-    own account system is mobile phone number: 150…, the server-side
-    account system can be an identifier such as ABC.
+- In the mode of no authentication, if you want to use their own
+    account system, but do not want to use their account as the account
+    identifier of the server, you can create a server-side account
+    identifier corresponding to their own account system as their own
+    Id. If your own account system is mobile phone number: 150…, the
+    server-side account system can be an identifier such as ABC.
 
 <!-- end list -->
 
@@ -49,18 +49,18 @@ consistent. For the setting of the server address, refer to
 
 -----
 
-`One-to-One calls`
+`One-to-one calls`
 
-1. During a one-to-one call, the opposite party exits abnormally
-    (program gets killed, network disconnection). How long will the
-    local end hang up?
+1. During a one-to-one call, another party exits abnormally (program
+    gets killed, network disconnection). How long will the local end
+    hang up?
 
 <!-- end list -->
 
-- After 20 seconds, the peer is killed; the local end will hang up in
-    20 seconds; the upper layer will receive notifyCallItemRemove; the
-    reason is term\_by\_self, and the netstatus status in the callitem
-    is -3.
+- After 20 seconds, the peer end is killed and the local end will hang
+    up in 20 seconds. The upper layer will receive notifyCallItemRemove.
+    The reason is term\_by\_self, and the netstatus status in the
+    callitem is -3.
 
 <!-- end list -->
 
@@ -85,15 +85,14 @@ consistent. For the setting of the server address, refer to
     ending call are continuously received.
 
 - When A calls B, the messae of call establishment is sent to the
-    server, and when A hangs up, the message of ending call is sent,
+    server; and when A hangs up, the message of ending call is sent,
     instead of canceling the previous message (the server does not have
     the function of canceling the previous message). These messages will
-    be cached on the server for a period of time (60 seconds). If B
-    recovers the network within the buffer time, it will receive the
-    cached message. If B recovers from the network outside the buffer
-    time, the cached messages have been deleted, B will not receive
-    these messages, and the call interface will not pop up and end
-    immediately.
+    be cached on the server for a 60 seconds. If B recovers the network
+    within the buffer time, it will receive the cached message. If B
+    recovers from the network outside the buffer time, the cached
+    messages have been deleted, B will not receive these messages, and
+    the call interface will not pop up and end immediately.
 
 - One way to avoid this phenomenon is to delay the display of the call
     interface after receiving the message of call establishment for a
@@ -129,7 +128,7 @@ consistent. For the setting of the server address, refer to
 <!-- end list -->
 
 - Calling this method will affect the **Local Video Request
-    Resolution**, the default setting is true
+    Resolution**, and the default setting is true
 
 Prerequisites:
 
@@ -145,7 +144,7 @@ Prerequisites:
 
 If set to true, the requested resolution will be adjusted to 360\*360.
 
-If it is set to false, the requested resolution is still 640\*360.
+If set to false, the requested resolution is still 640\*360.
 
 7. About the use of Mtc\_CallDbSetAdaptiveAspect(bool)
 
@@ -160,23 +159,23 @@ Prerequisites:
 >
 >
 >
-> 1. camera capture is 1280\*720 (16:9);
+> 1. Camera capture is 1280\*720 (16:9);
 >
-> 2. After consultation, a 320\*240 (4:3) image needs to be sent to the
->     other party.
+> 2. After consultation, a 320\*240 (4:3) image needs to be sent to
+>     another party.
 >
 >
 
-If set to true, the sending video will be sent according to the ratio
-(16:9) collected by the camera (the video data received by the peer is
-not according to the consultated resolution).
+If set to true, the video will be sent according to the ratio (16:9)
+collected by the camera (the video data received by the peer end is not
+according to the consultated resolution).
 
-If set to false, the sending video will be sent according to the video
-ratio (4:3) that needs to be sent after conslutation (crop the image
-collected by the camera).
+If set to false, the video will be sent according to the video ratio
+(4:3) that needs to be sent after conslutation (crop the image collected
+by the camera).
 
-8. Collect video data by yourself for transmission (the smart device
-    SDK does not have this interface) Only care about data transmission
+8. Your collected video data for transmission (the smart device SDK
+    does not have this interface and only cares about data transmission)
 
 <!-- end list -->
 
@@ -188,7 +187,7 @@ collected by the camera).
 >
 > startVideoFile - setVideoFileFrame - stopVideoFile
 >
-> Or need to use Juphoon rendering :
+> Or need to use Juphoon rendering:
 >
 > startVideo(access videoSource value via getVideoFileId) -
 > setVideoFileFrame - stopVideo
@@ -227,16 +226,16 @@ Among them, The interface of setVideoFileFrame is as follows:
 public abstract void setVideoFileFrame(byte[] data, @VideoPixelFormat int format, int width, int height, int angle, int mirror, boolean keyFrame);
 ``````
 
-**The description of H264:**
+**About the description of H264:**
 
 Since the bottom layer of the media defaults to the off state of H264 at
 the beginning, setVideoFrame must be called before connecting when the
-program starts at first, otherwise it will cause the peer to not receive
-the image.
+program starts at first, otherwise it will cause the peer end to not
+receive the image.
 
 Solution 1: Adjust early.
 
-Solution 2: Call the following code after SDKInitialize succeeds:
+Solution 2: Call the following code after SDK initialization succeeds:
 
 ``````java
 mediaDevice.startVideoFile();
@@ -256,15 +255,15 @@ mediaDevice.stopVideoFile();
     members of conferences, you need to pay attention when calculating
     the number of people.
 
-3. 示When joining a meeting, the same channel ID in the same area can
-    connect even if the AppKey is different. Among them, the area is
-    means the country (geographical location), and the domain refers to
-    the domain name of the server, as shown in the following figure:
+3. When joining a meeting, the same channel ID in the same area can
+    connect even if the AppKey is different. Among them, the area means
+    the country (geographical location), and the domain refers to the
+    domain name of the server, as shown in the following figure:
 
-![../../\_images/questions1.png](../../_images/questions1.png)
+![../../\_images_en/questions1.png](../../_images_en/questions1.png)
 
 If the participants are not in the same area, they cannot communicate
 even if the channel ID is the same. The default area of the program is
-China. For example, user A and User B in China can join the conference
+China. For example, user A and user B in China can join the conference
 under the same channel ID. If another member C is abroad, even if he/she
 has the same channel ID as A and B, he/she cannot join the conference.

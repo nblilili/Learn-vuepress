@@ -6,7 +6,7 @@ title: Realize Group Calling
 This guide introduces how to implement group video calling. The API call
 sequence of group video calling is shown in the figure below:
 
-![../../../../\_images/multivideoworkflow.png](../../../../_images/multivideoworkflow.png)
+![../../../../\_images_en/multivideoworkflow.png](../../../../_images_en/multivideoworkflow.png)
 
 ## Initialize
 
@@ -139,7 +139,7 @@ The main methods in JCMediaChannel are as follows:
     }
     ``````
 
-## Create local and remote video images
+## Create local video images
 
 1. After joining the channel, obtain the self object in the channel
     through the selfParticipant attribute in

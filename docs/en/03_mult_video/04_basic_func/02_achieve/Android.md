@@ -6,7 +6,7 @@ title: Realize group video calling
 This guide introduces how to implement group video calling. The API call
 sequence of group video calling is shown in the figure below:
 
-![../../../../\_images/multivideoworkflow.png](../../../../_images/multivideoworkflow.png)
+![../../../../\_images_en/multivideoworkflow.png](../../../../_images_en/multivideoworkflow.png)
 
 ## Initialize
 
@@ -141,7 +141,7 @@ public boolean initialize(Context context) {
     }
     ``````
 
-## Create local and remote video images
+## Create local video images
 
 After joining the channel, call
 [getSelfParticipant()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannel.html#getSelfParticipant--)

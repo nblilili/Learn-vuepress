@@ -1,6 +1,6 @@
 ---
-title: Run through demo in one minute
+title: Run Through Demo in One Minute
 ---
-# Run through demo in one minute
+# Run Through Demo in One Minute
 
 The C++ version has not yet published the Demo source code. Stay tuned.

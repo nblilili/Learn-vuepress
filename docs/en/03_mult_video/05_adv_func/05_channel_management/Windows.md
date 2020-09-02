@@ -3,7 +3,7 @@ title: Channel Management
 ---
 # Channel Management
 
-## Channel Information Query
+## Channel information query
 
 If you need to query channel related information, such as channel name,
 existence, member name, and number of members, you can call the query
@@ -62,7 +62,7 @@ public void onQuery(int operationId, boolean result, @JCMediaChannel.MediaChanne
 
 -----
 
-## Channel Member Management
+## Channel member management
 
 ### Access member objects
 

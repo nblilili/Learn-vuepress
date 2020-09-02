@@ -56,13 +56,7 @@ module.exports = {
         ]
       }
     ];
-    let enObj = [{
-        title: "platform",
-        children: [{
-          title: "Juphoon Platform",
-          url: "/" + locale + "/juphoon_platform/"
-        }]
-      },
+    let enObj = [
       {
         title: "Product",
         children: [{

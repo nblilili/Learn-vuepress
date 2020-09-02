@@ -6,7 +6,7 @@ title: Realize One-to-One Video Calling
 This guide introduces how to achieve one-to-one video calling. API call
 sequence for one-to-one call is as shown below:
 
-![../../../../\_images/1-1workflowandroid.png](../../../../_images/1-1workflowandroid.png)
+![../../../../\_images_en/1-1workflowandroid.png](../../../../_images_en/1-1workflowandroid.png)
 
 ## Initialize
 
@@ -74,7 +74,7 @@ public boolean initialize(Context context) {
 
 ## Media parameter setting
 
-One-to-One video calls support the integration of smart hardware
+One-to-one video calls support the integration of smart hardware
 devices, and media parameters need to be set before a call is initiated:
 
 ``````java
@@ -132,7 +132,7 @@ public void onCallItemAdd(JCCallItem item) {
 }
 ``````
 
-## Create local and remote video images
+## Create local video images
 
 After initiating a call, call the
 [startSelfVideo()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCCallItem.html#startSelfVideo-int-)
@@ -151,7 +151,7 @@ JCCallItem mCallItem = mCall.getActiveCallItem();
 mCallItem.startSelfVideo(JCMediaDevice.RENDER_FULL_AUTO);
 ``````
 
-## Answer the call
+## Answer a call
 
 The called party receives the
 [onCallItemAdd()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCCallCallback.html#onCallItemAdd-com.juphoon.cloud.JCCallItem-)
@@ -221,7 +221,7 @@ public void onCallItemUpdate(JCCallItem item) {
 }
 ``````
 
-## Hang up the call
+## Hang up a call
 
 Both the calling party and the called party can hang up the call.
 

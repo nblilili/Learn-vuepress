@@ -1,7 +1,7 @@
 ---
-title: Log in
+title: Log In
 ---
-# Log in
+# Log In
 
 This guide introduces how to initialize JC SDK and log in.
 
@@ -70,7 +70,7 @@ JCClientStateIdle (not logged in state).
 After the SDK is initialized, login integration is possible.The call
 flow of the login interface is as follows:
 
-![../../../../\_images/ios\_login.png](../../../../_images/ios_login.png)
+![../../../../\_images_en/ios\_login.png](../../../../_images_en/ios_login.png)
 
 Create
 [JCClientLoginParam](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_client_login_param.html)
@@ -174,7 +174,7 @@ reasons, please refer to
 
 The call flow of the logout interface is as follows:
 
-![../../../../\_images/ios\_logout.png](../../../../_images/ios_logout.png)
+![../../../../\_images_en/ios\_logout.png](../../../../_images_en/ios_logout.png)
 
 Call
 [logout](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_client.html#abac015a13078c84b06afac69dcd392ff)

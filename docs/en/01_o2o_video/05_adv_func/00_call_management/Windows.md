@@ -3,7 +3,7 @@ title: Call Management
 ---
 # Call Management
 
-## Set the Number of Callers
+## Set the number of callers
 
 Before initiating a call, you can set the maximum number of callers
 using the maxCallNum and the default is 1. If it is a video call, the
@@ -22,7 +22,7 @@ When exceed the maximum number:
 - Incoming calls will be rejected automatically because of the
     JCCallReasonBusy (busy).
 
-## Control Call Process
+## Control call process
 
 ### Call mute
 

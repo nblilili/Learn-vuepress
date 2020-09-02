@@ -1,7 +1,7 @@
 ---
-title: Log in
+title: Log In
 ---
-# Log in
+# Log In
 
 This guide introduces how to initialize JC SDK and log in.
 
@@ -60,7 +60,7 @@ After the SDK is initialized, login integration is possible.
 
 The call flow of the login interface is as follows:
 
-![../../../../\_images/ios\_login.png](../../../../_images/ios_login.png)
+![../../../../\_images_en/ios\_login.png](../../../../_images_en/ios_login.png)
 
 First create a
 [JCClientLoginParam](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCClientLoginParam.html)
@@ -155,7 +155,7 @@ Login success/failure reason reference
 
 The call flow of the logout interface is as follows:
 
-![../../../../\_images/ios\_logout.png](../../../../_images/ios_logout.png)
+![../../../../\_images_en/ios\_logout.png](../../../../_images_en/ios_logout.png)
 
 Call
 [logout](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCClient.html#//api/name/logout)

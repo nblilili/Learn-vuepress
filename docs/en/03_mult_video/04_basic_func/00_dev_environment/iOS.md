@@ -15,33 +15,34 @@ created.
 
 - Efficient Juphoon [AppKey](https://developer.juphoon.com/cn/document/V2.1/create-application.php)
 
-## Create an iOS Project
+## Create an iOS project
 
 Follow the steps below to create an iOS project. If you have an iOS
 project, you can directly check the step of integrating JC SDK.
 
-- Open Xcode and click Create a new Xcode project.
+- Open Xcode and click **Create a new Xcode project**.
 
-- Select the project type as Single View App and click Next.
+- Select the project type as **Single View App** and click **Next**.
 
 - Enter the project information, such as project name, development
-    team information, organization name and language, and click Next.
+    team information, organization name and language, and click
+    **Next**.
 
 ::: tip
 
-If you have not added the information of development team, click Xcode
-\Preferences… \Accounts, click the plus sign in the lower left
+If you have not added the information of development team, click **Xcode
+\Preferences… \Accounts**, click the plus sign in the lower left
 corner and follow the on-screen prompts to log in your Apple ID. After
 that, you can choose your account as the development team.
 
 :::
 
-- Select the project storage path and click Create.
+- Select the project storage path and click **Create**.
 
 - Connect your iOS device to the computer.
 
-- Go to the TARGETS \Project Name \Signing & Capabilities menu and
-    check Automatically manage signing.
+- Go to the **TARGETS \Project Name \Signing & Capabilities** menu
+    and check **Automatically manage signing**.
 
 ## Integrate SDK
 
@@ -185,7 +186,7 @@ command before executing pod install.
     If APNs push is set, you also need to enter DEBUG in Debug under
     Preprocessor Macros, as shown below:
 
-    ![../../../../\_images/pushset.png](../../../../_images/pushset.png)
+    ![../../../../\_images_en/pushset.png](../../../../_images_en/pushset.png)
 
     ::: tip
 
@@ -295,7 +296,7 @@ command before executing pod install.
     If APNs push is set, you also need to enter DEBUG in Debug under
     Preprocessor Macros, as shown below:
 
-    ![../../../../\_images/pushset.png](../../../../_images/pushset.png)
+    ![../../../../\_images_en/pushset.png](../../../../_images_en/pushset.png)
 
     ::: tip
 

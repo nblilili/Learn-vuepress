@@ -6,7 +6,7 @@ title: Realize one-to-one voice calling
 This guide introduces how to implement one-to-one voice calls. The API
 call sequence of one-to-one voice calls is shown in the figure below:
 
-![../../../../\_images/1-1workflowWindows.png](../../../../_images/1-1workflowWindows.png)
+![../../../../\_images_en/1-1workflowWindows.png](../../../../_images_en/1-1workflowWindows.png)
 
 ## Initialize
 
@@ -95,7 +95,7 @@ public void onCallItemAdd(JCCallItem item) {
 }
 ``````
 
-## Answer the call
+## Answer a call
 
 1. The called party receives the
     [onCallItemAdd()](https://developer.juphoon.com/portal/reference/V2.1/windows/html/5e605b62-c8dc-4dde-2480-8fdcbbfc2f48.htm)
@@ -133,7 +133,7 @@ changes to STATE\_CANCELED.
 
 :::
 
-## Hang up the call
+## Hang up a call
 
 Both the calling party and the called party can hang up the call.
 

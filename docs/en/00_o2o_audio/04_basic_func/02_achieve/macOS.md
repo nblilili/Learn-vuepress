@@ -6,7 +6,7 @@ title: Realize One-to-One Voice Calling
 This guide introduces how to implement one-to-one voice calls. The API
 call sequence of one-to-one calls is shown in the figure below:
 
-![../../../../\_images/1-1workflowios.png](../../../../_images/1-1workflowios.png)
+![../../../../\_images_en/1-1workflowios.png](../../../../_images_en/1-1workflowios.png)
 
 ## Initialize
 
@@ -50,11 +50,10 @@ The main methods in the JCMediaDeviceCallback are as follows:
 ``````
 
 - The callback in the JCCall create is a proxy object of the
-    [<span id="id3" class="problematic">|</span>](#id2)JCCallCallback
-    protocol, which is used to notify the upper layer of the
-    call-related events. Therefore, you need to specify the proxy object
-    of callback first, and then implement JCCallCallback in the proxy
-    object.
+    ||JCCallCallback| protocol, which is used to notify the upper layer
+    of the call-related events. Therefore, you need to specify the proxy
+    object of callback first, and then implement JCCallCallback in the
+    proxy object.
 
 The main methods in the JCCallCallback are as follows:
 
@@ -118,7 +117,7 @@ becomes the JCCallStateCancel.
 
 :::
 
-## Answer the call
+## Answer a call
 
 1. After the caller initiates the call successfully, the called party
     will receive the
@@ -158,7 +157,7 @@ becomes JCCallStateCanceled.
 
 :::
 
-## Hang up the call
+## Hang up a call
 
 Both the calling party and the called party can hang up the call.
 

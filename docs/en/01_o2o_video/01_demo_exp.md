@@ -5,10 +5,10 @@ title: Demo Project
 
 Juphoon Cloud One-to-One Calling App—Juphoon Duo
 
-[![../../\_images/o2o\_iOS.png](../../_images/o2o_iOS.png)](../../_images/o2o_iOS.png)
+[![../../\_images_en/o2o\_iOS.png](../../_images_en/o2o_iOS.png)](../../_images_en/o2o_iOS.png)
 
-One-to-One calling iOS
+One-to-one calling iOS
 
-[![../../\_images/o2o\_Android.png](../../_images/o2o_Android.png)](../../_images/o2o_Android.png)
+[![../../\_images_en/o2o\_Android.png](../../_images_en/o2o_Android.png)](../../_images_en/o2o_Android.png)
 
-One-to-One calling Android
+One-to-one calling Android

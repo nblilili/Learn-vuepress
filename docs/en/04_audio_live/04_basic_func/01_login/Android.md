@@ -1,7 +1,7 @@
 ---
-title: Log in
+title: Log In
 ---
-# Log in
+# Log In
 
 This guide introduces how to initialize JC SDK and log in.
 
@@ -50,7 +50,7 @@ changes from JCClientStateNotInit (not initialized) to JCClientStateIdle
 After the SDK is initialized, login integration is possible. The call
 flow of the login interface is as follows:
 
-![../../../../\_images/workflow\_login\_android.png](../../../../_images/workflow_login_android.png)
+![../../../../\_images_en/workflow\_login\_android.png](../../../../_images_en/workflow_login_android.png)
 
 First create a
 [JCClient.LoginParam](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCClient.LoginParam.html)
@@ -138,7 +138,7 @@ logged in on another device. Login success/failure reason Refer to
 
 The call flow of the logout interface is as follows:
 
-![../../../../\_images/workflow\_logout\_android.png](../../../../_images/workflow_logout_android.png)
+![../../../../\_images_en/workflow\_logout\_android.png](../../../../_images_en/workflow_logout_android.png)
 
 Call
 [logout()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCClient.html#logout--)

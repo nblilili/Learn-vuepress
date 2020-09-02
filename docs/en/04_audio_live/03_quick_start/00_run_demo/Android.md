@@ -1,7 +1,7 @@
 ---
-title: Run through demo in one minute
+title: Run Through Demo in One Minute
 ---
-# Run through demo in one minute
+# Run Through Demo in One Minute
 
 To quickly experience the Demo, please follow the steps below:
 
@@ -30,6 +30,6 @@ to download the Demo source code.
 2. Set your own AppKey: Enter your own AppKey in the code marked in the
     red box in the figure below:
 
-    ![../../../../\_images/duokey2.png](../../../../_images/duokey2.png)
+    ![../../../../\_images_en/duokey2.png](../../../../_images_en/duokey2.png)
 
 3. Connect to a real Android device, compile and run Demo.

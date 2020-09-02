@@ -3,7 +3,7 @@ title: Audio Management
 ---
 # Audio Management
 
-## Audio Data Management
+## Audio data management
 
 ### Raw audio data
 

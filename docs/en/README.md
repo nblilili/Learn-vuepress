@@ -1,4 +1,0 @@
----
-title: juphoon
-Search: true
----

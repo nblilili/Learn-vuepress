@@ -7,7 +7,7 @@ This guide introduces how to implement live interactive video streaming.
 The API call sequence of live interactive vieo streaming is shown in the
 figure below:
 
-![../../../../\_images/multivideoworkflow.png](../../../../_images/multivideoworkflow.png)
+![../../../../\_images_en/multivideoworkflow.png](../../../../_images_en/multivideoworkflow.png)
 
 ## Initialize
 
@@ -214,7 +214,7 @@ upload the local audio and video streams, but the audience does not.
     }
     ``````
 
-## Create local and remote video images
+## Create local video images
 
 1. After joining the channel, call the
     [getSelfParticipant](http://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel.html#afeb3c17dc9d0827fe27fa189cd0a5c9e)

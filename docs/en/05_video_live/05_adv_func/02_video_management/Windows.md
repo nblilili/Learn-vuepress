@@ -3,7 +3,7 @@ title: Video Management
 ---
 # Video Management
 
-## Video Data Collection Management
+## Video data collection management
 
 ### Set the type of camera to turn on
 
@@ -99,7 +99,7 @@ For example, if A is set to rotate 90 degrees, the A and B video images
 displayed on the A side will rotate 90 degrees at the same time. The
 video image on the B side will not change. As shown below:
 
-![../../../../\_images/rotateset.png](../../../../_images/rotateset.png)
+![../../../../\_images_en/rotateset.png](../../../../_images_en/rotateset.png)
 
 JCMediaDeviceVideoCanvasRoatate
 
@@ -129,7 +129,7 @@ Sample code:
 mediaDevice.rotate(JCMediaDeviceVideoCanvasRoatate.Angle0);
 ``````
 
-## Video Rendering Management
+## Video rendering management
 
 ### Create local and remote video images
 
@@ -306,7 +306,7 @@ public bool resume()
 
 -----
 
-## Video Equipment Management
+## Video equipment management
 
 Video device management mainly uses the methods in the JCMediaDevice
 class, as follows:

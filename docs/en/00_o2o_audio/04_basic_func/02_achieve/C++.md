@@ -6,7 +6,7 @@ title: Realize One-to-One Voice Calling
 This guide introduces how to implement one-to-one voice calling. The API
 call sequence of one-to-one calls is shown in the figure below:
 
-![../../../../\_images/1-1workflowios.png](../../../../_images/1-1workflowios.png)
+![../../../../\_images_en/1-1workflowios.png](../../../../_images_en/1-1workflowios.png)
 
 ## Initialize
 
@@ -134,7 +134,7 @@ becomes the JCCallStateCancel.
 
 :::
 
-## Answer the call
+## Answer a call
 
 1. After the caller initiates the call successfully, the called party
     will receive the
@@ -179,7 +179,7 @@ becomes JCCallStateCanceled.
 
 :::
 
-## Hang up the call
+## Hang up a call
 
 Both the calling party and the called party can hang up the call.
 

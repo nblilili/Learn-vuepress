@@ -7,7 +7,8 @@ Juphoon cloud one-to-one video calling supports multi-terminal
 one-to-one video calls and high-definition face-to-face video
 experience, which can be applied to various industries such as social
 networking, education, finance, government and enterprise. The ARC
-transmission mechanism ensures that the video is clear and not stuck.
+transmission mechanism ensures that the video is clear and no
+stagnation.
 
 ## Functions and scenarios
 
@@ -32,8 +33,8 @@ transmission mechanism ensures that the video is clear and not stuck.
 </tr>
 <tr class="even">
 <td><p>Voice changer</p></td>
-<td><p>Connect with third parties to process special effects on the sound by acquiring the original data of the media engine</p></td>
-<td><p>Voice social&amp;entertainment To change the voice in an online chat room</p></td>
+<td><p>Connect with the third party to process special effects on the sound by acquiring the original data of the media engine</p></td>
+<td><p>Video social entertainment, chat dating</p></td>
 </tr>
 <tr class="odd">
 <td><p>Broadcast-grade sound quality</p></td>
@@ -63,7 +64,7 @@ transmission mechanism ensures that the video is clear and not stuck.
 <thead>
 <tr class="header">
 <th><p>Property</p></th>
-<th><p>Juphoon Voice Calling Specifications</p></th>
+<th><p>Specifications</p></th>
 </tr>
 </thead>
 <tbody>
@@ -73,7 +74,7 @@ transmission mechanism ensures that the video is clear and not stuck.
 </tr>
 <tr class="even">
 <td><p>Audio quality</p></td>
-<td><p>Audio sampling rate: 16k ~ 48k Support single and dual channels</p></td>
+<td><p>Audio sampling rate: 16k ~ 48k,supporting single and dual channels</p></td>
 </tr>
 <tr class="odd">
 <td><p>Audio anti-packet-loss rate</p></td>
@@ -88,7 +89,7 @@ transmission mechanism ensures that the video is clear and not stuck.
 
 ## Compatibility
 
-Juphoon One-to-One video calling supports iOS, Android, Windows, macOS,
+Juphoon one-to-one video calling supports iOS, Android, Windows, macOS,
 Linux, Web and allows for cross-platform connections. Specific
 compatibility requirements are as follows.
 
@@ -106,15 +107,15 @@ compatibility requirements are as follows.
 <tbody>
 <tr class="odd">
 <td><p>iOS</p></td>
-<td><p>8.0+</p></td>
+<td><p>8.0 and above</p></td>
 </tr>
 <tr class="even">
 <td><p>Android</p></td>
-<td><p>4.0+</p></td>
+<td><p>4.0 and above</p></td>
 </tr>
 <tr class="odd">
 <td><p>Windows</p></td>
-<td><p>XP+</p></td>
+<td><p>XP and above</p></td>
 </tr>
 <tr class="even">
 <td><p>Web</p></td>

@@ -6,7 +6,7 @@ title: Realize group video calling
 This chapter introduces how to implement group video calling. The API
 call sequence of group video calling is shown in the figure below:
 
-![../../../../\_images/multivideoworkflow.png](../../../../_images/multivideoworkflow.png)
+![../../../../\_images_en/multivideoworkflow.png](../../../../_images_en/multivideoworkflow.png)
 
 ## Initialize
 
@@ -176,7 +176,7 @@ JCManager::shared()->mediaChannel->join("channel ID", NULL);
     }
     ``````
 
-## Create local and remote video images
+## Create local video images
 
 1. After joining the channel, call the
     [getSelfParticipant](http://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel.html#afeb3c17dc9d0827fe27fa189cd0a5c9e)

@@ -6,7 +6,7 @@ title: Realize One-to-One Video Calling
 This guide introduces how to achieve one-to-one video calling. API call
 sequence for one-to-one call is as shown below:
 
-![../../../../\_images/1-1workflowios.png](../../../../_images/1-1workflowios.png)
+![../../../../\_images_en/1-1workflowios.png](../../../../_images_en/1-1workflowios.png)
 
 ## Initialize
 
@@ -117,7 +117,7 @@ becomes the JCCallStateCancel.
 
 :::
 
-## Create local and remote video images
+## Create local video images
 
 After initiating a call, call the
 [startSelfVideo](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCCallItem.html#//api/name/startSelfVideo:)
@@ -137,7 +137,7 @@ the rendering method. (Calling this method will open the camera):
 }
 ``````
 
-## Answer the call
+## Answer a call
 
 1. After the caller initiates the call successfully, the called party
     will receive the
@@ -205,7 +205,7 @@ rendering method:
 }
 ``````
 
-## Hang up the call
+## Hang up a call
 
 Both the calling party and the called party can hang up the call.
 

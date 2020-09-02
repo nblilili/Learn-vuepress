@@ -3,7 +3,7 @@ title: Call Management
 ---
 # Call Management
 
-## Set the Number of Callers
+## Set the number of callers
 
 Before initiating a call, you can set the maximum number of callers
 using the maxCallNum and the default is 1. If it is a video call, the
@@ -17,7 +17,7 @@ JCManager::shared()->call->maxCallNum = 1;
 When exceed the maximum number, outgoing calls will fail, incoming calls
 will be automatically rejected.
 
-## Control Call Process
+## Control call process
 
 ### Call mute
 
@@ -98,7 +98,7 @@ JCCallItem* item = JCManager::shared()->call->getActiveCallItem();
 
 The specific mechanism of this interface is shown in the figure below:
 
-![../../../../\_images/enablevideostream.jpg](../../../../_images/enablevideostream.jpg)
+![../../../../\_images_en/enablevideostream.jpg](../../../../_images_en/enablevideostream.jpg)
 
 - If A turns on sending video streams, the return value of A’s
     item-\>getUploadVideoStreamSelf() is true, and B uses the

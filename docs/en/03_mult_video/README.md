@@ -3,7 +3,7 @@ title: Product Overview
 ---
 # Product Overview
 
-Group video calls refer to video calls that many people participate in
+Group video calls refer to video calls that many people participate in a
 chat or conference in the same channel. Group video calls can be applied
 to diverse scenarios such as live entertainment, online classes,
 conferences, and large-scale chat rooms. The ARC transmission mechanism
@@ -21,7 +21,7 @@ ensures that the video is clear and not stuck.
 <tr class="header">
 <th><p>Functions</p></th>
 <th><p>Description</p></th>
-<th><p>Use Cases</p></th>
+<th><p>Use Casess</p></th>
 </tr>
 </thead>
 <tbody>
@@ -87,7 +87,7 @@ ensures that the video is clear and not stuck.
 </tr>
 <tr class="odd">
 <td><p>Audio quality</p></td>
-<td><p>Audio sampling rate: 16k ~ 48k Support single and dual channels</p></td>
+<td><p>Audio sampling rate: 16k ~ 48k,supporting single and dual channels</p></td>
 </tr>
 <tr class="even">
 <td><p>Audio anti-packet-loss rate</p></td>
@@ -120,15 +120,15 @@ for specific compatibility requirements.
 <tbody>
 <tr class="odd">
 <td><p>iOS</p></td>
-<td><p>8.0+</p></td>
+<td><p>8.0 and above</p></td>
 </tr>
 <tr class="even">
 <td><p>Android</p></td>
-<td><p>4.0+</p></td>
+<td><p>4.0 and above</p></td>
 </tr>
 <tr class="odd">
 <td><p>Windows</p></td>
-<td><p>XP+</p></td>
+<td><p>XP and above</p></td>
 </tr>
 <tr class="even">
 <td><p>Web</p></td>
