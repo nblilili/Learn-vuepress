@@ -7,6 +7,11 @@ const sidebarSelectUtil = require('./utils/sidebarSelectUtil.js');
 const base = '/doc/'
 module.exports = {
   locales: {
+    '/': {
+      lang: 'cn',
+      title: '菊风云平台',
+      description: '菊风云平台'
+    },
     '/cn/': {
       lang: 'cn',
       title: '菊风云平台',

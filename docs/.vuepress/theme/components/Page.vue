@@ -12,7 +12,21 @@
           </span>
           </section>-->
           <!-- <div>{{title}}</div>  -->
-          <div style="padding-top:30px ">
+          <div class="contentTop">
+            <div class="top_search">
+              <div class="search_div">
+                <div>
+                  <input
+                    id="algolia-search-input"
+                    placeholder="请输入搜索内容"
+                    class="search-query form-control bacinp"
+                    v-model="keyword"
+                    @keyup.enter="goSearch(keyword)"
+                  />
+                  <i class="bsearchBtn" @click="goSearch(keyword)"></i>
+                </div>
+              </div>
+            </div>
             <i class="left-menu-btn" @click="clickmenu()"></i>
             <span class="layui-breadcrumb">
               <a v-for="(item,i) in title" :key="item" href="javascript:;">
@@ -32,44 +46,13 @@
             </div>
           </div>
           <Content class="theme-default-content mcont DocSearch-content"></Content>
-          <!-- <Content slot-key="head" /> -->
           <PageEdit />
           <PageNav v-if="($route.path.indexOf('iOS') <= -1)" v-bind="{ sidebarItems }" />
         </div>
-        <!-- <div class="page-right">
-        <SidebarRight
-          :items="sidebarItems"
-          @toggle-sidebar="toggleSidebar"
-          v-if="!$page.frontmatter.home"
-          :class="addclass"
-        >
-          <template #top>
-            <slot name="sidebar-top" />
-          </template>
-          <template #bottom>
-            <slot name="sidebar-bottom" />
-          </template>
-        </SidebarRight>
-        </div>-->
         <div class="clear"></div>
       </div>
       <slot name="bottom" />
     </main>
-    <!-- <div class="page-right">
-      <SidebarRight
-        :items="sidebarItems"
-        @toggle-sidebar="toggleSidebar"
-        v-if="!$page.frontmatter.home"
-        :class="addclass"
-      >
-        <template #top>
-          <slot name="sidebar-top" />
-        </template>
-        <template #bottom>
-          <slot name="sidebar-bottom" />
-        </template>
-      </SidebarRight>
-    </div>-->
   </div>
 </template>
 
@@ -84,6 +67,7 @@ export default {
   props: ["sidebarItems", "toggleSidebar"],
   data() {
     return {
+      keyword: "",
       addclass: "",
       needTags: false,
       CardName: [],
@@ -92,6 +76,7 @@ export default {
   },
   watch: {
     $route(newValue, oldValue) {
+      this.keyword = "";
       let that = this;
       setTimeout(() => {
         this.$nextTick(() => {
@@ -116,7 +101,7 @@ export default {
       this.checkpath();
     },
   },
-  created(){
+  created() {
     this.needTags = false;
     this.checkroute();
   },
@@ -130,6 +115,14 @@ export default {
     }, 200);
   },
   methods: {
+    goSearch(hash) {
+      console.log(this.$site.base, this.$lang, hash);
+      console.log(this.$site.base + this.$lang + "/#" + hash);
+      this.$router.push({
+        path: "/" + this.$lang + "/",
+        hash: hash,
+      });
+    },
     clickmenu() {
       this.$EventBus.$emit("changeMenu", true);
     },
@@ -165,10 +158,10 @@ export default {
       let that = this;
       var TagsConfig = {};
       var url = this.$route.path;
-      if(url.indexOf('/cn/')>-1){
-        TagsConfig = this.$themeConfig.locales['/cn/'].tagConfig
-      }else if(url.indexOf('/en/'>-1)){
-        TagsConfig = this.$themeConfig.locales['/en/'].tagConfig
+      if (url.indexOf("/cn/") > -1) {
+        TagsConfig = this.$themeConfig.locales["/cn/"].tagConfig;
+      } else if (url.indexOf("/en/" > -1)) {
+        TagsConfig = this.$themeConfig.locales["/en/"].tagConfig;
       }
       for (let i in TagsConfig) {
         if (url.indexOf(i) > -1) {
@@ -181,9 +174,10 @@ export default {
             array.push({
               name: name,
               active: decodeURI(url).indexOf(e) > -1 ? true : false,
-              href: e,
+              href: e + ".html",
             });
           });
+          console.log(array);
           this.CardName = array;
         }
       }
@@ -246,6 +240,24 @@ function check_path(data) {
 // .fixed {
 // position: fixed;
 // }
+.top_search {
+  display: none;
+}
+
+.contentTop {
+  padding-top: 30px;
+}
+
+@media (max-width: 800px) {
+  .contentTop {
+    padding-top: 109px;
+  }
+
+  .top_search {
+    display: block;
+  }
+}
+
 .page {
   // padding-bottom: 2rem;
   display: block;

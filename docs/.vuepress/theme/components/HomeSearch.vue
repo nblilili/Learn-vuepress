@@ -7,8 +7,12 @@
           <div class="bactxt">
             <h1>开发者中心</h1>
             <div class="bacsearch">
-              <input class="form-control bacinp" data-bind="value:key,search_c:c_key" />
-              <i class="bsearchBtn" data-bind="search_c:c_key"></i>
+              <input
+                class="form-control bacinp"
+                v-model="keyword"
+                @keyup.enter="keySearch(keyword)"
+              />
+              <i class="bsearchBtn" data-bind="search_c:c_key" @click="keySearch(keyword)"></i>
             </div>
             <p>
               搜索关键词：
@@ -20,7 +24,7 @@
           </div>
         </div>
       </div>
-      <div class="pcont" v-if="!showsearch" data-bind="visible:isShow()[0]">
+      <div class="pcont" v-if="!showsearch">
         <!-- 平台部分 -->
         <div class="part part_one">
           <h2>平台</h2>
@@ -101,7 +105,7 @@
           </div>
         </div>
       </div>
-      <div class="pcont secondp" v-if="showsearch" data-bind="visible:isShow()[1]">
+      <div class="pcont secondp" v-if="showsearch">
         <div class="top_search">
           <div class="search_div">
             <!-- <input class="form-control bacinp" data-bind="value:key,search_c:c_key" /> -->
@@ -203,9 +207,6 @@
             </div>
           </div>
         </div>
-        <div class="toTop" style="display: block;">
-          <img src="https://developer.juphoon.com/style/images/zd@2x.png" />
-        </div>
       </div>
     </div>
     <HomeFooter />
@@ -273,8 +274,8 @@ export default {
       let hash = this.$route.hash.substr(1);
       if (hash) {
         this.showsearch = true;
-        this.keyword = hash;
-      }
+        this.keyword = decodeURI(hash);
+      } else this.showsearch = false;
     },
   },
   mounted() {
@@ -366,18 +367,33 @@ export default {
     },
     // 改变颜色
     changecolor(Str) {
-      let titlebig = Str.toUpperCase();
-      let keywordbig = this.keyword.toUpperCase();
-      let start = titlebig.indexOf(keywordbig);
-      let end = this.keyword.length + start;
-      // console.log(titlebig, keywordbig, start, end);
-      if (start >= 0) {
-        let newStr =
-          `${Str.substring(0, start)}` +
-          `<font color='#008AFF'><b>${Str.substring(start, end)}</b></font>` +
-          `${Str.substring(end)}`;
-        return newStr;
-      } else return Str;
+      let newstr = Str;
+      let strlist = "";
+      for (let l = 0; l < Str.length; l++) {
+        let str = "";
+        let this_str = "";
+        for (let i = 0; i < this.keyword.length; i++) {
+          let item = this.keyword[i];
+          let reg = new RegExp("(" + item + ")", "gi");
+          if (
+            this_str.length <
+            Str[l].replace(reg, "<font color='#008AFF'><b>$1</b></font>").length
+          ) {
+            this_str = Str[l].replace(
+              reg,
+              "<font color='#008AFF'><b>$1</b></font>"
+            );
+          }
+        }
+        strlist += this_str;
+      }
+      return strlist;
+
+      // let newstr = Str;
+      // let reg = new RegExp("(" + this.keyword + ")", "gi");
+      // newstr = newstr.replace(reg, "<font color='#008AFF'><b>$1</b></font>");
+      // return newstr;
+      // }
     },
     count(res) {
       // 计算点击量
@@ -412,6 +428,10 @@ export default {
 <style lang="stylus" scoped>
 @require '../styles/HomeSearch.styl';
 @require '../styles/header_footer.styl';
+
+.top_search {
+  display: block !important;
+}
 
 blockquote, body, button, dd, div, dl, dt, form, h1, h2, h3, h4, h5, h6, input, li, ol, p, pre, td, textarea, th, ul {
   margin: 0;

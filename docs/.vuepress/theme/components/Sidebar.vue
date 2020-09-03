@@ -96,7 +96,9 @@ export default {
       else if (url.indexOf("/en/" > -1))
         sidebarSelect = this.$themeConfig.locales["/en/"].sidebarSelect;
       this.setMenuList(sidebarSelect);
-      if (window.innerWidth < 800) this.$emit("MenuHide");
+      if (window.innerWidth < 800) {
+        this.$emit("MenuHide");
+      }
     },
     items(newValue, oldValue) {},
     scollpage(newValue, oldValue) {},
@@ -122,6 +124,9 @@ export default {
       if (res) this.$emit("MenuShow");
       else this.$emit("MenuHide");
     });
+    if (window.innerWidth < 800) {
+      this.$emit("MenuHide");
+    }
   },
   methods: {
     hidemenu() {

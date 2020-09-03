@@ -5,8 +5,9 @@
       class="search-query form-control bacinp"
       :placeholder="placeholder"
       v-model="value"
+      @keyup.enter="gosearch(value)"
     />
-    <i class="bsearchBtn" @click="searchData()"></i>
+    <i class="bsearchBtn" @click="searchData(value)"></i>
   </div>
 </template>
 <script>
@@ -36,7 +37,7 @@ export default {
     $route(newValue) {
       let hash = this.$route.hash.substr(1);
       if (hash) {
-        this.value = hash;
+        this.value = decodeURI(hash);
         this.searchData();
       }
     },
@@ -59,18 +60,22 @@ export default {
     let hash = this.$route.hash.substr(1);
     console.log(hash);
     if (hash) {
-      // this.placeholder = hash;
       this.value = decodeURI(hash);
       this.searchData();
     }
   },
   methods: {
+    gosearch(value) {
+      // if(this.$route.path = )
+      // console.log(this.$route)
+      // this.$router.push({ hash: "#"+value });
+    },
     searchData() {
       console.log(this.value);
       let hash = this.$route.hash.substr(1);
       console.log(hash);
       if (this.value && hash != this.value)
-        this.$router.push({ path: "/cn/#" + this.value });
+        this.$router.push({ path: `/${this.$lang}/#` + this.value });
       console.log(axios);
       this.getSearchData(this.value);
     },

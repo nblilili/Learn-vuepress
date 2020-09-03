@@ -7,7 +7,7 @@
           <img src="../assets/image/juphoon cloud developer@2x.png" />
         </a>
         <div class="nav" :class="showNav?'active':''">
-          <div class="nav-item" v-for="(item,index) in userLinks" :key="item.text">
+          <div class="nav-item" v-for="(item,index) in re_userLinks" :key="item.text">
             <!-- <a class="header-line this_line" :href="item.link" v-if="!item.items.length">{{item.text}}</a> -->
             <XRouter :to="{path:item.link}" v-if="!item.items.length">{{item.text}}</XRouter>
             <!-- <router-link :to="item.link" v-if="!item.items.length" >{{item.text}}</router-link> -->
@@ -57,14 +57,14 @@
               </div>
               <div class="more-toggle">
                 <div class="ylogin_1" v-if="user_type == 'manager'">
-                  <a href="/portal/cn/// console/apps/admin_index.php">应用管理</a>
+                  <a href="/portal/cn/console/apps/admin_index.php">应用管理</a>
                   <a href="/portal/admin/info/account.php">系统管理</a>
                 </div>
                 <div class="ylogin_2" v-else-if="user_type != 'police'">
-                  <a href="/cn/// console/">管理控制台</a>
+                  <a href="/cn/console/">管理控制台</a>
                 </div>
                 <div class="yl_police" v-if="user_type == 'police'">
-                  <a href="/portal/cn/// console/my_app/otoDetail.php">数据查询</a>
+                  <a href="/portal/cn/console/my_app/otoDetail.php">数据查询</a>
                 </div>
                 <a href="javascript:;" @click="log_out()">退出</a>
               </div>
@@ -116,7 +116,19 @@ export default {
         },
       ],
       showNav: false,
+      re_userLinks: [],
     };
+  },
+  watch: {
+    userLinks(newValue, oldValue) {
+      this.re_userLinks = newValue;
+    },
+    $route(newValue, oldValue) {
+      console.log(newValue);
+      if (window.innerWidth < 800) {
+        this.showNav = false;
+      }
+    },
   },
   computed: {
     algolia() {
@@ -168,6 +180,11 @@ export default {
       return this.userNav;
     },
     userLinks() {
+      this.re_userLinks = (this.nav || []).map((link) => {
+        return Object.assign(resolveNavLinkItem(link), {
+          items: (link.items || []).map(resolveNavLinkItem),
+        });
+      });
       return (this.nav || []).map((link) => {
         return Object.assign(resolveNavLinkItem(link), {
           items: (link.items || []).map(resolveNavLinkItem),
@@ -176,10 +193,6 @@ export default {
     },
   },
   mounted() {
-    // console.log(this.$site.base);
-    // console.log(this.$lang);
-    // console.log(this.$themeLocaleConfig);
-    // console.log(this.userLinks);
     this.$EventBus.$on("changeNav", () => {
       this.showNav = !this.showNav;
     });
@@ -187,8 +200,6 @@ export default {
     this.site = this.$site.themeConfig.nav;
     var user_type = localStorage.getItem("user_type");
     this.user_type = user_type;
-    // console.log("user_type", user_type);
-    // if (user_type) {
     axios({
       method: "POST",
       url: "/portal/cn/message/?c=PChoocesql&a=P_return_userinfo",
@@ -201,14 +212,12 @@ export default {
       .catch(function (error) {
         // console.log(error);
       });
-    // }
   },
   methods: {
     changshowitem(item, index) {
-      // item.showitem = !item.showitem;
-      // // console.log(this.userLinks);
-      // this.userLinks = JSON.parse(JSON.stringify(this.site));
-      // // console.log(this.userLinks);
+      item.showitem = !item.showitem;
+      console.log(JSON.parse(JSON.stringify(this.re_userLinks)));
+      this.re_userLinks = JSON.parse(JSON.stringify(this.re_userLinks));
     },
     log_out() {
       var url = "/portal/cn/message/?a=ajax_login_out";
@@ -359,6 +368,12 @@ $navbar-horizontal-padding = 1.5rem;
       white-space: nowrap;
       text-overflow: ellipsis;
     }
+  }
+}
+
+@media (max-width: 1400px) {
+  .nav-item.search {
+    display: none;
   }
 }
 </style>

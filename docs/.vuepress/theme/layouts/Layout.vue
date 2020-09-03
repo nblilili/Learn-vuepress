@@ -66,6 +66,9 @@
         </SidebarRight>
       </div>
     </div>
+    <div class="toTop" :style="{'display':istop?'none':'block'}" @click="clicktop()">
+      <img src="https://developer.juphoon.com/style/images/zd@2x.png" />
+    </div>
   </div>
 </template>
 
@@ -95,6 +98,7 @@ export default {
 
   data() {
     return {
+      istop: false,
       isSidebarOpen: false,
       scollpage: "", // 用于判断滚动
       tags: false,
@@ -154,7 +158,7 @@ export default {
   },
 
   mounted() {
-    console.log(this.$page.frontmatter)
+    console.log(this.$page.frontmatter);
     this.$router.afterEach(() => {
       this.isSidebarOpen = false;
     });
@@ -164,20 +168,20 @@ export default {
         this.rightheight = res + "px";
       } else this.setright = false;
     });
-
-    // this.$nextTick(()=>{
-    //   // var heightPage = window.getComputedStyle(this.$refs.page).height;
-    //   // console.log(heightPage)
-    //   // var heightCss = window.getComputedStyle(this.$refs.Page).height; // 100px
-    //   // console.log(heightCss)
-    //   console.log(this.$refs.Page)
-    //   console.log(this.$refs.Page.clientHeight)
-    //   console.log(window.document.body.offsetHeight)
-    //   console.log(this.$refs.Page.offsetHeight)
-    // })
+    window.addEventListener("scroll", this.handleScrollx, true);
   },
-
+  destroyed() {
+    window.removeEventListener("scroll", this.handleScrollx, true);
+  },
   methods: {
+    handleScrollx() {
+      if (window.pageYOffset > 100) this.istop = false;
+      else this.istop = true;
+    },
+    clicktop() {
+      this.istop = true;
+      document.body.scrollTop = document.documentElement.scrollTop = 0;
+    },
     clickmenu() {
       console.log(123123);
       console.log(this.$store.state);
