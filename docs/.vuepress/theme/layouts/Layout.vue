@@ -5,7 +5,8 @@
     @touchstart="onTouchStart"
     @touchend="onTouchEnd"
   >
-    <div class="toTop" style="display: block;">
+    <!-- <vueToTop :type="14" :size="60" :bottom="0" :right="30">1111</vueToTop> -->
+    <div class="toTop" v-show="showIcon" style="z-index:999" @click="clicktop()">
       <img src="https://developer.juphoon.com/style/images/zd@2x.png" />
     </div>
     <Navbar v-if="shouldShowNavbar" @toggle-sidebar="toggleSidebar" />
@@ -119,12 +120,19 @@ export default {
 
   data() {
     return {
+      istop: false,
+      showIcon: false,
+      scrollTop: 0,
       isSidebarOpen: false,
       scollpage: "", // 用于判断滚动
       tags: false,
       isMenuShow: true,
       setright: false,
       rightheight: "",
+
+
+      defaultTop: 400,
+      defaultDuration: 300
     };
   },
   created() {
@@ -188,20 +196,53 @@ export default {
         this.rightheight = res + "px";
       } else this.setright = false;
     });
-
-    // this.$nextTick(()=>{
-    //   // var heightPage = window.getComputedStyle(this.$refs.page).height;
-    //   // console.log(heightPage)
-    //   // var heightCss = window.getComputedStyle(this.$refs.Page).height; // 100px
-    //   // console.log(heightCss)
-    //   console.log(this.$refs.Page)
-    //   console.log(this.$refs.Page.clientHeight)
-    //   console.log(window.document.body.offsetHeight)
-    //   console.log(this.$refs.Page.offsetHeight)
-    // })
+    window.addEventListener("scroll", this.handleScrollx, false);
   },
-
+  destroyed() {
+    window.removeEventListener("scroll", this.handleScrollx, false);
+  },
   methods: {
+    handleScrollx() {
+      // if (window.pageYOffset > 100) this.istop = false;
+      // else this.istop = true;
+      this.scrollTop =
+        document.documentElement.scrollTop ||
+        window.pageYOffset ||
+        document.body.scrollTop;
+      console.log(this.scrollTop);
+      this.scrollTop > this.defaultTop
+        ? (this.showIcon = true)
+        : (this.showIcon = false);
+    },
+    clicktop() {
+      console.log(1);
+      // this.istop = true;
+      // document.body.scrollTop = document.documentElement.scrollTop = 0;
+      window.requestAnimationFrame = (function () {
+        return (
+          window.requestAnimationFrame ||
+          window.webkitRequestAnimationFrame ||
+          window.mozRequestAnimationFrame ||
+          function (callback) {
+            window.setTimeout(callback, 1000 / 60);
+          }
+        );
+      })();
+      var step = (this.scrollTop / (this.defaultDuration / (1000 / 60))) >> 0;
+      var self = this;
+      function fn() {
+        if (self.scrollTop >= 0) {
+          self.scrollTop -= step;
+          document.documentElement.scrollTop = document.body.scrollTop =
+            self.scrollTop;
+          fn.rafTimer = requestAnimationFrame(fn);
+        } else {
+          document.body.scrollTop = 0;
+          cancelAnimationFrame(fn.rafTimer);
+        }
+      }
+      fn.rafTimer = requestAnimationFrame(fn);
+    },
     clickmenu() {
       console.log(123123);
       console.log(this.$store.state);
@@ -271,7 +312,13 @@ export default {
 };
 </script>
 
-<style lang="stylus" scoped>
+<style lang="stylus">
+.icon-fanhuidingbu4:before {
+  color: transparent;
+  background: url('https://developer.juphoon.com/style/images/zd@2x.png');
+  background-size: 60px 60px;
+}
+
 .page-right {
   overflow-x: hidden;
   background: #fff;
