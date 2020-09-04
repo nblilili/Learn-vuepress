@@ -1,0 +1,69 @@
+---
+title: Map 和 Set
+date: {{ date }}
+author: 李立立
+img:
+coverImg:
+top: false
+cover: false
+toc: true
+mathjax: false
+password:
+summary:
+tags: [JS]
+categories:
+
+---
+
+# Map 和 Set
+
+JavaScript的默认对象表示方式`{}`可以视为其他语言中的`Map`或`Dictionary`的数据结构，即一组键值对。
+
+但是JavaScript的对象有个小问题，就是键必须是字符串。但实际上Number或者其他数据类型作为键也是非常合理的。
+
+为了解决这个问题，最新的ES6规范引入了新的数据类型`Map`。
+
+## Map
+
+`Map`是一组键值对的结构：
+
+```js
+var m = new Map(); // 空Map
+m.set('Adam', 67); // 添加新的key-value
+m.set('Bob', 59);
+m.has('Adam'); // 是否存在key 'Adam': true
+m.get('Adam'); // 67
+m.delete('Adam'); // 删除key 'Adam'
+m.get('Adam'); // undefined
+```
+
+## Set
+
+`Set`和`Map`类似，也是一组 key 的集合，但不存储value
+
+```js
+var s = new Set([1, 2, 3]);
+s.add(4);
+s.delete(4);js
+```
+
+## Map 转对象
+
+```js
+_strMapToObj(strMap){
+  let obj= Object.create(null);
+  for (let[k,v] of strMap) {
+    obj[k] = v;
+  }
+  return obj;
+}
+/**
+  *map转换为json
+  */
+_mapToJson(map) {
+  return JSON.stringify(this._strMapToObj(map));
+
+```
+
+
+
