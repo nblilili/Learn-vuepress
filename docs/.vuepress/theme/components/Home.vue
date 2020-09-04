@@ -29,9 +29,6 @@ export default {
       };
     },
   },
-  mounted () {
-    console.log(this.$page)
-  },
   methods: {
     name() {},
   },
