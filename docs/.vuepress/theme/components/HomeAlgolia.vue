@@ -23,17 +23,6 @@ export default {
     };
   },
   watch: {
-    // $lang(newValue) {
-    //   console.log(newValue);
-    //   this.update(this.options, newValue);
-    // },
-    // options(newValue) {
-    //   console.log(newValue);
-    //   this.update(newValue, this.$lang);
-    // },
-    // placeholder(newValue) {
-    //   console.log(newValue);
-    // },
     $route(newValue) {
       let hash = this.$route.hash.substr(1);
       if (hash) {
@@ -44,15 +33,6 @@ export default {
   },
   created() {
     var _this = this;
-    // document.onkeydown = function (e) {
-    //   //按下回车提交
-    //   let key = window.event.keyCode;
-    //   if (key == 13) {
-    //     if (_this.value != _this.$route.hash.substr(1))
-    //       _this.$router.push({ hash: _this.value });
-    //     // _this.getSearchData(_this.value);
-    //   }
-    // };
   },
   mounted() {
     let hash = this.$route.hash.substr(1);
@@ -74,6 +54,7 @@ export default {
     },
     getSearchData(query) {
       let that = this;
+      that.$EventBus.$emit("Searching", true);
       console.log(query, this.$lang);
       let indexName = "juphoon";
       let appId = "BF4RDO0EYD";
@@ -98,6 +79,8 @@ export default {
         },
         url: PostUrl,
       }).then((res) => {
+        that.$EventBus.$emit("Searching", false);
+
         console.log(res.data);
         console.log(res.data.results[0].hits);
         console.log(JSON.parse(JSON.stringify(res.data.results[0].hits)));

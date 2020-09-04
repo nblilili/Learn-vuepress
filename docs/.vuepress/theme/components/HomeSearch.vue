@@ -154,7 +154,7 @@
             </div>
           </div>
           <div class="group group_two" style="padding-top:40px">
-            <div class="gcont">
+            <div class="gcont" v-show="!Searching">
               <!--ko foreach:{data:search_list}-->
               <div class="gc-item" v-for="item_list in product_list" :key="item_list.objectID">
                 <a
@@ -182,9 +182,16 @@
             <div
               class="search-prompt"
               data-bind="visible:visible"
-              :style="{display: !!page.totalCount?'none':'block'}"
+              :style="{display: page.totalCount>0 || Searching?'none':'block'}"
             >
               <div class="title" style="font-size:16px;font-weight:bold">暂无数据</div>
+            </div>
+            <div
+              class="search-prompt"
+              data-bind="visible:visible"
+              :style="{display: Searching?'block':'none'}"
+            >
+              <div class="title" style="font-size:16px;font-weight:bold">搜索中... ...</div>
             </div>
             <div class="search_pages">
               <!-- <div class="searchTxt" data-bind="visible:searchShow()" style>
@@ -193,7 +200,7 @@
               </div>-->
               <!-- 分页 -->
               <HomePage
-                v-if="page.totalCount>0"
+                v-if="page.totalCount>0&&!Searching"
                 :currentPage.sync="page.currentPage"
                 :limit.sync="page.limit"
                 :totalCount="page.totalCount"
@@ -240,7 +247,7 @@ export default {
         limit: 10, //每页显示条数
         totalCount: 0, //总页数
       },
-
+      Searching: false, // 搜索中
       pro_list: [
         "所有",
         "一对一语音通话",
@@ -288,6 +295,9 @@ export default {
     that.$EventBus.$on("SearchResults", (res) => {
       console.log(res);
       that.showlist(res);
+    });
+    that.$EventBus.$on("Searching", (res) => {
+      that.Searching = res;
     });
   },
   methods: {
