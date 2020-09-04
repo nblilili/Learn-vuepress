@@ -22,7 +22,7 @@ home: true
 export default {
   mounted () {
     console.log(1111)
-    this.$router.push({path:'/cn'})
+    this.$router.push({path:'/cn/'})
   }
 }
 </script> 
