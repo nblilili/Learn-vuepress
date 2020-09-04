@@ -5,6 +5,7 @@
       class="search-query form-control bacinp"
       :placeholder="placeholder"
       v-model="value"
+      @keydown.enter="searchData()"
     />
     <i class="bsearchBtn" @click="searchData()"></i>
   </div>
@@ -43,23 +44,20 @@ export default {
   },
   created() {
     var _this = this;
-    document.onkeydown = function (e) {
-      //按下回车提交
-      let key = window.event.keyCode;
-      if (key == 13) {
-        if (_this.value != _this.$route.hash.substr(1))
-          _this.$router.push({ hash: _this.value });
-        // _this.getSearchData(_this.value);
-      }
-    };
+    // document.onkeydown = function (e) {
+    //   //按下回车提交
+    //   let key = window.event.keyCode;
+    //   if (key == 13) {
+    //     if (_this.value != _this.$route.hash.substr(1))
+    //       _this.$router.push({ hash: _this.value });
+    //     // _this.getSearchData(_this.value);
+    //   }
+    // };
   },
   mounted() {
-    // this.initialize(this.options, this.$lang);
-    // this.placeholder = this.$site.themeConfig.searchPlaceholder || "";
     let hash = this.$route.hash.substr(1);
     console.log(hash);
     if (hash) {
-      // this.placeholder = hash;
       this.value = decodeURI(hash);
       this.searchData();
     }
@@ -102,6 +100,7 @@ export default {
       }).then((res) => {
         console.log(res.data);
         console.log(res.data.results[0].hits);
+        console.log(JSON.parse(JSON.stringify(res.data.results[0].hits)));
         that.SearchResults = res.data.results[0]; // 搜索的结果
         that.$EventBus.$emit("SearchResults", res.data.results[0]);
       });

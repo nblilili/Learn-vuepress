@@ -21,6 +21,9 @@ const msgs = [
 ]
 
 export default {
+  mounted () {
+    console.log(this.$lang);
+  },
   methods: {
     getMsg () {
       return msgs[Math.floor(Math.random() * msgs.length)]

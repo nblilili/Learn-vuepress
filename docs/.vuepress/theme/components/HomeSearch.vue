@@ -7,8 +7,8 @@
           <div class="bactxt">
             <h1>开发者中心</h1>
             <div class="bacsearch">
-              <input class="form-control bacinp" data-bind="value:key,search_c:c_key" />
-              <i class="bsearchBtn" data-bind="search_c:c_key"></i>
+              <input class="form-control bacinp" v-model="value" />
+              <i class="bsearchBtn" @click="keySearch(value)"></i>
             </div>
             <p>
               搜索关键词：
@@ -169,11 +169,11 @@
                     <span
                       v-for="(hierarchy,index) in item_list.hierarchy"
                       v-if="hierarchy"
-                      v-html="index=='lvl0'?changecolor(hierarchy):' > '+changecolor(hierarchy)"
+                      v-html="index=='lvl0'?item_list._highlightResult.hierarchy[index].value:' > '+item_list._highlightResult.hierarchy[index].value"
                     ></span>
                   </div>
                   <p
-                    v-html="item_list.content?changecolor(item_list.content):changecolor(item_list.anchor)"
+                    v-html="item_list.content? item_list._highlightResult.content.value:changecolor(item_list.anchor)"
                   ></p>
                 </a>
               </div>
@@ -233,6 +233,7 @@ export default {
       aligola_list: [], // 所有数据
       aligola_list_slot: [], // 分类数据
       product_list: [], // 显示的数据
+      value: "", //
       keyword: "", // 搜索的关键字
       page: {
         currentPage: 1, //当前页码
@@ -366,18 +367,45 @@ export default {
     },
     // 改变颜色
     changecolor(Str) {
-      let titlebig = Str.toUpperCase();
-      let keywordbig = this.keyword.toUpperCase();
-      let start = titlebig.indexOf(keywordbig);
-      let end = this.keyword.length + start;
-      // console.log(titlebig, keywordbig, start, end);
-      if (start >= 0) {
-        let newStr =
-          `${Str.substring(0, start)}` +
-          `<font color='#008AFF'><b>${Str.substring(start, end)}</b></font>` +
-          `${Str.substring(end)}`;
-        return newStr;
-      } else return Str;
+      // let titlebig = Str.toUpperCase();
+      // let keywordbig = this.keyword.toUpperCase();
+      // let start = titlebig.indexOf(keywordbig);
+      // let end = this.keyword.length + start;
+      // // console.log(titlebig, keywordbig, start, end);
+      // if (start >= 0) {
+      //   let newStr =
+      //     `${Str.substring(0, start)}` +
+      //     `<font color='#008AFF'><b>${Str.substring(start, end)}</b></font>` +
+      //     `${Str.substring(end)}`;
+      //   return newStr;
+      // } else return Str;
+      // let newstr = Str;
+      let strlist = "";
+      for (let l = 0; l < Str.length; l++) {
+        let str = "";
+        let this_str = "";
+        for (let i = 0; i < this.keyword.length; i++) {
+          let item = this.keyword[i];
+          let reg = new RegExp("(" + item + ")", "gi");
+          if (
+            this_str.length <
+            Str[l].replace(reg, "<font color='#008AFF'><b>$1</b></font>").length
+          ) {
+            this_str = Str[l].replace(
+              reg,
+              "<font color='#008AFF'><b>$1</b></font>"
+            );
+          }
+        }
+        strlist += this_str;
+      }
+      return strlist;
+
+      // let newstr = Str;
+      // let reg = new RegExp("(" + this.keyword + ")", "gi");
+      // newstr = newstr.replace(reg, "<font color='#008AFF'><b>$1</b></font>");
+      // return newstr;
+      // }
     },
     count(res) {
       // 计算点击量
