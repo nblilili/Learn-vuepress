@@ -5,6 +5,9 @@
     @touchstart="onTouchStart"
     @touchend="onTouchEnd"
   >
+    <div class="toTop" style="display: block;">
+      <img src="https://developer.juphoon.com/style/images/zd@2x.png" />
+    </div>
     <Navbar v-if="shouldShowNavbar" @toggle-sidebar="toggleSidebar" />
 
     <div class="sidebar-mask" @click="toggleSidebar(false)" />
@@ -82,7 +85,7 @@
 //       }),
 //     (i = a.createElement(t)),
 //     (c = a.getElementsByTagName(t)[0]),
-//     (i.async = 1),  
+//     (i.async = 1),
 //     (i.src = n),
 //     c.parentNode.insertBefore(i, c);
 // })(window, document, "script", ALGOLIA_INSIGHTS_SRC, "aa");
@@ -210,6 +213,7 @@ export default {
     },
     MenuHide() {
       this.isMenuShow = false;
+      this.$EventBus.$emit("topsearch", false);
     },
 
     checkTags() {

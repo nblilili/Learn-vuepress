@@ -7,7 +7,7 @@
           <div class="bactxt">
             <h1>开发者中心</h1>
             <div class="bacsearch">
-              <input class="form-control bacinp" v-model="value" />
+              <input class="form-control bacinp" v-model="value" @keyup.enter="keySearch(value)" />
               <i class="bsearchBtn" @click="keySearch(value)"></i>
             </div>
             <p>
@@ -209,9 +209,6 @@
               />
             </div>
           </div>
-        </div>
-        <div class="toTop" style="display: block;">
-          <img src="https://developer.juphoon.com/style/images/zd@2x.png" />
         </div>
       </div>
     </div>

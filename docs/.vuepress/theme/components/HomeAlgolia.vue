@@ -5,7 +5,7 @@
       class="search-query form-control bacinp"
       :placeholder="placeholder"
       v-model="value"
-      @keydown.enter="searchData()"
+      @keyup.enter="searchData()"
     />
     <i class="bsearchBtn" @click="searchData()"></i>
   </div>

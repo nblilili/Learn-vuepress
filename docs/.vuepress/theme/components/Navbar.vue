@@ -7,7 +7,7 @@
           <img src="../assets/image/juphoon cloud developer@2x.png" />
         </a>
         <div class="nav" :class="showNav?'active':''">
-          <div class="nav-item" v-for="(item,index) in userLinks" :key="item.text">
+          <div class="nav-item" v-for="(item,index) in re_userLinks" :key="item.text">
             <!-- <a class="header-line this_line" :href="item.link" v-if="!item.items.length">{{item.text}}</a> -->
             <XRouter :to="{path:item.link}" v-if="!item.items.length">{{item.text}}</XRouter>
             <!-- <router-link :to="item.link" v-if="!item.items.length" >{{item.text}}</router-link> -->
@@ -123,7 +123,25 @@ export default {
         },
       ],
       showNav: false,
+      re_userLinks: [],
     };
+  },
+  watch: {
+    // userLinks(newValue, oldValue) {
+    //   this.re_userLinks = newValue;
+    // },
+    $route(newValue, oldValue) {
+      console.log(newValue);
+      if (window.innerWidth < 800) {
+        this.showNav = false;
+      }
+      console.log(this.nav)
+      this.re_userLinks = (this.nav || []).map((link) => {
+        return Object.assign(resolveNavLinkItem(link), {
+          items: (link.items || []).map(resolveNavLinkItem),
+        });
+      });
+    },
   },
   computed: {
     algolia() {
@@ -135,6 +153,7 @@ export default {
       return this.algolia && this.algolia.apiKey && this.algolia.indexName;
     },
     userNav() {
+      console.log(this.$site)
       return this.$themeLocaleConfig.nav || this.$site.themeConfig.nav || [];
     },
     nav() {
@@ -157,6 +176,7 @@ export default {
       return this.userNav;
     },
     userLinks() {
+      console.log(this.re_userLinks);
       return (this.nav || []).map((link) => {
         return Object.assign(resolveNavLinkItem(link), {
           items: (link.items || []).map(resolveNavLinkItem),
@@ -168,10 +188,17 @@ export default {
     this.$EventBus.$on("changeNav", () => {
       this.showNav = !this.showNav;
     });
+    console.log(this.nav)
+    this.re_userLinks = (this.nav || []).map((link) => {
+      return Object.assign(resolveNavLinkItem(link), {
+        items: (link.items || []).map(resolveNavLinkItem),
+      });
+    });
     let that = this;
     this.site = this.$site.themeConfig.nav;
     var user_type = localStorage.getItem("user_type");
     this.user_type = user_type;
+
     axios({
       method: "POST",
       url: "/portal/cn/message/?c=PChoocesql&a=P_return_userinfo",
@@ -209,9 +236,12 @@ export default {
           return { text, link: realylink };
         }),
       };
-      return languageDropdown
+      return languageDropdown;
     },
     changshowitem(item, index) {
+      item.showitem = !item.showitem;
+      console.log(JSON.parse(JSON.stringify(this.re_userLinks)));
+      this.re_userLinks = JSON.parse(JSON.stringify(this.re_userLinks));
       // item.showitem = !item.showitem;
       // // console.log(this.userLinks);
       // this.userLinks = JSON.parse(JSON.stringify(this.site));
@@ -366,6 +396,12 @@ $navbar-horizontal-padding = 1.5rem;
       white-space: nowrap;
       text-overflow: ellipsis;
     }
+  }
+}
+
+@media (max-width: 1400px) {
+  .nav-item.search {
+    display: none;
   }
 }
 </style>
