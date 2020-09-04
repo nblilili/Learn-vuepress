@@ -298,77 +298,29 @@ export default {
     });
   },
   methods: {
-    // 三种点击事件
     sortpro(res) {
       this.active.pro = res;
-      this.sortfunction();
-    },
-    sortpla(res) {
-      this.active.pla = res;
-      this.sortfunction();
-    },
-    sortclass(res) {
-      this.active.class = res;
-      this.sortfunction();
-    },
-
-    // 三种点击事件的实际操作（还没写）
-    sortfunction() {
-      if (
-        this.active.pro == "所有" &&
-        this.active.pla == "所有" &&
-        this.active.class == "所有"
-      ) {
+      if (res == "所有") {
         this.aligola_list_slot = this.aligola_list;
         this.product_list = this.pageDataFn(1, 10, this.aligola_list_slot);
       } else {
         let newarray = this.aligola_list;
         let array = [];
-        if (this.active.pro != "所有") {
-          let thisarray = [];
-          if (array.length != 0) {
-            thisarray = array;
-            array = [];
-          } else thisarray = newarray;
-
-          thisarray.map((item) => {
-            if (item.hierarchy.lvl0 == this.active.pro) array.push(item);
-          });
-        }
-        if (this.active.pla != "所有") {
-          let thisarray = [];
-          if (array.length != 0) {
-            thisarray = array;
-            array = [];
-          } else thisarray = newarray;
-
-          thisarray.map((item) => {
-            if (item.url.indexOf(this.active.pla) > -1) array.push(item);
-          });
-        }
-
-        if (this.active.class != "所有") {
-          let thisarray = [];
-          if (array.length != 0) {
-            thisarray = array;
-            array = [];
-          } else thisarray = newarray;
-
-          thisarray.map((item) => {
-            if (this.active.class == "平台文档") {
-              if (item.url.indexOf("FAQ") > -1) {
-              } else array.push(item);
-            } else {
-              if (item.url.indexOf("FAQ") > -1) array.push(item);
-            }
-          });
-        }
-        console.log(array);
+        newarray.map((item) => {
+          if (item.hierarchy.lvl0 == res) {
+            array.push(item);
+          }
+        });
         this.aligola_list_slot = array;
         this.product_list = this.pageDataFn(1, 10, this.aligola_list_slot);
       }
     },
-    //重新获取数据
+    sortpla(res) {
+      this.active.pla = res;
+    },
+    sortclass(res) {
+      this.active.class = res;
+    },
     getTableData(page) {
       this.product_list = this.pageDataFn(page, 10, this.aligola_list_slot);
     },

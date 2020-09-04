@@ -38,7 +38,12 @@ export default {
     let hash = this.$route.hash.substr(1);
     console.log(hash);
     if (hash) {
+<<<<<<< HEAD
       this.value = decodeURI(hash);
+=======
+      // this.placeholder = hash;
+      this.value = hash;
+>>>>>>> develop
       this.searchData();
     }
   },

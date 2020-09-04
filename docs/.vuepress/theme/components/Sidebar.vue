@@ -145,10 +145,7 @@ export default {
       menulist.forEach((item) => {
         setSildertitle(item.children);
       });
-      var url = this.$route.path;
-      if (url.indexOf("/cn/") > -1) {
-        needfriend(menulist[1].children);
-      }
+      needfriend(menulist[1].children);
       function needfriend(data) {
         data.forEach((item) => {
           let this_url = item.url.substr(4);
