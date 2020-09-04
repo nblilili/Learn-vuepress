@@ -38,12 +38,7 @@ export default {
     let hash = this.$route.hash.substr(1);
     console.log(hash);
     if (hash) {
-<<<<<<< HEAD
-      // this.placeholder = hash;
-      this.value = hash;
-=======
       this.value = decodeURI(hash);
->>>>>>> mine_9_3
       this.searchData();
     }
   },
