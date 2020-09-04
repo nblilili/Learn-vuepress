@@ -12,7 +12,20 @@
           </span>
           </section>-->
           <!-- <div>{{title}}</div>  -->
-          <div style="padding-top:30px ">
+          <div class="contentTop">
+            <div class="top_search" v-show="topsearch">
+              <div class="search_div">
+                <div>
+                  <input
+                    placeholder="请输入搜索内容"
+                    class="search-query form-control bacinp"
+                    v-model="keyword"
+                    @keyup.enter="goSearch(keyword)"
+                  />
+                  <i class="bsearchBtn" @click="goSearch(keyword)"></i>
+                </div>
+              </div>
+            </div>
             <i class="left-menu-btn" @click="clickmenu()"></i>
             <span class="layui-breadcrumb">
               <a v-for="(item,i) in title" :key="item" href="javascript:;">
@@ -88,6 +101,8 @@ export default {
       needTags: false,
       CardName: [],
       title: "",
+      keyword: "",
+      topsearch: false,
     };
   },
   watch: {
@@ -116,7 +131,12 @@ export default {
       this.checkpath();
     },
   },
+  created() {
+    this.needTags = false;
+    this.checkroute();
+  },
   mounted() {
+    this.topsearch = true;
     this.checkpath();
     var that = this;
     this.needTags = false;
@@ -126,9 +146,17 @@ export default {
         this.$EventBus.$emit("pageHeight", this.$refs.Page.clientHeight);
       });
     }, 200);
+    this.$EventBus.$on("topsearch", (res) => {
+      this.topsearch = true;
+    });
   },
   methods: {
+    goSearch(value) {
+      console.log(`/${this.$lang}/#` + value);
+      this.$router.push({ path: `/${this.$lang}/#` + value });
+    },
     clickmenu() {
+      this.topsearch = false;
       this.$EventBus.$emit("changeMenu", true);
     },
     checkpath() {
@@ -163,10 +191,10 @@ export default {
       let that = this;
       var TagsConfig = {};
       var url = this.$route.path;
-      if(url.indexOf('/cn/')>-1){
-        TagsConfig = this.$themeConfig.locales['/cn/'].tagConfig
-      }else if(url.indexOf('/en/'>-1)){
-        TagsConfig = this.$themeConfig.locales['/en/'].tagConfig
+      if (url.indexOf("/cn/") > -1) {
+        TagsConfig = this.$themeConfig.locales["/cn/"].tagConfig;
+      } else if (url.indexOf("/en/" > -1)) {
+        TagsConfig = this.$themeConfig.locales["/en/"].tagConfig;
       }
       for (let i in TagsConfig) {
         if (url.indexOf(i) > -1) {
@@ -240,6 +268,24 @@ function check_path(data) {
 <style lang="stylus">
 @require '../styles/wrapper.styl';
 @import url('//at.alicdn.com/t/font_1986404_olndtqc1n5q.css');
+
+.page-left .top_search {
+  display: none;
+}
+
+.contentTop {
+  padding-top: 30px;
+}
+
+@media (max-width: 800px) {
+  .contentTop {
+    padding-top: 109px;
+  }
+
+  .page-left .top_search {
+    display: block;
+  }
+}
 
 // .fixed {
 // position: fixed;

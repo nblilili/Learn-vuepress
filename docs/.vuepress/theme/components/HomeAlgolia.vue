@@ -5,6 +5,7 @@
       class="search-query form-control bacinp"
       :placeholder="placeholder"
       v-model="value"
+      @keyup.enter="searchData()"
     />
     <i class="bsearchBtn" @click="searchData()"></i>
   </div>
@@ -22,17 +23,6 @@ export default {
     };
   },
   watch: {
-    // $lang(newValue) {
-    //   console.log(newValue);
-    //   this.update(this.options, newValue);
-    // },
-    // options(newValue) {
-    //   console.log(newValue);
-    //   this.update(newValue, this.$lang);
-    // },
-    // placeholder(newValue) {
-    //   console.log(newValue);
-    // },
     $route(newValue) {
       let hash = this.$route.hash.substr(1);
       if (hash) {
@@ -43,24 +33,17 @@ export default {
   },
   created() {
     var _this = this;
-    document.onkeydown = function (e) {
-      //按下回车提交
-      let key = window.event.keyCode;
-      if (key == 13) {
-        if (_this.value != _this.$route.hash.substr(1))
-          _this.$router.push({ hash: _this.value });
-        // _this.getSearchData(_this.value);
-      }
-    };
   },
   mounted() {
-    // this.initialize(this.options, this.$lang);
-    // this.placeholder = this.$site.themeConfig.searchPlaceholder || "";
     let hash = this.$route.hash.substr(1);
     console.log(hash);
     if (hash) {
+<<<<<<< HEAD
       // this.placeholder = hash;
       this.value = hash;
+=======
+      this.value = decodeURI(hash);
+>>>>>>> mine_9_3
       this.searchData();
     }
   },
@@ -76,6 +59,7 @@ export default {
     },
     getSearchData(query) {
       let that = this;
+      that.$EventBus.$emit("Searching", true);
       console.log(query, this.$lang);
       let indexName = "juphoon";
       let appId = "BF4RDO0EYD";
@@ -100,8 +84,11 @@ export default {
         },
         url: PostUrl,
       }).then((res) => {
+        that.$EventBus.$emit("Searching", false);
+
         console.log(res.data);
         console.log(res.data.results[0].hits);
+        console.log(JSON.parse(JSON.stringify(res.data.results[0].hits)));
         that.SearchResults = res.data.results[0]; // 搜索的结果
         that.$EventBus.$emit("SearchResults", res.data.results[0]);
       });

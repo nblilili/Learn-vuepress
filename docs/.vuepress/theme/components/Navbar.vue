@@ -7,7 +7,7 @@
           <img src="../assets/image/juphoon cloud developer@2x.png" />
         </a>
         <div class="nav" :class="showNav?'active':''">
-          <div class="nav-item" v-for="(item,index) in userLinks" :key="item.text">
+          <div class="nav-item" v-for="(item,index) in re_userLinks" :key="item.text">
             <!-- <a class="header-line this_line" :href="item.link" v-if="!item.items.length">{{item.text}}</a> -->
             <XRouter :to="{path:item.link}" v-if="!item.items.length">{{item.text}}</XRouter>
             <!-- <router-link :to="item.link" v-if="!item.items.length" >{{item.text}}</router-link> -->
@@ -23,9 +23,16 @@
                 <table>
                   <tr v-for="(items,index) in item.items" :key="items.text">
                     <td>
-                      <a :href="items.link" target="_blank">
+                      <a
+                        v-if="items.link && items.link[0] !== '/'"
+                        :href="items.link"
+                        target="_blank"
+                      >
                         <div class="nav-tit">{{items.text}}</div>
                       </a>
+                      <router-link v-else :to="{path:items.link}" :target="'_blank'">
+                        <div class="nav-tit">{{items.text}}</div>
+                      </router-link>
                     </td>
                   </tr>
                 </table>
@@ -57,14 +64,14 @@
               </div>
               <div class="more-toggle">
                 <div class="ylogin_1" v-if="user_type == 'manager'">
-                  <a href="/portal/cn/// console/apps/admin_index.php">应用管理</a>
+                  <a href="/portal/cn/console/apps/admin_index.php">应用管理</a>
                   <a href="/portal/admin/info/account.php">系统管理</a>
                 </div>
                 <div class="ylogin_2" v-else-if="user_type != 'police'">
-                  <a href="/cn/// console/">管理控制台</a>
+                  <a href="/cn/console/">管理控制台</a>
                 </div>
                 <div class="yl_police" v-if="user_type == 'police'">
-                  <a href="/portal/cn/// console/my_app/otoDetail.php">数据查询</a>
+                  <a href="/portal/cn/console/my_app/otoDetail.php">数据查询</a>
                 </div>
                 <a href="javascript:;" @click="log_out()">退出</a>
               </div>
@@ -116,7 +123,25 @@ export default {
         },
       ],
       showNav: false,
+      re_userLinks: [],
     };
+  },
+  watch: {
+    // userLinks(newValue, oldValue) {
+    //   this.re_userLinks = newValue;
+    // },
+    $route(newValue, oldValue) {
+      console.log(newValue);
+      if (window.innerWidth < 800) {
+        this.showNav = false;
+      }
+      console.log(this.nav);
+      this.re_userLinks = (this.nav || []).map((link) => {
+        return Object.assign(resolveNavLinkItem(link), {
+          items: (link.items || []).map(resolveNavLinkItem),
+        });
+      });
+    },
   },
   computed: {
     algolia() {
@@ -128,46 +153,30 @@ export default {
       return this.algolia && this.algolia.apiKey && this.algolia.indexName;
     },
     userNav() {
+      console.log(this.$site);
       return this.$themeLocaleConfig.nav || this.$site.themeConfig.nav || [];
     },
     nav() {
+      let that = this;
       const { locales } = this.$site;
       if (locales && Object.keys(locales).length > 1) {
         const currentLink = this.$page.path;
         const routes = this.$router.options.routes;
         const themeLocales = this.$site.themeConfig.locales || {};
-        const languageDropdown = {
-          text: this.$themeLocaleConfig.selectText || "Languages",
-          ariaLabel: this.$themeLocaleConfig.ariaLabel || "Select language",
-          items: Object.keys(locales).map((path) => {
-            // console.log(path);
-            const locale = locales[path];
-            const text =
-              (themeLocales[path] && themeLocales[path].label) || locale.lang;
-            let link;
-            // Stay on the current page
-            if (locale.lang === this.$lang) {
-              link = currentLink;
-            } else {
-              // Try to stay on the same page
-              link = currentLink.replace(this.$localeConfig.path, path);
-              // fallback to homepage
-              if (!routes.some((route) => route.path === link)) {
-                link = path;
-              }
-            }
-            let realylink =
-              this.$site.base.substr(0, this.$site.base.length - 1) + link;
-            // console.log({ text, link: realylink });
-            return { text, link: realylink };
-          }),
+        let langlist = {
+          text: that.$lang == "cn" ? "选择语言" : "Languages",
+          ariaLabel: "Select language",
+          items: [
+            { text: "简体中文", link: "/cn/" + that.$route.path.substring(3) },
+            { text: "English", link: "/en/" + that.$route.path.substring(3) },
+          ],
         };
-        // console.log(languageDropdown);
-        return [...this.userNav, languageDropdown];
+        return [...this.userNav, langlist];
       }
       return this.userNav;
     },
     userLinks() {
+      console.log(this.re_userLinks);
       return (this.nav || []).map((link) => {
         return Object.assign(resolveNavLinkItem(link), {
           items: (link.items || []).map(resolveNavLinkItem),
@@ -175,20 +184,23 @@ export default {
       });
     },
   },
+  created() {
+    this.re_userLinks = (this.nav || []).map((link) => {
+      return Object.assign(resolveNavLinkItem(link), {
+        items: (link.items || []).map(resolveNavLinkItem),
+      });
+    });
+  },
   mounted() {
-    // console.log(this.$site.base);
-    // console.log(this.$lang);
-    // console.log(this.$themeLocaleConfig);
-    // console.log(this.userLinks);
     this.$EventBus.$on("changeNav", () => {
       this.showNav = !this.showNav;
     });
+    console.log(this.nav);
     let that = this;
     this.site = this.$site.themeConfig.nav;
     var user_type = localStorage.getItem("user_type");
     this.user_type = user_type;
-    // console.log("user_type", user_type);
-    // if (user_type) {
+
     axios({
       method: "POST",
       url: "/portal/cn/message/?c=PChoocesql&a=P_return_userinfo",
@@ -201,10 +213,37 @@ export default {
       .catch(function (error) {
         // console.log(error);
       });
-    // }
   },
   methods: {
+    languageDropdown() {
+      let languageDropdown = {
+        text: this.$themeLocaleConfig.selectText || "Languages",
+        ariaLabel: this.$themeLocaleConfig.ariaLabel || "Select language",
+        items: Object.keys(locales).map((path) => {
+          const locale = locales[path];
+          const text =
+            (themeLocales[path] && themeLocales[path].label) || locale.lang;
+          let link;
+          if (locale.lang === this.$lang) {
+            link = currentLink;
+          } else {
+            link = currentLink.replace(this.$localeConfig.path, path);
+            // fallback to homepage
+            if (!routes.some((route) => route.path === link)) {
+              link = path;
+            }
+          }
+          let realylink =
+            this.$site.base.substr(0, this.$site.base.length - 1) + link;
+          return { text, link: realylink };
+        }),
+      };
+      return languageDropdown;
+    },
     changshowitem(item, index) {
+      item.showitem = !item.showitem;
+      console.log(JSON.parse(JSON.stringify(this.re_userLinks)));
+      this.re_userLinks = JSON.parse(JSON.stringify(this.re_userLinks));
       // item.showitem = !item.showitem;
       // // console.log(this.userLinks);
       // this.userLinks = JSON.parse(JSON.stringify(this.site));
@@ -359,6 +398,12 @@ $navbar-horizontal-padding = 1.5rem;
       white-space: nowrap;
       text-overflow: ellipsis;
     }
+  }
+}
+
+@media (max-width: 1400px) {
+  .nav-item.search {
+    display: none;
   }
 }
 </style>
