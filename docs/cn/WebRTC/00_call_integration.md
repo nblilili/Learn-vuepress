@@ -1,5 +1,6 @@
 ---
 title:  通话集成
+
 ---
 
 # 通话集成
@@ -190,11 +191,11 @@ text    具体的指令协议,参考文档下方说明
 
 | 指令内容                 | 指令格式                                                     |
 | :----------------------- | :----------------------------------------------------------- |
-| 设置自身或其他成员角色   | **明文格式**<br/> setrole \<mask\> \<role\> [target]<br/><br/>**JSON 格式**<br/> {“cmd”:”setrole”, “mask”:%d, “role”:%d, “target”:%s} // 参数说明<br/> mask 掩码,表示操作的bit位<br/> role 角色，按位解释，设原状态为_ROLE_，则 \_ROLE\_ = (\_ROLE\_ & ~mask)<br/>target 可选的设置对象，缺省时为自身 |
+| 设置自身或其他成员角色   | **明文格式**<br/> setrole \<mask\> \<role\> [target]<br/><br/>**JSON 格式**<br/> {“cmd”:”setrole”, “mask”:%d, “role”:%d, “target”:%s} <br />// 参数说明<br/> mask 掩码,表示操作的bit位<br/> role 角色，按位解释，设原状态为_ROLE_，则 \_ROLE\_ = (\_ROLE\_ & ~mask)<br/>target 可选的设置对象，缺省时为自身 |
 | 设置自身或其他成员状态   | **明文格式**<br/>setstate \<mask\> \<state\> [target]<br/>- 关闭 id0 (即成员URI或屏幕 URI)的音频的服务器转发<br/>setstate 0x2 0x0 id0<br/>\- 关闭自身的音频发送<br/>setstate 0x8 0x0<br/>\- 打开自身的音频发送<br/>setstate 0x8 0x8<br/><br/>**JSON 格式**<br/>{“cmd”:”setstate”, “mask”:%d, “state”:%d, “target”:%s}<br/>// 参数说明<br/>mask 掩码,表示操作的bit位<br/>state 状态，按位解释，设原状态为 \_STATE\_，则 \_STATE\_ = (\_STATE\_ & ~mask)<br/>target 可选的设置对象，缺省时为自身 |
-| 设置自身或其他成员昵称   | **明文格式**<br/>setnick \<str\> [target]<br/><br/>**JSON 格式**<br/>{“cmd”:”setnick”, “nick”:\<str\>, “target”:%s}// 参数说明<br/>str utf8 编码的昵称<br/>target 可选的设置对象，缺省时为自身 |
-| 设置对其他成员的订阅信息 | **明文格式**<br/>vsubscribe \<target\> \<state\><br/><br/>**JSON 格式**<br/>{“cmd”:”vsubscribe”,”target”:”%s”,”state”:%d}// 参数说明<br/>target 订阅对象<br/>state 0 - 不订阅，1 - 订阅视频 |
-| 踢出成员                 | **明文格式**<br/>kickuser [target]<br/><br/>**JSON 格式**<br/>{cmd:”kickuser”, “target”:”%s”}// 参数说明<br/>target 目标对象uri |
+| 设置自身或其他成员昵称   | **明文格式**<br/>setnick \<str\> [target]<br/><br/>**JSON 格式**<br/>{“cmd”:”setnick”, “nick”:\<str\>, “target”:%s}<br />// 参数说明<br/>str utf8 编码的昵称<br/>target 可选的设置对象，缺省时为自身 |
+| 设置对其他成员的订阅信息 | **明文格式**<br/>vsubscribe \<target\> \<state\><br/><br/>**JSON 格式**<br/>{“cmd”:”vsubscribe”,”target”:”%s”,”state”:%d}<br />// 参数说明<br/>target 订阅对象<br/>state 0 - 不订阅，1 - 订阅视频 |
+| 踢出成员                 | **明文格式**<br/>kickuser [target]<br/><br/>**JSON 格式**<br/>{cmd:”kickuser”, “target”:”%s”}<br />// 参数说明<br/>target 目标对象uri |
 
 
 #### 会议属性控制指令
@@ -400,7 +401,7 @@ oniceconnectionstatechange(state)
 
 实现屏幕共享功能需要以下操作：
 
-Google Chrome 必须安装 [额外扩展][ScreenCapturing]，请参考 [Chrome 屏幕采集扩展[ScreenCapturing\]](https://chrome.google.com/webstore/detail/screen-capturing/ajhifddimkapgcifgcodmmfdlknahffk) 。
+Google Chrome 必须安装 [额外扩展][ScreenCapturing]，请参考 [Chrome 屏幕采集扩展ScreenCapturing](https://chrome.google.com/webstore/detail/screen-capturing/ajhifddimkapgcifgcodmmfdlknahffk)。
 
 getsourceid 参数必须指定有效的https网址，缺省时需要公网访问能力。
 
