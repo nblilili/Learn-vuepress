@@ -93,7 +93,7 @@ module.exports = {
         //   apiKey: '48aefdd5edf4e5a94a5ffee6f59e5271',
         //   indexName: 'juphoon_developer'
         // },
-        nav: navUtil.getNavConf('cn'),
+        nav: navUtil.getNavConf('en'),
         sidebarSelect: sidebarSelectUtil.getSidebarSelectConf('en'),
         sidebar: sidebarUtil.getSidebarConf('docs/en/'),
         tagConfig: tagsUtil.getTagsConf('docs/en/')

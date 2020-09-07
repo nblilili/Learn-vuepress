@@ -13,7 +13,7 @@
           </section>-->
           <!-- <div>{{title}}</div>  -->
           <div class="contentTop">
-            <div class="top_search">
+            <div class="top_search" v-show="topsearch">
               <div class="search_div">
                 <div>
                   <input
@@ -71,6 +71,8 @@ export default {
       needTags: false,
       CardName: [],
       title: "",
+      keyword: "",
+      topsearch: false,
     };
   },
   watch: {
@@ -105,24 +107,27 @@ export default {
     this.checkroute();
   },
   mounted() {
+    this.topsearch = true;
     this.checkpath();
     var that = this;
+    this.needTags = false;
+    this.checkroute();
     setTimeout(() => {
       this.$nextTick(() => {
         this.$EventBus.$emit("pageHeight", this.$refs.Page.clientHeight);
       });
     }, 200);
+    this.$EventBus.$on("topsearch", (res) => {
+      this.topsearch = true;
+    });
   },
   methods: {
-    goSearch(hash) {
-      console.log(this.$site.base, this.$lang, hash);
-      console.log(this.$site.base + this.$lang + "/#" + hash);
-      this.$router.push({
-        path: "/" + this.$lang + "/",
-        hash: hash,
-      });
+    goSearch(value) {
+      console.log(`/${this.$lang}/#` + value);
+      this.$router.push({ path: `/${this.$lang}/#` + value });
     },
     clickmenu() {
+      this.topsearch = false;
       this.$EventBus.$emit("changeMenu", true);
     },
     checkpath() {
@@ -235,6 +240,24 @@ function check_path(data) {
 <style lang="stylus">
 @require '../styles/wrapper.styl';
 @import url('//at.alicdn.com/t/font_1986404_olndtqc1n5q.css');
+
+.page-left .top_search {
+  display: none;
+}
+
+.contentTop {
+  padding-top: 30px;
+}
+
+@media (max-width: 800px) {
+  .contentTop {
+    padding-top: 109px;
+  }
+
+  .page-left .top_search {
+    display: block;
+  }
+}
 
 // .fixed {
 // position: fixed;

@@ -23,9 +23,16 @@
                 <table>
                   <tr v-for="(items,index) in item.items" :key="items.text">
                     <td>
-                      <a :href="items.link" target="_blank">
+                      <a
+                        v-if="items.link && items.link[0] !== '/'"
+                        :href="items.link"
+                        target="_blank"
+                      >
                         <div class="nav-tit">{{items.text}}</div>
                       </a>
+                      <router-link v-else :to="{path:items.link}" :target="'_blank'">
+                        <div class="nav-tit">{{items.text}}</div>
+                      </router-link>
                     </td>
                   </tr>
                 </table>
@@ -120,14 +127,20 @@ export default {
     };
   },
   watch: {
-    userLinks(newValue, oldValue) {
-      this.re_userLinks = newValue;
-    },
+    // userLinks(newValue, oldValue) {
+    //   this.re_userLinks = newValue;
+    // },
     $route(newValue, oldValue) {
       console.log(newValue);
       if (window.innerWidth < 800) {
         this.showNav = false;
       }
+      console.log(this.nav);
+      this.re_userLinks = (this.nav || []).map((link) => {
+        return Object.assign(resolveNavLinkItem(link), {
+          items: (link.items || []).map(resolveNavLinkItem),
+        });
+      });
     },
   },
   computed: {
@@ -140,51 +153,30 @@ export default {
       return this.algolia && this.algolia.apiKey && this.algolia.indexName;
     },
     userNav() {
+      console.log(this.$site);
       return this.$themeLocaleConfig.nav || this.$site.themeConfig.nav || [];
     },
     nav() {
+      let that = this;
       const { locales } = this.$site;
       if (locales && Object.keys(locales).length > 1) {
         const currentLink = this.$page.path;
         const routes = this.$router.options.routes;
         const themeLocales = this.$site.themeConfig.locales || {};
-        const languageDropdown = {
-          text: this.$themeLocaleConfig.selectText || "Languages",
-          ariaLabel: this.$themeLocaleConfig.ariaLabel || "Select language",
-          items: Object.keys(locales).map((path) => {
-            // console.log(path);
-            const locale = locales[path];
-            const text =
-              (themeLocales[path] && themeLocales[path].label) || locale.lang;
-            let link;
-            // Stay on the current page
-            if (locale.lang === this.$lang) {
-              link = currentLink;
-            } else {
-              // Try to stay on the same page
-              link = currentLink.replace(this.$localeConfig.path, path);
-              // fallback to homepage
-              if (!routes.some((route) => route.path === link)) {
-                link = path;
-              }
-            }
-            let realylink =
-              this.$site.base.substr(0, this.$site.base.length - 1) + link;
-            // console.log({ text, link: realylink });
-            return { text, link: realylink };
-          }),
+        let langlist = {
+          text: that.$lang == "cn" ? "选择语言" : "Languages",
+          ariaLabel: "Select language",
+          items: [
+            { text: "简体中文", link: "/cn/" + that.$route.path.substring(3) },
+            { text: "English", link: "/en/" + that.$route.path.substring(3) },
+          ],
         };
-        // console.log(languageDropdown);
-        return [...this.userNav, languageDropdown];
+        return [...this.userNav, langlist];
       }
       return this.userNav;
     },
     userLinks() {
-      this.re_userLinks = (this.nav || []).map((link) => {
-        return Object.assign(resolveNavLinkItem(link), {
-          items: (link.items || []).map(resolveNavLinkItem),
-        });
-      });
+      console.log(this.re_userLinks);
       return (this.nav || []).map((link) => {
         return Object.assign(resolveNavLinkItem(link), {
           items: (link.items || []).map(resolveNavLinkItem),
@@ -192,10 +184,18 @@ export default {
       });
     },
   },
+  created() {
+    this.re_userLinks = (this.nav || []).map((link) => {
+      return Object.assign(resolveNavLinkItem(link), {
+        items: (link.items || []).map(resolveNavLinkItem),
+      });
+    });
+  },
   mounted() {
     this.$EventBus.$on("changeNav", () => {
       this.showNav = !this.showNav;
     });
+    console.log(this.nav);
     let that = this;
     this.site = this.$site.themeConfig.nav;
     var user_type = localStorage.getItem("user_type");
@@ -214,10 +214,39 @@ export default {
       });
   },
   methods: {
+    languageDropdown() {
+      let languageDropdown = {
+        text: this.$themeLocaleConfig.selectText || "Languages",
+        ariaLabel: this.$themeLocaleConfig.ariaLabel || "Select language",
+        items: Object.keys(locales).map((path) => {
+          const locale = locales[path];
+          const text =
+            (themeLocales[path] && themeLocales[path].label) || locale.lang;
+          let link;
+          if (locale.lang === this.$lang) {
+            link = currentLink;
+          } else {
+            link = currentLink.replace(this.$localeConfig.path, path);
+            // fallback to homepage
+            if (!routes.some((route) => route.path === link)) {
+              link = path;
+            }
+          }
+          let realylink =
+            this.$site.base.substr(0, this.$site.base.length - 1) + link;
+          return { text, link: realylink };
+        }),
+      };
+      return languageDropdown;
+    },
     changshowitem(item, index) {
       item.showitem = !item.showitem;
       console.log(JSON.parse(JSON.stringify(this.re_userLinks)));
       this.re_userLinks = JSON.parse(JSON.stringify(this.re_userLinks));
+      // item.showitem = !item.showitem;
+      // // console.log(this.userLinks);
+      // this.userLinks = JSON.parse(JSON.stringify(this.site));
+      // // console.log(this.userLinks);
     },
     log_out() {
       var url = "/portal/cn/message/?a=ajax_login_out";

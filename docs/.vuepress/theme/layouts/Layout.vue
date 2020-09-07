@@ -5,6 +5,10 @@
     @touchstart="onTouchStart"
     @touchend="onTouchEnd"
   >
+    <!-- <vueToTop :type="14" :size="60" :bottom="0" :right="30">1111</vueToTop> -->
+    <div class="toTop" v-show="showIcon" style="z-index:999" @click="clicktop()">
+      <img src="https://developer.juphoon.com/style/images/zd@2x.png" />
+    </div>
     <Navbar v-if="shouldShowNavbar" @toggle-sidebar="toggleSidebar" />
 
     <div class="sidebar-mask" @click="toggleSidebar(false)" />
@@ -74,6 +78,27 @@
 
 
 <script>
+var ALGOLIA_INSIGHTS_SRC = "https://cdn.jsdelivr.net/npm/search-insights@1.3.1";
+
+!(function (e, a, t, n, s, i, c) {
+  (e.AlgoliaAnalyticsObject = s),
+    (e[s] =
+      e[s] ||
+      function () {
+        (e[s].queue = e[s].queue || []).push(arguments);
+      }),
+    (i = a.createElement(t)),
+    (c = a.getElementsByTagName(t)[0]),
+    (i.async = 1),
+    (i.src = n),
+    c.parentNode.insertBefore(i, c);
+})(window, document, "script", ALGOLIA_INSIGHTS_SRC, "aa");
+
+// Initialize library
+aa("init", {
+  appId: "BF4RDO0EYD",
+  apiKey: "d02d64058b08646fc04cf361671ec59c",
+});
 import Home from "@theme/components/Home.vue";
 import Navbar from "@theme/components/Navbar.vue";
 import Page from "@theme/components/Page.vue";
@@ -99,12 +124,17 @@ export default {
   data() {
     return {
       istop: false,
+      showIcon: false,
+      scrollTop: 0,
       isSidebarOpen: false,
       scollpage: "", // 用于判断滚动
       tags: false,
       isMenuShow: true,
       setright: false,
       rightheight: "",
+
+      defaultTop: 400,
+      defaultDuration: 300,
     };
   },
   created() {
@@ -168,19 +198,46 @@ export default {
         this.rightheight = res + "px";
       } else this.setright = false;
     });
-    window.addEventListener("scroll", this.handleScrollx, true);
+    window.addEventListener("scroll", this.handleScrollx, false);
   },
   destroyed() {
-    window.removeEventListener("scroll", this.handleScrollx, true);
+    window.removeEventListener("scroll", this.handleScrollx, false);
   },
   methods: {
     handleScrollx() {
-      if (window.pageYOffset > 100) this.istop = false;
-      else this.istop = true;
+      this.scrollTop =
+        document.documentElement.scrollTop ||
+        window.pageYOffset ||
+        document.body.scrollTop;
+      this.scrollTop > this.defaultTop
+        ? (this.showIcon = true)
+        : (this.showIcon = false);
     },
     clicktop() {
-      this.istop = true;
-      document.body.scrollTop = document.documentElement.scrollTop = 0;
+      window.requestAnimationFrame = (function () {
+        return (
+          window.requestAnimationFrame ||
+          window.webkitRequestAnimationFrame ||
+          window.mozRequestAnimationFrame ||
+          function (callback) {
+            window.setTimeout(callback, 1000 / 60);
+          }
+        );
+      })();
+      var step = (this.scrollTop / (this.defaultDuration / (1000 / 60))) >> 0;
+      var self = this;
+      function fn() {
+        if (self.scrollTop >= 0) {
+          self.scrollTop -= step;
+          document.documentElement.scrollTop = document.body.scrollTop =
+            self.scrollTop;
+          fn.rafTimer = requestAnimationFrame(fn);
+        } else {
+          document.body.scrollTop = 0;
+          cancelAnimationFrame(fn.rafTimer);
+        }
+      }
+      fn.rafTimer = requestAnimationFrame(fn);
     },
     clickmenu() {
       console.log(123123);
@@ -193,6 +250,7 @@ export default {
     },
     MenuHide() {
       this.isMenuShow = false;
+      this.$EventBus.$emit("topsearch", false);
     },
 
     checkTags() {
@@ -250,7 +308,13 @@ export default {
 };
 </script>
 
-<style lang="stylus" scoped>
+<style lang="stylus">
+.icon-fanhuidingbu4:before {
+  color: transparent;
+  background: url('https://developer.juphoon.com/style/images/zd@2x.png');
+  background-size: 60px 60px;
+}
+
 .page-right {
   overflow-x: hidden;
   background: #fff;

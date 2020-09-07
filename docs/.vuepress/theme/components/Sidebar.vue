@@ -9,10 +9,15 @@
           tabindex="0"
           @click="showmenu?showmenu=false:showmenu=true"
           @blur="hidemenu()"
+          style="overflow:hidden"
         >
           <!-- showmenu?showmenu=false:showmenu=true -->
           <span class="title_name">{{MenuName}}</span>
-          <i class="iconfont" :class="showmenu?'icon-shangla':'icon-xiala'"></i>
+          <i
+            class="iconfont"
+            :class="showmenu?'icon-shangla':'icon-xiala'"
+            style="position: absolute;top: 0;"
+          ></i>
         </div>
         <div class="left-top-menu" v-show="showmenu">
           <div v-for="(item,index) in menulist" :key="item.title">
@@ -96,6 +101,7 @@ export default {
       else if (url.indexOf("/en/" > -1))
         sidebarSelect = this.$themeConfig.locales["/en/"].sidebarSelect;
       this.setMenuList(sidebarSelect);
+      if (window.innerWidth < 800) this.$emit("MenuHide");
       if (window.innerWidth < 800) {
         this.$emit("MenuHide");
       }
@@ -139,10 +145,7 @@ export default {
       menulist.forEach((item) => {
         setSildertitle(item.children);
       });
-      var url = this.$route.path;
-      if (url.indexOf("/cn/") > -1) {
-        needfriend(menulist[1].children);
-      }
+      needfriend(menulist[1].children);
       function needfriend(data) {
         data.forEach((item) => {
           let this_url = item.url.substr(4);

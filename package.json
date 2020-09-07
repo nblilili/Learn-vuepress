@@ -31,6 +31,7 @@
     "js-cookie": "^2.2.1",
     "layui-src": "^2.5.5",
     "vue": "^2.6.11",
+    "vue-totop": "^1.0.3",
     "vuepress-plugin-code-copy": "^1.0.6"
   }
 }
