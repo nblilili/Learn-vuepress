@@ -30,7 +30,7 @@ export default {
     },
   },
   mounted () {
-    console.log(this.$page)
+    // console.log(this.$page)
   },
   methods: {
     name() {},

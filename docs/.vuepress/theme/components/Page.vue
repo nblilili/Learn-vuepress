@@ -91,7 +91,14 @@ import PageEdit from "@theme/components/PageEdit.vue";
 import PageNav from "@theme/components/PageNav.vue";
 import SidebarRight from "@theme/components/SidebarRight.vue";
 // import TagsConfig from "../../config/TagsConfig.js";
+// const aa = require("search-insights");
 
+// var index = aa("init", {
+//   appId: "BF4RDO0EYD",
+//   apiKey: "d02d64058b08646fc04cf361671ec59c",
+// });
+// import { createInsightsClient } from "search-insights";
+// console.log(index);
 export default {
   components: { PageEdit, PageNav, SidebarRight },
   props: ["sidebarItems", "toggleSidebar"],

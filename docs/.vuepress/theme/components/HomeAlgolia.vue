@@ -85,6 +85,11 @@ export default {
         console.log(res.data.results[0].hits);
         console.log(JSON.parse(JSON.stringify(res.data.results[0].hits)));
         that.SearchResults = res.data.results[0]; // 搜索的结果
+
+        // if( ){
+
+        // }
+        console.log(res.data.results[0])
         that.$EventBus.$emit("SearchResults", res.data.results[0]);
       });
     },

@@ -216,6 +216,38 @@
   </div>
 </template>
 <script>
+// var ALGOLIA_INSIGHTS_SRC = "https://cdn.jsdelivr.net/npm/search-insights@1.3.1";
+
+// !(function (e, a, t, n, s, i, c) {
+//   (e.AlgoliaAnalyticsObject = s),
+//     (e[s] =
+//       e[s] ||
+//       function () {
+//         (e[s].queue = e[s].queue || []).push(arguments);
+//       }),
+//     (i = a.createElement(t)),
+//     (c = a.getElementsByTagName(t)[0]),
+//     (i.async = 1),
+//     (i.src = n),
+//     c.parentNode.insertBefore(i, c);
+// })(window, document, "script", ALGOLIA_INSIGHTS_SRC, "aa");
+
+// // Initialize library
+// aa("init", {
+//   appId: "BF4RDO0EYD",
+//   apiKey: "d02d64058b08646fc04cf361671ec59c",
+// });
+// const search = instantsearch({
+//   searchClient,
+//   indexName: "juphoon",
+//   insightsClient: window.aa,
+// });
+
+// search.addWidgets([
+//   instantsearch.widgets.configure({
+//     clickAnalytics: true,
+//   }),
+// ]);
 import HomeFooter from "@theme/components/HomeFooter.vue";
 import HomeAlgolia from "@theme/components/HomeAlgolia.vue";
 import HomePage from "@theme/components/HomePage.vue";
@@ -321,6 +353,8 @@ export default {
       ) {
         this.aligola_list_slot = this.aligola_list;
         this.product_list = this.pageDataFn(1, 10, this.aligola_list_slot);
+        console.log(this.aligola_list)
+        console.log(this.product_list)
       } else {
         let newarray = this.aligola_list;
         let array = [];
@@ -330,7 +364,6 @@ export default {
             thisarray = array;
             array = [];
           } else thisarray = newarray;
-
           thisarray.map((item) => {
             if (item.hierarchy.lvl0 == this.active.pro) array.push(item);
           });
@@ -341,12 +374,10 @@ export default {
             thisarray = array;
             array = [];
           } else thisarray = newarray;
-
           thisarray.map((item) => {
             if (item.url.indexOf(this.active.pla) > -1) array.push(item);
           });
         }
-
         if (this.active.class != "所有") {
           let thisarray = [];
           if (array.length != 0) {
@@ -364,6 +395,8 @@ export default {
           });
         }
         console.log(array);
+        console.log(this.aligola_list)
+
         this.aligola_list_slot = array;
         this.product_list = this.pageDataFn(1, 10, this.aligola_list_slot);
       }
@@ -419,7 +452,14 @@ export default {
       console.log(res);
     },
     showlist(data) {
+      // let DownData = JSON.parse(JSON.stringify(data.hits));
+      // let newlist = [];
+      // DownData.map((item) => {
+      //   item.content ? newlist.push(item) : function () {};
+      // });
+      // // this.aligola_list = JSON.parse(JSON.stringify(newlist)); //记录原始数据
       this.aligola_list = JSON.parse(JSON.stringify(data.hits)); //记录原始数据
+
       this.aligola_list_slot = this.aligola_list; //点击的第一下现在是原始数据
       this.product_list = this.pageDataFn(1, 10, this.aligola_list); // 展示数据
     },

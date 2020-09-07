@@ -44,13 +44,10 @@ export default {
 
   methods: {
     initialize (userOptions, lang) {
-      console.log(1)
       Promise.all([
         import(/* webpackChunkName: "docsearch" */ 'docsearch.js/dist/cdn/docsearch.min.js'),
         import(/* webpackChunkName: "docsearch" */ 'docsearch.js/dist/cdn/docsearch.min.css')
       ]).then(([docsearch]) => {
-        console.log(1)
-        console.log([docsearch])
         docsearch = docsearch.default
         const { algoliaOptions = {}} = userOptions
         docsearch(Object.assign(
@@ -75,7 +72,6 @@ export default {
 
     update (options, lang) {
       this.$el.innerHTML = '<input id="algolia-search-input" class="search-query">'
-      console.log(1)
       this.initialize(options, lang)
     }
   }
