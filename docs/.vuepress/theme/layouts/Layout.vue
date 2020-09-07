@@ -78,27 +78,27 @@
 
 
 <script>
-var ALGOLIA_INSIGHTS_SRC = "https://cdn.jsdelivr.net/npm/search-insights@1.3.1";
+// var ALGOLIA_INSIGHTS_SRC = "https://cdn.jsdelivr.net/npm/search-insights@1.3.1";
 
-!(function (e, a, t, n, s, i, c) {
-  (e.AlgoliaAnalyticsObject = s),
-    (e[s] =
-      e[s] ||
-      function () {
-        (e[s].queue = e[s].queue || []).push(arguments);
-      }),
-    (i = a.createElement(t)),
-    (c = a.getElementsByTagName(t)[0]),
-    (i.async = 1),
-    (i.src = n),
-    c.parentNode.insertBefore(i, c);
-})(window, document, "script", ALGOLIA_INSIGHTS_SRC, "aa");
+// !(function (e, a, t, n, s, i, c) {
+//   (e.AlgoliaAnalyticsObject = s),
+//     (e[s] =
+//       e[s] ||
+//       function () {
+//         (e[s].queue = e[s].queue || []).push(arguments);
+//       }),
+//     (i = a.createElement(t)),
+//     (c = a.getElementsByTagName(t)[0]),
+//     (i.async = 1),
+//     (i.src = n),
+//     c.parentNode.insertBefore(i, c);
+// })(window, document, "script", ALGOLIA_INSIGHTS_SRC, "aa");
 
-// Initialize library
-aa("init", {
-  appId: "BF4RDO0EYD",
-  apiKey: "d02d64058b08646fc04cf361671ec59c",
-});
+// // Initialize library
+// aa("init", {
+//   appId: "BF4RDO0EYD",
+//   apiKey: "d02d64058b08646fc04cf361671ec59c",
+// });
 import Home from "@theme/components/Home.vue";
 import Navbar from "@theme/components/Navbar.vue";
 import Page from "@theme/components/Page.vue";
