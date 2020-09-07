@@ -1,6 +1,6 @@
 <template>
   <main class="home" aria-labelledby="main-title" style="background:#fff">
-    <!-- <HomeSearch /> -->
+    <HomeSearch />
     <div v-if="data.features && data.features.length" class="features">
       <div v-for="(feature, index) in data.features" :key="index" class="feature">
         <h2>{{ feature.title }}</h2>
@@ -14,11 +14,11 @@
 </template>
 <script>
 import NavLink from "@theme/components/NavLink.vue";
-// import HomeSearch from "@theme/components/HomeSearch.vue";
+import HomeSearch from "@theme/components/HomeSearch.vue";
 export default {
   name: "Home",
-  // components: { NavLink, HomeSearch },
-  components: { NavLink },
+  components: { NavLink, HomeSearch },
+  // components: { NavLink },
   computed: {
     data() {
       return this.$page.frontmatter;

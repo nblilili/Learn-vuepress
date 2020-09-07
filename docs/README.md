@@ -14,7 +14,7 @@ home: true
 # footer: MIT Licensed | Copyright © 2018-present xxxxxx
 ---
 
-<!-- <template>
+<template>
   <div></div>
 </template>
 
@@ -25,4 +25,4 @@ export default {
     this.$router.push({ path: '/cn/' })
   }
 }
-</script>  -->
+</script> 
