@@ -1,6 +1,6 @@
 <template>
   <div class="theme-container">
-    <div class="theme-default-content">
+    <div class="theme-default-content DocSearch-content">
       <h1>404</h1>
 
       <blockquote>{{ getMsg() }}</blockquote>
@@ -21,6 +21,9 @@ const msgs = [
 ]
 
 export default {
+  mounted () {
+    console.log(this.$lang);
+  },
   methods: {
     getMsg () {
       return msgs[Math.floor(Math.random() * msgs.length)]
