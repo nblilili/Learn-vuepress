@@ -1,5 +1,6 @@
 ---
 title: Call integration
+
 ---
 
 # Call integration
@@ -70,28 +71,6 @@ onerror(error)
   error error object
 
           The connection should be closed and the interface reset
-```
-
-#### Call
-
-After the connection is successful, you can make a call and call the following interface
-
-```js
-jc.call(configuration, constraints, peer);
-
-   configuration optional standard RTCConfiguration object, can be null,
-                  The default is issued by the server (returned by the onopen event)
-   constraints standard MediaStreamConstraints object,
-                  Refer to update() parameter description
-   peer Optional peer Id, ignored during http connection
-```
-
-After the call is successful, the peer can receive the oncall callback
-
-```js
-oncall(peer)
-
-  Peer Id
 ```
 
 #### Call
@@ -236,7 +215,7 @@ Before implementing custom mode, you need to ensure that the layout of the recei
 
 | Command format                                               | Parameter description                                        |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| **JSON Format**<br/>{"cmd":"setlayout","layout":[[\<id0\>,\<ps\> x, y, w, h],<br/> ["Id1",0x200, 0.1, 0.1, 1.0, 1.0], …]} | **<br/>ps**<br/ >Video size level 0x100, 0x200, 0x300, 0x400<br/>x,y,w,h: the coordinates and size of the unit [0.0,1.0] |
+| **JSON Format**<br/>{"cmd":"setlayout","layout":[[\<id0\>,\<ps\> x, y, w, h],<br/> ["Id1",0x200, 0.1, 0.1, 1.0, 1.0], …]} | **id0**<br/>Member URI or screen URI<br />ps**<br/ >Video size level 0x100, 0x200, 0x300, 0x400<br/>x,y,w,h: the coordinates and size of the unit [0.0,1.0] |
 
 ##### Adjust the layout of smart mode
 
@@ -249,8 +228,8 @@ Before adjusting the layout of smart mode, you need to make sure that the layout
 
 ##### Adjust the detailed parameters of the smart mode
 
-| Command format | Parameter description |
-| ----------------------------------------------------------- | ----------------------------------------------------------- |
+| Command format                                               | Parameter description                                        |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
 | **Plain text format**<br/>setmerge_i \<width\> \<height\> \<mode\> \<scsMode\> \<fps\> [uri]<br/>For example: set the width to 1600 , The height is 900, the smart mode is "free mode", the screen sharing is "host mode", the number of frames is 24, the default size of the screen is qqqq, the command is:<br/>@setmerge_i 1600 900 1 3 24 [username:qqqq@sample.cloud.justalk.com] | **width** wide<br/>**height** high<br/>**mode** Smart split-screen mode, see setmergemode_i above<br />**scsMode** Smart split screen with screen sharing mode, see above setmergemode_iv<br/>**fps** Frames 1-30<br/>**uri** The default user uri for large and small screens |
 
 For specific instruction information about the smart split screen mode and the detailed parameters of the smart split screen mode, please refer to [Smart Split Screen](https://developer.juphoon.com/cn/document/V2.1/webrtc/integration.php #w_id6).
@@ -259,14 +238,14 @@ For specific instruction information about the smart split screen mode and the d
 
 ##### Start recording
 
-| Command format | Parameter description |
-|  ----------------------------------------------------------- | ----------------------------------------------------------- |
+| Command format                                               | Parameter description                                        |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
 | **JSON format**<br/>{"cmd":"StartRecord","Video":true,"Storage":<br/>{<br/>"Protocol":"qiniu",<br/ >"AccessKey":"Th2jW*********",<br/>"SecretKey":"Nh***********",<br/>"**BucketName* *":"***",<br/>"FileKey":"1234.mp4",<br/>"SplitFileSize":1024<br/>}<br/>} | Video Whether video conference, true is Video conference<br/>Protocol cloud storage protocol, currently supports Qiniu<br/>AccessKey, SecretKey Qiniu Cloud Personal Center->Key Management View<br/>BucketName Qiniu Cloud storage name<br/>FileKey upload The file name to Qiniu<br/>SplitFileSize How many KBs of the recording file to be split automatically, leave it blank, the default is 500M |
 
 ##### Stop recording
 
-| Command format | Parameter description |
-| ----------------------------------------------------------- | ----------------------------------------------------------- |
+| Command format                                               | Parameter description                                        |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
 | **JSON format**<br/>{"cmd":"StopRecord"}<br/>Assuming base64 encoding is eyJjbWQiOiJTdG9wUmVjb3JkIn0= and the conference number is 12345678, the command to stop recording is as follows:<br/>sendtext eyJjbWQiOiJTdG9wUmVj =[username:delivery_12345678@delivery.cloud.justalk.com] | The recorder or pusher is also a confDelivery, the recorder or pusher is also a confDelivery, the recorder or pusher uri is:<br/>[username :delivery_会议号@delivery.cloud.justalk.com] |
 
 ::: tip
@@ -422,7 +401,7 @@ Screen sharing
 
 The following operations are required to implement the screen sharing function:
 
-Google Chrome must install [Extra Extension][ScreenCapturing], please refer to [Chrome Screen Capturing Extension[ScreenCapturing\]](https://chrome.google.com/webstore/detail/screen-capturing/ajhifddimkapgcifgcodmmfdlknahffk).
+Google Chrome must install [Extra Extension][ScreenCapturing], please refer to [Chrome Screen Capturing Extension ScreenCapturing](https://chrome.google.com/webstore/detail/screen-capturing/ajhifddimkapgcifgcodmmfdlknahffk).
 
 The getsourceid parameter must specify a valid https URL, which requires public network access by default.
 

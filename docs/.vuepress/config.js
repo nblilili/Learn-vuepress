@@ -1,12 +1,12 @@
 const sidebarConf = require('./config/sidebarConf.js');
 const navConf = require('./config/navConf.js');
-const algoliaConf = require('.vuepress/config/algoliaConf.js');
+const algoliaConf = require('./config/algoliaConf.js');
 
 const sidebarUtil = require('./utils/sidebarUtil');
 const tagsUtil = require('./utils/tagsUtil');
 const navUtil = require('./utils/navUtil.js');
 const sidebarSelectUtil = require('./utils/sidebarSelectUtil.js');
-const base = '/doc/'
+const base = '/Learn-vuepress/'
 
 module.exports = {
   locales: {
