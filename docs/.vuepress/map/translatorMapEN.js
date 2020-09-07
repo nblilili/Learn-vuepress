@@ -8,12 +8,12 @@
  */
 
 module.exports = new Map()
-  .set("02_download", "下载")
+  .set("02_download", "Download")
   .set("03_quick_start", "Quick Start")
   .set("04_basic_func", "Basic Functions")
   .set("05_adv_func", "Advanced Functions")
   .set("99_api_reference", "API Reference")
-  .set("03_console_description","控制台说明")
-  .set("04_TianSai_eagle_eyes", "天塞鹰眼")
-  .set("05_download", "下载")
+  .set("03_console_description","Console description")
+  .set("04_TianSai_eagle_eyes", "TianSai eagle eyes")
+  .set("05_download", "Download")
   .set("06_FAQ", "FAQ");

@@ -1,10 +1,13 @@
 const sidebarConf = require('./config/sidebarConf.js');
 const navConf = require('./config/navConf.js');
+const algoliaConf = require('.vuepress/config/algoliaConf.js');
+
 const sidebarUtil = require('./utils/sidebarUtil');
 const tagsUtil = require('./utils/tagsUtil');
 const navUtil = require('./utils/navUtil.js');
 const sidebarSelectUtil = require('./utils/sidebarSelectUtil.js');
 const base = '/doc/'
+
 module.exports = {
   locales: {
     '/cn/': {
@@ -48,19 +51,7 @@ module.exports = {
           }
         },
         // 当前 locale 的 algolia docsearch 选项
-        algolia: {
-          appId: 'BF4RDO0EYD',
-          apiKey: 'd02d64058b08646fc04cf361671ec59c',
-          indexName: 'juphoon',
-          algoliaOptions: {
-            hitsPerPage: 6,
-            removeWordsIfNoResults: 'allOptional'
-          }
-        },
-        // algolia: {
-        //   apiKey: '48aefdd5edf4e5a94a5ffee6f59e5271',
-        //   indexName: 'juphoon_developer'
-        // },
+        algolia: algoliaConf,
         nav: navUtil.getNavConf('cn'),
         sidebarSelect: sidebarSelectUtil.getSidebarSelectConf('cn'),
         sidebar: sidebarUtil.getSidebarConf('docs/cn/'),
@@ -76,15 +67,7 @@ module.exports = {
             buttonText: "Refresh"
           }
         },
-        algolia: {
-          appId: 'BF4RDO0EYD',
-          apiKey: 'd02d64058b08646fc04cf361671ec59c',
-          indexName: 'juphoon',
-          algoliaOptions: {
-            hitsPerPage: 6,
-            removeWordsIfNoResults: 'allOptional'
-          }
-        },
+        algolia: algoliaConf,
         // algolia: {
         //   apiKey: 'd02d64058b08646fc04cf361671ec59c',
         //   indexName: 'juphoon'
@@ -102,7 +85,5 @@ module.exports = {
   },
   siteConfig: {
     title: "菊风云平台"
-
   }
-
 }
