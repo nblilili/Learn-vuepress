@@ -22,6 +22,7 @@ export default {
     return {
       placeholder: "请输入搜索内容",
       value: "",
+      Searching: false,
       SearchResults: {}, // 搜索的结果
     };
   },
@@ -72,18 +73,21 @@ export default {
         responseFields: "*",
         maxValuesPerFacet: 100,
         page: 0,
-        facets: ["*", "lang"],
-        facetFilters: [["lang:"+this.$lang+""]],
+        facets: ["*", "lang", "tags"],
+        facetFilters: [["lang:" + this.$lang + ""]],
       });
     },
     getSearchData(query, config = {}) {
       let that = this;
-      that.$EventBus.$emit("Searching", true);
-      index.search(query, config).then((res) => {
-        console.log(res);
-        that.$EventBus.$emit("Searching", false);
-        that.$EventBus.$emit("SearchResults", res);
-      });
+      if (!this.Searching) {
+        that.$EventBus.$emit("Searching", true);
+        index.search(query, config).then((res) => {
+          this.Searching = false;
+          console.log(res);
+          that.$EventBus.$emit("Searching", false);
+          that.$EventBus.$emit("SearchResults", res);
+        });
+      }
       // let indexName = "juphoon";
       // let appId = "BF4RDO0EYD";
       // let apiKey = "d02d64058b08646fc04cf361671ec59c";

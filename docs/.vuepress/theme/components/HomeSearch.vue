@@ -333,7 +333,27 @@ export default {
     // 三种点击事件
     sortpro(res) {
       this.active.pro = res;
-      this.sortfunction();
+      console.log(res);
+      this.$refs.HomeAlgolia.getSearchData(this.keyword, {
+        // tagFilters: res == "所有" ? [] : [res],
+        clickAnalytics: true,
+        getRankingInfo: true,
+        analytics: false,
+        enableABTest: false,
+        hitsPerPage: 20,
+        attributesToRetrieve: "*",
+        attributesToSnippet: "*:20",
+        snippetEllipsisText: "…",
+        responseFields: "*",
+        maxValuesPerFacet: 100,
+        page: 0,
+        facets: ["*", "lang", "tags"],
+        facetFilters: [
+          ["lang:" + this.$lang + ""],
+          ["tags:" + (res == "所有" ? "All" : res)],
+        ],
+      });
+      // this.sortfunction();
     },
     sortpla(res) {
       this.active.pla = res;
