@@ -1,7 +1,6 @@
 <template>
   <div>
     <input
-      id="algolia-search-input"
       class="search-query form-control bacinp"
       :placeholder="placeholder"
       v-model="value"
@@ -12,6 +11,10 @@
 </template>
 <script>
 import axios from "axios";
+import algoliasearch from "algoliasearch";
+const client = algoliasearch("BF4RDO0EYD", "4a2857c7afb83b2687a2922aaaf56bcf");
+const index = client.initIndex("juphoon");
+
 export default {
   name: "AlgoliaSearchBox",
   props: ["options"],
@@ -42,6 +45,13 @@ export default {
       this.searchData();
     }
   },
+  computed: {
+    algolia() {
+      return (
+        this.$themeLocaleConfig.algolia || this.$site.themeConfig.algolia || {}
+      );
+    },
+  },
   methods: {
     searchData() {
       console.log(this.value);
@@ -50,43 +60,60 @@ export default {
       if (this.value && hash != this.value)
         this.$router.push({ path: "/cn/#" + this.value });
       console.log(axios);
-      this.getSearchData(this.value);
+      this.getSearchData(this.value, {
+        getRankingInfo: true,
+        analytics: false,
+        enableABTest: false,
+        hitsPerPage: 10,
+        attributesToRetrieve: "*",
+        attributesToSnippet: "*:20",
+        snippetEllipsisText: "…",
+        responseFields: "*",
+        maxValuesPerFacet: 100,
+        page: 1,
+        facets: ["*", "lang"],
+        facetFilters: [["lang:cn"]],
+      });
     },
-    getSearchData(query) {
+    getSearchData(query, config = {}) {
       let that = this;
       that.$EventBus.$emit("Searching", true);
-      console.log(query, this.$lang);
-      let indexName = "juphoon";
-      let appId = "BF4RDO0EYD";
-      let apiKey = "d02d64058b08646fc04cf361671ec59c";
-      let PostUrl = `https://bf4rdo0eyd-dsn.algolia.net/1/indexes/*/queries?x-algolia-agent=Algolia%20for%20vanilla%20JavaScript%20(lite)%203.30.0%3Bdocsearch.js%202.6.3&x-algolia-application-id=${appId}&x-algolia-api-key=${apiKey}`;
-      let params = {
-        query: query,
-        hitsPerPage: 9999,
-        lang: this.$lang,
-        removeWordsIfNoResults: "allOptional",
-      };
-      let PostParams = `query=${params.query}&hitsPerPage=${params.hitsPerPage}&facetFilters=%5B%22lang%3A${params.lang}%22%5D&removeWordsIfNoResults=${params.removeWordsIfNoResults}`;
-      axios({
-        method: "post",
-        data: {
-          requests: [
-            {
-              indexName: indexName,
-              params: PostParams,
-            },
-          ],
-        },
-        url: PostUrl,
-      }).then((res) => {
+      index.search(query, config).then((res) => {
+        console.log(res);
         that.$EventBus.$emit("Searching", false);
-
-        console.log(res.data);
-        console.log(res.data.results[0].hits);
-        console.log(JSON.parse(JSON.stringify(res.data.results[0].hits)));
-        that.SearchResults = res.data.results[0]; // 搜索的结果
-        that.$EventBus.$emit("SearchResults", res.data.results[0]);
+        that.$EventBus.$emit("SearchResults", res);
       });
+      // let indexName = "juphoon";
+      // let appId = "BF4RDO0EYD";
+      // let apiKey = "d02d64058b08646fc04cf361671ec59c";
+      // let PostUrl = `https://bf4rdo0eyd-dsn.algolia.net/1/indexes/*/queries?x-algolia-agent=Algolia%20for%20vanilla%20JavaScript%20(lite)%203.30.0%3Bdocsearch.js%202.6.3&x-algolia-application-id=${appId}&x-algolia-api-key=${apiKey}`;
+      // let params = {
+      //   query: query,
+      //   hitsPerPage: 9999,
+      //   lang: this.$lang,
+      //   removeWordsIfNoResults: "allOptional",
+      // };
+      // let PostParams = `query=${params.query}&hitsPerPage=${params.hitsPerPage}&facetFilters=%5B%22lang%3A${params.lang}%22%5D&removeWordsIfNoResults=${params.removeWordsIfNoResults}`;
+      // axios({
+      //   method: "post",
+      //   data: {
+      //     requests: [
+      //       {
+      //         indexName: indexName,
+      //         params: PostParams,
+      //       },
+      //     ],
+      //   },
+      //   url: PostUrl,
+      // }).then((res) => {
+      //   that.$EventBus.$emit("Searching", false);
+      //   console.log(res.data);
+      //   console.log(res.data.results[0].hits);
+      //   console.log(JSON.parse(JSON.stringify(res.data.results[0].hits)));
+      //   that.SearchResults = res.data.results[0]; // 搜索的结果
+      //   console.log(res.data.results[0]);
+      //   that.$EventBus.$emit("SearchResults", res.data.results[0]);
+      // });
     },
     // initialize(userOptions, lang) {
     //   console.log(userOptions);

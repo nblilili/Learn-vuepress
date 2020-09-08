@@ -33,7 +33,7 @@ module.exports = {
           link: "/" + locale + '/00_o2o_audio/'
         },
         {
-          text: '下载',
+          text: 'Download',
           link: "/" + locale + '/download/'
         }];
     }

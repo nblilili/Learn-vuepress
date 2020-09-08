@@ -216,6 +216,38 @@
   </div>
 </template>
 <script>
+// var ALGOLIA_INSIGHTS_SRC = "https://cdn.jsdelivr.net/npm/search-insights@1.3.1";
+
+// !(function (e, a, t, n, s, i, c) {
+//   (e.AlgoliaAnalyticsObject = s),
+//     (e[s] =
+//       e[s] ||
+//       function () {
+//         (e[s].queue = e[s].queue || []).push(arguments);
+//       }),
+//     (i = a.createElement(t)),
+//     (c = a.getElementsByTagName(t)[0]),
+//     (i.async = 1),
+//     (i.src = n),
+//     c.parentNode.insertBefore(i, c);
+// })(window, document, "script", ALGOLIA_INSIGHTS_SRC, "aa");
+
+// // Initialize library
+// aa("init", {
+//   appId: "BF4RDO0EYD",
+//   apiKey: "d02d64058b08646fc04cf361671ec59c",
+// });
+// const search = instantsearch({
+//   searchClient,
+//   indexName: "juphoon",
+//   insightsClient: window.aa,
+// });
+
+// search.addWidgets([
+//   instantsearch.widgets.configure({
+//     clickAnalytics: true,
+//   }),
+// ]);
 import HomeFooter from "@theme/components/HomeFooter.vue";
 import HomeAlgolia from "@theme/components/HomeAlgolia.vue";
 import HomePage from "@theme/components/HomePage.vue";
@@ -298,29 +330,78 @@ export default {
     });
   },
   methods: {
+    // 三种点击事件
     sortpro(res) {
       this.active.pro = res;
-      if (res == "所有") {
+      this.sortfunction();
+    },
+    sortpla(res) {
+      this.active.pla = res;
+      this.sortfunction();
+    },
+    sortclass(res) {
+      this.active.class = res;
+      this.sortfunction();
+    },
+
+    // 三种点击事件的实际操作（还没写）
+    sortfunction() {
+      if (
+        this.active.pro == "所有" &&
+        this.active.pla == "所有" &&
+        this.active.class == "所有"
+      ) {
         this.aligola_list_slot = this.aligola_list;
         this.product_list = this.pageDataFn(1, 10, this.aligola_list_slot);
+        console.log(this.aligola_list)
+        console.log(this.product_list)
       } else {
         let newarray = this.aligola_list;
         let array = [];
-        newarray.map((item) => {
-          if (item.hierarchy.lvl0 == res) {
-            array.push(item);
-          }
-        });
+        if (this.active.pro != "所有") {
+          let thisarray = [];
+          if (array.length != 0) {
+            thisarray = array;
+            array = [];
+          } else thisarray = newarray;
+          thisarray.map((item) => {
+            if (item.hierarchy.lvl0 == this.active.pro) array.push(item);
+          });
+        }
+        if (this.active.pla != "所有") {
+          let thisarray = [];
+          if (array.length != 0) {
+            thisarray = array;
+            array = [];
+          } else thisarray = newarray;
+          thisarray.map((item) => {
+            if (item.url.indexOf(this.active.pla) > -1) array.push(item);
+          });
+        }
+        if (this.active.class != "所有") {
+          let thisarray = [];
+          if (array.length != 0) {
+            thisarray = array;
+            array = [];
+          } else thisarray = newarray;
+
+          thisarray.map((item) => {
+            if (this.active.class == "平台文档") {
+              if (item.url.indexOf("FAQ") > -1) {
+              } else array.push(item);
+            } else {
+              if (item.url.indexOf("FAQ") > -1) array.push(item);
+            }
+          });
+        }
+        console.log(array);
+        console.log(this.aligola_list)
+
         this.aligola_list_slot = array;
         this.product_list = this.pageDataFn(1, 10, this.aligola_list_slot);
       }
     },
-    sortpla(res) {
-      this.active.pla = res;
-    },
-    sortclass(res) {
-      this.active.class = res;
-    },
+    //重新获取数据
     getTableData(page) {
       this.product_list = this.pageDataFn(page, 10, this.aligola_list_slot);
     },
@@ -399,7 +480,9 @@ export default {
 <style lang="stylus" scoped>
 @require '../styles/HomeSearch.styl';
 @require '../styles/header_footer.styl';
-
+.top_search{
+  display:block!important
+}
 blockquote, body, button, dd, div, dl, dt, form, h1, h2, h3, h4, h5, h6, input, li, ol, p, pre, td, textarea, th, ul {
   margin: 0;
   padding: 0;

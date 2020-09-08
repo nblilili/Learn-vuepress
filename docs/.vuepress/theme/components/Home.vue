@@ -18,7 +18,6 @@ import HomeSearch from "@theme/components/HomeSearch.vue";
 export default {
   name: "Home",
   components: { NavLink, HomeSearch },
-  // components: { NavLink },
   computed: {
     data() {
       return this.$page.frontmatter;
@@ -29,6 +28,9 @@ export default {
         text: this.data.actionText,
       };
     },
+  },
+  mounted () {
+    // console.log(this.$page)
   },
   methods: {
     name() {},
