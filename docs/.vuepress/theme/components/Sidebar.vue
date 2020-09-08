@@ -143,9 +143,20 @@ export default {
     setMenuList(menulist) {
       let that = this;
       menulist.forEach((item) => {
-        setSildertitle(item.children);
+        if (item.children) {
+          setSildertitle(item.children);
+        }
       });
-      needfriend(menulist[1].children);
+      var url = this.$route.path;
+      if (url.indexOf("/cn/") > -1) {
+        needfriend(menulist[1].children);
+      } else if (url.indexOf("/en/" > -1)) {
+        needfriend(menulist[0].children);
+      }
+      // });
+      // if (menulist[1].children) {
+      //   needfriend(menulist[1].children);
+      // }
       function needfriend(data) {
         data.forEach((item) => {
           let this_url = item.url.substr(4);

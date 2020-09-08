@@ -181,7 +181,6 @@ export default {
               href: e + ".html",
             });
           });
-          console.log(array);
           this.CardName = array;
         }
       }

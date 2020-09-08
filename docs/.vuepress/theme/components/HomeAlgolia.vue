@@ -61,18 +61,19 @@ export default {
         this.$router.push({ path: "/cn/#" + this.value });
       console.log(axios);
       this.getSearchData(this.value, {
+        clickAnalytics: true,
         getRankingInfo: true,
         analytics: false,
         enableABTest: false,
-        hitsPerPage: 10,
+        hitsPerPage: 20,
         attributesToRetrieve: "*",
         attributesToSnippet: "*:20",
         snippetEllipsisText: "…",
         responseFields: "*",
         maxValuesPerFacet: 100,
-        page: 1,
+        page: 0,
         facets: ["*", "lang"],
-        facetFilters: [["lang:cn"]],
+        facetFilters: [["lang:"+this.$lang+""]],
       });
     },
     getSearchData(query, config = {}) {

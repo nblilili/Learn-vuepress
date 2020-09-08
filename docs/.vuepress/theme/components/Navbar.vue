@@ -131,11 +131,9 @@ export default {
     //   this.re_userLinks = newValue;
     // },
     $route(newValue, oldValue) {
-      console.log(newValue);
       if (window.innerWidth < 800) {
         this.showNav = false;
       }
-      console.log(this.nav);
       this.re_userLinks = (this.nav || []).map((link) => {
         return Object.assign(resolveNavLinkItem(link), {
           items: (link.items || []).map(resolveNavLinkItem),
@@ -153,7 +151,6 @@ export default {
       return this.algolia && this.algolia.apiKey && this.algolia.indexName;
     },
     userNav() {
-      console.log(this.$site);
       return this.$themeLocaleConfig.nav || this.$site.themeConfig.nav || [];
     },
     nav() {
@@ -195,7 +192,6 @@ export default {
     this.$EventBus.$on("changeNav", () => {
       this.showNav = !this.showNav;
     });
-    console.log(this.nav);
     let that = this;
     this.site = this.$site.themeConfig.nav;
     var user_type = localStorage.getItem("user_type");

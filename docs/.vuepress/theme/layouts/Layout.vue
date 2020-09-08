@@ -70,9 +70,6 @@
         </SidebarRight>
       </div>
     </div>
-    <div class="toTop" :style="{'display':istop?'none':'block'}" @click="clicktop()">
-      <img src="https://developer.juphoon.com/style/images/zd@2x.png" />
-    </div>
   </div>
 </template>
 
@@ -188,7 +185,6 @@ export default {
   },
 
   mounted() {
-    console.log(this.$page.frontmatter);
     this.$router.afterEach(() => {
       this.isSidebarOpen = false;
     });
@@ -214,6 +210,7 @@ export default {
         : (this.showIcon = false);
     },
     clicktop() {
+      this.istop = true;
       window.requestAnimationFrame = (function () {
         return (
           window.requestAnimationFrame ||

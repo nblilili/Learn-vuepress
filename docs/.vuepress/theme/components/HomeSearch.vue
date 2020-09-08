@@ -56,10 +56,10 @@
                   <h3>
                     <a :href="item2.url">{{item2.title}}</a>
                   </h3>
-                  <div class="pt-info" v-for="item3 in item2.children" :key="item3.title">
+                  <div class="pt-info" v-for="item3 in item2.children||[]" :key="item3.title">
                     <div>{{item3.title}}</div>
                     <div class="ptc-cont">
-                      <div v-for="item4 in item3.children" :key="item4.title">
+                      <div v-for="item4 in item3.children||[]" :key="item4.title">
                         <i></i>
                         {{item4.title}}
                       </div>
@@ -105,7 +105,7 @@
         <div class="top_search">
           <div class="search_div">
             <!-- <input class="form-control bacinp" data-bind="value:key,search_c:c_key" /> -->
-            <HomeAlgolia :options="algolia" :keyword="keyword" />
+            <HomeAlgolia ref="HomeAlgolia" :options="algolia" :keyword="keyword" />
             <!-- <i class="bsearchBtn" data-bind="search_c:c_key"></i> -->
           </div>
         </div>
@@ -273,7 +273,7 @@ export default {
       keyword: "", // 搜索的关键字
       page: {
         currentPage: 1, //当前页码
-        limit: 10, //每页显示条数
+        limit: 20, //每页显示条数
         totalCount: 0, //总页数
       },
       Searching: false, // 搜索中
@@ -353,8 +353,8 @@ export default {
       ) {
         this.aligola_list_slot = this.aligola_list;
         this.product_list = this.pageDataFn(1, 10, this.aligola_list_slot);
-        console.log(this.aligola_list)
-        console.log(this.product_list)
+        console.log(this.aligola_list);
+        console.log(this.product_list);
       } else {
         let newarray = this.aligola_list;
         let array = [];
@@ -395,7 +395,7 @@ export default {
           });
         }
         console.log(array);
-        console.log(this.aligola_list)
+        console.log(this.aligola_list);
 
         this.aligola_list_slot = array;
         this.product_list = this.pageDataFn(1, 10, this.aligola_list_slot);
@@ -403,23 +403,25 @@ export default {
     },
     //重新获取数据
     getTableData(page) {
-      this.product_list = this.pageDataFn(page, 10, this.aligola_list_slot);
+      this.$refs.HomeAlgolia.getSearchData(this.keyword, {
+        clickAnalytics: true,
+        getRankingInfo: true,
+        analytics: false,
+        enableABTest: false,
+        hitsPerPage: 20,
+        attributesToRetrieve: "*",
+        attributesToSnippet: "*:20",
+        snippetEllipsisText: "…",
+        responseFields: "*",
+        maxValuesPerFacet: 100,
+        page: this.page.currentPage - 1,
+        facets: ["*", "lang"],
+        facetFilters: [["lang:" + this.$lang + ""]],
+      });
+      // this.product_list = this.pageDataFn(page, 10, this.aligola_list_slot);
     },
     // 改变颜色
     changecolor(Str) {
-      // let titlebig = Str.toUpperCase();
-      // let keywordbig = this.keyword.toUpperCase();
-      // let start = titlebig.indexOf(keywordbig);
-      // let end = this.keyword.length + start;
-      // // console.log(titlebig, keywordbig, start, end);
-      // if (start >= 0) {
-      //   let newStr =
-      //     `${Str.substring(0, start)}` +
-      //     `<font color='#008AFF'><b>${Str.substring(start, end)}</b></font>` +
-      //     `${Str.substring(end)}`;
-      //   return newStr;
-      // } else return Str;
-      // let newstr = Str;
       let strlist = "";
       for (let l = 0; l < Str.length; l++) {
         let str = "";
@@ -440,7 +442,6 @@ export default {
         strlist += this_str;
       }
       return strlist;
-
       // let newstr = Str;
       // let reg = new RegExp("(" + this.keyword + ")", "gi");
       // newstr = newstr.replace(reg, "<font color='#008AFF'><b>$1</b></font>");
@@ -454,7 +455,17 @@ export default {
     showlist(data) {
       this.aligola_list = JSON.parse(JSON.stringify(data.hits)); //记录原始数据
       this.aligola_list_slot = this.aligola_list; //点击的第一下现在是原始数据
-      this.product_list = this.pageDataFn(1, 10, this.aligola_list); // 展示数据
+
+      // nbHits: 312;
+      // nbPages: 32;
+      // page: 1;
+      this.page = {
+        currentPage: data.page + 1, //当前页码
+        limit: data.hitsPerPage, //每页显示条数
+        totalCount: data.nbHits, //总页数
+      };
+      this.product_list = JSON.parse(JSON.stringify(data.hits));
+      // this.product_list = this.pageDataFn(1, 10, this.aligola_list); // 展示数据
     },
     keySearch(str) {
       console.log("str=>", str);
@@ -480,9 +491,11 @@ export default {
 <style lang="stylus" scoped>
 @require '../styles/HomeSearch.styl';
 @require '../styles/header_footer.styl';
-.top_search{
-  display:block!important
+
+.top_search {
+  display: block !important;
 }
+
 blockquote, body, button, dd, div, dl, dt, form, h1, h2, h3, h4, h5, h6, input, li, ol, p, pre, td, textarea, th, ul {
   margin: 0;
   padding: 0;
