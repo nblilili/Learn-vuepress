@@ -229,49 +229,49 @@
         <div class="part part_three">
           <h2>SDK Download</h2>
           <div style="display: table;margin:0 auto">
-            <div class="part-cont">
+            <a class="part-cont" :href="SDK_Download.ios">
               <div class="inner">
                 <img :src="img.en_ios" alt />
                 <h1>iOS</h1>
                 <img :src="img.Download_load" alt />
               </div>
-            </div>
-            <div class="part-cont">
+            </a>
+            <a class="part-cont" :href="SDK_Download.twindows">
               <div class="inner">
                 <img :src="img.en_windows" alt />
                 <h1>Windows C#</h1>
                 <img :src="img.Download_load" alt />
               </div>
-            </div>
-            <div class="part-cont">
+            </a>
+            <a class="part-cont" :href="SDK_Download.mac">
               <div class="inner">
                 <img :src="img.en_macos" alt />
                 <h1>macOS</h1>
                 <img :src="img.Download_load" alt />
               </div>
-            </div>
+            </a>
             <div style="clear:both"></div>
-            <div class="part-cont">
+            <a class="part-cont" :href="SDK_Download.android">
               <div class="inner">
                 <img :src="img.en_android" alt />
                 <h1>Android</h1>
                 <img :src="img.Download_load" alt />
               </div>
-            </div>
-            <div class="part-cont">
+            </a>
+            <a class="part-cont" :href="SDK_Download.app">
               <div class="inner">
                 <img :src="img.en_windowsC" alt />
                 <h1>Windows C++</h1>
                 <img :src="img.Download_load" alt />
               </div>
-            </div>
-            <div class="part-cont">
+            </a>
+            <a class="part-cont" :href="SDK_Download.WebRTC" target="_blank">
               <div class="inner">
                 <img :src="img.en_webrtc" alt />
                 <h1>WebRTC</h1>
                 <img :src="img.arrow" alt />
               </div>
-            </div>
+            </a>
 
             <div style="clear:both"></div>
           </div>
@@ -288,23 +288,17 @@
           </div>
         </div>
       </div>
-      <div
-        class="pcont secondp cn"
-        v-if="showsearch &&$lang =='cn'"
-        data-bind="visible:isShow()[1]"
-      >
+      <div class="pcont secondp cn" v-if="showsearch &&$lang =='cn'">
         <div class="top_search">
           <div class="search_div">
-            <!-- <input class="form-control bacinp" data-bind="value:key,search_c:c_key" /> -->
             <HomeAlgolia ref="HomeAlgolia" :options="algolia" :keyword="keyword" />
-            <!-- <i class="bsearchBtn" data-bind="search_c:c_key"></i> -->
           </div>
         </div>
         <div class="spcont">
           <div class="group group_one">
             <div class="part-cont sp-cont">
               <div class="inner-cont">
-                <div class="gitem" data-bind="visible:product_list().length>0" style>
+                <div class="gitem">
                   <span>产品</span>
                   <div class="gi-cont proCont">
                     <span
@@ -315,7 +309,7 @@
                     >{{item}}</span>
                   </div>
                 </div>
-                <div class="gitem" data-bind="visible:platform_list().length>0" style>
+                <div class="gitem">
                   <span>平台</span>
                   <div class="gi-cont plaCont">
                     <span
@@ -326,7 +320,7 @@
                     >{{item}}</span>
                   </div>
                 </div>
-                <div class="gitem" data-bind="visible:classify_list().length>0" style>
+                <div class="gitem">
                   <span>分类</span>
                   <div class="gi-cont claCont">
                     <span
@@ -342,7 +336,6 @@
           </div>
           <div class="group group_two" style="padding-top:40px">
             <div class="gcont" v-show="!Searching">
-              <!--ko foreach:{data:search_list}-->
               <div class="gc-item" v-for="item_list in product_list" :key="item_list.objectID">
                 <a
                   target="_blank"
@@ -351,8 +344,7 @@
                   :href="item_list.url"
                   id="263"
                 >
-                  <div class="gtit" data-bind="html:title">
-                    <!-- <span v-html="changecolor(item_list.anchor)"></span> -->
+                  <div class="gtit">
                     <span
                       v-for="(hierarchy,index) in item_list.hierarchy"
                       v-if="hierarchy"
@@ -364,28 +356,17 @@
                   ></p>
                 </a>
               </div>
-              <!-- /ko -->
             </div>
             <div
               class="search-prompt"
-              data-bind="visible:visible"
               :style="{display: page.totalCount>0 || Searching?'none':'block'}"
             >
               <div class="title" style="font-size:16px;font-weight:bold">暂无数据</div>
             </div>
-            <div
-              class="search-prompt"
-              data-bind="visible:visible"
-              :style="{display: Searching?'block':'none'}"
-            >
+            <div class="search-prompt" :style="{display: Searching?'block':'none'}">
               <div class="title" style="font-size:16px;font-weight:bold">搜索中... ...</div>
             </div>
             <div class="search_pages">
-              <!-- <div class="searchTxt" data-bind="visible:searchShow()" style>
-                一共
-                <span style="color:#008AFF;" data-bind="text:searchNum">15</span> 条数据
-              </div>-->
-              <!-- 分页 -->
               <HomePage
                 v-if="page.totalCount>0&&!Searching"
                 :currentPage.sync="page.currentPage"
@@ -398,11 +379,8 @@
           </div>
         </div>
       </div>
-      <div
-        class="pcont secondp en"
-        v-if="showsearch &&$lang =='en'"
-        data-bind="visible:isShow()[1]"
-      >
+      <!-- 英文页面 -->
+      <div class="pcont secondp en" v-if="showsearch &&$lang =='en'">
         <div class="top_content" style="width:100%">
           <div class="bac">
             <img src="https://developer.juphoon.com/style/images/home/developer_bg@2x.png" />
@@ -421,7 +399,7 @@
           <div class="group group_one" style="padding: 0px 10px 0;">
             <div class="part-cont sp-cont">
               <div class="inner-cont">
-                <div class="gitem" data-bind="visible:product_list().length>0" style>
+                <div class="gitem" style>
                   <span>Products</span>
                   <div class="gi-cont proCont">
                     <span
@@ -432,7 +410,7 @@
                     >{{item}}</span>
                   </div>
                 </div>
-                <div class="gitem" data-bind="visible:platform_list().length>0" style>
+                <div class="gitem" style>
                   <span>Platforms</span>
                   <div class="gi-cont plaCont">
                     <span
@@ -448,7 +426,6 @@
           </div>
           <div class="group group_two" style="padding-top:40px">
             <div class="gcont" v-show="!Searching">
-              <!--ko foreach:{data:search_list}-->
               <div class="gc-item" v-for="item_list in product_list" :key="item_list.objectID">
                 <a
                   target="_blank"
@@ -457,8 +434,7 @@
                   :href="item_list.url"
                   id="263"
                 >
-                  <div class="gtit" data-bind="html:title">
-                    <!-- <span v-html="changecolor(item_list.anchor)"></span> -->
+                  <div class="gtit">
                     <span
                       v-for="(hierarchy,index) in item_list.hierarchy"
                       v-if="hierarchy"
@@ -474,24 +450,14 @@
             </div>
             <div
               class="search-prompt"
-              data-bind="visible:visible"
               :style="{display: page.totalCount>0 || Searching?'none':'block'}"
             >
               <div class="title" style="font-size:16px;font-weight:bold">暂无数据</div>
             </div>
-            <div
-              class="search-prompt"
-              data-bind="visible:visible"
-              :style="{display: Searching?'block':'none'}"
-            >
+            <div class="search-prompt" :style="{display: Searching?'block':'none'}">
               <div class="title" style="font-size:16px;font-weight:bold">搜索中... ...</div>
             </div>
             <div class="search_pages">
-              <!-- <div class="searchTxt" data-bind="visible:searchShow()" style>
-                一共
-                <span style="color:#008AFF;" data-bind="text:searchNum">15</span> 条数据
-              </div>-->
-              <!-- 分页 -->
               <HomePage
                 v-if="page.totalCount>0&&!Searching"
                 :currentPage.sync="page.currentPage"
@@ -509,38 +475,10 @@
   </div>
 </template>
 <script>
-// var ALGOLIA_INSIGHTS_SRC = "https://cdn.jsdelivr.net/npm/search-insights@1.3.1";
+import algoliasearch from "algoliasearch/lite";
 
-// !(function (e, a, t, n, s, i, c) {
-//   (e.AlgoliaAnalyticsObject = s),
-//     (e[s] =
-//       e[s] ||
-//       function () {
-//         (e[s].queue = e[s].queue || []).push(arguments);
-//       }),
-//     (i = a.createElement(t)),
-//     (c = a.getElementsByTagName(t)[0]),
-//     (i.async = 1),
-//     (i.src = n),
-//     c.parentNode.insertBefore(i, c);
-// })(window, document, "script", ALGOLIA_INSIGHTS_SRC, "aa");
+import axios from "axios";
 
-// // Initialize library
-// aa("init", {
-//   appId: "BF4RDO0EYD",
-//   apiKey: "d02d64058b08646fc04cf361671ec59c",
-// });
-// const search = instantsearch({
-//   searchClient,
-//   indexName: "juphoon",
-//   insightsClient: window.aa,
-// });
-
-// search.addWidgets([
-//   instantsearch.widgets.configure({
-//     clickAnalytics: true,
-//   }),
-// ]);
 import HomeFooter from "@theme/components/HomeFooter.vue";
 import HomeAlgolia from "@theme/components/HomeAlgolia.vue";
 import HomePage from "@theme/components/HomePage.vue";
@@ -571,6 +509,10 @@ export default {
   components: { HomeFooter, HomeAlgolia, HomePage },
   data() {
     return {
+      searchClient: algoliasearch(
+        "BF4RDO0EYD",
+        "4a2857c7afb83b2687a2922aaaf56bcf"
+      ),
       img: {
         Lz: Lz,
         DownLoad: DownLoad,
@@ -588,6 +530,14 @@ export default {
         en_webrtc: en_webrtc,
         Download_load: Download_load,
         arrow: arrow,
+      },
+      SDK_Download: {
+        ios: "",
+        android: "",
+        twindows: "",
+        mac: "",
+        app: "",
+        WebRTC: "https://developer.juphoon.com/webrtc2.0/web/",
       },
       width800: false,
       first_data: first_pcont,
@@ -685,23 +635,63 @@ export default {
     that.$EventBus.$on("Searching", (res) => {
       that.Searching = res;
     });
-    window.addEventListener("resize", this.screenWidth());
-    this.screenWidth();
+    // window.addEventListener("resize", this.screenWidth(), true);
+    window.onresize = () => {
+      this.screenWidth();
+    };
+    this.get_log_version_dev();
   },
-  destroyed() {
-    window.removeEventListener("resize", this.screenWidth());
-  },
+  // destroyed() {
+  //   window.removeEventListener("resize", this.screenWidth(), true);
+  // },
   methods: {
     screenWidth() {
-      console.log(window.innerWidth);
-      if (window.innerWidth < 800) {
-        this.width800 = true;
-      } else {
-        this.width800 = false;
-      }
+      if (window.innerWidth < 800) this.width800 = true;
+      else this.width800 = false;
     },
     clickPath() {
       console.log("tiaozhuan ");
+    },
+    get_log_version_dev() {
+      let that = this;
+      axios({
+        method: "POST",
+        url: "/portal/cn/message/?c=CDownload&a=C_download_sdklist",
+        data: { type: 1 },
+      })
+        .then(function (response) {
+          var data = response.data;
+          var ios = data.data[0] ? data.data[0].list : "";
+          var android = data.data[2] ? data.data[2].list : "";
+          var twindows = data.data[1] ? data.data[1].list : "";
+          var mac = data.data[3] ? data.data[3].list : "";
+          var app = data.data[4] ? data.data[4].list : "";
+          thisArr(ios, 0, 0);
+          thisArr(android, 1, 0);
+          thisArr(twindows, 2, 0);
+          thisArr(mac, 3, 0);
+          thisArr(app, 4, 0);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+
+      function thisArr(arr, index, type) {
+        var arrs = Object.keys(arr);
+        var last = arrs[arrs.length - 1];
+        var last_list = arr[last];
+        var version = last_list[0].version;
+        if (type == 0) {
+          var urla =
+            "https://developer.juphoon.com/portal/cn/downloadsdk/download_sdk.php?filename=";
+          var href = urla + last_list[0].filename;
+          if (index == 0) that.SDK_Download.ios = href;
+          else if (index == 1) that.SDK_Download.android = href;
+          else if (index == 2) that.SDK_Download.twindows = href;
+          else if (index == 3) that.SDK_Download.mac = href;
+          else if (index == 4) that.SDK_Download.app = href;
+        }
+      }
     },
     // 三种点击事件
     sortpro(res) {
@@ -924,6 +914,7 @@ export default {
   }
 
   .part_two {
+    height: 444px;
     width: 95%;
     max-width: 1163px;
     margin: 0 auto;
@@ -1049,7 +1040,6 @@ export default {
         }
 
         img:last-child {
-          cursor: pointer;
           float: right;
           width: 30px;
           margin: 3px 0px;
@@ -1227,6 +1217,8 @@ export default {
 @media (max-width: 800px) {
   .en {
     .part_two {
+      height: auto;
+
       .part-cont {
         width: 100%;
 
