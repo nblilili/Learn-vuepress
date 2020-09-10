@@ -2,7 +2,7 @@
   <div>
     <input
       class="search-query form-control bacinp"
-      :placeholder="placeholder"
+      :placeholder="$lang=='cn'?'请输入搜索内容':'Please enter keywords to search'"
       v-model="value"
       @keyup.enter="searchData()"
     />
@@ -59,7 +59,7 @@ export default {
       let hash = this.$route.hash.substr(1);
       console.log(hash);
       if (this.value && hash != this.value)
-        this.$router.push({ path: "/cn/#" + this.value });
+        this.$router.push({ path: "/" + this.$lang + "/#" + this.value });
       console.log(axios);
       this.getSearchData(this.value, {
         clickAnalytics: true,

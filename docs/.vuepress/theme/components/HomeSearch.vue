@@ -5,12 +5,22 @@
         <div class="bac">
           <img src="https://developer.juphoon.com/style/images/home/developer_bg@2x.png" />
           <div class="bactxt">
-            <h1>开发者中心</h1>
+            <h1 v-if="$lang=='cn'?true:false">开发者中心</h1>
+            <h1 class="en_h1" v-if="$lang=='en'?true:false">Developer Center</h1>
+            <h2
+              class="en_h2"
+              v-if="$lang=='en'?true:false"
+            >Explore how to build your real-time voice and video services with our easily embedded SDK</h2>
             <div class="bacsearch">
-              <input class="form-control bacinp" v-model="value" @keyup.enter="keySearch(value)" />
+              <input
+                class="form-control bacinp"
+                :placeholder="$lang=='cn'?'':'Please enter keywords to search' "
+                v-model="value"
+                @keyup.enter="keySearch(value)"
+              />
               <i class="bsearchBtn" @click="keySearch(value)"></i>
             </div>
-            <p>
+            <p v-if="$lang=='cn'?true:false">
               搜索关键词：
               <span @click="keySearch('语音直播')">语音直播</span>&nbsp;&nbsp;&nbsp;&nbsp;
               <span @click="keySearch('视频直播')">视频直播</span>&nbsp;&nbsp;&nbsp;&nbsp;
@@ -20,7 +30,7 @@
           </div>
         </div>
       </div>
-      <div class="pcont" v-if="!showsearch" data-bind="visible:isShow()[0]">
+      <div class="pcont cn" v-if="!showsearch && $lang=='cn'">
         <!-- 平台部分 -->
         <div class="part part_one">
           <h2>平台</h2>
@@ -101,7 +111,188 @@
           </div>
         </div>
       </div>
-      <div class="pcont secondp" v-if="showsearch" data-bind="visible:isShow()[1]">
+      <div class="pcont en" v-if="!showsearch && $lang=='en'">
+        <!-- 产品部分 -->
+        <div class="part part_two">
+          <h2>Products</h2>
+          <!-- Voice Calling -->
+          <div class="part-cont">
+            <div class="inner">
+              <h1>Voice Calling</h1>
+              <div class="inner_content">
+                <img :src="img.Voice_Calling_one" alt />
+                <div class="title">
+                  <span @click="clickPath('path')">One-to-One Voice Calling</span>
+                  <router-link to="home" target="_blank" v-if="!width800">
+                    Quick Start
+                    <img :src="img.Lz" alt />
+                  </router-link>
+                  <router-link to="home" target="_blank" v-if="!width800">
+                    Demo Source Code
+                    <img :src="img.DownLoad" alt />
+                  </router-link>
+                </div>
+                <div style="clear:both"></div>
+              </div>
+              <div class="inner_content">
+                <img :src="img.Voice_Calling_group" alt />
+                <div class="title">
+                  <span @click="clickPath('path')">Group Voice Calling</span>
+                  <router-link to="home" target="_blank" v-if="!width800">
+                    Quick Start
+                    <img :src="img.Lz" alt />
+                  </router-link>
+                  <router-link to="home" target="_blank" v-if="!width800">
+                    Demo Source Code
+                    <img :src="img.DownLoad" alt />
+                  </router-link>
+                </div>
+                <div style="clear:both"></div>
+              </div>
+            </div>
+          </div>
+          <!-- Video Calling -->
+          <div class="part-cont">
+            <div class="inner">
+              <h1>Video Calling</h1>
+              <div class="inner_content">
+                <img :src="img.Video_Calling_one" alt />
+                <div class="title">
+                  <span @click="clickPath('path')">One-to-One Video Calling</span>
+                  <router-link to="home" target="_blank" v-if="!width800">
+                    Quick Start
+                    <img :src="img.Lz" alt />
+                  </router-link>
+                  <router-link to="home" target="_blank" v-if="!width800">
+                    Demo Source Code
+                    <img :src="img.DownLoad" alt />
+                  </router-link>
+                </div>
+                <div style="clear:both"></div>
+              </div>
+              <div class="inner_content">
+                <img :src="img.Video_Calling_group" alt />
+                <div class="title">
+                  <span @click="clickPath('path')">Group Video Calling</span>
+                  <router-link to="home" target="_blank" v-if="!width800">
+                    Quick Start
+                    <img :src="img.Lz" alt />
+                  </router-link>
+                  <router-link to="home" target="_blank" v-if="!width800">
+                    Demo Source Code
+                    <img :src="img.DownLoad" alt />
+                  </router-link>
+                </div>
+                <div style="clear:both"></div>
+              </div>
+            </div>
+          </div>
+          <!-- Broadcasting -->
+          <div class="part-cont">
+            <div class="inner">
+              <h1>Broadcasting</h1>
+              <div class="inner_content">
+                <img :src="img.Broadcasting_audio" alt />
+                <div class="title">
+                  <span @click="clickPath('path')">Live Interactive Audio Streaming</span>
+                  <router-link to="home" target="_blank" v-if="!width800">
+                    Quick Start
+                    <img :src="img.Lz" alt />
+                  </router-link>
+                  <router-link to="home" target="_blank" v-if="!width800">
+                    Demo Source Code
+                    <img :src="img.DownLoad" alt />
+                  </router-link>
+                </div>
+                <div style="clear:both"></div>
+              </div>
+              <div class="inner_content">
+                <img :src="img.Broadcasting_video" alt />
+                <div class="title">
+                  <span @click="clickPath('path')">Live Interactive Video Streaming</span>
+                  <router-link to="home" target="_blank" v-if="!width800">
+                    Quick Start
+                    <img :src="img.Lz" alt />
+                  </router-link>
+                  <router-link to="home" target="_blank" v-if="!width800">
+                    Demo Source Code
+                    <img :src="img.DownLoad" alt />
+                  </router-link>
+                </div>
+                <div style="clear:both"></div>
+              </div>
+            </div>
+          </div>
+          <div style="clear:both"></div>
+        </div>
+        <!-- 扩展功能 -->
+        <div class="part part_three">
+          <h2>SDK Download</h2>
+          <div style="display: table;margin:0 auto">
+            <div class="part-cont">
+              <div class="inner">
+                <img :src="img.en_ios" alt />
+                <h1>iOS</h1>
+                <img :src="img.Download_load" alt />
+              </div>
+            </div>
+            <div class="part-cont">
+              <div class="inner">
+                <img :src="img.en_windows" alt />
+                <h1>Windows C#</h1>
+                <img :src="img.Download_load" alt />
+              </div>
+            </div>
+            <div class="part-cont">
+              <div class="inner">
+                <img :src="img.en_macos" alt />
+                <h1>macOS</h1>
+                <img :src="img.Download_load" alt />
+              </div>
+            </div>
+            <div style="clear:both"></div>
+            <div class="part-cont">
+              <div class="inner">
+                <img :src="img.en_android" alt />
+                <h1>Android</h1>
+                <img :src="img.Download_load" alt />
+              </div>
+            </div>
+            <div class="part-cont">
+              <div class="inner">
+                <img :src="img.en_windowsC" alt />
+                <h1>Windows C++</h1>
+                <img :src="img.Download_load" alt />
+              </div>
+            </div>
+            <div class="part-cont">
+              <div class="inner">
+                <img :src="img.en_webrtc" alt />
+                <h1>WebRTC</h1>
+                <img :src="img.arrow" alt />
+              </div>
+            </div>
+
+            <div style="clear:both"></div>
+          </div>
+        </div>
+        <div class="part part_four">
+          <div class="talk-back">
+            <h3>Meet problems?</h3>
+            <p>You can also contact our customer service.</p>
+            <a href="https://developer.juphoon.com/en/signup" target="_blank" class="signUp">
+              Get started for free >
+              <span class="blink">_</span>
+            </a>
+            <a href="/en/talk-to-us.html" target="_blank" class="contactUs">Contact us</a>
+          </div>
+        </div>
+      </div>
+      <div
+        class="pcont secondp cn"
+        v-if="showsearch &&$lang =='cn'"
+        data-bind="visible:isShow()[1]"
+      >
         <div class="top_search">
           <div class="search_div">
             <!-- <input class="form-control bacinp" data-bind="value:key,search_c:c_key" /> -->
@@ -110,11 +301,7 @@
           </div>
         </div>
         <div class="spcont">
-          <div
-            class="group group_one"
-            data-bind="visible:(product_list().length>0 || platform_list().length>0 || classify_list().length>0)"
-            style
-          >
+          <div class="group group_one">
             <div class="part-cont sp-cont">
               <div class="inner-cont">
                 <div class="gitem" data-bind="visible:product_list().length>0" style>
@@ -211,8 +398,114 @@
           </div>
         </div>
       </div>
+      <div
+        class="pcont secondp en"
+        v-if="showsearch &&$lang =='en'"
+        data-bind="visible:isShow()[1]"
+      >
+        <div class="top_content" style="width:100%">
+          <div class="bac">
+            <img src="https://developer.juphoon.com/style/images/home/developer_bg@2x.png" />
+            <div class="bactxt">
+              <h1 class="en_h1">Developer Center</h1>
+              <h2
+                class="en_h2"
+              >Explore how to build your real-time voice and video services with our easily embedded SDK</h2>
+              <div class="bacsearch">
+                <HomeAlgolia ref="HomeAlgolia" :options="algolia" :keyword="keyword" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="spcont">
+          <div class="group group_one" style="padding: 0px 10px 0;">
+            <div class="part-cont sp-cont">
+              <div class="inner-cont">
+                <div class="gitem" data-bind="visible:product_list().length>0" style>
+                  <span>Products</span>
+                  <div class="gi-cont proCont">
+                    <span
+                      v-for="item in pro_list"
+                      class="gi-item"
+                      :class="active.pro == item?'active':''"
+                      @click="sortpro(item)"
+                    >{{item}}</span>
+                  </div>
+                </div>
+                <div class="gitem" data-bind="visible:platform_list().length>0" style>
+                  <span>Platforms</span>
+                  <div class="gi-cont plaCont">
+                    <span
+                      v-for="item in platform_list"
+                      class="gi-item"
+                      :class="active.pla == item?'active':''"
+                      @click="sortpla(item)"
+                    >{{item}}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="group group_two" style="padding-top:40px">
+            <div class="gcont" v-show="!Searching">
+              <!--ko foreach:{data:search_list}-->
+              <div class="gc-item" v-for="item_list in product_list" :key="item_list.objectID">
+                <a
+                  target="_blank"
+                  @click="count(this);"
+                  style="display: block;"
+                  :href="item_list.url"
+                  id="263"
+                >
+                  <div class="gtit" data-bind="html:title">
+                    <!-- <span v-html="changecolor(item_list.anchor)"></span> -->
+                    <span
+                      v-for="(hierarchy,index) in item_list.hierarchy"
+                      v-if="hierarchy"
+                      v-html="index=='lvl0'?item_list._highlightResult.hierarchy[index].value:' > '+item_list._highlightResult.hierarchy[index].value"
+                    ></span>
+                  </div>
+                  <p
+                    v-html="item_list.content? item_list._highlightResult.content.value:changecolor(item_list.anchor)"
+                  ></p>
+                </a>
+              </div>
+              <!-- /ko -->
+            </div>
+            <div
+              class="search-prompt"
+              data-bind="visible:visible"
+              :style="{display: page.totalCount>0 || Searching?'none':'block'}"
+            >
+              <div class="title" style="font-size:16px;font-weight:bold">暂无数据</div>
+            </div>
+            <div
+              class="search-prompt"
+              data-bind="visible:visible"
+              :style="{display: Searching?'block':'none'}"
+            >
+              <div class="title" style="font-size:16px;font-weight:bold">搜索中... ...</div>
+            </div>
+            <div class="search_pages">
+              <!-- <div class="searchTxt" data-bind="visible:searchShow()" style>
+                一共
+                <span style="color:#008AFF;" data-bind="text:searchNum">15</span> 条数据
+              </div>-->
+              <!-- 分页 -->
+              <HomePage
+                v-if="page.totalCount>0&&!Searching"
+                :currentPage.sync="page.currentPage"
+                :limit.sync="page.limit"
+                :totalCount="page.totalCount"
+                @turn="getTableData"
+                @update="getTableData"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <HomeFooter />
+    <HomeFooter v-if="!showsearch" />
   </div>
 </template>
 <script>
@@ -251,6 +544,23 @@
 import HomeFooter from "@theme/components/HomeFooter.vue";
 import HomeAlgolia from "@theme/components/HomeAlgolia.vue";
 import HomePage from "@theme/components/HomePage.vue";
+import Lz from "@theme/assets/img/lz@2x.png";
+import DownLoad from "@theme/assets/img/demo_load@2x.png";
+import Voice_Calling_one from "@theme/assets/img/Voice_Calling_one@2x.png";
+import Voice_Calling_group from "@theme/assets/img/Voice_Calling_group@2x.png";
+import Video_Calling_one from "@theme/assets/img/Video_Calling_one@2x.png";
+import Video_Calling_group from "@theme/assets/img/Video_Calling_group@2x.png";
+import Broadcasting_audio from "@theme/assets/img/Broadcasting_audio@2x.png";
+import Broadcasting_video from "@theme/assets/img/Broadcasting_video@2x.png";
+
+import en_ios from "@theme/assets/img/en_ios@2x.png";
+import en_windows from "@theme/assets/img/en_windowsC#@2x.png";
+import en_macos from "@theme/assets/img/en_macos@2x.png";
+import en_android from "@theme/assets/img/en_android@2x.png";
+import en_windowsC from "@theme/assets/img/en_windowsC++@2x.png";
+import en_webrtc from "@theme/assets/img/en_webrtc@2x.png";
+import Download_load from "@theme/assets/img/SDK Download_load@2x.png";
+import arrow from "@theme/assets/img/arrow@2x.png";
 import {
   first_pcont,
   second_pcont,
@@ -261,6 +571,25 @@ export default {
   components: { HomeFooter, HomeAlgolia, HomePage },
   data() {
     return {
+      img: {
+        Lz: Lz,
+        DownLoad: DownLoad,
+        Voice_Calling_one: Voice_Calling_one,
+        Voice_Calling_group: Voice_Calling_group,
+        Video_Calling_one: Video_Calling_one,
+        Video_Calling_group: Video_Calling_group,
+        Broadcasting_audio: Broadcasting_audio,
+        Broadcasting_video: Broadcasting_video,
+        en_ios: en_ios,
+        en_windows: en_windows,
+        en_macos: en_macos,
+        en_android: en_android,
+        en_windowsC: en_windowsC,
+        en_webrtc: en_webrtc,
+        Download_load: Download_load,
+        arrow: arrow,
+      },
+      width800: false,
       first_data: first_pcont,
       second_data: second_pcont,
       third_data: third_pcont,
@@ -277,23 +606,50 @@ export default {
         totalCount: 0, //总页数
       },
       Searching: false, // 搜索中
-      pro_list: [
-        "所有",
-        "一对一语音通话",
-        "一对一视频通话",
-        "多方语音通话",
-        "多方视频通话",
-        "语音互动直播",
-        "视频互动直播",
-      ],
-      platform_list: ["所有", "iOS", "Android", "Windows", "macOS"],
+      pro_list: [], // 产品分类
+      platform_list: [],
       classify_list: ["所有", "平台文档", "FAQ"],
-      active: {
-        pro: "所有",
-        pla: "所有",
-        class: "所有",
-      },
+      active: {},
     };
+  },
+  created() {
+    this.pro_list =
+      this.$lang == "cn"
+        ? [
+            "所有",
+            "一对一语音通话",
+            "一对一视频通话",
+            "多方语音通话",
+            "多方视频通话",
+            "语音互动直播",
+            "视频互动直播",
+          ]
+        : [
+            "All",
+            "One-to-One Voice Calling",
+            "Group Voice Calling",
+            "One-to-One Video Calling",
+            "Group Video Calling",
+            "Live Interactive Audio Streaming",
+            "Live Interactive Video Streaming",
+          ];
+    this.platform_list =
+      this.$lang == "cn"
+        ? ["所有", "iOS", "Android", "Windows", "macOS"]
+        : ["All", "iOS", "Android", "Windows", "macOS"];
+
+    this.active =
+      this.$lang == "cn"
+        ? {
+            pro: "所有",
+            pla: "所有",
+            class: "所有",
+          }
+        : {
+            pro: "All",
+            pla: "All",
+            class: "All",
+          };
   },
   computed: {
     isAlgoliaSearch() {
@@ -315,6 +671,7 @@ export default {
     },
   },
   mounted() {
+    console.log(this.$lang);
     let that = this;
     let hash = this.$route.hash.substr(1);
     if (hash) {
@@ -328,8 +685,24 @@ export default {
     that.$EventBus.$on("Searching", (res) => {
       that.Searching = res;
     });
+    window.addEventListener("resize", this.screenWidth());
+    this.screenWidth();
+  },
+  destroyed() {
+    window.removeEventListener("resize", this.screenWidth());
   },
   methods: {
+    screenWidth() {
+      console.log(window.innerWidth);
+      if (window.innerWidth < 800) {
+        this.width800 = true;
+      } else {
+        this.width800 = false;
+      }
+    },
+    clickPath() {
+      console.log("tiaozhuan ");
+    },
     // 三种点击事件
     sortpro(res) {
       this.active.pro = res;
@@ -511,6 +884,382 @@ export default {
 <style lang="stylus" scoped>
 @require '../styles/HomeSearch.styl';
 @require '../styles/header_footer.styl';
+
+.bactxt {
+  h1 {
+    height: 42px;
+    font-size: 30px;
+    font-weight: 600;
+    color: #FFFFFF;
+    line-height: 42px;
+  }
+
+  .en_h1 {
+    margin-bottom: 4px;
+  }
+
+  h2 {
+    text-align: center;
+    height: 40px;
+    font-size: 15px;
+    font-weight: 500;
+    color: #FFFFFF;
+    line-height: 21px;
+  }
+
+  .en_h2 {
+    margin-bottom: 28px;
+  }
+
+  #bacinp::-webkit-input-placeholder, #bacinp::-moz-placeholder, #bacinp:-ms-input-placeholder {
+    color: rgba(0, 0, 0, 0.25);
+  }
+}
+
+.en {
+  margin-top: 20px;
+
+  .gi-cont {
+    margin-left: 116px;
+  }
+
+  .part_two {
+    width: 95%;
+    max-width: 1163px;
+    margin: 0 auto;
+
+    .part-cont {
+      float: left;
+      width: 33.33%;
+
+      .inner {
+        overflow: hidden;
+        padding: 36px 28px;
+        box-shadow: none;
+        background: #FFFFFF;
+        border-radius: 20px;
+        border: 1px solid #DFDFDF;
+
+        h1 {
+          margin-bottom: 55px;
+          height: 28px;
+          font-size: 20px;
+          font-weight: 500;
+          color: #000000;
+          line-height: 28px;
+        }
+
+        .inner_content {
+          margin-top: 27px;
+
+          >img {
+            width: 36px;
+            float: left;
+            margin-right: 16px;
+          }
+
+          .title {
+            white-space: nowrap;
+
+            >span {
+              height: 36px;
+              font-size: 17px;
+              font-weight: 500;
+              color: #000000;
+              line-height: 36px;
+            }
+
+            a {
+              margin-top: 13px;
+              margin-left: 52px;
+              height: 21px;
+              font-size: 15px;
+              font-weight: 300;
+              color: #000000;
+              line-height: 25px;
+              display: none;
+
+              img {
+                width: 20px;
+                font-size: 20px;
+              }
+            }
+
+            a:hover {
+              color: #008AFF;
+            }
+          }
+
+          .title:hover>span {
+            color: #008AFF;
+          }
+
+          .title:hover a {
+            display: block;
+            opacity: 1;
+            transform: translate(0, 0);
+          }
+        }
+      }
+
+      .inner:hover {
+        box-shadow: 0px 2px 12px 0px rgba(0, 0, 0, 0.12);
+        border: 1px solid transparent;
+      }
+    }
+  }
+
+  .part_three {
+    width: 95%;
+    max-width: 1163px;
+    margin: 0 auto;
+
+    .part-cont {
+      float: left;
+      width: 33.33%;
+
+      .inner {
+        min-width: 240px;
+        overflow: hidden;
+        padding: 24px;
+        box-shadow: none;
+        background: #FFFFFF;
+        border-radius: 8px;
+        border: 1px solid #DFDFDF;
+
+        img:first-child {
+          margin-right: 16px;
+          float: left;
+          width: 36px;
+        }
+
+        h1 {
+          float: left;
+          white-space: nowrap;
+          height: 36px;
+          // font-size: 20px;
+          // font-weight: 500;
+          // color: #000000;
+          line-height: 36px;
+          width: 100px;
+          font-size: 15px;
+          font-family: PingFangSC-Regular, PingFang SC;
+          font-weight: 400;
+          color: #000000;
+        }
+
+        img:last-child {
+          cursor: pointer;
+          float: right;
+          width: 30px;
+          margin: 3px 0px;
+        }
+      }
+
+      .inner:hover {
+        box-shadow: 0px 2px 12px 0px rgba(0, 0, 0, 0.12);
+        border: 1px solid transparent;
+      }
+    }
+  }
+
+  .part_four {
+    background: none;
+    padding: 0;
+    position: relative;
+    top: 140px;
+
+    a {
+      height: 50px;
+      border-radius: 11px;
+      font-size: 22px;
+      font-family: PingFangSC-Semibold, PingFang SC;
+      font-weight: 500;
+      line-height: 50px;
+      display: inline-block;
+      margin-top: 5px;
+    }
+
+    .talk-back {
+      background: url('../assets/img/meetproblems@2x.png') no-repeat;
+      background-size: 100% 100%;
+      max-width: 1075px;
+      margin: 0 auto;
+      position: relative;
+      // top: 100px;
+      box-sizing: border-box;
+      padding: 30px;
+      padding-bottom: 50px;
+
+      h3, p {
+        margin: 0;
+        font-size: 32px;
+        font-family: PingFangSC-Medium, PingFang SC;
+        font-weight: 500;
+        color: #FFFFFF;
+        line-height: 45px;
+      }
+
+      h3 {
+        margin-top: 30px;
+      }
+
+      .signUp {
+        width: 281px;
+        background: #3035FF;
+        color: rgba(255, 255, 255, 1);
+      }
+
+      /* 下划线闪烁 */
+      @keyframes blink {
+        0% {
+          opacity: 1;
+        }
+
+        50% {
+          opacity: 1;
+        }
+
+        50.01% {
+          opacity: 0;
+        }
+
+        100% {
+          opacity: 0;
+        }
+      }
+
+      @keyframes blink {
+        0% {
+          opacity: 1;
+        }
+
+        50% {
+          opacity: 1;
+        }
+
+        50.01% {
+          opacity: 0;
+        }
+
+        100% {
+          opacity: 0;
+        }
+      }
+
+      @keyframes blink {
+        0% {
+          opacity: 1;
+        }
+
+        50% {
+          opacity: 1;
+        }
+
+        50.01% {
+          opacity: 0;
+        }
+
+        100% {
+          opacity: 0;
+        }
+      }
+
+      @keyframes blink {
+        0% {
+          opacity: 1;
+        }
+
+        50% {
+          opacity: 1;
+        }
+
+        50.01% {
+          opacity: 0;
+        }
+
+        100% {
+          opacity: 0;
+        }
+      }
+
+      @keyframes blink {
+        0% {
+          opacity: 1;
+        }
+
+        50% {
+          opacity: 1;
+        }
+
+        50.01% {
+          opacity: 0;
+        }
+
+        100% {
+          opacity: 0;
+        }
+      }
+
+      .blink {
+        color: #ffffff;
+        font-size: 22px;
+        font-weight: bolder;
+        position: absolute;
+        animation: blink 1s linear infinite;
+        /* 其它浏览器兼容性前缀 */
+        -webkit-animation: blink 1s linear infinite;
+        -moz-animation: blink 1s linear infinite;
+        -ms-animation: blink 1s linear infinite;
+        -o-animation: blink 1s linear infinite;
+      }
+
+      .contactUs {
+        width: 173px;
+        background: linear-gradient(153deg, rgba(233, 245, 255, 1) 0%, rgba(255, 255, 255, 1) 100%);
+        color: rgba(22, 149, 255, 1);
+        margin-left: 24px;
+      }
+    }
+  }
+}
+
+@media (max-width: 800px) {
+  .en {
+    .part_two {
+      .part-cont {
+        width: 100%;
+
+        .inner {
+          .inner_content {
+            .title {
+              .title:hover>span {
+                color: #008AFF;
+              }
+
+              .title a {
+                display: none !important;
+              }
+            }
+          }
+        }
+
+        .inner:hover {
+          box-shadow: none;
+          border: 1px solid #DFDFDF;
+        }
+      }
+    }
+  }
+
+  .en .part_three .part-cont {
+    width: 100%;
+  }
+
+  .en .gi-cont {
+    margin-left: 82px;
+  }
+}
 
 .top_search {
   display: block !important;

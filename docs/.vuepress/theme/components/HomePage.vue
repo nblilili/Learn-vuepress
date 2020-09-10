@@ -1,9 +1,9 @@
 <template>
   <div class="pagination" style="width:100%">
     <div v-if="!small" class="total">
-      <span>一共</span>
+      <span v-text="$lang=='cn'?'一共':'Total'"></span>
       <span style="color:#008AFF;">{{totalCount}}</span>
-      <span>条数据</span>
+      <span v-text="$lang=='cn'?'条数据':'Results'"></span>
       <!--  第{{currentPage}}/{{totalPage}}页-->
     </div>
     <div class="paging">
@@ -49,7 +49,7 @@
       </select>-->
       <div class="after" style="display: inline;">
         <span class="jump">
-          到第
+          {{ $lang == 'cn'?'到第':'Turn to Page'}}
           <input
             type="text"
             autocomplete="off"
@@ -57,11 +57,16 @@
             :max="totalPage"
             v-model="goPage"
             @keyup.enter="turn(goPage)"
-          />页
+          />{{ $lang == 'cn'?'页':''}}
           <!-- <button type="button" class="layui-laypage-btn">确定</button> -->
         </span>
         <span class="submit">
-          <button type="button" class="layui-laypage-btn" @click="turn(goPage)">确定</button>
+          <button
+            type="button"
+            class="layui-laypage-btn"
+            @click="turn(goPage)"
+            v-text="$lang=='cn'?'确定':'Skip'"
+          ></button>
         </span>
       </div>
     </div>
