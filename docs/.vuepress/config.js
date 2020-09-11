@@ -6,7 +6,7 @@ const sidebarUtil = require('./utils/sidebarUtil');
 const tagsUtil = require('./utils/tagsUtil');
 const navUtil = require('./utils/navUtil.js');
 const sidebarSelectUtil = require('./utils/sidebarSelectUtil.js');
-const base = '/doc/'
+const base = '/Learn-vuepress/'
 
 module.exports = {
   locales: {
