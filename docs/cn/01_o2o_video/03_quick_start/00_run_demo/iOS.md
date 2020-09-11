@@ -27,7 +27,7 @@ title: 一分钟跑通 Demo
 
 解压后的目录如下：
 
-![duoios](../../../../_images/duoios.png)
+![duoiOS](../../../../_images/duoiOS.png)
 
 JuphoonCommon.framework 为工程提供 http 账号管理功能。
 
