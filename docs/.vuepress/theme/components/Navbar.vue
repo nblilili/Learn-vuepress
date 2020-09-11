@@ -4,13 +4,43 @@
     <div class="container" style="background:#fff">
       <nav class="navbar">
         <a class="navbar-brand" href="/">
-          <img src="../assets/image/juphoon cloud developer@2x.png" />
+          <img src="../assets/image/juphoon cloud developer@2x.png" v-if="$lang=='cn'" />
+          <img src="../assets/image/2@2x.png" v-if="$lang=='en'" style="height:45px;width:auto" />
+          <!-- <div class="languages" style="width:300px;background:red;height: 45px;">
+            
+          </div>-->
         </a>
+        <!-- <div class="languages">
+          <a class="header-line" href="javascript:;">
+            <div class="langchange">
+              中文
+              <i class="arrow fa fa-angle-down"></i>
+            </div>
+          </a>
+          <div class="nav-child languagecont">
+            <table>
+              <tbody>
+                <tr>
+                  <td>
+                    <a href="https://cloud.juphoon.com/cn/">
+                      <div class="nav-tit">中文</div>
+                    </a>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <a href="https://cloud.juphoon.com/en/">
+                      <div class="nav-tit">EN</div>
+                    </a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>-->
         <div class="nav" :class="showNav?'active':''">
           <div class="nav-item" v-for="(item,index) in re_userLinks" :key="item.text">
-            <!-- <a class="header-line this_line" :href="item.link" v-if="!item.items.length">{{item.text}}</a> -->
             <XRouter :to="{path:item.link}" v-if="!item.items.length">{{item.text}}</XRouter>
-            <!-- <router-link :to="item.link" v-if="!item.items.length" >{{item.text}}</router-link> -->
             <div v-if="item.items.length" @click="changshowitem(item,index)">
               <a class="header-line this_line" :href="item.link" v-if="item.items.length">
                 {{item.text}}
@@ -23,37 +53,37 @@
                 <table>
                   <tr v-for="(items,index) in item.items" :key="items.text">
                     <td>
-                      <a
-                        v-if="items.link && items.link[0] !== '/'"
-                        :href="items.link"
-                        target="_blank"
-                      >
+                      <XRouter :to="{path:items.link}">
                         <div class="nav-tit">{{items.text}}</div>
-                      </a>
-                      <router-link v-else :to="{path:items.link}" :target="'_blank'">
-                        <div class="nav-tit">{{items.text}}</div>
-                      </router-link>
+                      </XRouter>
                     </td>
                   </tr>
                 </table>
               </div>
             </div>
           </div>
+
           <div class="nav-item search" v-if="!$page.frontmatter.home&& !$page.frontmatter.Search">
             <AlgoliaSearchBox v-if="isAlgoliaSearch" :options="algolia" />
             <SearchBox
               v-else-if="$site.themeConfig.search !== false && $page.frontmatter.search !== false"
             />
           </div>
-          <div class="nav-item olddoc">
-            <a class="header-line this_line" href="/olddoc">切换到老文档中心</a>
-          </div>
           <div class="nav-btn" v-if="!user_type">
             <div class="nlogin">
-              <a class="loginBtn" href="/signin">登录</a>
-              <a class="regBtn" href="/signup">注册</a>
+              <a
+                class="loginBtn"
+                :href="$lang =='cn'?'/signin':'/en/signin'"
+                v-text="$lang =='cn'?'登录':'Log in'"
+              ></a>
+              <a
+                class="regBtn"
+                :href="$lang =='cn'?'/signup':'/en/signup'"
+                v-text="$lang =='cn'?'注册':'Sign up'"
+              ></a>
             </div>
           </div>
+
           <div class="nav-btn" v-if="user_type">
             <div class="more-item">
               <div class="more">
@@ -86,12 +116,6 @@
           ></i>
         </div>
       </nav>
-      <!-- <div class="searchBar">
-          <AlgoliaSearchBox v-if="isAlgoliaSearch" :options="algolia" />
-          <SearchBox
-            v-else-if="$site.themeConfig.search !== false && $page.frontmatter.search !== false"
-          />
-      </div>-->
     </div>
   </header>
 </template>
@@ -164,10 +188,11 @@ export default {
           text: that.$lang == "cn" ? "选择语言" : "Languages",
           ariaLabel: "Select language",
           items: [
-            { text: "简体中文", link: "/cn/" + that.$route.path.substring(3) },
-            { text: "English", link: "/en/" + that.$route.path.substring(3) },
+            { text: "简体中文", link: "/cn" + that.$route.path.substring(3) },
+            { text: "English", link: "/en" + that.$route.path.substring(3) },
           ],
         };
+
         return [...this.userNav, langlist];
       }
       return this.userNav;
@@ -255,7 +280,6 @@ export default {
         url: url,
       })
         .then(function (response) {
-          // console.log(response);
           let data = response.data;
           if (data.message == 0) {
             localStorage.removeItem("newuser");
@@ -278,10 +302,39 @@ export default {
 };
 </script>
 
-<style lang="stylus">
+<style lang="stylus" scoped>
 @import url('../styles/header_footer.styl');
 // @import url('../assets/css/font/iconfont.css');
 @import url('//at.alicdn.com/t/font_1986404_8fs7crvc73y.css');
+
+.langchange {
+  display: inline;
+  background: rgb(142 142 142 / 0.1);
+  border-radius: 18px;
+  padding: 7px 10px;
+}
+
+.languagecont {
+  width: 35px;
+  left: -15px;
+}
+
+.search-box input {
+  cursor: text;
+  width: 10rem;
+  height: 2rem;
+  color: #4e6e8e;
+  display: inline-block;
+  border: 1px solid #cfd4db;
+  border-radius: 2rem;
+  font-size: 0.9rem;
+  line-height: 2rem;
+  padding: 0 0.5rem 0 2rem;
+  outline: none;
+  transition: all 0.2s ease;
+  background: #fff url('../assets/img/search.83621669.svg') 0.6rem 0.5rem no-repeat;
+  background-size: 1rem;
+}
 
 .nav-item.search {
   margin: 10px;

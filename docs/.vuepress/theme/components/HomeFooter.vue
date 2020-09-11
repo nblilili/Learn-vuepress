@@ -52,33 +52,10 @@
     <footer class="site-footer en" v-if="$lang =='en'">
       <div class="container en">
         <div class="footer-other">
-          <ul class="nav-group" style="width:92%;text-align: center;">
-            <li>
-              <img src="https://developer.juphoon.com/style/images/fangkuai-01.png" alt="1对1视频" />&nbsp;
-              <a rel="nofollow" href="http://www.juphoon.com/" target="_blank">
-                <span style="color:#606060;line-height:24px">&nbsp;&nbsp;Juphoon&nbsp;&nbsp;</span>
-              </a>&nbsp;&nbsp;
-              <img
-                src="https://developer.juphoon.com/style/images/fangkuai-01.png"
-                alt="1对1视频"
-              />
-              <a rel="nofollow" href="http://cloud.juphoon.com/" target="_blank">
-                <span style="color:#606060;line-height:24px">&nbsp;&nbsp;Juphoon Cloud&nbsp;&nbsp;</span>
-              </a>&nbsp;&nbsp;
-              <img
-                src="https://developer.juphoon.com/style/images/fangkuai-01.png"
-                alt="1对1视频"
-              />&nbsp;&nbsp;&nbsp;
-              <span style="color:#606060;line-height:24px">
-                Copyright © 2020 宁波菊风系统软件有限公司 |
-                <a
-                  target="_blank"
-                  href="http://www.beian.miit.gov.cn/"
-                  style="color:#606060;display:inline-block;text-decoration:none;height:20px;line-height:20px;"
-                >浙ICP备15019097号-4</a> | ICP证：浙B1.B2-20150544
-              </span>
-              <br />
-            </li>
+          <ul class="nav-group" style="text-align: center;">
+            <span
+              style="color:#606060;line-height:24px"
+            >Copyright © 2020 Juphoon System Software Co., Ltd. All rights reserved.</span>
           </ul>
         </div>
       </div>
@@ -98,12 +75,15 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-.site-footer.en {
-  height: 419px;
-}
-
+// .site-footer.en {
+// height: 419px;
+// }
 .container.en {
-  padding: 165px;
+  padding: 165px 165px 0px 165px;
+
+  .nav-group {
+    margin: 20px;
+  }
 }
 
 @media (max-width: 800px) {

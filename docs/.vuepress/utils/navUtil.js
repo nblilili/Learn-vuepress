@@ -29,7 +29,7 @@ module.exports = {
     } else if (locale == "en") {
       return [
         {
-          text: 'Document Center',
+          text: 'Developer Center Home',
           link: "/" + locale + '/00_o2o_audio/'
         },
         {

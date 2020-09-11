@@ -9,7 +9,7 @@
       `depth-${depth}`
     ]"
   >
-    <RouterLink
+    <!-- <RouterLink
       v-if="item.path"
       class="sidebar-heading clickable"
       :class="{
@@ -25,9 +25,9 @@
         class="silderclass"
         :class="open ? 'iconfont icon-shangla' : 'iconfont icon-xiala'"
       />
-    </RouterLink>
+    </RouterLink> -->
 
-    <p v-else class="sidebar-heading" :class="{ open }" @click="$emit('toggle')">
+    <p class="sidebar-heading" :class="{ open }" @click="$emit('toggle')">
       <span>{{ item.title }}</span>
       <i
         v-if="collapsable"
@@ -38,7 +38,7 @@
 
     <DropdownTransition>
       <SidebarLinks
-        v-if="open || !collapsable"
+        v-show="open || !collapsable"
         class="sidebar-group-items"
         :items="item.children"
         :sidebar-depth="item.sidebarDepth"

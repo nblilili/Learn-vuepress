@@ -320,7 +320,7 @@
                     >{{item}}</span>
                   </div>
                 </div>
-                <div class="gitem">
+                <!-- <div class="gitem">
                   <span>分类</span>
                   <div class="gi-cont claCont">
                     <span
@@ -330,7 +330,7 @@
                       @click="sortclass(item)"
                     >{{item}}</span>
                   </div>
-                </div>
+                </div>-->
               </div>
             </div>
           </div>
@@ -352,7 +352,7 @@
                     ></span>
                   </div>
                   <p
-                    v-html="item_list.content? item_list._highlightResult.content.value:changecolor(item_list.anchor)"
+                    v-html="item_list.content? item_list._highlightResult.content.value: item_list._highlightResult.anchor.value"
                   ></p>
                 </a>
               </div>
@@ -361,10 +361,18 @@
               class="search-prompt"
               :style="{display: page.totalCount>0 || Searching?'none':'block'}"
             >
-              <div class="title" style="font-size:16px;font-weight:bold">暂无数据</div>
+              <div
+                class="title"
+                style="font-size:16px;font-weight:bold"
+                v-text="$lang =='cn'?'暂无数据':'no Results'"
+              ></div>
             </div>
             <div class="search-prompt" :style="{display: Searching?'block':'none'}">
-              <div class="title" style="font-size:16px;font-weight:bold">搜索中... ...</div>
+              <div
+                class="title"
+                style="font-size:16px;font-weight:bold"
+                v-text="$lang =='cn'?'搜索中... ...':'Searching... ...'"
+              ></div>
             </div>
             <div class="search_pages">
               <HomePage
@@ -442,20 +450,19 @@
                     ></span>
                   </div>
                   <p
-                    v-html="item_list.content? item_list._highlightResult.content.value:changecolor(item_list.anchor)"
+                    v-html="item_list.content? item_list._highlightResult.content.value:item_list._highlightResult.anchor.value"
                   ></p>
                 </a>
               </div>
-              <!-- /ko -->
             </div>
             <div
               class="search-prompt"
               :style="{display: page.totalCount>0 || Searching?'none':'block'}"
             >
-              <div class="title" style="font-size:16px;font-weight:bold">暂无数据</div>
+              <div class="title" style="font-size:16px;font-weight:bold">no Results</div>
             </div>
             <div class="search-prompt" :style="{display: Searching?'block':'none'}">
-              <div class="title" style="font-size:16px;font-weight:bold">搜索中... ...</div>
+              <div class="title" style="font-size:16px;font-weight:bold">Searching... ...</div>
             </div>
             <div class="search_pages">
               <HomePage
@@ -513,6 +520,7 @@ export default {
         "BF4RDO0EYD",
         "4a2857c7afb83b2687a2922aaaf56bcf"
       ),
+      first: false,
       img: {
         Lz: Lz,
         DownLoad: DownLoad,
@@ -557,49 +565,13 @@ export default {
       },
       Searching: false, // 搜索中
       pro_list: [], // 产品分类
-      platform_list: [],
-      classify_list: ["所有", "平台文档", "FAQ"],
-      active: {},
+      platform_list: [], // 平台分类
+      classify_list: ["所有", "平台文档", "FAQ"], // 分类分类
+      active: { pro: "所有", pla: "所有", class: "所有" },
     };
   },
   created() {
-    this.pro_list =
-      this.$lang == "cn"
-        ? [
-            "所有",
-            "一对一语音通话",
-            "一对一视频通话",
-            "多方语音通话",
-            "多方视频通话",
-            "语音互动直播",
-            "视频互动直播",
-          ]
-        : [
-            "All",
-            "One-to-One Voice Calling",
-            "Group Voice Calling",
-            "One-to-One Video Calling",
-            "Group Video Calling",
-            "Live Interactive Audio Streaming",
-            "Live Interactive Video Streaming",
-          ];
-    this.platform_list =
-      this.$lang == "cn"
-        ? ["所有", "iOS", "Android", "Windows", "macOS"]
-        : ["All", "iOS", "Android", "Windows", "macOS"];
-
-    this.active =
-      this.$lang == "cn"
-        ? {
-            pro: "所有",
-            pla: "所有",
-            class: "所有",
-          }
-        : {
-            pro: "All",
-            pla: "All",
-            class: "All",
-          };
+    this.changelangtag();
   },
   computed: {
     isAlgoliaSearch() {
@@ -619,9 +591,13 @@ export default {
         this.keyword = hash;
       }
     },
+    $lang(newValue) {
+      this.changelangtag();
+    },
   },
   mounted() {
-    console.log(this.$lang);
+    this.changelangtag();
+    this.first = false;
     let that = this;
     let hash = this.$route.hash.substr(1);
     if (hash) {
@@ -629,21 +605,16 @@ export default {
       this.keyword = hash;
     }
     that.$EventBus.$on("SearchResults", (res) => {
-      console.log(res);
       that.showlist(res);
     });
     that.$EventBus.$on("Searching", (res) => {
       that.Searching = res;
     });
-    // window.addEventListener("resize", this.screenWidth(), true);
     window.onresize = () => {
       this.screenWidth();
     };
     this.get_log_version_dev();
   },
-  // destroyed() {
-  //   window.removeEventListener("resize", this.screenWidth(), true);
-  // },
   methods: {
     screenWidth() {
       if (window.innerWidth < 800) this.width800 = true;
@@ -652,81 +623,49 @@ export default {
     clickPath() {
       console.log("tiaozhuan ");
     },
-    get_log_version_dev() {
-      let that = this;
-      axios({
-        method: "POST",
-        url: "/portal/cn/message/?c=CDownload&a=C_download_sdklist",
-        data: { type: 1 },
-      })
-        .then(function (response) {
-          var data = response.data;
-          var ios = data.data[0] ? data.data[0].list : "";
-          var android = data.data[2] ? data.data[2].list : "";
-          var twindows = data.data[1] ? data.data[1].list : "";
-          var mac = data.data[3] ? data.data[3].list : "";
-          var app = data.data[4] ? data.data[4].list : "";
-          thisArr(ios, 0, 0);
-          thisArr(android, 1, 0);
-          thisArr(twindows, 2, 0);
-          thisArr(mac, 3, 0);
-          thisArr(app, 4, 0);
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
-
-      function thisArr(arr, index, type) {
-        var arrs = Object.keys(arr);
-        var last = arrs[arrs.length - 1];
-        var last_list = arr[last];
-        var version = last_list[0].version;
-        if (type == 0) {
-          var urla =
-            "https://developer.juphoon.com/portal/cn/downloadsdk/download_sdk.php?filename=";
-          var href = urla + last_list[0].filename;
-          if (index == 0) that.SDK_Download.ios = href;
-          else if (index == 1) that.SDK_Download.android = href;
-          else if (index == 2) that.SDK_Download.twindows = href;
-          else if (index == 3) that.SDK_Download.mac = href;
-          else if (index == 4) that.SDK_Download.app = href;
-        }
-      }
-    },
     // 三种点击事件
     sortpro(res) {
       this.active.pro = res;
-      console.log(res);
-      this.$refs.HomeAlgolia.getSearchData(this.keyword, {
-        // tagFilters: res == "所有" ? [] : [res],
-        clickAnalytics: true,
-        getRankingInfo: true,
-        analytics: false,
-        enableABTest: false,
-        hitsPerPage: 20,
-        attributesToRetrieve: "*",
-        attributesToSnippet: "*:20",
-        snippetEllipsisText: "…",
-        responseFields: "*",
-        maxValuesPerFacet: 100,
-        page: 0,
-        facets: ["*", "lang", "tags"],
-        facetFilters: [
-          ["lang:" + this.$lang + ""],
-          ["tags:" + (res == "所有" ? "All" : res)],
-        ],
-      });
-      // this.sortfunction();
+      this.getTableData(0);
     },
     sortpla(res) {
       this.active.pla = res;
-      this.sortfunction();
+      this.getTableData(0);
     },
     sortclass(res) {
       this.active.class = res;
-      this.sortfunction();
+      this.getTableData(0);
     },
-
+    changelangtag() {
+      let new_pro_list =
+        this.$lang == "cn"
+          ? [
+              "所有",
+              "一对一视频通话",
+              "多方视频通话",
+              "视频互动直播",
+              "多方语音通话",
+              "语音互动直播",
+              "一对一语音通话",
+              "菊风云平台",
+              "WebRTC",
+            ]
+          : [
+              "All",
+              "Group Video Calling",
+              "Live Interactive Video Streaming",
+              "One to One Video Calling",
+              "Group Voice Calling",
+              "Live Interactive Audio Streaming",
+              "One to One Voice Calling",
+            ];
+      let new_platform_list =
+        this.$lang == "cn"
+          ? ["所有", "iOS", "Windows C++", "macOS", "Android", "Windows C"]
+          : ["All", "Android", "Windows C++", "iOS", "macOS", "Windows C"];
+      this.pro_list = new_pro_list;
+      this.platform_list = new_platform_list;
+    },
     // 三种点击事件的实际操作（还没写）
     sortfunction() {
       if (
@@ -786,6 +725,15 @@ export default {
     },
     //重新获取数据
     getTableData(page) {
+      let active = this.active;
+      //  active: { pro: "所有", pla: "所有", class: "所有" },
+      let facetFilters = [["lang:" + this.$lang + ""]];
+      console.log("jinlaile?=>", JSON.stringify(active));
+      if (active.pro != "所有" && active.pro != "All")
+        facetFilters.push(["hierarchy.lvl0:" + active.pro]);
+      if (active.pla != "所有" && active.pla != "All")
+        facetFilters.push(["platform:" + active.pla]);
+      console.log(facetFilters);
       this.$refs.HomeAlgolia.getSearchData(this.keyword, {
         clickAnalytics: true,
         getRankingInfo: true,
@@ -797,11 +745,10 @@ export default {
         snippetEllipsisText: "…",
         responseFields: "*",
         maxValuesPerFacet: 100,
-        page: this.page.currentPage - 1,
+        page: page - 1 < 0 ? 0 : page - 1 || this.page.currentPage - 1,
         facets: ["*", "lang"],
-        facetFilters: [["lang:" + this.$lang + ""]],
+        facetFilters: facetFilters,
       });
-      // this.product_list = this.pageDataFn(page, 10, this.aligola_list_slot);
     },
     // 改变颜色
     changecolor(Str) {
@@ -836,12 +783,37 @@ export default {
       console.log(res);
     },
     showlist(data) {
+      if (!this.first) {
+        this.active.pro = this.$lang == "cn" ? "所有" : "All";
+        this.active.pla = this.$lang == "cn" ? "所有" : "All";
+        this.active.class = this.$lang == "cn" ? "所有" : "All";
+        this.first = true;
+      }
+
+      // if (!this.first) {
+      //   let pro_list = data.facets["hierarchy.lvl0"];
+      //   let platform_list = data.facets.platform;
+      //   let new_pro_list = [this.$lang == "cn" ? "所有" : "All"];
+      //   let new_platform_list = [this.$lang == "cn" ? "所有" : "All"];
+      //   this.active.pro = this.$lang == "cn" ? "所有" : "All";
+      //   this.active.pla = this.$lang == "cn" ? "所有" : "All";
+      //   this.active.class = this.$lang == "cn" ? "所有" : "All";
+      //   for (let i in pro_list) {
+      //     new_pro_list.push(i);
+      //   }
+      //   for (let i in platform_list) {
+      //     new_platform_list.push(i);
+      //   }
+      //   console.log(new_pro_list);
+      //   console.log(new_platform_list);
+
+      //   this.pro_list = new_pro_list;
+      //   this.platform_list = new_platform_list;
+      //   this.first = true;
+      // }
+
       this.aligola_list = JSON.parse(JSON.stringify(data.hits)); //记录原始数据
       this.aligola_list_slot = this.aligola_list; //点击的第一下现在是原始数据
-
-      // nbHits: 312;
-      // nbPages: 32;
-      // page: 1;
       this.page = {
         currentPage: data.page + 1, //当前页码
         limit: data.hitsPerPage, //每页显示条数
@@ -852,8 +824,13 @@ export default {
     },
     keySearch(str) {
       console.log("str=>", str);
-      this.showsearch = true;
-      this.$router.push({ hash: str });
+      console.log(Boolean(str));
+      // if (str) {
+      //   this.showsearch = true;
+      //   this.$router.push({ hash: str });
+      // } else {
+      //   this.showsearch = false;
+      // }
     },
     pageDataFn(number, pageSize, data) {
       this.page.currentPage = number;
@@ -867,6 +844,48 @@ export default {
         pagedata.push(data[i]);
       }
       return pagedata;
+    },
+    // 获取日志
+    get_log_version_dev() {
+      let that = this;
+      axios({
+        method: "POST",
+        url: "/portal/cn/message/?c=CDownload&a=C_download_sdklist",
+        data: { type: 1 },
+      })
+        .then(function (response) {
+          var data = response.data;
+          var ios = data.data[0] ? data.data[0].list : "";
+          var android = data.data[2] ? data.data[2].list : "";
+          var twindows = data.data[1] ? data.data[1].list : "";
+          var mac = data.data[3] ? data.data[3].list : "";
+          var app = data.data[4] ? data.data[4].list : "";
+          thisArr(ios, 0, 0);
+          thisArr(android, 1, 0);
+          thisArr(twindows, 2, 0);
+          thisArr(mac, 3, 0);
+          thisArr(app, 4, 0);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+
+      function thisArr(arr, index, type) {
+        var arrs = Object.keys(arr);
+        var last = arrs[arrs.length - 1];
+        var last_list = arr[last];
+        var version = last_list[0].version;
+        if (type == 0) {
+          var urla =
+            "https://developer.juphoon.com/portal/cn/downloadsdk/download_sdk.php?filename=";
+          var href = urla + last_list[0].filename;
+          if (index == 0) that.SDK_Download.ios = href;
+          else if (index == 1) that.SDK_Download.android = href;
+          else if (index == 2) that.SDK_Download.twindows = href;
+          else if (index == 3) that.SDK_Download.mac = href;
+          else if (index == 4) that.SDK_Download.app = href;
+        }
+      }
     },
   },
 };

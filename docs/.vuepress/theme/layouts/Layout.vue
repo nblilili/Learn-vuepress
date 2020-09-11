@@ -6,7 +6,13 @@
     @touchend="onTouchEnd"
   >
     <!-- <vueToTop :type="14" :size="60" :bottom="0" :right="30">1111</vueToTop> -->
-    <div class="toTop" v-show="showIcon" style="z-index:999" @click="clicktop()">
+    <div
+      class="toTop"
+      v-show="showIcon"
+      style="z-index:999"
+      @click="clicktop()"
+      v-if="!$page.frontmatter.home&& !$page.frontmatter.Search"
+    >
       <img src="https://developer.juphoon.com/style/images/zd@2x.png" />
     </div>
     <Navbar v-if="shouldShowNavbar" @toggle-sidebar="toggleSidebar" />
