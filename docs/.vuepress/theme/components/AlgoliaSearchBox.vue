@@ -19,13 +19,10 @@ export default {
   watch: {
     $lang(newValue) {
       this.update(this.options, newValue);
-      // this.update(this.options, this.$themeLocaleConfig.lang)
     },
 
     options(newValue) {
       this.update(newValue, this.$lang);
-      // console.log(this.$themeLocaleConfig.lang,this.$lang)
-      // this.update(newValue, this.$themeLocaleConfig.lang)
     },
   },
 

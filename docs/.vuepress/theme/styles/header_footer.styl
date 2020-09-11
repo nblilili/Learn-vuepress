@@ -36,7 +36,6 @@
 .navbar-brand {
   margin: 0;
   position: absolute;
-  left: 30px;
   top: 0;
   padding: 5px 15px;
 }
@@ -53,10 +52,15 @@
 .nav {
   position: absolute;
   top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 62%;
-  margin-left: 19%;
+  width: 100%;
+}
+.nav .languages{
+  position: relative;
+  left: 300px;
+}
+
+.nav .nav-cont{
+  margin: 0 auto;
 }
 
 .nav .nav-item {
@@ -90,8 +94,8 @@
 .nav .nav-child {
   position: absolute;
   top: 62px;
-  left: -60px;
-  width: 420px;
+  left: -25px;
+  width: 110px;
   padding: 8px 39px;
   background: #fff;
   border-radius: 6px;
@@ -141,7 +145,7 @@
 }
 
 .nav .nav-child td {
-  padding: 12px 0;
+  padding: 8px 0;
   border: none;
 }
 
@@ -177,7 +181,7 @@
 
 .nav .nav-tit {
   font-size: 15px;
-  line-height: 42px;
+  line-height: 30px;
   float: left;
   color: #68758D;
 }
@@ -367,6 +371,28 @@
   z-index: 1100;
 }
 
+
+@media (max-width: 1330px) {
+  .nav .nav-item {
+    margin: 0;
+  }
+  .nav .languages{
+    margin: 0 20px;
+  }
+  .nav .nav-cont{
+    margin-left: 300px;
+  }
+
+  .nav-item.search {
+    margin: 10px;
+  }
+
+}
+@media screen and (max-width: 1120px){
+  .nav-item.search{
+    display: none;
+  }
+}
 @media screen and (max-width: 1000px) {
   .navbar-brand {
     left: 0;
@@ -377,18 +403,18 @@
     right: 10px;
   }
 
-  .nav {
-    width: 62%;
-    margin-left: 19%;
+  .nav .languages{
+    left: 260px;
   }
-
+  .nav .nav-cont{
+    margin-left: 270px
+  }
   .nav .nav-item {
     margin: 0 5px;
   }
 
   .navbar-brand img {
     width: 270px;
-    margin: 5px 0;
   }
 
   .nav .nav-item > a {
@@ -397,6 +423,9 @@
 }
 
 @media screen and (max-width: 800px) {
+  .container{
+    padding: 0;
+  }
   .nav {
     width: 100%;
     margin: 0;
@@ -419,6 +448,12 @@
     margin: 0;
     text-align: left;
     border-bottom: 1px solid #f1f1f1;
+  }
+  .nav .nav-cont{
+    margin-left: 0;
+  }
+  .nav .languages{
+    left: 0;
   }
 
   .nav .nav-item > a {
