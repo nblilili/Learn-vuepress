@@ -17,7 +17,7 @@
               <div class="search_div">
                 <div>
                   <input
-                    placeholder="请输入搜索内容"
+                    :placeholder="$lang =='cn'?'请输入搜索内容':'Please enter keywords to search'"
                     class="search-query form-control bacinp"
                     v-model="keyword"
                     @keyup.enter="goSearch(keyword)"

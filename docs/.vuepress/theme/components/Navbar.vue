@@ -1,57 +1,88 @@
 
 <template>
   <header class="site-header">
-    <div class="container" style="background:#fff">
-      <nav class="navbar">
+    <div
+      class="container"
+      style="background:#fff"
+      :class="!$page.frontmatter.home&& !$page.frontmatter.Search?'':'index'"
+    >
+      <nav class="navbar" :class="$lang =='cn'?'cn':'en'">
         <a class="navbar-brand" href="/">
-          <img src="../assets/image/juphoon cloud developer@2x.png" />
+          <img src="../assets/image/juphoon cloud developer@2x.png" v-if="$lang=='cn'" />
+          <img src="../assets/image/2@2x.png" v-else style="height:45px;width:auto" />
         </a>
+        <!-- 缺个样式 -->
+
+        <!-- 我转移过来的 -->
         <div class="nav" :class="showNav?'active':''">
-          <div class="nav-item" v-for="(item,index) in re_userLinks" :key="item.text">
-            <!-- <a class="header-line this_line" :href="item.link" v-if="!item.items.length">{{item.text}}</a> -->
-            <XRouter :to="{path:item.link}" v-if="!item.items.length">{{item.text}}</XRouter>
-            <!-- <router-link :to="item.link" v-if="!item.items.length" >{{item.text}}</router-link> -->
-            <div v-if="item.items.length" @click="changshowitem(item,index)">
-              <a class="header-line this_line" :href="item.link" v-if="item.items.length">
-                {{item.text}}
-                <i
-                  class="arrow iconfont"
-                  :class="item.showitem?'icon-shangla':'icon-xiala'"
-                ></i>
-              </a>
-              <div class="nav-child navChild dev" :style="{'display':item.showitem?'block':''}">
-                <table>
-                  <tr v-for="(items,index) in item.items" :key="items.text">
-                    <td>
-                      <a
-                        v-if="items.link && items.link[0] !== '/'"
-                        :href="items.link"
-                        target="_blank"
-                      >
-                        <div class="nav-tit">{{items.text}}</div>
-                      </a>
-                      <router-link v-else :to="{path:items.link}" :target="'_blank'">
-                        <div class="nav-tit">{{items.text}}</div>
-                      </router-link>
-                    </td>
-                  </tr>
-                </table>
+          <div class="nav-item languages">
+            <a class="header-line" href="javascript:;" id="eeff7ad1ae620adc859df95b565cd590">
+              <div class="langchange">
+                {{langlist.text}}
+                <i class="iconfont icon-xiala"></i>
               </div>
+            </a>
+            <div class="nav-child languagecont">
+              <table>
+                <tr v-for="item_lang in langlist.items" :key="item_lang.text">
+                  <td>
+                    <XRouter :to="{path:item_lang.link}">
+                      <div class="nav-tit">{{item_lang.text}}</div>
+                    </XRouter>
+                  </td>
+                </tr>
+              </table>
             </div>
           </div>
-          <div class="nav-item search" v-if="!$page.frontmatter.home&& !$page.frontmatter.Search">
-            <AlgoliaSearchBox v-if="isAlgoliaSearch" :options="algolia" />
-            <SearchBox
-              v-else-if="$site.themeConfig.search !== false && $page.frontmatter.search !== false"
-            />
+          <div class="nav-cont">
+            <div class="nav-item" v-for="(item,index) in re_userLinks" :key="item.text">
+              <!-- <a class="header-line this_line" :href="item.link" v-if="!item.items.length">{{item.text}}</a> -->
+              <XRouter :to="{path:item.link}" v-if="!item.items.length">{{item.text}}</XRouter>
+              <!-- <router-link :to="item.link" v-if="!item.items.length" >{{item.text}}</router-link> -->
+              <div v-if="item.items.length" @click="changshowitem(item,index)">
+                <a class="header-line this_line" :href="item.link" v-if="item.items.length">
+                  {{item.text}}
+                  <i
+                    class="arrow iconfont"
+                    :class="item.showitem?'icon-shangla':'icon-xiala'"
+                  ></i>
+                </a>
+                <div class="nav-child navChild dev" :style="{'display':item.showitem?'block':''}">
+                  <table>
+                    <tr v-for="(items,index) in item.items" :key="items.text">
+                      <td>
+                        <XRouter :to="{path:items.link}">
+                          <div class="nav-tit">{{items.text}}</div>
+                        </XRouter>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="nav-item search" v-if="!$page.frontmatter.home&& !$page.frontmatter.Search">
+              <AlgoliaSearchBox v-if="isAlgoliaSearch" :options="algolia" />
+              <SearchBox
+                v-else-if="$site.themeConfig.search !== false && $page.frontmatter.search !== false"
+              />
+            </div>
           </div>
+
           <div class="nav-item olddoc">
             <a class="header-line this_line" href="/olddoc">切换到老文档中心</a>
           </div>
           <div class="nav-btn" v-if="!user_type">
             <div class="nlogin">
-              <a class="loginBtn" href="/signin">登录</a>
-              <a class="regBtn" href="/signup">注册</a>
+              <a
+                class="loginBtn"
+                :href="$lang=='cn'?'/signin':'/en/signin'"
+                v-text="$lang=='cn'?'登录':'Log in'"
+              ></a>
+              <a
+                class="regBtn"
+                :href="$lang=='cn'?'/signup':'/en/signup'"
+                v-text="$lang=='cn'?'注册':'Sign up'"
+              ></a>
             </div>
           </div>
           <div class="nav-btn" v-if="user_type">
@@ -73,7 +104,7 @@
                 <div class="yl_police" v-if="user_type == 'police'">
                   <a href="/portal/cn/console/my_app/otoDetail.php">数据查询</a>
                 </div>
-                <a href="javascript:;" @click="log_out()">退出</a>
+                <a href="javascript:;" @click="log_out()" v-text="$lang=='cn'?'退出':'Log out'"></a>
               </div>
             </div>
           </div>
@@ -124,6 +155,7 @@ export default {
       ],
       showNav: false,
       re_userLinks: [],
+      langlist: "",
     };
   },
   watch: {
@@ -139,6 +171,18 @@ export default {
           items: (link.items || []).map(resolveNavLinkItem),
         });
       });
+    },
+    $lang(newValue) {
+      let that = this
+      this.langlist = {
+        text: that.$lang == "cn" ? "中文" : "EN",
+        ariaLabel: "Select language",
+        items: [
+          { text: "中文", link: "/cn" + that.$route.path.substring(3) },
+          { text: "EN", link: "/en" + that.$route.path.substring(3) },
+        ],
+      };
+      console.log(this.langlist);
     },
   },
   computed: {
@@ -160,15 +204,16 @@ export default {
         const currentLink = this.$page.path;
         const routes = this.$router.options.routes;
         const themeLocales = this.$site.themeConfig.locales || {};
-        let langlist = {
-          text: that.$lang == "cn" ? "选择语言" : "Languages",
-          ariaLabel: "Select language",
-          items: [
-            { text: "简体中文", link: "/cn/" + that.$route.path.substring(3) },
-            { text: "English", link: "/en/" + that.$route.path.substring(3) },
-          ],
-        };
-        return [...this.userNav, langlist];
+        // let langlist = {
+        //   text: that.$lang == "cn" ? "选择语言" : "Languages",
+        //   ariaLabel: "Select language",
+        //   items: [
+        //     { text: "简体中文", link: "/cn/" + that.$route.path.substring(3) },
+        //     { text: "English", link: "/en/" + that.$route.path.substring(3) },
+        //   ],
+        // };
+        return [...this.userNav];
+        // return [...this.userNav, langlist];
       }
       return this.userNav;
     },
@@ -182,11 +227,22 @@ export default {
     },
   },
   created() {
+    let that = this;
     this.re_userLinks = (this.nav || []).map((link) => {
       return Object.assign(resolveNavLinkItem(link), {
         items: (link.items || []).map(resolveNavLinkItem),
       });
     });
+
+    this.langlist = {
+      text: that.$lang == "cn" ? "中文" : "EN",
+      ariaLabel: "Select language",
+      items: [
+        { text: "中文", link: "/cn" + that.$route.path.substring(3) },
+        { text: "EN", link: "/en" + that.$route.path.substring(3) },
+      ],
+    };
+    console.log(this.langlist);
   },
   mounted() {
     this.$EventBus.$on("changeNav", () => {
@@ -278,10 +334,13 @@ export default {
 };
 </script>
 
-<style lang="stylus">
+<style lang="stylus" scoped>
 @import url('../styles/header_footer.styl');
-// @import url('../assets/css/font/iconfont.css');
 @import url('//at.alicdn.com/t/font_1986404_8fs7crvc73y.css');
+
+.en .nav .languages {
+  left: 200px;
+}
 
 .nav-item.search {
   margin: 10px;
@@ -313,23 +372,6 @@ export default {
 
 .nav.active {
   display: block;
-}
-
-.search-box input {
-  cursor: text;
-  width: 10rem;
-  height: 2rem;
-  color: #4e6e8e;
-  display: inline-block;
-  border: 1px solid #cfd4db;
-  border-radius: 2rem;
-  font-size: 0.9rem;
-  line-height: 2rem;
-  padding: 0 0.5rem 0 2rem;
-  outline: none;
-  transition: all 0.2s ease;
-  background: #fff url('../assets/img/search.83621669.svg') 0.6rem 0.5rem no-repeat;
-  background-size: 1rem;
 }
 
 $navbar-vertical-padding = 0.7rem;
@@ -393,12 +435,6 @@ $navbar-horizontal-padding = 1.5rem;
       white-space: nowrap;
       text-overflow: ellipsis;
     }
-  }
-}
-
-@media (max-width: 1400px) {
-  .nav-item.search {
-    display: none;
   }
 }
 </style>
