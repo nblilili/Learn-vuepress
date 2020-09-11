@@ -81,8 +81,7 @@ public boolean initialize(Context context) {
 
 - `video` 选择是否为视频通话， true 表示拨打视频通话， false 表示拨打语音通话。
 
-- [extraParam()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCCall.html#call-java.lang.String-boolean-java.lang.String-)
-    为自定义透传字符串， 可通过
+- `extraParam` 为自定义透传字符串， 可通过
     [getExtraParam()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCCallItem.html#getExtraParam--)
     方法获取该属性。
 

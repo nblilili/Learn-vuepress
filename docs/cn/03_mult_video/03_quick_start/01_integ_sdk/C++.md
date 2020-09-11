@@ -29,10 +29,11 @@ title: 一分钟集成 SDK
 
 1. 拷贝 SDK
 
-将下载的 SDK 文件夹复制到你的项目文件夹下，SDK 中包含 include 和 x86 两个文件夹。
+将下载的 SDK 文件夹复制到你的项目文件夹下，SDK 中包含 **include** 和 **x86** 两个文件夹。
 
-其中， `x86` 中的目录中包含 `JCSDK.lib` ，`mtcdll.lib` ，`zmfdii.lib` ， `bzip2.dll`
-，`JCSDK.dll` ， `jssmme.dll` ，`mtc.dll` ，`zmf.dll` 八个文件。
+其中， **x86** 中的目录中包含 **JCSDK.lib** ，**mtcdll.lib** ，**zmfdii.lib** ，
+**bzip2.dll** ，**JCSDK.dll** ， **jssmme.dll** ，**mtc.dll** ，**zmf.dll**
+八个文件。
 
 2. 配置项目属性
 

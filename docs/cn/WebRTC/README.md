@@ -1,6 +1,5 @@
 ---
 title:  功能简介
-
 ---
 
 # 功能简介
@@ -52,5 +51,5 @@ BASE64 编码的 JSON 串，适合由代码构造，可以处理特殊字符，�
 
 | 指令格式                | 实现功能                                                     |
 | :---------------------- | :----------------------------------------------------------- |
-| @ 开头的明文格式        | @ 开头的明文格式之后必须紧跟 ConfDelivery 的短名,然后是指令<br/>形式如下：<br/>'@'+peer+cmd+param<br/>peer 为指令发送的目标<br/>cmd 为指令,大小写不敏感<br/>param 为相应参数<br/>举例：<br/>ConfDelivery 的账户 ID 是[username:delivery0121@101055.cloud.justalk.com]，则如下打印帮助的指令都是正确的：<br/>@delivery0121 help<br/>@delivery0121help<br/> |
+| @ 开头的明文格式        | @ 开头的明文格式之后必须紧跟 ConfDelivery 的短名,然后是指令<br/>形式如下：<br/>'@'+peer+cmd+param<br/>peer 为指令发送的目标<br/>cmd 为指令,大小写不敏感<br/>param 为相应参数<br/>举例：<br/>ConfDelivery 的账户 ID 是[username:delivery0121@101055.cloud.justalk.com]，则如下打印的帮助指令都是正确的：<br/>@delivery0121 help<br/>@delivery0121help<br/> |
 | BASE64 编码的 JSON 格式 | 格式为：{“cmd”:”cmd”,param}<br/>cmd 为指令, param 为相应参数<br/>举例：<br/>修改成员昵称的指令：<br/>{“cmd”:”setnick”, “nick”:%s, “target”:%s} |

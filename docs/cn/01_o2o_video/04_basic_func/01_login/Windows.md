@@ -3,7 +3,7 @@ title: 登录
 ---
 # 登录
 
-本章节将介绍如何初始化 SDK 并登录。
+本章节将介绍如何初始化 JC SDK 并登录。
 
 ## 初始化
 
@@ -94,14 +94,14 @@ mClient.login(userID, password, loginParam);
 
 ``````csharp
 public void onClientStateChange(JCClientState state, JCClientState oldState) {
-     if (state == JCClient.STATE_IDLE) { /// 未登录
-       ...
-    } else if (state == JCClient.STATE_LOGINING) { /// 正在登录
-       ...
-    } else if (state == JCClient.STATE_LOGINED) { /// 登录成功
-       ...
-    } else if (state == JCClient.STATE_LOGOUTING) { /// 登出中
-       ...
+     if (state == JCClientState.Idel) { /// 未登录
+        ...
+    } else if (state == JCClientState.Logining) { /// 正在登录
+        ...
+    } else if (state == JCClientState.Logined) { /// 登录成功
+        ...
+    } else if (state == JCClientState.Logouting) { /// 登出中
+        ...
     }
 }
 ``````
@@ -117,7 +117,7 @@ public void onLogin(bool result, JCClientReason reason) {
     if (result) {/// 登录成功
         ...
     }
-    if (reason == REASON_AUTH) {/// 账号密码错误
+    if (reason == JCClientReason.AUTH) {/// 账号密码错误
         ...
     }
 
@@ -143,7 +143,7 @@ public void onLogin(bool result, JCClientReason reason) {
 
 ``````csharp
 public void onLogout(JCClientReason reason) {
-    if (reason == REASON_SERVER_LOGOUT) {/// 强制登出
+    if (reason == JCClientReason.ServerLogout) {/// 强制登出
         ...
     }
 }

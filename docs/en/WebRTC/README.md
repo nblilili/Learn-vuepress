@@ -19,7 +19,7 @@ The audio and video calls on the SDK web end use WebRTC to build a media channel
 
 **WebRTC communication principle**
 
-![img](../../_images/webrtc21.png)
+![img](../../_images_en/webrtc21.png)
 
 \- Assuming that the venue has been established, Browser creates a WebRTC object and accesses GW Entry through WebServer;
 
@@ -41,7 +41,7 @@ BASE64 encoded JSON string is suitable to be constructed by code and can handle 
 
 The specific operating mechanism of the two formats of control instructions is as follows
 
-![img](../../_images/webrtc9.png)
+![img](../../_images_en/webrtc9.png)
 
 In the plain text format beginning with @, the Web end directly affects the target object by sending instructions, and performs corresponding processing on the target object through ConfDelivery.
 

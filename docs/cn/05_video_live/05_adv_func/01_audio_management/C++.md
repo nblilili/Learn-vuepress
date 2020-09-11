@@ -130,7 +130,7 @@ void JCSampleDlg::OnBnClickedButtonEndCall()
 int  Zmf_AudioOutputAddCallback     (void *pUser, ZmfAudioOutputCallback pfnCb);
 ``````
 
-回调类型说明：
+回调类型说明。
 
 ``````cpp
 /** the callback to get audio output buffer, when Zmf_OnAudioOutput() invoked.

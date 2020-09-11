@@ -13,7 +13,7 @@ title: 实现互动直播
 create](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaDevice.html#//api/name/create:callback:)
 和 [JCMediaChannel
 create](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaChannel.html#//api/name/create:mediaDevice:callback:)
-以初始化实现多方通话需要的模块：:
+以初始化实现多方通话需要的模块。
 
 ``````objectivec
 //初始化

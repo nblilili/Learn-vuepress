@@ -610,16 +610,10 @@ JCManager.shared.call.mediaConfig = [JCCallMediaConfig generateByMode:JCCallMedi
 <td><p>影响本端视频请求分辨率，默认设置为true</p>
 <dl>
 <dt>假设条件</dt>
-<dd><ul>
-<li><ol>
+<dd><ol>
 <li><p>本端默认请求是640*360的分辨率</p></li>
-</ol></li>
-<li><ol start="2">
-<li><p>本端屏幕分辨率为360*360</p></li>
-</ol></li>
-<li><p>true：请求分辨率则会被调整为360*360</p></li>
-<li><p>false: 请求还是以640*360进行请求</p></li>
-</ul>
+</ol>
+<p>2. 本端屏幕分辨率为360*360 - true：请求分辨率则会被调整为360*360 - false: 请求还是以640*360进行请求</p>
 </dd>
 </dl></td>
 </tr>

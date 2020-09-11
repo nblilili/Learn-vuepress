@@ -3,30 +3,32 @@ title: API 参考
 ---
 # API 参考
 
-## 登录类
+## 登录模块
 
-[JCClient（登录类）](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCClient.html)
+[JCClient](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCClient.html)
+（登录类）
 
-[JCClientCallback（回调代理）](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCClientCallback.html)
+[JCClientCallback](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCClientCallback.html)
+（登录类回调）
 
-## 多方视频通话类
+## 一对一通话模块
 
-[JCMediaChannel（媒体频道类）](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannel.html)
+[JCCall](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCCall.html)
+（通话类）
 
-[JCMediaChannelParticipant（媒体频道成员对象）](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannelParticipant.html)
+[JCCallItem](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCCallItem.html)
+（通话类对象）
 
-[JCMediaChannelParticipantChangeParam（上次更新到这次更新间的状态变化集合）](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannelParticipant.ChangeParam.html)
+[JCCallCallback](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCCallCallback.html)
+（通话类回调）
 
-[JCMediaChannelQueryInfo（媒体频道查询信息结果）](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannelQueryInfo.html)
+## 视频模块
 
-[JCMediaChannelCallback（回调代理）](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannelCallback.html)
+[JCMediaDevice](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaDevice.html)
+（媒体设备类）
 
-## 媒体设备类
+[JCMediaDeviceCallback](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaDeviceCallback.html)
+（媒体设备类回调）
 
-[JCMediaDevice（设备模块）](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaDevice.html)
-
-[JCMediaDeviceCallback（回调代理）](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaDeviceCallback.html)
-
-[JCMediaDeviceVideoCanvas（视频对象）](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaDeviceVideoCanvas.html)
-
------
+[JCMediaDeviceVideoCanvas](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaDeviceVideoCanvas.html)
+(视频类）

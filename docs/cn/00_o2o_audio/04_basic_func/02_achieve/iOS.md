@@ -13,16 +13,16 @@ title: 实现一对一通话
 create](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaDevice.html#//api/name/create:callback:)
 和 [JCCall
 create](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCCall.html#//api/name/create:mediaDevice:callback:)
-以初始化实现一对一通话需要的模块
+以初始化实现一对一通话需要的模块。
 
 ``````objectivec
 //初始化
 -(bool)initialize {
-   //1. 媒体类
-   JCMediaDevice *mediaDevice = [JCMediaDevice create:client callback:self];
-   //2. 通话类
-   JCCall *call = [JCCall create:client mediaDevice:mediaDevice callback:self];
-   return client.state == JCClientStateLogined;
+    //1. 媒体类
+    JCMediaDevice *mediaDevice = [JCMediaDevice create:client callback:self];
+    //2. 通话类
+    JCCall *call = [JCCall create:client mediaDevice:mediaDevice callback:self];
+    return client.state == JCClientStateLogined;
 }
 ``````
 
@@ -33,7 +33,7 @@ create](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCCall.h
     协议的代理对象，该协议用于将媒体设备相关的事件通知给上层。因此需要先指定 callback 的代理对象，然后在该代理对象中实现
     JCMediaDeviceCallback 的方法。
 
-JCMediaDeviceCallback 中的主要方法如下
+JCMediaDeviceCallback 中的主要方法如下。
 
 ``````objectivec
 //摄像头变化
@@ -51,7 +51,7 @@ JCMediaDeviceCallback 中的主要方法如下
     协议的代理对象，该协议用于将通话相关的事件通知给上层。因此需要先指定 callback 的代理对象，然后在该代理对象中实现
     JCCallCallback 的方法。
 
-JCCallCallback 中的主要方法如下
+JCCallCallback 中的主要方法如下。
 
 ``````objectivec
 //新增通话回调
@@ -117,26 +117,26 @@ JCCallCallback 中的主要方法如下
     [JCCallItem](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCCallItem.html)
     对象的 video 以及 direction 属性判断是视频呼入还是语音呼入，从而做出相应的处理。
 
-示例代码:
-
-``````objectivec
--(void)onCallItemAdd:(JCCallItem* __nonnull)item {
-    // 1. 如果是语音呼入且在振铃中
-    if (item && item.direction == JCCallDirectionIn && !item.video) {
-        // 2. 做出相应的处理，如在界面上显示“振铃中”
-        ...
+    ``````objectivec
+    -(void)onCallItemAdd:(JCCallItem* __nonnull)item {
+        // 1. 如果是语音呼入且在振铃中
+        if (item && item.direction == JCCallDirectionIn && !item.video) {
+            // 2. 做出相应的处理，如在界面上显示“振铃中”
+            ...
+        }
     }
-}
-``````
+    ``````
+
+<!-- end list -->
 
 2. 调用
     [answer](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCCall.html#//api/name/answer:video:)
-    接听通话，**语音通话只能进行语音应答**
+    接听通话，**语音通话只能进行语音应答** 。
 
-``````objectivec
-// 应答通话
-[call answer:item video:false];
-``````
+    ``````objectivec
+    // 应答通话
+    [call answer:item video:false];
+    ``````
 
 通话应答后，通话状态变为 JCCallStateConnecting。
 

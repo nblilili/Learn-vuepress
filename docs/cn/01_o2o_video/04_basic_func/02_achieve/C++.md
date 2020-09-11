@@ -242,7 +242,7 @@ void JCManager::onCallItemUpdate(JCCallItem* item, JCCallItemChangeParam changeP
 [stopSelfVideo](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_call_item.html#a8d6f702c5e477f60df2e671e9392ce76)
 和
 [stopOtherVideo](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_call_item.html#a1c58b54ed0f4aac1bef8383ede0f7651)
-方法销毁本地和远端视频画面：:
+方法销毁本地和远端视频画面。
 
 ``````cpp
 void JCManager::onCallItemRemove(JCCallItem* item, JCCallReason reason, const char* description) { //移除通话回调

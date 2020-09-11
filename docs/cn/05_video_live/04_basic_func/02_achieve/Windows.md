@@ -50,7 +50,7 @@ public void onAudioOutputTypeChange(string audioOutputType)
 ``````
 
 - JCMediaChannel create 方法中的 this 为实现
-    [<span id="id11" class="problematic">|JCMediaChannelCallback|</span>](#id10)
+    [JCMediaChannelCallback](https://developer.juphoon.com/portal/reference/V2.1/windows/html/e21fadeb-6230-0f07-efdc-6f953cf790bc.htm)
     接口的对象，用于将频道中的相关事件通知给上层
 
 JCMediaChannelCallback 中的主要方法如下
@@ -177,7 +177,7 @@ public void onJoin(bool result, JCMediaChannelReason reason, String channelId) {
 
 ``````csharp
 /// 打开本地视频预览
-mMediaChannel.getSelfParticipant().startVideo(JCMediaDevice.RENDER_FULL_CONTENT, JCMediaChannel.PICTURESIZE_NONE);
+mMediaChannel.getSelfParticipant().startVideo(JCMediaDeviceRenderMode.FULLCONTENT, JCMediaChannelPictureSize.None);
 ``````
 
 ## 创建远端视频画面
@@ -206,7 +206,7 @@ mMediaChannel.getSelfParticipant().startVideo(JCMediaDevice.RENDER_FULL_CONTENT,
 /// 获取所有成员对象
 List<JCMediaChannelParticipantparticipants = mMediaChannel.getSelfParticipant();
 /// 调用创建视频画面的方法
-participants.get(0).startVideo(JCMediaDevice.RENDER_FULL_CONTENT, JCMediaChannel.PICTURESIZE_NONE);
+participants.get(0).startVideo(JCMediaDeviceRenderMode.FULLCONTENT, JCMediaChannelPictureSize.None);
 /// 请求远端视频流, 此处调用大尺寸视频窗口
 mMediaChannel.requestVideo(participants.get(0), Large);
 ``````

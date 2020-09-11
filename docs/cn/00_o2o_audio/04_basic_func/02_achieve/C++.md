@@ -50,16 +50,16 @@ public:
 [createJCMediaDevice](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/_j_c_media_device_8h.html#a96a10766264f3c12af531b70cb9c9749)
 和
 [createJCCall](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/_j_c_call_8h.html#a29320972a659ce8eaf4994576103a62c)
-以初始化实现一对一通话需要的模块
+以初始化实现一对一通话需要的模块。
 
 ``````cpp
 bool JCManager::initialize()
 {
-  //1. 媒体类
-  mediaDevice = createJCMediaDevice(client, this);
-  //2. 通话类
-  call = createJCCall(client, mediaDevice, this);
-  return true;
+    //1. 媒体类
+    mediaDevice = createJCMediaDevice(client, this);
+    //2. 通话类
+    call = createJCCall(client, mediaDevice, this);
+    return true;
 }
 ``````
 
@@ -92,7 +92,7 @@ bool JCManager::initialize()
 // 发起语音呼叫
 void JCSampleDlg::OnBnClickedButtonVoicecall()
 {
-  JCManager::shared()->call->call("userID", false, "自定义透传字符串");
+    JCManager::shared()->call->call("userID", false, "自定义透传字符串");
 }
 ``````
 
@@ -139,7 +139,7 @@ void JCManager::onCallItemAdd(JCCallItem* item) {
     // 1. 如果是呼入且在振铃中
     if (item->getDirection() == JCCallDirectionIn && item->getState() == JCCallStatePending) {
         // 2. 做出相应的处理，如在界面上显示“振铃中”
-         ...
+        ...
     }
 }
 ``````
@@ -179,12 +179,12 @@ JCManager::shared()->call->answer(item, item->getVideo());
     void JCSampleDlg::OnBnClickedButtonTermcall()
     {
       // 1. 获取当前活跃通话
-      JCCallItem* item = JCManager::shared()->call->getActiveCallItem();
-      if (item != NULL)
-      {
+        JCCallItem* item = JCManager::shared()->call->getActiveCallItem();
+        if (item != NULL)
+        {
         // 2. 挂断当前活跃通话
         JCManager::shared()->call->term(item, JCCallReasonNone, "term");
-      }
+        }
     }
     ``````
 

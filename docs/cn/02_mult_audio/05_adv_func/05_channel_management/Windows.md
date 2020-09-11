@@ -23,7 +23,7 @@ public abstract int query(String channelId);
 mediaChannel.query("channelId");
 ``````
 
-查询操作发起后，UI 通过以下方法监听回调查询的结果：
+查询操作发起后，UI 通过以下方法监听回调查询的结果。
 
 ``````csharp
 /**

@@ -36,7 +36,7 @@ public bool initialize() {
     [JCMediaDeviceCallback](https://developer.juphoon.com/portal/reference/V2.1/windows/html/3a00aa12-4e18-cf90-4610-b2c9c63b7a7b.htm)
     接口的对象，用于将媒体设备相关的事件通知给上层。
 
-JCMediaDeviceCallback 中的主要方法如下
+JCMediaDeviceCallback 中的主要方法如下。
 
 ``````csharp
 //摄像头变化
@@ -53,7 +53,7 @@ public void onAudioOutputTypeChange(string audioOutputType)
     [JCCallCallback](https://developer.juphoon.com/portal/reference/V2.1/windows/html/25bca4ea-ad43-2cbb-42a8-b4e626739711.htm)
     接口的对象，用于将通话相关的事件通知给上层。
 
-JCCallCallback 中的主要方法如下
+JCCallCallback 中的主要方法如下。
 
 ``````csharp
 //新增通话回调
@@ -88,8 +88,7 @@ public void onMissedCallItem(JCCallItem item)
 
 - `video` 选择是否为视频通话， true 表示拨打视频通话， false 表示拨打语音通话。
 
-- [extraParam()](https://developer.juphoon.com/portal/reference/V2.1/windows/html/e0226cbc-1ca1-ef9c-5e8e-d3dc853d618d.htm)
-    为自定义透传字符串， 可通过 `item.extraParam` 获取该属性。
+- `extraParam` 为自定义透传字符串， 可通过 `item.extraParam` 获取该属性。
 
 ``````csharp
 /// 发起语音呼叫
@@ -112,7 +111,7 @@ mCall.call(userID, false, null);
 
 public void onCallItemAdd(JCCallItem item) {
     /// 业务逻辑
-    if (item.direction == JCCall.DIRECTION_IN) {
+    if (item.direction == JCCallDirection.In) {
         /// 如果是被叫
         ...
     }else{
@@ -139,7 +138,7 @@ public void onCallItemAdd(JCCallItem item) {
     ``````csharp
     public void onCallItemAdd(JCCallItem item) {
         /// 1. 如果是语音呼入且在振铃中
-        if (item.direction == JCCall.DIRECTION_IN && !item.video) {
+        if (item.direction == JCCallDirection.In && !item.video) {
             /// 2. 做出相应的处理，如在界面上显示“振铃中”
             ...
         }
@@ -188,5 +187,5 @@ public void onCallItemAdd(JCCallItem item) {
 /// 1. 获取当前活跃通话
 JCCallItem item = mCall.getActiveCallItem();
 /// 2. 挂断当前活跃通话
-mCall.term(item, JCCall.REASON_NONE, null);
+mCall.term(item, JCCallReason.None, null);
 ``````

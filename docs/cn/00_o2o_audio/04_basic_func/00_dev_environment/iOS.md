@@ -47,20 +47,20 @@ title: 准备开发环境
 
 CocoaPods 环境安装好后，执行以下操作：
 
-1. 打开 Terminal，cd 至项目根目录
+1. 打开 Terminal ，`cd` 至项目根目录
 
-2. 执行 pod init，项目文件夹下会生成一个 Podfile 文本文件
+2. 执行 `pod init` ，项目文件夹下会生成一个 Podfile 文本文件
 
-3. 执行 open -e Podfile
+3. 执行 `open -e Podfile`
 
 4. 添加导入配置 `pod 'JuphoonCloudSDK_iOS', '2.1'`
 
-5. 执行 `pod install`，成功安装后，Terminal 中会显示 Pod installation
-    complete\!，此时项目文件夹下会生成一个 xcworkspace 文件。
+5. 执行 `pod install`，成功安装后，Terminal 中会显示 `Pod installation complete!`
+    ，此时项目文件夹下会生成一个 xcworkspace 文件
 
-6. 双击打开 `xcworkspace` 文件。
+6. 双击打开 xcworkspace 文件
 
-修改后内容如下所示，注意将 Your App 替换为您的 Target 名称：
+修改后内容如下所示，注意将 `Your App` 替换为您的 Target 名称。
 
 ``````default
 platform :ios, '9.0'
@@ -75,43 +75,54 @@ end
 `V2.1` 为当前发布的最新版本，关于指定具体版本请参考 [pod
 使用规范](https://guides.cocoapods.org/using/the-podfile.html) 。
 
-如果需要更新本地库版本，在执行 pod install 之前执行 pod update 命令。
+如果需要更新本地库版本，请先执行 `pod update` 命令，再执行 `pod install` 命令。
 
 :::
 
 ### 方法二：手动导入静态库
 
-1. 解压并打开下载的 JC SDK 静态库，在 sdk 文件目录下包含 include、lib、JCSDKOC.framework 和
-    JCCloudWrapper.framework 四个文件夹。
+1. 解压并打开下载的 JC SDK 静态库，在 **sdk** 文件目录下包含
+    **include、lib、JCSDKOC.framework 和 JCCloudWrapper.framework**
+    四个文件夹。
 
-2. 将 `sdk` 文件夹拷贝到您工程所在的目录下。
+2. 将 **sdk** 文件夹拷贝到您工程所在的目录下。
 
 3. 导入 SDK
 
-    打开 Xcode，进入 TARGETS \Project Name \Build Phases \Link Binary
-    with Libraries 菜单，点击 ‘+’ 符号，导入 sdk 文件夹下的 `JCSDKOC.framework`、lib
-    文件夹下的 `libmtc.a` 和 `libzmf.a` 文件。
+    打开 Xcode，进入 **TARGETS \Project Name \Build Phases \Link
+    Binary with Libraries** 菜单，点击 **+** 符号，导入 **sdk** 文件夹下的
+    `JCSDKOC.framework` 和 **sdk \lib** 文件夹下的 `libmtc.a` 、 `libzmf.a`
+    文件。
 
-4. 导入 SDK 依赖的库
+4. 继续点击 **+** 符号，导入如下系统依赖的库。
 
-    继续点击 ‘+’ 符号，导入如下系统依赖的库： - AssetsLibrary.framework -
-    AudioToolbox.framework - VideoToolBox.framework -
-    AVFoundation.framework - CFNetwork.framework - CoreMedia.framework
-    - CoreMotion.framework - CoreVideo.framework - GLKit.framework -
-    PushKit.framework（推送使用） - ReplayKit.framework - Security.framework
-    - SystemConfiguration.framework - libc++.tbd - libz.tbd -
-    libresolv.tbd
+    ``````default
+    - AssetsLibrary.framework
+    - AudioToolbox.framework
+    - VideoToolBox.framework
+    - AVFoundation.framework
+    - CFNetwork.framework
+    - CoreMedia.framework
+    - CoreMotion.framework
+    - CoreVideo.framework
+    - GLKit.framework
+    - PushKit.framework（推送使用）
+    - ReplayKit.framework
+    - Security.framework
+    - SystemConfiguration.framework
+    - libc++.tbd
+    - libz.tbd
+    - libresolv.tbd
+    ``````
 
-5. 设置路径
+5. 点击 Build Settings ，找到 Search Paths，设置 Framework Search Paths 、Header
+    Search Paths（头文件路径） 和 Library Search Paths（库文件路径）。
 
-    点击 ‘Build Settings’，找到 Search Paths，设置 Framework Search Paths
-    、Header Search Paths（头文件路径） 和 Library Search Paths（库文件路径）：
+      - Framework Search Paths：`$(PROJECT_DIR)/../sdk`
 
-      - Framework Search Paths：$(PROJECT\_DIR)/../sdk
+      - Header Search Paths：`$(PROJECT_DIR)/../sdk/include`
 
-      - Header Search Paths：$(PROJECT\_DIR)/../sdk/include
-
-      - Library Search Paths：$(PROJECT\_DIR)/../sdk/lib/ios
+      - Library Search Paths：`$(PROJECT_DIR)/../sdk/lib/ios`
 
     ::: tip
 
@@ -121,22 +132,15 @@ end
 
     :::
 
-6. 设置 Enable Bitcode 为 NO
+6. 进入工程中 **Target \Build Settings \Enable Bitcode**，将此项设置为 NO。
 
-    进入工程中 Target -\Build Settings -\Enable Bitcode，将此项设置为 NO。
-
-7. 设置 Other Linker Flags 的参数为 -ObjC
-
-    进入工程中的 Target -\Build Settings -\Other Linker Flags，在此项中添加
+7. 进入工程中的 **Target \Build Settings \Other Linker Flags**，在此项中添加
     -ObjC。
 
-8. 设置预处理宏定义
-
-    点击 ‘Build Settings’，找到 Preprocessor Macros，在右侧输入
+8. 点击 Build Settings，找到 Preprocessor Macros，在右侧输入
     ZPLATFORM=ZPLATFORM\_IOS 。
 
-    **如果设置了 APNs 推送**，则还需要在 Preprocessor Macros 下的 Debug 中输入
-    DEBUG，如下图：
+    如果设置了 APNs 推送，则还需要在 Preprocessor Macros 下的 Debug 中输入 DEBUG，如下图：
 
     ![../../../../\_images/pushset.png](../../../../_images/pushset.png)
 
@@ -146,14 +150,12 @@ end
 
     :::
 
-9. 设置 Documentation Comments 为 NO
-
-    点击 ‘Build Settings’，找到 Documentation Comments 并设置为 NO。
+9. 点击 Build Settings，找到 Documentation Comments 并设置为 NO。
 
 10. 设置后台运行模式
 
-    进入工程的 Target -\Signing & Capabilities -\Background
-    Modes，勾选如下两项内容:
+    进入工程的 **Target \Signing & Capabilities \Background
+    Modes**，勾选如下两项内容:
 
       - Audio, AirPlay, and Picture in Picture
 
@@ -161,81 +163,54 @@ end
 
 ### 方法三：手动导入动态库
 
-1. 解压并打开下载的 JC SDK 动态库，在 sdk 文件目录下包含 JCSDKOC.framework 文件。
+1. 解压并打开下载的 JC SDK 动态库，在 **sdk** 文件目录下包含 `JCSDKOC.framework` 文件。
 
-2. 将 `sdk` 文件夹拷贝到您工程所在的目录下。
+2. 将 **sdk** 文件夹拷贝到您工程所在的目录下。
 
-3. 导入 SDK
+3. 打开 Xcode，进入 **TARGETS \Project Name \General** ，在 Embedded
+    Binaries 一栏，点击 **+** 符号，然后导入 JCSDK 文件夹下的 JCSDKOC.framework。
 
-    打开 Xcode，进入 TARGETS \Project Name \General，在 “Embedded
-    Binaries” 一栏，点击 ‘+’ 符号，然后导入 JCSDK 文件夹下的 JCSDKOC.framework。
+4. 继续点击 **+** 符号，导入如下系统依赖的库。
 
-4. 导入 SDK 依赖的库
+    ``````default
+    - AssetsLibrary.framework
+    - AudioToolbox.framework
+    - VideoToolBox.framework
+    - AVFoundation.framework
+    - CFNetwork.framework
+    - CoreMedia.framework
+    - CoreMotion.framework
+    - CoreVideo.framework
+    - GLKit.framework
+    - PushKit.framework（推送使用）
+    - ReplayKit.framework
+    - Security.framework
+    - SystemConfiguration.framework
+    - libc++.tbd
+    - libz.tbd
+    - libresolv.tbd
+    ``````
 
-    继续点击 ‘+’ 符号，导入如下系统依赖的库：
+5. 点击 Build Settings，找到 Search Paths，设置 Framework Search Paths：
 
-      - AssetsLibrary.framework
-
-      - AudioToolbox.framework
-
-      - VideoToolBox.framework
-
-      - AVFoundation.framework
-
-      - CFNetwork.framework
-
-      - CoreMedia.framework
-
-      - CoreMotion.framework
-
-      - CoreVideo.framework
-
-      - GLKit.framework
-
-      - PushKit.framework（推送使用）
-
-      - ReplayKit.framework
-
-      - Security.framework
-
-      - SystemConfiguration.framework
-
-      - libc++.tbd
-
-      - libz.tbd
-
-      - libresolv.tbd
-
-5. 设置路径
-
-    点击 ‘Build Settings’，找到 Search Paths，设置 Framework Search Paths
-    、Header Search Paths（头文件路径） 和 Library Search Paths（库文件路径）：
-
-      - Framework Search Paths：$(PROJECT\_DIR)/../sdk
+      - Framework Search Paths：`$(PROJECT_DIR)/../sdk`
 
     ::: tip
 
-    在完成第 1 步导入 JCSDKOC.framework 和两个 .a 文件后，Xcode 会自动生成该路径，如果 Xcode
-    没有自动生成路径，用户要根据 `JCSDKOC.framework` 文件所在目录，手动设置路径。
+    在完成第 1 步导入 JCSDKOC.framework 文件后，Xcode 会自动生成该路径，如果 Xcode
+    没有自动生成路径，用户要根据 `JCSDKOC.framework`
+    文件所在目录，手动设置路径。
 
     :::
 
-6. 设置 Enable Bitcode 为 NO
+6. 进入工程中 **Target \Build Settings \Enable Bitcode**，将此项设置为 NO。
 
-    进入工程中 Target -\Build Settings -\Enable Bitcode，将此项设置为 NO。
-
-7. 设置 Other Linker Flags 的参数为 -ObjC
-
-    进入工程中的 Target -\Build Settings -\Other Linker Flags，在此项中添加
+7. 进入工程中的 **Target \Build Settings \Other Linker Flags**，在此项中添加
     -ObjC。
 
-8. 设置预处理宏定义
-
-    点击 ‘Build Settings’，找到 Preprocessor Macros，在右侧输入
-    ZPLATFORM=ZPLATFORM\_IOS 。
-
-    **如果设置了 APNs 推送**，则还需要在 Preprocessor Macros 下的 Debug 中输入
-    DEBUG，如下图：
+8. 点击 Build Settings，找到 Preprocessor Macros，在右侧输入
+    ZPLATFORM=ZPLATFORM\_IOS 。如果设置了 APNs 推送，则还需要在 Preprocessor Macros 下的
+    Debug 中输入 DEBUG，如下图：
 
     ![../../../../\_images/pushset.png](../../../../_images/pushset.png)
 
@@ -245,14 +220,10 @@ end
 
     :::
 
-9. 设置 Documentation Comments 为 NO
+9. 点击 Build Settings，找到 Documentation Comments 并设置为 NO。
 
-    点击 ‘Build Settings’，找到 Documentation Comments 并设置为 NO。
-
-10. 设置后台运行模式
-
-    进入工程的 Target -\Signing & Capabilities -\Background
-    Modes，勾选如下两项内容:
+10. 进入工程的 **Target \Signing & Capabilities \Background
+    Modes**，勾选如下两项内容:
 
       - Audio, AirPlay, and Picture in Picture
 

@@ -1,7 +1,7 @@
 ---
-title: Realize one-to-one voice calling
+title: Realize One-to-One Voice Calling
 ---
-# Realize one-to-one voice calling
+# Realize One-to-One Voice Calling
 
 This guide introduces how to implement one-to-one voice calls. The API
 call sequence of one-to-one voice calls is shown in the figure below:

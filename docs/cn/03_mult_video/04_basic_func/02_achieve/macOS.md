@@ -13,7 +13,7 @@ title: 实现多方通话
 create](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaDevice.html#//api/name/create:callback:)
 和 [JCMediaChannel
 create](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaChannel.html#//api/name/create:mediaDevice:callback:)
-以初始化实现多方通话需要的模块：
+以初始化实现多方通话需要的模块。
 
 ``````objectivec
 //初始化
@@ -87,18 +87,18 @@ JCMediaChannel 中的主要方法如下
 
 ## 加入频道
 
-1. 调用
-    [enableUploadAudioStream](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaChannel.html#//api/name/enableUploadAudioStream:)
-    开启音频流。调用
-    [enableUploadVideoStream](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaChannel.html#//api/name/enableUploadVideoStream:)
-    开启视频流。
+1\. 调用
+[enableUploadAudioStream](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaChannel.html#//api/name/enableUploadAudioStream:)
+开启音频流。调用
+[enableUploadVideoStream](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaChannel.html#//api/name/enableUploadVideoStream:)
+开启视频流。
 
-    ``````objectivec
-    // 1. 开启音频流
-    [mediaDeviceChannel enableUploadAudioStream:true];
-    // 2. 开启视频流
-    [mediaDeviceChannel enableUploadVIdeoStream:true];
-    ``````
+``````objectivec
+// 1. 开启音频流
+[mediaDeviceChannel enableUploadAudioStream:true];
+// 2. 开启视频流
+[mediaDeviceChannel enableUploadVIdeoStream:true];
+``````
 
 2. 调用
     [join](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaChannel.html#//api/name/join:joinParam:)
@@ -162,11 +162,11 @@ JCMediaDeviceVideoCanvas *localCanvas = [participant startVideo:JCMediaDeviceRen
 
 ## 创建远端视频画面
 
-视频通话中，通常需要看到其他用户。远端用户成功加入频道后，会触发
-[onParticipantJoin](https://developer.juphoon.com/portal/reference/V2.1/ios/Protocols/JCMediaChannelCallback.html#//api/name/onParticipantJoin:)
-回调，该回调中包含这个远端用户的对象。
+视频通话中，通常需要看到其他用户。通过
+[JCMediaChannel](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaChannel.html)
+中的 participants 属性获取频道内所有成员对象。
 
-在该回调中调用
+然后调用
 [JCMediaChannelParticipant](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaChannelParticipant.html)
 类中的
 [startVideo](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaDevice.html#//api/name/startVideo:renderType:)
@@ -174,13 +174,24 @@ JCMediaDeviceVideoCanvas *localCanvas = [participant startVideo:JCMediaDeviceRen
 [JCMediaDeviceVideoCanvas](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaDeviceVideoCanvas.html)
 对象，该对象用于将视频渲染到画布上，并管理渲染的方式。
 
+[startVideo](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaDevice.html#//api/name/startVideo:renderType:)
+方法调用后，还需要调用
+[JCMediaChannel](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaChannel.html)
+中的
+[requestVideo](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaChannel.html#//api/name/requestVideo:pictureSize:)
+方法请求频道中其他用户的视频流。
+
 示例代码:
 
 ``````objectivec
--(void)onParticipantJoin:(JCMediaChannelParticipant*)participant {
-    if (participant.video) {
-        JCMediaDeviceVideoCanvas *remoteCanvas = [participant startVideo:JCMediaDeviceRenderFullScreen pictureSize:JCMediaChannelPictureSizeLarge];
-    }
+//取频道内所有成员对象
+NSArray* participants = mediaChannel.participants;
+for (JCMediaChannelParticipant* participant in participants) {
+if (participant.video) {
+    //创建远端画面
+    JCMediaDeviceVideoCanvas *remoteCanvas = [participant startVideo:JCMediaDeviceRenderFullScreen pictureSize:JCMediaChannelPictureSizeLarge];
+    //请求远端视频流
+    mediaChannel.requestVideo:participant pictureSize:JCMediaChannelPictureSizeLarge];
 }
 ``````
 

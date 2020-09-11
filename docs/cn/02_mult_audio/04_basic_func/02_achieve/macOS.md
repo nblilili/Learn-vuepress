@@ -13,7 +13,7 @@ title: 实现多方通话
 create](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaDevice.html#//api/name/create:callback:)
 和 [JCMediaChannel
 create](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaChannel.html#//api/name/create:mediaDevice:callback:)
-以初始化实现多方通话需要的模块：
+以初始化实现多方通话需要的模块。
 
 ``````objectivec
 //初始化
@@ -81,16 +81,16 @@ JCMediaChannel 中的主要方法如下
 
 ## 加入频道
 
-1. 调用
-    [JCMediaChannel](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaChannel.html)
-    中的
-    [enableUploadAudioStream](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaChannel.html#//api/name/enableUploadAudioStream:)
-    开启音频流。返回 true 表示正常执行调用流程，false 表示调用异常。
+1\. 调用
+[JCMediaChannel](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaChannel.html)
+中的
+[enableUploadAudioStream](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaChannel.html#//api/name/enableUploadAudioStream:)
+开启音频流。返回 true 表示正常执行调用流程，false 表示调用异常。
 
-    ``````objectivec
-    // 1. 开启音频流
-    [mediaDeviceChannel enableUploadAudioStream:true];
-    ``````
+``````objectivec
+// 1. 开启音频流
+[mediaDeviceChannel enableUploadAudioStream:true];
+``````
 
 2. 调用
     [join](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaChannel.html#//api/name/join:joinParam:)
@@ -130,7 +130,7 @@ JCMediaChannel 中的主要方法如下
 
 调用
 [leave](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaChannel.html#//api/name/leave)
-方法离开当前频道。
+方法可以离开当前频道。
 
 ``````objectivec
 [mediaChannel leave];

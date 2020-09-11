@@ -13,16 +13,16 @@ title: 实现一对一通话
 create](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaDevice.html#//api/name/create:callback:)
 和 [JCCall
 create](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCCall.html#//api/name/create:mediaDevice:callback:)
-以初始化实现一对一通话需要的模块
+以初始化实现一对一通话需要的模块。
 
 ``````objectivec
 //初始化
 -(bool)initialize {
-   //1. 媒体类
-   JCMediaDevice *mediaDevice = [JCMediaDevice create:client callback:self];
-   //2. 通话类
-   JCCall *call = [JCCall create:client mediaDevice:mediaDevice callback:self];
-   return client.state == JCClientStateLogined;
+    //1. 媒体类
+    JCMediaDevice *mediaDevice = [JCMediaDevice create:client callback:self];
+    //2. 通话类
+    JCCall *call = [JCCall create:client mediaDevice:mediaDevice callback:self];
+    return client.state == JCClientStateLogined;
 }
 ``````
 
@@ -33,7 +33,7 @@ create](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCCall.h
     协议的代理对象，该协议用于将媒体设备相关的事件通知给上层。因此需要先指定 callback 的代理对象，然后在该代理对象中实现
     JCMediaDeviceCallback 的方法。
 
-JCMediaDeviceCallback 中的主要方法如下
+JCMediaDeviceCallback 中的主要方法如下。
 
 ``````objectivec
 //摄像头变化
@@ -51,7 +51,7 @@ JCMediaDeviceCallback 中的主要方法如下
     协议的代理对象，该协议用于将通话相关的事件通知给上层。因此需要先指定 callback 的代理对象，然后在该代理对象中实现
     JCCallCallback 的方法。
 
-JCCallCallback 中的主要方法如下
+JCCallCallback 中的主要方法如下。
 
 ``````objectivec
 //新增通话回调

@@ -3,7 +3,7 @@ title: 登录
 ---
 # 登录
 
-本章节介绍如何初始化 JC SDK 并登录。
+本章节将介绍如何初始化 JC SDK 并登录。
 
 ## 初始化
 
@@ -96,9 +96,15 @@ void JCSampleDlg::OnBnClickedButtonLogin()
 
 1. 环境设置：
 
-      - 国内环境 `http:cn.router.justalkcloud.com:8080` （默认）
-
-      - 国际环境 `http:intl.router.justalkcloud.com:8080`
+>
+>
+>
+>
+> - 国内环境 `http:cn.router.justalkcloud.com:8080` （默认）
+>
+> - 国际环境 `http:intl.router.justalkcloud.com:8080`
+>
+>
 
 2. userID 不能为空，可由英文、数字和 `+` 、 `-` 、 `_` 、 `.`
     组成（特殊字符不能作为第一个字符），大小写不敏感，长度不能超过
@@ -116,7 +122,7 @@ void JCSampleDlg::OnBnClickedButtonLogin()
 
 ``````cpp
 void JCManager::onClientStateChange(JCClientState state, JCClientState oldState) {
-     if (state == JCClient.STATE_IDLE) { // 未登录
+     if (state == JCClientStateIdle) { // 未登录
        ...
     } else if (state == JCClientStateLogining) { // 正在登录
        ...
@@ -158,7 +164,7 @@ JCClientStateLogined（登录成功）。SDK
 
 调用
 [logout](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_client.html#abac015a13078c84b06afac69dcd392ff)
-发起登出：
+发起登出。
 
 ``````cpp
 JCManager::shared()->client->logout();

@@ -20,7 +20,7 @@ JCMediaDeviceCamera* __nullable camera;
 JCMediaDeviceCamera* __nullable defaultCamera;
 ``````
 
-其中，摄像头对象（JCMediaDeviceCamera）有以下属性：
+其中，摄像头对象（JCMediaDeviceCamera）有以下属性。
 
 ``````objectivec
 /// 摄像头id
@@ -33,7 +33,7 @@ NSString* __nonnull cameraName;
 JCMediaDeviceCameraType cameraType;
 ``````
 
-摄像头类型（JCMediaDeviceCameraType）有以下几种：
+摄像头类型（JCMediaDeviceCameraType）有以下几种。
 
 ``````objectivec
 JCMediaDeviceCameraTypeNone = 0,
@@ -204,7 +204,7 @@ void* p = (__bridge void *)render;
 int Zmf_VideoRenderAddCallback (void *pUser, ZmfVideoRenderCallback pfnCb);
 ``````
 
-回调类型说明：
+回调类型说明。
 
 ``````objectivec
 /**
