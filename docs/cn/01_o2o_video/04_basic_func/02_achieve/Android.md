@@ -83,7 +83,7 @@ JCManager.getInstance().call.updateMediaConfig(mediaConfig);
 ``````
 
 菊风提供四种配置模式供开发者选择，并开放相关属性供开发者进行灵活的自定义配置，具体方法请查看
-[<span class="std std-ref">媒体参数设置</span>](../../05_adv_func/Android/03_intelligent_hardware.html#android)
+[<span class="std std-ref">媒体参数设置</span>](../../05_adv_func/03_intelligent_hardware/Android.html)
 。
 
 ## 拨打通话
@@ -268,5 +268,5 @@ public void onCallItemRemove(JCCallItem item, @JCCall.CallReason int reason, Str
 ## 待机功耗优化方案
 
 针对手表端 JC SDK 待机功耗的问题，菊风提供对应的解决方案，详细内容参考：
-[<span class="std std-ref">待机功耗优化方案</span>](../../05_adv_func/Android/03_intelligent_hardware.html#id5)
+[<span class="std std-ref">待机功耗优化方案</span>](../../05_adv_func/03_intelligent_hardware/Android.html)
 。

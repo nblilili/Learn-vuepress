@@ -122,7 +122,7 @@ After the login is successful, the SDK will automatically maintain the
 connection status with the server until the user actively calls the
 logout interface, or the device is logged out because the account is
 logged in on another device. Login success/failure reason Refer to
-[JCClient.ClientReason](https://developer.juphoon.com/portal/reference/V2.1/windows/html/9d6e6243-1b3f-55a6-7d0a-3158812dfc6f.htm)
+[JCClientReason](https://developer.juphoon.com/portal/reference/V2.1/windows/html/9d6e6243-1b3f-55a6-7d0a-3158812dfc6f.htm)
 .
 
 ## Log out
@@ -134,7 +134,7 @@ The call flow of the logout interface is as follows:
 Call
 [logout()](https://developer.juphoon.com/portal/reference/V2.1/windows/html/4b7a3fd4-f6bf-fc4e-8cf9-78023f69b459.htm)
 to initiate logout.More logout reason reference:
-[JCClient.ClientReason](https://developer.juphoon.com/portal/reference/V2.1/windows/html/9d6e6243-1b3f-55a6-7d0a-3158812dfc6f.htm)
+[JCClientReason](https://developer.juphoon.com/portal/reference/V2.1/windows/html/9d6e6243-1b3f-55a6-7d0a-3158812dfc6f.htm)
 .
 
 Logging out will also trigger a login state change (onClientStateChange)

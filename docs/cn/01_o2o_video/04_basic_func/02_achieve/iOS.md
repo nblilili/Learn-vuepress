@@ -76,7 +76,7 @@ JCManager.shared.call.mediaConfig = mediaConfig;
 ``````
 
 菊风提供三种配置模式供开发者选择，并开放相关属性供开发者进行灵活的自定义配置，具体方法请查看
-[<span class="std std-ref">媒体参数设置</span>](../../05_adv_func/iOS/03_intelligent_hardware.html#ios)
+[<span class="std std-ref">媒体参数设置</span>](../../05_adv_func/03_intelligent_hardware/iOS.html)
 。
 
 ## 拨打通话
