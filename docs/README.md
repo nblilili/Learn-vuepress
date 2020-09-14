@@ -20,9 +20,18 @@ home: true
 
 <script>
 export default {
+  watch: {
+    $route(newValue, oldValue) {
+      console.log(newValue, oldValue)
+    },
+  },
   mounted () {
-    console.log(1111)
+    // console.log(window.document.referrer)
+    // console.log(this.$route.meta.parentPath)
+    // console.log(this.$route)
+    // if(!!!window.localstorage.lang){
     this.$router.push({ path: '/cn/' })
+    // }
   }
 }
 </script> 

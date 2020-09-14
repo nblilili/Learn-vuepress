@@ -50,7 +50,7 @@ public void onAudioOutputTypeChange(string audioOutputType)
 ``````
 
 - JCMediaChannel create 方法中的 this 为实现
-    [<span id="id8" class="problematic">|JCMediaChannelCallback|</span>](#id7)
+    [JCMediaChannelCallback](https://developer.juphoon.com/portal/reference/V2.1/windows/html/e21fadeb-6230-0f07-efdc-6f953cf790bc.htm)
     接口的对象，用于将频道中的相关事件通知给上层
 
 JCMediaChannelCallback 中的主要方法如下

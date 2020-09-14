@@ -99,18 +99,11 @@ void JCSampleDlg::OnBnClickedButtonLogin()
 
 ::: tip
 
-1.Environment settings:
-
->
->
->
->
-> - Domestic environment `http:cn.router.justalkcloud.com:8080`
->     (Default)
->
-> - International environment `http:intl.router.justalkcloud.com:8080`
->
->
+1. Environment settings:
+   - Domestic environment `http:cn.router.justalkcloud.com:8080`
+     (Default)
+   - International environment
+     `http:intl.router.justalkcloud.com:8080`
 
 2. userID is English, numbers and `+` `-` `_` `.` , case-insensitive,
     the length should not exceed 64 characters, `-` `_` `.` cannot be

@@ -70,7 +70,7 @@ JCManager::shared()->mediaDevice->setCameraProperty(640, 360, 24);
 int Zmf_VideoCaptureAddCallback (void *pUser, ZmfVideoCaptureCallback pfnCb)
 ``````
 
-回调类型说明：
+回调类型说明。
 
 ``````cpp
 /** the callback to receive captured image
@@ -161,7 +161,7 @@ void JCSampleDlg::OnBnClickedButtonEndCall()
 int Zmf_VideoRenderAddCallback (void *pUser, ZmfVideoRenderCallback pfnCb);
 ``````
 
-回调类型说明：
+回调类型说明。
 
 ``````cpp
 /**

@@ -120,6 +120,10 @@ export default {
     this.$EventBus.$on("topsearch", (res) => {
       this.topsearch = true;
     });
+    let hash = this.$route.hash.substr(1);
+    if (hash) {
+      this.$router.push({ hash: decodeURI(hash) });
+    }
   },
   methods: {
     goSearch(value) {
@@ -238,6 +242,7 @@ function check_path(data) {
 
 <style lang="stylus">
 @require '../styles/wrapper.styl';
+@require '../styles/HomeSearch.styl';
 @import url('//at.alicdn.com/t/font_1986404_olndtqc1n5q.css');
 
 .page-left .top_search {
@@ -247,6 +252,7 @@ function check_path(data) {
 .contentTop {
   padding-top: 30px;
 }
+
 
 @media (max-width: 800px) {
   .contentTop {
@@ -258,9 +264,6 @@ function check_path(data) {
   }
 }
 
-// .fixed {
-// position: fixed;
-// }
 .top_search {
   display: none;
 }

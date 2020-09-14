@@ -35,77 +35,58 @@ Apple ID，完成后即可选择您的账户作为开发团队。
 - 进入 **TARGETS \Project Name \Signing & Capabilities** 菜单，勾选
     **Automatically manage signing**。
 
-## 集成SDK
+## 集成 SDK
 
-mac 端使用的动态库集成 SDK。
+mac 端使用动态库集成 SDK。
 
 1. 解压并打开下载的 JC SDK 动态库，在 sdk 文件目录下包含 JCSDKOC.framework、include 和 lib
     三个文件夹。
 
-2. 将 `sdk` 文件夹拷贝到您工程所在的目录下。
+2. 将 **sdk** 文件夹拷贝到您工程所在的目录下。
 
-3. 导入 SDK
+3. 打开 Xcode，进入 **TARGETS \Project Name \General** ，在 Embedded
+    Binaries 一栏，点击 **+** 符号，然后导入 JCSDK 文件夹下的 JCSDKOC.framework。
 
-    点击 ‘General’，在 “Embedded Binaries” 一栏，点击 ‘+’ 符号，然后导入 sdk 文件夹下的
-    JCSDKOC.framework 和 lib 文件夹下的 libmtc.dylib、libzmf.dylib。
+4. 继续点击 **+** 符号，导入如下系统依赖的库。
 
-4. 导入 SDK 依赖的库
-
-    继续点击 ‘+’ 符号，导入如下系统依赖的库：
-
-      - AudioToolbox.framework
-
-      - VideoToolBox.framework
-
-      - AVFoundation.framework
-
-      - CFNetwork.framework
-
-      - CoreMedia.framework
-
-      - CoreVideo.framework
+    ``````default
+    - AudioToolbox.framework
+    - VideoToolBox.framework
+    - AVFoundation.framework
+    - CFNetwork.framework
+    - CoreMedia.framework
+    - CoreVideo.framework
+    ``````
 
     导入完后的效果如下图：
 
     ![../../../../\_images/macdyliblist.png](../../../../_images/macdyliblist.png)
 
-5. 设置路径
+5. 点击 Build Settings，找到 Search Paths，设置 Framework Search Paths：
 
-    点击 ‘Build Settings’，找到 Search Paths，设置 Framework Search Paths
-    、Header Search Paths（头文件路径） 和 Library Search Paths（库文件路径）：
+- Framework Search Paths：`$(PROJECT_DIR)/../sdk`
 
-      - Framework Search Paths：$(PROJECT\_DIR)/../sdk
+- Header Search Paths：`$(PROJECT_DIR)/../sdk/include`
 
-      - Header Search Paths：$(PROJECT\_DIR)/../sdk/include
+- Library Search Paths：`$(PROJECT_DIR)/../sdk/lib/ios`
 
-      - Library Search Paths：$(PROJECT\_DIR)/../sdk/lib/ios
+::: tip
 
-    ::: tip
+在完成第 1 步导入 JCSDKOC.framework 和两个 .dylib 文件后，Xcode 会自动生成该路径，如果 Xcode
+没有自动生成路径，用户要根据 `JCSDKOC.framework` 、`include` 和 `lib`
+文件所在目录，手动设置路径。
 
-    在完成第 1 步导入 JCSDKOC.framework 和两个 .dylib 文件后，Xcode 会自动生成该路径，如果
-    Xcode 没有自动生成路径，用户要根据 `JCSDKOC.framework` 、`include` 和 `lib`
-    文件所在目录，手动设置路径。
+:::
 
-    :::
+6. 进入工程中的 **Target \Build Settings \Other Linker Flags**，在此项中添加
+    -ObjC。
 
-6. 设置 Enable Bitcode 为 NO
-
-    进入工程中 Target -\Build Settings -\Enable Bitcode，将此项设置为 NO。
-
-7. 设置 Other Linker Flags 的参数为 -ObjC
-
-    点击 ‘Build Settings’，找到 Other Linker Flags 并添加参数 -ObjC。
-
-8. 设置预处理宏定义
-
-    点击 ‘Build Settings’，找到 Preprocessor Macros，在右侧输入
+7. 点击 Build Settings，找到 Preprocessor Macros，在右侧输入
     ZPLATFORM=ZPLATFORM\_OSX。
 
 ## 添加项目权限
 
-1. 获取设备权限
-
-    若您的项目已启用 App Sandbox 或 Hardened Runtime 设置，则需勾选如下内容，获取相应的设备权限：
+1. 若您的项目已启用 App Sandbox 或 Hardened Runtime 设置，则需勾选如下内容，获取相应的设备权限：
 
     ![../../../../\_images/sandboxset.png](../../../../_images/sandboxset.png)
     ![../../../../\_images/hardrunset.png](../../../../_images/hardrunset.png)

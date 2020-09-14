@@ -132,8 +132,6 @@ command before executing pod install.
 
       - GLKit.framework
 
-      - PushKit.framework(used by Push Function)
-
       - ReplayKit.framework
 
       - Security.framework
@@ -182,11 +180,6 @@ command before executing pod install.
 
     Click ‘Build Settings’, find Preprocessor Macros, and enter
     ZPLATFORM=ZPLATFORM\_IOS on the right.
-
-    If APNs push is set, you also need to enter DEBUG in Debug under
-    Preprocessor Macros, as shown below:
-
-    ![../../../../\_images_en/pushset.png](../../../../_images_en/pushset.png)
 
     ::: tip
 
@@ -246,8 +239,6 @@ command before executing pod install.
 
       - GLKit.framework
 
-      - PushKit.framework(used by Push Function)
-
       - ReplayKit.framework
 
       - Security.framework
@@ -292,11 +283,6 @@ command before executing pod install.
 
     Click ‘Build Settings’, find Preprocessor Macros, and enter
     ZPLATFORM=ZPLATFORM\_IOS on the right.
-
-    If APNs push is set, you also need to enter DEBUG in Debug under
-    Preprocessor Macros, as shown below:
-
-    ![../../../../\_images_en/pushset.png](../../../../_images_en/pushset.png)
 
     ::: tip
 

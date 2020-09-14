@@ -99,7 +99,7 @@
           <div class="part-cont">
             <img src="https://developer.juphoon.com/style/images/home/developer_experience@2x.png" />
             <p>遇到问题，您还可以选择</p>
-            <a class="button" href="https://developer.juphoon.com/portal/cn/bbs/">社区发帖</a>
+            <a class="button" href="https://developer.juphoon.com/portal/cn/bbs/index.php">社区发帖</a>
             <a
               class="contactline"
               href="http://wpa.qq.com/msgrd?v=3&amp;uin=2703650800&amp;site=qq&amp;menu=yes"
@@ -122,12 +122,12 @@
               <div class="inner_content">
                 <img :src="img.Voice_Calling_one" alt />
                 <div class="title">
-                  <span @click="clickPath('path')">One-to-One Voice Calling</span>
-                  <router-link to="home" target="_blank" v-if="!width800">
+                  <span @click="clickPath('00_o2o_audio')">One-to-One Voice Calling</span>
+                  <router-link to="00_o2o_audio" target="_blank" v-if="!width800" class="width800">
                     Quick Start
                     <img :src="img.Lz" alt />
                   </router-link>
-                  <router-link to="home" target="_blank" v-if="!width800">
+                  <router-link to="home" target="_blank" v-if="!width800" class="width800">
                     Demo Source Code
                     <img :src="img.DownLoad" alt />
                   </router-link>
@@ -137,12 +137,12 @@
               <div class="inner_content">
                 <img :src="img.Voice_Calling_group" alt />
                 <div class="title">
-                  <span @click="clickPath('path')">Group Voice Calling</span>
-                  <router-link to="home" target="_blank" v-if="!width800">
+                  <span @click="clickPath('02_mult_audio')">Group Voice Calling</span>
+                  <router-link to="02_mult_audio" target="_blank" v-if="!width800" class="width800">
                     Quick Start
                     <img :src="img.Lz" alt />
                   </router-link>
-                  <router-link to="home" target="_blank" v-if="!width800">
+                  <router-link to="home" target="_blank" v-if="!width800" class="width800">
                     Demo Source Code
                     <img :src="img.DownLoad" alt />
                   </router-link>
@@ -158,12 +158,12 @@
               <div class="inner_content">
                 <img :src="img.Video_Calling_one" alt />
                 <div class="title">
-                  <span @click="clickPath('path')">One-to-One Video Calling</span>
-                  <router-link to="home" target="_blank" v-if="!width800">
+                  <span @click="clickPath('01_o2o_video')">One-to-One Video Calling</span>
+                  <router-link to="01_o2o_video" target="_blank" v-if="!width800" class="width800">
                     Quick Start
                     <img :src="img.Lz" alt />
                   </router-link>
-                  <router-link to="home" target="_blank" v-if="!width800">
+                  <router-link to="home" target="_blank" v-if="!width800" class="width800">
                     Demo Source Code
                     <img :src="img.DownLoad" alt />
                   </router-link>
@@ -173,12 +173,12 @@
               <div class="inner_content">
                 <img :src="img.Video_Calling_group" alt />
                 <div class="title">
-                  <span @click="clickPath('path')">Group Video Calling</span>
-                  <router-link to="home" target="_blank" v-if="!width800">
+                  <span @click="clickPath('03_mult_video')">Group Video Calling</span>
+                  <router-link to="03_mult_video" target="_blank" v-if="!width800" class="width800">
                     Quick Start
                     <img :src="img.Lz" alt />
                   </router-link>
-                  <router-link to="home" target="_blank" v-if="!width800">
+                  <router-link to="home" target="_blank" v-if="!width800" class="width800">
                     Demo Source Code
                     <img :src="img.DownLoad" alt />
                   </router-link>
@@ -194,12 +194,12 @@
               <div class="inner_content">
                 <img :src="img.Broadcasting_audio" alt />
                 <div class="title">
-                  <span @click="clickPath('path')">Live Interactive Audio Streaming</span>
-                  <router-link to="home" target="_blank" v-if="!width800">
+                  <span @click="clickPath('04_audio_live')">Live Interactive Audio Streaming</span>
+                  <router-link to="04_audio_live" target="_blank" v-if="!width800" class="width800">
                     Quick Start
                     <img :src="img.Lz" alt />
                   </router-link>
-                  <router-link to="home" target="_blank" v-if="!width800">
+                  <router-link to="home" target="_blank" v-if="!width800" class="width800">
                     Demo Source Code
                     <img :src="img.DownLoad" alt />
                   </router-link>
@@ -209,12 +209,12 @@
               <div class="inner_content">
                 <img :src="img.Broadcasting_video" alt />
                 <div class="title">
-                  <span @click="clickPath('path')">Live Interactive Video Streaming</span>
-                  <router-link to="home" target="_blank" v-if="!width800">
+                  <span @click="clickPath('05_video_live')">Live Interactive Video Streaming</span>
+                  <router-link to="05_video_live" target="_blank" v-if="!width800" class="width800">
                     Quick Start
                     <img :src="img.Lz" alt />
                   </router-link>
-                  <router-link to="home" target="_blank" v-if="!width800">
+                  <router-link to="home" target="_blank" v-if="!width800" class="width800">
                     Demo Source Code
                     <img :src="img.DownLoad" alt />
                   </router-link>
@@ -291,7 +291,12 @@
       <div class="pcont secondp cn" v-if="showsearch &&$lang =='cn'">
         <div class="top_search">
           <div class="search_div">
-            <HomeAlgolia ref="HomeAlgolia" :options="algolia" :keyword="keyword" />
+            <HomeAlgolia
+              ref="HomeAlgolia"
+              :options="algolia"
+              :keyword="keyword"
+              @search="getTableData"
+            />
           </div>
         </div>
         <div class="spcont">
@@ -398,7 +403,12 @@
                 class="en_h2"
               >Explore how to build your real-time voice and video services with our easily embedded SDK</h2>
               <div class="bacsearch">
-                <HomeAlgolia ref="HomeAlgolia" :options="algolia" :keyword="keyword" />
+                <HomeAlgolia
+                  ref="HomeAlgolia"
+                  :options="algolia"
+                  :keyword="keyword"
+                  @search="getTableData"
+                />
               </div>
             </div>
           </div>
@@ -588,11 +598,16 @@ export default {
       let hash = this.$route.hash.substr(1);
       if (hash) {
         this.showsearch = true;
-        this.keyword = hash;
+        this.keyword = decodeURI(hash);
+      } else {
+        this.showsearch = false;
       }
     },
     $lang(newValue) {
+      this.first = false;
       this.changelangtag();
+      this.keyword = "";
+      this.showsearch = false;
     },
   },
   mounted() {
@@ -602,7 +617,7 @@ export default {
     let hash = this.$route.hash.substr(1);
     if (hash) {
       this.showsearch = true;
-      this.keyword = hash;
+      this.keyword = decodeURI(hash);
     }
     that.$EventBus.$on("SearchResults", (res) => {
       that.showlist(res);
@@ -614,14 +629,19 @@ export default {
       this.screenWidth();
     };
     this.get_log_version_dev();
+    this.screenWidth();
   },
   methods: {
     screenWidth() {
       if (window.innerWidth < 800) this.width800 = true;
       else this.width800 = false;
     },
-    clickPath() {
-      console.log("tiaozhuan ");
+    clickPath(res) {
+      console.log(this.width800);
+      if (this.width800) {
+        this.$router.push(res);
+      }
+      console.log(res);
     },
     // 三种点击事件
     sortpro(res) {
@@ -825,12 +845,12 @@ export default {
     keySearch(str) {
       console.log("str=>", str);
       console.log(Boolean(str));
-      // if (str) {
-      //   this.showsearch = true;
-      //   this.$router.push({ hash: str });
-      // } else {
-      //   this.showsearch = false;
-      // }
+      if (str) {
+        // this.showsearch = true;
+        this.$router.push({ hash: str });
+      } else {
+        // this.showsearch = false;
+      }
     },
     pageDataFn(number, pageSize, data) {
       this.page.currentPage = number;
@@ -1234,6 +1254,20 @@ export default {
 }
 
 @media (max-width: 800px) {
+  .width800 {
+    display: none !important;
+  }
+
+  .en .part_two .part-cont .inner .inner_content .title {
+    white-space: normal;
+    margin-left: 52px;
+  }
+
+  .en .part_four .talk-back .contactUs {
+    margin-left: 0px;
+    margin-top: 10px;
+  }
+
   .en {
     .part_two {
       height: auto;

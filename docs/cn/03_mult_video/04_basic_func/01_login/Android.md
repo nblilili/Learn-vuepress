@@ -3,7 +3,7 @@ title: 登录
 ---
 # 登录
 
-本章节将介绍如何初始化 SDK 并登录。
+本章节将介绍如何初始化 JC SDK 并登录。
 
 ## 初始化
 
@@ -93,13 +93,13 @@ mClient.login(userID, password, loginParam);
 @Override
 public void onClientStateChange(@JCClient.ClientState int state, @JCClient.ClientState int oldState) {
      if (state == JCClient.STATE_IDLE) { // 未登录
-       ...
+        ...
     } else if (state == JCClient.STATE_LOGINING) { // 正在登录
-       ...
+        ...
     } else if (state == JCClient.STATE_LOGINED) { // 登录成功
-       ...
+        ...
     } else if (state == JCClient.STATE_LOGOUTING) { // 登出中
-       ...
+        ...
     }
 }
 ``````
@@ -135,9 +135,7 @@ public void onLogin(boolean result, @JCClient.ClientReason int reason) {
 
 调用
 [logout()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCClient.html#logout--)
-可以发起登出。更多登出原因参考：
-[JCClient.ClientReason](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCClient.html#REASON_ANOTHER_DEVICE_LOGINED)
-。
+可以发起登出。
 
 登出同样会触发登录状态改变(onClientStateChange)回调，之后将通过 onLogout 回调上报登出结果。
 
@@ -149,3 +147,7 @@ public void onLogout(@JCClient.ClientReason int reason) {
     }
 }
 ``````
+
+更多登出原因参考：
+[JCClient.ClientReason](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCClient.html#REASON_ANOTHER_DEVICE_LOGINED)
+。

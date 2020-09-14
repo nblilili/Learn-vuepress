@@ -1,21 +1,21 @@
 var first_pcont = [{
     title: "平台概述",
-    url: "https://developer.juphoon.com/cn/document/index.php"
+    url: "/cn/juphoon_platform/"
 }, {
     title: "关键术语",
-    url: "https://developer.juphoon.com/cn/document/key-terms.php"
+    url: "/cn/juphoon_platform/01_glossary.html"
 }, {
     title: "创建应用",
-    url: "https://developer.juphoon.com/cn/document/create-application.php"
+    url: "/cn/juphoon_platform/03_console_description/03_应用管理.html"
 }, {
     title: "Portal 说明",
-    url: "https://developer.juphoon.com/cn/document/portal.php"
+    url: "/cn/juphoon_platform/03_console_description/01_注册登录.html"
 }, {
     title: "天塞鹰眼",
-    url: "https://developer.juphoon.com/cn/document/qualities.php"
+    url: "/cn/juphoon_platform/04_TianSai_eagle_eyes/01_天塞鹰眼概览.html"
 }, {
     title: "下载",
-    url: "https://developer.juphoon.com/cn/download/"
+    url: "https://developer.juphoon.com/cn/download/index.php"
 }]
 
 var second_pcont = [{

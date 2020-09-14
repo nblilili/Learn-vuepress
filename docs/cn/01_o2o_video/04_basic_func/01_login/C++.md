@@ -3,7 +3,7 @@ title: 登录
 ---
 # 登录
 
-本章节介绍如何初始化 JC SDK 并登录。
+本章节将介绍如何初始化 JC SDK 并登录。
 
 ## 初始化
 
@@ -122,7 +122,7 @@ void JCSampleDlg::OnBnClickedButtonLogin()
 
 ``````cpp
 void JCManager::onClientStateChange(JCClientState state, JCClientState oldState) {
-     if (state == JCClient.STATE_IDLE) { // 未登录
+     if (state == JCClientStateIdle) { // 未登录
        ...
     } else if (state == JCClientStateLogining) { // 正在登录
        ...
@@ -164,7 +164,7 @@ JCClientStateLogined（登录成功）。SDK
 
 调用
 [logout](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_client.html#abac015a13078c84b06afac69dcd392ff)
-发起登出：
+发起登出。
 
 ``````cpp
 JCManager::shared()->client->logout();

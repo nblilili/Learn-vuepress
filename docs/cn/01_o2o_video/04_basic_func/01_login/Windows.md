@@ -3,7 +3,7 @@ title: 登录
 ---
 # 登录
 
-本章节将介绍如何初始化 SDK 并登录。
+本章节将介绍如何初始化 JC SDK 并登录。
 
 ## 初始化
 
@@ -94,14 +94,14 @@ mClient.login(userID, password, loginParam);
 
 ``````csharp
 public void onClientStateChange(JCClientState state, JCClientState oldState) {
-     if (state == JCClient.STATE_IDLE) { /// 未登录
-       ...
-    } else if (state == JCClient.STATE_LOGINING) { /// 正在登录
-       ...
-    } else if (state == JCClient.STATE_LOGINED) { /// 登录成功
-       ...
-    } else if (state == JCClient.STATE_LOGOUTING) { /// 登出中
-       ...
+     if (state == JCClientState.Idel) { /// 未登录
+        ...
+    } else if (state == JCClientState.Logining) { /// 正在登录
+        ...
+    } else if (state == JCClientState.Logined) { /// 登录成功
+        ...
+    } else if (state == JCClientState.Logouting) { /// 登出中
+        ...
     }
 }
 ``````
@@ -117,7 +117,7 @@ public void onLogin(bool result, JCClientReason reason) {
     if (result) {/// 登录成功
         ...
     }
-    if (reason == REASON_AUTH) {/// 账号密码错误
+    if (reason == JCClientReason.AUTH) {/// 账号密码错误
         ...
     }
 
@@ -125,7 +125,7 @@ public void onLogin(bool result, JCClientReason reason) {
 ``````
 
 登录成功之后，SDK 会自动保持与服务器的连接状态，直到用户主动调用登出接口，或者因为帐号在其他设备登录导致该设备登出。登录成功/失败原因 参考
-[JCClient.ClientReason](https://developer.juphoon.com/portal/reference/V2.1/windows/html/9d6e6243-1b3f-55a6-7d0a-3158812dfc6f.htm)
+[JCClientReason](https://developer.juphoon.com/portal/reference/V2.1/windows/html/9d6e6243-1b3f-55a6-7d0a-3158812dfc6f.htm)
 。
 
 ## 登出
@@ -136,14 +136,14 @@ public void onLogin(bool result, JCClientReason reason) {
 
 调用
 [logout()](https://developer.juphoon.com/portal/reference/V2.1/windows/html/4b7a3fd4-f6bf-fc4e-8cf9-78023f69b459.htm)
-可以发起登出。更多登出原因参考：[JCClient.ClientReason](https://developer.juphoon.com/portal/reference/V2.1/windows/html/9d6e6243-1b3f-55a6-7d0a-3158812dfc6f.htm)
+可以发起登出。更多登出原因参考：[JCClientReason](https://developer.juphoon.com/portal/reference/V2.1/windows/html/9d6e6243-1b3f-55a6-7d0a-3158812dfc6f.htm)
 。
 
 登出同样会触发登录状态改变(onClientStateChange)回调，之后将通过 onLogout 回调上报登出结果。
 
 ``````csharp
 public void onLogout(JCClientReason reason) {
-    if (reason == REASON_SERVER_LOGOUT) {/// 强制登出
+    if (reason == JCClientReason.ServerLogout) {/// 强制登出
         ...
     }
 }

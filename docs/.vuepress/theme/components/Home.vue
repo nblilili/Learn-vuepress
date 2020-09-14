@@ -1,6 +1,6 @@
 <template>
   <main class="home" aria-labelledby="main-title" style="background:#fff">
-    <HomeSearch />
+    <HomeSearch v-if="$page.frontmatter.Search" />
     <div v-if="data.features && data.features.length" class="features">
       <div v-for="(feature, index) in data.features" :key="index" class="feature">
         <h2>{{ feature.title }}</h2>
@@ -29,7 +29,7 @@ export default {
       };
     },
   },
-  mounted () {
+  mounted() {
     // console.log(this.$page)
   },
   methods: {

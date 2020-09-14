@@ -155,7 +155,7 @@ title: 产品概述
 </dd>
 <dt>iOS端</dt>
 <dd><ul>
-<li><p>Safari 11 及以上，12 以后iPhone只支持Safari</p></li>
+<li><p>Safari 11 及以上（iOS 12 以后，iPhone只支持Safari）</p></li>
 </ul>
 </dd>
 </dl></td>

@@ -40,7 +40,7 @@ call.maxCallNum = 1;
 [JCCallItem](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCCallItem.html)
 对象获取。
 
-开启或关闭录音接口如下：
+开启或关闭录音接口如下。
 
 ``````objectivec
 /**

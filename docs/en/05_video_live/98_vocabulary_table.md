@@ -137,10 +137,4 @@ title: Glossary
     Recording during audio and video calls and saving the video stream
     as a file to provide users with a review.
 
-- Push  
-    Push is a technical concept that refers to sending remote
-    notifications from the server-side to the client-side in real time.
 
-    Typical push services include APNs (Apple Push Notification
-    Service), GCM (Google Cloud Messaging), etc. In China, you can use
-    third-party push services such as Xiaomi Push and Huawei Push.

@@ -151,7 +151,6 @@ export default {
       if (url.indexOf("/cn/") > -1) {
         needfriend(menulist[1].children);
       } else if (url.indexOf("/en/" > -1)) {
-        needfriend(menulist[0].children);
       }
       // });
       // if (menulist[1].children) {

@@ -13,7 +13,7 @@ title: 实现互动直播
 create](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaDevice.html#//api/name/create:callback:)
 和 [JCMediaChannel
 create](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaChannel.html#//api/name/create:mediaDevice:callback:)
-以初始化实现多方通话需要的模块：
+以初始化实现多方通话需要的模块。
 
 ``````objectivec
 //初始化
@@ -87,7 +87,7 @@ JCMediaChannel 中的主要方法如下
 
 ## 角色设置
 
-直播有两种用户角色：主播和观众。加入频道前要先进行角色设置。其中主播可以上传本地音视频流，观众只能看到主播的画面、听到主播的声音。
+直播有两种用户角色：主播和观众。加入频道前要先进行角色的设置。默认的角色为观众。其中主播可以上传本地音视频流，观众只能看到主播的画面、听到主播的声音。
 
 角色值可以根据
 [JCMediaChannelCustomRole](https://developer.juphoon.com/portal/reference/V2.1/ios/Constants/JCMediaChannelCustomRole.html)
@@ -145,21 +145,21 @@ JCMediaChannelCustomRole ROLE_AUDIENCE = JCMediaChannelCustomRole1;
 [mediaChannel join:@"222" joinParam:nil];
 ``````
 
-3\. 加入频道后收到
-[onJoin](https://developer.juphoon.com/portal/reference/V2.1/ios/Protocols/JCMediaChannelCallback.html#//api/name/onJoin:reason:channelId:)
-回调。
+3. 加入频道后收到
+    [onJoin](https://developer.juphoon.com/portal/reference/V2.1/ios/Protocols/JCMediaChannelCallback.html#//api/name/onJoin:reason:channelId:)
+    回调。
 
-``````objectivec
-// 加入频道结果回调
--(void)onJoin:(bool)result reason:(JCMediaChannelReason)reason channelId:(NSString*)channelId
-{
-    if (result) {
-      // 加入成功
-    } else {
-      // 加入失败
+    ``````objectivec
+    // 加入频道结果回调
+    -(void)onJoin:(bool)result reason:(JCMediaChannelReason)reason channelId:(NSString*)channelId
+    {
+        if (result) {
+          // 加入成功
+        } else {
+          // 加入失败
+        }
     }
-}
-``````
+    ``````
 
 ## 创建本地视频画面
 

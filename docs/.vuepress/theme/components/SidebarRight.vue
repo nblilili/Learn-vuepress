@@ -18,9 +18,9 @@ export default {
 
   props: ['items'],
   mounted(){
-    this.$page.headers.map((header, index) => {
-      console.log(header)
-    })
+    // this.$page.headers.map((header, index) => {
+    //   console.log(header)
+    // })
   }
 }
 </script>
