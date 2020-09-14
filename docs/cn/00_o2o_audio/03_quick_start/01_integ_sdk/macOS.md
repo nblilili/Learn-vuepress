@@ -49,21 +49,18 @@ mac 端使用动态库集成 SDK。
 
 4. 继续点击 **+** 符号，导入如下系统依赖的库。
 
-- AudioToolbox.framework
+    ``````default
+    - AudioToolbox.framework
+    - VideoToolBox.framework
+    - AVFoundation.framework
+    - CFNetwork.framework
+    - CoreMedia.framework
+    - CoreVideo.framework
+    ``````
 
-- VideoToolBox.framework
+    导入完后的效果如下图：
 
-- AVFoundation.framework
-
-- CFNetwork.framework
-
-- CoreMedia.framework
-
-- CoreVideo.framework
-
-导入完后的效果如下图：
-
-![../../../../\_images/macdyliblist.png](../../../../_images/macdyliblist.png)
+    ![../../../../\_images/macdyliblist.png](../../../../_images/macdyliblist.png)
 
 5. 点击 Build Settings，找到 Search Paths，设置 Framework Search Paths：
 

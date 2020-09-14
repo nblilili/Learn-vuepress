@@ -106,7 +106,6 @@ end
     - CoreMotion.framework
     - CoreVideo.framework
     - GLKit.framework
-    - PushKit.framework（推送使用）
     - ReplayKit.framework
     - Security.framework
     - SystemConfiguration.framework
@@ -140,16 +139,6 @@ end
 8. 点击 Build Settings，找到 Preprocessor Macros，在右侧输入
     ZPLATFORM=ZPLATFORM\_IOS 。
 
-    如果设置了 APNs 推送，则还需要在 Preprocessor Macros 下的 Debug 中输入 DEBUG，如下图：
-
-    ![../../../../\_images/pushset.png](../../../../_images/pushset.png)
-
-    ::: tip
-
-    DEBUG 宏定义的目的是为了区分推送环境是 release 还是 debug，环境不对会导致推送失败。
-
-    :::
-
 9. 点击 Build Settings，找到 Documentation Comments 并设置为 NO。
 
 10. 设置后台运行模式
@@ -182,7 +171,6 @@ end
     - CoreMotion.framework
     - CoreVideo.framework
     - GLKit.framework
-    - PushKit.framework（推送使用）
     - ReplayKit.framework
     - Security.framework
     - SystemConfiguration.framework
@@ -213,12 +201,6 @@ end
     Debug 中输入 DEBUG，如下图：
 
     ![../../../../\_images/pushset.png](../../../../_images/pushset.png)
-
-    ::: tip
-
-    DEBUG 宏定义的目的是为了区分推送环境是 release 还是 debug，环境不对会导致推送失败。
-
-    :::
 
 9. 点击 Build Settings，找到 Documentation Comments 并设置为 NO。
 

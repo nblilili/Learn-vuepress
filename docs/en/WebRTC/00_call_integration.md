@@ -153,7 +153,7 @@ After the meeting, close the connection and call the following interface
 
 ```js
 jc.close();
-   jc = null;
+jc = null;
 ```
 
 After the connection is closed, you will receive the onclose callback
