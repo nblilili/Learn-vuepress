@@ -2,7 +2,7 @@
   <div>
     <input
       class="search-query form-control bacinp"
-      :placeholder="placeholder"
+      :placeholder="$lang=='cn'?'请输入搜索内容':'Please enter keywords to search'"
       v-model="value"
       @keyup.enter="searchData()"
     />
@@ -20,7 +20,6 @@ export default {
   props: ["options"],
   data() {
     return {
-      placeholder: "请输入搜索内容",
       value: "",
       Searching: false,
       SearchResults: {}, // 搜索的结果
@@ -58,24 +57,37 @@ export default {
       console.log(this.value);
       let hash = this.$route.hash.substr(1);
       console.log(hash);
-      if (this.value && hash != this.value)
-        this.$router.push({ path: "/cn/#" + this.value });
-      console.log(axios);
-      this.getSearchData(this.value, {
-        clickAnalytics: true,
-        getRankingInfo: true,
-        analytics: false,
-        enableABTest: false,
-        hitsPerPage: 20,
-        attributesToRetrieve: "*",
-        attributesToSnippet: "*:20",
-        snippetEllipsisText: "…",
-        responseFields: "*",
-        maxValuesPerFacet: 100,
-        page: 0,
-        facets: ["*", "lang", "tags"],
-        facetFilters: [["lang:" + this.$lang + ""]],
-      });
+      if(this.value){
+
+      
+      if (this.value && hash != this.value) {
+        this.$router.push({ path: "/" + this.$lang + "/#" + this.value });
+        return;
+      } else {
+        this.getSearchData(this.value, {
+          clickAnalytics: true,
+          getRankingInfo: true,
+          analytics: false,
+          enableABTest: false,
+          hitsPerPage: 20,
+          attributesToRetrieve: "*",
+          attributesToSnippet: "*:20",
+          snippetEllipsisText: "…",
+          responseFields: "*",
+          maxValuesPerFacet: 100,
+          page: 0,
+          facets: [
+            "*",
+            "hierarchy.lvl0",
+            "hierarchy.lvl1",
+            "hierarchy.lvl2",
+            "lang",
+            "tags",
+          ],
+          facetFilters: [["lang:" + this.$lang + ""]],
+        });
+      }
+      }
     },
     getSearchData(query, config = {}) {
       let that = this;
@@ -88,82 +100,7 @@ export default {
           that.$EventBus.$emit("SearchResults", res);
         });
       }
-      // let indexName = "juphoon";
-      // let appId = "BF4RDO0EYD";
-      // let apiKey = "d02d64058b08646fc04cf361671ec59c";
-      // let PostUrl = `https://bf4rdo0eyd-dsn.algolia.net/1/indexes/*/queries?x-algolia-agent=Algolia%20for%20vanilla%20JavaScript%20(lite)%203.30.0%3Bdocsearch.js%202.6.3&x-algolia-application-id=${appId}&x-algolia-api-key=${apiKey}`;
-      // let params = {
-      //   query: query,
-      //   hitsPerPage: 9999,
-      //   lang: this.$lang,
-      //   removeWordsIfNoResults: "allOptional",
-      // };
-      // let PostParams = `query=${params.query}&hitsPerPage=${params.hitsPerPage}&facetFilters=%5B%22lang%3A${params.lang}%22%5D&removeWordsIfNoResults=${params.removeWordsIfNoResults}`;
-      // axios({
-      //   method: "post",
-      //   data: {
-      //     requests: [
-      //       {
-      //         indexName: indexName,
-      //         params: PostParams,
-      //       },
-      //     ],
-      //   },
-      //   url: PostUrl,
-      // }).then((res) => {
-      //   that.$EventBus.$emit("Searching", false);
-      //   console.log(res.data);
-      //   console.log(res.data.results[0].hits);
-      //   console.log(JSON.parse(JSON.stringify(res.data.results[0].hits)));
-      //   that.SearchResults = res.data.results[0]; // 搜索的结果
-      //   console.log(res.data.results[0]);
-      //   that.$EventBus.$emit("SearchResults", res.data.results[0]);
-      // });
     },
-    // initialize(userOptions, lang) {
-    //   console.log(userOptions);
-    //   Promise.all([
-    //     import(
-    //       /* webpackChunkName: "docsearch" */ "docsearch.js/dist/cdn/docsearch.min.js"
-    //     ),
-    //     import(
-    //       /* webpackChunkName: "docsearch" */ "docsearch.js/dist/cdn/docsearch.min.css"
-    //     ),
-    //   ]).then(([docsearch]) => {
-    //     console.log([docsearch]);
-    //     docsearch = docsearch.default;
-    //     const { algoliaOptions = {} } = userOptions;
-    //     docsearch(
-    //       Object.assign({}, userOptions, {
-    //         inputSelector: "#algolia-search-input",
-    //         // #697 Make docsearch work well at i18n mode.
-    //         algoliaOptions: Object.assign(
-    //           {
-    //             facetFilters: [`lang:${lang}`].concat(
-    //               algoliaOptions.facetFilters || []
-    //             ),
-    //           },
-    //           algoliaOptions
-    //         ),
-    //         handleSelected: (input, event, suggestion) => {
-    //           console.log(input, event, suggestion);
-    //           const { pathname, hash } = new URL(suggestion.url);
-    //           const routepath = pathname.replace(this.$site.base, "/");
-    //           const _hash = decodeURIComponent(hash);
-    //           console.log(`${routepath}${_hash}`);
-    //           this.$router.push(`${routepath}${_hash}`);
-    //         },
-    //       })
-    //     );
-    //   });
-    // },
-    // update(options, lang) {
-    //   console.log(1);
-    //   console.log(options, lang);
-    //   this.$el.innerHTML =
-    //     '<input id="algolia-search-input" class="search-query">';
-    //   this.initialize(options, lang);
-    // },
   },
 };
 </script>
