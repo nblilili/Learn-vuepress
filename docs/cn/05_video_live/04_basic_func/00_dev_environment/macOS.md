@@ -49,7 +49,7 @@ mac 端使用动态库集成 SDK。
 
 4. 继续点击 **+** 符号，导入如下系统依赖的库。
 
-    
+    ``````
     - AudioToolbox.framework
     - VideoToolBox.framework
     - AVFoundation.framework

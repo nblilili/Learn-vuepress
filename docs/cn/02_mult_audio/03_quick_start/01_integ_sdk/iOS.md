@@ -62,7 +62,7 @@ CocoaPods 环境安装好后，执行以下操作：
 
 修改后内容如下所示，注意将 `Your App` 替换为您的 Target 名称。
 
-
+``````
 platform :ios, '9.0'
 #use_frameworks!
 target 'Your App' do
@@ -96,7 +96,7 @@ end
 
 4. 继续点击 **+** 符号，导入如下系统依赖的库。
 
-    
+    ``````
     - AssetsLibrary.framework
     - AudioToolbox.framework
     - VideoToolBox.framework
@@ -161,7 +161,7 @@ end
 
 4. 继续点击 **+** 符号，导入如下系统依赖的库。
 
-    
+    ``````
     - AssetsLibrary.framework
     - AudioToolbox.framework
     - VideoToolBox.framework
