@@ -232,7 +232,7 @@ text    具体的指令协议,参考文档下方说明
 | :----------------------------------------------------------- | :----------------------------------------------------------- |
 | **明文格式**<br/>setmerge_i \<width\> \<height\> \<mode\> \<scsMode\> \<fps\> [uri]<br/>例如：设置宽为1600，高为900，智能模式为“自由模式”，带屏幕共享为“主持人模式”，帧数为24帧，大小屏放大用户默认为qqqq则指令为：<br/>@setmerge_i 1600 900 1 3 24 [username:qqqq@sample.cloud.justalk.com] | **width** 宽<br/>**height** 高<br/>**mode** 智能分屏模式，参见上方setmergemode_i<br/>**scsMode** 智能分屏带屏幕共享模式，参见上方setmergemode_iv<br/>**fps** 帧数 1-30<br/>**uri** 大小屏默认放大的用户 uri |
 
-关于智能分屏模式和调整智能分屏模式的详细参数的具体指令信息，请参考 [智能分屏](https://developer.juphoon.com/cn/document/V2.1/webrtc/integration.php#w_id6)。
+关于智能分屏模式和调整智能分屏模式的详细参数的具体指令信息，请参考 [智能分屏](/cn/document/V2.1/webrtc/integration.php#w_id6)。
 
 #### 录制
 
@@ -254,7 +254,7 @@ text    具体的指令协议,参考文档下方说明
 
 :::
 
-关于设置录制分辨率和录指文件大小的详细指令信息请参阅 [修改录制或推流分辨率](https://developer.juphoon.com/cn/document/V2.1/webrtc/integration.php#w_id8) 和 [修改录制文件大小](https://developer.juphoon.com/cn/document/V2.1/webrtc/integration.php#w_id9)。
+关于设置录制分辨率和录指文件大小的详细指令信息请参阅 [修改录制或推流分辨率](/cn/document/V2.1/webrtc/integration.php#w_id8) 和 [修改录制文件大小](/cn/document/V2.1/webrtc/integration.php#w_id9)。
 
 #### CDN 推流
 
@@ -265,7 +265,7 @@ text    具体的指令协议,参考文档下方说明
 | 开始推流     | **明文格式**<br/>startpush<br/>开始向 CDN 推流，相应的网页观看地址由 CDN 服务提供商决定<br/>// 举例<br/>假设会议号为12345678，则指令为：<br/>@sendtext @delivery_12345678 startpush[username:delivery_12345678@delivery.cloud.justalk.com] |
 | 停止推流     | **明文格式**<br/>stoppush<br/>// 举例<br/>假设会议号为12345678，则指令为：<br/>@sendtext @delivery_12345678 stoppush[username:delivery_12345678@delivery.cloud.justalk.com] |
 
-关于设置推流分辨率的详细指令信息请参阅 [修改录制或推流分辨率](https://developer.juphoon.com/cn/document/V2.1/webrtc/integration.php#w_id8)。
+关于设置推流分辨率的详细指令信息请参阅 [修改录制或推流分辨率](/cn/document/V2.1/webrtc/integration.php#w_id8)。
 
 #### 播放
 
@@ -719,7 +719,7 @@ sendtext eyJjbWQiOiJTZXRWaWRlb0xldmVsIiwiTXRjQ29uZlZpZGVvTGV2ZWxLZXkiOjEwMjR9 [u
 修改录制文件大小为100KB
 
 ```js
-{"cmd":"StartRecord","Video":true,"Storage":{"Protocol":"qiniu","AccessKey":"Th2jW_jP5VSk-wfdVMy5it1oK4iHa8pv8vBZMhbd","SecretKey":"Nh-_pgXrx9weiq8bkAtJPkrBlV3YP13U0Fx0fT-c","BucketName":"ajianzheng","FileKey":"12345678.mp4","SplitFileSize":100}}
+{"cmd":"StartRecord","Video":true,"Storage":{"Protocol":"qiniu","AccessKey":"Th2jW_jP5VSk-wfdVMy5it1oK4iHa8pv8vBZMhbd","SecretKey":"Nh***********","BucketName":"ajianzheng","FileKey":"12345678.mp4","SplitFileSize":100}}
 
 base64编码后为
 eyJjbWQiOiJTdGFydFJlY29yZCIsIlZpZGVvIjp0cnVlLCJTdG9yYWdlIjp7IlByb3RvY29sIjoicWluaXUiLCJBY2Nlc3NLZXkiOiJUaDJqV19qUDVWU2std2ZkVk15NWl0MW9LNGlIYThwdjh2QlpNaGJkIiwiU2VjcmV0S2V5IjoiTmgtX3BnWHJ4OXdlaXE4YmtBdEpQa3JCbFYzWVAxM1UwRngwZlQtYyIsIkJ1Y2tldE5hbWUiOiJhamlhbnpoZW5nIiwiRmlsZUtleSI6IjEyMzQ1Njc4Lm1wNCIsIlNwbGl0RmlsZVNpemUiOjEwMH19
@@ -731,7 +731,7 @@ sendtext eyJjbWQiOiJTdGFydFJlY29yZCIsIlZpZGVvIjp0cnVlLCJTdG9yYWdlIjp7IlByb3RvY29
 修改录制文件大小为1MB
 
 ```js
-{"cmd":"StartRecord","Video":true,"Storage":{"Protocol":"qiniu","AccessKey":"Th2jW_jP5VSk-wfdVMy5it1oK4iHa8pv8vBZMhbd","SecretKey":"Nh-_pgXrx9weiq8bkAtJPkrBlV3YP13U0Fx0fT-c","BucketName":"ajianzheng","FileKey":"12345678.mp4","SplitFileSize":1024}}
+{"cmd":"StartRecord","Video":true,"Storage":{"Protocol":"qiniu","AccessKey":"Th2jW_jP5VSk-wfdVMy5it1oK4iHa8pv8vBZMhbd","SecretKey":"Nh***********","BucketName":"ajianzheng","FileKey":"12345678.mp4","SplitFileSize":1024}}
 
 base64编码为
 eyJjbWQiOiJTdGFydFJlY29yZCIsIlZpZGVvIjp0cnVlLCJTdG9yYWdlIjp7IlByb3RvY29sIjoicWluaXUiLCJBY2Nlc3NLZXkiOiJUaDJqV19qUDVWU2std2ZkVk15NWl0MW9LNGlIYThwdjh2QlpNaGJkIiwiU2VjcmV0S2V5IjoiTmgtX3BnWHJ4OXdlaXE4YmtBdEpQa3JCbFYzWVAxM1UwRngwZlQtYyIsIkJ1Y2tldE5hbWUiOiJhamlhbnpoZW5nIiwiRmlsZUtleSI6IjEyMzQ1Njc4Lm1wNCIsIlNwbGl0RmlsZVNpemUiOjEwMjR9fQ==
@@ -743,7 +743,7 @@ sendtext eyJjbWQiOiJTdGFydFJlY29yZCIsIlZpZGVvIjp0cnVlLCJTdG9yYWdlIjp7IlByb3RvY29
 修改录制文件大小为1GB
 
 ```js
-{"cmd":"StartRecord","Video":true,"Storage":{"Protocol":"qiniu","AccessKey":"Th2jW_jP5VSk-wfdVMy5it1oK4iHa8pv8vBZMhbd","SecretKey":"Nh-_pgXrx9weiq8bkAtJPkrBlV3YP13U0Fx0fT-c","BucketName":"ajianzheng","FileKey":"12345678.mp4","SplitFileSize":1048576}}
+{"cmd":"StartRecord","Video":true,"Storage":{"Protocol":"qiniu","AccessKey":"Th2jW_jP5VSk-wfdVMy5it1oK4iHa8pv8vBZMhbd","SecretKey":"Nh***********","BucketName":"ajianzheng","FileKey":"12345678.mp4","SplitFileSize":1048576}}
 
 base64编码后为
 eyJjbWQiOiJTdGFydFJlY29yZCIsIlZpZGVvIjp0cnVlLCJTdG9yYWdlIjp7IlByb3RvY29sIjoicWluaXUiLCJBY2Nlc3NLZXkiOiJUaDJqV19qUDVWU2std2ZkVk15NWl0MW9LNGlIYThwdjh2QlpNaGJkIiwiU2VjcmV0S2V5IjoiTmgtX3BnWHJ4OXdlaXE4YmtBdEpQa3JCbFYzWVAxM1UwRngwZlQtYyIsIkJ1Y2tldE5hbWUiOiJhamlhbnpoZW5nIiwiRmlsZUtleSI6IjEyMzQ1Njc4Lm1wNCIsIlNwbGl0RmlsZVNpemUiOjEwNDg1NzZ9fQ==
@@ -755,7 +755,7 @@ sendtext eyJjbWQiOiJTdGFydFJlY29yZCIsIlZpZGVvIjp0cnVlLCJTdG9yYWdlIjp7IlByb3RvY29
 修改录制文件大小为6GB
 
 ```js
-{"cmd":"StartRecord","Video":true,"Storage":{"Protocol":"qiniu","AccessKey":"Th2jW_jP5VSk-wfdVMy5it1oK4iHa8pv8vBZMhbd","SecretKey":"Nh-_pgXrx9weiq8bkAtJPkrBlV3YP13U0Fx0fT-c","BucketName":"ajianzheng","FileKey":"12345678.mp4","SplitFileSize": 6291456}}
+{"cmd":"StartRecord","Video":true,"Storage":{"Protocol":"qiniu","AccessKey":"Th2jW_jP5VSk-wfdVMy5it1oK4iHa8pv8vBZMhbd","SecretKey":"Nh***********","BucketName":"ajianzheng","FileKey":"12345678.mp4","SplitFileSize": 6291456}}
 
 base64编码后为
 eyJjbWQiOiJTdGFydFJlY29yZCIsIlZpZGVvIjp0cnVlLCJTdG9yYWdlIjp7IlByb3RvY29sIjoicWluaXUiLCJBY2Nlc3NLZXkiOiJUaDJqV19qUDVWU2std2ZkVk15NWl0MW9LNGlIYThwdjh2QlpNaGJkIiwiU2VjcmV0S2V5IjoiTmgtX3BnWHJ4OXdlaXE4YmtBdEpQa3JCbFYzWVAxM1UwRngwZlQtYyIsIkJ1Y2tldE5hbWUiOiJhamlhbnpoZW5nIiwiRmlsZUtleSI6IjEyMzQ1Njc4Lm1wNCIsIlNwbGl0RmlsZVNpemUiOiA2MjkxNDU2fX0=

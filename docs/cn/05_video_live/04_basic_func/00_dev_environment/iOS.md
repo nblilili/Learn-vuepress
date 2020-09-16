@@ -11,7 +11,7 @@ title: 准备开发环境
 
 - 有效的菊风开发者账号（[免费注册](http://developer.juphoon.com/signup) ）
 
-- 有效的菊风 [AppKey](https://developer.juphoon.com/cn/document/V2.1/create-application.php)
+- 有效的菊风 [AppKey](/cn/document/V2.1/create-application.php)
 
 ## 创建 iOS 项目
 
@@ -62,7 +62,7 @@ CocoaPods 环境安装好后，执行以下操作：
 
 修改后内容如下所示，注意将 `Your App` 替换为您的 Target 名称。
 
-``````default
+
 platform :ios, '9.0'
 #use_frameworks!
 target 'Your App' do
@@ -96,7 +96,7 @@ end
 
 4. 继续点击 **+** 符号，导入如下系统依赖的库。
 
-    ``````default
+    
     - AssetsLibrary.framework
     - AudioToolbox.framework
     - VideoToolBox.framework
@@ -161,7 +161,7 @@ end
 
 4. 继续点击 **+** 符号，导入如下系统依赖的库。
 
-    ``````default
+    
     - AssetsLibrary.framework
     - AudioToolbox.framework
     - VideoToolBox.framework

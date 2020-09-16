@@ -13,7 +13,7 @@ created.
 - Effective Juphoon Developer Account ([free sign
     up](http://developer.juphoon.com/signup))
 
-- Efficient Juphoon [AppKey](https://developer.juphoon.com/cn/document/V2.1/create-application.php)
+- Efficient Juphoon [AppKey](/cn/document/V2.1/create-application.php)
 
 ## Create an iOS project
 
@@ -75,7 +75,7 @@ After the CocoaPods environment is installed, take the following steps:
 The revised content is as follows. Pay attention to replace Your App
 with your Target name:
 
-``````default
+
 platform :ios, '9.0'
 #use_frameworks!
 target 'Your App' do

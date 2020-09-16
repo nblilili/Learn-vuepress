@@ -84,7 +84,7 @@
               ></a>
             </div>
           </div>
-<!-- v-if="user_type" -->
+          <!-- v-if="user_type" -->
           <div class="nav-btn" v-if="user_type">
             <div class="more-item">
               <div class="more">
@@ -175,18 +175,7 @@ export default {
       //     { text: "EN", link: "/en" + that.$route.path.substring(3) },
       //   ],
       // };
-    },
-    $lang(newValue) {
-      let that = this;
-      this.langlist = {
-        text: that.$lang == "cn" ? "中文" : "EN",
-        ariaLabel: "Select language",
-        items: [
-          { text: "中文", link: "/cn" + that.$route.path.substring(3) },
-          { text: "EN", link: "/en" + that.$route.path.substring(3) },
-        ],
-      };
-      // console.log(this.langlist);
+      this.changelangselect();
     },
   },
   computed: {
@@ -236,15 +225,7 @@ export default {
         items: (link.items || []).map(resolveNavLinkItem),
       });
     });
-
-    this.langlist = {
-      text: that.$lang == "cn" ? "中文" : "EN",
-      ariaLabel: "Select language",
-      items: [
-        { text: "中文", link: "/cn" + that.$route.path.substring(3) },
-        { text: "EN", link: "/en" + that.$route.path.substring(3) },
-      ],
-    };
+    this.changelangselect();
     // console.log(this.langlist);
   },
   mounted() {
@@ -262,17 +243,43 @@ export default {
       .then(function (response) {
         if (response.data.result) {
           that.UserInfo = response.data.info;
-          if(!response.data.info.user_name){
-            that.user_type = false
+          if (!response.data.info.user_name) {
+            that.user_type = false;
           }
         }
-        
       })
       .catch(function (error) {
         // console.log(error);
       });
   },
   methods: {
+    changelangselect() {
+      let that = this;
+      let noneStr = that.$route.path.substring(3);
+      let items;
+      if (
+        noneStr.indexOf("/juphoon_platform/") > -1 ||
+        noneStr.indexOf("/WebRTC/") > -1 ||
+        noneStr.indexOf("/server_recording/") > -1 ||
+        noneStr.indexOf("/screen_share/") > -1 ||
+        noneStr.indexOf("/CDN_push/") > -1
+      ) {
+        items = [
+          { text: "中文", link: "/cn" + that.$route.path.substring(3) },
+          { text: "EN", link: "/en/" },
+        ];
+      } else {
+        items = [
+          { text: "中文", link: "/cn" + that.$route.path.substring(3) },
+          { text: "EN", link: "/en" + that.$route.path.substring(3) },
+        ];
+      }
+      this.langlist = {
+        text: that.$lang == "cn" ? "中文" : "EN",
+        ariaLabel: "Select language",
+        items: items,
+      };
+    },
     languageDropdown() {
       let languageDropdown = {
         text: this.$themeLocaleConfig.selectText || "Languages",

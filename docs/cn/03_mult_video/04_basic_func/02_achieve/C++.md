@@ -10,9 +10,9 @@ title: 实现多方视频通话
 ## 初始化
 
 首先继承
-[JCMediaChannelCallback](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel_callback.html)
+[JCMediaChannelCallback](/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel_callback.html)
 对象和
-[JCMediaDeviceCallback](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_device_callback.html)
+[JCMediaDeviceCallback](/portal/reference/V2.1/windows/C++/html/class_j_c_media_device_callback.html)
 对象，并实现这两个对象中的纯虚函数。
 
 ``````cpp
@@ -54,9 +54,9 @@ public:
 ``````
 
 然后调用
-[createJCMediaDevice](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/_j_c_media_device_8h.html#a96a10766264f3c12af531b70cb9c9749)
+[createJCMediaDevice](/portal/reference/V2.1/windows/C++/html/_j_c_media_device_8h.html#a96a10766264f3c12af531b70cb9c9749)
 和
-[createJCMediaChannel](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/_j_c_media_channel_8h.html#acaca886fc345f798056ff2b9c2ee11ac)
+[createJCMediaChannel](/portal/reference/V2.1/windows/C++/html/_j_c_media_channel_8h.html#acaca886fc345f798056ff2b9c2ee11ac)
 以初始化多方视频通话需要的模块：
 
 ``````cpp
@@ -74,13 +74,13 @@ bool JCManager::initialize()
 其中：
 
 - JCMediaDevice create 方法中的 this 为
-    [JCMediaDeviceCallback](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_device_callback.html)
+    [JCMediaDeviceCallback](/portal/reference/V2.1/windows/C++/html/class_j_c_media_device_callback.html)
     的派生类，该类于将媒体设备相关的事件通知给上层。因此需要先创建 JCMediaDeviceCallback
     的派生类，然后在该派生类中实现 JCMediaDeviceCallback
     的纯虚函数。
 
 - JCMediaChannel create 方法中的 this 为
-    [JCMediaChannelCallback](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel_callback.html)
+    [JCMediaChannelCallback](/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel_callback.html)
     的派生类，该类用于将频道中的相关事件通知给上层。因此需要先创建 JCMediaChannelCallback
     的派生类，然后在该派生类中实现 JCMediaChannelCallback
     的纯虚函数。
@@ -96,7 +96,7 @@ bool JCManager::initialize()
 JC SDK 默认不上传本地音频流，因此如果需要进入会议中就能听到彼此的声音，需要在加入频道前预打开音频流上传的标识:
 
 1\. 调用
-[enableUploadAudioStream](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel.html#a2b08d87b38fe2fd7a394e2786241cc4c)
+[enableUploadAudioStream](/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel.html#a2b08d87b38fe2fd7a394e2786241cc4c)
 开启音频流。
 
 ``````cpp
@@ -120,7 +120,7 @@ JCManager::shared()->mediaChannel->enableUploadAudioStream(true);
 :::
 
 2. 调用
-    [join](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel.html#acfdb1da52955cf8b01d95527eb28890b)
+    [join](/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel.html#acfdb1da52955cf8b01d95527eb28890b)
     方法加入频道。你需要在该方法中传入如下参数：
 
 <!-- end list -->
@@ -129,7 +129,7 @@ JCManager::shared()->mediaChannel->enableUploadAudioStream(true);
     Uri，其他表示频道 ID。频道 ID 或 Uri 相同的用户会进入同一个频道。
 
 - joinParam：加入参数，没有则填 NULL。详见
-    [JCMediaChannelJoinParam](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel_join_param.html)
+    [JCMediaChannelJoinParam](/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel_join_param.html)
     对象。
 
 ``````cpp
@@ -138,7 +138,7 @@ JCManager::shared()->mediaChannel->join("频道 ID", NULL);
 ``````
 
 3\. 加入频道后会收到
-[onJoin](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel_callback.html#a430bd78b28e189ee3c9564ddb7db213d)
+[onJoin](/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel_callback.html#a430bd78b28e189ee3c9564ddb7db213d)
 回调。
 
 ``````cpp
@@ -158,11 +158,11 @@ void JCManager::onJoin(bool result, JCMediaChannelReason reason, const char* cha
 ## 创建本地视频画面
 
 1\. 加入频道后，调用
-[JCMediaChannel](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel.html)
+[JCMediaChannel](/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel.html)
 中的
 [getSelfParticipant](http://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel.html#afeb3c17dc9d0827fe27fa189cd0a5c9e)
 方法获取频道内自身对象。该方法返回
-[JCMediaChannelParticipant](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel_participant.html)
+[JCMediaChannelParticipant](/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel_participant.html)
 对象
 
 ``````cpp
@@ -171,11 +171,11 @@ JCMediaChannelParticipant* participant = JCManager::shared()->mediaChannel->getS
 ``````
 
 2. 调用
-    [JCMediaChannelParticipant](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel_participant.html)
+    [JCMediaChannelParticipant](/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel_participant.html)
     类中的
-    [startVideo](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel_participant.html#a238fccab8cc09e1ef843a43aad4ffac9)
+    [startVideo](/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel_participant.html#a238fccab8cc09e1ef843a43aad4ffac9)
     方法打开本地视频预览。该方法会返回一个
-    [JCMediaDeviceVideoCanvas](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_device_video_canvas.html)
+    [JCMediaDeviceVideoCanvas](/portal/reference/V2.1/windows/C++/html/class_j_c_media_device_video_canvas.html)
     对象，该对象用于将视频渲染到画布上，并管理渲染的方式。（调用此方法会打开摄像头）
 
 示例代码:
@@ -200,15 +200,15 @@ if (mediaChannel->getUploadLocalVideo() && mConfSelfCanvas == NULL)
 ## 创建远端视频画面
 
 视频通话中，通常需要看到其他用户。通过
-[JCMediaChannel](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel.html)
+[JCMediaChannel](/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel.html)
 中的 participants 属性获取频道内所有成员对象。
 
 然后调用
-[JCMediaChannelParticipant](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel_participant.html)
+[JCMediaChannelParticipant](/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel_participant.html)
 类中的
-[startVideo](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel_participant.html#a238fccab8cc09e1ef843a43aad4ffac9)
+[startVideo](/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel_participant.html#a238fccab8cc09e1ef843a43aad4ffac9)
 方法设置远端用户的视图。调用该方法会返回一个
-[JCMediaDeviceVideoCanvas](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_device_video_canvas.html)
+[JCMediaDeviceVideoCanvas](/portal/reference/V2.1/windows/C++/html/class_j_c_media_device_video_canvas.html)
 对象，该对象用于将视频渲染到画布上，并管理渲染的方式。
 
 示例代码:
@@ -242,7 +242,7 @@ if (other != NULL && other->isVideo())
 ## 离开频道
 
 调用
-[leave](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel.html#a93c19137044fec1568f73f1f6dbfee84)
+[leave](/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel.html#a93c19137044fec1568f73f1f6dbfee84)
 方法离开当前频道。
 
 ``````cpp
@@ -250,9 +250,9 @@ JCManager::shared()->mediaChannel->leave();
 ``````
 
 离开频道后，自身收到
-[onLeave](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel_callback.html#a18bc4fae89f0d56fb849075f1603ac71)
+[onLeave](/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel_callback.html#a18bc4fae89f0d56fb849075f1603ac71)
 回调，其他成员同时收到
-[onParticipantLeft](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel_callback.html#a5888058878f3aaa382b3ede94228a6e8)
+[onParticipantLeft](/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel_callback.html#a5888058878f3aaa382b3ede94228a6e8)
 回调。
 
 ``````cpp
@@ -266,9 +266,9 @@ void JCManager::onLeave(JCMediaChannelReason reason, const char* channelId);
 ## 销毁本地和远端视频画面
 
 在视频挂断后，调用
-[JCMediaChannelParticipant](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel_participant.html)
+[JCMediaChannelParticipant](/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel_participant.html)
 里的
-[stopVideo](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel_participant.html#a5076a035465e7f5c307679a6bf60fb8c)
+[stopVideo](/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel_participant.html#a5076a035465e7f5c307679a6bf60fb8c)
 销毁本地和远端视频画面。
 
 示例代码:
@@ -306,11 +306,11 @@ JCManager::shared()->mediaChannel->stop();
 ``````
 
 解散频道后，发起结束的成员收到
-[onStop](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel_callback.html#a61a1d5a81563d34f80e70541a114a74a)
+[onStop](/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel_callback.html#a61a1d5a81563d34f80e70541a114a74a)
 回调，其他成员同时收到
-[onLeave](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel_callback.html#a18bc4fae89f0d56fb849075f1603ac71)
+[onLeave](/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel_callback.html#a18bc4fae89f0d56fb849075f1603ac71)
 回调。 解散失败原因枚举值请参考
-[JCMediaChannelReason](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/_j_c_media_channel_constants_8h.html#a24a2154e4bb2db63c75b31cd2b021fc3)
+[JCMediaChannelReason](/portal/reference/V2.1/windows/C++/html/_j_c_media_channel_constants_8h.html#a24a2154e4bb2db63c75b31cd2b021fc3)
 。
 
 ``````cpp
@@ -321,9 +321,9 @@ void JCManager::onStop(bool result, JCMediaChannelReason reason)
 ``````
 
 解散频道后，同样需要调用
-[JCMediaChannelParticipant](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel_participant.html)
+[JCMediaChannelParticipant](/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel_participant.html)
 里的
-[stopVideo](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel_participant.html#a5076a035465e7f5c307679a6bf60fb8c)
+[stopVideo](/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel_participant.html#a5076a035465e7f5c307679a6bf60fb8c)
 销毁本地和远端视频画面。
 
 至此，您已经完成基础的多方视频通话功能。

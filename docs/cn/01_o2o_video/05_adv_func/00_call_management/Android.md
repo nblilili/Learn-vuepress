@@ -39,7 +39,7 @@ public abstract boolean mute(JCCallItem item);
 ### 通话录音
 
 可以在通话中进行录音，开启或关闭录音需要根据当前的录音状态（audioRecord）来决定。如果正在录制或者通话被挂起或者挂起的情况下，不能进行音频录制。录音状态（audioRecord）可通过
-[JCCallItem](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCCallItem.html)
+[JCCallItem](/portal/reference/V2.1/android/com/juphoon/cloud/JCCallItem.html)
 对象中的 getAudioRecord() 方法获得。
 
 开启或关闭录音接口如下
@@ -91,7 +91,7 @@ void onCallItemUpdate(JCCallItem item, JCCallItem.ChangeParam changeParam);
 
 您可以调用下面的方法对通话对象进行呼叫保持或解除呼叫保持，开启或关闭呼叫保持需要根据 JCCallItem
 对象中的呼叫保持状态来决定，呼叫保持状态（hold）可通过
-[getHold()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCCallItem.html#getHold--)
+[getHold()](/portal/reference/V2.1/android/com/juphoon/cloud/JCCallItem.html#getHold--)
 方法获得
 
 ``````java
@@ -174,7 +174,7 @@ void onCallItemUpdate(JCCallItem item, JCCallItem.ChangeParam changeParam);
 ::: tip
 
 静音状态、通话保持状态、活跃状态可通过
-[JCCallItem](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCCallItem.html)
+[JCCallItem](/portal/reference/V2.1/android/com/juphoon/cloud/JCCallItem.html)
 对象获得。
 
 :::

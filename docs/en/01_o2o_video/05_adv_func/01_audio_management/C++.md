@@ -411,7 +411,7 @@ turning on/off audio devices.
 ### Audio device management
 
 Call
-[getAudioInputs](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_device.html#ab177fc54d666d727ece18588268fd203)
+[getAudioInputs](/portal/reference/V2.1/windows/C++/html/class_j_c_media_device.html#ab177fc54d666d727ece18588268fd203)
 interface to access the list of audio input devices.
 
 ``````cpp
@@ -421,7 +421,7 @@ std::list<JCMediaDeviceAudio>* audios = JCManager::shared()->mediaDevice->getAud
 ### Get a list of audio output devices
 
 Call
-[getAudioOutputs](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_device.html#a72ba20f63202cbc61bf2cfc8170045b3)
+[getAudioOutputs](/portal/reference/V2.1/windows/C++/html/class_j_c_media_device.html#a72ba20f63202cbc61bf2cfc8170045b3)
 interface to get a list of audio output devices.
 
 ``````cpp
@@ -431,7 +431,7 @@ std::list<JCMediaDeviceAudio>* audios = JCManager::shared()->mediaDevice->getAud
 ### Turn on/off audio devices
 
 Call the
-[startAudio](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_device.html#a3e5dbd693aa7d245377e78cb78902018)
+[startAudio](/portal/reference/V2.1/windows/C++/html/class_j_c_media_device.html#a3e5dbd693aa7d245377e78cb78902018)
 interface to turn on the audio device.
 
 ``````cpp
@@ -439,7 +439,7 @@ JCManager::shared()->mediaDevice->startAudio();
 ``````
 
 Call
-[stopAudio](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_device.html#a007283dc73188577ae32b50849d3d3fd)
+[stopAudio](/portal/reference/V2.1/windows/C++/html/class_j_c_media_device.html#a007283dc73188577ae32b50849d3d3fd)
 interface to turn off the audio device.
 
 ``````cpp

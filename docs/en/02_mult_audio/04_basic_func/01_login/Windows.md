@@ -8,11 +8,11 @@ This guide introduces how to initialize JC SDK and log in.
 ## Initialize
 
 Call
-[JCClient.create()](https://developer.juphoon.com/portal/reference/V2.1/windows/html/04eda8ae-87ca-50c7-5b35-97c067466d0c.htm)
+[JCClient.create()](/portal/reference/V2.1/windows/html/04eda8ae-87ca-50c7-5b35-97c067466d0c.htm)
 on the main thread to create a
-[JCClient](https://developer.juphoon.com/portal/reference/V2.1/windows/html/a01b672a-1c8a-18a7-b550-727bbcad2f52.htm)
+[JCClient](/portal/reference/V2.1/windows/html/a01b672a-1c8a-18a7-b550-727bbcad2f52.htm)
 instance object. Pass in the obtained `appKey` to initialize the
-[JCClient](https://developer.juphoon.com/portal/reference/V2.1/windows/html/a01b672a-1c8a-18a7-b550-727bbcad2f52.htm):
+[JCClient](/portal/reference/V2.1/windows/html/a01b672a-1c8a-18a7-b550-727bbcad2f52.htm):
 
 ``````csharp
 /// JCClient object
@@ -44,9 +44,9 @@ flow of the login interface is as follows:
 ![../../../../\_images_en/workflow\_login\_android.png](../../../../_images_en/workflow_login_android.png)
 
 First create a
-[JCClient.LoginParam](https://developer.juphoon.com/portal/reference/V2.1/windows/html/bf49d392-d1f9-d885-36e5-4af282fdf4b8.htm)
+[JCClient.LoginParam](/portal/reference/V2.1/windows/html/bf49d392-d1f9-d885-36e5-4af282fdf4b8.htm)
 instance to adjust the login parameters. Then call
-[login()](https://developer.juphoon.com/portal/reference/V2.1/windows/html/62440094-63ab-7aa8-981d-2c2337419914.htm)
+[login()](/portal/reference/V2.1/windows/html/62440094-63ab-7aa8-981d-2c2337419914.htm)
 to initiate login:
 
 ``````csharp
@@ -82,10 +82,10 @@ mClient.login(userID, password, loginParam);
 
 After the interface is successfully called, the login state change
 callback
-[onClientStateChange()](https://developer.juphoon.com/portal/reference/V2.1/windows/html/91ac4180-d727-d901-a06b-3ed4a675f4fb.htm)
+[onClientStateChange()](/portal/reference/V2.1/windows/html/91ac4180-d727-d901-a06b-3ed4a675f4fb.htm)
 will be triggered first. You can perform logical operations by
 overriding
-[onClientStateChange()](https://developer.juphoon.com/portal/reference/V2.1/windows/html/91ac4180-d727-d901-a06b-3ed4a675f4fb.htm):
+[onClientStateChange()](/portal/reference/V2.1/windows/html/91ac4180-d727-d901-a06b-3ed4a675f4fb.htm):
 
 ``````csharp
 public void onClientStateChange(JCClientState state, JCClientState oldState) {
@@ -102,9 +102,9 @@ public void onClientStateChange(JCClientState state, JCClientState oldState) {
 ``````
 
 Then trigger the
-[onLogin()](https://developer.juphoon.com/portal/reference/V2.1/windows/html/98254a36-6a0c-4495-3254-5dc93cd52f52.htm)
+[onLogin()](/portal/reference/V2.1/windows/html/98254a36-6a0c-4495-3254-5dc93cd52f52.htm)
 callback. You can perform logical operations by overriding
-[onLogin()](https://developer.juphoon.com/portal/reference/V2.1/windows/html/98254a36-6a0c-4495-3254-5dc93cd52f52.htm):
+[onLogin()](/portal/reference/V2.1/windows/html/98254a36-6a0c-4495-3254-5dc93cd52f52.htm):
 
 ``````csharp
 public void onLogin(bool result, JCClientReason reason) {
@@ -122,7 +122,7 @@ After the login is successful, the SDK will automatically maintain the
 connection status with the server until the user actively calls the
 logout interface, or the device is logged out because the account is
 logged in on another device. Login success/failure reason Refer to
-[JCClientReason](https://developer.juphoon.com/portal/reference/V2.1/windows/html/9d6e6243-1b3f-55a6-7d0a-3158812dfc6f.htm)
+[JCClientReason](/portal/reference/V2.1/windows/html/9d6e6243-1b3f-55a6-7d0a-3158812dfc6f.htm)
 .
 
 ## Log out
@@ -132,9 +132,9 @@ The call flow of the logout interface is as follows:
 ![../../../../\_images_en/workflow\_logout\_android.png](../../../../_images_en/workflow_logout_android.png)
 
 Call
-[logout()](https://developer.juphoon.com/portal/reference/V2.1/windows/html/4b7a3fd4-f6bf-fc4e-8cf9-78023f69b459.htm)
+[logout()](/portal/reference/V2.1/windows/html/4b7a3fd4-f6bf-fc4e-8cf9-78023f69b459.htm)
 to initiate logout.More logout reason reference:
-[JCClientReason](https://developer.juphoon.com/portal/reference/V2.1/windows/html/9d6e6243-1b3f-55a6-7d0a-3158812dfc6f.htm)
+[JCClientReason](/portal/reference/V2.1/windows/html/9d6e6243-1b3f-55a6-7d0a-3158812dfc6f.htm)
 .
 
 Logging out will also trigger a login state change (onClientStateChange)

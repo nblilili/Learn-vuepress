@@ -27,7 +27,7 @@ When exceed the maximum number:
 
 Use the following method to turn on/off mute, which depends on the mute
 state in
-([mute](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCCallItem.html#//api/name/mute:))
+([mute](/portal/reference/V2.1/ios/Classes/JCCallItem.html#//api/name/mute:))
 in JCCallItem. After turning on mute, another party will not hear your
 voice:
 
@@ -46,7 +46,7 @@ You can record during a call. Turn on/off recording depends on the
 current recording status (audioRecord). If recording is in progress or
 the call is hanged or suspended, audio recording cannot be performed.
 The recording status can be obtained through the
-[JCCallItem](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCCallItem.html)
+[JCCallItem](/portal/reference/V2.1/ios/Classes/JCCallItem.html)
 object.
 
 Turn on/off the recording interface as follows:

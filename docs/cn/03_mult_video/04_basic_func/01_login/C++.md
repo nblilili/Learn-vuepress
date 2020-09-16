@@ -34,7 +34,7 @@ public:
 ``````
 
 然后在主线程调用 JCClientImpl 类中的
-[createJCClient](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/_j_c_client_8h.html#a2d6fc4f203884536ff69bfe0e0ed300f)
+[createJCClient](/portal/reference/V2.1/windows/C++/html/_j_c_client_8h.html#a2d6fc4f203884536ff69bfe0e0ed300f)
 方法，传入获取到的 `appKey` 进行 JC SDK 的初始化。
 
 ``````cpp
@@ -68,9 +68,9 @@ SDK 初始化之后，即可进行登录的集成。登录接口调用流程如�
 ![../../../../\_images/ios\_login.png](../../../../_images/ios_login.png)
 
 先创建
-[JCClientLoginParam](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_client_login_param.html)
+[JCClientLoginParam](/portal/reference/V2.1/windows/C++/html/class_j_c_client_login_param.html)
 对象以设置登录参数。然后调用
-[login](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_client.html#ad612e9957623869289103fbf0721d902)
+[login](/portal/reference/V2.1/windows/C++/html/class_j_c_client.html#ad612e9957623869289103fbf0721d902)
 发起登录:
 
 ``````cpp
@@ -117,7 +117,7 @@ void JCSampleDlg::OnBnClickedButtonLogin()
 :::
 
 调用接口成功后，首先会触发登录状态改变回调
-[onClientStateChange](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_client_callback.html#ace087f907d2f8a2413f10d34cfb47337)
+[onClientStateChange](/portal/reference/V2.1/windows/C++/html/class_j_c_client_callback.html#ace087f907d2f8a2413f10d34cfb47337)
 ，你可以在该回调中执行逻辑操作。
 
 ``````cpp
@@ -135,7 +135,7 @@ void JCManager::onClientStateChange(JCClientState state, JCClientState oldState)
 ``````
 
 之后触发
-[onLogin](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_client_callback.html#ab2deb2e2d3c95f848d9dc2baa7c6daff)
+[onLogin](/portal/reference/V2.1/windows/C++/html/class_j_c_client_callback.html#ab2deb2e2d3c95f848d9dc2baa7c6daff)
 回调。你可以在该回调中执行逻辑操作。
 
 ``````cpp
@@ -153,7 +153,7 @@ void JCManager::onLogin(bool result, JCClientReason reason) {
 JCClientStateLogined（登录成功）。SDK
 会自动保持与服务器的连接状态，直到用户主动调用登出接口，或者因为帐号在其他设备登录导致该设备登出。登录成功/失败原因
 参考
-[JCClientReason](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/_j_c_client_constants_8h.html#a8b1b44e57fff02634fd4637428a70020)
+[JCClientReason](/portal/reference/V2.1/windows/C++/html/_j_c_client_constants_8h.html#a8b1b44e57fff02634fd4637428a70020)
 。
 
 ## 登出
@@ -163,7 +163,7 @@ JCClientStateLogined（登录成功）。SDK
 ![../../../../\_images/ios\_logout.png](../../../../_images/ios_logout.png)
 
 调用
-[logout](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_client.html#abac015a13078c84b06afac69dcd392ff)
+[logout](/portal/reference/V2.1/windows/C++/html/class_j_c_client.html#abac015a13078c84b06afac69dcd392ff)
 发起登出。
 
 ``````cpp
@@ -180,7 +180,7 @@ void JCManager::onLogout(JCClientReason reason) {
 }
 ``````
 
-登出原因请参考：[JCClientReason](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/_j_c_client_constants_8h.html#a8b1b44e57fff02634fd4637428a70020)
+登出原因请参考：[JCClientReason](/portal/reference/V2.1/windows/C++/html/_j_c_client_constants_8h.html#a8b1b44e57fff02634fd4637428a70020)
 。
 
 登出成功后，JCClientState 状态从 JCClientStateLogined（登录成功） 变为

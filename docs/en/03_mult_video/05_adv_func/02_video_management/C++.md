@@ -16,7 +16,7 @@ std::list<JCMediaDeviceCamera>* cameras = JCManager::shared()->mediaDevice->getC
 ``````
 
 After obtaining the Camera list, call the
-[switchCamera](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_device.html#a0716deb7c816c605444f2bb3202e9ef5)
+[switchCamera](/portal/reference/V2.1/windows/C++/html/class_j_c_media_device.html#a0716deb7c816c605444f2bb3202e9ef5)
 method to switch the specified camera:
 
 ``````cpp
@@ -27,7 +27,7 @@ JCManager::shared()->mediaDevice->switchCamera(cameras[0]);
 ### Set camera capture resolution
 
 Call the
-[setCameraProperty](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_device.html#a2ec180f6fc51367007b854dd0bc2866b)
+[setCameraProperty](/portal/reference/V2.1/windows/C++/html/class_j_c_media_device.html#a2ec180f6fc51367007b854dd0bc2866b)
 interface to customize the capture parameters of the camera, such as the
 height, width and frame rate of the capture, to achieve different
 capture resolutions.
@@ -39,7 +39,7 @@ JCManager::shared()->mediaDevice->setCameraProperty(640, 360, 24);
 ### Set canvas rotation angle
 
 Call the
-[rotate](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_device_video_canvas.html#a44d1073788a9cd3c6620c839eea76ffa)
+[rotate](/portal/reference/V2.1/windows/C++/html/class_j_c_media_device_video_canvas.html#a44d1073788a9cd3c6620c839eea76ffa)
 interface to set the rotation angle of the canvas in the Canvas. Among
 them, the rotation angle must be a multiple of 90, which represents the
 angle after rotating with the screen in the positive direction.
@@ -435,7 +435,7 @@ Pause rendering and Resume rendering.
 ### Update video rendering logo
 
 Call
-[replace](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_device_video_canvas.html#a0f93d017306b5920f3fdccc00e2074f8)
+[replace](/portal/reference/V2.1/windows/C++/html/class_j_c_media_device_video_canvas.html#a0f93d017306b5920f3fdccc00e2074f8)
 interface to update video rendering logo:
 
 ``````cpp
@@ -470,11 +470,11 @@ class, as follows:
 ### Turn on/off the camera
 
 Call the
-[startCamera](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_device.html#a8980c035521b9c5c20afa34fad23293e)
+[startCamera](/portal/reference/V2.1/windows/C++/html/class_j_c_media_device.html#a8980c035521b9c5c20afa34fad23293e)
 interface to start the camera.
 
 Call
-[stopCamera](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_device.html#a201fd2352117c7fbdc03ef10837fc701)
+[stopCamera](/portal/reference/V2.1/windows/C++/html/class_j_c_media_device.html#a201fd2352117c7fbdc03ef10837fc701)
 interface to turn off the camera.
 
 ``````cpp
@@ -487,7 +487,7 @@ JCManager::shared()->mediaDevice->stopCamera();
 ### Get the currently used camera
 
 Call
-[getCamera](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_device.html#acb427f7249ef1e384b1a910c90c31190)
+[getCamera](/portal/reference/V2.1/windows/C++/html/class_j_c_media_device.html#acb427f7249ef1e384b1a910c90c31190)
 interface to get the currently used camera.
 
 ``````cpp
@@ -497,7 +497,7 @@ JCMediaDeviceCamera camera = JCManager::shared()->mediaDevice->getCamera();
 ### Get the window list
 
 Call
-[getWindows](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_device.html#aec338b2eea709884722f7c426c924653)
+[getWindows](/portal/reference/V2.1/windows/C++/html/class_j_c_media_device.html#aec338b2eea709884722f7c426c924653)
 interface to get the window list.
 
 ``````cpp
@@ -507,7 +507,7 @@ std::list<JCMediaDeviceWindow>* windows = JCManager::shared()->mediaDevice->getW
 ### Get teh desktop list
 
 Call the
-[getDesktops](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_device.html#a8cbda493ef14c4b97ff022948bb15bf1)
+[getDesktops](/portal/reference/V2.1/windows/C++/html/class_j_c_media_device.html#a8cbda493ef14c4b97ff022948bb15bf1)
 interface to get the desktop list.
 
 ``````cpp

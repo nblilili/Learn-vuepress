@@ -48,7 +48,7 @@ current recording status (audioRecord). If recording is in progress or
 the call is suspended, audio recording cannot be performed. The
 recording state (audioRecord) can be obtained by the getAudioRecord()
 method in the
-[JCCallItem](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCCallItem.html)
+[JCCallItem](/portal/reference/V2.1/android/com/juphoon/cloud/JCCallItem.html)
 object.
 
 Turn on/off the recording interface as follows:
@@ -103,7 +103,7 @@ You can call the following method to maintain call hold or release call
 hold on the call object. Turning on/off call hold depends on the call
 hold state in the JCCallItem object. The call hold state can be obtained
 by the [<span id="id61" class="problematic">\`</span>](#id60)getHold()
-\<[https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCCallItem.html\#getHold–](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCCallItem.html#getHold--)\>\`\_method:
+\<[https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCCallItem.html\#getHold–](/portal/reference/V2.1/android/com/juphoon/cloud/JCCallItem.html#getHold--)\>\`\_method:
 
 ``````java
 /**
@@ -189,7 +189,7 @@ void onCallItemUpdate(JCCallItem item, JCCallItem.ChangeParam changeParam);
 ::: tip
 
 The mute state, call hold state and active state can be obtained through
-[JCCallItem](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCCallItem.html)
+[JCCallItem](/portal/reference/V2.1/android/com/juphoon/cloud/JCCallItem.html)
 object.
 
 :::

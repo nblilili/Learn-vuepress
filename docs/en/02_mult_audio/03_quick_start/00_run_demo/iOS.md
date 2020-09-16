@@ -7,7 +7,7 @@ To quickly experience the demo, please follow the steps below:
 
 ## Get AppKey
 
-Please refer to [AppKey](https://developer.juphoon.com/cn/document/V2.1/create-application.php) to
+Please refer to [AppKey](/cn/document/V2.1/create-application.php) to
 get your AppKey.
 
 ::: tip

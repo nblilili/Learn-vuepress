@@ -7,7 +7,7 @@ title: 一分钟跑通 Demo
 
 ## 获取 AppKey
 
-请参考 [AppKey](https://developer.juphoon.com/cn/document/V2.1/create-application.php) 来获取您的 AppKey 。
+请参考 [AppKey](/cn/document/V2.1/create-application.php) 来获取您的 AppKey 。
 
 ::: tip
 

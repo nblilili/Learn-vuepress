@@ -10,9 +10,9 @@ title: 实现多方视频通话
 ## 初始化
 
 调用
-[JCMediaDevice.create()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaDevice.html#create-com.juphoon.cloud.JCClient-com.juphoon.cloud.JCMediaDeviceCallback-)
+[JCMediaDevice.create()](/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaDevice.html#create-com.juphoon.cloud.JCClient-com.juphoon.cloud.JCMediaDeviceCallback-)
 和
-[JCMediaChannel.create()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannel.html#create-com.juphoon.cloud.JCClient-com.juphoon.cloud.JCMediaDevice-com.juphoon.cloud.JCMediaChannelCallback-)
+[JCMediaChannel.create()](/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannel.html#create-com.juphoon.cloud.JCClient-com.juphoon.cloud.JCMediaDevice-com.juphoon.cloud.JCMediaChannelCallback-)
 以初始化实现多方通话需要的模块。
 
 ``````java
@@ -99,9 +99,9 @@ public boolean initialize(Context context) {
 ## 加入频道
 
 1. 调用
-    [enableUploadAudioStream()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannel.html#enableUploadAudioStream-boolean-)
+    [enableUploadAudioStream()](/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannel.html#enableUploadAudioStream-boolean-)
     开启音频流。若要开启视频，调用
-    [enableUploadVideoStream()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannel.html#enableUploadVideoStream-boolean-)
+    [enableUploadVideoStream()](/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannel.html#enableUploadVideoStream-boolean-)
     开启视频流。
 
     ``````java
@@ -112,7 +112,7 @@ public boolean initialize(Context context) {
     ``````
 
 2. 创建并加入频道，需要传入 `channelIdOrUri` 和
-    [JCMediaChannel.JoinParam](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannel.JoinParam.html)
+    [JCMediaChannel.JoinParam](/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannel.JoinParam.html)
     。
 
       - `channelIdOrUri` 表示频道 ID 或频道 Uri。
@@ -125,7 +125,7 @@ public boolean initialize(Context context) {
     ``````
 
 3. 加入频道后收到
-    [onJoin()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannelCallback.html#onJoin-boolean-int-java.lang.String-)
+    [onJoin()](/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannelCallback.html#onJoin-boolean-int-java.lang.String-)
     回调。
 
     ``````java
@@ -142,15 +142,15 @@ public boolean initialize(Context context) {
 ## 创建本地视频画面
 
 加入频道后，调用
-[JCMediaChannel](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannel.html)
+[JCMediaChannel](/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannel.html)
 中的
-[getSelfParticipant()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannel.html#getSelfParticipant--)
+[getSelfParticipant()](/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannel.html#getSelfParticipant--)
 获取频道内自身对象， 然后调用
-[JCMediaChannelParticipant](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannelParticipant.html)
+[JCMediaChannelParticipant](/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannelParticipant.html)
 中的
-[startVideo()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannelParticipant.html#startVideo-int-int-)
+[startVideo()](/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannelParticipant.html#startVideo-int-int-)
 方法打开本地视频预览。返回对象为
-[JCMediaDeviceVideoCanvas](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaDeviceVideoCanvas.html)。（调用此方法会打开摄像头）
+[JCMediaDeviceVideoCanvas](/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaDeviceVideoCanvas.html)。（调用此方法会打开摄像头）
 
 ``````java
 // 打开本地视频预览
@@ -160,23 +160,23 @@ mMediaChannel.getSelfParticipant().startVideo(JCMediaDevice.RENDER_FULL_CONTENT,
 ## 创建远端视频画面
 
 视频通话中，通常需要看到其他用户。加入频道后，调用
-[JCMediaChannel](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannel.html)
+[JCMediaChannel](/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannel.html)
 中的
-[getParticipants()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannel.html#getParticipants--)
+[getParticipants()](/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannel.html#getParticipants--)
 获取频道内所有成员对象。
 
 然后调用
-[JCMediaChannelParticipant](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannelParticipant.html)
+[JCMediaChannelParticipant](/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannelParticipant.html)
 类中的
-[startVideo()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannelParticipant.html#startVideo-int-int-)
+[startVideo()](/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannelParticipant.html#startVideo-int-int-)
 获取远端视频画面。返回对象为
-[JCMediaDeviceVideoCanvas](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaDeviceVideoCanvas.html)。
+[JCMediaDeviceVideoCanvas](/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaDeviceVideoCanvas.html)。
 
-[startVideo()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannelParticipant.html#startVideo-int-int-)
+[startVideo()](/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannelParticipant.html#startVideo-int-int-)
 方法调用后，还需要调用
-[JCMediaChannel](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannel.html)
+[JCMediaChannel](/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannel.html)
 中的
-[requestVideo()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannel.html#requestVideo-com.juphoon.cloud.JCMediaChannelParticipant-int-)
+[requestVideo()](/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannel.html#requestVideo-com.juphoon.cloud.JCMediaChannelParticipant-int-)
 方法请求频道中其他用户的视频流。
 
 ``````java
@@ -191,7 +191,7 @@ mMediaChannel.requestVideo(participants.get(0), PICTURESIZE_LARGE);
 ## 离开频道
 
 调用
-[leave()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannel.html#leave--)
+[leave()](/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannel.html#leave--)
 方法可以离开当前频道。
 
 ``````java
@@ -199,7 +199,7 @@ mMediaChannel.leave();
 ``````
 
 在多方视频通话中，离开频道还需要调用
-[stopVideo()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannelParticipant.html#stopVideo--)
+[stopVideo()](/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannelParticipant.html#stopVideo--)
 移除视频画面。
 
 ``````java
@@ -207,17 +207,17 @@ mParticipant.stopVideo();
 ``````
 
 离开频道后，自身收到
-[onLeave()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannelCallback.html#onLeave-int-java.lang.String-)
+[onLeave()](/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannelCallback.html#onLeave-int-java.lang.String-)
 回调，其他成员同时收到
-[onParticipantLeft()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannelCallback.html#onParticipantLeft-com.juphoon.cloud.JCMediaChannelParticipant-)
+[onParticipantLeft()](/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannelCallback.html#onParticipantLeft-com.juphoon.cloud.JCMediaChannelParticipant-)
 回调。
 
 ## 销毁本地和远端视频画面
 
 调用
-[JCMediaChannelParticipant](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannelParticipant.html)
+[JCMediaChannelParticipant](/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannelParticipant.html)
 里的
-[stopVideo()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannelParticipant.html#stopVideo--)
+[stopVideo()](/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannelParticipant.html#stopVideo--)
 销毁本地和远端视频画面。
 
 ``````java
@@ -240,7 +240,7 @@ mMediaChannel.stop();
 ``````
 
 在多方视频通话中，离开频道还需要调用
-[stopVideo()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannelParticipant.html#stopVideo--)
+[stopVideo()](/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannelParticipant.html#stopVideo--)
 移除视频画面。
 
 ``````java
@@ -248,11 +248,11 @@ mParticipant.stopVideo();
 ``````
 
 解散频道后，发起结束的成员收到
-[onStop()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannelCallback.html#onStop-boolean-int-)
+[onStop()](/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannelCallback.html#onStop-boolean-int-)
 回调，其他成员同时收到
-[onLeave()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannelCallback.html#onLeave-int-java.lang.String-)
+[onLeave()](/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannelCallback.html#onLeave-int-java.lang.String-)
 回调。 解散失败原因枚举值请参考
-[MediaChannelReason](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannel.html#REASON_ALREADY_JOINED)
+[MediaChannelReason](/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannel.html#REASON_ALREADY_JOINED)
 。
 
 ``````java

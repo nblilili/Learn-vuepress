@@ -11,9 +11,9 @@ sequence for one-to-one call is as shown below:
 ## Initialize
 
 Call [JCMediaDevice
-create](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaDevice.html#//api/name/create:callback:)
+create](/portal/reference/V2.1/ios/Classes/JCMediaDevice.html#//api/name/create:callback:)
 and [JCCall
-create](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCCall.html#//api/name/create:mediaDevice:callback:)
+create](/portal/reference/V2.1/ios/Classes/JCCall.html#//api/name/create:mediaDevice:callback:)
 to initialize the modules needed for one-to-one calling:
 
 ``````objectivec
@@ -30,7 +30,7 @@ to initialize the modules needed for one-to-one calling:
 Among them:
 
 - The callback in the JCMediaDevice create is the proxy object of the
-    [JCMediaDeviceCallback](https://developer.juphoon.com/portal/reference/V2.1/ios/Protocols/JCMediaDeviceCallback.html)
+    [JCMediaDeviceCallback](/portal/reference/V2.1/ios/Protocols/JCMediaDeviceCallback.html)
     protocol, which is used to notify the upper layer of media device
     related events. Therefore, you need to specify the proxy object of
     callback first, and then implement the JCMediaDeviceCallback in the
@@ -71,7 +71,7 @@ The main methods in the JCCallCallback are as follows:
 ## Make a call
 
 To call
-[call](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCCall.html#//api/name/call:video:extraParam:)
+[call](/portal/reference/V2.1/ios/Classes/JCCall.html#//api/name/call:video:extraParam:)
 to initiate a video call, the parameters to be filled are:
 
 - `userID` Fill in the user ID of the other party.
@@ -89,10 +89,10 @@ to initiate a video call, the parameters to be filled are:
 
 After dialing the call, both the caller and the callee will receive the
 callback
-[onCallItemAdd](https://developer.juphoon.com/portal/reference/V2.1/ios/Protocols/JCCallCallback.html#//api/name/onCallItemAdd:)
+[onCallItemAdd](/portal/reference/V2.1/ios/Protocols/JCCallCallback.html#//api/name/onCallItemAdd:)
 for the new call, and the call status will change to JCCallStatePending
 at this time. You can implement the
-[onCallItemAdd](https://developer.juphoon.com/portal/reference/V2.1/ios/Protocols/JCCallCallback.html#//api/name/onCallItemAdd:)
+[onCallItemAdd](/portal/reference/V2.1/ios/Protocols/JCCallCallback.html#//api/name/onCallItemAdd:)
 method in the upper layer and handle the related logic:
 
 ``````objectivec
@@ -120,11 +120,11 @@ becomes the JCCallStateCancel.
 ## Create local video images
 
 After initiating a call, call the
-[startSelfVideo](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCCallItem.html#//api/name/startSelfVideo:)
+[startSelfVideo](/portal/reference/V2.1/ios/Classes/JCCallItem.html#//api/name/startSelfVideo:)
 in the
-[JCCallItem](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCCallItem.html)
+[JCCallItem](/portal/reference/V2.1/ios/Classes/JCCallItem.html)
 class to create a local video image. This method returns a
-[JCMediaDeviceVideoCanvas](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaDeviceVideoCanvas.html)
+[JCMediaDeviceVideoCanvas](/portal/reference/V2.1/ios/Classes/JCMediaDeviceVideoCanvas.html)
 object. This object is used to render the video to the canvas and manage
 the rendering method. (Calling this method will open the camera):
 
@@ -141,9 +141,9 @@ the rendering method. (Calling this method will open the camera):
 
 1. After the caller initiates the call successfully, the called party
     will receive the
-    [onCallItemAdd](https://developer.juphoon.com/portal/reference/V2.1/ios/Protocols/JCCallCallback.html#//api/name/onCallItemAdd:)
+    [onCallItemAdd](/portal/reference/V2.1/ios/Protocols/JCCallCallback.html#//api/name/onCallItemAdd:)
     callback. At this time, the video and direction properties of the
-    [JCCallItem](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCCallItem.html)
+    [JCCallItem](/portal/reference/V2.1/ios/Classes/JCCallItem.html)
     object in the callback can be used to determine whether it is a
     video call or a voice call, so as to make corresponding processing:
 
@@ -158,7 +158,7 @@ the rendering method. (Calling this method will open the camera):
     ``````
 
 2. Call
-    [answer](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCCall.html#//api/name/answer:video:)
+    [answer](/portal/reference/V2.1/ios/Classes/JCCall.html#//api/name/answer:video:)
     to answer the call, **the video call can be answered by voice or
     video**:
 
@@ -186,11 +186,11 @@ receive the updated callback of the call (onCallItemUpdate), and the
 call state will change to the JCCallStateTalking.
 
 Call the
-[startOtherVideo](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCCallItem.html#//api/name/startOtherVideo:)
+[startOtherVideo](/portal/reference/V2.1/ios/Classes/JCCallItem.html#//api/name/startOtherVideo:)
 in the
-[JCCallItem](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCCallItem.html)
+[JCCallItem](/portal/reference/V2.1/ios/Classes/JCCallItem.html)
 class to create a remote video streaming. This method returns a
-[JCMediaDeviceVideoCanvas](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaDeviceVideoCanvas.html)
+[JCMediaDeviceVideoCanvas](/portal/reference/V2.1/ios/Classes/JCMediaDeviceVideoCanvas.html)
 object, which is used to render the video to the canvas and manage the
 rendering method:
 
@@ -210,11 +210,11 @@ rendering method:
 Both the calling party and the called party can hang up the call.
 
 1. First call
-    [getActiveCallItem](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCCall.html#//api/name/getActiveCallItem)
+    [getActiveCallItem](/portal/reference/V2.1/ios/Classes/JCCall.html#//api/name/getActiveCallItem)
     to get the currently active call object;
 
 2. After obtaining the current active call object, call
-    [term](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCCall.html#//api/name/term:reason:description:)
+    [term](/portal/reference/V2.1/ios/Classes/JCCall.html#//api/name/term:reason:description:)
     to hang up the current active call:
 
     ``````objectivec
@@ -227,12 +227,12 @@ Both the calling party and the called party can hang up the call.
 ## Destroy local and remote video images
 
 After the call is hung up, the onCallItemRemove callback in
-[JCCallCallback](https://developer.juphoon.com/portal/reference/V2.1/ios/Protocols/JCCallCallback.html)
+[JCCallCallback](/portal/reference/V2.1/ios/Protocols/JCCallCallback.html)
 will be triggered, and the call state will change to JCCallStateOk. At
 this time, you need to call the
-[stopSelfVideo](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCCallItem.html#//api/name/stopSelfVideo)
+[stopSelfVideo](/portal/reference/V2.1/ios/Classes/JCCallItem.html#//api/name/stopSelfVideo)
 and
-[stopOtherVideo](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCCallItem.html#//api/name/stopOtherVideo)
+[stopOtherVideo](/portal/reference/V2.1/ios/Classes/JCCallItem.html#//api/name/stopOtherVideo)
 methods to destroy the local and remote video images:
 
 ``````objectivec

@@ -35,7 +35,7 @@ import Demo from '../../../components/Demo';
           img:"https://developer.juphoon.com/style/images/download/developer_android@2x.png",
           child:[{
             type:'1-1通话',
-             url:'/cn/00_o2o_audio/03_quick_start/00_run_demo/Android.html'
+            url:'/cn/00_o2o_audio/03_quick_start/00_run_demo/Android.html'
           },
           {
             type:'多方通话',

@@ -26,7 +26,7 @@ Juphoon Cloud SDK (JC SDK) - Usable, Simple, Elegent !
 
 SDK 集成流程如下图所示
 
-![img](https://developer.juphoon.com/style/images/document/index/sdkflow@2x.png)
+![img](/style/images/document/index/sdkflow@2x.png)
 
 您需要先注册菊风开发者账号，然后创建应用获取 AppKey，AppKey 是应用在 菊风云平台 中的唯一标识。在初始化 SDK 的时候会使用。
 

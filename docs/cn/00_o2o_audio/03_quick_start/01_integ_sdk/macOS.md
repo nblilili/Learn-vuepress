@@ -11,7 +11,7 @@ title: 一分钟集成 SDK
 
 - 有效的菊风开发者账号（[免费注册](http://developer.juphoon.com/signup) ）
 
-- 有效的菊风 [AppKey](https://developer.juphoon.com/cn/document/V2.1/create-application.php)
+- 有效的菊风 [AppKey](/cn/document/V2.1/create-application.php)
 
 ## 创建 macOS 项目
 
@@ -49,7 +49,7 @@ mac 端使用动态库集成 SDK。
 
 4. 继续点击 **+** 符号，导入如下系统依赖的库。
 
-    ``````default
+    
     - AudioToolbox.framework
     - VideoToolBox.framework
     - AVFoundation.framework

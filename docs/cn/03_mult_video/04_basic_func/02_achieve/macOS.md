@@ -10,9 +10,9 @@ title: 实现多方通话
 ## 初始化
 
 调用 [JCMediaDevice
-create](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaDevice.html#//api/name/create:callback:)
+create](/portal/reference/V2.1/ios/Classes/JCMediaDevice.html#//api/name/create:callback:)
 和 [JCMediaChannel
-create](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaChannel.html#//api/name/create:mediaDevice:callback:)
+create](/portal/reference/V2.1/ios/Classes/JCMediaChannel.html#//api/name/create:mediaDevice:callback:)
 以初始化实现多方通话需要的模块。
 
 ``````objectivec
@@ -29,7 +29,7 @@ create](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaC
 其中：
 
 - JCMediaDevice create 方法中的 callback 为
-    [JCMediaDeviceCallback](https://developer.juphoon.com/portal/reference/V2.1/ios/Protocols/JCMediaDeviceCallback.html)
+    [JCMediaDeviceCallback](/portal/reference/V2.1/ios/Protocols/JCMediaDeviceCallback.html)
     协议的代理对象，该协议用于将媒体设备相关的事件通知给上层。因此需要先指定 callback 的代理对象，然后在该代理对象中实现
     JCMediaDeviceCallback 的方法。
 
@@ -53,7 +53,7 @@ JCMediaDeviceCallback 中的主要方法如下
 ``````
 
 - JCMediaChannel create 方法中的 callback 为
-    [JCMediaChannelCallback](https://developer.juphoon.com/portal/reference/V2.1/ios/Protocols/JCMediaChannelCallback.html)
+    [JCMediaChannelCallback](/portal/reference/V2.1/ios/Protocols/JCMediaChannelCallback.html)
     协议的代理对象，该协议用于将频道中的相关事件通知给上层。因此需要先指定 callback 的代理对象，然后在该代理对象中实现
     JCMediaChannelCallback 的方法。
 
@@ -88,9 +88,9 @@ JCMediaChannel 中的主要方法如下
 ## 加入频道
 
 1\. 调用
-[enableUploadAudioStream](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaChannel.html#//api/name/enableUploadAudioStream:)
+[enableUploadAudioStream](/portal/reference/V2.1/ios/Classes/JCMediaChannel.html#//api/name/enableUploadAudioStream:)
 开启音频流。调用
-[enableUploadVideoStream](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaChannel.html#//api/name/enableUploadVideoStream:)
+[enableUploadVideoStream](/portal/reference/V2.1/ios/Classes/JCMediaChannel.html#//api/name/enableUploadVideoStream:)
 开启视频流。
 
 ``````objectivec
@@ -101,7 +101,7 @@ JCMediaChannel 中的主要方法如下
 ``````
 
 2. 调用
-    [join](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaChannel.html#//api/name/join:joinParam:)
+    [join](/portal/reference/V2.1/ios/Classes/JCMediaChannel.html#//api/name/join:joinParam:)
     方法加入频道。您需要在该方法中传入如下参数：
 
 <!-- end list -->
@@ -110,7 +110,7 @@ JCMediaChannel 中的主要方法如下
     Uri，其他表示频道 ID。频道 ID 或 Uri 相同的用户会进入同一个频道。
 
 - joinParam：加入参数，没有则填 nil。 详见
-    [JCMediaChannelJoinParam](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaChannelJoinParam.html)
+    [JCMediaChannelJoinParam](/portal/reference/V2.1/ios/Classes/JCMediaChannelJoinParam.html)
     对象。
 
 ``````objectivec
@@ -119,7 +119,7 @@ JCMediaChannel 中的主要方法如下
 ``````
 
 3. 加入频道后收到
-    [onJoin](https://developer.juphoon.com/portal/reference/V2.1/ios/Protocols/JCMediaChannelCallback.html#//api/name/onJoin:reason:channelId:)
+    [onJoin](/portal/reference/V2.1/ios/Protocols/JCMediaChannelCallback.html#//api/name/onJoin:reason:channelId:)
     回调。
 
     ``````objectivec
@@ -137,7 +137,7 @@ JCMediaChannel 中的主要方法如下
 ## 创建本地视频画面
 
 1\. 加入频道后，通过
-[JCMediaChannel](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaChannel.html)
+[JCMediaChannel](/portal/reference/V2.1/ios/Classes/JCMediaChannel.html)
 中的 selfParticipant 属性获取频道内自身对象。
 
 ``````objectivec
@@ -146,11 +146,11 @@ JCMediaChannelParticipant *participant = mediaChannel.selfParticipant;
 ``````
 
 2. 调用
-    [JCMediaChannelParticipant](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaChannelParticipant.html)
+    [JCMediaChannelParticipant](/portal/reference/V2.1/ios/Classes/JCMediaChannelParticipant.html)
     类中的
-    [startVideo](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaDevice.html#//api/name/startVideo:renderType:)
+    [startVideo](/portal/reference/V2.1/ios/Classes/JCMediaDevice.html#//api/name/startVideo:renderType:)
     方法打开本地视频预览。该方法会返回一个
-    [JCMediaDeviceVideoCanvas](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaDeviceVideoCanvas.html)
+    [JCMediaDeviceVideoCanvas](/portal/reference/V2.1/ios/Classes/JCMediaDeviceVideoCanvas.html)
     对象，该对象用于将视频渲染到画布上，并管理渲染的方式。（调用此方法会打开摄像头）
 
 示例代码:
@@ -163,22 +163,22 @@ JCMediaDeviceVideoCanvas *localCanvas = [participant startVideo:JCMediaDeviceRen
 ## 创建远端视频画面
 
 视频通话中，通常需要看到其他用户。通过
-[JCMediaChannel](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaChannel.html)
+[JCMediaChannel](/portal/reference/V2.1/ios/Classes/JCMediaChannel.html)
 中的 participants 属性获取频道内所有成员对象。
 
 然后调用
-[JCMediaChannelParticipant](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaChannelParticipant.html)
+[JCMediaChannelParticipant](/portal/reference/V2.1/ios/Classes/JCMediaChannelParticipant.html)
 类中的
-[startVideo](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaDevice.html#//api/name/startVideo:renderType:)
+[startVideo](/portal/reference/V2.1/ios/Classes/JCMediaDevice.html#//api/name/startVideo:renderType:)
 方法设置远端用户的视图。调用该方法会返回一个
-[JCMediaDeviceVideoCanvas](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaDeviceVideoCanvas.html)
+[JCMediaDeviceVideoCanvas](/portal/reference/V2.1/ios/Classes/JCMediaDeviceVideoCanvas.html)
 对象，该对象用于将视频渲染到画布上，并管理渲染的方式。
 
-[startVideo](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaDevice.html#//api/name/startVideo:renderType:)
+[startVideo](/portal/reference/V2.1/ios/Classes/JCMediaDevice.html#//api/name/startVideo:renderType:)
 方法调用后，还需要调用
-[JCMediaChannel](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaChannel.html)
+[JCMediaChannel](/portal/reference/V2.1/ios/Classes/JCMediaChannel.html)
 中的
-[requestVideo](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaChannel.html#//api/name/requestVideo:pictureSize:)
+[requestVideo](/portal/reference/V2.1/ios/Classes/JCMediaChannel.html#//api/name/requestVideo:pictureSize:)
 方法请求频道中其他用户的视频流。
 
 示例代码:
@@ -200,9 +200,9 @@ if (participant.video) {
 - 上传本地音频流
 
 由于 SDK 默认不上传本地音频流，因此其他成员将听不到您的声音，如果想让频道中的其他成员听到您的声音，需要调用
-[JCMediaChannel](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaChannel.html)
+[JCMediaChannel](/portal/reference/V2.1/ios/Classes/JCMediaChannel.html)
 中的
-[enableUploadAudioStream](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaChannel.html#//api/name/enableUploadAudioStream:)
+[enableUploadAudioStream](/portal/reference/V2.1/ios/Classes/JCMediaChannel.html#//api/name/enableUploadAudioStream:)
 方法上传本地音频流。
 
 ``````objectivec
@@ -213,7 +213,7 @@ if (participant.video) {
 ## 离开频道
 
 调用
-[leave](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaChannel.html#//api/name/leave)
+[leave](/portal/reference/V2.1/ios/Classes/JCMediaChannel.html#//api/name/leave)
 方法离开当前频道。
 
 ``````objectivec
@@ -221,17 +221,17 @@ if (participant.video) {
 ``````
 
 离开频道后，自身收到
-[onLeave](https://developer.juphoon.com/portal/reference/V2.1/ios/Protocols/JCMediaChannelCallback.html#//api/name/onLeave:channelId:)
+[onLeave](/portal/reference/V2.1/ios/Protocols/JCMediaChannelCallback.html#//api/name/onLeave:channelId:)
 回调，其他成员同时收到
-[onParticipantLeft](https://developer.juphoon.com/portal/reference/V2.1/ios/Protocols/JCMediaChannelCallback.html#//api/name/onParticipantLeft:)
+[onParticipantLeft](/portal/reference/V2.1/ios/Protocols/JCMediaChannelCallback.html#//api/name/onParticipantLeft:)
 回调。
 
 ## 销毁本地和远端视频画面
 
 在视频挂断后，调用
-[JCMediaChannelParticipant](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaChannelParticipant.html)
+[JCMediaChannelParticipant](/portal/reference/V2.1/ios/Classes/JCMediaChannelParticipant.html)
 里的
-[stopVideo](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaDevice.html#//api/name/stopVideo:)
+[stopVideo](/portal/reference/V2.1/ios/Classes/JCMediaDevice.html#//api/name/stopVideo:)
 销毁本地和远端视频画面。
 
 示例代码:
@@ -257,15 +257,15 @@ if (participant.video) {
 ``````
 
 解散频道后，发起结束的成员收到
-[onStop](https://developer.juphoon.com/portal/reference/V2.1/ios/Protocols/JCMediaChannelCallback.html#//api/name/onStop:reason:)
+[onStop](/portal/reference/V2.1/ios/Protocols/JCMediaChannelCallback.html#//api/name/onStop:reason:)
 回调，其他成员同时收到
-[onLeave](https://developer.juphoon.com/portal/reference/V2.1/ios/Protocols/JCMediaChannelCallback.html#//api/name/onLeave:channelId:)
+[onLeave](/portal/reference/V2.1/ios/Protocols/JCMediaChannelCallback.html#//api/name/onLeave:channelId:)
 回调。 解散失败原因枚举值请参考
-[JCMediaChannelReason](https://developer.juphoon.com/portal/reference/V2.1/ios/Constants/JCMediaChannelReason.html)
+[JCMediaChannelReason](/portal/reference/V2.1/ios/Constants/JCMediaChannelReason.html)
 。
 
 解散频道后，同样需要调用
-[JCMediaChannelParticipant](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaChannelParticipant.html)
+[JCMediaChannelParticipant](/portal/reference/V2.1/ios/Classes/JCMediaChannelParticipant.html)
 里的
-[stopVideo](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaDevice.html#//api/name/stopVideo:)
+[stopVideo](/portal/reference/V2.1/ios/Classes/JCMediaDevice.html#//api/name/stopVideo:)
 销毁本地和远端视频画面。

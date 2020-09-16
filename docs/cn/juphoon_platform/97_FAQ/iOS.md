@@ -71,17 +71,17 @@ App 被杀掉后，如果注册的推送方式是透传方式，则会唤醒 App
 
 导出日志方法如下:
 
-![img](https://developer.juphoon.com/style/images/document/faq/log1.png)
+![img](/style/images/document/faq/log1.png)
 
-![img](https://developer.juphoon.com/style/images/document/faq/log2.jpg)
+![img](/style/images/document/faq/log2.jpg)
 
 打开日志方法及日志路径
 
-![img](https://developer.juphoon.com/style/images/document/faq/log3.png)
+![img](/style/images/document/faq/log3.png)
 
 日志路径在 doucments 目录下
 
-![img](https://developer.juphoon.com/style/images/document/faq/log4.png)
+![img](/style/images/document/faq/log4.png)
 
 ## 异常情况
 

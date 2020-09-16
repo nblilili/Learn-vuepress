@@ -10,9 +10,9 @@ title: 实现多方通话
 ## 初始化
 
 调用 [JCMediaDevice
-create](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaDevice.html#//api/name/create:callback:)
+create](/portal/reference/V2.1/ios/Classes/JCMediaDevice.html#//api/name/create:callback:)
 和 [JCMediaChannel
-create](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaChannel.html#//api/name/create:mediaDevice:callback:)
+create](/portal/reference/V2.1/ios/Classes/JCMediaChannel.html#//api/name/create:mediaDevice:callback:)
 以初始化实现多方通话需要的模块。
 
 ``````objectivec
@@ -29,7 +29,7 @@ create](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaC
 其中：
 
 - JCMediaDevice create 方法中的 callback 为
-    [JCMediaDeviceCallback](https://developer.juphoon.com/portal/reference/V2.1/ios/Protocols/JCMediaDeviceCallback.html)
+    [JCMediaDeviceCallback](/portal/reference/V2.1/ios/Protocols/JCMediaDeviceCallback.html)
     协议的代理对象，该协议用于将媒体设备相关的事件通知给上层。因此需要先指定 callback 的代理对象，然后在该代理对象中实现
     JCMediaDeviceCallback 的方法。
 
@@ -47,7 +47,7 @@ JCMediaDeviceCallback 中的主要方法如下
 ``````
 
 - JCMediaChannel create 方法中的 callback 为
-    [JCMediaChannelCallback](https://developer.juphoon.com/portal/reference/V2.1/ios/Protocols/JCMediaChannelCallback.html)
+    [JCMediaChannelCallback](/portal/reference/V2.1/ios/Protocols/JCMediaChannelCallback.html)
     协议的代理对象，该协议用于将频道中的相关事件通知给上层。因此需要先指定 callback 的代理对象，然后在该代理对象中实现
     JCMediaChannelCallback 的方法。
 
@@ -82,9 +82,9 @@ JCMediaChannel 中的主要方法如下
 ## 加入频道
 
 1\. 调用
-[JCMediaChannel](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaChannel.html)
+[JCMediaChannel](/portal/reference/V2.1/ios/Classes/JCMediaChannel.html)
 中的
-[enableUploadAudioStream](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaChannel.html#//api/name/enableUploadAudioStream:)
+[enableUploadAudioStream](/portal/reference/V2.1/ios/Classes/JCMediaChannel.html#//api/name/enableUploadAudioStream:)
 开启音频流。返回 true 表示正常执行调用流程，false 表示调用异常。
 
 ``````objectivec
@@ -93,7 +93,7 @@ JCMediaChannel 中的主要方法如下
 ``````
 
 2. 调用
-    [join](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaChannel.html#//api/name/join:joinParam:)
+    [join](/portal/reference/V2.1/ios/Classes/JCMediaChannel.html#//api/name/join:joinParam:)
     方法创建并加入频道。您需要在该方法中传入如下参数：
 
 <!-- end list -->
@@ -102,7 +102,7 @@ JCMediaChannel 中的主要方法如下
     Uri，其他表示频道 ID。频道 ID 或 Uri 相同的用户会进入同一个频道。
 
 - joinParam：加入参数，没有则填 nil。 详见
-    [JCMediaChannelJoinParam](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaChannelJoinParam.html)
+    [JCMediaChannelJoinParam](/portal/reference/V2.1/ios/Classes/JCMediaChannelJoinParam.html)
     对象。
 
 ``````objectivec
@@ -111,7 +111,7 @@ JCMediaChannel 中的主要方法如下
 ``````
 
 3. 加入频道后收到
-    [onJoin](https://developer.juphoon.com/portal/reference/V2.1/ios/Protocols/JCMediaChannelCallback.html#//api/name/onJoin:reason:channelId:)
+    [onJoin](/portal/reference/V2.1/ios/Protocols/JCMediaChannelCallback.html#//api/name/onJoin:reason:channelId:)
     回调。
 
     ``````objectivec
@@ -129,7 +129,7 @@ JCMediaChannel 中的主要方法如下
 ## 离开频道
 
 调用
-[leave](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaChannel.html#//api/name/leave)
+[leave](/portal/reference/V2.1/ios/Classes/JCMediaChannel.html#//api/name/leave)
 方法可以离开当前频道。
 
 ``````objectivec
@@ -137,9 +137,9 @@ JCMediaChannel 中的主要方法如下
 ``````
 
 离开频道后，自身收到
-[onLeave](https://developer.juphoon.com/portal/reference/V2.1/ios/Protocols/JCMediaChannelCallback.html#//api/name/onLeave:channelId:)
+[onLeave](/portal/reference/V2.1/ios/Protocols/JCMediaChannelCallback.html#//api/name/onLeave:channelId:)
 回调，其他成员同时收到
-[onParticipantLeft](https://developer.juphoon.com/portal/reference/V2.1/ios/Protocols/JCMediaChannelCallback.html#//api/name/onParticipantLeft:)
+[onParticipantLeft](/portal/reference/V2.1/ios/Protocols/JCMediaChannelCallback.html#//api/name/onParticipantLeft:)
 回调。
 
 ## 解散频道
@@ -152,9 +152,9 @@ JCMediaChannel 中的主要方法如下
 ``````
 
 解散频道后，发起结束的成员收到
-[onStop](https://developer.juphoon.com/portal/reference/V2.1/ios/Protocols/JCMediaChannelCallback.html#//api/name/onStop:reason:)
+[onStop](/portal/reference/V2.1/ios/Protocols/JCMediaChannelCallback.html#//api/name/onStop:reason:)
 回调，其他成员同时收到
-[onLeave](https://developer.juphoon.com/portal/reference/V2.1/ios/Protocols/JCMediaChannelCallback.html#//api/name/onLeave:channelId:)
+[onLeave](/portal/reference/V2.1/ios/Protocols/JCMediaChannelCallback.html#//api/name/onLeave:channelId:)
 回调。 解散失败原因枚举值请参考
-[JCMediaChannelReason](https://developer.juphoon.com/portal/reference/V2.1/ios/Constants/JCMediaChannelReason.html)
+[JCMediaChannelReason](/portal/reference/V2.1/ios/Constants/JCMediaChannelReason.html)
 。

@@ -35,12 +35,10 @@
         <h2>{{ platform}} SDK 更新日志</h2>
         <p>{{ platform }} 版 云通讯 SDK 的更新日志和版本说明</p>
         <div class="log sdkc_info">
-          <!--ko foreach:{data:log_list}-->
           <div class="scroll src_div" v-for="item in list" :key="item.id">
             <h3 class="src_tit" data-bind="text:name">{{item.name}}</h3>
             <div v-html="item.up"></div>
           </div>
-          <!-- /ko -->
         </div>
       </div>
     </div>
@@ -85,7 +83,6 @@ export default {
     },
   },
   mounted() {
-    console.log(this.$route.query);
     let year = this.$route.query.year;
     let platform = this.$route.query.platform;
     let type;
@@ -122,7 +119,6 @@ export default {
       })
         .then(function (response) {
           let data = response.data;
-          console.log(data);
           var ios = data.data[0] ? data.data[0].list : "";
           var android = data.data[2] ? data.data[2].list : "";
           var twindows = data.data[1] ? data.data[1].list : "";
@@ -203,7 +199,6 @@ export default {
         });
     },
     changePlatformDev(type) {
-      console.log(type);
       this.type = type;
       if (type == 0) {
         this.platform = "iOS";

@@ -12,9 +12,9 @@ figure below:
 ## Initialize
 
 Call
-[JCMediaDevice.create()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaDevice.html#create-com.juphoon.cloud.JCClient-com.juphoon.cloud.JCMediaDeviceCallback-)
+[JCMediaDevice.create()](/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaDevice.html#create-com.juphoon.cloud.JCClient-com.juphoon.cloud.JCMediaDeviceCallback-)
 and
-[JCCall.create()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCCall.html#create-com.juphoon.cloud.JCClient-com.juphoon.cloud.JCMediaDevice-com.juphoon.cloud.JCCallCallback-)
+[JCCall.create()](/portal/reference/V2.1/android/com/juphoon/cloud/JCCall.html#create-com.juphoon.cloud.JCClient-com.juphoon.cloud.JCMediaDevice-com.juphoon.cloud.JCCallCallback-)
 to initialize Modules needed to implement group calling:
 
 ``````java
@@ -103,7 +103,7 @@ public boolean initialize(Context context) {
 Before joining the channel, you must set the role first. The role
 setting include the host and audiences. The role value can be customized
 according to the
-[JCMediaChannel.CustomRole](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannel.html#CUSTOM_ROLE_0)
+[JCMediaChannel.CustomRole](/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannel.html#CUSTOM_ROLE_0)
 enumeration value, for example:
 
 ``````java
@@ -114,7 +114,7 @@ int ROLE_AUDIENCE = JCMediaChannel.CUSTOM_ROLE_1;
 ``````
 
 Call
-[setCustomRole()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannel.html#setCustomRole-int-com.juphoon.cloud.JCMediaChannelParticipant-)
+[setCustomRole()](/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannel.html#setCustomRole-int-com.juphoon.cloud.JCMediaChannelParticipant-)
 to set your own role to enter the channel:
 
 ``````java
@@ -125,7 +125,7 @@ mediaChannel.setCustomRole(ROLE_BROASCASTER, null);
 ## Join a channel
 
 1. Call
-    [enableUploadAudioStream()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannel.html#enableUploadAudioStream-boolean-)
+    [enableUploadAudioStream()](/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannel.html#enableUploadAudioStream-boolean-)
     to enable audio streaming:
 
     ``````java
@@ -135,7 +135,7 @@ mediaChannel.setCustomRole(ROLE_BROASCASTER, null);
 
 2. To create and join a channel, you need to pass in `channelIdOrUri`
     and
-    [JCMediaChannel.JoinParam](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannel.JoinParam.html):
+    [JCMediaChannel.JoinParam](/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannel.JoinParam.html):
 
       - `channelIdOrUri` refers to the channel ID or channel Uri.
 
@@ -150,7 +150,7 @@ mediaChannel.setCustomRole(ROLE_BROASCASTER, null);
         ``````
 
 3. The
-    [onJoin()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannelCallback.html#onJoin-boolean-int-java.lang.String-)
+    [onJoin()](/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannelCallback.html#onJoin-boolean-int-java.lang.String-)
     callback triggers after joining the channel:
 
     ``````java
@@ -167,7 +167,7 @@ mediaChannel.setCustomRole(ROLE_BROASCASTER, null);
 ## Leave a channel
 
 Call the
-[leave()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannel.html#leave--)
+[leave()](/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannel.html#leave--)
 method to leave the current channel:
 
 ``````java
@@ -175,7 +175,7 @@ mMediaChannel.leave();
 ``````
 
 In a group video call, you need to call
-[stopVideo()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannelParticipant.html#stopVideo--)
+[stopVideo()](/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannelParticipant.html#stopVideo--)
 to remove the video image when leaving the channel:
 
 ``````java
@@ -183,9 +183,9 @@ mParticipant.stopVideo();
 ``````
 
 After leaving the channel, they receive the
-[onLeave()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannelCallback.html#onLeave-int-java.lang.String-)
+[onLeave()](/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannelCallback.html#onLeave-int-java.lang.String-)
 callback, and other members receive the
-[onParticipantLeft()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannelCallback.html#onParticipantLeft-com.juphoon.cloud.JCMediaChannelParticipant-)
+[onParticipantLeft()](/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannelCallback.html#onParticipantLeft-com.juphoon.cloud.JCMediaChannelParticipant-)
 callback at the same time.
 
 ## Destroy a channel
@@ -199,7 +199,7 @@ mMediaChannel.stop();
 ``````
 
 In a group video call, you need to call
-[stopVideo()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannelParticipant.html#stopVideo--)
+[stopVideo()](/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannelParticipant.html#stopVideo--)
 to remove the video image when leaving the channel:
 
 ``````java
@@ -208,11 +208,11 @@ mParticipant.stopVideo();
 
 After the channel is stopped, the member who initiated the termination
 receives the
-[onStop()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannelCallback.html#onStop-boolean-int-)
+[onStop()](/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannelCallback.html#onStop-boolean-int-)
 callback, and other members also receive the
-[onLeave()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannelCallback.html#onLeave-int-java.lang.String-)
+[onLeave()](/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannelCallback.html#onLeave-int-java.lang.String-)
 callback. Please refer to
-[MediaChannelReason](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannel.html#REASON_ALREADY_JOINED)
+[MediaChannelReason](/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannel.html#REASON_ALREADY_JOINED)
 for the enumeration value of the reason for failure:
 
 ``````java

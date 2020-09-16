@@ -10,9 +10,9 @@ title: 实现语音互动直播
 ## 初始化
 
 调用
-[JCMediaDevice.create()](https://developer.juphoon.com/portal/reference/V2.1/windows/html/cb59bc27-6528-9dbf-c996-de857096f847.htm)
+[JCMediaDevice.create()](/portal/reference/V2.1/windows/html/cb59bc27-6528-9dbf-c996-de857096f847.htm)
 和
-[JCMediaChannel.create()](https://developer.juphoon.com/portal/reference/V2.1/windows/html/03ba7506-bd05-93a0-ddd6-605eea7c7ee6.htm)
+[JCMediaChannel.create()](/portal/reference/V2.1/windows/html/03ba7506-bd05-93a0-ddd6-605eea7c7ee6.htm)
 以初始化实现多方通话需要的模块:
 
 ``````csharp
@@ -33,7 +33,7 @@ public bool initialize(Context context) {
 其中：
 
 - JCMediaDevice create 方法中的 this 为实现
-    [JCMediaDeviceCallback](https://developer.juphoon.com/portal/reference/V2.1/windows/html/3a00aa12-4e18-cf90-4610-b2c9c63b7a7b.htm)
+    [JCMediaDeviceCallback](/portal/reference/V2.1/windows/html/3a00aa12-4e18-cf90-4610-b2c9c63b7a7b.htm)
     接口的对象，用于将媒体设备相关的事件通知给上层。
 
 JCMediaDeviceCallback 中的主要方法如下
@@ -50,7 +50,7 @@ public void onAudioOutputTypeChange(string audioOutputType)
 ``````
 
 - JCMediaChannel create 方法中的 this 为实现
-    [JCMediaChannelCallback](https://developer.juphoon.com/portal/reference/V2.1/windows/html/e21fadeb-6230-0f07-efdc-6f953cf790bc.htm)
+    [JCMediaChannelCallback](/portal/reference/V2.1/windows/html/e21fadeb-6230-0f07-efdc-6f953cf790bc.htm)
     接口的对象，用于将频道中的相关事件通知给上层
 
 JCMediaChannelCallback 中的主要方法如下
@@ -101,7 +101,7 @@ public void onParticipantVolumeChange(JCMediaChannelParticipant participant)
 ## 角色设置
 
 加入频道前要先进行角色的设置。其中角色设置包括主播和观众。 角色值可以根据
-[JCMediaChannel.CustomRole](https://developer.juphoon.com/portal/reference/V2.1/windows/html/e8ce33fb-e1af-d33e-f0d8-795a840eae30.htm)
+[JCMediaChannel.CustomRole](/portal/reference/V2.1/windows/html/e8ce33fb-e1af-d33e-f0d8-795a840eae30.htm)
 枚举值进行自定义，例如
 
 ``````csharp
@@ -112,7 +112,7 @@ JCMediaChannelCustomRole ROLE_AUDIENCE = JCMediaChannelConstants.CUSTOM_ROLE_1;
 ``````
 
 调用
-[setCustomRole()](https://developer.juphoon.com/portal/reference/V2.1/windows/html/02d30d7f-6906-cea0-9775-a244e2b25e87.htm)
+[setCustomRole()](/portal/reference/V2.1/windows/html/02d30d7f-6906-cea0-9775-a244e2b25e87.htm)
 设置自己的角色以进入频道。
 
 ``````csharp
@@ -123,7 +123,7 @@ mediaChannel.setCustomRole(ROLE_BROASCASTER, null);
 ## 加入频道
 
 \#. 调用
-[enableUploadAudioStream()](https://developer.juphoon.com/portal/reference/V2.1/windows/html/70f2d136-ebf6-12fc-eb1e-2a90622caca7.htm)
+[enableUploadAudioStream()](/portal/reference/V2.1/windows/html/70f2d136-ebf6-12fc-eb1e-2a90622caca7.htm)
 开启音频流。
 
 ``````csharp
@@ -132,7 +132,7 @@ mMediaDeviceChannel.enableUploadAudioStream(true);
 ``````
 
 1. 创建并加入频道，需要传入 `channelIdOrUri` 和
-    [JCMediaChannel.JoinParam](https://developer.juphoon.com/portal/reference/V2.1/windows/html/af4ac634-bbe3-76e3-d1f8-120213ef2fff.htm)
+    [JCMediaChannel.JoinParam](/portal/reference/V2.1/windows/html/af4ac634-bbe3-76e3-d1f8-120213ef2fff.htm)
     。
 
       - `channelIdOrUri` 表示频道 ID 或频道 Uri。
@@ -145,7 +145,7 @@ mMediaDeviceChannel.enableUploadAudioStream(true);
     ``````
 
 \#. 加入频道后收到
-[onJoin()](https://developer.juphoon.com/portal/reference/V2.1/windows/html/535cbae7-841e-ca31-32ea-87c1a840eff1.htm)
+[onJoin()](/portal/reference/V2.1/windows/html/535cbae7-841e-ca31-32ea-87c1a840eff1.htm)
 回调。
 
 ``````csharp
@@ -161,7 +161,7 @@ public void onJoin(bool result, JCMediaChannelReason reason, String channelId) {
 ## 离开频道
 
 调用
-[leave()](https://developer.juphoon.com/portal/reference/V2.1/windows/html/7f034b94-15ee-8d49-48e3-905fff27f31f.htm)
+[leave()](/portal/reference/V2.1/windows/html/7f034b94-15ee-8d49-48e3-905fff27f31f.htm)
 方法可以离开当前频道。
 
 ``````csharp
@@ -169,7 +169,7 @@ mMediaChannel.leave();
 ``````
 
 在多方视频通话中，离开频道还需要调用
-[stopVideo()](https://developer.juphoon.com/portal/reference/V2.1/windows/html/851cc6d3-1b5a-8e26-ce3c-a3c1780936d2.htm)
+[stopVideo()](/portal/reference/V2.1/windows/html/851cc6d3-1b5a-8e26-ce3c-a3c1780936d2.htm)
 移除视频画面。
 
 ``````csharp
@@ -177,9 +177,9 @@ mParticipant.stopVideo();
 ``````
 
 离开频道后，自身收到
-[onLeave()](https://developer.juphoon.com/portal/reference/V2.1/windows/html/f356aba3-ebed-a72c-4e34-02a684925a15.htm)
+[onLeave()](/portal/reference/V2.1/windows/html/f356aba3-ebed-a72c-4e34-02a684925a15.htm)
 回调，其他成员同时收到
-[onParticipantLeft()](https://developer.juphoon.com/portal/reference/V2.1/windows/html/89a35b12-8c2c-247d-e90c-ebe04f3e4521.htm)
+[onParticipantLeft()](/portal/reference/V2.1/windows/html/89a35b12-8c2c-247d-e90c-ebe04f3e4521.htm)
 回调
 
 ``````csharp
@@ -202,7 +202,7 @@ mMediaChannel.stop();
 ``````
 
 在多方视频通话中，离开频道还需要调用
-[stopVideo()](https://developer.juphoon.com/portal/reference/V2.1/windows/html/851cc6d3-1b5a-8e26-ce3c-a3c1780936d2.htm)
+[stopVideo()](/portal/reference/V2.1/windows/html/851cc6d3-1b5a-8e26-ce3c-a3c1780936d2.htm)
 移除视频画面。
 
 ``````csharp
@@ -210,11 +210,11 @@ mParticipant.stopVideo();
 ``````
 
 解散频道后，发起结束的成员收到
-[onStop()](https://developer.juphoon.com/portal/reference/V2.1/windows/html/d3732af7-2770-2d00-e4cb-e8f658da6c48.htm)
+[onStop()](/portal/reference/V2.1/windows/html/d3732af7-2770-2d00-e4cb-e8f658da6c48.htm)
 回调，其他成员同时收到
-[onLeave()](https://developer.juphoon.com/portal/reference/V2.1/windows/html/f356aba3-ebed-a72c-4e34-02a684925a15.htm)
+[onLeave()](/portal/reference/V2.1/windows/html/f356aba3-ebed-a72c-4e34-02a684925a15.htm)
 回调。 解散失败原因枚举值请参考
-[MediaChannelReason](https://developer.juphoon.com/portal/reference/V2.1/windows/html/4481d778-9d4d-43fe-f94d-fdfa690dd939.htm)
+[MediaChannelReason](/portal/reference/V2.1/windows/html/4481d778-9d4d-43fe-f94d-fdfa690dd939.htm)
 。
 
 ``````csharp

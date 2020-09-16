@@ -13,13 +13,11 @@ title: SDK 下载
 :::
 
 [点击下载 JC
-SDK](https://developer.juphoon.com/portal/cn/downloadsdk/download_sdk.php?filename=JC-SDK-C++-V2_1.tar.gz)
+SDK](/portal/cn/downloadsdk/download_sdk.php?filename=JC-SDK-C++-V2_1.tar.gz)
 
 您可以通过以下内容了解更多 JC SDK 相关信息：
 
-- [更新日志](https://developer.juphoon.com/cn/document/V2.1/sdk/log/win_c.php)
+- [更新日志](/cn/juphoon_platform/05_download/03_log.html?platform=cpp)
 
-- [历史版本](https://developer.juphoon.com/cn/document/V2.1/sdk/version/win_c.php)
-
-- [接口说明](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/annotated.html)
+- [接口说明](/portal/reference/V2.1/windows/C++/html/annotated.html)
 

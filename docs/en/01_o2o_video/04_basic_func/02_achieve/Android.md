@@ -11,9 +11,9 @@ sequence for one-to-one call is as shown below:
 ## Initialize
 
 Call
-[JCMediaDevice.create()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaDevice.html#create-com.juphoon.cloud.JCClient-com.juphoon.cloud.JCMediaDeviceCallback-)
+[JCMediaDevice.create()](/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaDevice.html#create-com.juphoon.cloud.JCClient-com.juphoon.cloud.JCMediaDeviceCallback-)
 and
-[JCCall.create()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCCall.html#create-com.juphoon.cloud.JCClient-com.juphoon.cloud.JCMediaDevice-com.juphoon.cloud.JCCallCallback-)
+[JCCall.create()](/portal/reference/V2.1/android/com/juphoon/cloud/JCCall.html#create-com.juphoon.cloud.JCClient-com.juphoon.cloud.JCMediaDevice-com.juphoon.cloud.JCCallCallback-)
 to initialize the modules needed for one-to-one calling:
 
 ``````java
@@ -92,7 +92,7 @@ parameter setting</span> .
 ## Make a call
 
 To call
-[call()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCCall.html#call-java.lang.String-boolean-java.lang.String-)
+[call()](/portal/reference/V2.1/android/com/juphoon/cloud/JCCall.html#call-java.lang.String-boolean-java.lang.String-)
 to initiate a video call, the parameters to be filled are:
 
 - `userID` Fill in the user ID of the other party.
@@ -100,9 +100,9 @@ to initiate a video call, the parameters to be filled are:
 - `isVideo` Select whether to call a video call, and true means to
     make a video call, while false means to make a voice call.
 
-- [extraParam()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCCall.html#call-java.lang.String-boolean-java.lang.String-)
+- [extraParam()](/portal/reference/V2.1/android/com/juphoon/cloud/JCCall.html#call-java.lang.String-boolean-java.lang.String-)
     is a custom pass-through string, which can be obtained through the
-    [getExtraParam()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCCallItem.html#getExtraParam--)
+    [getExtraParam()](/portal/reference/V2.1/android/com/juphoon/cloud/JCCallItem.html#getExtraParam--)
     method.
 
 ``````java
@@ -112,11 +112,11 @@ mCall.call(userID, isVideo, null);
 
 After the call is made, both the caller and the called party will
 receive the callback
-[onCallItemAdd()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCCallCallback.html#onCallItemAdd-com.juphoon.cloud.JCCallItem-)
+[onCallItemAdd()](/portal/reference/V2.1/android/com/juphoon/cloud/JCCallCallback.html#onCallItemAdd-com.juphoon.cloud.JCCallItem-)
 for the new call, and the call status will change to
-[STATE\_PENDING](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCCall.html#STATE_PENDING)
+[STATE\_PENDING](/portal/reference/V2.1/android/com/juphoon/cloud/JCCall.html#STATE_PENDING)
 at this time. You can perform logical operations by overriding
-[onCallItemAdd()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCCallCallback.html#onCallItemAdd-com.juphoon.cloud.JCCallItem-):
+[onCallItemAdd()](/portal/reference/V2.1/android/com/juphoon/cloud/JCCallCallback.html#onCallItemAdd-com.juphoon.cloud.JCCallItem-):
 
 ``````java
 @Override
@@ -135,11 +135,11 @@ public void onCallItemAdd(JCCallItem item) {
 ## Create local video images
 
 After initiating a call, call the
-[startSelfVideo()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCCallItem.html#startSelfVideo-int-)
+[startSelfVideo()](/portal/reference/V2.1/android/com/juphoon/cloud/JCCallItem.html#startSelfVideo-int-)
 in the
-[JCCallItem](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCCallItem.html)
+[JCCallItem](/portal/reference/V2.1/android/com/juphoon/cloud/JCCallItem.html)
 class to open the local video preview. You need to fill in the parameter
-[JCMediaDevice.RenderType](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaDevice.html#RENDER_FULL_AUTO)
+[JCMediaDevice.RenderType](/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaDevice.html#RENDER_FULL_AUTO)
 to select the rendering mode:
 
 ``````java
@@ -154,11 +154,11 @@ mCallItem.startSelfVideo(JCMediaDevice.RENDER_FULL_AUTO);
 ## Answer a call
 
 The called party receives the
-[onCallItemAdd()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCCallCallback.html#onCallItemAdd-com.juphoon.cloud.JCCallItem-)
+[onCallItemAdd()](/portal/reference/V2.1/android/com/juphoon/cloud/JCCallCallback.html#onCallItemAdd-com.juphoon.cloud.JCCallItem-)
 callback, and calls the
-[getVideo()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCCallItem.html#getVideo--)
+[getVideo()](/portal/reference/V2.1/android/com/juphoon/cloud/JCCallItem.html#getVideo--)
 in
-[JCCallItem](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCCallItem.html)
+[JCCallItem](/portal/reference/V2.1/android/com/juphoon/cloud/JCCallItem.html)
 in the callback to obtain the video attribute to determine whether it is
 an incoming video call or a voice call, and then make corresponding
 processing:
@@ -175,7 +175,7 @@ public void onCallItemAdd(JCCallItem item) {
 ``````
 
 Call
-[answer()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCCall.html#answer-java.lang.String-boolean-java.lang.String-)
+[answer()](/portal/reference/V2.1/android/com/juphoon/cloud/JCCall.html#answer-java.lang.String-boolean-java.lang.String-)
 to answer the call:
 
 ``````java
@@ -202,11 +202,11 @@ will receive the callback of call update (onCallItemUpdate), and the
 call status will change to STATE\_TALKING.
 
 Call
-[startOtherVideo()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCCallItem.html#startOtherVideo-int-)
+[startOtherVideo()](/portal/reference/V2.1/android/com/juphoon/cloud/JCCallItem.html#startOtherVideo-int-)
 in the
-[JCCallItem](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCCallItem.html)
+[JCCallItem](/portal/reference/V2.1/android/com/juphoon/cloud/JCCallItem.html)
 class to get the remote video image. The returned object is
-[JCMediaDeviceVideoCanvas](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaDeviceVideoCanvas.html):
+[JCMediaDeviceVideoCanvas](/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaDeviceVideoCanvas.html):
 
 ``````java
 @Override
@@ -226,7 +226,7 @@ public void onCallItemUpdate(JCCallItem item) {
 Both the calling party and the called party can hang up the call.
 
 1. Call
-    [getActiveCallItem()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCCall.html#getActiveCallItem--)
+    [getActiveCallItem()](/portal/reference/V2.1/android/com/juphoon/cloud/JCCall.html#getActiveCallItem--)
     to get the currently active call object:
 
     ``````java
@@ -234,7 +234,7 @@ Both the calling party and the called party can hang up the call.
     ``````
 
 2. Call
-    [term()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCCall.html#term-com.juphoon.cloud.JCCallItem-int-java.lang.String-)
+    [term()](/portal/reference/V2.1/android/com/juphoon/cloud/JCCall.html#term-com.juphoon.cloud.JCCallItem-int-java.lang.String-)
     to hang up the current active call:
 
     ``````java
@@ -253,12 +253,12 @@ mCall.term(item, JCCall.REASON_NONE, null);
 ## Destroy local and remote video images
 
 After the call is hung up, you receive the callback
-[onCallItemRemove()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCCallCallback.html#onCallItemRemove-com.juphoon.cloud.JCCallItem-int-java.lang.String-)
+[onCallItemRemove()](/portal/reference/V2.1/android/com/juphoon/cloud/JCCallCallback.html#onCallItemRemove-com.juphoon.cloud.JCCallItem-int-java.lang.String-)
 to remove the call, and the call state changes to STATE\_OK. At this
 time, you need to call
-[stopSelfVideo()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCCallItem.html#stopSelfVideo--)
+[stopSelfVideo()](/portal/reference/V2.1/android/com/juphoon/cloud/JCCallItem.html#stopSelfVideo--)
 and
-[stopOtherVideo()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCCallItem.html#stopOtherVideo--)
+[stopOtherVideo()](/portal/reference/V2.1/android/com/juphoon/cloud/JCCallItem.html#stopOtherVideo--)
 to destroy the local and remote video images:
 
 ``````java

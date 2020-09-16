@@ -13,7 +13,7 @@ title: 一分钟集成 SDK
 
 - 有效的菊风开发者账号（[免费注册](http:///developer.juphoon.com/signup) ）
 
-- 有效的菊风 [AppKey](https://developer.juphoon.com/cn/document/V2.1/create-application.php)
+- 有效的菊风 [AppKey](/cn/document/V2.1/create-application.php)
 
 ## 创建 WPF 项目
 

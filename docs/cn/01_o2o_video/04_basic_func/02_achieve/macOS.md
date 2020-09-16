@@ -10,9 +10,9 @@ title: 实现一对一通话
 ## 初始化
 
 调用 [JCMediaDevice
-create](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaDevice.html#//api/name/create:callback:)
+create](/portal/reference/V2.1/ios/Classes/JCMediaDevice.html#//api/name/create:callback:)
 和 [JCCall
-create](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCCall.html#//api/name/create:mediaDevice:callback:)
+create](/portal/reference/V2.1/ios/Classes/JCCall.html#//api/name/create:mediaDevice:callback:)
 以初始化实现一对一通话需要的模块。
 
 ``````objectivec
@@ -29,7 +29,7 @@ create](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCCall.h
 其中：
 
 - JCMediaDevice create 方法中的 callback 为
-    [JCMediaDeviceCallback](https://developer.juphoon.com/portal/reference/V2.1/ios/Protocols/JCMediaDeviceCallback.html)
+    [JCMediaDeviceCallback](/portal/reference/V2.1/ios/Protocols/JCMediaDeviceCallback.html)
     协议的代理对象，该协议用于将媒体设备相关的事件通知给上层。因此需要先指定 callback 的代理对象，然后在该代理对象中实现
     JCMediaDeviceCallback 的方法。
 
@@ -47,7 +47,7 @@ JCMediaDeviceCallback 中的主要方法如下。
 ``````
 
 - JCCall create 方法中的 callback 为
-    [JCCallCallback](https://developer.juphoon.com/portal/reference/V2.1/ios/Protocols/JCCallCallback.html)
+    [JCCallCallback](/portal/reference/V2.1/ios/Protocols/JCCallCallback.html)
     协议的代理对象，该协议用于将通话相关的事件通知给上层。因此需要先指定 callback 的代理对象，然后在该代理对象中实现
     JCCallCallback 的方法。
 
@@ -82,7 +82,7 @@ JCManager.shared.call.mediaConfig = mediaConfig;
 ## 拨打通话
 
 调用
-[call](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCCall.html#//api/name/call:video:extraParam:)
+[call](/portal/reference/V2.1/ios/Classes/JCCall.html#//api/name/call:video:extraParam:)
 发起视频通话，需要填写的参数有：
 
 - `userID` 填写对方的用户ID。
@@ -97,9 +97,9 @@ JCManager.shared.call.mediaConfig = mediaConfig;
 ``````
 
 拨打通话后，主叫和被叫均会收到新增通话的回调
-[onCallItemAdd](https://developer.juphoon.com/portal/reference/V2.1/ios/Protocols/JCCallCallback.html#//api/name/onCallItemAdd:)
+[onCallItemAdd](/portal/reference/V2.1/ios/Protocols/JCCallCallback.html#//api/name/onCallItemAdd:)
 ，此时通话状态变为 JCCallStatePending 。您可以在上层实现
-[onCallItemAdd](https://developer.juphoon.com/portal/reference/V2.1/ios/Protocols/JCCallCallback.html#//api/name/onCallItemAdd:)
+[onCallItemAdd](/portal/reference/V2.1/ios/Protocols/JCCallCallback.html#//api/name/onCallItemAdd:)
 方法并处理相关的逻辑。
 
 示例代码:
@@ -127,11 +127,11 @@ JCManager.shared.call.mediaConfig = mediaConfig;
 ## 创建本地视频画面
 
 发起通话后，调用
-[JCCallItem](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCCallItem.html)
+[JCCallItem](/portal/reference/V2.1/ios/Classes/JCCallItem.html)
 类中的
-[startSelfVideo](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCCallItem.html#//api/name/startSelfVideo:)
+[startSelfVideo](/portal/reference/V2.1/ios/Classes/JCCallItem.html#//api/name/startSelfVideo:)
 方法创建本地视频画面，该方法会返回一个
-[JCMediaDeviceVideoCanvas](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaDeviceVideoCanvas.html)
+[JCMediaDeviceVideoCanvas](/portal/reference/V2.1/ios/Classes/JCMediaDeviceVideoCanvas.html)
 对象。该对象用于将视频渲染到画布上，并管理渲染的方式。（调用此方法会打开摄像头）
 
 示例代码:
@@ -148,9 +148,9 @@ JCManager.shared.call.mediaConfig = mediaConfig;
 ## 应答通话
 
 1. 主叫发起呼叫成功后，被叫会收到
-    [onCallItemAdd](https://developer.juphoon.com/portal/reference/V2.1/ios/Protocols/JCCallCallback.html#//api/name/onCallItemAdd:)
+    [onCallItemAdd](/portal/reference/V2.1/ios/Protocols/JCCallCallback.html#//api/name/onCallItemAdd:)
     回调，此时可以通过回调中的
-    [JCCallItem](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCCallItem.html)
+    [JCCallItem](/portal/reference/V2.1/ios/Classes/JCCallItem.html)
     对象的 video 以及 direction 属性判断是视频呼入还是语音呼入，从而做出相应的处理:
 
 示例代码:
@@ -166,7 +166,7 @@ JCManager.shared.call.mediaConfig = mediaConfig;
 ``````
 
 2\. 调用
-[answer](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCCall.html#//api/name/answer:video:)
+[answer](/portal/reference/V2.1/ios/Classes/JCCall.html#//api/name/answer:video:)
 接听通话，**视频通话既可语音应答也可视频应答**
 
 ``````objectivec
@@ -188,11 +188,11 @@ JCManager.shared.call.mediaConfig = mediaConfig;
 JCCallStateTalking。
 
 调用
-[JCCallItem](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCCallItem.html)
+[JCCallItem](/portal/reference/V2.1/ios/Classes/JCCallItem.html)
 类中的
-[startOtherVideo](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCCallItem.html#//api/name/startOtherVideo:)
+[startOtherVideo](/portal/reference/V2.1/ios/Classes/JCCallItem.html#//api/name/startOtherVideo:)
 方法创建远端视频画面，该方法会返回一个
-[JCMediaDeviceVideoCanvas](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaDeviceVideoCanvas.html)
+[JCMediaDeviceVideoCanvas](/portal/reference/V2.1/ios/Classes/JCMediaDeviceVideoCanvas.html)
 对象，该对象用于将视频渲染到画布上，并管理渲染的方式。
 
 示例代码:
@@ -213,11 +213,11 @@ JCCallStateTalking。
 主叫或者被叫均可以挂断通话。
 
 1. 首先调用
-    [getActiveCallItem](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCCall.html#//api/name/getActiveCallItem)
+    [getActiveCallItem](/portal/reference/V2.1/ios/Classes/JCCall.html#//api/name/getActiveCallItem)
     获取当前活跃的通话对象；
 
 2. 当前活跃通话对象获取后，调用
-    [term](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCCall.html#//api/name/term:reason:description:)
+    [term](/portal/reference/V2.1/ios/Classes/JCCall.html#//api/name/term:reason:description:)
     挂断当前活跃通话:
 
     ``````objectivec
@@ -230,11 +230,11 @@ JCCallStateTalking。
 ## 销毁本地和远端视频画面
 
 通话挂断后，会触发
-[JCCallCallback](https://developer.juphoon.com/portal/reference/V2.1/ios/Protocols/JCCallCallback.html)
+[JCCallCallback](/portal/reference/V2.1/ios/Protocols/JCCallCallback.html)
 中的 onCallItemRemove （通话移除回调），通话状态变为 JCCallStateOk，此时您需要调用
-[stopSelfVideo](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCCallItem.html#//api/name/stopSelfVideo)
+[stopSelfVideo](/portal/reference/V2.1/ios/Classes/JCCallItem.html#//api/name/stopSelfVideo)
 和
-[stopOtherVideo](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCCallItem.html#//api/name/stopOtherVideo)
+[stopOtherVideo](/portal/reference/V2.1/ios/Classes/JCCallItem.html#//api/name/stopOtherVideo)
 方法销毁本地和远端视频画面。
 
 示例代码:
