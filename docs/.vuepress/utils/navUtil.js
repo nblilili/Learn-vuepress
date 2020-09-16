@@ -3,7 +3,7 @@ module.exports = {
     if (locale == "cn") {
       return [{
         text: 'FAQ',
-        link: '/cn/juphoon_platform/97_FAQ/iOS.html'
+        link: 'https://developer.juphoon.com/cn/juphoon_platform/97_FAQ/iOS.html'
       },
       {
         text: '文档中心',

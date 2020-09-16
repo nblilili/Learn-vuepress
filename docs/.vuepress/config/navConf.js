@@ -1,7 +1,7 @@
 module.exports = [
   {
     text: 'FAQ',
-    link: '/cn/document/V2.1/faq/ios.php'
+    link: 'https://developer.juphoon.com/cn/document/V2.1/faq/ios.php'
   },
   {
     text: '文档中心',

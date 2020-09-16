@@ -1,18 +1,18 @@
 var first_pcont = [{
     title: "平台概述",
-    url: "/cn/juphoon_platform/"
+    url: "https://developer.juphoon.com/cn/juphoon_platform/"
 }, {
     title: "关键术语",
-    url: "/cn/juphoon_platform/01_glossary.html"
+    url: "https://developer.juphoon.com/cn/juphoon_platform/01_glossary.html"
 }, {
     title: "创建应用",
-    url: "/cn/juphoon_platform/03_console_description/03_应用管理.html"
+    url: "https://developer.juphoon.com/cn/juphoon_platform/03_console_description/03_应用管理.html"
 }, {
     title: "Portal 说明",
-    url: "/cn/juphoon_platform/03_console_description/01_注册登录.html"
+    url: "https://developer.juphoon.com/cn/juphoon_platform/03_console_description/01_注册登录.html"
 }, {
     title: "天塞鹰眼",
-    url: "/cn/juphoon_platform/04_TianSai_eagle_eyes/01_天塞鹰眼概览.html"
+    url: "https://developer.juphoon.com/cn/juphoon_platform/04_TianSai_eagle_eyes/01_天塞鹰眼概览.html"
 }, {
     title: "下载",
     url: "https://developer.juphoon.com/cn/download/index.php"
@@ -120,15 +120,15 @@ var third_pcont = [{
 },{
     title:"服务器录制",
     img:"https://developer.juphoon.com/style/images/home/developer_rec@2x.png",
-    url:"https://developer.juphoon.com/cn/document/server_rec/"
+    url:"https://developer.juphoon.comhttps://developer.juphoon.com/cn/document/server_rec/"
 },{
     title:"屏幕共享",
     img:"https://developer.juphoon.com/style/images/home/developer_screen sharing@2x.png",
-    url:"https://developer.juphoon.com/cn/document/screen_share/"
+    url:"https://developer.juphoon.comhttps://developer.juphoon.com/cn/document/screen_share/"
 },{
     title:"CDN 推流",
     img:"https://developer.juphoon.com/style/images/home/developer_CDN@2x.png",
-    url:"https://developer.juphoon.com/cn/document/cdn/"
+    url:"https://developer.juphoon.comhttps://developer.juphoon.com/cn/document/cdn/"
 }]
 
 var forth_pcont = []

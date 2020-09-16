@@ -57,10 +57,10 @@
           <i class="iconfont" :class="showmenu?'icon-shangla':'icon-xiala'"></i>
           <div class="left-title-menu">
             <div class="left-title left-title_2">
-              <a href="/cn/juphoon_platform/03_console_description/01_注册登录.html">控制台说明</a>
+              <a href="https://developer.juphoon.com/cn/juphoon_platform/03_console_description/01_注册登录.html">控制台说明</a>
             </div>
             <div class="left-title left-title_2">
-              <a href="/cn/juphoon_platform/04_TianSai_eagle_eyes/01_天塞鹰眼概览.html">天塞鹰眼</a>
+              <a href="https://developer.juphoon.com/cn/juphoon_platform/04_TianSai_eagle_eyes/01_天塞鹰眼概览.html">天塞鹰眼</a>
             </div>
             <div class="left-title left-title_2">
               <a href="https://developer.juphoon.com/portal/cn/bbs/" target="_blank">技术支持社区</a>
