@@ -99,7 +99,7 @@
           <div class="part-cont">
             <img src="https://developer.juphoon.com/style/images/home/developer_experience@2x.png" />
             <p>遇到问题，您还可以选择</p>
-            <a class="button" href="https://developer.juphoon.com/portal/cn/bbs/">社区发帖</a>
+            <a class="button" href="https://developer.juphoon.com/portal/cn/bbs/index.php">社区发帖</a>
             <a
               class="contactline"
               href="http://wpa.qq.com/msgrd?v=3&amp;uin=2703650800&amp;site=qq&amp;menu=yes"
@@ -122,30 +122,38 @@
               <div class="inner_content">
                 <img :src="img.Voice_Calling_one" alt />
                 <div class="title">
-                  <span @click="clickPath('path')">One-to-One Voice Calling</span>
-                  <router-link to="home" target="_blank" v-if="!width800">
+                  <span @click="clickPath('00_o2o_audio')">One-to-One Voice Calling</span>
+                  <router-link to="00_o2o_audio" target="_blank" class="width800">
                     Quick Start
                     <img :src="img.Lz" alt />
                   </router-link>
-                  <router-link to="home" target="_blank" v-if="!width800">
+                  <a
+                    href="https://developer.juphoon.com/en/download/demo-code.php"
+                    target="_blank"
+                    class="width800"
+                  >
                     Demo Source Code
                     <img :src="img.DownLoad" alt />
-                  </router-link>
+                  </a>
                 </div>
                 <div style="clear:both"></div>
               </div>
               <div class="inner_content">
                 <img :src="img.Voice_Calling_group" alt />
                 <div class="title">
-                  <span @click="clickPath('path')">Group Voice Calling</span>
-                  <router-link to="home" target="_blank" v-if="!width800">
+                  <span @click="clickPath('02_mult_audio')">Group Voice Calling</span>
+                  <router-link to="02_mult_audio" target="_blank" class="width800">
                     Quick Start
                     <img :src="img.Lz" alt />
                   </router-link>
-                  <router-link to="home" target="_blank" v-if="!width800">
+                  <a
+                    href="https://developer.juphoon.com/en/download/demo-code.php"
+                    target="_blank"
+                    class="width800"
+                  >
                     Demo Source Code
                     <img :src="img.DownLoad" alt />
-                  </router-link>
+                  </a>
                 </div>
                 <div style="clear:both"></div>
               </div>
@@ -158,30 +166,38 @@
               <div class="inner_content">
                 <img :src="img.Video_Calling_one" alt />
                 <div class="title">
-                  <span @click="clickPath('path')">One-to-One Video Calling</span>
-                  <router-link to="home" target="_blank" v-if="!width800">
+                  <span @click="clickPath('01_o2o_video')">One-to-One Video Calling</span>
+                  <router-link to="01_o2o_video" target="_blank" class="width800">
                     Quick Start
                     <img :src="img.Lz" alt />
                   </router-link>
-                  <router-link to="home" target="_blank" v-if="!width800">
+                  <a
+                    href="https://developer.juphoon.com/en/download/demo-code.php"
+                    target="_blank"
+                    class="width800"
+                  >
                     Demo Source Code
                     <img :src="img.DownLoad" alt />
-                  </router-link>
+                  </a>
                 </div>
                 <div style="clear:both"></div>
               </div>
               <div class="inner_content">
                 <img :src="img.Video_Calling_group" alt />
                 <div class="title">
-                  <span @click="clickPath('path')">Group Video Calling</span>
-                  <router-link to="home" target="_blank" v-if="!width800">
+                  <span @click="clickPath('03_mult_video')">Group Video Calling</span>
+                  <router-link to="03_mult_video" target="_blank" class="width800">
                     Quick Start
                     <img :src="img.Lz" alt />
                   </router-link>
-                  <router-link to="home" target="_blank" v-if="!width800">
+                  <a
+                    href="https://developer.juphoon.com/en/download/demo-code.php"
+                    target="_blank"
+                    class="width800"
+                  >
                     Demo Source Code
                     <img :src="img.DownLoad" alt />
-                  </router-link>
+                  </a>
                 </div>
                 <div style="clear:both"></div>
               </div>
@@ -194,30 +210,38 @@
               <div class="inner_content">
                 <img :src="img.Broadcasting_audio" alt />
                 <div class="title">
-                  <span @click="clickPath('path')">Live Interactive Audio Streaming</span>
-                  <router-link to="home" target="_blank" v-if="!width800">
+                  <span @click="clickPath('04_audio_live')">Live Interactive Audio Streaming</span>
+                  <router-link to="04_audio_live" target="_blank" class="width800">
                     Quick Start
                     <img :src="img.Lz" alt />
                   </router-link>
-                  <router-link to="home" target="_blank" v-if="!width800">
+                  <a
+                    href="https://developer.juphoon.com/en/download/demo-code.php"
+                    target="_blank"
+                    class="width800"
+                  >
                     Demo Source Code
                     <img :src="img.DownLoad" alt />
-                  </router-link>
+                  </a>
                 </div>
                 <div style="clear:both"></div>
               </div>
               <div class="inner_content">
                 <img :src="img.Broadcasting_video" alt />
                 <div class="title">
-                  <span @click="clickPath('path')">Live Interactive Video Streaming</span>
-                  <router-link to="home" target="_blank" v-if="!width800">
+                  <span @click="clickPath('05_video_live')">Live Interactive Video Streaming</span>
+                  <router-link to="05_video_live" target="_blank" class="width800">
                     Quick Start
                     <img :src="img.Lz" alt />
                   </router-link>
-                  <router-link to="home" target="_blank" v-if="!width800">
+                  <a
+                    href="https://developer.juphoon.com/en/download/demo-code.php"
+                    target="_blank"
+                    class="width800"
+                  >
                     Demo Source Code
                     <img :src="img.DownLoad" alt />
-                  </router-link>
+                  </a>
                 </div>
                 <div style="clear:both"></div>
               </div>
@@ -250,7 +274,6 @@
                 <img :src="img.Download_load" alt />
               </div>
             </a>
-            <div style="clear:both"></div>
             <a class="part-cont" :href="SDK_Download.android">
               <div class="inner">
                 <img :src="img.en_android" alt />
@@ -272,7 +295,6 @@
                 <img :src="img.arrow" alt />
               </div>
             </a>
-
             <div style="clear:both"></div>
           </div>
         </div>
@@ -284,14 +306,23 @@
               Get started for free >
               <span class="blink">_</span>
             </a>
-            <a href="/en/talk-to-us.html" target="_blank" class="contactUs">Contact us</a>
+            <a
+              href="http://wpa.qq.com/msgrd?v=3&amp;uin=2703650800&amp;site=qq&amp;menu=yes"
+              target="_blank"
+              class="contactUs"
+            >Contact us</a>
           </div>
         </div>
       </div>
       <div class="pcont secondp cn" v-if="showsearch &&$lang =='cn'">
         <div class="top_search">
           <div class="search_div">
-            <HomeAlgolia ref="HomeAlgolia" :options="algolia" :keyword="keyword" />
+            <HomeAlgolia
+              ref="HomeAlgolia"
+              :options="algolia"
+              :keyword="keyword"
+              @search="getTableData"
+            />
           </div>
         </div>
         <div class="spcont">
@@ -398,7 +429,12 @@
                 class="en_h2"
               >Explore how to build your real-time voice and video services with our easily embedded SDK</h2>
               <div class="bacsearch">
-                <HomeAlgolia ref="HomeAlgolia" :options="algolia" :keyword="keyword" />
+                <HomeAlgolia
+                  ref="HomeAlgolia"
+                  :options="algolia"
+                  :keyword="keyword"
+                  @search="getTableData"
+                />
               </div>
             </div>
           </div>
@@ -588,11 +624,16 @@ export default {
       let hash = this.$route.hash.substr(1);
       if (hash) {
         this.showsearch = true;
-        this.keyword = hash;
+        this.keyword = decodeURI(hash);
+      } else {
+        this.showsearch = false;
       }
     },
     $lang(newValue) {
+      this.first = false;
       this.changelangtag();
+      this.keyword = "";
+      this.showsearch = false;
     },
   },
   mounted() {
@@ -602,7 +643,7 @@ export default {
     let hash = this.$route.hash.substr(1);
     if (hash) {
       this.showsearch = true;
-      this.keyword = hash;
+      this.keyword = decodeURI(hash);
     }
     that.$EventBus.$on("SearchResults", (res) => {
       that.showlist(res);
@@ -614,14 +655,19 @@ export default {
       this.screenWidth();
     };
     this.get_log_version_dev();
+    this.screenWidth();
   },
   methods: {
     screenWidth() {
       if (window.innerWidth < 800) this.width800 = true;
       else this.width800 = false;
     },
-    clickPath() {
-      console.log("tiaozhuan ");
+    clickPath(res) {
+      console.log(this.width800);
+      // if (this.width800) {
+      //   this.$router.push(res);
+      // }
+      console.log(res);
     },
     // 三种点击事件
     sortpro(res) {
@@ -825,12 +871,12 @@ export default {
     keySearch(str) {
       console.log("str=>", str);
       console.log(Boolean(str));
-      // if (str) {
-      //   this.showsearch = true;
-      //   this.$router.push({ hash: str });
-      // } else {
-      //   this.showsearch = false;
-      // }
+      if (str) {
+        // this.showsearch = true;
+        this.$router.push({ hash: str });
+      } else {
+        // this.showsearch = false;
+      }
     },
     pageDataFn(number, pageSize, data) {
       this.page.currentPage = number;
@@ -933,9 +979,9 @@ export default {
   }
 
   .part_two {
-    height: 444px;
+    height: 584px;
     width: 95%;
-    max-width: 1163px;
+    max-width: 1200px;
     margin: 0 auto;
 
     .part-cont {
@@ -969,8 +1015,10 @@ export default {
           }
 
           .title {
-            white-space: nowrap;
+            white-space: normal;
+            margin-left: 52px;
 
+            // white-space: nowrap;
             >span {
               height: 36px;
               font-size: 17px;
@@ -981,10 +1029,9 @@ export default {
 
             a {
               margin-top: 13px;
-              margin-left: 52px;
               height: 21px;
               font-size: 15px;
-              font-weight: 300;
+              font-weight: 400;
               color: #000000;
               line-height: 25px;
               display: none;
@@ -1027,6 +1074,10 @@ export default {
     .part-cont {
       float: left;
       width: 33.33%;
+
+      &:nth-child(4) {
+        clear: both;
+      }
 
       .inner {
         min-width: 240px;
@@ -1114,7 +1165,7 @@ export default {
       }
 
       .signUp {
-        width: 281px;
+        width: 280px;
         background: #3035FF;
         color: rgba(255, 255, 255, 1);
       }
@@ -1233,7 +1284,63 @@ export default {
   }
 }
 
+@media (max-width: 1100px) {
+  .en .part_two {
+    height: 788px;
+  }
+
+  .en .part_two .part-cont {
+    float: left;
+    width: 50%;
+  }
+
+  .en .part_two .part-cont:nth-child(4) {
+    clear: both;
+    width: 100%;
+  }
+
+  .en .part_three .part-cont {
+    width: 50%;
+  }
+
+  .en .part_three .part-cont:nth-child(3) {
+    clear: both;
+  }
+
+  .en .part_three .part-cont:nth-child(4) {
+    clear: none;
+  }
+}
+
 @media (max-width: 800px) {
+  // .width800 {
+  // display: none !important;
+  // }
+  .en .part_two .part-cont .inner .inner_content .title {
+    white-space: normal;
+    margin-left: 52px;
+  }
+
+  .en .part_four .talk-back .contactUs {
+    margin-top: 20px;
+  }
+
+  .en .part_four .talk-back h3, .en .part_four .talk-back p {
+    margin: 0;
+    font-size: 28px;
+    font-family: PingFangSC-Medium, PingFang SC;
+    font-weight: 500;
+    color: #fff;
+    line-height: 40px;
+  }
+
+  .en .part_four .talk-back p {
+    margin-bottom: 20px;
+  }
+.bactxt .en_h2{
+  margin-top:20px
+  margin-bottom: 48px;
+}
   .en {
     .part_two {
       height: auto;
@@ -1269,6 +1376,13 @@ export default {
 
   .en .gi-cont {
     margin-left: 82px;
+  }
+}
+
+@media (max-width: 630px) {
+  .en .part_four .talk-back .contactUs {
+    width: 280px;
+    margin-left: 0px;
   }
 }
 

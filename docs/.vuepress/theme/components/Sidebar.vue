@@ -57,13 +57,13 @@
           <i class="iconfont" :class="showmenu?'icon-shangla':'icon-xiala'"></i>
           <div class="left-title-menu">
             <div class="left-title left-title_2">
-              <a href="/cn/document/V2.1/portal.php">控制台说明</a>
+              <a href="/cn/juphoon_platform/03_console_description/01_注册登录.html">控制台说明</a>
             </div>
             <div class="left-title left-title_2">
-              <a href="/cn/document/V2.1/qualities.php">天塞鹰眼</a>
+              <a href="/cn/juphoon_platform/04_TianSai_eagle_eyes/01_天塞鹰眼概览.html">天塞鹰眼</a>
             </div>
             <div class="left-title left-title_2">
-              <a href="/cn/document/V2.1/portal/cn/bbs/" target="_blank">技术支持社区</a>
+              <a href="https://developer.juphoon.com/portal/cn/bbs/" target="_blank">技术支持社区</a>
             </div>
           </div>
         </div>
@@ -100,6 +100,7 @@ export default {
         sidebarSelect = this.$themeConfig.locales["/cn/"].sidebarSelect;
       else if (url.indexOf("/en/" > -1))
         sidebarSelect = this.$themeConfig.locales["/en/"].sidebarSelect;
+      this.menulist = sidebarSelect;
       this.setMenuList(sidebarSelect);
       if (window.innerWidth < 800) this.$emit("MenuHide");
       if (window.innerWidth < 800) {
@@ -151,7 +152,6 @@ export default {
       if (url.indexOf("/cn/") > -1) {
         needfriend(menulist[1].children);
       } else if (url.indexOf("/en/" > -1)) {
-        needfriend(menulist[0].children);
       }
       // });
       // if (menulist[1].children) {

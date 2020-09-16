@@ -117,9 +117,26 @@ export default {
         this.$EventBus.$emit("pageHeight", this.$refs.Page.clientHeight);
       });
     }, 200);
+    this.$EventBus.$on("resetHeight", (res) => {
+      var i = 1;
+      var setHight = setInterval(() => {
+        set();
+      }, 200);
+      function set() {
+        that.$nextTick(() => {
+          that.$EventBus.$emit("pageHeight", that.$refs.Page.clientHeight);
+        });
+        i++;
+        if (i == 5) clearInterval(setHight);
+      }
+    });
     this.$EventBus.$on("topsearch", (res) => {
       this.topsearch = true;
     });
+    let hash = this.$route.hash.substr(1);
+    if (hash) {
+      this.$router.push({ hash: decodeURI(hash) });
+    }
   },
   methods: {
     goSearch(value) {
@@ -238,6 +255,7 @@ function check_path(data) {
 
 <style lang="stylus">
 @require '../styles/wrapper.styl';
+@require '../styles/HomeSearch.styl';
 @import url('//at.alicdn.com/t/font_1986404_olndtqc1n5q.css');
 
 .page-left .top_search {
@@ -258,9 +276,6 @@ function check_path(data) {
   }
 }
 
-// .fixed {
-// position: fixed;
-// }
 .top_search {
   display: none;
 }

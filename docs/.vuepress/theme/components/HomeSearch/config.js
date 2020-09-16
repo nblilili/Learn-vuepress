@@ -1,27 +1,27 @@
 var first_pcont = [{
     title: "平台概述",
-    url: "https://developer.juphoon.com/cn/document/index.php"
+    url: "/cn/juphoon_platform/"
 }, {
     title: "关键术语",
-    url: "https://developer.juphoon.com/cn/document/key-terms.php"
+    url: "/cn/juphoon_platform/01_glossary.html"
 }, {
     title: "创建应用",
-    url: "https://developer.juphoon.com/cn/document/create-application.php"
+    url: "/cn/juphoon_platform/03_console_description/03_应用管理.html"
 }, {
     title: "Portal 说明",
-    url: "https://developer.juphoon.com/cn/document/portal.php"
+    url: "/cn/juphoon_platform/03_console_description/01_注册登录.html"
 }, {
     title: "天塞鹰眼",
-    url: "https://developer.juphoon.com/cn/document/qualities.php"
+    url: "/cn/juphoon_platform/04_TianSai_eagle_eyes/01_天塞鹰眼概览.html"
 }, {
     title: "下载",
-    url: "https://developer.juphoon.com/cn/download/"
+    url: "https://developer.juphoon.com/cn/download/index.php"
 }]
 
 var second_pcont = [{
     title: "一对一语音通话",
     img: 'https://developer.juphoon.com/style/images/home/developer_1to1 voicecall @2x.png',
-    url: 'https://developer.juphoon.com/cn/document/oto_audio/',
+    url: '/cn/00_o2o_audio/',
     children: [{
         title: "适用场景",
         children: [{
@@ -33,7 +33,7 @@ var second_pcont = [{
 }, {
     title: "一对一视频通话",
     img: 'https://developer.juphoon.com/style/images/home/developer_1to1 videocall @2x.png',
-    url: 'https://developer.juphoon.com/cn/document/oto_video/',
+    url: '/cn/01_o2o_video/',
     children: [{
         title: "适用场景",
         children: [{
@@ -53,7 +53,7 @@ var second_pcont = [{
 }, {
     title: "多方语音通话",
     img: 'https://developer.juphoon.com/style/images/home/developer_multi-point voicecall @2x.png',
-    url: 'https://developer.juphoon.com/cn/document/mult_audio/',
+    url: '/cn/02_mult_audio/',
     children: [{
         title: "适用场景",
         children: [{
@@ -65,7 +65,7 @@ var second_pcont = [{
 }, {
     title: "多方视频通话",
     img: 'https://developer.juphoon.com/style/images/home/developer_multi-point videocall @2x.png',
-    url: 'https://developer.juphoon.com/cn/document/mult_video/',
+    url: '/cn/03_mult_video/',
     children: [{
         title: "适用场景",
         children: [{
@@ -83,7 +83,7 @@ var second_pcont = [{
 }, {
     title: "语音互动直播",
     img: 'https://developer.juphoon.com/style/images/home/developer_voicelive@2x.png',
-    url: 'https://developer.juphoon.com/cn/document/audio_live/',
+    url: '/cn/04_audio_live/',
     children: [{
         title: "适用场景",
         children: [{
@@ -99,7 +99,7 @@ var second_pcont = [{
 }, {
     title: "视频互动直播",
     img: 'https://developer.juphoon.com/style/images/home/developer_videolive@2x.png',
-    url: 'https://developer.juphoon.com/cn/document/video_live/',
+    url: '/cn/05_video_live/',
     children: [{
         title: "适用场景",
         children: [{
@@ -116,7 +116,7 @@ var second_pcont = [{
 var third_pcont = [{
     title:"WebRTC",
     img:"https://developer.juphoon.com/style/images/home/developer_WebRTC@2x.png",
-    url:"https://developer.juphoon.com/cn/document/webrtc/"
+    url:"/cn/WebRTC/"
 },{
     title:"服务器录制",
     img:"https://developer.juphoon.com/style/images/home/developer_rec@2x.png",

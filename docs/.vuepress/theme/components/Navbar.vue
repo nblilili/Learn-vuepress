@@ -1,25 +1,29 @@
 
 <template>
-  <header class="site-header">
+  <header class="site-header" v-if="!$page.frontmatter.home">
     <div
       class="container"
       style="background:#fff"
       :class="!$page.frontmatter.home&& !$page.frontmatter.Search?'':'index'"
     >
       <nav class="navbar" :class="$lang =='cn'?'cn':'en'">
-        <a class="navbar-brand" href="/">
+        <a class="navbar-brand" :href="`/${$lang}`" style="z-index:999">
           <img src="../assets/image/juphoon cloud developer@2x.png" v-if="$lang=='cn'" />
           <img src="../assets/image/2@2x.png" v-else style="height:45px;width:auto" />
         </a>
+        <!-- <XRouter  class="navbar-brand" :to="{path:`/${$lang}`}" style="z-index:999">
+          <img src="../assets/image/juphoon cloud developer@2x.png" v-if="$lang=='cn'" />
+          <img src="../assets/image/2@2x.png" v-else style="height:45px;width:auto" />
+        </XRouter>-->
         <div class="nav" :class="showNav?'active':''">
           <div class="nav-item languages">
-            <a class="header-line" href="javascript:;" id="eeff7ad1ae620adc859df95b565cd590">
-              <div class="langchange">
+            <a class="header-line" href="javascript:;">
+              <div class="langchange" @click="showlang = !showlang">
                 {{langlist.text}}
                 <i class="iconfont icon-xiala"></i>
               </div>
             </a>
-            <div class="nav-child languagecont">
+            <div class="nav-child languagecont" :style="{display:showlang?'block':''}">
               <table>
                 <tr v-for="item_lang in langlist.items" :key="item_lang.text">
                   <td>
@@ -80,12 +84,12 @@
               ></a>
             </div>
           </div>
-
+<!-- v-if="user_type" -->
           <div class="nav-btn" v-if="user_type">
             <div class="more-item">
               <div class="more">
                 <div style="float: right;">
-                  <i class="layui-icon layui-icon-triangle-d"></i>
+                  <i class="iconfont icon-xiala"></i>
                 </div>
                 <div class="nicheng" title>{{UserInfo.user_name}}</div>
               </div>
@@ -143,6 +147,7 @@ export default {
           link: "/2.0",
         },
       ],
+      showlang: false,
       showNav: false,
       re_userLinks: [],
       langlist: "",
@@ -161,9 +166,18 @@ export default {
           items: (link.items || []).map(resolveNavLinkItem),
         });
       });
+      // let that = this;
+      // this.langlist = {
+      //   text: that.$lang == "cn" ? "中文" : "EN",
+      //   ariaLabel: "Select language",
+      //   items: [
+      //     { text: "中文", link: "/cn" + that.$route.path.substring(3) },
+      //     { text: "EN", link: "/en" + that.$route.path.substring(3) },
+      //   ],
+      // };
     },
     $lang(newValue) {
-      let that = this
+      let that = this;
       this.langlist = {
         text: that.$lang == "cn" ? "中文" : "EN",
         ariaLabel: "Select language",
@@ -172,7 +186,7 @@ export default {
           { text: "EN", link: "/en" + that.$route.path.substring(3) },
         ],
       };
-      console.log(this.langlist);
+      // console.log(this.langlist);
     },
   },
   computed: {
@@ -208,7 +222,6 @@ export default {
       return this.userNav;
     },
     userLinks() {
-      console.log(this.re_userLinks);
       return (this.nav || []).map((link) => {
         return Object.assign(resolveNavLinkItem(link), {
           items: (link.items || []).map(resolveNavLinkItem),
@@ -232,7 +245,7 @@ export default {
         { text: "EN", link: "/en" + that.$route.path.substring(3) },
       ],
     };
-    console.log(this.langlist);
+    // console.log(this.langlist);
   },
   mounted() {
     this.$EventBus.$on("changeNav", () => {
@@ -249,7 +262,11 @@ export default {
       .then(function (response) {
         if (response.data.result) {
           that.UserInfo = response.data.info;
+          if(!response.data.info.user_name){
+            that.user_type = false
+          }
         }
+        
       })
       .catch(function (error) {
         // console.log(error);
@@ -327,6 +344,10 @@ export default {
 @import url('../styles/header_footer.styl');
 @import url('//at.alicdn.com/t/font_1986404_8fs7crvc73y.css');
 
+.nav-item.languages {
+  position: absolute;
+}
+
 .en .nav .languages {
   left: 200px;
 }
@@ -350,6 +371,15 @@ export default {
 @media (max-width: 800px) {
   .nav-item.search {
     display: none !important;
+  }
+
+  .nav-item.languages {
+    position: relative;
+    width: 100%;
+  }
+
+  .en .nav .languages {
+    left: 0px;
   }
 }
 
