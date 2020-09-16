@@ -53,6 +53,21 @@
       <div class="container en">
         <div class="footer-other">
           <ul class="nav-group" style="text-align: center;">
+            <img src="https://developer.juphoon.com/style/images/fangkuai-01.png" alt="1对1视频" />&nbsp;
+              <a rel="nofollow" href="https://www.juphoon.com/en/" target="_blank">
+                <span style="color:#606060;line-height:24px">&nbsp;&nbsp;Juphoon&nbsp;&nbsp;</span>
+              </a>&nbsp;&nbsp;
+              <img
+                src="https://developer.juphoon.com/style/images/fangkuai-01.png"
+                alt="1对1视频"
+              />
+              <a rel="nofollow" href="https://cloud.juphoon.com/en/" target="_blank">
+                <span style="color:#606060;line-height:24px">&nbsp;&nbsp;Juphoon Cloud&nbsp;&nbsp;</span>
+              </a>&nbsp;&nbsp;
+              <img
+                src="https://developer.juphoon.com/style/images/fangkuai-01.png"
+                alt="1对1视频"
+              />&nbsp;&nbsp;&nbsp;
             <span
               style="color:#606060;line-height:24px"
             >Copyright © 2020 Juphoon System Software Co., Ltd. All rights reserved.</span>

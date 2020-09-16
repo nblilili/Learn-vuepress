@@ -117,6 +117,19 @@ export default {
         this.$EventBus.$emit("pageHeight", this.$refs.Page.clientHeight);
       });
     }, 200);
+    this.$EventBus.$on("resetHeight", (res) => {
+      var i = 1;
+      var setHight = setInterval(() => {
+        set();
+      }, 200);
+      function set() {
+        that.$nextTick(() => {
+          that.$EventBus.$emit("pageHeight", that.$refs.Page.clientHeight);
+        });
+        i++;
+        if (i == 5) clearInterval(setHight);
+      }
+    });
     this.$EventBus.$on("topsearch", (res) => {
       this.topsearch = true;
     });
@@ -252,7 +265,6 @@ function check_path(data) {
 .contentTop {
   padding-top: 30px;
 }
-
 
 @media (max-width: 800px) {
   .contentTop {

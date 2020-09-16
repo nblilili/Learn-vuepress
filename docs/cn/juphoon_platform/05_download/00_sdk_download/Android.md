@@ -16,9 +16,7 @@ SDK](https://developer.juphoon.com/portal/cn/downloadsdk/download_sdk.php?filena
 
 您可以通过以下内容了解更多 JC SDK 相关信息：
 
-- [更新日志](https://developer.juphoon.com/cn/document/V2.1/sdk/log/android.php)
-
-- [历史版本](https://developer.juphoon.com/cn/document/V2.1/sdk/version/android.php)
+- [更新日志](https://developer.juphoon.com/cn/juphoon_platform/05_download/03_log.html?platform=android)
 
 - [接口说明](https://developer.juphoon.com/portal/reference/V2.1/android/)
 

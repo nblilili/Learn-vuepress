@@ -1,6 +1,11 @@
 <template>
   <form id="search-form" class="algolia-search-wrapper search-box" role="search">
-    <input id="algolia-search-input" class="search-query" :placeholder="placeholder" />
+    <input
+      id="algolia-search-input"
+      class="search-query"
+      :placeholder="placeholder"
+      @keyup.enter="searchData()"
+    />
   </form>
 </template>
 
@@ -31,6 +36,17 @@ export default {
     this.placeholder = this.$site.themeConfig.searchPlaceholder || "";
   },
   methods: {
+    searchData() {
+      let hash = this.$route.hash.substr(1);
+      if (this.value) {
+        if (this.value && decodeURI(hash) != this.value) {
+          this.$router.push({ path: "/" + this.$lang + "/#" + this.value });
+          return;
+        } else {
+          this.$emit("search", 0);
+        }
+      }
+    },
     initialize(userOptions, lang) {
       Promise.all([
         import(
@@ -92,9 +108,11 @@ export default {
   background: #fff url('../assets/img/search.83621669.svg') 0.6rem 0.5rem no-repeat;
   background-size: 1rem;
 }
-.algolia-autocomplete .ds-dropdown-menu  {
-  width: 650px;
+
+.algolia-autocomplete .ds-dropdown-menu {
+  // width: 650px;
 }
+
 .algolia-autocomplete .algolia-docsearch-suggestion {
 }
 
@@ -139,23 +157,27 @@ export default {
 
     .algolia-docsearch-suggestion {
       .algolia-docsearch-suggestion--category-header {
-        height: 40px;
+        height: 30px;
         line-height: 30px;
-        margin: 5px 0px;
+        margin: 0px 0px;
         background: transparent;
         color: #4A4A4A;
         font-size: 14px;
 
         .algolia-docsearch-suggestion--highlight {
+          padding: 0;
           // background: rgba(255, 255, 255, 0.6);
         }
       }
 
       .algolia-docsearch-suggestion--wrapper {
+        line-height 30px
         padding: 0;
       }
 
       .algolia-docsearch-suggestion--title {
+        line-height 30px
+        padding: 0;
         font-weight: 600;
         margin-bottom: 0;
         color: $textColor;
@@ -164,9 +186,9 @@ export default {
       .algolia-docsearch-suggestion--subcategory-column {
         vertical-align: top;
         padding: 5px 7px 5px 5px;
+
         // border-color: $borderColor;
         // background: #f1f3f5;
-
         &:after {
           display: none;
         }

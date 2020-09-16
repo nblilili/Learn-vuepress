@@ -11,14 +11,14 @@ module.exports = {
       },
       {
         text: '下载',
-        link: "/" + locale + '/download/'
+        link: "https://developer.juphoon.com/" + locale + '/download/index.php'
       },
       {
         text: '技术支持与服务',
         ariaLabel: '技术支持与服务',
         items: [{
           text: '技术支持社区',
-          link: '/portal/' + locale + '/bbs/'
+          link: 'https://developer.juphoon.com/portal/' + locale + '/bbs/'
         },
         {
           text: '服务支持',
@@ -34,7 +34,7 @@ module.exports = {
         },
         {
           text: 'Download',
-          link: "/" + locale + '/download/'
+          link: "https://developer.juphoon.com//" + locale + '/download/index.php'
         }];
     }
   },
