@@ -12,14 +12,22 @@
             @click="changePlatformDev(item.type)"
           >{{item.name}}</a>
         </div>
-        <div class="mbtns">
-          <a
-            :class="item == active.year?'active':''"
-            v-for="item in YearList"
-            :key="item"
-            href="javascript:void(0);"
-            @click="changeYearDev(item)"
-          >{{item}}</a>
+        <div class="mbtns" style="width:85px;position: relative">
+          <div>
+            <div class="year" @click="Yearshow = !Yearshow">
+              {{active.year}}
+              <i data-v-4dc977d9 class="iconfont icon-xiala"></i>
+            </div>
+          </div>
+          <dl class="layui-anim layui-anim-upbit" v-show="Yearshow">
+            <dd
+              :class="item == active.year?'active':''"
+              v-for="item in YearList"
+              :key="item"
+              href="javascript:void(0);"
+              @click="changeYearDev(item)"
+            >{{item}}</dd>
+          </dl>
         </div>
       </div>
 
@@ -46,6 +54,7 @@ export default {
   name: "DemoExp",
   data() {
     return {
+      Yearshow: false,
       platform: "",
       i_list: [],
       a_list: [],
@@ -218,6 +227,7 @@ export default {
       this.changeYearDev(2020, "", type);
     },
     changeYearDev(index, data, type = this.type) {
+      this.Yearshow = false;
       let that = this;
       let self = this;
       self.active.year = index;
@@ -246,10 +256,13 @@ export default {
 };
 </script>
 
-<style>
+<style lang="stylus" scoped>
+@import url('//at.alicdn.com/t/font_1986404_8fs7crvc73y.css');
+
 .cont {
   margin: 0 !important;
 }
+
 .demoexp .web div {
   width: 150px;
   height: 150px;
@@ -258,6 +271,7 @@ export default {
   bottom: 19px;
   display: none;
 }
+
 /* .experience .web img,
 .demoexp .web img {
   width: 100%;
@@ -270,9 +284,57 @@ export default {
 .col-sm-6 {
   float: left;
 }
+
 .sdkbtn:before {
   text-decoration: none;
 }
+
+.year {
+  cursor: pointer;
+  width: 85px;
+  height: 38px;
+  line-height: 38px;
+  border: 1px solid #e6e6e6;
+  background-color: #fff;
+  border-radius: 20px;
+  box-shadow: none;
+  font-size: 15px;
+  padding-left: 10px;
+}
+
+.mbtns dl {
+  border-radius: 4px;
+  position: absolute;
+  left: 0;
+  top: 42px;
+  padding: 5px 0;
+  z-index: 899;
+  min-width: 100%;
+  border: 1px solid #d2d2d2;
+  max-height: 300px;
+  overflow-y: auto;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12);
+  box-sizing: border-box;
+}
+
+.mbtns dl dd {
+  margin-bottom:0;
+  cursor: pointer;
+}
+
+.mbtns dl dd, .mbtns dl dt {
+  padding: 0 10px;
+  line-height: 36px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+dl .active {
+  color: #008AFF;
+}
+
 @media (min-width: 800px) {
   .col-sm-6 {
     width: 100%;
