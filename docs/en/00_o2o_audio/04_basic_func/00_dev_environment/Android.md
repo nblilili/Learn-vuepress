@@ -15,7 +15,7 @@ created.
 - Supports mobile devices with Android 4.1 or above
 
 - Effective Juphoon Developer Account ([free sign
-    up](http://developer.juphoon.com/signup))
+    up](https://developer.juphoon.com/en/signup))
 
 - Efficient Juphoon [AppKey](https://developer.juphoon.com/cn/document/V2.1/create-application.php)
 

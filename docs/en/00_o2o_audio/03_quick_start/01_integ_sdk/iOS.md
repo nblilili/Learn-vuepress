@@ -11,7 +11,7 @@ created.
 - Support iOS 8.0 or above iOS **real device**
 
 - Effective Juphoon Developer Account ([free sign
-    up](http://developer.juphoon.com/signup))
+    up](https://developer.juphoon.com/en/signup))
 
 - Efficient Juphoon [AppKey](https://developer.juphoon.com/cn/document/V2.1/create-application.php)
 
