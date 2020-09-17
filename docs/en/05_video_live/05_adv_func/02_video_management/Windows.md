@@ -212,7 +212,6 @@ image.Stretch = Stretch.Uniform;
 this.label.Background = image;
 ``````
 
------
 
 ### Destroy local and remote video images
 
@@ -246,7 +245,6 @@ if (remoteCanvas != null)
     }
 ``````
 
------
 
 Video call screenshot
 \>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>:
@@ -262,7 +260,6 @@ Video call screenshot
 public bool snapshot(int width, int height, string filePath)
 ``````
 
------
 
 ### Update video rendering logo
 
@@ -304,7 +301,6 @@ following interface:
 public bool resume()
 ``````
 
------
 
 ## Video equipment management
 

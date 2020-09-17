@@ -53,7 +53,7 @@ public bool mute(JCCallItem item)
 public bool audioRecord(JCCallItem item, bool enable, string filePath)
 ``````
 
-示例代码:
+示例代码
 
 ``````csharp
 ```
@@ -87,7 +87,6 @@ if (item.audioRecord)
 void onCallItemUpdate(JCCallItem item, JCCallItem.ChangeParam changeParam);
 ``````
 
------
 
 ### 开启/关闭呼叫保持
 
@@ -156,7 +155,7 @@ void onMessageReceive(string type, string content, JCCallItem item);
 ```
 ``````
 
-示例代码:
+示例代码
 
 ``````csharp
 JCCallItem item = call.getActiveCallItem();
@@ -187,7 +186,7 @@ void onCallItemUpdate(JCCallItem item, JCCallItem.ChangeParam changeParam);
 
 :::
 
-示例代码:
+示例代码
 
 ``````csharp
 public void onCallItemUpdate(JCCallItem item, JCCallItem.ChangeParam changeParam) {
@@ -205,4 +204,3 @@ public void onCallItemUpdate(JCCallItem item, JCCallItem.ChangeParam changeParam
 }
 ``````
 
------

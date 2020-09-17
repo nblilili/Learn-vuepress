@@ -1,7 +1,7 @@
 ---
-title: 实现一对一视频通话
+title: 实现一对一通话
 ---
-# 实现一对一视频通话
+# 实现一对一通话
 
 本章将介绍如何实现一对一视频通话，一对一视频通话的 API 调用时序见下图：
 
@@ -10,9 +10,9 @@ title: 实现一对一视频通话
 ## 初始化
 
 调用
-[JCMediaDevice.create()](/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaDevice.html#create-com.juphoon.cloud.JCClient-com.juphoon.cloud.JCMediaDeviceCallback-)
+[JCMediaDevice.create()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaDevice.html#create-com.juphoon.cloud.JCClient-com.juphoon.cloud.JCMediaDeviceCallback-)
 和
-[JCCall.create()](/portal/reference/V2.1/android/com/juphoon/cloud/JCCall.html#create-com.juphoon.cloud.JCClient-com.juphoon.cloud.JCMediaDevice-com.juphoon.cloud.JCCallCallback-)
+[JCCall.create()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCCall.html#create-com.juphoon.cloud.JCClient-com.juphoon.cloud.JCMediaDevice-com.juphoon.cloud.JCCallCallback-)
 以初始化实现一对一通话需要的模块。
 
 ``````java
@@ -89,7 +89,7 @@ JCManager.getInstance().call.updateMediaConfig(mediaConfig);
 ## 拨打通话
 
 调用
-[call()](/portal/reference/V2.1/android/com/juphoon/cloud/JCCall.html#call-java.lang.String-boolean-java.lang.String-)
+[call()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCCall.html#call-java.lang.String-boolean-java.lang.String-)
 发起视频通话，需要填写的参数有：
 
 - `userID` 填写对方的用户ID。
@@ -97,7 +97,7 @@ JCManager.getInstance().call.updateMediaConfig(mediaConfig);
 - `isVideo` 选择是否为视频通话， true 表示拨打视频通话， false 表示拨打语音通话。
 
 - `extraParam` 为自定义透传字符串， 可通过
-    [getExtraParam()](/portal/reference/V2.1/android/com/juphoon/cloud/JCCallItem.html#getExtraParam--)
+    [getExtraParam()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCCallItem.html#getExtraParam--)
     方法获取该属性。
 
 ``````java
@@ -106,11 +106,11 @@ mCall.call(userID, isVideo, null);
 ``````
 
 拨打通话后，主叫和被叫均会收到新增通话的回调
-[onCallItemAdd()](/portal/reference/V2.1/android/com/juphoon/cloud/JCCallCallback.html#onCallItemAdd-com.juphoon.cloud.JCCallItem-)
+[onCallItemAdd()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCCallCallback.html#onCallItemAdd-com.juphoon.cloud.JCCallItem-)
 ，此时通话状态变为
-[STATE\_PENDING](/portal/reference/V2.1/android/com/juphoon/cloud/JCCall.html#STATE_PENDING)
+[STATE\_PENDING](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCCall.html#STATE_PENDING)
 。您可以通过重写
-[onCallItemAdd()](/portal/reference/V2.1/android/com/juphoon/cloud/JCCallCallback.html#onCallItemAdd-com.juphoon.cloud.JCCallItem-)
+[onCallItemAdd()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCCallCallback.html#onCallItemAdd-com.juphoon.cloud.JCCallItem-)
 执行逻辑操作。
 
 ``````java
@@ -136,11 +136,11 @@ public void onCallItemAdd(JCCallItem item) {
 ## 创建本地视频画面
 
 发起通话后，调用
-[JCCallItem](/portal/reference/V2.1/android/com/juphoon/cloud/JCCallItem.html)
+[JCCallItem](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCCallItem.html)
 类中的
-[startSelfVideo()](/portal/reference/V2.1/android/com/juphoon/cloud/JCCallItem.html#startSelfVideo-int-)
+[startSelfVideo()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCCallItem.html#startSelfVideo-int-)
 方法打开本地视频预览。需要填入参数
-[JCMediaDevice.RenderType](/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaDevice.html#RENDER_FULL_AUTO)
+[JCMediaDevice.RenderType](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaDevice.html#RENDER_FULL_AUTO)
 以选择渲染模式。
 
 ``````java
@@ -155,11 +155,11 @@ mCallItem.startSelfVideo(JCMediaDevice.RENDER_FULL_AUTO);
 ## 应答通话
 
 1. 被叫收到
-    [onCallItemAdd()](/portal/reference/V2.1/android/com/juphoon/cloud/JCCallCallback.html#onCallItemAdd-com.juphoon.cloud.JCCallItem-)
+    [onCallItemAdd()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCCallCallback.html#onCallItemAdd-com.juphoon.cloud.JCCallItem-)
     回调，在回调中调用
-    [JCCallItem](/portal/reference/V2.1/android/com/juphoon/cloud/JCCallItem.html)
+    [JCCallItem](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCCallItem.html)
     中的
-    [getVideo()](/portal/reference/V2.1/android/com/juphoon/cloud/JCCallItem.html#getVideo--)
+    [getVideo()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCCallItem.html#getVideo--)
     方法获取 `video` 属性来判断是视频呼入还是语音呼入，从而做出相应的处理。
 
     ``````java
@@ -174,7 +174,7 @@ mCallItem.startSelfVideo(JCMediaDevice.RENDER_FULL_AUTO);
     ``````
 
 2. 调用
-    [answer()](/portal/reference/V2.1/android/com/juphoon/cloud/JCCall.html#answer-java.lang.String-boolean-java.lang.String-)
+    [answer()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCCall.html#answer-java.lang.String-boolean-java.lang.String-)
     接听通话。
 
     ``````java
@@ -195,11 +195,11 @@ mCallItem.startSelfVideo(JCMediaDevice.RENDER_FULL_AUTO);
 STATE\_TALKING。
 
 调用
-[JCCallItem](/portal/reference/V2.1/android/com/juphoon/cloud/JCCallItem.html)
+[JCCallItem](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCCallItem.html)
 类中的
-[startOtherVideo()](/portal/reference/V2.1/android/com/juphoon/cloud/JCCallItem.html#startOtherVideo-int-)
+[startOtherVideo()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCCallItem.html#startOtherVideo-int-)
 获取远端视频画面。返回对象为
-[JCMediaDeviceVideoCanvas](/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaDeviceVideoCanvas.html)。
+[JCMediaDeviceVideoCanvas](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaDeviceVideoCanvas.html)。
 
 ``````java
 @Override
@@ -219,7 +219,7 @@ public void onCallItemUpdate(JCCallItem item) {
 主叫或者被叫均可以挂断通话。
 
 1. 调用
-    [getActiveCallItem()](/portal/reference/V2.1/android/com/juphoon/cloud/JCCall.html#getActiveCallItem--)
+    [getActiveCallItem()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCCall.html#getActiveCallItem--)
     获取当前活跃的通话对象。
 
     ``````java
@@ -227,14 +227,14 @@ public void onCallItemUpdate(JCCallItem item) {
     ``````
 
 2. 调用
-    [term()](/portal/reference/V2.1/android/com/juphoon/cloud/JCCall.html#term-com.juphoon.cloud.JCCallItem-int-java.lang.String-)
+    [term()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCCall.html#term-com.juphoon.cloud.JCCallItem-int-java.lang.String-)
     挂断当前活跃通话。
 
     ``````java
     mCall.term(item, reason, description);
     ``````
 
-示例代码:
+示例代码
 
 ``````java
 // 1. 获取当前活跃通话
@@ -246,13 +246,13 @@ mCall.term(item, JCCall.REASON_NONE, null);
 ## 销毁本地和远端视频画面
 
 通话挂断后，收到移除通话的回调
-[onCallItemRemove()](/portal/reference/V2.1/android/com/juphoon/cloud/JCCallCallback.html#onCallItemRemove-com.juphoon.cloud.JCCallItem-int-java.lang.String-)
+[onCallItemRemove()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCCallCallback.html#onCallItemRemove-com.juphoon.cloud.JCCallItem-int-java.lang.String-)
 ，通话状态变为
-[STATE\_OK](/portal/reference/V2.1/android/com/juphoon/cloud/JCCall.html#STATE_OK)
+[STATE\_OK](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCCall.html#STATE_OK)
 ，此时您需要分别调用
-[stopSelfVideo()](/portal/reference/V2.1/android/com/juphoon/cloud/JCCallItem.html#stopSelfVideo--)
+[stopSelfVideo()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCCallItem.html#stopSelfVideo--)
 和
-[stopOtherVideo()](/portal/reference/V2.1/android/com/juphoon/cloud/JCCallItem.html#stopOtherVideo--)
+[stopOtherVideo()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCCallItem.html#stopOtherVideo--)
 销毁本地和远端视频画面。:
 
 ``````java

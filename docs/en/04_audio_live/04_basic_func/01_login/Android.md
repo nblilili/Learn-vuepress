@@ -8,11 +8,11 @@ This guide introduces how to initialize JC SDK and log in.
 ## Initialize
 
 Call
-[JCClient.create()](/portal/reference/V2.1/android/com/juphoon/cloud/JCClient.html#create-android.content.Context-java.lang.String-com.juphoon.cloud.JCClientCallback-com.juphoon.cloud.JCClient.CreateParam-)
+[JCClient.create()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCClient.html#create-android.content.Context-java.lang.String-com.juphoon.cloud.JCClientCallback-com.juphoon.cloud.JCClient.CreateParam-)
 on the main thread to create a
-[JCClient](/portal/reference/V2.1/android/com/juphoon/cloud/JCClient.html)
+[JCClient](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCClient.html)
 instance object. Pass in the obtained `appKey` to initialize the
-[JCClient](/portal/reference/V2.1/android/com/juphoon/cloud/JCClient.html):
+[JCClient](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCClient.html):
 
 ``````java
 // JCClient object
@@ -53,9 +53,9 @@ flow of the login interface is as follows:
 ![../../../../\_images_en/workflow\_login\_android.png](../../../../_images_en/workflow_login_android.png)
 
 First create a
-[JCClient.LoginParam](/portal/reference/V2.1/android/com/juphoon/cloud/JCClient.LoginParam.html)
+[JCClient.LoginParam](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCClient.LoginParam.html)
 instance to adjust the login parameters. Then call
-[login()](/portal/reference/V2.1/android/com/juphoon/cloud/JCClient.html#login-java.lang.String-java.lang.String-com.juphoon.cloud.JCClient.LoginParam-)
+[login()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCClient.html#login-java.lang.String-java.lang.String-com.juphoon.cloud.JCClient.LoginParam-)
 to initiate login:
 
 ``````java
@@ -91,10 +91,10 @@ mClient.login(userID, password, loginParam);
 
 After the interface is successfully called, the login state change
 callback
-[onClientStateChange()](/portal/reference/V2.1/android/com/juphoon/cloud/JCClientCallback.html#onClientStateChange-int-int-)
+[onClientStateChange()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCClientCallback.html#onClientStateChange-int-int-)
 will be triggered first. You can perform logical operations by
 overriding
-[onClientStateChange()](/portal/reference/V2.1/android/com/juphoon/cloud/JCClientCallback.html#onClientStateChange-int-int-):
+[onClientStateChange()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCClientCallback.html#onClientStateChange-int-int-):
 
 ``````java
 @Override
@@ -112,9 +112,9 @@ public void onClientStateChange(@JCClient.ClientState int state, @JCClient.Clien
 ``````
 
 Then trigger the
-[onLogin()](/portal/reference/V2.1/android/com/juphoon/cloud/JCClientCallback.html#onLogin-boolean-int-)
+[onLogin()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCClientCallback.html#onLogin-boolean-int-)
 callback. You can perform logical operations by overriding
-[onLogin()](/portal/reference/V2.1/android/com/juphoon/cloud/JCClientCallback.html#onLogin-boolean-int-):
+[onLogin()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCClientCallback.html#onLogin-boolean-int-):
 
 ``````java
 @Override
@@ -132,7 +132,7 @@ After the login is successful, the SDK will automatically maintain the
 connection status with the server until the user actively calls the
 logout interface, or the device is logged out because the account is
 logged in on another device. Login success/failure reason Refer to
-[JCClient.ClientReason](/portal/reference/V2.1/android/com/juphoon/cloud/JCClient.html#REASON_ANOTHER_DEVICE_LOGINED).
+[JCClient.ClientReason](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCClient.html#REASON_ANOTHER_DEVICE_LOGINED).
 
 ## Log out
 
@@ -141,9 +141,9 @@ The call flow of the logout interface is as follows:
 ![../../../../\_images_en/workflow\_logout\_android.png](../../../../_images_en/workflow_logout_android.png)
 
 Call
-[logout()](/portal/reference/V2.1/android/com/juphoon/cloud/JCClient.html#logout--)
+[logout()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCClient.html#logout--)
 to initiate logout. More logout reasons reference:
-[JCClient.ClientReason](/portal/reference/V2.1/android/com/juphoon/cloud/JCClient.html#REASON_ANOTHER_DEVICE_LOGINED):
+[JCClient.ClientReason](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCClient.html#REASON_ANOTHER_DEVICE_LOGINED):
 
 ``````java
 @Override

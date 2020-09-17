@@ -225,7 +225,6 @@ void* p = (__bridge void *)data;
 }
 ``````
 
------
 
 ### Custom audio capture and rendering
 
@@ -403,7 +402,6 @@ scene, developers need to manage the playback of audio data themselves.
 
 :::
 
------
 
 ## Audio Device Management
 

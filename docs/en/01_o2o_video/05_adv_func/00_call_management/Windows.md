@@ -98,7 +98,6 @@ changed and reported through the onCallItemUpdate callback:
 void onCallItemUpdate(JCCallItem item, JCCallItem.ChangeParam changeParam);
 ``````
 
------
 
 ### Turn on/off call hold
 
@@ -225,4 +224,3 @@ public void onCallItemUpdate(JCCallItem item, JCCallItem.ChangeParam changeParam
 }
 ``````
 
------

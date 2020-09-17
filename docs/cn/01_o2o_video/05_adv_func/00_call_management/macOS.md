@@ -23,7 +23,7 @@ call.maxCallNum = 1;
 ### 通话静音
 
 通过下面的方法开启或关闭静音，开启关闭静音需要根据 JCCallItem
-中的静音状态（[mute](/portal/reference/V2.1/ios/Classes/JCCallItem.html#//api/name/mute)）来决定，静音开启后，对方将听不到您的声音
+中的静音状态（[mute](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCCallItem.html#//api/name/mute)）来决定，静音开启后，对方将听不到您的声音
 
 ``````objectivec
 /**
@@ -41,7 +41,7 @@ call.maxCallNum = 1;
 如果正在录制或者通话被挂起或者挂起的情况下，不能进行音频录制。
 
 录音状态可通过
-[JCCallItem](/portal/reference/V2.1/ios/Classes/JCCallItem.html)
+[JCCallItem](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCCallItem.html)
 对象获取。
 
 开启或关闭录音接口如下
@@ -92,7 +92,6 @@ call.maxCallNum = 1;
 -(void)onCallItemUpdate:(JCCallItem* __nonnull)item changeParam:(JCCallChangeParam * __nullable)changeParam;
 ``````
 
------
 
 ### 开启/关闭呼叫保持
 
@@ -186,7 +185,7 @@ JCCallItem *item = [call getActiveCallItem];;
 ::: tip
 
 静音状态、通话保持状态、活跃状态可通过
-[JCCallItem](/portal/reference/V2.1/ios/Classes/JCCallItem.html)
+[JCCallItem](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCCallItem.html)
 对象获得。
 
 :::
@@ -211,4 +210,3 @@ JCCallItem *item = [call getActiveCallItem];;
 }
 ``````
 
------

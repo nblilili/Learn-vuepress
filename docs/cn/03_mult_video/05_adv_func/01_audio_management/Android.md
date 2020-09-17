@@ -183,7 +183,6 @@ public void endCall() {
 }
 ``````
 
------
 
 ### 自定义音频采集和渲染
 
@@ -326,7 +325,6 @@ public void endCall() {
 }
 ``````
 
------
 
 ## 音频设备管理
 
@@ -385,7 +383,7 @@ public abstract boolean startAudio();
 public abstract boolean stopAudio();
 ``````
 
-**示例代码**
+示例代码
 
 ``````java
 // 开启扬声器

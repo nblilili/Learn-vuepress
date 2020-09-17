@@ -57,7 +57,6 @@ public void onQuery(int operationId, boolean result, @JCMediaChannel.MediaChanne
 }
 ``````
 
------
 
 ## 频道成员管理
 
@@ -74,7 +73,6 @@ public void onQuery(int operationId, boolean result, @JCMediaChannel.MediaChanne
 -(JCMediaChannelParticipant* __nullable)getParticipant:(NSString* __nonnull)userId;
 ``````
 
------
 
 ### 踢出成员
 
@@ -99,7 +97,6 @@ if (participant != nil) {
 }
 ``````
 
------
 
 ### 给其他成员发消息
 
@@ -143,4 +140,3 @@ if (participant != nil) {
 -(void)onMessageReceive:(NSString *)type content:(NSString *)content fromUserId:(NSString *)fromUserId;
 ``````
 
------

@@ -12,9 +12,9 @@ the figure below:
 ## Initialize
 
 Call
-[JCMediaDevice.create()](/portal/reference/V2.1/windows/html/cb59bc27-6528-9dbf-c996-de857096f847.htm)
+[JCMediaDevice.create()](https://developer.juphoon.com/portal/reference/V2.1/windows/html/cb59bc27-6528-9dbf-c996-de857096f847.htm)
 and
-[JCCall.create()](/portal/reference/V2.1/windows/html/eef10110-a3f7-b505-26fa-4b9ec1e2b998.htm)
+[JCCall.create()](https://developer.juphoon.com/portal/reference/V2.1/windows/html/eef10110-a3f7-b505-26fa-4b9ec1e2b998.htm)
 to initialize modules needed to implement group calls:
 
 ``````csharp
@@ -55,7 +55,7 @@ class JCManager : JCClientCallback, JCMediaDeviceCallback,JCMediaChannelCallbac{
 Before joining the channel, you must set the role first. The role
 setting include the host and audiences. The role value can be customized
 according to the
-[JCMediaChannel.CustomRole](/portal/reference/V2.1/windows/html/e8ce33fb-e1af-d33e-f0d8-795a840eae30.htm)
+[JCMediaChannel.CustomRole](https://developer.juphoon.com/portal/reference/V2.1/windows/html/e8ce33fb-e1af-d33e-f0d8-795a840eae30.htm)
 enumeration value, for example:
 
 ``````csharp
@@ -66,7 +66,7 @@ JCMediaChannelCustomRole ROLE_AUDIENCE = JCMediaChannelConstants.CUSTOM_ROLE_1;
 ``````
 
 Call
-[setCustomRole()](/portal/reference/V2.1/windows/html/02d30d7f-6906-cea0-9775-a244e2b25e87.htm)
+[setCustomRole()](https://developer.juphoon.com/portal/reference/V2.1/windows/html/02d30d7f-6906-cea0-9775-a244e2b25e87.htm)
 to set your own role to enter the channel:
 
 ``````csharp
@@ -77,7 +77,7 @@ mediaChannel.setCustomRole(ROLE_BROASCASTER, null);
 ## Join a channel
 
 1. Call
-    [enableUploadAudioStream()](/portal/reference/V2.1/windows/html/70f2d136-ebf6-12fc-eb1e-2a90622caca7.htm)
+    [enableUploadAudioStream()](https://developer.juphoon.com/portal/reference/V2.1/windows/html/70f2d136-ebf6-12fc-eb1e-2a90622caca7.htm)
     to enable audio streaming:
 
     ``````csharp
@@ -87,7 +87,7 @@ mediaChannel.setCustomRole(ROLE_BROASCASTER, null);
 
 2. To create and join a channel, you need to pass in `channelIdOrUri`
     and
-    [JCMediaChannel.JoinParam](/portal/reference/V2.1/windows/html/af4ac634-bbe3-76e3-d1f8-120213ef2fff.htm):
+    [JCMediaChannel.JoinParam](https://developer.juphoon.com/portal/reference/V2.1/windows/html/af4ac634-bbe3-76e3-d1f8-120213ef2fff.htm):
 
       - `channelIdOrUri` refers to the channel ID or channel Uri.
 
@@ -102,7 +102,7 @@ mediaChannel.setCustomRole(ROLE_BROASCASTER, null);
     ``````
 
 3. The
-    [onJoin()](/portal/reference/V2.1/windows/html/535cbae7-841e-ca31-32ea-87c1a840eff1.htm)
+    [onJoin()](https://developer.juphoon.com/portal/reference/V2.1/windows/html/535cbae7-841e-ca31-32ea-87c1a840eff1.htm)
     callback triggers after joining the channel:
 
     ``````csharp
@@ -118,7 +118,7 @@ mediaChannel.setCustomRole(ROLE_BROASCASTER, null);
 ## Leave a channel
 
 Call the
-[leave()](/portal/reference/V2.1/windows/html/7f034b94-15ee-8d49-48e3-905fff27f31f.htm)
+[leave()](https://developer.juphoon.com/portal/reference/V2.1/windows/html/7f034b94-15ee-8d49-48e3-905fff27f31f.htm)
 method to leave the current channel:
 
 ``````csharp
@@ -126,7 +126,7 @@ mMediaChannel.leave();
 ``````
 
 In a group video call, you need to call
-[stopVideo()](/portal/reference/V2.1/windows/html/851cc6d3-1b5a-8e26-ce3c-a3c1780936d2.htm)
+[stopVideo()](https://developer.juphoon.com/portal/reference/V2.1/windows/html/851cc6d3-1b5a-8e26-ce3c-a3c1780936d2.htm)
 to remove the video image when leaving the channel:
 
 ``````csharp
@@ -134,9 +134,9 @@ mParticipant.stopVideo();
 ``````
 
 After leaving a channel, you will receive the
-[onLeave()](/portal/reference/V2.1/windows/html/f356aba3-ebed-a72c-4e34-02a684925a15.htm)
+[onLeave()](https://developer.juphoon.com/portal/reference/V2.1/windows/html/f356aba3-ebed-a72c-4e34-02a684925a15.htm)
 callback, and other members will receive the
-[onParticipantLeft()](/portal/reference/V2.1/windows/html/89a35b12-8c2c-247d-e90c-ebe04f3e4521.htm)
+[onParticipantLeft()](https://developer.juphoon.com/portal/reference/V2.1/windows/html/89a35b12-8c2c-247d-e90c-ebe04f3e4521.htm)
 callback at the same time:
 
 ``````csharp
@@ -160,7 +160,7 @@ mMediaChannel.stop();
 ``````
 
 In a group video call, you need to call
-[stopVideo()](/portal/reference/V2.1/windows/html/851cc6d3-1b5a-8e26-ce3c-a3c1780936d2.htm)
+[stopVideo()](https://developer.juphoon.com/portal/reference/V2.1/windows/html/851cc6d3-1b5a-8e26-ce3c-a3c1780936d2.htm)
 to remove the video image when leaving the channel:
 
 ``````csharp
@@ -169,11 +169,11 @@ mParticipant.stopVideo();
 
 After the channel is stopped, the member that initiated the termination
 receives the
-[onStop()](/portal/reference/V2.1/windows/html/d3732af7-2770-2d00-e4cb-e8f658da6c48.htm)
+[onStop()](https://developer.juphoon.com/portal/reference/V2.1/windows/html/d3732af7-2770-2d00-e4cb-e8f658da6c48.htm)
 callback, and other members receive the
-[onLeave()](/portal/reference/V2.1/windows/html/f356aba3-ebed-a72c-4e34-02a684925a15.htm)
+[onLeave()](https://developer.juphoon.com/portal/reference/V2.1/windows/html/f356aba3-ebed-a72c-4e34-02a684925a15.htm)
 callback at the same time. Please refer to
-[MediaChannelReason](/portal/reference/V2.1/windows/html/4481d778-9d4d-43fe-f94d-fdfa690dd939.htm)
+[MediaChannelReason](https://developer.juphoon.com/portal/reference/V2.1/windows/html/4481d778-9d4d-43fe-f94d-fdfa690dd939.htm)
 for the enumeration value of the reason for failure:
 
 ``````csharp

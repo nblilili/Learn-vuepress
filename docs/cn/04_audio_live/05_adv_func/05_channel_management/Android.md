@@ -17,7 +17,7 @@ title: 频道管理
 public abstract int query(String channelId);
 ``````
 
-示例代码:
+示例代码
 
 ``````java
 mediaChannel.query("channelId");
@@ -37,7 +37,7 @@ mediaChannel.query("channelId");
 public void onQuery(int operationId, boolean result, @JCMediaChannel.MediaChannelReason int reason, JCMediaChannelQueryInfo queryInfo);
 ``````
 
-示例代码:
+示例代码
 
 ``````java
 public void onQuery(int operationId, boolean result, @JCMediaChannel.MediaChannelReason int reason, JCMediaChannelQueryInfo queryInfo) {
@@ -57,7 +57,6 @@ public void onQuery(int operationId, boolean result, @JCMediaChannel.MediaChanne
 }
 ``````
 
------
 
 ## 频道成员管理
 
@@ -75,7 +74,6 @@ public void onQuery(int operationId, boolean result, @JCMediaChannel.MediaChanne
 public abstract JCMediaChannelParticipant getParticipant(String userId);
 ``````
 
------
 
 ### 踢出成员
 
@@ -91,7 +89,7 @@ public abstract JCMediaChannelParticipant getParticipant(String userId);
 public abstract boolean kick(JCMediaChannelParticipant participant);
 ``````
 
-示例代码:
+示例代码
 
 ``````java
 JCMediaChannelParticipant participant = mediaChannel.getParticipant("userId");
@@ -100,7 +98,6 @@ if (participant != nil) {
 }
 ``````
 
------
 
 ### 给其他成员发消息
 
@@ -120,7 +117,7 @@ public abstract boolean sendMessage(String type, String content, String toUserId
 
 其中，消息类型（type）为自定义类型。
 
-示例代码:
+示例代码
 
 ``````java
 public void onJoin(boolean result, @JCMediaChannel.MediaChannelReason int reason, String channelId) {
@@ -144,4 +141,3 @@ public void onJoin(boolean result, @JCMediaChannel.MediaChannelReason int reason
 public void onMessageReceive(String type, String content, String fromUserId);
 ``````
 
------

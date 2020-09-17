@@ -8,11 +8,11 @@ title: 登录
 ## 初始化
 
 在主线程调用
-[JCClient.create()](/portal/reference/V2.1/android/com/juphoon/cloud/JCClient.html#create-android.content.Context-java.lang.String-com.juphoon.cloud.JCClientCallback-com.juphoon.cloud.JCClient.CreateParam-)
+[JCClient.create()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCClient.html#create-android.content.Context-java.lang.String-com.juphoon.cloud.JCClientCallback-com.juphoon.cloud.JCClient.CreateParam-)
 ，创建
-[JCClient](/portal/reference/V2.1/android/com/juphoon/cloud/JCClient.html)
+[JCClient](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCClient.html)
 实例对象。传入获取到的 `appKey` ，即可初始化
-[JCClient](/portal/reference/V2.1/android/com/juphoon/cloud/JCClient.html)
+[JCClient](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCClient.html)
 。
 
 ``````java
@@ -52,9 +52,9 @@ SDK 初始化之后，即可进行登录的集成。 登出接口调用流程如
 ![../../../../\_images/workflow\_login\_android.png](../../../../_images/workflow_login_android.png)
 
 先创建
-[JCClient.LoginParam](/portal/reference/V2.1/android/com/juphoon/cloud/JCClient.LoginParam.html)
+[JCClient.LoginParam](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCClient.LoginParam.html)
 实例以调整登录参数。后调用
-[login()](/portal/reference/V2.1/android/com/juphoon/cloud/JCClient.html#login-java.lang.String-java.lang.String-com.juphoon.cloud.JCClient.LoginParam-)
+[login()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCClient.html#login-java.lang.String-java.lang.String-com.juphoon.cloud.JCClient.LoginParam-)
 ，发起登录:
 
 ``````java
@@ -84,9 +84,9 @@ mClient.login(userID, password, loginParam);
 :::
 
 调用接口成功后，首先会触发登录状态改变回调
-[onClientStateChange()](/portal/reference/V2.1/android/com/juphoon/cloud/JCClientCallback.html#onClientStateChange-int-int-)
+[onClientStateChange()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCClientCallback.html#onClientStateChange-int-int-)
 。您可以通过重写
-[onClientStateChange()](/portal/reference/V2.1/android/com/juphoon/cloud/JCClientCallback.html#onClientStateChange-int-int-)
+[onClientStateChange()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCClientCallback.html#onClientStateChange-int-int-)
 执行逻辑操作。
 
 ``````java
@@ -105,9 +105,9 @@ public void onClientStateChange(@JCClient.ClientState int state, @JCClient.Clien
 ``````
 
 之后触发
-[onLogin()](/portal/reference/V2.1/android/com/juphoon/cloud/JCClientCallback.html#onLogin-boolean-int-)
+[onLogin()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCClientCallback.html#onLogin-boolean-int-)
 回调。您可以通过重写
-[onLogin()](/portal/reference/V2.1/android/com/juphoon/cloud/JCClientCallback.html#onLogin-boolean-int-)
+[onLogin()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCClientCallback.html#onLogin-boolean-int-)
 执行逻辑操作。
 
 ``````java
@@ -124,7 +124,7 @@ public void onLogin(boolean result, @JCClient.ClientReason int reason) {
 ``````
 
 登录成功之后，SDK 会自动保持与服务器的连接状态，直到用户主动调用登出接口，或者因为帐号在其他设备登录导致该设备登出。登录成功/失败原因 参考
-[JCClient.ClientReason](/portal/reference/V2.1/android/com/juphoon/cloud/JCClient.html#REASON_ANOTHER_DEVICE_LOGINED)
+[JCClient.ClientReason](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCClient.html#REASON_ANOTHER_DEVICE_LOGINED)
 。
 
 ## 登出
@@ -134,7 +134,7 @@ public void onLogin(boolean result, @JCClient.ClientReason int reason) {
 ![../../../../\_images/workflow\_logout\_android.png](../../../../_images/workflow_logout_android.png)
 
 调用
-[logout()](/portal/reference/V2.1/android/com/juphoon/cloud/JCClient.html#logout--)
+[logout()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCClient.html#logout--)
 可以发起登出。
 
 登出同样会触发登录状态改变(onClientStateChange)回调，之后将通过 onLogout 回调上报登出结果。
@@ -149,5 +149,5 @@ public void onLogout(@JCClient.ClientReason int reason) {
 ``````
 
 更多登出原因参考：
-[JCClient.ClientReason](/portal/reference/V2.1/android/com/juphoon/cloud/JCClient.html#REASON_ANOTHER_DEVICE_LOGINED)
+[JCClient.ClientReason](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCClient.html#REASON_ANOTHER_DEVICE_LOGINED)
 。

@@ -124,7 +124,6 @@ NSArray<JCMediaDeviceCamera*> * cameras = mediaDevice.cameras;
 [canvas rotate:90];
 ``````
 
------
 
 ### Raw video data
 
@@ -555,7 +554,6 @@ remote.videoView.frame = CGRectMake(100, 0, 100, 100);
 [self.view addSubview:remote.videoView];
 ``````
 
------
 
 ### Destroy local and remote video images
 
@@ -589,7 +587,6 @@ if (remoteCanvas) {
 }
 ``````
 
------
 
 Rendering control mainly uses the interface in the
 JCMediaDeviceVideoCanvas class. Details are as follows:
@@ -634,7 +631,6 @@ following interface:
 -(void)resume;
 ``````
 
------
 
 ## Video rendering management
 

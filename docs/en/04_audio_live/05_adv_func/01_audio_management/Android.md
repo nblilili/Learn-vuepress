@@ -202,7 +202,6 @@ public void endCall() {
 }
 ``````
 
------
 
 ### Custom audio capture and rendering
 
@@ -361,7 +360,6 @@ public void endCall() {
 }
 ``````
 
------
 
 ## Audio Device Management
 

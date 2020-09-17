@@ -198,7 +198,6 @@ void* p = (__bridge void *)data;
 }
 ``````
 
------
 
 ### 自定义音频采集和渲染
 
@@ -358,7 +357,6 @@ void Zmf_OnAudioOutputDidStop(const char *outputId);
 
 :::
 
------
 
 ## 音频设备管理
 
@@ -414,7 +412,7 @@ UI 通过下面的方法开启和关闭扬声器。
 -(bool)isSpeakerOn;
 ``````
 
-**示例代码**
+示例代码
 
 ``````objectivec
 // 开启关闭扬声器

@@ -77,7 +77,6 @@ NSArray<JCMediaDeviceCamera*> * cameras = mediaDevice.cameras;
 [mediaDevice setCameraProperty:640 height:360 framerate:30];
 ``````
 
------
 
 ### 原始视频数据
 
@@ -468,7 +467,6 @@ remote.videoView.frame = CGRectMake(100, 0, 100, 100);
 [self.view addSubview:remote.videoView];
 ``````
 
------
 
 ### 销毁本地和远端视频画面
 
@@ -501,7 +499,6 @@ if (remoteCanvas) {
 }
 ``````
 
------
 
 渲染控制主要使用到 JCMediaDeviceVideoCanvas 类中的接口。具体如下：
 

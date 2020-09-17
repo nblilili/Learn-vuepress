@@ -36,7 +36,7 @@ public:
 ``````
 
 Call the
-[createJCClient](/portal/reference/V2.1/windows/C++/html/_j_c_client_8h.html#a2d6fc4f203884536ff69bfe0e0ed300f)
+[createJCClient](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/_j_c_client_8h.html#a2d6fc4f203884536ff69bfe0e0ed300f)
 method in the JCClientImpl class on the main thread, and pass in the
 obtained `appKey` to initialize the JC SDK.
 
@@ -73,9 +73,9 @@ flow of the login interface is as follows:
 ![../../../../\_images_en/ios\_login.png](../../../../_images_en/ios_login.png)
 
 Create
-[JCClientLoginParam](/portal/reference/V2.1/windows/C++/html/class_j_c_client_login_param.html)
+[JCClientLoginParam](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_client_login_param.html)
 object to set login parameters and call
-[login](/portal/reference/V2.1/windows/C++/html/class_j_c_client.html#ad612e9957623869289103fbf0721d902)
+[login](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_client.html#ad612e9957623869289103fbf0721d902)
 to initiate login:
 
 ``````cpp
@@ -127,7 +127,7 @@ void JCSampleDlg::OnBnClickedButtonLogin()
 
 After the interface is successfully called, the callback of login state
 change
-[onClientStateChange](/portal/reference/V2.1/windows/C++/html/class_j_c_client_callback.html#ace087f907d2f8a2413f10d34cfb47337)
+[onClientStateChange](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_client_callback.html#ace087f907d2f8a2413f10d34cfb47337)
 will be triggered, and you can perform logical operations in this
 callback:
 
@@ -146,7 +146,7 @@ void JCManager::onClientStateChange(JCClientState state, JCClientState oldState)
 ``````
 
 After that, the
-[onLogin](/portal/reference/V2.1/windows/C++/html/class_j_c_client_callback.html#ab2deb2e2d3c95f848d9dc2baa7c6daff)
+[onLogin](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_client_callback.html#ab2deb2e2d3c95f848d9dc2baa7c6daff)
 callback is triggered. You can perform logical operations in the
 callback:
 
@@ -167,7 +167,7 @@ login). The SDK will automatically remain connected to the server until
 the user calls the logout interface, or the device is logged in because
 the account is logged in on another device. For login successful/failed
 reasons, please refer to
-[JCClientReason](/portal/reference/V2.1/windows/C++/html/_j_c_client_constants_8h.html#a8b1b44e57fff02634fd4637428a70020)
+[JCClientReason](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/_j_c_client_constants_8h.html#a8b1b44e57fff02634fd4637428a70020)
 .
 
 ## Log out
@@ -177,7 +177,7 @@ The call flow of the logout interface is as follows:
 ![../../../../\_images_en/ios\_logout.png](../../../../_images_en/ios_logout.png)
 
 Call
-[logout](/portal/reference/V2.1/windows/C++/html/class_j_c_client.html#abac015a13078c84b06afac69dcd392ff)
+[logout](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_client.html#abac015a13078c84b06afac69dcd392ff)
 to initiate logout:
 
 ``````cpp
@@ -197,7 +197,7 @@ void JCManager::onLogout(JCClientReason reason) {
 ``````
 
 For logout reasons, please refer to:
-[JCClientReason](/portal/reference/V2.1/windows/C++/html/_j_c_client_constants_8h.html#a8b1b44e57fff02634fd4637428a70020)
+[JCClientReason](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/_j_c_client_constants_8h.html#a8b1b44e57fff02634fd4637428a70020)
 .
 
 After logging out successfully, the JCClientState status changes from

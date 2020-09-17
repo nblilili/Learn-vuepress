@@ -194,7 +194,6 @@ void JCSampleDlg::OnBnClickedButtonEndCall()
 }
 ``````
 
------
 
 ### 自定义音频采集和渲染
 
@@ -365,7 +364,7 @@ void JCSampleDlg::OnBnClickedButtonEndCall()
 ### 获取音频输入设备列表
 
 调用
-[getAudioInputs](/portal/reference/V2.1/windows/C++/html/class_j_c_media_device.html#ab177fc54d666d727ece18588268fd203)
+[getAudioInputs](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_device.html#ab177fc54d666d727ece18588268fd203)
 接口获取音频输入设备列表。
 
 ``````cpp
@@ -375,7 +374,7 @@ std::list<JCMediaDeviceAudio>* audios = JCManager::shared()->mediaDevice->getAud
 ### 获取音频输出设备列表
 
 调用
-[getAudioOutputs](/portal/reference/V2.1/windows/C++/html/class_j_c_media_device.html#a72ba20f63202cbc61bf2cfc8170045b3)
+[getAudioOutputs](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_device.html#a72ba20f63202cbc61bf2cfc8170045b3)
 接口获取音频输出设备列表。
 
 ``````cpp
@@ -385,7 +384,7 @@ std::list<JCMediaDeviceAudio>* audios = JCManager::shared()->mediaDevice->getAud
 ### 开启/关闭音频设备
 
 调用
-[startAudio](/portal/reference/V2.1/windows/C++/html/class_j_c_media_device.html#a3e5dbd693aa7d245377e78cb78902018)
+[startAudio](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_device.html#a3e5dbd693aa7d245377e78cb78902018)
 接口开启音频设备。
 
 ``````cpp
@@ -393,7 +392,7 @@ JCManager::shared()->mediaDevice->startAudio();
 ``````
 
 调用
-[stopAudio](/portal/reference/V2.1/windows/C++/html/class_j_c_media_device.html#a007283dc73188577ae32b50849d3d3fd)
+[stopAudio](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_device.html#a007283dc73188577ae32b50849d3d3fd)
 接口关闭音频设备。
 
 ``````cpp

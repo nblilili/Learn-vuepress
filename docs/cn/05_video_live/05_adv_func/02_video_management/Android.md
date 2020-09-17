@@ -86,7 +86,7 @@ public abstract int getCameraType(int cameraIndex);
 public abstract boolean switchCamera(JCMediaDeviceCamera camera);
 ``````
 
-示例代码:
+示例代码
 
 ``````java
 JCMediaDeviceCamera item = new JCMediaDeviceCamera();
@@ -118,7 +118,6 @@ public abstract void setCameraProperty(int width, int height, int frameRate);
 mediaDevice.setCameraProperty(640, 360, 30);
 ``````
 
------
 
 ### 原始视频数据
 
@@ -430,7 +429,6 @@ public void endCall() {
 }
 ``````
 
------
 
 ## 视频渲染管理
 
@@ -496,9 +494,8 @@ public abstract JCMediaDeviceVideoCanvas startCameraVideo(@RenderType int render
 public abstract JCMediaDeviceVideoCanvas startVideo(String videoSource, @RenderType int renderType);
 ``````
 
------
 
-**示例代码**
+示例代码
 
 ``````java
 // 打开本地视频预览
@@ -509,7 +506,6 @@ JCMediaDeviceVideoCanvas remoteCanvas = mediaDevice.startVideo(renderId, JCMedia
 viewGroup.addView(remoteCanvas.getVideoView(), 0);
 ``````
 
------
 
 ### 销毁本地和远端视频画面
 
@@ -524,7 +520,7 @@ viewGroup.addView(remoteCanvas.getVideoView(), 0);
 public abstract void stopVideo(JCMediaDeviceVideoCanvas canvas);
 ``````
 
-示例代码:
+示例代码
 
 ``````java
 JCMediaDeviceVideoCanvas localCanvas = mediaDevice.startCameraVideo(JCMediaDevice.RENDER_FULL_CONTENT);
@@ -541,7 +537,6 @@ if (remoteCanvas != null) {
 }
 ``````
 
------
 
 ### 暂停渲染
 
@@ -565,7 +560,6 @@ public void pause();
 public void resume();
 ``````
 
------
 
 ## 视频设备管理
 
@@ -636,7 +630,7 @@ public abstract boolean stopCamera();
 public abstract boolean switchCamera();
 ``````
 
-**示例代码**
+示例代码
 
 ``````java
 // 打开摄像头

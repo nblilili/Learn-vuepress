@@ -12,9 +12,9 @@ figure below:
 ## Initialize
 
 Extend the
-[JCMediaChannelCallback](/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel_callback.html)
+[JCMediaChannelCallback](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel_callback.html)
 object and
-[JCMediaDeviceCallback](/portal/reference/V2.1/windows/C++/html/class_j_c_media_device_callback.html)
+[JCMediaDeviceCallback](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_device_callback.html)
 object, and implement the pure virtual functions in these two objects.
 
 ``````cpp
@@ -56,9 +56,9 @@ public:
 ``````
 
 Call
-[createJCMediaDevice](/portal/reference/V2.1/windows/C++/html/_j_c_media_device_8h.html#a96a10766264f3c12af531b70cb9c9749)
+[createJCMediaDevice](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/_j_c_media_device_8h.html#a96a10766264f3c12af531b70cb9c9749)
 and
-[createJCCall](/portal/reference/V2.1/windows/C++/html/_j_c_call_8h.html#a29320972a659ce8eaf4994576103a62c)
+[createJCCall](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/_j_c_call_8h.html#a29320972a659ce8eaf4994576103a62c)
 to initialize the modules needed for group video calls:
 
 ``````cpp
@@ -76,14 +76,14 @@ bool JCManager::initialize()
 Among them:
 
 - This in the JCMediaDevice create method is a derived class of
-    [JCMediaDeviceCallback](/portal/reference/V2.1/windows/C++/html/class_j_c_media_device_callback.html)
+    [JCMediaDeviceCallback](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_device_callback.html)
     , which is used to notify the upper layer of media device-related
     events. Therefore, you need to create a derived class of
     JCMediaDeviceCallback, and then implement the pure virtual function
     of JCMediaDeviceCallback in the derived class.
 
 - This in the JCMediaChannel create method is a derived class of
-    [JCMediaChannelCallback](/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel_callback.html)
+    [JCMediaChannelCallback](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel_callback.html)
     , which is used to notify related events in the channel to the upper
     layer. Therefore, you need to create a derived class of
     JCMediaChannelCallback, and then implement the pure virtual function
@@ -108,7 +108,7 @@ needs to upload the local audio and video streams, but the audience does
 not.
 
 The role value can be customized according to the
-[JCMediaChannelCustomRole](/portal/reference/V2.1/windows/C++/html/_j_c_media_channel_constants_8h.html#aa5042852bc565ec1e596a7c286ad3c64)
+[JCMediaChannelCustomRole](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/_j_c_media_channel_constants_8h.html#aa5042852bc565ec1e596a7c286ad3c64)
 enumeration value, such as:
 
 ``````cpp
@@ -119,7 +119,7 @@ JCMediaChannelCustomRole ROLE_AUDIENCE = JCMediaChannelCustomRole1;
 ``````
 
 Call
-[setCustomRole](/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel.html#a7b6b97e8193f2cf7f2819ec3ca49b813)
+[setCustomRole](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel.html#a7b6b97e8193f2cf7f2819ec3ca49b813)
 to set your own role to enter the channel:
 
 ``````cpp
@@ -141,9 +141,9 @@ video streams according to the role of the member.The host needs to
 upload the local audio and video streams, but the audience does not.
 
 1. Call
-    [enableUploadAudioStream](/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel.html#a2b08d87b38fe2fd7a394e2786241cc4c)
+    [enableUploadAudioStream](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel.html#a2b08d87b38fe2fd7a394e2786241cc4c)
     to enable the audio stream, and call
-    [enableUploadVideoStream](/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel.html#a2b74210bdc3f25810b901542844aee33)
+    [enableUploadVideoStream](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel.html#a2b74210bdc3f25810b901542844aee33)
     to enable the video stream:
 
     ``````cpp
@@ -178,7 +178,7 @@ upload the local audio and video streams, but the audience does not.
 :::
 
 2. After the role is set, call the
-    [join](/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel.html#acfdb1da52955cf8b01d95527eb28890b)
+    [join](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel.html#acfdb1da52955cf8b01d95527eb28890b)
     method to create and join a channel. You need to pass in the
     following parameters in the method:
 
@@ -188,7 +188,7 @@ upload the local audio and video streams, but the audience does not.
         the same channel.
 
       - joinParam: Join parameters, if not, fill in NULL. See
-        [JCMediaChannelJoinParam](/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel_join_param.html)
+        [JCMediaChannelJoinParam](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel_join_param.html)
         object for details.
 
     ``````cpp
@@ -197,7 +197,7 @@ upload the local audio and video streams, but the audience does not.
     ``````
 
 3. The
-    [onJoin](/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel_callback.html#a430bd78b28e189ee3c9564ddb7db213d)
+    [onJoin](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel_callback.html#a430bd78b28e189ee3c9564ddb7db213d)
     callback triggers after joining the channel:
 
     ``````cpp
@@ -219,9 +219,9 @@ upload the local audio and video streams, but the audience does not.
 1. After joining the channel, call the
     [getSelfParticipant](http://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel.html#afeb3c17dc9d0827fe27fa189cd0a5c9e)
     method in
-    [JCMediaChannel](/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel.html)
+    [JCMediaChannel](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel.html)
     to get the channel object in the channel. This method returns the
-    [JCMediaChannelParticipant](/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel_participant.html)
+    [JCMediaChannelParticipant](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel_participant.html)
     object:
 
     ``````cpp
@@ -230,11 +230,11 @@ upload the local audio and video streams, but the audience does not.
     ``````
 
 2. Call the
-    [startVideo](/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel_participant.html#a238fccab8cc09e1ef843a43aad4ffac9)
+    [startVideo](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel_participant.html#a238fccab8cc09e1ef843a43aad4ffac9)
     method in the
-    [JCMediaChannelParticipant](/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel_participant.html)
+    [JCMediaChannelParticipant](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel_participant.html)
     class to open the local video preview. This method will return a
-    [JCMediaDeviceVideoCanvas](/portal/reference/V2.1/windows/C++/html/class_j_c_media_device_video_canvas.html)
+    [JCMediaDeviceVideoCanvas](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_device_video_canvas.html)
     object, which is used to render the video to the canvas and manage
     the rendering method. (Call this Method will turn on the camera):
 
@@ -259,15 +259,15 @@ upload the local audio and video streams, but the audience does not.
 
 You usually need to see other users during a video call. Obtain all
 member objects in the channel through the participants property in
-[JCMediaChannel](/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel.html)
+[JCMediaChannel](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel.html)
 .
 
 Call the
-[startVideo](/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel_participant.html#a238fccab8cc09e1ef843a43aad4ffac9)
+[startVideo](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel_participant.html#a238fccab8cc09e1ef843a43aad4ffac9)
 method in the
-[JCMediaChannelParticipant](/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel_participant.html)
+[JCMediaChannelParticipant](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel_participant.html)
 class to set the remote video. Calling this method will return a
-[JCMediaDeviceVideoCanvas](/portal/reference/V2.1/windows/C++/html/class_j_c_media_device_video_canvas.html)
+[JCMediaDeviceVideoCanvas](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_device_video_canvas.html)
 object, which is used to render the video to the canvas and manage the
 rendering method:
 
@@ -300,7 +300,7 @@ if (other != NULL && other->isVideo())
 ## Leave a channel
 
 Call the
-[leave](/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel.html#a93c19137044fec1568f73f1f6dbfee84)
+[leave](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel.html#a93c19137044fec1568f73f1f6dbfee84)
 method to leave the current channel:
 
 ``````cpp
@@ -308,9 +308,9 @@ JCManager::shared()->mediaChannel->leave();
 ``````
 
 After leaving the channel, they receive the
-[onLeave](/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel_callback.html#a18bc4fae89f0d56fb849075f1603ac71)
+[onLeave](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel_callback.html#a18bc4fae89f0d56fb849075f1603ac71)
 callback, and other members receive the
-[onParticipantLeft](/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel_callback.html#a5888058878f3aaa382b3ede94228a6e8)
+[onParticipantLeft](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel_callback.html#a5888058878f3aaa382b3ede94228a6e8)
 callback at the same time:
 
 ``````cpp
@@ -324,9 +324,9 @@ void JCManager::onLeave(JCMediaChannelReason reason, const char* channelId);
 ## Destroy local and remote video images
 
 After the video is hung up, call
-[stopVideo](/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel_participant.html#a5076a035465e7f5c307679a6bf60fb8c)
+[stopVideo](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel_participant.html#a5076a035465e7f5c307679a6bf60fb8c)
 to destroy local and remote video images in
-[JCMediaChannelParticipant](/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel_participant.html):
+[JCMediaChannelParticipant](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel_participant.html):
 
 ``````cpp
 if (!mediaChannel->getUploadLocalVideo() && mConfSelfCanvas != NULL)
@@ -363,11 +363,11 @@ JCManager::shared()->mediaChannel->stop();
 
 After the channel is stopped, the member that initiated the termination
 receives the
-[onStop](/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel_callback.html#a61a1d5a81563d34f80e70541a114a74a)
+[onStop](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel_callback.html#a61a1d5a81563d34f80e70541a114a74a)
 callback, and other members receive the
-[onLeave](/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel_callback.html#a18bc4fae89f0d56fb849075f1603ac71)
+[onLeave](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel_callback.html#a18bc4fae89f0d56fb849075f1603ac71)
 callback at the same time. Please refer to
-[JCMediaChannelReason](/portal/reference/V2.1/windows/C++/html/_j_c_media_channel_constants_8h.html#a24a2154e4bb2db63c75b31cd2b021fc3)
+[JCMediaChannelReason](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/_j_c_media_channel_constants_8h.html#a24a2154e4bb2db63c75b31cd2b021fc3)
 for the enumeration value of the reason for failure.
 
 ``````cpp
@@ -378,7 +378,7 @@ void JCManager::onStop(bool result, JCMediaChannelReason reason)
 ``````
 
 After stopping the channel, you also need to call
-[stopVideo](/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel_participant.html#a5076a035465e7f5c307679a6bf60fb8c)
+[stopVideo](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel_participant.html#a5076a035465e7f5c307679a6bf60fb8c)
 in the
-[JCMediaChannelParticipant](/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel_participant.html)
+[JCMediaChannelParticipant](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_channel_participant.html)
 to destroy local and remote video images.

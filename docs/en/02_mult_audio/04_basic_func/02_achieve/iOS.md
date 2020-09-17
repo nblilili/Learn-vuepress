@@ -11,9 +11,9 @@ API call sequence of group calls is shown in the figure below:
 ## Initialize
 
 Call [JCMediaDevice
-create](/portal/reference/V2.1/ios/Classes/JCMediaDevice.html#//api/name/create:callback:)
+create](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaDevice.html#//api/name/create:callback:)
 and [JCCall
-create](/portal/reference/V2.1/ios/Classes/JCCall.html#//api/name/create:mediaDevice:callback:)
+create](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCCall.html#//api/name/create:mediaDevice:callback:)
 to initialize modules needed to implement multi-party calls:
 
 ``````objectivec
@@ -30,7 +30,7 @@ to initialize modules needed to implement multi-party calls:
 Among them:
 
 - The callback in the JCMediaDevice create is the proxy object of the
-    [JCMediaDeviceCallback](/portal/reference/V2.1/ios/Protocols/JCMediaDeviceCallback.html)
+    [JCMediaDeviceCallback](https://developer.juphoon.com/portal/reference/V2.1/ios/Protocols/JCMediaDeviceCallback.html)
     protocol, which is used to notify the upper layer of media device
     related events. Therefore, you need to specify the proxy object of
     callback first, and then implement the JCMediaDeviceCallback in the
@@ -51,7 +51,7 @@ The main methods in the JCMediaDeviceCallback are as follows:
 
 - The callback in the JCMediaChannel create method is the proxy object
     of the
-    [JCMediaChannelCallback](/portal/reference/V2.1/ios/Protocols/JCMediaChannelCallback.html)
+    [JCMediaChannelCallback](https://developer.juphoon.com/portal/reference/V2.1/ios/Protocols/JCMediaChannelCallback.html)
     protocol, which is used to notify the relevant events in the channel
     to the upper layer. Therefore, you need to specify the proxy object
     of the callback first, and then implement the JCMediaChannelCallback
@@ -88,9 +88,9 @@ The main methods in JCMediaChannel are as follows:
 ## Join a channel
 
 1. Call
-    [enableUploadAudioStream](/portal/reference/V2.1/ios/Classes/JCMediaChannel.html#//api/name/enableUploadAudioStream:)
+    [enableUploadAudioStream](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaChannel.html#//api/name/enableUploadAudioStream:)
     in
-    [JCMediaChannel](/portal/reference/V2.1/ios/Classes/JCMediaChannel.html)
+    [JCMediaChannel](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaChannel.html)
     to enable the audio stream. Return true to indicate normal execution
     of the call flow, and false to indicate abnormal call:
 
@@ -100,7 +100,7 @@ The main methods in JCMediaChannel are as follows:
     ``````
 
 2. Call the
-    [join](/portal/reference/V2.1/ios/Classes/JCMediaChannel.html#//api/name/join:joinParam:)
+    [join](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaChannel.html#//api/name/join:joinParam:)
     method to create and join a channel. You need to pass in the
     following parameters in the method:
 
@@ -110,7 +110,7 @@ The main methods in JCMediaChannel are as follows:
         the same channel.
 
       - joinParam: Join parameters, fill in nil if no. See
-        [JCMediaChannelJoinParam](/portal/reference/V2.1/ios/Classes/JCMediaChannelJoinParam.html)
+        [JCMediaChannelJoinParam](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaChannelJoinParam.html)
         object for details:
 
     ``````objectivec
@@ -119,7 +119,7 @@ The main methods in JCMediaChannel are as follows:
     ``````
 
 3. The
-    [onJoin](/portal/reference/V2.1/ios/Protocols/JCMediaChannelCallback.html#//api/name/onJoin:reason:channelId:)
+    [onJoin](https://developer.juphoon.com/portal/reference/V2.1/ios/Protocols/JCMediaChannelCallback.html#//api/name/onJoin:reason:channelId:)
     callback triggers after joining the channel:
 
     ``````objectivec
@@ -137,7 +137,7 @@ The main methods in JCMediaChannel are as follows:
 ## Leave a channel
 
 Call the
-[leave](/portal/reference/V2.1/ios/Classes/JCMediaChannel.html#//api/name/leave)
+[leave](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaChannel.html#//api/name/leave)
 method to leave the current channel:
 
 ``````objectivec
@@ -145,9 +145,9 @@ method to leave the current channel:
 ``````
 
 After leaving the channel, they receive the
-[onLeave](/portal/reference/V2.1/ios/Protocols/JCMediaChannelCallback.html#//api/name/onLeave:channelId:)
+[onLeave](https://developer.juphoon.com/portal/reference/V2.1/ios/Protocols/JCMediaChannelCallback.html#//api/name/onLeave:channelId:)
 callback, and other members receive the
-[onParticipantLeft](/portal/reference/V2.1/ios/Protocols/JCMediaChannelCallback.html#//api/name/onParticipantLeft:)
+[onParticipantLeft](https://developer.juphoon.com/portal/reference/V2.1/ios/Protocols/JCMediaChannelCallback.html#//api/name/onParticipantLeft:)
 callback at the same time.
 
 ## Destroy a channel
@@ -162,9 +162,9 @@ and all members will be quit.
 
 After the channel is stopped, the member that initiated the termination
 receives the
-[onStop](/portal/reference/V2.1/ios/Protocols/JCMediaChannelCallback.html#//api/name/onStop:reason:)
+[onStop](https://developer.juphoon.com/portal/reference/V2.1/ios/Protocols/JCMediaChannelCallback.html#//api/name/onStop:reason:)
 callback, and other members receive the
-[onLeave](/portal/reference/V2.1/ios/Protocols/JCMediaChannelCallback.html#//api/name/onLeave:channelId:)
+[onLeave](https://developer.juphoon.com/portal/reference/V2.1/ios/Protocols/JCMediaChannelCallback.html#//api/name/onLeave:channelId:)
 callback at the same time. Please refer to
-[JCMediaChannelReason](/portal/reference/V2.1/ios/Constants/JCMediaChannelReason.html)
+[JCMediaChannelReason](https://developer.juphoon.com/portal/reference/V2.1/ios/Constants/JCMediaChannelReason.html)
 for the enumeration value of the reason for failure.

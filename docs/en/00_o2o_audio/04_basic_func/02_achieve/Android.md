@@ -11,9 +11,9 @@ call sequence of one-to-one voice calls is shown in the figure below:
 ## Initialize
 
 Call
-[JCMediaDevice.create()](/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaDevice.html#create-com.juphoon.cloud.JCClient-com.juphoon.cloud.JCMediaDeviceCallback-)
+[JCMediaDevice.create()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaDevice.html#create-com.juphoon.cloud.JCClient-com.juphoon.cloud.JCMediaDeviceCallback-)
 and
-[JCCall.create()](/portal/reference/V2.1/android/com/juphoon/cloud/JCCall.html#create-com.juphoon.cloud.JCClient-com.juphoon.cloud.JCMediaDevice-com.juphoon.cloud.JCCallCallback-)
+[JCCall.create()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCCall.html#create-com.juphoon.cloud.JCClient-com.juphoon.cloud.JCMediaDevice-com.juphoon.cloud.JCCallCallback-)
 to initialize the modules needed for one-to-one calling:
 
 ``````java
@@ -75,7 +75,7 @@ public boolean initialize(Context context) {
 ## Make a call
 
 Call
-[call()](/portal/reference/V2.1/android/com/juphoon/cloud/JCCall.html#call-java.lang.String-boolean-java.lang.String-)
+[call()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCCall.html#call-java.lang.String-boolean-java.lang.String-)
 to initiate a video call, the parameters that need to be filled are:
 
 - `userID` Fill in the user ID of the other party.
@@ -83,9 +83,9 @@ to initiate a video call, the parameters that need to be filled are:
 - `video` Select whether to call a video call, and true means to make
     a video call, while false means to make a voice call.
 
-- [extraParam()](/portal/reference/V2.1/android/com/juphoon/cloud/JCCall.html#call-java.lang.String-boolean-java.lang.String-)
+- [extraParam()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCCall.html#call-java.lang.String-boolean-java.lang.String-)
     is a custom pass-through string, which can be obtained through the
-    [getExtraParam()](/portal/reference/V2.1/android/com/juphoon/cloud/JCCallItem.html#getExtraParam--)
+    [getExtraParam()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCCallItem.html#getExtraParam--)
     method.
 
 ``````java
@@ -95,11 +95,11 @@ mCall.call(userID, isVideo, extraParam);
 
 After the call is made, both the caller and the called party will
 receive the callback
-[onCallItemAdd()](/portal/reference/V2.1/android/com/juphoon/cloud/JCCallCallback.html#onCallItemAdd-com.juphoon.cloud.JCCallItem-)
+[onCallItemAdd()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCCallCallback.html#onCallItemAdd-com.juphoon.cloud.JCCallItem-)
 for the new call, and the call status will change to
-[STATE\_PENDING](/portal/reference/V2.1/android/com/juphoon/cloud/JCCall.html#STATE_PENDING)
+[STATE\_PENDING](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCCall.html#STATE_PENDING)
 at this time. You can perform logical operations by overriding
-[onCallItemAdd()](/portal/reference/V2.1/android/com/juphoon/cloud/JCCallCallback.html#onCallItemAdd-com.juphoon.cloud.JCCallItem-):
+[onCallItemAdd()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCCallCallback.html#onCallItemAdd-com.juphoon.cloud.JCCallItem-):
 
 ``````java
 // 1. Initiate a voice call
@@ -122,11 +122,11 @@ public void onCallItemAdd(JCCallItem item) {
 ## Answer a call
 
 1. The called party receives the
-    [onCallItemAdd()](/portal/reference/V2.1/android/com/juphoon/cloud/JCCallCallback.html#onCallItemAdd-com.juphoon.cloud.JCCallItem-)
+    [onCallItemAdd()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCCallCallback.html#onCallItemAdd-com.juphoon.cloud.JCCallItem-)
     callback, and calls the
-    [getVideo()](/portal/reference/V2.1/android/com/juphoon/cloud/JCCallItem.html#getVideo--)
+    [getVideo()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCCallItem.html#getVideo--)
     in
-    [JCCallItem](/portal/reference/V2.1/android/com/juphoon/cloud/JCCallItem.html)
+    [JCCallItem](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCCallItem.html)
     in the callback to obtain the video attribute to determine whether
     it is an incoming video call or a voice call, and then make
     corresponding processing:
@@ -143,7 +143,7 @@ public void onCallItemAdd(JCCallItem item) {
     ``````
 
 2. Call
-    [answer()](/portal/reference/V2.1/android/com/juphoon/cloud/JCCall.html#answer-java.lang.String-boolean-java.lang.String-)
+    [answer()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCCall.html#answer-java.lang.String-boolean-java.lang.String-)
     to answer the call:
 
     ``````java
@@ -166,7 +166,7 @@ changes to STATE\_CANCELED.
 Both the calling party and the called party can hang up the call.
 
 1. Call
-    [getActiveCallItem()](/portal/reference/V2.1/android/com/juphoon/cloud/JCCall.html#getActiveCallItem--)
+    [getActiveCallItem()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCCall.html#getActiveCallItem--)
     to get the currently active call object:
 
     ``````java
@@ -174,7 +174,7 @@ Both the calling party and the called party can hang up the call.
     ``````
 
 2. Call
-    [term()](/portal/reference/V2.1/android/com/juphoon/cloud/JCCall.html#term-com.juphoon.cloud.JCCallItem-int-java.lang.String-)
+    [term()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCCall.html#term-com.juphoon.cloud.JCCallItem-int-java.lang.String-)
     to hang up the current active call:
 
     ``````java

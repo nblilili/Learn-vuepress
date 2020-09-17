@@ -1,7 +1,7 @@
 ---
-title: 实现一对一语音通话
+title: 实现一对一通话
 ---
-# 实现一对一语音通话
+# 实现一对一通话
 
 本章将介绍如何实现一对一语音通话，一对一语音通话的 API 调用时序见下图：
 
@@ -10,9 +10,9 @@ title: 实现一对一语音通话
 ## 初始化
 
 调用
-[JCMediaDevice.create()](/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaDevice.html#create-com.juphoon.cloud.JCClient-com.juphoon.cloud.JCMediaDeviceCallback-)
+[JCMediaDevice.create()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaDevice.html#create-com.juphoon.cloud.JCClient-com.juphoon.cloud.JCMediaDeviceCallback-)
 和
-[JCCall.create()](/portal/reference/V2.1/android/com/juphoon/cloud/JCCall.html#create-com.juphoon.cloud.JCClient-com.juphoon.cloud.JCMediaDevice-com.juphoon.cloud.JCCallCallback-)
+[JCCall.create()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCCall.html#create-com.juphoon.cloud.JCClient-com.juphoon.cloud.JCMediaDevice-com.juphoon.cloud.JCCallCallback-)
 以初始化实现一对一通话需要的模块。
 
 ``````java
@@ -74,7 +74,7 @@ public boolean initialize(Context context) {
 ## 拨打通话
 
 调用
-[call()](/portal/reference/V2.1/android/com/juphoon/cloud/JCCall.html#call-java.lang.String-boolean-java.lang.String-)
+[call()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCCall.html#call-java.lang.String-boolean-java.lang.String-)
 发起语音通话，需要填写的参数有：
 
 - `userID` 填写对方的用户ID。
@@ -82,7 +82,7 @@ public boolean initialize(Context context) {
 - `video` 选择是否为视频通话， true 表示拨打视频通话， false 表示拨打语音通话。
 
 - `extraParam` 为自定义透传字符串， 可通过
-    [getExtraParam()](/portal/reference/V2.1/android/com/juphoon/cloud/JCCallItem.html#getExtraParam--)
+    [getExtraParam()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCCallItem.html#getExtraParam--)
     方法获取该属性。
 
 ``````java
@@ -91,14 +91,14 @@ mCall.call(userID, isVideo, extraParam);
 ``````
 
 拨打通话后，主叫和被叫均会收到新增通话的回调
-[onCallItemAdd()](/portal/reference/V2.1/android/com/juphoon/cloud/JCCallCallback.html#onCallItemAdd-com.juphoon.cloud.JCCallItem-)
+[onCallItemAdd()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCCallCallback.html#onCallItemAdd-com.juphoon.cloud.JCCallItem-)
 ，此时通话状态变为
-[STATE\_PENDING](/portal/reference/V2.1/android/com/juphoon/cloud/JCCall.html#STATE_PENDING)
+[STATE\_PENDING](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCCall.html#STATE_PENDING)
 。您可以通过重写
-[onCallItemAdd()](/portal/reference/V2.1/android/com/juphoon/cloud/JCCallCallback.html#onCallItemAdd-com.juphoon.cloud.JCCallItem-)
+[onCallItemAdd()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCCallCallback.html#onCallItemAdd-com.juphoon.cloud.JCCallItem-)
 执行逻辑操作。
 
-示例代码:
+示例代码
 
 ``````java
 // 1. 发起语音通话
@@ -127,11 +127,11 @@ public void onCallItemAdd(JCCallItem item) {
 ## 应答通话
 
 1. 被叫收到
-    [onCallItemAdd()](/portal/reference/V2.1/android/com/juphoon/cloud/JCCallCallback.html#onCallItemAdd-com.juphoon.cloud.JCCallItem-)
+    [onCallItemAdd()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCCallCallback.html#onCallItemAdd-com.juphoon.cloud.JCCallItem-)
     回调，在回调中调用
-    [JCCallItem](/portal/reference/V2.1/android/com/juphoon/cloud/JCCallItem.html)
+    [JCCallItem](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCCallItem.html)
     中的
-    [getVideo()](/portal/reference/V2.1/android/com/juphoon/cloud/JCCallItem.html#getVideo--)
+    [getVideo()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCCallItem.html#getVideo--)
     方法获取 `video` 属性来判断是视频呼入还是语音呼入，从而做出相应的处理。
 
     ``````java
@@ -146,7 +146,7 @@ public void onCallItemAdd(JCCallItem item) {
     ``````
 
 2. 调用
-    [answer()](/portal/reference/V2.1/android/com/juphoon/cloud/JCCall.html#answer-java.lang.String-boolean-java.lang.String-)
+    [answer()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCCall.html#answer-java.lang.String-boolean-java.lang.String-)
     接听通话。
 
     ``````java
@@ -166,7 +166,7 @@ public void onCallItemAdd(JCCallItem item) {
 主叫或者被叫均可以挂断通话。
 
 1. 调用
-    [getActiveCallItem()](/portal/reference/V2.1/android/com/juphoon/cloud/JCCall.html#getActiveCallItem--)
+    [getActiveCallItem()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCCall.html#getActiveCallItem--)
     获取当前活跃的通话对象:
 
     ``````java
@@ -174,14 +174,14 @@ public void onCallItemAdd(JCCallItem item) {
     ``````
 
 2. 调用
-    [term()](/portal/reference/V2.1/android/com/juphoon/cloud/JCCall.html#term-com.juphoon.cloud.JCCallItem-int-java.lang.String-)
+    [term()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCCall.html#term-com.juphoon.cloud.JCCallItem-int-java.lang.String-)
     挂断当前活跃通话:
 
     ``````java
     mCall.term(item, reason, description);
     ``````
 
-示例代码:
+示例代码
 
 ``````java
 // 1. 获取当前活跃通话

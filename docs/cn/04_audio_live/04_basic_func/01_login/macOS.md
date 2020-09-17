@@ -8,11 +8,11 @@ title: 登录
 ## 初始化
 
 在主线程调用 [JCClient
-create](/portal/reference/V2.1/ios/Classes/JCClient.html#//api/name/create:callback:creatParam:)
+create](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCClient.html#//api/name/create:callback:creatParam:)
 接口创建
-[JCClient](/portal/reference/V2.1/ios/Classes/JCClient.html)
+[JCClient](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCClient.html)
 实例对象。传入获取到的 `appKey` ，即可初始化
-[JCClient](/portal/reference/V2.1/ios/Classes/JCClient.html)
+[JCClient](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCClient.html)
 。
 
 ::: tip
@@ -57,9 +57,9 @@ SDK 初始化之后，即可进行登录的集成。
 ![../../../../\_images/ios\_login.png](../../../../_images/ios_login.png)
 
 先创建
-[JCClientLoginParam](/portal/reference/V2.1/ios/Classes/JCClientLoginParam.html)
+[JCClientLoginParam](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCClientLoginParam.html)
 实例以调整登录参数，后调用
-[login](/portal/reference/V2.1/ios/Classes/JCClient.html#//api/name/login:password:loginParam:)
+[login](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCClient.html#//api/name/login:password:loginParam:)
 发起登录。
 
 ``````objectivec
@@ -92,9 +92,9 @@ loginParam.serverAddress = @"服务器地址";
 调用发起登录接口成功后，会触发 JCClientCallback 回调中的方法将 client 的状态通知给上层。具体逻辑如下：
 
 首先会触发 JCClientCallback 中的登录状态改变回调
-[onClientStateChange](/portal/reference/V2.1/ios/Protocols/JCClientCallback.html#//api/name/onClientStateChange:oldState:)
+[onClientStateChange](https://developer.juphoon.com/portal/reference/V2.1/ios/Protocols/JCClientCallback.html#//api/name/onClientStateChange:oldState:)
 。您可以在上层实现
-[onClientStateChange](/portal/reference/V2.1/ios/Protocols/JCClientCallback.html#//api/name/onClientStateChange:oldState:)
+[onClientStateChange](https://developer.juphoon.com/portal/reference/V2.1/ios/Protocols/JCClientCallback.html#//api/name/onClientStateChange:oldState:)
 方法并处理相关的逻辑。
 
 ``````objectivec
@@ -113,9 +113,9 @@ loginParam.serverAddress = @"服务器地址";
 ``````
 
 之后会触发 JCClientCallback 中的
-[onLogin](/portal/reference/V2.1/ios/Protocols/JCClientCallback.html#//api/name/onLogin:reason:)
+[onLogin](https://developer.juphoon.com/portal/reference/V2.1/ios/Protocols/JCClientCallback.html#//api/name/onLogin:reason:)
 回调。您可以在上层实现
-[onLogin](/portal/reference/V2.1/ios/Protocols/JCClientCallback.html#//api/name/onLogin:reason:)
+[onLogin](https://developer.juphoon.com/portal/reference/V2.1/ios/Protocols/JCClientCallback.html#//api/name/onLogin:reason:)
 方法并处理相关的逻辑。
 
 ``````objectivec
@@ -133,7 +133,7 @@ loginParam.serverAddress = @"服务器地址";
 JCClientStateLogined（登录成功）。SDK
 会自动保持与服务器的连接状态，直到用户主动调用登出接口，或者因为帐号在其他设备登录导致该设备登出。登录成功/失败原因
 参考
-[JCClientReason](/portal/reference/V2.1/ios/Constants/JCClientReason.html)
+[JCClientReason](https://developer.juphoon.com/portal/reference/V2.1/ios/Constants/JCClientReason.html)
 。
 
 ## 登出
@@ -143,7 +143,7 @@ JCClientStateLogined（登录成功）。SDK
 ![../../../../\_images/ios\_logout.png](../../../../_images/ios_logout.png)
 
 调用
-[logout](/portal/reference/V2.1/ios/Classes/JCClient.html#//api/name/logout)
+[logout](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCClient.html#//api/name/logout)
 可以发起登出。
 
 ``````objectivec
@@ -160,7 +160,7 @@ JCClientStateLogined（登录成功）。SDK
 }
 ``````
 
-更多登出原因参考：[JCClientReason](/portal/reference/V2.1/ios/Constants/JCClientReason.html)
+更多登出原因参考：[JCClientReason](https://developer.juphoon.com/portal/reference/V2.1/ios/Constants/JCClientReason.html)
 。
 
 登出成功后，JCClientState 状态从 JCClientStateLogined（登录成功） 变为

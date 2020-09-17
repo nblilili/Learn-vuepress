@@ -13,7 +13,7 @@ created.
 - Effective Juphoon Developer Account ([free sign
     up](http://developer.juphoon.com/signup) )
 
-- Efficient Juphoon [AppKey](/cn/document/V2.1/create-application.php)
+- Efficient Juphoon [AppKey](https://developer.juphoon.com/cn/document/V2.1/create-application.php)
 
 ## Create a macOS project
 

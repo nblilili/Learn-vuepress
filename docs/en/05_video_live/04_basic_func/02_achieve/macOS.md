@@ -12,9 +12,9 @@ below:
 ## Initialize
 
 Call [JCMediaDevice
-create](/portal/reference/V2.1/ios/Classes/JCMediaDevice.html#//api/name/create:callback:)
+create](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaDevice.html#//api/name/create:callback:)
 and [JCCall
-create](/portal/reference/V2.1/ios/Classes/JCCall.html#//api/name/create:mediaDevice:callback:)
+create](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCCall.html#//api/name/create:mediaDevice:callback:)
 to initialize modules needed to implement group calls:
 
 ``````objectivec
@@ -31,7 +31,7 @@ to initialize modules needed to implement group calls:
 Among them:
 
 - The callback in the JCMediaDevice create is the proxy object of the
-    [JCMediaDeviceCallback](/portal/reference/V2.1/ios/Protocols/JCMediaDeviceCallback.html)
+    [JCMediaDeviceCallback](https://developer.juphoon.com/portal/reference/V2.1/ios/Protocols/JCMediaDeviceCallback.html)
     protocol, which is used to notify the upper layer of media device
     related events. Therefore, you need to specify the proxy object of
     callback first, and then implement the JCMediaDeviceCallback in the
@@ -58,7 +58,7 @@ The main methods in the JCMediaDeviceCallback are as follows:
 
 - The callback in the JCMediaChannel create method is the proxy object
     of the
-    [JCMediaChannelCallback](/portal/reference/V2.1/ios/Protocols/JCMediaChannelCallback.html)
+    [JCMediaChannelCallback](https://developer.juphoon.com/portal/reference/V2.1/ios/Protocols/JCMediaChannelCallback.html)
     protocol, which is used to notify the relevant events in the channel
     to the upper layer. Therefore, you need to specify the proxy object
     of the callback first, and implement the JCMediaChannelCallback
@@ -100,7 +100,7 @@ upload local audio and video streams, and the audience can only see the
 image of the host and hear the voice of the host.
 
 The role value can be customized according to the
-[JCMediaChannelCustomRole](/portal/reference/V2.1/ios/Constants/JCMediaChannelCustomRole.html)
+[JCMediaChannelCustomRole](https://developer.juphoon.com/portal/reference/V2.1/ios/Constants/JCMediaChannelCustomRole.html)
 enumeration value, such as:
 
 ``````objectivec
@@ -111,7 +111,7 @@ JCMediaChannelCustomRole ROLE_AUDIENCE = JCMediaChannelCustomRole1;
 ``````
 
 Call
-[setCustomRole](/portal/reference/V2.1/ios/Classes/JCMediaChannel.html#//api/name/setCustomRole:participant:)
+[setCustomRole](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaChannel.html#//api/name/setCustomRole:participant:)
 to set your own role to enter the channel:
 
 ``````objectivec
@@ -126,9 +126,9 @@ video streams according to the role of the member. The host needs to
 upload the local audio and video stream, but the audience does not.
 
 1. Call
-    [enableUploadAudioStream](/portal/reference/V2.1/ios/Classes/JCMediaChannel.html#//api/name/enableUploadAudioStream:)
+    [enableUploadAudioStream](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaChannel.html#//api/name/enableUploadAudioStream:)
     to turn on the audio stream, and call
-    [enableUploadVideoStream](/portal/reference/V2.1/ios/Classes/JCMediaChannel.html#//api/name/enableUploadVideoStream:)
+    [enableUploadVideoStream](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaChannel.html#//api/name/enableUploadVideoStream:)
     to turn on the video stream:
 
     ``````objectivec
@@ -141,7 +141,7 @@ upload the local audio and video stream, but the audience does not.
     ``````
 
 2. After the role is set, call the
-    [join](/portal/reference/V2.1/ios/Classes/JCMediaChannel.html#//api/name/join:joinParam:)
+    [join](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaChannel.html#//api/name/join:joinParam:)
     method to create and join a channel. You need to pass in the
     following parameters in the method:
 
@@ -151,7 +151,7 @@ upload the local audio and video stream, but the audience does not.
         the same channel.
 
       - joinParam:Join parameters, if not, fill in nil. See
-        [JCMediaChannelJoinParam](/portal/reference/V2.1/ios/Classes/JCMediaChannelJoinParam.html)
+        [JCMediaChannelJoinParam](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaChannelJoinParam.html)
         object for details.
 
     ``````objectivec
@@ -159,7 +159,7 @@ upload the local audio and video stream, but the audience does not.
     ``````
 
 3. The
-    [onJoin](/portal/reference/V2.1/ios/Protocols/JCMediaChannelCallback.html#//api/name/onJoin:reason:channelId:)
+    [onJoin](https://developer.juphoon.com/portal/reference/V2.1/ios/Protocols/JCMediaChannelCallback.html#//api/name/onJoin:reason:channelId:)
     callback triggers after joining the channel:
 
     ``````objectivec
@@ -178,7 +178,7 @@ upload the local audio and video stream, but the audience does not.
 
 1. After joining a channel, get the object of the user in the channel
     through the selfParticipant attribute in
-    [JCMediaChannel](/portal/reference/V2.1/ios/Classes/JCMediaChannel.html):
+    [JCMediaChannel](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaChannel.html):
 
     ``````objectivec
     // 1. Access the memeber objects in the channel
@@ -186,11 +186,11 @@ upload the local audio and video stream, but the audience does not.
     ``````
 
 2. Call the
-    [startVideo](/portal/reference/V2.1/ios/Classes/JCMediaDevice.html#//api/name/startVideo:renderType:)
+    [startVideo](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaDevice.html#//api/name/startVideo:renderType:)
     method to open local video preview in the
-    [JCMediaChannelParticipant](/portal/reference/V2.1/ios/Classes/JCMediaChannelParticipant.html)
+    [JCMediaChannelParticipant](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaChannelParticipant.html)
     class. This method returns a
-    [JCMediaDeviceVideoCanvas](/portal/reference/V2.1/ios/Classes/JCMediaDeviceVideoCanvas.html)
+    [JCMediaDeviceVideoCanvas](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaDeviceVideoCanvas.html)
     object, which is used to render the video to the canvas and manage
     the rendering method. (Calling this method will turn on the camera):
 
@@ -203,24 +203,24 @@ upload the local audio and video stream, but the audience does not.
 
 You usually need to see other users during a video call. Obtain all
 member objects in the channel through the participants property in
-[JCMediaChannel](/portal/reference/V2.1/ios/Classes/JCMediaChannel.html).
+[JCMediaChannel](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaChannel.html).
 
 Call the
-[startVideo](/portal/reference/V2.1/ios/Classes/JCMediaDevice.html#//api/name/startVideo:renderType:)
+[startVideo](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaDevice.html#//api/name/startVideo:renderType:)
 method in the
-[JCMediaChannelParticipant](/portal/reference/V2.1/ios/Classes/JCMediaChannelParticipant.html)
+[JCMediaChannelParticipant](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaChannelParticipant.html)
 class to set the remote video of the user. Calling this method will
 return a
-[JCMediaDeviceVideoCanvas](/portal/reference/V2.1/ios/Classes/JCMediaDeviceVideoCanvas.html)
+[JCMediaDeviceVideoCanvas](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaDeviceVideoCanvas.html)
 object, which is used to render the video to the canvas and manage the
 rendering method.
 
 After the
-[startVideo](/portal/reference/V2.1/ios/Classes/JCMediaDevice.html#//api/name/startVideo:renderType:)
+[startVideo](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaDevice.html#//api/name/startVideo:renderType:)
 method is called, you also need to call the
-[requestVideo](/portal/reference/V2.1/ios/Classes/JCMediaChannel.html#//api/name/requestVideo:pictureSize:)
+[requestVideo](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaChannel.html#//api/name/requestVideo:pictureSize:)
 method in
-[JCMediaChannel](/portal/reference/V2.1/ios/Classes/JCMediaChannel.html)
+[JCMediaChannel](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaChannel.html)
 to request the video streams of other users in the channel:
 
 ``````objectivec
@@ -238,7 +238,7 @@ if (participant.video) {
 ## Leave a channel
 
 Call the
-[leave](/portal/reference/V2.1/ios/Classes/JCMediaChannel.html#//api/name/leave)
+[leave](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaChannel.html#//api/name/leave)
 method to leave the current channel:
 
 ``````objectivec
@@ -246,17 +246,17 @@ method to leave the current channel:
 ``````
 
 After leaving the channel, they receive the
-[onLeave](/portal/reference/V2.1/ios/Protocols/JCMediaChannelCallback.html#//api/name/onLeave:channelId:)
+[onLeave](https://developer.juphoon.com/portal/reference/V2.1/ios/Protocols/JCMediaChannelCallback.html#//api/name/onLeave:channelId:)
 callback, and other members receive the
-[onParticipantLeft](/portal/reference/V2.1/ios/Protocols/JCMediaChannelCallback.html#//api/name/onParticipantLeft:)
+[onParticipantLeft](https://developer.juphoon.com/portal/reference/V2.1/ios/Protocols/JCMediaChannelCallback.html#//api/name/onParticipantLeft:)
 callback at the same time.
 
 ## Destroy local and remote video images
 
 After hanging up the video, call
-[stopVideo](/portal/reference/V2.1/ios/Classes/JCMediaDevice.html#//api/name/stopVideo:)
+[stopVideo](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaDevice.html#//api/name/stopVideo:)
 in the
-[JCMediaChannelParticipant](/portal/reference/V2.1/ios/Classes/JCMediaChannelParticipant.html)
+[JCMediaChannelParticipant](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaChannelParticipant.html)
 to destroy local and remote video images:
 
 ``````objectivec
@@ -282,15 +282,15 @@ and all members will be quit:
 
 After the channel is stopped, the member that initiated the termination
 receives the
-[onStop](/portal/reference/V2.1/ios/Protocols/JCMediaChannelCallback.html#//api/name/onStop:reason:)
+[onStop](https://developer.juphoon.com/portal/reference/V2.1/ios/Protocols/JCMediaChannelCallback.html#//api/name/onStop:reason:)
 callback, and other members receive the
-[onLeave](/portal/reference/V2.1/ios/Protocols/JCMediaChannelCallback.html#//api/name/onLeave:channelId:)
+[onLeave](https://developer.juphoon.com/portal/reference/V2.1/ios/Protocols/JCMediaChannelCallback.html#//api/name/onLeave:channelId:)
 callback at the same time. Please refer to
-[JCMediaChannelReason](/portal/reference/V2.1/ios/Constants/JCMediaChannelReason.html)
+[JCMediaChannelReason](https://developer.juphoon.com/portal/reference/V2.1/ios/Constants/JCMediaChannelReason.html)
 for the enumeration value of the reason for failure.
 
 After destroying the channel, you also need to call
-[stopVideo](/portal/reference/V2.1/ios/Classes/JCMediaDevice.html#//api/name/stopVideo:)
+[stopVideo](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaDevice.html#//api/name/stopVideo:)
 in the
-[JCMediaChannelParticipant](/portal/reference/V2.1/ios/Classes/JCMediaChannelParticipant.html)
+[JCMediaChannelParticipant](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaChannelParticipant.html)
 to destroy local and remote video images.

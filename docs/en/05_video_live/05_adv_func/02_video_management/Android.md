@@ -193,7 +193,6 @@ JCMediaDeviceVideoCanvas canvas = mediaDevice.startCameraVideo(JCMediaDevice.REN
 canvas.rotate(90);
 ``````
 
------
 
 ### Raw video data
 
@@ -537,7 +536,6 @@ public void endCall() {
 }
 ``````
 
------
 
 ## Video rendering management
 
@@ -607,7 +605,6 @@ render:
 public abstract JCMediaDeviceVideoCanvas startVideo(String videoSource, @RenderType int renderType);
 ``````
 
------
 
 Sample code:
 
@@ -620,7 +617,6 @@ JCMediaDeviceVideoCanvas remoteCanvas = mediaDevice.startVideo(renderId, JCMedia
 viewGroup.addView(remoteCanvas.getVideoView(), 0);
 ``````
 
------
 
 ### Destroy local and remote video images
 
@@ -653,7 +649,6 @@ if (remoteCanvas != null) {
 }
 ``````
 
------
 
 ### Pause rendering
 
@@ -679,7 +674,6 @@ following interface:
 public void resume();
 ``````
 
------
 
 ## Video equipment management
 

@@ -66,7 +66,7 @@ dependencies {
 ### 方法二：手动导入 JC SDK
 
 1. [下载 JC
-    SDK](/portal/cn/downloadsdk/download_sdk.php?filename=JC-SDK-Android-V2_1.tar.gz)
+    SDK](https://developer.juphoon.com/portal/cn/downloadsdk/download_sdk.php?filename=JC-SDK-Android-V2_1.tar.gz)
     并解压。
 
 2. 拷贝 libs 文件夹内的 **arm64-v8a、armeabi-v7a、x86、x86\_64、JCSDK.jar、mtc.jar

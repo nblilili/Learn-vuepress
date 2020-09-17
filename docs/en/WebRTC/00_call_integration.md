@@ -232,7 +232,7 @@ Before adjusting the layout of smart mode, you need to make sure that the layout
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | **Plain text format**<br/>setmerge_i \<width\> \<height\> \<mode\> \<scsMode\> \<fps\> [uri]<br/>For example: set the width to 1600 , The height is 900, the smart mode is "free mode", the screen sharing is "host mode", the number of frames is 24, the default size of the screen is qqqq, the command is:<br/>@setmerge_i 1600 900 1 3 24 [username:qqqq@sample.cloud.justalk.com] | **width** wide<br/>**height** high<br/>**mode** Smart split-screen mode, see setmergemode_i above<br />**scsMode** Smart split screen with screen sharing mode, see above setmergemode_iv<br/>**fps** Frames 1-30<br/>**uri** The default user uri for large and small screens |
 
-For specific instruction information about the smart split screen mode and the detailed parameters of the smart split screen mode, please refer to [Smart Split Screen](/cn/document/V2.1/webrtc/integration.php #w_id6).
+For specific instruction information about the smart split screen mode and the detailed parameters of the smart split screen mode, please refer to [Smart Split Screen](https://developer.juphoon.com/cn/document/V2.1/webrtc/integration.php #w_id6).
 
 #### Recording
 
@@ -254,7 +254,7 @@ The default recording resolution is 360P. If you need to modify the recording re
 
 :::
 
-For detailed instructions on setting the recording resolution and recording file size, please refer to [Modify Recording or Push Stream Resolution](/cn/document/V2.1/webrtc/integration.php# w_id8) and [Modify recording file size](/cn/document/V2.1/webrtc/integration.php#w_id9).
+For detailed instructions on setting the recording resolution and recording file size, please refer to [Modify Recording or Push Stream Resolution](https://developer.juphoon.com/cn/document/V2.1/webrtc/integration.php# w_id8) and [Modify recording file size](https://developer.juphoon.com/cn/document/V2.1/webrtc/integration.php#w_id9).
 
 #### CDN push
 
@@ -265,7 +265,7 @@ For detailed instructions on setting the recording resolution and recording file
 | Start push          | **Plain text format**<br/>startpush<br/>Start push to CDN, and the corresponding webpage viewing address is determined by the CDN service provider.<br/>// Example<br/>Assumption meeting If the number is 12345678, the instruction is:<br/>@sendtext @delivery_12345678 startpush[username:delivery_12345678@delivery.cloud.justalk.com] |
 | Stop push           | **Plain text format**<br/>stoppush<br/>// Example<br/>Assuming the conference number is 12345678, the command is:<br/>@sendtext @delivery_12345678 stoppush[username:delivery_12345678 @delivery.cloud.justalk.com] |
 
-Please refer to [Modify Recording or Push Stream Resolution](/cn/document/V2.1/webrtc/integration.php#w_id8) for detailed instructions on setting the push streaming resolution.
+Please refer to [Modify Recording or Push Stream Resolution](https://developer.juphoon.com/cn/document/V2.1/webrtc/integration.php#w_id8) for detailed instructions on setting the push streaming resolution.
 
 #### Play
 

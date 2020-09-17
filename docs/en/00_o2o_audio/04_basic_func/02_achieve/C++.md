@@ -11,9 +11,9 @@ call sequence of one-to-one calls is shown in the figure below:
 ## Initialize
 
 Extend the
-[JCMediaDeviceCallback](/portal/reference/V2.1/windows/C++/html/class_j_c_media_device_callback.html)
+[JCMediaDeviceCallback](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_device_callback.html)
 object and
-[JCCallCallback](/portal/reference/V2.1/windows/C++/html/class_j_c_call_callback.html)
+[JCCallCallback](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_call_callback.html)
 object, and implement the pure virtual functions in these two objects:
 
 ``````cpp
@@ -50,9 +50,9 @@ corresponding method.
 :::
 
 Call
-[createJCMediaDevice](/portal/reference/V2.1/windows/C++/html/_j_c_media_device_8h.html#a96a10766264f3c12af531b70cb9c9749)
+[createJCMediaDevice](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/_j_c_media_device_8h.html#a96a10766264f3c12af531b70cb9c9749)
 and
-[createJCCall](/portal/reference/V2.1/windows/C++/html/_j_c_call_8h.html#a29320972a659ce8eaf4994576103a62c)
+[createJCCall](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/_j_c_call_8h.html#a29320972a659ce8eaf4994576103a62c)
 to initialize the modules needed for one-to-one calling:
 
 ``````cpp
@@ -69,14 +69,14 @@ bool JCManager::initialize()
 Among them:
 
 - This in the JCMediaDevice create method is a derived class of
-    [JCMediaDeviceCallback](/portal/reference/V2.1/windows/C++/html/class_j_c_media_device_callback.html)
+    [JCMediaDeviceCallback](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_device_callback.html)
     , which is used to notify the upper layer of media device-related
     events. Therefore, you need to create a derived class of
     JCMediaDeviceCallback, and then implement the pure virtual function
     of JCMediaDeviceCallback in the derived class.
 
 - This in the JCCall create method is a derived class of
-    [JCCallCallback](/portal/reference/V2.1/windows/C++/html/class_j_c_call_callback.html),
+    [JCCallCallback](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_call_callback.html),
     which is used to notify call-related events to the upper layer.
     Therefore, you need to create a derived class of JCCallback, and
     then implement the pure virtual function of JCCallCallback in the
@@ -85,7 +85,7 @@ Among them:
 ## Make a call
 
 Call
-[call](/portal/reference/V2.1/windows/C++/html/class_j_c_call.html#a7b2d614431cb23e82ea18b77deb50549)
+[call](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_call.html#a7b2d614431cb23e82ea18b77deb50549)
 to initiate a video call, the parameters that need to be filled are:
 
 - `userID` Fill in the user ID of the other party.
@@ -106,10 +106,10 @@ void JCSampleDlg::OnBnClickedButtonVoicecall()
 
 After making a call, both the caller and the called party will receive
 the callback
-[onCallItemAdd](/portal/reference/V2.1/windows/C++/html/class_j_c_call_callback.html#a2188f777767ca071c145d4a50687ce63)
+[onCallItemAdd](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_call_callback.html#a2188f777767ca071c145d4a50687ce63)
 for the new call, and the call state will change to JCCallStatePending.
 You can implement the
-[onCallItemAdd](/portal/reference/V2.1/windows/C++/html/class_j_c_call_callback.html#a2188f777767ca071c145d4a50687ce63)
+[onCallItemAdd](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_call_callback.html#a2188f777767ca071c145d4a50687ce63)
 method in the upper layer and process related logic:
 
 ``````cpp
@@ -138,10 +138,10 @@ becomes the JCCallStateCancel.
 
 1. After the caller initiates the call successfully, the called party
     will receive the
-    [onCallItemAdd](/portal/reference/V2.1/windows/C++/html/class_j_c_call_callback.html#a2188f777767ca071c145d4a50687ce63)
+    [onCallItemAdd](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_call_callback.html#a2188f777767ca071c145d4a50687ce63)
     callback. At this time, the getVideo() method and getDirection()
     method in the
-    [JCCallItem](/portal/reference/V2.1/windows/C++/html/class_j_c_call_item.html)
+    [JCCallItem](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_call_item.html)
     object in the callback can be used to determine whether it is a
     video call or a voice call. Thus you can deal with it accordingly:
 
@@ -158,7 +158,7 @@ becomes the JCCallStateCancel.
 <!-- end list -->
 
 2. Call
-    [answer](/portal/reference/V2.1/windows/C++/html/class_j_c_call.html#a8e44cef3051dba33a600042c7a5bf987)
+    [answer](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_call.html#a8e44cef3051dba33a600042c7a5bf987)
     to answer the call, **voice call can only be answered by voice**:
 
     ``````cpp
@@ -184,11 +184,11 @@ becomes JCCallStateCanceled.
 Both the calling party and the called party can hang up the call.
 
 1. First call
-    [getActiveCallItem](/portal/reference/V2.1/windows/C++/html/class_j_c_call.html#a4b5e8afc43bd12f877e37a97fec2ff7a)
+    [getActiveCallItem](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_call.html#a4b5e8afc43bd12f877e37a97fec2ff7a)
     to get the currently active call object;
 
 2. After obtaining the current active call object, call
-    [term](/portal/reference/V2.1/windows/C++/html/class_j_c_call.html#a168fd884512bfd5451ffa5fac83c598b)
+    [term](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_call.html#a168fd884512bfd5451ffa5fac83c598b)
     to hang up the current active call:
 
     ``````cpp

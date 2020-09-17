@@ -12,9 +12,9 @@ below:
 ## Initialize
 
 Call [JCMediaDevice
-create](/portal/reference/V2.1/ios/Classes/JCMediaDevice.html#//api/name/create:callback:)
+create](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaDevice.html#//api/name/create:callback:)
 and [JCCall
-create](/portal/reference/V2.1/ios/Classes/JCCall.html#//api/name/create:mediaDevice:callback:)
+create](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCCall.html#//api/name/create:mediaDevice:callback:)
 to initialize modules needed to implement group calls:
 
 ``````objectivec
@@ -31,7 +31,7 @@ to initialize modules needed to implement group calls:
 Among them:
 
 - The callback in the JCMediaDevice create is the proxy object of the
-    [JCMediaDeviceCallback](/portal/reference/V2.1/ios/Protocols/JCMediaDeviceCallback.html)
+    [JCMediaDeviceCallback](https://developer.juphoon.com/portal/reference/V2.1/ios/Protocols/JCMediaDeviceCallback.html)
     protocol, which is used to notify the upper layer of media device
     related events. Therefore, you need to specify the proxy object of
     callback first, and then implement the JCMediaDeviceCallback in the
@@ -52,7 +52,7 @@ The main methods in the JCMediaDeviceCallback are as follows:
 
 - The callback in the JCMediaChannel create method is the proxy object
     of the
-    [JCMediaChannelCallback](/portal/reference/V2.1/ios/Protocols/JCMediaChannelCallback.html)
+    [JCMediaChannelCallback](https://developer.juphoon.com/portal/reference/V2.1/ios/Protocols/JCMediaChannelCallback.html)
     protocol, which is used to notify the relevant events in the channel
     to the upper layer. Therefore, you need to specify the proxy object
     of the callback first, and then implement the JCMediaChannelCallback
@@ -94,7 +94,7 @@ upload local audio and video streams, and the audience can only see the
 image of the host and hear the voice of the host.
 
 The role value can be customized according to the
-[JCMediaChannelCustomRole](/portal/reference/V2.1/ios/Constants/JCMediaChannelCustomRole.html)
+[JCMediaChannelCustomRole](https://developer.juphoon.com/portal/reference/V2.1/ios/Constants/JCMediaChannelCustomRole.html)
 enumeration value, such as:
 
 ``````objectivec
@@ -105,7 +105,7 @@ JCMediaChannelCustomRole ROLE_AUDIENCE = JCMediaChannelCustomRole1;
 ``````
 
 Call
-[setCustomRole](/portal/reference/V2.1/ios/Classes/JCMediaChannel.html#//api/name/setCustomRole:participant:)
+[setCustomRole](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaChannel.html#//api/name/setCustomRole:participant:)
 to set your own role to enter the channel:
 
 ``````objectivec
@@ -121,7 +121,7 @@ voice streaming, the host only needs to upload the local audio stream,
 and the audience does not.
 
 1. Enable audio streaming to call
-    [enableUploadAudioStream](/portal/reference/V2.1/ios/Classes/JCMediaChannel.html#//api/name/enableUploadAudioStream:)
+    [enableUploadAudioStream](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaChannel.html#//api/name/enableUploadAudioStream:)
     to enable audio streaming:
 
     ``````objectivec
@@ -134,7 +134,7 @@ and the audience does not.
     ``````
 
 2. After the role is set, call the
-    [join](/portal/reference/V2.1/ios/Classes/JCMediaChannel.html#//api/name/join:joinParam:)
+    [join](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaChannel.html#//api/name/join:joinParam:)
     method to create and join a channel. You need to pass in the
     following parameters in the method:
 
@@ -144,7 +144,7 @@ and the audience does not.
         the same channel.
 
       - joinParam: Join parameters, if not, fill in nil. See
-        [JCMediaChannelJoinParam](/portal/reference/V2.1/ios/Classes/JCMediaChannelJoinParam.html)
+        [JCMediaChannelJoinParam](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaChannelJoinParam.html)
         object for details.
 
     ``````objectivec
@@ -152,7 +152,7 @@ and the audience does not.
     ``````
 
 3. The
-    [onJoin](/portal/reference/V2.1/ios/Protocols/JCMediaChannelCallback.html#//api/name/onJoin:reason:channelId:)
+    [onJoin](https://developer.juphoon.com/portal/reference/V2.1/ios/Protocols/JCMediaChannelCallback.html#//api/name/onJoin:reason:channelId:)
     callback triggers after joining the channel:
 
     ``````objectivec
@@ -170,7 +170,7 @@ and the audience does not.
 ## Leave a channel
 
 Call the
-[leave](/portal/reference/V2.1/ios/Classes/JCMediaChannel.html#//api/name/leave)
+[leave](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaChannel.html#//api/name/leave)
 method to leave the current channel:
 
 ``````objectivec
@@ -178,9 +178,9 @@ method to leave the current channel:
 ``````
 
 After leaving the channel, they receive the
-[onLeave](/portal/reference/V2.1/ios/Protocols/JCMediaChannelCallback.html#//api/name/onLeave:channelId:)
+[onLeave](https://developer.juphoon.com/portal/reference/V2.1/ios/Protocols/JCMediaChannelCallback.html#//api/name/onLeave:channelId:)
 callback, and other members receive the
-[onParticipantLeft](/portal/reference/V2.1/ios/Protocols/JCMediaChannelCallback.html#//api/name/onParticipantLeft:)
+[onParticipantLeft](https://developer.juphoon.com/portal/reference/V2.1/ios/Protocols/JCMediaChannelCallback.html#//api/name/onParticipantLeft:)
 callback at the same time.
 
 ## Destroy a channel
@@ -195,15 +195,15 @@ and all members will be quit.
 
 After the channel is stopped, the member that initiated the termination
 receives the
-[onStop](/portal/reference/V2.1/ios/Protocols/JCMediaChannelCallback.html#//api/name/onStop:reason:)
+[onStop](https://developer.juphoon.com/portal/reference/V2.1/ios/Protocols/JCMediaChannelCallback.html#//api/name/onStop:reason:)
 callback, and other members receive the
-[onLeave](/portal/reference/V2.1/ios/Protocols/JCMediaChannelCallback.html#//api/name/onLeave:channelId:)
+[onLeave](https://developer.juphoon.com/portal/reference/V2.1/ios/Protocols/JCMediaChannelCallback.html#//api/name/onLeave:channelId:)
 callback at the same time. Please refer to
-[JCMediaChannelReason](/portal/reference/V2.1/ios/Constants/JCMediaChannelReason.html)
+[JCMediaChannelReason](https://developer.juphoon.com/portal/reference/V2.1/ios/Constants/JCMediaChannelReason.html)
 for the enumeration value of the reason for failure.
 
 After dstorying the channel, you also need to call
-[stopVideo](/portal/reference/V2.1/ios/Classes/JCMediaDevice.html#//api/name/stopVideo:)
+[stopVideo](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaDevice.html#//api/name/stopVideo:)
 in the
-[JCMediaChannelParticipant](/portal/reference/V2.1/ios/Classes/JCMediaChannelParticipant.html)
+[JCMediaChannelParticipant](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaChannelParticipant.html)
 to destroy local and remote video images.

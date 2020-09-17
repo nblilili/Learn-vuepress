@@ -3,16 +3,16 @@ title: 实现一对一通话
 ---
 # 实现一对一通话
 
-本章将介绍如何实现一对一语音通话，一对一通话的 API 调用时序见下图：
+本章将介绍如何实现一对一语音通话，一对一语音通话的 API 调用时序见下图：
 
 ![../../../../\_images/1-1workflowios.png](../../../../_images/1-1workflowios.png)
 
 ## 初始化
 
 调用 [JCMediaDevice
-create](/portal/reference/V2.1/ios/Classes/JCMediaDevice.html#//api/name/create:callback:)
+create](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaDevice.html#//api/name/create:callback:)
 和 [JCCall
-create](/portal/reference/V2.1/ios/Classes/JCCall.html#//api/name/create:mediaDevice:callback:)
+create](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCCall.html#//api/name/create:mediaDevice:callback:)
 以初始化实现一对一通话需要的模块。
 
 ``````objectivec
@@ -29,7 +29,7 @@ create](/portal/reference/V2.1/ios/Classes/JCCall.html#//api/name/create:mediaDe
 其中：
 
 - JCMediaDevice create 方法中的 callback 为
-    [JCMediaDeviceCallback](/portal/reference/V2.1/ios/Protocols/JCMediaDeviceCallback.html)
+    [JCMediaDeviceCallback](https://developer.juphoon.com/portal/reference/V2.1/ios/Protocols/JCMediaDeviceCallback.html)
     协议的代理对象，该协议用于将媒体设备相关的事件通知给上层。因此需要先指定 callback 的代理对象，然后在该代理对象中实现
     JCMediaDeviceCallback 的方法。
 
@@ -47,7 +47,7 @@ JCMediaDeviceCallback 中的主要方法如下。
 ``````
 
 - JCCall create 方法中的 callback 为
-    [JCCallCallback](/portal/reference/V2.1/ios/Protocols/JCCallCallback.html)
+    [JCCallCallback](https://developer.juphoon.com/portal/reference/V2.1/ios/Protocols/JCCallCallback.html)
     协议的代理对象，该协议用于将通话相关的事件通知给上层。因此需要先指定 callback 的代理对象，然后在该代理对象中实现
     JCCallCallback 的方法。
 
@@ -67,7 +67,7 @@ JCCallCallback 中的主要方法如下。
 ## 拨打通话
 
 调用
-[call](/portal/reference/V2.1/ios/Classes/JCCall.html#//api/name/call:video:extraParam:)
+[call](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCCall.html#//api/name/call:video:extraParam:)
 发起语音通话，需要填写的参数有：
 
 - `userID` 填写对方的用户ID。
@@ -82,12 +82,12 @@ JCCallCallback 中的主要方法如下。
 ``````
 
 拨打通话后，主叫和被叫均会收到新增通话的回调
-[onCallItemAdd](/portal/reference/V2.1/ios/Protocols/JCCallCallback.html#//api/name/onCallItemAdd:)
+[onCallItemAdd](https://developer.juphoon.com/portal/reference/V2.1/ios/Protocols/JCCallCallback.html#//api/name/onCallItemAdd:)
 ，此时通话状态变为 JCCallStatePending 。您可以在上层实现
-[onCallItemAdd](/portal/reference/V2.1/ios/Protocols/JCCallCallback.html#//api/name/onCallItemAdd:)
+[onCallItemAdd](https://developer.juphoon.com/portal/reference/V2.1/ios/Protocols/JCCallCallback.html#//api/name/onCallItemAdd:)
 方法并处理相关的逻辑。
 
-示例代码:
+示例代码
 
 ``````objectivec
 // 收到新增通话回调
@@ -112,9 +112,9 @@ JCCallCallback 中的主要方法如下。
 ## 应答通话
 
 1. 主叫发起呼叫成功后，被叫会收到
-    [onCallItemAdd](/portal/reference/V2.1/ios/Protocols/JCCallCallback.html#//api/name/onCallItemAdd:)
+    [onCallItemAdd](https://developer.juphoon.com/portal/reference/V2.1/ios/Protocols/JCCallCallback.html#//api/name/onCallItemAdd:)
     回调，此时可以通过回调中的
-    [JCCallItem](/portal/reference/V2.1/ios/Classes/JCCallItem.html)
+    [JCCallItem](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCCallItem.html)
     对象的 video 以及 direction 属性判断是视频呼入还是语音呼入，从而做出相应的处理。
 
     ``````objectivec
@@ -130,7 +130,7 @@ JCCallCallback 中的主要方法如下。
 <!-- end list -->
 
 2. 调用
-    [answer](/portal/reference/V2.1/ios/Classes/JCCall.html#//api/name/answer:video:)
+    [answer](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCCall.html#//api/name/answer:video:)
     接听通话，**语音通话只能进行语音应答** 。
 
     ``````objectivec
@@ -151,11 +151,11 @@ JCCallCallback 中的主要方法如下。
 主叫或者被叫均可以挂断通话。
 
 1. 首先调用
-    [getActiveCallItem](/portal/reference/V2.1/ios/Classes/JCCall.html#//api/name/getActiveCallItem)
+    [getActiveCallItem](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCCall.html#//api/name/getActiveCallItem)
     获取当前活跃的通话对象；
 
 2. 当前活跃通话对象获取后，调用
-    [term](/portal/reference/V2.1/ios/Classes/JCCall.html#//api/name/term:reason:description:)
+    [term](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCCall.html#//api/name/term:reason:description:)
     挂断当前活跃通话:
 
     ``````objectivec

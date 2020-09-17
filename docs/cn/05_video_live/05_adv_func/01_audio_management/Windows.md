@@ -63,7 +63,7 @@ public string audioName
 public string audioId
 ``````
 
-示例代码:
+示例代码
 
 ``````csharp
 // 获取音频输入设备列表
@@ -99,7 +99,7 @@ public bool stopAudio()
 public int getSpkLevel()
 ``````
 
-示例代码:
+示例代码
 
 ``````csharp
 // 打开音频

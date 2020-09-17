@@ -198,7 +198,6 @@ void* p = (__bridge void *)data;
 }
 ``````
 
------
 
 ### 自定义音频采集和渲染
 
@@ -358,7 +357,6 @@ void Zmf_OnAudioOutputDidStop(const char *outputId);
 
 :::
 
------
 
 ## 音频设备管理
 
@@ -458,7 +456,7 @@ JCMediaDeviceAudio 对象的属性如下：
 </tbody>
 </table>
 
-示例代码:
+示例代码
 
 ``````objectivec
 // 获取音频输入设备列表
@@ -484,7 +482,7 @@ NSArray<JCMediaDeviceAudio*>* audioOutputDevices = mediaDevice.audioOutputs;
 -(bool)stopAudio;
 ``````
 
-示例代码:
+示例代码
 
 ``````objectivec
 // 打开音频设备

@@ -42,7 +42,7 @@ public string cameraId
 public bool switchCamera(JCMediaDeviceCamera camera)
 ``````
 
-**示例代码**
+示例代码
 
 ``````csharp
 // 获取摄像头列表
@@ -135,7 +135,7 @@ public JCMediaDeviceVideoCanvas startCameraVideo(JCMediaDeviceRenderMode mode)
 public JCMediaDeviceVideoCanvas startVideo(string videoSource, JCMediaDeviceRenderMode mode)
 ``````
 
-**示例代码**
+示例代码
 
 ``````csharp
 // 获取摄像头列表
@@ -154,7 +154,6 @@ image.Stretch = Stretch.Uniform;
 this.label.Background = image;
 ``````
 
------
 
 ### 销毁本地和远端视频画面
 
@@ -168,7 +167,7 @@ this.label.Background = image;
 public void stopVideo(JCMediaDeviceVideoCanvas canvas)
 ``````
 
-示例代码:
+示例代码
 
 ``````csharp
 JCMediaDeviceVideoCanvas localCanvas = mediaDevice.startCameraVideo(JCMediaDeviceRenderMode.FULLCONTENT);
@@ -187,7 +186,6 @@ if (remoteCanvas != null)
     }
 ``````
 
------
 
 ### 视频通话截图
 
@@ -202,7 +200,6 @@ if (remoteCanvas != null)
 public bool snapshot(int width, int height, string filePath)
 ``````
 
------
 
 ### 更新视频渲染标识
 
@@ -241,7 +238,6 @@ public bool pause()
 public bool resume()
 ``````
 
------
 
 ## 视频设备管理
 
@@ -288,7 +284,7 @@ public bool stopCamera()
 public bool switchCamera(JCMediaDeviceCamera camera)
 ``````
 
-**示例代码**
+示例代码
 
 ``````csharp
 // 打开摄像头

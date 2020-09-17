@@ -8,11 +8,11 @@ This guide introduces how to initialize JC SDK and log in.
 ## Initialize
 
 Call the [JCClient
-create](/portal/reference/V2.1/ios/Classes/JCClient.html#//api/name/create:callback:creatParam:)
+create](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCClient.html#//api/name/create:callback:creatParam:)
 interface on the main thread to create a
-[JCClient](/portal/reference/V2.1/ios/Classes/JCClient.html)
+[JCClient](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCClient.html)
 instance object. Input the obtained `appKey` to initialize
-[JCClient](/portal/reference/V2.1/ios/Classes/JCClient.html)
+[JCClient](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCClient.html)
 .
 
 ::: tip
@@ -63,9 +63,9 @@ The call flow of the login interface is as follows:
 ![../../../../\_images_en/ios\_login.png](../../../../_images_en/ios_login.png)
 
 First create a
-[JCClientLoginParam](/portal/reference/V2.1/ios/Classes/JCClientLoginParam.html)
+[JCClientLoginParam](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCClientLoginParam.html)
 instance to adjust the login parameters. Then call
-[login](/portal/reference/V2.1/ios/Classes/JCClient.html#//api/name/login:password:loginParam:)
+[login](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCClient.html#//api/name/login:password:loginParam:)
 to initiate login:
 
 ``````objectivec
@@ -105,9 +105,9 @@ in the JCClientCallback callback will be triggered to notify the upper
 layer of the status of the client. The specific logic is as follows:
 
 First, the login state change callback
-[onClientStateChange](/portal/reference/V2.1/ios/Protocols/JCClientCallback.html#//api/name/onClientStateChange:oldState:)
+[onClientStateChange](https://developer.juphoon.com/portal/reference/V2.1/ios/Protocols/JCClientCallback.html#//api/name/onClientStateChange:oldState:)
 in JCClientCallback will be triggered. You can implement the
-[onClientStateChange](/portal/reference/V2.1/ios/Protocols/JCClientCallback.html#//api/name/onClientStateChange:oldState:)
+[onClientStateChange](https://developer.juphoon.com/portal/reference/V2.1/ios/Protocols/JCClientCallback.html#//api/name/onClientStateChange:oldState:)
 method in the upper layer and handle the related logic.
 
 ``````objectivec
@@ -126,9 +126,9 @@ method in the upper layer and handle the related logic.
 ``````
 
 Then the
-[onLogin](/portal/reference/V2.1/ios/Protocols/JCClientCallback.html#//api/name/onLogin:reason:)
+[onLogin](https://developer.juphoon.com/portal/reference/V2.1/ios/Protocols/JCClientCallback.html#//api/name/onLogin:reason:)
 callback in JCClientCallback will be triggered. You can implement the
-[onLogin](/portal/reference/V2.1/ios/Protocols/JCClientCallback.html#//api/name/onLogin:reason:)
+[onLogin](https://developer.juphoon.com/portal/reference/V2.1/ios/Protocols/JCClientCallback.html#//api/name/onLogin:reason:)
 method in the upper layer and handle the related logic:
 
 ``````objectivec
@@ -148,7 +148,7 @@ login). The SDK will automatically maintain the connection status with
 the server until the user actively calls the logout interface, or the
 device is logged out, or the account is logged in on another device.
 Login success/failure reason reference
-[JCClientClientReason](/portal/reference/V2.1/ios/Constants/JCClientReason.html)
+[JCClientClientReason](https://developer.juphoon.com/portal/reference/V2.1/ios/Constants/JCClientReason.html)
 .
 
 ## Log out
@@ -158,7 +158,7 @@ The call flow of the logout interface is as follows:
 ![../../../../\_images_en/ios\_logout.png](../../../../_images_en/ios_logout.png)
 
 Call
-[logout](/portal/reference/V2.1/ios/Classes/JCClient.html#//api/name/logout)
+[logout](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCClient.html#//api/name/logout)
 to initiate logout, and you cannot carry out various business operations
 on the platform after logging out:
 
@@ -179,7 +179,7 @@ onLogout callback:
 ``````
 
 More logout reason reference:
-[JCClientClientReason](/portal/reference/V2.1/ios/Constants/JCClientReason.html)
+[JCClientClientReason](https://developer.juphoon.com/portal/reference/V2.1/ios/Constants/JCClientReason.html)
 
 After logging out successfully, the JCClientState status changes from
 JCClientStateLogined (successful login) to JCClientStateIdle (not logged

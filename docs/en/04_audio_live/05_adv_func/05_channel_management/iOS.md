@@ -60,7 +60,6 @@ public void onQuery(int operationId, boolean result, @JCMediaChannel.MediaChanne
 }
 ``````
 
------
 
 ## Channel member management
 
@@ -77,7 +76,6 @@ Obtain the channel member objects by userId:
 -(JCMediaChannelParticipant* __nullable)getParticipant:(NSString* __nonnull)userId;
 ``````
 
------
 
 ### Kick out members
 
@@ -102,7 +100,6 @@ if (participant != nil) {
 }
 ``````
 
------
 
 ### Send messages to other memebers
 
@@ -148,4 +145,3 @@ the onMessageReceive callback:
 -(void)onMessageReceive:(NSString *)type content:(NSString *)content fromUserId:(NSString *)fromUserId;
 ``````
 
------

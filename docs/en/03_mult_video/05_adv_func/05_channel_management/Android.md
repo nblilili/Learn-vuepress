@@ -60,7 +60,6 @@ public void onQuery(int operationId, boolean result, @JCMediaChannel.MediaChanne
 }
 ``````
 
------
 
 ## Channel member management
 
@@ -78,7 +77,6 @@ Access channel member object via userId:
 public abstract JCMediaChannelParticipant getParticipant(String userId);
 ``````
 
------
 
 ### Kick out memebers
 
@@ -103,7 +101,6 @@ if (participant != nil) {
 }
 ``````
 
------
 
 ### Send messages to other memebers
 
@@ -149,4 +146,3 @@ the onMessageReceive callback:
 public void onMessageReceive(String type, String content, String fromUserId);
 ``````
 
------

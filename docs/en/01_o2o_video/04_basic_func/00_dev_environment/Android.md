@@ -17,7 +17,7 @@ created.
 - Effective Juphoon Developer Account ([free sign
     up](http://developer.juphoon.com/signup))
 
-- Efficient Juphoon [AppKey](/cn/document/V2.1/create-application.php)
+- Efficient Juphoon [AppKey](https://developer.juphoon.com/cn/document/V2.1/create-application.php)
 
 ## Create an Android project
 
@@ -77,7 +77,7 @@ dependencies {
 ### Method 2: Manually import JC SDK
 
 1. [Download JC
-    SDK](/portal/cn/downloadsdk/download_sdk.php?filename=JC-SDK-Android-V2_1.tar.gz)
+    SDK](https://developer.juphoon.com/portal/cn/downloadsdk/download_sdk.php?filename=JC-SDK-Android-V2_1.tar.gz)
     and unpack it.
 
 2. Copy `arm64-v8a` , `armeabi-v7a` , `x86` , `x86_64` , `JCSDK.jar` ,

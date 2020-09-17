@@ -19,7 +19,7 @@ title:  FAQ
 
 ## 初始化问题
 
-如果遇到初始化问题，可以参考 [此贴](/portal/cn/bbs/problem_details.php?t_id=1266)检查 AppKey 是否正确；
+如果遇到初始化问题，可以参考 [此贴](https://developer.juphoon.com/portal/cn/bbs/problem_details.php?t_id=1266)检查 AppKey 是否正确；
 检查 build.gradle 文件中是否增加配置程序文件；
 检查配置文件 AndroidManifest.xml 是否录入权限相关信息。
 

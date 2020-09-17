@@ -647,7 +647,7 @@ JCCallAecModeSDE = 4, // MtcCallDb.EN_MTC_EC_AEC_SDE;
 
 开发者可根据具体的需求自行配置。
 
-示例代码:
+示例代码
 
 ``````objectivec
 //音频参数

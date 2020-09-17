@@ -1,7 +1,7 @@
 ---
-title: 实现一对一语音通话
+title: 实现一对一通话
 ---
-# 实现一对一语音通话
+# 实现一对一通话
 
 本章将介绍如何实现一对一语音通话，一对一语音通话的 API 调用时序见下图：
 
@@ -10,9 +10,9 @@ title: 实现一对一语音通话
 ## 初始化
 
 调用
-[JCMediaDevice.create()](/portal/reference/V2.1/windows/html/cb59bc27-6528-9dbf-c996-de857096f847.htm)
+[JCMediaDevice.create()](https://developer.juphoon.com/portal/reference/V2.1/windows/html/cb59bc27-6528-9dbf-c996-de857096f847.htm)
 和
-[JCCall.create()](/portal/reference/V2.1/windows/html/eef10110-a3f7-b505-26fa-4b9ec1e2b998.htm)
+[JCCall.create()](https://developer.juphoon.com/portal/reference/V2.1/windows/html/eef10110-a3f7-b505-26fa-4b9ec1e2b998.htm)
 以初始化实现一对一通话需要的模块。
 
 ``````csharp
@@ -33,7 +33,7 @@ public bool initialize() {
 其中：
 
 - JCMediaDevice create 方法中的 this 为实现
-    [JCMediaDeviceCallback](/portal/reference/V2.1/windows/html/3a00aa12-4e18-cf90-4610-b2c9c63b7a7b.htm)
+    [JCMediaDeviceCallback](https://developer.juphoon.com/portal/reference/V2.1/windows/html/3a00aa12-4e18-cf90-4610-b2c9c63b7a7b.htm)
     接口的对象，用于将媒体设备相关的事件通知给上层。
 
 JCMediaDeviceCallback 中的主要方法如下。
@@ -50,7 +50,7 @@ public void onAudioOutputTypeChange(string audioOutputType)
 ``````
 
 - JCCall create 方法中的 this 为实现
-    [JCCallCallback](/portal/reference/V2.1/windows/html/25bca4ea-ad43-2cbb-42a8-b4e626739711.htm)
+    [JCCallCallback](https://developer.juphoon.com/portal/reference/V2.1/windows/html/25bca4ea-ad43-2cbb-42a8-b4e626739711.htm)
     接口的对象，用于将通话相关的事件通知给上层。
 
 JCCallCallback 中的主要方法如下。
@@ -81,7 +81,7 @@ public void onMissedCallItem(JCCallItem item)
 ## 拨打通话
 
 调用
-[call()](/portal/reference/V2.1/windows/html/613adf03-d597-8221-86d5-0056c1b4d2a0.htm)
+[call()](https://developer.juphoon.com/portal/reference/V2.1/windows/html/613adf03-d597-8221-86d5-0056c1b4d2a0.htm)
 发起语音通话，需要填写的参数有：
 
 - `userID` 填写对方的用户ID。
@@ -96,12 +96,12 @@ mCall.call(userID, isVideo, extraParam);
 ``````
 
 拨打通话后，主叫和被叫均会收到新增通话的回调
-[onCallItemAdd()](/portal/reference/V2.1/windows/html/5e605b62-c8dc-4dde-2480-8fdcbbfc2f48.htm)
+[onCallItemAdd()](https://developer.juphoon.com/portal/reference/V2.1/windows/html/5e605b62-c8dc-4dde-2480-8fdcbbfc2f48.htm)
 ，此时通话状态变为 Pending 。您可以通过重写
-[onCallItemAdd()](/portal/reference/V2.1/windows/html/5e605b62-c8dc-4dde-2480-8fdcbbfc2f48.htm)
+[onCallItemAdd()](https://developer.juphoon.com/portal/reference/V2.1/windows/html/5e605b62-c8dc-4dde-2480-8fdcbbfc2f48.htm)
 执行逻辑操作。
 
-示例代码:
+示例代码
 
 ``````csharp
 /// 1. 发起语音通话
@@ -130,9 +130,9 @@ public void onCallItemAdd(JCCallItem item) {
 ## 应答通话
 
 1. 被叫收到
-    [onCallItemAdd()](/portal/reference/V2.1/windows/html/5e605b62-c8dc-4dde-2480-8fdcbbfc2f48.htm)
+    [onCallItemAdd()](https://developer.juphoon.com/portal/reference/V2.1/windows/html/5e605b62-c8dc-4dde-2480-8fdcbbfc2f48.htm)
     回调，在回调中根据
-    [JCCallItem](/portal/reference/V2.1/windows/html/0267696e-79ee-8d46-c086-3c071a2b2b3a.htm)
+    [JCCallItem](https://developer.juphoon.com/portal/reference/V2.1/windows/html/0267696e-79ee-8d46-c086-3c071a2b2b3a.htm)
     属性来判断是视频呼入还是语音呼入，从而做出相应的处理。
 
     ``````csharp
@@ -146,7 +146,7 @@ public void onCallItemAdd(JCCallItem item) {
     ``````
 
 2. 调用
-    [answer()](/portal/reference/V2.1/windows/html/7211e914-c311-4457-4b0e-bc4ef46c7733.htm)
+    [answer()](https://developer.juphoon.com/portal/reference/V2.1/windows/html/7211e914-c311-4457-4b0e-bc4ef46c7733.htm)
     接听通话。
 
     ``````csharp
@@ -166,7 +166,7 @@ public void onCallItemAdd(JCCallItem item) {
 主叫或者被叫均可以挂断通话。
 
 1. 调用
-    [getActiveCallItem()](/portal/reference/V2.1/windows/html/6df31ff9-272f-c7cc-1da6-2755c5aad5e0.htm)
+    [getActiveCallItem()](https://developer.juphoon.com/portal/reference/V2.1/windows/html/6df31ff9-272f-c7cc-1da6-2755c5aad5e0.htm)
     获取当前活跃的通话对象:
 
     ``````csharp
@@ -174,14 +174,14 @@ public void onCallItemAdd(JCCallItem item) {
     ``````
 
 2. 调用
-    [term()](/portal/reference/V2.1/windows/html/70758778-1450-172d-8684-3dd2818f2a84.htm)
+    [term()](https://developer.juphoon.com/portal/reference/V2.1/windows/html/70758778-1450-172d-8684-3dd2818f2a84.htm)
     挂断当前活跃通话:
 
     ``````csharp
     mCall.term(item, reason, description);
     ``````
 
-示例代码:
+示例代码
 
 ``````csharp
 /// 1. 获取当前活跃通话

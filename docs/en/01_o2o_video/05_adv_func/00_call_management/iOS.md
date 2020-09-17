@@ -27,7 +27,7 @@ When exceed the maximum number:
 
 Use the following method to turn on/off mute, which depends on the mute
 state in
-([mute](/portal/reference/V2.1/ios/Classes/JCCallItem.html#//api/name/mute:))
+([mute](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCCallItem.html#//api/name/mute:))
 in JCCallItem. After turning on mute, another party will not hear your
 voice:
 
@@ -46,7 +46,7 @@ You can record during a call. Turn on/off recording depends on the
 current recording status (audioRecord). If recording is in progress or
 the call is hanged or suspended, audio recording cannot be performed.
 The recording status can be obtained through the
-[JCCallItem](/portal/reference/V2.1/ios/Classes/JCCallItem.html)
+[JCCallItem](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCCallItem.html)
 object.
 
 Turn on/off the recording interface as follows:
@@ -98,7 +98,6 @@ changed and reported through the onCallItemUpdate callback:
 -(void)onCallItemUpdate:(JCCallItem* __nonnull)item changeParam:(JCCallChangeParam * __nullable)changeParam;
 ``````
 
------
 
 ### Turn on/off call hold
 
@@ -130,7 +129,6 @@ Call the following method to change the call on hold to the active call:
 -(bool)becomeActive:(JCCallItem* __nonnull)item;
 ``````
 
------
 
 ### Send messages during a call
 
@@ -167,7 +165,6 @@ Sample code:
 [call sendMessage:item type:@"text" content:@"message content"];
 ``````
 
------
 
 ### Related callbacks
 
@@ -214,4 +211,3 @@ Sample code:
 }
 ``````
 
------

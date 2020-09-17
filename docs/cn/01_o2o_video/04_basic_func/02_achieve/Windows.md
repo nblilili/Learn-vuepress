@@ -10,9 +10,9 @@ title: 实现一对一通话
 ## 初始化
 
 调用
-[JCMediaDevice.create()](/portal/reference/V2.1/windows/html/cb59bc27-6528-9dbf-c996-de857096f847.htm)
+[JCMediaDevice.create()](https://developer.juphoon.com/portal/reference/V2.1/windows/html/cb59bc27-6528-9dbf-c996-de857096f847.htm)
 和
-[JCCall.create()](/portal/reference/V2.1/windows/html/eef10110-a3f7-b505-26fa-4b9ec1e2b998.htm)
+[JCCall.create()](https://developer.juphoon.com/portal/reference/V2.1/windows/html/eef10110-a3f7-b505-26fa-4b9ec1e2b998.htm)
 以初始化实现一对一通话需要的模块。
 
 ``````csharp
@@ -33,7 +33,7 @@ public bool initialize() {
 其中：
 
 - JCMediaDevice create 方法中的 this 为实现
-    [JCMediaDeviceCallback](/portal/reference/V2.1/windows/html/3a00aa12-4e18-cf90-4610-b2c9c63b7a7b.htm)
+    [JCMediaDeviceCallback](https://developer.juphoon.com/portal/reference/V2.1/windows/html/3a00aa12-4e18-cf90-4610-b2c9c63b7a7b.htm)
     接口的对象，用于将媒体设备相关的事件通知给上层。
 
 JCMediaDeviceCallback 中的主要方法如下。
@@ -50,7 +50,7 @@ public void onAudioOutputTypeChange(string audioOutputType)
 ``````
 
 - JCCall create 方法中的 this 为实现
-    [JCCallCallback](/portal/reference/V2.1/windows/html/25bca4ea-ad43-2cbb-42a8-b4e626739711.htm)
+    [JCCallCallback](https://developer.juphoon.com/portal/reference/V2.1/windows/html/25bca4ea-ad43-2cbb-42a8-b4e626739711.htm)
     接口的对象，用于将通话相关的事件通知给上层。
 
 JCCallCallback 中的主要方法如下。
@@ -81,7 +81,7 @@ public void onMissedCallItem(JCCallItem item)
 ## 拨打通话
 
 调用
-[call()](/portal/reference/V2.1/windows/html/613adf03-d597-8221-86d5-0056c1b4d2a0.htm)
+[call()](https://developer.juphoon.com/portal/reference/V2.1/windows/html/613adf03-d597-8221-86d5-0056c1b4d2a0.htm)
 发起视频通话，需要填写的参数有：
 
 - `userID` 填写对方的用户ID。
@@ -96,11 +96,11 @@ mCall.call(userID, isVideo, null);
 ``````
 
 拨打通话后，主叫和被叫均会收到新增通话的回调
-[onCallItemAdd()](/portal/reference/V2.1/windows/html/5e605b62-c8dc-4dde-2480-8fdcbbfc2f48.htm)
+[onCallItemAdd()](https://developer.juphoon.com/portal/reference/V2.1/windows/html/5e605b62-c8dc-4dde-2480-8fdcbbfc2f48.htm)
 ，此时通话状态变为
-[STATE\_PENDING](/portal/reference/V2.1/windows/html/2134e734-614d-4a19-f411-5fe1a81d3ccd.htm)
+[STATE\_PENDING](https://developer.juphoon.com/portal/reference/V2.1/windows/html/2134e734-614d-4a19-f411-5fe1a81d3ccd.htm)
 。您可以通过重写
-[onCallItemAdd()](/portal/reference/V2.1/windows/html/5e605b62-c8dc-4dde-2480-8fdcbbfc2f48.htm)
+[onCallItemAdd()](https://developer.juphoon.com/portal/reference/V2.1/windows/html/5e605b62-c8dc-4dde-2480-8fdcbbfc2f48.htm)
 执行逻辑操作。
 
 ``````csharp
@@ -125,14 +125,14 @@ public void onCallItemAdd(JCCallItem item) {
 ## 创建本地视频画面
 
 发起通话后，调用
-[JCCallItem](/portal/reference/V2.1/windows/html/0267696e-79ee-8d46-c086-3c071a2b2b3a.htm)
+[JCCallItem](https://developer.juphoon.com/portal/reference/V2.1/windows/html/0267696e-79ee-8d46-c086-3c071a2b2b3a.htm)
 类中的
-[startSelfVideo()](/portal/reference/V2.1/windows/html/d399b6b1-b822-b6aa-de75-f35d6815e93b.htm)
+[startSelfVideo()](https://developer.juphoon.com/portal/reference/V2.1/windows/html/d399b6b1-b822-b6aa-de75-f35d6815e93b.htm)
 方法打开本地视频预览。需要填入参数
-[JCMediaDevice.RenderType](/portal/reference/V2.1/windows/html/44604552-33eb-5a81-6b10-6c512d127a4b.htm)
+[JCMediaDevice.RenderType](https://developer.juphoon.com/portal/reference/V2.1/windows/html/44604552-33eb-5a81-6b10-6c512d127a4b.htm)
 以选择渲染模式。
 
-示例代码:
+示例代码
 
 ``````csharp
 /// 1. 发起视频呼叫
@@ -146,9 +146,9 @@ mCallItem.startSelfVideo(JCMediaDeviceRenderMode.FULLAUTO);
 ## 应答通话
 
 被叫收到
-[onCallItemAdd()](/portal/reference/V2.1/windows/html/5e605b62-c8dc-4dde-2480-8fdcbbfc2f48.htm)
+[onCallItemAdd()](https://developer.juphoon.com/portal/reference/V2.1/windows/html/5e605b62-c8dc-4dde-2480-8fdcbbfc2f48.htm)
 回调，在回调中根据
-[JCCallItem](/portal/reference/V2.1/windows/html/0267696e-79ee-8d46-c086-3c071a2b2b3a.htm)
+[JCCallItem](https://developer.juphoon.com/portal/reference/V2.1/windows/html/0267696e-79ee-8d46-c086-3c071a2b2b3a.htm)
 属性来判断是视频呼入还是语音呼入，从而做出相应的处理。
 
 ``````csharp
@@ -162,7 +162,7 @@ public void onCallItemAdd(JCCallItem item) {
 ``````
 
 调用
-[answer()](/portal/reference/V2.1/windows/html/7211e914-c311-4457-4b0e-bc4ef46c7733.htm)
+[answer()](https://developer.juphoon.com/portal/reference/V2.1/windows/html/7211e914-c311-4457-4b0e-bc4ef46c7733.htm)
 接听通话。
 
 ``````csharp
@@ -182,13 +182,13 @@ mCall.answer(item, true);
 被叫接听通话后，双方将建立连接，此时，主叫和被叫都将会收到通话更新的回调（onCallItemUpdate），通话状态变为 Talking。
 
 调用
-[JCCallItem](/portal/reference/V2.1/windows/html/0267696e-79ee-8d46-c086-3c071a2b2b3a.htm)
+[JCCallItem](https://developer.juphoon.com/portal/reference/V2.1/windows/html/0267696e-79ee-8d46-c086-3c071a2b2b3a.htm)
 类中的
-[startOtherVideo()](/portal/reference/V2.1/windows/html/a4bdbd97-6a97-002f-9c9e-6e4774e4e708.htm)
+[startOtherVideo()](https://developer.juphoon.com/portal/reference/V2.1/windows/html/a4bdbd97-6a97-002f-9c9e-6e4774e4e708.htm)
 获取远端视频画面。返回对象为
-[JCMediaDeviceVideoCanvas](/portal/reference/V2.1/windows/html/6a5b853c-d890-c30e-d236-5728d789ace1.htm)。
+[JCMediaDeviceVideoCanvas](https://developer.juphoon.com/portal/reference/V2.1/windows/html/6a5b853c-d890-c30e-d236-5728d789ace1.htm)。
 
-示例代码:
+示例代码
 
 ``````csharp
 public void onCallItemUpdate(JCCallItem item) {
@@ -206,7 +206,7 @@ public void onCallItemUpdate(JCCallItem item) {
 主叫或者被叫均可以挂断通话。
 
 1. 调用
-    [getActiveCallItem()](/portal/reference/V2.1/windows/html/6df31ff9-272f-c7cc-1da6-2755c5aad5e0.htm)
+    [getActiveCallItem()](https://developer.juphoon.com/portal/reference/V2.1/windows/html/6df31ff9-272f-c7cc-1da6-2755c5aad5e0.htm)
     获取当前活跃的通话对象:
 
     ``````csharp
@@ -214,14 +214,14 @@ public void onCallItemUpdate(JCCallItem item) {
     ``````
 
 2. 调用
-    [term()](/portal/reference/V2.1/windows/html/70758778-1450-172d-8684-3dd2818f2a84.htm)
+    [term()](https://developer.juphoon.com/portal/reference/V2.1/windows/html/70758778-1450-172d-8684-3dd2818f2a84.htm)
     挂断当前活跃通话:
 
     ``````csharp
     mCall.term(item, reason, description);
     ``````
 
-示例代码:
+示例代码
 
 ``````csharp
 /// 1. 获取当前活跃通话
@@ -233,14 +233,14 @@ mCall.term(item, JCCallReason.None, null);
 ## 销毁本地和远端视频画面
 
 通话挂断后，收到移除通话的回调
-[onCallItemRemove()](/portal/reference/V2.1/windows/html/c6de8b41-37d7-a303-7761-0a3bc1caf18b.htm)
+[onCallItemRemove()](https://developer.juphoon.com/portal/reference/V2.1/windows/html/c6de8b41-37d7-a303-7761-0a3bc1caf18b.htm)
 ，通话状态变为 Ok ，此时您需要分别调用
-[stopSelfVideo()](/portal/reference/V2.1/windows/html/d51a3870-b54f-5149-3b9a-a1d017721d00.htm)
+[stopSelfVideo()](https://developer.juphoon.com/portal/reference/V2.1/windows/html/d51a3870-b54f-5149-3b9a-a1d017721d00.htm)
 和
-[stopOtherVideo()](/portal/reference/V2.1/windows/html/4cc26d8d-a4d4-1b2c-8917-b5ed4e048a28.htm)
+[stopOtherVideo()](https://developer.juphoon.com/portal/reference/V2.1/windows/html/4cc26d8d-a4d4-1b2c-8917-b5ed4e048a28.htm)
 销毁本地和远端视频画面。
 
-示例代码:
+示例代码
 
 ``````csharp
 public void onCallItemRemove(JCCallItem item, JCCallReason reason, String description) {

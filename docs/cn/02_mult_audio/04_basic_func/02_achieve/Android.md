@@ -1,7 +1,7 @@
 ---
-title: 实现多方语音通话
+title: 实现一对一通话
 ---
-# 实现多方语音通话
+# 实现多方通话
 
 本章将介绍如何实现多方语音通话，多方语音通话的 API 调用时序见下图：
 
@@ -10,9 +10,9 @@ title: 实现多方语音通话
 ## 初始化
 
 调用
-[JCMediaDevice.create()](/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaDevice.html#create-com.juphoon.cloud.JCClient-com.juphoon.cloud.JCMediaDeviceCallback-)
+[JCMediaDevice.create()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaDevice.html#create-com.juphoon.cloud.JCClient-com.juphoon.cloud.JCMediaDeviceCallback-)
 和
-[JCMediaChannel.create()](/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannel.html#create-com.juphoon.cloud.JCClient-com.juphoon.cloud.JCMediaDevice-com.juphoon.cloud.JCMediaChannelCallback-)
+[JCMediaChannel.create()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannel.html#create-com.juphoon.cloud.JCClient-com.juphoon.cloud.JCMediaDevice-com.juphoon.cloud.JCMediaChannelCallback-)
 以初始化实现多方通话需要的模块。
 
 ``````java
@@ -99,7 +99,7 @@ public boolean initialize(Context context) {
 ## 加入频道
 
 1. 调用
-    [enableUploadAudioStream()](/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannel.html#enableUploadAudioStream-boolean-)
+    [enableUploadAudioStream()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannel.html#enableUploadAudioStream-boolean-)
     开启音频流。
 
     ``````java
@@ -108,7 +108,7 @@ public boolean initialize(Context context) {
     ``````
 
 2. 创建并加入频道，需要传入 `channelIdOrUri` 和
-    [JCMediaChannel.JoinParam](/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannel.JoinParam.html)
+    [JCMediaChannel.JoinParam](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannel.JoinParam.html)
     。
 
       - `channelIdOrUri` 表示频道 ID 或频道 Uri。
@@ -121,7 +121,7 @@ public boolean initialize(Context context) {
     ``````
 
 3. 加入频道后收到
-    [onJoin()](/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannelCallback.html#onJoin-boolean-int-java.lang.String-)
+    [onJoin()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannelCallback.html#onJoin-boolean-int-java.lang.String-)
     回调。
 
     ``````java
@@ -138,7 +138,7 @@ public boolean initialize(Context context) {
 ## 离开频道
 
 调用
-[leave()](/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannel.html#leave--)
+[leave()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannel.html#leave--)
 方法可以离开当前频道。
 
 ``````java
@@ -146,7 +146,7 @@ mMediaChannel.leave();
 ``````
 
 在多方视频通话中，离开频道还需要调用
-[stopVideo()](/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannelParticipant.html#stopVideo--)
+[stopVideo()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannelParticipant.html#stopVideo--)
 移除视频画面。
 
 ``````java
@@ -154,9 +154,9 @@ mParticipant.stopVideo();
 ``````
 
 离开频道后，自身收到
-[onLeave()](/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannelCallback.html#onLeave-int-java.lang.String-)
+[onLeave()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannelCallback.html#onLeave-int-java.lang.String-)
 回调，其他成员同时收到
-[onParticipantLeft()](/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannelCallback.html#onParticipantLeft-com.juphoon.cloud.JCMediaChannelParticipant-)
+[onParticipantLeft()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannelCallback.html#onParticipantLeft-com.juphoon.cloud.JCMediaChannelParticipant-)
 回调。
 
 ## 解散频道
@@ -169,7 +169,7 @@ mMediaChannel.stop();
 ``````
 
 在多方视频通话中，离开频道还需要调用
-[stopVideo()](/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannelParticipant.html#stopVideo--)
+[stopVideo()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannelParticipant.html#stopVideo--)
 移除视频画面。
 
 ``````java
@@ -177,11 +177,11 @@ mParticipant.stopVideo();
 ``````
 
 解散频道后，发起结束的成员收到
-[onStop()](/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannelCallback.html#onStop-boolean-int-)
+[onStop()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannelCallback.html#onStop-boolean-int-)
 回调，其他成员同时收到
-[onLeave()](/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannelCallback.html#onLeave-int-java.lang.String-)
+[onLeave()](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannelCallback.html#onLeave-int-java.lang.String-)
 回调。 解散失败原因枚举值请参考
-[MediaChannelReason](/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannel.html#REASON_ALREADY_JOINED)
+[MediaChannelReason](https://developer.juphoon.com/portal/reference/V2.1/android/com/juphoon/cloud/JCMediaChannel.html#REASON_ALREADY_JOINED)
 。
 
 ``````java

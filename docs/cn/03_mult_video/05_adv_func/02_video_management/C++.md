@@ -8,7 +8,7 @@ title: 视频管理
 ### 设置要开启的摄像头
 
 视频采集设置前，可以通过 JCMediaDevice 类中的
-[getCameras](/portal/reference/V2.1/windows/C++/html/class_j_c_media_device.html#af5d7b21bf998890a10bbf4ea5c3984da)
+[getCameras](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_device.html#af5d7b21bf998890a10bbf4ea5c3984da)
 方法获取摄像头列表。
 
 ``````cpp
@@ -16,7 +16,7 @@ std::list<JCMediaDeviceCamera>* cameras = JCManager::shared()->mediaDevice->getC
 ``````
 
 摄像头列表获取后，调用
-[switchCamera](/portal/reference/V2.1/windows/C++/html/class_j_c_media_device.html#a0716deb7c816c605444f2bb3202e9ef5)
+[switchCamera](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_device.html#a0716deb7c816c605444f2bb3202e9ef5)
 方法切换指定的摄像头。
 
 ``````cpp
@@ -27,14 +27,13 @@ JCManager::shared()->mediaDevice->switchCamera(cameras[0]);
 ### 设置摄像头采集分辨率
 
 调用
-[setCameraProperty](/portal/reference/V2.1/windows/C++/html/class_j_c_media_device.html#a2ec180f6fc51367007b854dd0bc2866b)
+[setCameraProperty](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_device.html#a2ec180f6fc51367007b854dd0bc2866b)
 接口自定义摄像头采集参数，如采集的高度、宽度和帧速率，以实现不同的采集分辨率。
 
 ``````cpp
 JCManager::shared()->mediaDevice->setCameraProperty(640, 360, 24);
 ``````
 
------
 
 ## 视频数据管理
 
@@ -360,7 +359,7 @@ void JCSampleDlg::OnBnClickedButtonEndCall()
 ### 更新视频渲染标识
 
 调用
-[replace](/portal/reference/V2.1/windows/C++/html/class_j_c_media_device_video_canvas.html#a0f93d017306b5920f3fdccc00e2074f8)
+[replace](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_device_video_canvas.html#a0f93d017306b5920f3fdccc00e2074f8)
 接口更新视频渲染标识。
 
 ``````cpp
@@ -394,11 +393,11 @@ JCManager::shared()->mediaDeviceCanvas->resume();
 ### 开启/关闭摄像头
 
 调用
-[startCamera](/portal/reference/V2.1/windows/C++/html/class_j_c_media_device.html#a8980c035521b9c5c20afa34fad23293e)
+[startCamera](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_device.html#a8980c035521b9c5c20afa34fad23293e)
 接口开启摄像头。
 
 调用
-[stopCamera](/portal/reference/V2.1/windows/C++/html/class_j_c_media_device.html#a201fd2352117c7fbdc03ef10837fc701)
+[stopCamera](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_device.html#a201fd2352117c7fbdc03ef10837fc701)
 接口关闭摄像头。
 
 ``````cpp
@@ -411,7 +410,7 @@ JCManager::shared()->mediaDevice->stopCamera();
 ### 获取当前使用的摄像头
 
 调用
-[getCamera](/portal/reference/V2.1/windows/C++/html/class_j_c_media_device.html#acb427f7249ef1e384b1a910c90c31190)
+[getCamera](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_device.html#acb427f7249ef1e384b1a910c90c31190)
 接口获取当前使用的摄像头。
 
 ``````cpp
@@ -421,7 +420,7 @@ JCMediaDeviceCamera camera = JCManager::shared()->mediaDevice->getCamera();
 ### 获取窗口列表
 
 调用
-[getWindows](/portal/reference/V2.1/windows/C++/html/class_j_c_media_device.html#aec338b2eea709884722f7c426c924653)
+[getWindows](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_device.html#aec338b2eea709884722f7c426c924653)
 接口获取窗口列表。
 
 ``````cpp
@@ -431,7 +430,7 @@ std::list<JCMediaDeviceWindow>* windows = JCManager::shared()->mediaDevice->getW
 ### 获取桌面列表
 
 调用
-[getDesktops](/portal/reference/V2.1/windows/C++/html/class_j_c_media_device.html#a8cbda493ef14c4b97ff022948bb15bf1)
+[getDesktops](https://developer.juphoon.com/portal/reference/V2.1/windows/C++/html/class_j_c_media_device.html#a8cbda493ef14c4b97ff022948bb15bf1)
 接口获取桌面列表。
 
 ``````cpp

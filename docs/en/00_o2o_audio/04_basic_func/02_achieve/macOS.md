@@ -11,9 +11,9 @@ call sequence of one-to-one calls is shown in the figure below:
 ## Initialize
 
 Call [JCMediaDevice
-create](/portal/reference/V2.1/ios/Classes/JCMediaDevice.html#//api/name/create:callback:)
+create](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCMediaDevice.html#//api/name/create:callback:)
 and [JCCall
-create](/portal/reference/V2.1/ios/Classes/JCCall.html#//api/name/create:mediaDevice:callback:)
+create](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCCall.html#//api/name/create:mediaDevice:callback:)
 to initialize the modules needed for one-to-one calling:
 
 ``````objectivec
@@ -30,7 +30,7 @@ to initialize the modules needed for one-to-one calling:
 Among them:
 
 - The callback in the JCMediaDevice create is the proxy object of the
-    [JCMediaDeviceCallback](/portal/reference/V2.1/ios/Protocols/JCMediaDeviceCallback.html)
+    [JCMediaDeviceCallback](https://developer.juphoon.com/portal/reference/V2.1/ios/Protocols/JCMediaDeviceCallback.html)
     protocol, which is used to notify the upper layer of media device
     related events. Therefore, you need to specify the proxy object of
     callback first, and then implement the JCMediaDeviceCallback in the
@@ -71,7 +71,7 @@ The main methods in the JCCallCallback are as follows:
 ## Make a call
 
 Call
-[call](/portal/reference/V2.1/ios/Classes/JCCall.html#//api/name/call:video:extraParam:)
+[call](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCCall.html#//api/name/call:video:extraParam:)
 to initiate a video call, the parameters that need to be filled are:
 
 - `userID` Fill in the user ID of the other party.
@@ -89,10 +89,10 @@ to initiate a video call, the parameters that need to be filled are:
 
 After dialing the call, both the caller and the callee will receive the
 callback
-[onCallItemAdd](/portal/reference/V2.1/ios/Protocols/JCCallCallback.html#//api/name/onCallItemAdd:)
+[onCallItemAdd](https://developer.juphoon.com/portal/reference/V2.1/ios/Protocols/JCCallCallback.html#//api/name/onCallItemAdd:)
 for the new call, and the call status will change to JCCallStatePending
 at this time. You can implement the
-[onCallItemAdd](/portal/reference/V2.1/ios/Protocols/JCCallCallback.html#//api/name/onCallItemAdd:)
+[onCallItemAdd](https://developer.juphoon.com/portal/reference/V2.1/ios/Protocols/JCCallCallback.html#//api/name/onCallItemAdd:)
 method in the upper layer and handle the related logic:
 
 ``````objectivec
@@ -121,9 +121,9 @@ becomes the JCCallStateCancel.
 
 1. After the caller initiates the call successfully, the called party
     will receive the
-    [onCallItemAdd](/portal/reference/V2.1/ios/Protocols/JCCallCallback.html#//api/name/onCallItemAdd:)
+    [onCallItemAdd](https://developer.juphoon.com/portal/reference/V2.1/ios/Protocols/JCCallCallback.html#//api/name/onCallItemAdd:)
     callback. At this time, the video and direction properties of the
-    [JCCallItem](/portal/reference/V2.1/ios/Classes/JCCallItem.html)
+    [JCCallItem](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCCallItem.html)
     object in the callback can be used to determine whether it is a
     video call or a voice call, so as to make corresponding processing:
 
@@ -138,7 +138,7 @@ becomes the JCCallStateCancel.
     ``````
 
 2. Call
-    [answer](/portal/reference/V2.1/ios/Classes/JCCall.html#//api/name/answer:video:)
+    [answer](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCCall.html#//api/name/answer:video:)
     to answer calls, **Voice calls can only be answered by voice**:
 
     ``````objectivec
@@ -162,11 +162,11 @@ becomes JCCallStateCanceled.
 Both the calling party and the called party can hang up the call.
 
 1. First call
-    [getActiveCallItem](/portal/reference/V2.1/ios/Classes/JCCall.html#//api/name/getActiveCallItem)
+    [getActiveCallItem](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCCall.html#//api/name/getActiveCallItem)
     to get the currently active call object.
 
 2. After obtaining the current active call object, call
-    [term](/portal/reference/V2.1/ios/Classes/JCCall.html#//api/name/term:reason:description:)
+    [term](https://developer.juphoon.com/portal/reference/V2.1/ios/Classes/JCCall.html#//api/name/term:reason:description:)
     to hang up the current active call:
 
     ``````objectivec
