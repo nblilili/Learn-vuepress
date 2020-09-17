@@ -45,7 +45,7 @@
       <div
         id="left-about"
         class="left-about"
-        style="margin-top: 9px;padding: 18px;"
+        style="margin-top: 9px;padding: 0px 18px 18px 18px;"
         v-if="needfriend"
       >
         <div
@@ -200,10 +200,10 @@ export default {
 .silder-dev {
   ul {
     margin-top: 9px;
-    padding: 18px;
+    padding: 18px 18px 0px 18px;
 
     li {
-      margin: 20px 0;
+      margin: 15px 0;
       cursor: pointer;
       position: relative;
       font-size: 16px;

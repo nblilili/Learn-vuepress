@@ -17,8 +17,8 @@ module.exports = {
     },
     '/en/': {
       lang: 'en',
-      title: 'Juphoon Platform',
-      description: 'Juphoon Platform'
+      title: 'Juphoon Cloud Platform',
+      description: 'Juphoon Cloud Platform'
     },
   },
   plugins: [

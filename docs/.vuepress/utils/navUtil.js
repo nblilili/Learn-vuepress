@@ -34,7 +34,7 @@ module.exports = {
         },
         {
           text: 'Download',
-          link: "https://developer.juphoon.com//" + locale + '/download/index.php'
+          link: "https://developer.juphoon.com/" + locale + '/download/index.php'
         }];
     }
   },

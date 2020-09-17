@@ -1,4 +1,4 @@
 ---
-title:  juphoon platform
+title:  Juphoon Cloud Developer Center
 Search: true
 ---

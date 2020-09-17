@@ -67,8 +67,10 @@ export default {
         { name: "iOS", type: 0 },
         { name: "Android", type: 1 },
         { name: "Windows C#", type: 2 },
-        { name: "Windows C++", type: 3 },
-        { name: "macOS", type: 4 },
+        { name: "Windows C++", type: 4 },
+        { name: "macOS", type: 3},
+        // { name: "macOS", type: 3 },
+        // { name: "Windows C++", type: 4 },
       ],
       list: [],
       type: "", // 平台类型
@@ -106,6 +108,7 @@ export default {
       this.platform = "iOS";
     }
     this.type = type;
+    console.log(type)
     this.C_download_sdklist(type);
   },
   methods: {
@@ -119,6 +122,7 @@ export default {
       })
         .then(function (response) {
           let data = response.data;
+          console.log(data)
           var ios = data.data[0] ? data.data[0].list : "";
           var android = data.data[2] ? data.data[2].list : "";
           var twindows = data.data[1] ? data.data[1].list : "";
@@ -210,10 +214,10 @@ export default {
         this.platform = "Windows";
         this.YearList = this.All_P_Year.twindows;
       } else if (type == 3) {
-        this.platform = "C++";
+        this.platform = "macOS";
         this.YearList = this.All_P_Year.mac;
       } else if (type == 4) {
-        this.platform = "macOS";
+        this.platform = "C++";
         this.YearList = this.All_P_Year.cpp;
       } else {
         this.platform = "iOS";

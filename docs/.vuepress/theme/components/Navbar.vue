@@ -67,9 +67,9 @@
             </div>
           </div>
 
-          <div class="nav-item olddoc">
+          <!-- <div class="nav-item olddoc">
             <a class="header-line this_line" href="/olddoc">切换到老文档中心</a>
-          </div>
+          </div> -->
           <div class="nav-btn" v-if="!user_type">
             <div class="nlogin">
               <a
