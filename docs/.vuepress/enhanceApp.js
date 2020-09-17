@@ -4,7 +4,7 @@ import BootstrapVue from 'bootstrap-vue'
 
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
-import InstantSearch from "vue-instantsearch";
+// import InstantSearch from "vue-instantsearch";
 
 import store from './store'
 
@@ -22,5 +22,5 @@ export default ({
 }) => {
   // ...做一些其他的应用级别的优化
   Vue.mixin({ store })
-  Vue.use(InstantSearch);
+  // Vue.use(InstantSearch);
 }
