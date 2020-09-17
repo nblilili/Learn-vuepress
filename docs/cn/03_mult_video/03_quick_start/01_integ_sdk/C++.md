@@ -13,7 +13,7 @@ title: 一分钟集成 SDK
 
 - 有效的菊风开发者账号（[免费注册](http:///developer.juphoon.com/signup) ）
 
-- 有效的菊风 [AppKey](/cn/document/V2.1/create-application.php)
+- 有效的菊风 [AppKey](../../../juphoon_platform/03_console_description/03_应用管理.md)
 
 ## 创建 Windows 项目
 
