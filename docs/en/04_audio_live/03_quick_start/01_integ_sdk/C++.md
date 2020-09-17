@@ -13,9 +13,9 @@ created.
 - Support Windows 7 or above
 
 - Efficient Juphoon developer account ([free sign
-    up](http:///developer.juphoon.com/signup))
+    up](https://developer.juphoon.com/en/signup))
 
-- Efficient Juphoon [AppKey](https://developer.juphoon.com/cn/document/V2.1/create-application.php)
+- Efficient Juphoon [AppKey](../../../../cn/juphoon_platform/03_console_description/03_应用管理.md)
 
 ## Create a Windows project
 

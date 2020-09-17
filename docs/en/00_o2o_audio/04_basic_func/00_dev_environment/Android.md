@@ -17,7 +17,7 @@ created.
 - Effective Juphoon Developer Account ([free sign
     up](https://developer.juphoon.com/en/signup))
 
-- Efficient Juphoon [AppKey](https://developer.juphoon.com/cn/document/V2.1/create-application.php)
+- Efficient Juphoon [AppKey](../../../../cn/juphoon_platform/03_console_description/03_应用管理.md)
 
 ## Create an Android project
 
