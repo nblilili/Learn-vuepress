@@ -7,7 +7,7 @@ title: 一分钟跑通 Demo
 
 ## 获取 AppKey
 
-请参考 [AppKey](../../../juphoon_platform/03_console_description/03_应用管理.md) 来获取您的 AppKey 。
+请参考 [AppKey](../../../../cn/juphoon_platform/03_console_description/03_应用管理.md) 来获取您的 AppKey 。
 
 ::: tip
 

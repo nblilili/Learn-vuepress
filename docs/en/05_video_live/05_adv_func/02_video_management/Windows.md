@@ -246,8 +246,7 @@ if (remoteCanvas != null)
 ``````
 
 
-Video call screenshot
-\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>:
+Video call screenshot:
 
 ``````csharp
 /// <summary>
@@ -307,8 +306,7 @@ public bool resume()
 Video device management mainly uses the methods in the JCMediaDevice
 class, as follows:
 
-Get current camera and default camera
-\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>:
+Get current camera and default camera:
 
 ``````csharp
 /// <summary>

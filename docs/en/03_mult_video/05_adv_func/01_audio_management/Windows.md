@@ -5,8 +5,7 @@ title: Audio Management
 
 ## Audio Device Management
 
-Current audio input and output devices
-\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>:
+Current audio input and output devices:
 
 ``````csharp
 /// <summary>
