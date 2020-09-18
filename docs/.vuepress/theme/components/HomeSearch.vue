@@ -307,7 +307,7 @@
               <span class="blink">_</span>
             </a>
             <a
-              href="http://wpa.qq.com/msgrd?v=3&amp;uin=2703650800&amp;site=qq&amp;menu=yes"
+              href="https://cloud.juphoon.com/en/talk-to-us.html"
               target="_blank"
               class="contactUs"
             >Contact us</a>
