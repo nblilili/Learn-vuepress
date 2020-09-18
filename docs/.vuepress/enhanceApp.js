@@ -7,7 +7,6 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 // import InstantSearch from "vue-instantsearch";
 
 import store from './store'
-
 Vue.prototype.$EventBus = new Vue()
 // // Install BootstrapVue
 // // Vue.use(BootstrapVue)
@@ -23,4 +22,13 @@ export default ({
   // ...做一些其他的应用级别的优化
   Vue.mixin({ store })
   // Vue.use(InstantSearch);
+  router.beforeEach((to, from, next) => {
+    // @pdai: 对每个页面点击添加百度统计
+    if (typeof _hmt != 'undefined') {
+      if (to.path) {
+        _hmt.push(['_trackPageview', to.fullPath]);
+      }
+    }
+    next();
+  })
 }

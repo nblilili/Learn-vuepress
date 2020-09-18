@@ -81,27 +81,24 @@
 
 
 <script>
-// var ALGOLIA_INSIGHTS_SRC = "https://cdn.jsdelivr.net/npm/search-insights@1.3.1";
-
-// !(function (e, a, t, n, s, i, c) {
-//   (e.AlgoliaAnalyticsObject = s),
-//     (e[s] =
-//       e[s] ||
-//       function () {
-//         (e[s].queue = e[s].queue || []).push(arguments);
-//       }),
-//     (i = a.createElement(t)),
-//     (c = a.getElementsByTagName(t)[0]),
-//     (i.async = 1),
-//     (i.src = n),
-//     c.parentNode.insertBefore(i, c);
-// })(window, document, "script", ALGOLIA_INSIGHTS_SRC, "aa");
-
-// // Initialize library
-// aa("init", {
-//   appId: "BF4RDO0EYD",
-//   apiKey: "d02d64058b08646fc04cf361671ec59c",
-// });
+// var _hmt = _hmt || [];
+// (function () {
+//   var hm = document.createElement("script");
+//   hm.src = "https://hm.baidu.com/hm.js?987f810a49ad7c3ef50b75f613b8b43e";
+//   var s = document.getElementsByTagName("script")[0];
+//   s.parentNode.insertBefore(hm, s);
+// })();
+// (function () {
+//   var bp = document.createElement("script");
+//   var curProtocol = window.location.protocol.split(":")[0];
+//   if (curProtocol === "https") {
+//     bp.src = "https://zz.bdstatic.com/linksubmit/push.js";
+//   } else {
+//     bp.src = "http://push.zhanzhang.baidu.com/push.js";
+//   }
+//   var s = document.getElementsByTagName("script")[0];
+//   s.parentNode.insertBefore(bp, s);
+// })();
 import Home from "@theme/components/Home.vue";
 import Navbar from "@theme/components/Navbar.vue";
 import Page from "@theme/components/Page.vue";
