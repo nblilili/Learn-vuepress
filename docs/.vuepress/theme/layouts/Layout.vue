@@ -83,8 +83,8 @@
 <script>
 // var _hmt = _hmt || [];
 // (function () {
-//   var hm = document.createElement("script");
-//   hm.src = "https://hm.baidu.com/hm.js?987f810a49ad7c3ef50b75f613b8b43e";
+//   var hm = document.createElement("script");987f810a49ad7c3ef50b75f613b8b43e
+//   hm.src = "https://hm.baidu.com/hm.js?";
 //   var s = document.getElementsByTagName("script")[0];
 //   s.parentNode.insertBefore(hm, s);
 // })();
@@ -136,6 +136,11 @@ export default {
       defaultTop: 400,
       defaultDuration: 300,
     };
+  },
+  watch: {
+    $lang(newValue) {
+      localStorage.lang = newValue;
+    },
   },
   created() {
     // this.checkTags();

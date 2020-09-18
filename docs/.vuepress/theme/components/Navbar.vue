@@ -7,9 +7,9 @@
       :class="!$page.frontmatter.home&& !$page.frontmatter.Search?'':'index'"
     >
       <nav class="navbar" :class="$lang =='cn'?'cn':'en'">
-        <a class="navbar-brand" :href="`/${$lang}`" style="z-index:999">
-          <img src="../assets/image/juphoon cloud developer@2x.png" v-if="$lang=='cn'" />
-          <img src="../assets/image/2@2x.png" v-else style="height:45px;width:auto" />
+        <a class="navbar-brand" :href="`/${$lang}`" style="z-index:999;height:60px">
+          <img src="../assets/image/logo_cn.png" v-if="$lang=='cn'"  style="vertical-align: bottom;" />
+          <img src="../assets/image/logo_en.png" v-else style="vertical-align: bottom;width:202px" />
         </a>
         <!-- <XRouter  class="navbar-brand" :to="{path:`/${$lang}`}" style="z-index:999">
           <img src="../assets/image/juphoon cloud developer@2x.png" v-if="$lang=='cn'" />
