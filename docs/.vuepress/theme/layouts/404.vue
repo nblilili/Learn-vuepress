@@ -14,7 +14,7 @@
       <img :src="img.img404" alt />
       <div class="contRight">
         <h1>哎呀，很抱歉！</h1>
-        <p>您访问的页面不存在···</p>
+        <h1>您访问的页面不存在···</h1>
         <div class="button">
           <p>返回首页</p>
         </div>
@@ -80,16 +80,19 @@ export default {
     height: 60px;
     background: #3035FF;
     border-radius: 11px;
+    margin-top: 48px;
 
     p {
       padding: 16px 41px;
-      width: 118px;
+      // width: 118px;
       height: 28px;
       font-size: 20px;
       font-family: PingFangSC-Semibold, PingFang SC;
       font-weight: 600;
       color: #FFFFFF;
       line-height: 28px;
+      text-align: ceter;
+      margin: 0;
     }
   }
 
@@ -97,12 +100,21 @@ export default {
     max-width: 800px;
     margin: 0 auto;
     overflow: hidden;
+    margin-top: 100px;
+
+    h1{    
+      font-size: 32px;
+      font-family: PingFangSC-Light, PingFang SC;
+      font-weight: 300;
+      color: #000000;
+      line-height: 45px;
+      -webkit-text-stroke: 1px #979797;
+      text-stroke: 1px #979797;
+    }
   }
   .contRight{
     float: right;
-    width: calc(100% - 400px);
-    // top: 50%;
-    transform: translateY(50%);
+    width: calc(100% - 450px);
   }
 }
 
