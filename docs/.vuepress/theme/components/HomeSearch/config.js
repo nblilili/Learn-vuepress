@@ -114,21 +114,21 @@ var second_pcont = [{
     }]
 }]
 var third_pcont = [{
-    title:"WebRTC",
-    img:"https://developer.juphoon.com/style/images/home/developer_WebRTC@2x.png",
-    url:"/cn/WebRTC/"
-},{
-    title:"服务器录制",
-    img:"https://developer.juphoon.com/style/images/home/developer_rec@2x.png",
-    url:"https://developer.juphoon.com/cn/document/server_rec/"
-},{
-    title:"屏幕共享",
-    img:"https://developer.juphoon.com/style/images/home/developer_screen sharing@2x.png",
-    url:"https://developer.juphoon.com/cn/document/screen_share/"
-},{
-    title:"CDN 推流",
-    img:"https://developer.juphoon.com/style/images/home/developer_CDN@2x.png",
-    url:"https://developer.juphoon.com/cn/document/cdn/"
+    title: "WebRTC",
+    img: "https://developer.juphoon.com/style/images/home/developer_WebRTC@2x.png",
+    url: "/cn/WebRTC/"
+}, {
+    title: "服务器录制",
+    img: "https://developer.juphoon.com/style/images/home/developer_rec@2x.png",
+    url: "https://developer.juphoon.com/cn/server_recording/"
+}, {
+    title: "屏幕共享",
+    img: "https://developer.juphoon.com/style/images/home/developer_screen sharing@2x.png",
+    url: "https://developer.juphoon.com/cn/screen_share/"
+}, {
+    title: "CDN 推流",
+    img: "https://developer.juphoon.com/style/images/home/developer_CDN@2x.png",
+    url: "https://developer.juphoon.com/cn/CDN_push/"
 }]
 
 var forth_pcont = []
