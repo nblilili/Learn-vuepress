@@ -36,12 +36,13 @@
           </div>
           <div style="padding: 2.5rem 2.5rem 0px 2.5rem" v-if="needTags">
             <div class="mbtns">
-              <router-link
-                :class="item.active?'active':''"
+              <div
                 v-for="item in CardName"
                 :key="item.name"
-                :to="item.href"
-              >{{item.name}}</router-link>
+                @click="clickTags(item.href,item.name)"
+              >
+                <router-link :class="item.active?'active':''" :to="item.href">{{item.name}}</router-link>
+              </div>
             </div>
           </div>
           <Content class="theme-default-content mcont DocSearch-content"></Content>
@@ -52,6 +53,25 @@
       </div>
       <slot name="bottom" />
     </main>
+    <div class="modal_big" :class="showclass" v-show="showmodal">
+      <div id class="layui-layer-content">{{showtext}}</div>
+      <span class="layui-layer-setwin"></span>
+    </div>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">模态框（Modal）标题</h4>
+            </div>
+            <div class="modal-body">在这里添加一些文本</div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary">提交更改</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
   </div>
 </template>
 
@@ -73,9 +93,32 @@ export default {
       title: "",
       keyword: "",
       topsearch: false,
+      showmodal: false, // 显示模态框
+      showclass: "play-first",
+      showtext: "",
+      s_obj: {
+        init_class: true,
+        show_in: false,
+        show_out: false,
+      },
     };
   },
   watch: {
+    // showmodal() {
+    //   if (this.showmodal) {
+    //     this.s_obj = {
+    //       init_class: false,
+    //       show_in: true,
+    //       show_out: false,
+    //     };
+    //   } else {
+    //     this.s_obj = {
+    //       init_class: false,
+    //       show_in: false,
+    //       show_out: true,
+    //     };
+    //   }
+    // },
     $route(newValue, oldValue) {
       this.keyword = "";
       let that = this;
@@ -139,6 +182,24 @@ export default {
     }
   },
   methods: {
+    clickTags(value, name) {
+      console.log(value, name);
+      localStorage.platform = value;
+      // if(value == )
+      this.showtext =
+        this.$lang == "cn"
+          ? "您已切换成" + name + "平台"
+          : "You have switched to platform" + name;
+      this.showmodal = true;
+      this.showclass = "play-first";
+      // ?'play-first':'play-second'
+      setTimeout(() => {
+        this.showclass = "play-second";
+        // setTimeout(() => {
+          this.showmodal = false;
+        // }, 1500);
+      }, 3000);
+    },
     goSearch(value) {
       console.log(`/${this.$lang}/#` + value);
       this.$router.push({ path: `/${this.$lang}/#` + value });
@@ -201,6 +262,23 @@ export default {
           this.CardName = array;
         }
       }
+      // console.log(JSON.stringify(this.CardName));
+      // let changeRoute = JSON.parse(JSON.stringify(this.CardName));
+      // console.log(this.$route.path);
+      // let path = this.$route.path;
+      // console.log(path.substring(path.lastIndexOf("/") + 1));
+      // let path_first = path.substring(0, path.lastIndexOf("/") + 1);
+      // let path_last = path.substring(path.lastIndexOf("/") + 1);
+      // console.log(localStorage.platform);
+      // for (let i in JSON.parse(JSON.stringify(this.CardName))) {
+      //   console.log(changeRoute[i]);
+      //   if (localStorage.platform.indexOf(changeRoute[i].href) > -1) {
+      //     console.log(localStorage.platform, path_last, path_first);
+      //     this.$router.push({
+      //       path: path_first + localStorage.platform,
+      //     });
+      //   }
+      // }
     },
     // handleScrollx() {
     //   let that = this;
@@ -257,6 +335,81 @@ function check_path(data) {
 @require '../styles/wrapper.styl';
 @require '../styles/HomeSearch.styl';
 @import url('//at.alicdn.com/t/font_1986404_olndtqc1n5q.css');
+
+.modal_big {
+  animation-duration: 0.3s;
+  animation-fill-mode: both;
+  background-attachment: scroll;
+  background-clip: border-box;
+  background-color: rgba(47, 46, 65, 0.9);
+  background-size: auto;
+  border-bottom-color: rgb(255, 255, 255);
+  border-radius: 10px;
+  box-shadow: none;
+  box-sizing: border-box;
+  color: rgb(255, 255, 255);
+  font-size: 15px;
+  font-weight: 400;
+  height: 48px;
+  left: 259.5px;
+  margin: 0;
+  max-width: 500px;
+  min-width: 100px;
+  padding: 0;
+  position: fixed;
+  top: 60px;
+  width: 500px;
+}
+
+.layui-layer-content {
+  display: block;
+  font-size: 14px;
+  font-weight: 400;
+  height: 48px;
+  line-height: 24px;
+  padding-bottom: 12px;
+  padding-left: 25px;
+  padding-right: 25px;
+  padding-top: 12px;
+  position: relative;
+  text-align: center;
+}
+
+.play-first {
+  animation: myfirst 1.5s;
+}
+
+.play-second {
+  animation: mysecond 1.5s;
+}
+
+@keyframes myfirst {
+  0% {
+    opacity: 0;
+  }
+
+  0% {
+    opacity: 0.75;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes mysecond {
+  0% {
+    opacity: 1;
+  }
+
+  0% {
+    opacity: 0.75;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
 
 .page-left .top_search {
   display: none;
@@ -371,6 +524,10 @@ a, a:hover, a:focus {
 
 .mbtns {
   padding: 0px !important;
+
+  div {
+    display: inline;
+  }
 }
 
 .mbtns a.active, .mbtns a.active:hover, .sdkcont .mbtns a.active, .sdkcont .mbtns a.active:hover, .mbtns a:hover {
