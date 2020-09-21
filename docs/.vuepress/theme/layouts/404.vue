@@ -2,12 +2,8 @@
   <div class="page">
     <div class="header">
       <a class="nav" :href="`/${lang}/`">
-        <img
-          src="../assets/image/logo_cn.png"
-          v-if="lang=='cn'"
-          style="vertical-align: middle;width:300px"
-        />
-        <img src="../assets/image/logo_en.png" v-else style="vertical-align: middle;width:202px" />
+        <img src="../assets/image/logo_cn.png" v-if="lang=='cn'" style="width:300px" />
+        <img src="../assets/image/logo_en.png" v-else style="width:202px" />
       </a>
     </div>
     <!-- 头部主体 -->
@@ -18,12 +14,17 @@
       <div class="contRight">
         <h1 v-if="lang =='cn'">
           哎呀，很抱歉！
-          <br />您访问的页面不存在···
+          <br />您访问的页面不存在
+          <span class="none">···</span>
         </h1>
         <h1 v-else>
-          Ooops！
-          <br />The Page You’re Looking For
-          <br />Was Not Found
+          <span>Ooops！</span>
+
+          <br />
+          <span style="font-size:24px;font-weight: 400;">
+            The Page You’re Looking For
+            <br />Was Not Found
+          </span>
         </h1>
         <div class="button">
           <p>
@@ -279,8 +280,9 @@ export default {
     };
   },
   mounted() {
-    this.lang = localStorage.lang;
     console.log(localStorage.lang);
+    if (localStorage.lang) this.lang = localStorage.lang;
+    else this.lang = "cn";
   },
   methods: {
     getMsg() {
@@ -296,7 +298,7 @@ a {
 }
 
 a:hover {
-  color: #0056b3;
+  color: #000;
   text-decoration: none;
 }
 
@@ -324,10 +326,11 @@ a:hover {
     height: 60px;
     background: #3035FF;
     border-radius: 11px;
-    margin-top: 48px;
+    margin-top: 30px;
+    min-width: 270px;
 
     p {
-      padding: 16px 41px;
+      padding: 16px 10px;
       font-size: 20px;
       font-weight: 600;
       color: #FFFFFF;
@@ -347,7 +350,7 @@ a:hover {
     max-width: 780px;
     margin: 0 auto;
     overflow: hidden;
-    margin-top: 100px;
+    margin-top: 50px;
 
     h1 {
       margin: 0;
@@ -356,8 +359,10 @@ a:hover {
       font-weight: 300;
       color: #000000;
       line-height: 45px;
-      -webkit-text-stroke: 1px #979797;
-      text-stroke: 1px #979797;
+
+      span {
+        font-weight: 600;
+      }
     }
   }
 
@@ -369,10 +374,16 @@ a:hover {
 }
 
 .nav {
+  display: block !important;
+  box-shadow: none !important;
   margin: 0;
   position: relative;
   top: 0;
   padding: 30px 0px 0px 23px !important;
+
+  img {
+    background: 100%;
+  }
 }
 
 .part-cont {
@@ -401,7 +412,7 @@ a:hover {
 
 .check_doc {
   font-size: 32px;
-  margin-top: 40px;
+  margin-top: 60px;
   text-align: center;
   margin-bottom: 15px;
   font-weight: 300;
@@ -458,8 +469,17 @@ a:hover {
 }
 
 @media (max-width: 800px) {
+  .inner:hover {
+    box-shadow: none;
+    border: 1px solid #DFDFDF;
+  }
+
+  .none {
+    display: none;
+  }
+
   .page .content {
-    margin-top: 50px;
+    margin-top: 40px;
   }
 
   .part-cont {
@@ -475,6 +495,7 @@ a:hover {
       float: none;
       width: 100%;
       text-align: center;
+      margin-bottom: 10px;
 
       img {
         display: inline-block;
@@ -487,7 +508,7 @@ a:hover {
 
       .button {
         margin: 0 auto;
-        margin-top: 48px;
+        margin-top: 30px;
       }
     }
   }

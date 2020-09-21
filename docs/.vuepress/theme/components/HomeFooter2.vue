@@ -88,7 +88,7 @@ export default {
     };
   },
   mounted() {
-    this.lang = localStorage.lang;
+    this.lang = localStorage.lang||'cn';
   },
 };
 </script>
@@ -106,7 +106,6 @@ export default {
 
 @media (max-width: 800px) {
   .site-footer.en {
-    padding-top: 140px;
     height: auto;
   }
 

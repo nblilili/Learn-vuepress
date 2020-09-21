@@ -53,7 +53,8 @@
       </div>
       <slot name="bottom" />
     </main>
-    <div class="modal_big" :class="showing?'play-second':'play-first'" v-show="showmodal">
+    <!-- <dialog-bar v-model="showmodal"></dialog-bar>> -->
+    <div class="modal_big play-second" v-show="showmodal">
       <div id class="layui-layer-content">{{showtext}}</div>
       <span class="layui-layer-setwin"></span>
     </div>
@@ -62,12 +63,13 @@
 
 <script>
 import PageEdit from "@theme/components/PageEdit.vue";
+import dialogBar from "./dialog.vue";
 import PageNav from "@theme/components/PageNav.vue";
 import SidebarRight from "@theme/components/SidebarRight.vue";
 // import TagsConfig from "../../config/TagsConfig.js";
 
 export default {
-  components: { PageEdit, PageNav, SidebarRight },
+  components: { PageEdit, PageNav, SidebarRight, "dialog-bar": dialogBar },
   props: ["sidebarItems", "toggleSidebar"],
   data() {
     return {
@@ -79,7 +81,7 @@ export default {
       keyword: "",
       topsearch: false,
       showmodal: false, // 显示模态框
-      showclass: "play-first",
+      showclass: "play-second ", // play-first
       showtext: "",
       showing: false,
       s_obj: {
@@ -175,17 +177,29 @@ export default {
       this.showtext =
         this.$lang == "cn"
           ? "您已切换成" + name + "平台"
-          : "You have switched to platform" + name;
+          : 'You have switched to platform "' + name + '"';
       // this.showmodal = true;
       this.showmodal = true;
       this.showing = true;
       if (this.showing) {
-        this.showing = true;
         setTimeout(() => {
-          // this.showmodal = false;
+          this.showmodal = false;
           this.showing = false;
         }, 3000);
+      } else {
+        this.showmodal = true;
       }
+      // setTimeout(() => {
+      //   this.showmodal = false;
+      // }, 3000);
+      // this.showing = true;
+      // if (this.showing) {
+      //   this.showing = true;
+      //   setTimeout(() => {
+      //     // this.showmodal = false;
+      //     this.showing = false;
+      //   }, 3000);
+      // }
       // this.showclass = "play-first";
       // // ?'play-first':'play-second'
       // setTimeout(() => {
@@ -348,14 +362,19 @@ function check_path(data) {
   font-weight: 400;
   height: 48px;
   left: 37.5%;
-  z-index:9999999;
+  z-index: 9999999;
   margin: 0 auto;
   max-width: 500px;
   min-width: 100px;
   padding: 0;
   position: fixed;
   top: 80px;
-  width: 25%;
+  width: 100%;
+  min-width: 25%;
+}
+
+@media (max-width: 800px) {
+  left: initial;
 }
 
 .layui-layer-content {
