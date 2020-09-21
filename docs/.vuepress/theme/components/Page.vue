@@ -53,25 +53,10 @@
       </div>
       <slot name="bottom" />
     </main>
-    <div class="modal_big" :class="showclass" v-show="showmodal">
+    <div class="modal_big" :class="showing?'play-second':'play-first'" v-show="showmodal">
       <div id class="layui-layer-content">{{showtext}}</div>
       <span class="layui-layer-setwin"></span>
     </div>
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="myModalLabel">模态框（Modal）标题</h4>
-            </div>
-            <div class="modal-body">在这里添加一些文本</div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                <button type="button" class="btn btn-primary">提交更改</button>
-            </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal -->
-</div>
   </div>
 </template>
 
@@ -96,6 +81,7 @@ export default {
       showmodal: false, // 显示模态框
       showclass: "play-first",
       showtext: "",
+      showing: false,
       s_obj: {
         init_class: true,
         show_in: false,
@@ -190,15 +176,24 @@ export default {
         this.$lang == "cn"
           ? "您已切换成" + name + "平台"
           : "You have switched to platform" + name;
+      // this.showmodal = true;
       this.showmodal = true;
-      this.showclass = "play-first";
-      // ?'play-first':'play-second'
-      setTimeout(() => {
-        this.showclass = "play-second";
-        // setTimeout(() => {
-          this.showmodal = false;
-        // }, 1500);
-      }, 3000);
+      this.showing = true;
+      if (this.showing) {
+        this.showing = true;
+        setTimeout(() => {
+          // this.showmodal = false;
+          this.showing = false;
+        }, 3000);
+      }
+      // this.showclass = "play-first";
+      // // ?'play-first':'play-second'
+      // setTimeout(() => {
+      //   this.showclass = "play-second";
+      //   // setTimeout(() => {
+      //     this.showmodal = false;
+      //   // }, 1500);
+      // }, 3000);
     },
     goSearch(value) {
       console.log(`/${this.$lang}/#` + value);
@@ -337,6 +332,7 @@ function check_path(data) {
 @import url('//at.alicdn.com/t/font_1986404_olndtqc1n5q.css');
 
 .modal_big {
+  transition: all 1s;
   animation-duration: 0.3s;
   animation-fill-mode: both;
   background-attachment: scroll;
@@ -351,14 +347,15 @@ function check_path(data) {
   font-size: 15px;
   font-weight: 400;
   height: 48px;
-  left: 259.5px;
-  margin: 0;
+  left: 37.5%;
+  z-index:9999999;
+  margin: 0 auto;
   max-width: 500px;
   min-width: 100px;
   padding: 0;
   position: fixed;
-  top: 60px;
-  width: 500px;
+  top: 80px;
+  width: 25%;
 }
 
 .layui-layer-content {
@@ -376,11 +373,13 @@ function check_path(data) {
 }
 
 .play-first {
-  animation: myfirst 1.5s;
+  // animation: myfirst 1.5s;
+  height: 0px !important;
 }
 
 .play-second {
-  animation: mysecond 1.5s;
+  // animation: mysecond 1.5s;
+  height: 48px;
 }
 
 @keyframes myfirst {
