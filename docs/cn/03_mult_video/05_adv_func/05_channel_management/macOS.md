@@ -140,3 +140,71 @@ if (participant != nil) {
 -(void)onMessageReceive:(NSString *)type content:(NSString *)content fromUserId:(NSString *)fromUserId;
 ``````
 
+## 频道属性设置
+
+在调用 JCMediaChannel 中的 join 函数加入/创建频道前，您可以通过 JoinParam
+类来设置频道属性，如频道允许加入的最大人数、推流参数、录制参数等。其默认参数如下所示。
+
+```objectivec
+/// 会议最大人数
+int capacity;
+/// 推流参数
+NSString* __nullable cdn;
+/// 录制参数
+JCMediaChannelRecordParam * __nullable record;
+/// 密码
+NSString* __nonnull password;
+/// 平滑模式
+bool smooth;
+/// 会议最大分辨率 JCMediaChannelMaxResolution
+JCMediaChannelMaxResolution maxResolution;
+/// uri 模式, join 函数的参数为会议 uri
+bool uriMode;
+/// 心跳间隔
+int heartbeatTime;
+/// 心跳超时
+int heartbeatTimeout;
+/// 方形画面
+bool square;
+/// 帧率 1-30, 默认 24
+int framerate;
+/// 最大码率
+int maxBitrate;
+/// 自定义属性
+NSString* __nullable customProperty;
+/// 自定义媒体每层参数
+NSString* __nullable customVideoResolution;
+/// 会议画面比例
+float videoRatio;
+```
+
+### 最大人数设置
+
+您可以通过改变 capacity 参数来调整频道最大人数。
+
+```objectivec
+JCMediaChannelJoinParam *joinParam = [[JCMediaChannelJoinParam alloc] init];
+// 设置最大人数
+joinParam.capacity = 6;
+// 加入频道
+[mediaChannel join:@"222" joinParam:joinParam];
+```
+
+### 会议最大分辨率设置
+
+您可以通过改变 maxResolution 参数来调整频道最大分辨率。 
+
+```objectivec
+JCMediaChannelJoinParam *joinParam = [[JCMediaChannelJoinParam alloc] init];
+// 设置会议最大分辨率
+joinParam.maxResolution = JCMediaChannelMaxResolution360;
+// 加入频道
+[mediaChannel join:@"222" joinParam:joinParam];
+```
+
+::: tip
+
+菊风默认提供 360p 的最大分辨率，如需设置会议最大分辨率
+720p，1080p，您可以通过发送邮件与我们取得联系：marketing@juphoon.com.cn 。
+
+:::

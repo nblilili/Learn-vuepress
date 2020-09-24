@@ -79,7 +79,6 @@ JCMediaChannelParticipant* participant = JCManager::shared()->mediaChannel->getP
 std::list<JCMediaChannelParticipant*>* participants = JCManager::shared()->mediaChannel->getParticipants();
 ``````
 
-
 ### 踢出成员
 
 调用
@@ -92,3 +91,68 @@ JCMediaChannelParticipant* participant = JCManager::shared()->mediaChannel->getP
 //踢除成员
 JCManager::shared()->mediaChannel->kick(participant);
 ``````
+
+## 频道属性设置
+
+在调用 JCMediaChannel 中的 join 函数加入/创建频道前，您可以通过 JoinParam
+类来设置频道属性，如频道允许加入的最大人数、推流参数、录制参数等。其默认参数如下所示。
+
+``` java
+// 会议最大人数
+public int capacity;
+// 推流参数
+public char cdn [512];
+// 录制参数
+public JCMediaChannelRecordParam record;
+// 密码
+public char password [64];
+// 平滑模式
+public bool smooth;
+// 会议最大分辨率
+public JCMediaChannelMaxResolution maxResolution;
+// uri 模式, join 函数的参数为会议 uri
+public bool uriMode;
+// 心跳间隔
+public int heartbeatTime;
+// 心跳超时
+public int heartbeatTimeout;
+// 帧率 1-30, 默认 24
+public int framerate;
+// 自定义属性
+public char customProperty [1024];
+// 自定义媒体每层参数
+public char customVideoResolution [128];
+// 会议画面比例
+public float videRatio;
+```
+
+### 最大人数设置
+
+您可以通过改变 capacity 参数来调整频道最大人数。
+
+``` cpp
+JCMediaChannelJoinParam* joinParam = new JCMediaChannelJoinParam();
+// 设置最大人数
+joinParam->capacity = 6;
+// 加入频道
+mediaChannel->join("222", joinParam);
+```
+
+### 会议最大分辨率设置
+
+您可以通过改变 maxResolution 参数来调整频道最大分辨率。 
+
+``` cpp
+JCMediaChannelJoinParam* joinParam = new JCMediaChannelJoinParam();
+// 设置会议最大分辨率
+joinParam->maxResolution = JCMediaChannelMaxResolution360P;
+// 加入频道
+mediaChannel->join("222", joinParam);
+```
+
+::: tip
+
+菊风默认提供 360p 的最大分辨率，如需设置会议最大分辨率
+720p，1080p，您可以通过发送邮件与我们取得联系：marketing@juphoon.com.cn 。
+
+:::
