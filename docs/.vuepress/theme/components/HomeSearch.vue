@@ -123,13 +123,12 @@
                 <img :src="img.Voice_Calling_one" alt />
                 <div class="title">
                   <span @click="clickPath('00_o2o_audio')">One-to-One Voice Calling</span>
-                  <router-link to="00_o2o_audio" target="_blank" class="width800">
+                  <router-link to="00_o2o_audio" class="width800">
                     Quick Start
                     <img :src="img.Lz" alt />
                   </router-link>
                   <a
                     href="https://developer.juphoon.com/en/download/demo-code.php"
-                    target="_blank"
                     class="width800"
                   >
                     Demo Source Code
@@ -142,13 +141,12 @@
                 <img :src="img.Voice_Calling_group" alt />
                 <div class="title">
                   <span @click="clickPath('02_mult_audio')">Group Voice Calling</span>
-                  <router-link to="02_mult_audio" target="_blank" class="width800">
+                  <router-link to="02_mult_audio" class="width800">
                     Quick Start
                     <img :src="img.Lz" alt />
                   </router-link>
                   <a
                     href="https://developer.juphoon.com/en/download/demo-code.php"
-                    target="_blank"
                     class="width800"
                   >
                     Demo Source Code
@@ -167,13 +165,12 @@
                 <img :src="img.Video_Calling_one" alt />
                 <div class="title">
                   <span @click="clickPath('01_o2o_video')">One-to-One Video Calling</span>
-                  <router-link to="01_o2o_video" target="_blank" class="width800">
+                  <router-link to="01_o2o_video" class="width800">
                     Quick Start
                     <img :src="img.Lz" alt />
                   </router-link>
                   <a
                     href="https://developer.juphoon.com/en/download/demo-code.php"
-                    target="_blank"
                     class="width800"
                   >
                     Demo Source Code
@@ -186,13 +183,12 @@
                 <img :src="img.Video_Calling_group" alt />
                 <div class="title">
                   <span @click="clickPath('03_mult_video')">Group Video Calling</span>
-                  <router-link to="03_mult_video" target="_blank" class="width800">
+                  <router-link to="03_mult_video" class="width800">
                     Quick Start
                     <img :src="img.Lz" alt />
                   </router-link>
                   <a
                     href="https://developer.juphoon.com/en/download/demo-code.php"
-                    target="_blank"
                     class="width800"
                   >
                     Demo Source Code
@@ -211,13 +207,12 @@
                 <img :src="img.Broadcasting_audio" alt />
                 <div class="title">
                   <span @click="clickPath('04_audio_live')">Live Interactive Audio Streaming</span>
-                  <router-link to="04_audio_live" target="_blank" class="width800">
+                  <router-link to="04_audio_live" class="width800">
                     Quick Start
                     <img :src="img.Lz" alt />
                   </router-link>
                   <a
                     href="https://developer.juphoon.com/en/download/demo-code.php"
-                    target="_blank"
                     class="width800"
                   >
                     Demo Source Code
@@ -230,13 +225,12 @@
                 <img :src="img.Broadcasting_video" alt />
                 <div class="title">
                   <span @click="clickPath('05_video_live')">Live Interactive Video Streaming</span>
-                  <router-link to="05_video_live" target="_blank" class="width800">
+                  <router-link to="05_video_live" class="width800">
                     Quick Start
                     <img :src="img.Lz" alt />
                   </router-link>
                   <a
                     href="https://developer.juphoon.com/en/download/demo-code.php"
-                    target="_blank"
                     class="width800"
                   >
                     Demo Source Code
@@ -307,7 +301,7 @@
               <span class="blink">_</span>
             </a>
             <a
-              href="http://wpa.qq.com/msgrd?v=3&amp;uin=2703650800&amp;site=qq&amp;menu=yes"
+              href="https://cloud.juphoon.com/en/talk-to-us.html"
               target="_blank"
               class="contactUs"
             >Contact us</a>
@@ -1337,10 +1331,12 @@ export default {
   .en .part_four .talk-back p {
     margin-bottom: 20px;
   }
-.bactxt .en_h2{
-  margin-top:20px
-  margin-bottom: 48px;
-}
+
+  .bactxt .en_h2 {
+    margin-top: 20px;
+    margin-bottom: 48px;
+  }
+
   .en {
     .part_two {
       height: auto;

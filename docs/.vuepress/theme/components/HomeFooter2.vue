@@ -1,6 +1,6 @@
 <template>
   <div id="footer" chrome-app-version="2.0.2">
-    <footer class="site-footer" v-if="$lang =='cn'">
+    <footer class="site-footer" v-if="lang =='cn'">
       <div class="container">
         <div class="footer-other">
           <ul class="nav-group" style="width:92%;text-align: center;">
@@ -49,7 +49,7 @@
         </div>
       </div>
     </footer>
-    <footer class="site-footer en" v-if="$lang =='en'">
+    <footer class="site-footer en" v-if="lang =='en'">
       <div class="container en">
         <div class="footer-other">
           <ul class="nav-group" style="text-align: center;">
@@ -84,18 +84,21 @@ export default {
     return {
       height: "auto",
       padding: "auto",
+      lang: "",
     };
+  },
+  mounted() {
+    this.lang = localStorage.lang||'cn';
   },
 };
 </script>
 
 <style lang="stylus" scoped>
+@require '../styles/header_footer.styl';
 // .site-footer.en {
 // height: 419px;
 // }
 .container.en {
-  padding: 165px 165px 0px 165px;
-
   .nav-group {
     margin: 20px;
   }
@@ -103,7 +106,6 @@ export default {
 
 @media (max-width: 800px) {
   .site-footer.en {
-    padding-top: 140px;
     height: auto;
   }
 
