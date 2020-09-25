@@ -15,4 +15,5 @@ module.exports = new Map()
   .set("03_console_description","控制台说明")
   .set("04_TianSai_eagle_eyes", "天塞鹰眼")
   .set("05_download", "下载")
+  .set("01_server_api", "服务器 API")
   .set("06_FAQ", "FAQ");
