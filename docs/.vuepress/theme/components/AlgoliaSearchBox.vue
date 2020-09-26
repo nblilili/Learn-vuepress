@@ -1,6 +1,7 @@
 <template>
   <form id="search-form" class="algolia-search-wrapper search-box" role="search">
     <input
+      v-model="value"
       id="algolia-search-input"
       class="search-query"
       :placeholder="placeholder"
@@ -10,6 +11,8 @@
 </template>
 
 <script>
+// import "docsearch.js/dist/cdn/docsearch.min.css";
+// import docsearch from "docsearch";
 export default {
   name: "AlgoliaSearchBox",
 
@@ -18,6 +21,7 @@ export default {
   data() {
     return {
       placeholder: undefined,
+      value: "",
     };
   },
 
@@ -37,17 +41,45 @@ export default {
   },
   methods: {
     searchData() {
+      console.log(111);
       let hash = this.$route.hash.substr(1);
+
       if (this.value) {
+        console.log(this.value);
         if (this.value && decodeURI(hash) != this.value) {
+          console.log(this.value);
+
           this.$router.push({ path: "/" + this.$lang + "/#" + this.value });
           return;
         } else {
+          console.log(this.value);
+
           this.$emit("search", 0);
         }
       }
     },
     initialize(userOptions, lang) {
+      // docsearch(
+      //   Object.assign({}, userOptions, {
+      //     inputSelector: "#algolia-search-input",
+      //     // #697 Make docsearch work well at i18n mode.
+      //     algoliaOptions: Object.assign(
+      //       {
+      //         facetFilters: [`lang:${lang}`].concat(
+      //           algoliaOptions.facetFilters || []
+      //         ),
+      //       },
+      //       algoliaOptions
+      //     ),
+      //     handleSelected: (input, event, suggestion) => {
+      //       console.log(1);
+      //       // const { pathname, hash } = new URL(suggestion.url);
+      //       // const routepath = pathname.replace(this.$site.base, "/");
+      //       // const _hash = decodeURIComponent(hash);
+      //       // this.$router.push(`${routepath}${_hash}`);
+      //     },
+      //   })
+      // );
       Promise.all([
         import(
           /* webpackChunkName: "docsearch" */ "docsearch.js/dist/cdn/docsearch.min.js"
@@ -70,12 +102,22 @@ export default {
               },
               algoliaOptions
             ),
-            handleSelected: (input, event, suggestion) => {
-              const { pathname, hash } = new URL(suggestion.url);
-              const routepath = pathname.replace(this.$site.base, "/");
-              const _hash = decodeURIComponent(hash);
-              this.$router.push(`${routepath}${_hash}`);
+            handleSelected: (
+              input,
+              event,
+              suggestion,
+              datasetNumber,
+              context
+            ) => {
+              if (context.selectionMethod === "click") {
+                console.log(input, event, suggestion);
+                const { pathname, hash } = new URL(suggestion.url);
+                const routepath = pathname.replace(this.$site.base, "/");
+                const _hash = decodeURIComponent(hash);
+                this.$router.push(`${routepath}${_hash}`);
+              }
             },
+            debug: true,
           })
         );
       });
@@ -171,12 +213,12 @@ export default {
       }
 
       .algolia-docsearch-suggestion--wrapper {
-        line-height 30px
+        line-height: 30px;
         padding: 0;
       }
 
       .algolia-docsearch-suggestion--title {
-        line-height 30px
+        line-height: 30px;
         padding: 0;
         font-weight: 600;
         margin-bottom: 0;

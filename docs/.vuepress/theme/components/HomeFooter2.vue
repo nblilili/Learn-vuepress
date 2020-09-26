@@ -29,7 +29,7 @@
                 >浙ICP备15019097号-4</a> | ICP证：浙B1.B2-20150544
               </span>
               <br />
-              <div style="margin:10px auto;" v-if="$lang =='cn'">
+              <div style="margin:10px auto;" v-if="lang =='cn'">
                 <a
                   target="_blank"
                   href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=33020902000186"

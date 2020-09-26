@@ -4,14 +4,6 @@
       <slot name="top" />
       <div class="big-box">
         <div class="page-left" ref="pronbit">
-          <!-- tags是this.$page.frontmatter.tags，这是通过vuepress编译markdown文件中的tags生成的标签数组。 -->
-          <!-- $site.themeConfig.tags是config.js中配置的tags目录 -->
-          <!-- <section class="tags" v-if="this.$site.themeConfig.tags&&tags&&tags.length>0">
-          <span class="tagPopup" v-for="tag in tags">
-            <router-link :to="'/'+$site.themeConfig.tags+'/?tag='+tag" class="tag">{{tag}}</router-link>
-          </span>
-          </section>-->
-          <!-- <div>{{title}}</div>  -->
           <div class="contentTop">
             <div class="top_search" v-show="topsearch">
               <div class="search_div">
@@ -34,7 +26,7 @@
               </a>
             </span>
           </div>
-          <div style="padding: 2.5rem 2.5rem 0px 2.5rem" v-if="needTags">
+          <div class="tags" v-if="needTags">
             <div class="mbtns">
               <div
                 v-for="item in CardName"
@@ -56,20 +48,19 @@
     <!-- <dialog-bar v-model="showmodal"></dialog-bar>> -->
     <div class="modal_big play-second" v-show="showmodal">
       <div id class="layui-layer-content">{{showtext}}</div>
-      <span class="layui-layer-setwin"></span>
     </div>
   </div>
 </template>
 
 <script>
 import PageEdit from "@theme/components/PageEdit.vue";
-import dialogBar from "./dialog.vue";
+// import dialogBar from "./dialog.vue";
 import PageNav from "@theme/components/PageNav.vue";
 import SidebarRight from "@theme/components/SidebarRight.vue";
 // import TagsConfig from "../../config/TagsConfig.js";
 
 export default {
-  components: { PageEdit, PageNav, SidebarRight, "dialog-bar": dialogBar },
+  components: { PageEdit, PageNav, SidebarRight },
   props: ["sidebarItems", "toggleSidebar"],
   data() {
     return {
@@ -89,6 +80,7 @@ export default {
         show_in: false,
         show_out: false,
       },
+      timeout: null,
     };
   },
   watch: {
@@ -176,18 +168,43 @@ export default {
       // if(value == )
       this.showtext =
         this.$lang == "cn"
-          ? "您已切换成" + name + "平台"
+          ? '您已切换成 "' + name + '" 平台'
           : 'You have switched to platform "' + name + '"';
       // this.showmodal = true;
       this.showmodal = true;
-      this.showing = true;
-      if (this.showing) {
-        setTimeout(() => {
-          this.showmodal = false;
-          this.showing = false;
-        }, 3000);
-      } else {
-        this.showmodal = true;
+      // if(timeout!==null)
+      // this.timeout = setTimeout(() => {
+      //   this.showmodal = false
+      // }, 3000);
+      let that = this;
+      if (that.timeout) clearTimeout(that.timeout);
+      that.timeout = setTimeout(() => {
+        console.log(1);
+        that.showmodal = false;
+      }, 3000);
+
+      // debounce(hide, 1000);
+      // function hide() {
+      //   console.log(1);
+      //   that.showmodal = false;
+      // }
+      // function debounce(fn, wait) {
+      //   var timeout = null;
+      //   return function () {
+      //     if (timeout !== null) clearTimeout(timeout);
+      //     timeout = setTimeout(fn, wait);
+      //   };
+      // }
+      function debounce(func, wait) {
+        let timeout;
+        return function () {
+          let context = this;
+          let args = arguments;
+          if (timeout) clearTimeout(timeout);
+          timeout = setTimeout(() => {
+            func.apply(context, args);
+          }, wait);
+        };
       }
       // setTimeout(() => {
       //   this.showmodal = false;
@@ -345,8 +362,13 @@ function check_path(data) {
 @require '../styles/HomeSearch.styl';
 @import url('//at.alicdn.com/t/font_1986404_olndtqc1n5q.css');
 
+.tags {
+  padding: 2.5rem 2.5rem 0px 2.5rem;
+}
+
 .modal_big {
-  transition: all 1s;
+  width: inherit;
+  max-width: 400px;
   animation-duration: 0.3s;
   animation-fill-mode: both;
   background-attachment: scroll;
@@ -361,20 +383,19 @@ function check_path(data) {
   font-size: 15px;
   font-weight: 400;
   height: 48px;
-  left: 37.5%;
   z-index: 9999999;
   margin: 0 auto;
-  max-width: 500px;
-  min-width: 100px;
   padding: 0;
   position: fixed;
   top: 80px;
-  width: 100%;
-  min-width: 25%;
+  left: 0px;
+  right: 0px;
 }
 
 @media (max-width: 800px) {
-  left: initial;
+  .tags {
+    padding: 2em 15px 0;
+  }
 }
 
 .layui-layer-content {

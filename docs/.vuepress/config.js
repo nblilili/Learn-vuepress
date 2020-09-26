@@ -23,7 +23,6 @@ module.exports = {
 	},
 	plugins: [
 		['vuepress-plugin-baidu-autopush', {}],
-		['sitemap', { hostname: 'https://developer.juphoon.com' }],
 		['vuepress-plugin-code-copy', true]
 	],
 	host: "0.0.0.0",
