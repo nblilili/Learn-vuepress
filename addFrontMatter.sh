@@ -36,7 +36,7 @@ function addFrontMatter()
         # 最后使用markdownlint-cli 整理 md
         markdownlint -f ${path}
       else
-        echo "非${old}文件"
+        echo "非markdown文件"
       fi
       echo "change done!"
     fi  
