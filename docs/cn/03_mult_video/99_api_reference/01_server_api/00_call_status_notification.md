@@ -10,7 +10,7 @@ title: 通话状态通知
 文档描述基于您已经完成以下工作：
 
 - [创建应用](../../../juphoon_platform/03_console_description/03_应用管理)
-- [实现一对一通话](../../04_basic_func/02_achieve/iOS)
+- [实现多方通话](../../04_basic_func/02_achieve/iOS)
 
 基本架构
 
