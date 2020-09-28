@@ -500,8 +500,7 @@ Video data rendering interface:
  * @param[in] iHeight       the image height                            //Render image height
  * @param[in] data          the image data buffer                       //Renderibg data buffer
  */
-static public void onRender(String renderId, int sourceType, int iAngle, int iMirror,
-                                            int iWidth, int iHeight, ByteBuffer data)
+static public void onRender(String renderId, int sourceType, int iAngle, int iMirror,int iWidth, int iHeight, ByteBuffer data)
 ``````
 
 Sample code:

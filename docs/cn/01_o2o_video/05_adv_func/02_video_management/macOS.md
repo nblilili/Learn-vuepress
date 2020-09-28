@@ -127,9 +127,7 @@ int Zmf_VideoCaptureAddCallback (void *pUser, ZmfVideoCaptureCallback pfnCb)
  * @param[in,out] buf     the image data I420 buffer
  * @param[in,out] encoder capture encoder
  */
- typedef void (*ZmfVideoCaptureCallback)(void* pUser, const char* captureId, int iFace,
-                                       int iImgAngle, int iCaptureOrient, int* iWidth, int* iHeight,
-                                       unsigned char *buf, ZmfVideoCaptureEncoder* encoder);
+ typedef void (*ZmfVideoCaptureCallback)(void* pUser, const char* captureId, int iFace,int iImgAngle, int iCaptureOrient, int* iWidth, int* iHeight,unsigned char *buf, ZmfVideoCaptureEncoder* encoder);
 ``````
 
 示例代码
@@ -137,10 +135,7 @@ int Zmf_VideoCaptureAddCallback (void *pUser, ZmfVideoCaptureCallback pfnCb)
 ``````objectivec
 id render; //采集的视频数据对象
 void* p = (__bridge void *)render;
-static void zmfVideoCaptureCallback(void* pUser, const char* captureId, int iFace,
-                                    int iImgAngle, int iCaptureOrient, int* iWidth, int* iHeight,
-                                    unsigned char *buf, ZmfVideoCaptureEncoder* encoder) {
-
+static void zmfVideoCaptureCallback(void* pUser, const char* captureId, int iFace,int iImgAngle, int iCaptureOrient, int* iWidth, int* iHeight,unsigned char *buf, ZmfVideoCaptureEncoder* encoder) {
     NSLog(@"视频数据处理");
 }
 - (void)videoCall {
@@ -156,13 +151,11 @@ static void zmfVideoCaptureCallback(void* pUser, const char* captureId, int iFac
 如果想移除回调，调用下面的接口。
 
 ``````objectivec
-```
- /** remove capture data callback
+/** remove capture data callback
   * @param[in] pUser     the callback user data
   * returns 0 on succeed, otherwise failed
   */
 int Zmf_VideoCaptureRemoveCallback (void *pUser)
-```
 ``````
 
 示例代码
@@ -224,9 +217,7 @@ int Zmf_VideoRenderAddCallback (void *pUser, ZmfVideoRenderCallback pfnCb);
  *  if buf == 0 or iWidth ==0 or iHeight == 0, means the render will close,
  *  so should call Zmf_OnVideoRenderRequestRemove.
  */
- typedef int  (*ZmfVideoRenderCallback)(void* pUser, const char* renderId, int sourceType, int iAngle,
-                                  int iMirror, int* iWidth, int* iHeight, unsigned char *buf,
-                                  unsigned long timeStamp);
+ typedef int  (*ZmfVideoRenderCallback)(void* pUser, const char* renderId, int sourceType, int iAngle,int iMirror, int* iWidth, int* iHeight, unsigned char *buf,unsigned long timeStamp);
 ``````
 
 注册后，每帧解码后的视频数据通过 ZmfVideoRenderCallback 回调，可以处理对应的视频数据。
@@ -236,10 +227,7 @@ int Zmf_VideoRenderAddCallback (void *pUser, ZmfVideoRenderCallback pfnCb);
 ``````objectivec
 id render; //解码后的视频数据对象
 void* p = (__bridge void *)render;
-static void zmfVideoRenderCallback(void* pUser, const char* renderId, int sourceType, int iAngle,
-                                   int iMirror, int* iWidth, int* iHeight, unsigned char *buf,
-                                   unsigned long timeStamp) {
-
+static void zmfVideoRenderCallback(void* pUser, const char* renderId, int sourceType, int iAngle,int iMirror, int* iWidth, int* iHeight, unsigned char *buf,unsigned long timeStamp) {
     NSLog(@"视频数据处理");
 }
 - (void)videoCall {

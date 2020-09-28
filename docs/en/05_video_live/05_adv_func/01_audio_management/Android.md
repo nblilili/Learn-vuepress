@@ -246,8 +246,7 @@ The interface of collecting input data:
  * @param[in] clockDrift    clock drift between playout and record timestamp //usually 0
  *
  */
-static public void onInput (String inputId, int sampleRateHz, int iChannels, ByteBuffer data,
-                                                     int playDelayMS, int recDelayMS, int clockDrift)
+static public void onInput (String inputId, int sampleRateHz, int iChannels, ByteBuffer data,int playDelayMS, int recDelayMS, int clockDrift)
 ``````
 
 ::: tip

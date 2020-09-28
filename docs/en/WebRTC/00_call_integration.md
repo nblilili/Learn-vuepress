@@ -223,7 +223,7 @@ Before adjusting the layout of smart mode, you need to make sure that the layout
 
 | Command format                                               | Parameter description                                        |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| **Plain text format**<br/>`setmergemode_i <mode> <scsMode> [uri]`<br/>For example: set smart mode to "free mode", with screen sharing to "host mode", large screen The default zoom user is qqqq, the command is:<br/>`@setmergemode_i 1 3 [username:qqqq@sample.cloud.justalk.com]` | **mode:Smart split screen mode**<br/>1 freeLayout <br/>2 rectLayout<br/>3 bigSmallX2<br/>4 bigSmallX3<br/>......<br/>11 bigSmallX10<br/>12 bigSmallTop<br/>13 bigSmallBotto<br/> <br/>**scsMode: Smart split screen with screen sharing mode**<br/>1 screen<br/>2 platform<br/>3 platformCover<br/>4 speaker<br/>uri: default size screen Enlarged user uri |
+| **Plain text format**<br/>`setmergemode_i <mode> <scsMode> [uri]`<br/>For example: set smart mode to "free mode", with screen sharing to "host mode", large screen The default zoom user is qqqq, the command is:<br/>`@setmergemode_i 1 3 [username:qqqq@sample.cloud.justalk.com]` | **mode:Smart split screen mode**<br/>1 freeLayout <br/>2 rectLayout<br/>3 bigSmallX2<br/>4 bigSmallX3<br/>......<br/>11 bigSmallX10<br/>12 bigSmallTop<br/>13 bigSmallBottom<br/> <br/>**scsMode: Smart split screen with screen sharing mode**<br/>1 screen<br/>2 platform<br/>3 platformCover<br/>4 speaker<br/>uri: default size screen Enlarged user uri |
 
 
 ##### Adjust the detailed parameters of the smart mode

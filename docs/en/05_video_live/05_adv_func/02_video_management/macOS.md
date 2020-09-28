@@ -187,9 +187,7 @@ Callback type description:
  * @param[in,out] buf     the image data I420 buffer
  * @param[in,out] encoder capture encoder
  */
- typedef void (*ZmfVideoCaptureCallback)(void* pUser, const char* captureId, int iFace,
-                                       int iImgAngle, int iCaptureOrient, int* iWidth, int* iHeight,
-                                       unsigned char *buf, ZmfVideoCaptureEncoder* encoder);
+ typedef void (*ZmfVideoCaptureCallback)(void* pUser, const char* captureId, int iFace,int iImgAngle, int iCaptureOrient, int* iWidth, int* iHeight,unsigned char *buf, ZmfVideoCaptureEncoder* encoder);
 ``````
 
 Sample code:
@@ -218,13 +216,11 @@ corresponding video data can be processed.
 If you want to remove the callback, call the following interface:
 
 ``````objectivec
-```
- /** remove capture data callback
+/** remove capture data callback
   * @param[in] pUser     the callback user data
   * returns 0 on succeed, otherwise failed
   */
 int Zmf_VideoCaptureRemoveCallback (void *pUser)
-```
 ``````
 
 Sample code:
@@ -295,9 +291,7 @@ Callback type description:
  *  if buf == 0 or iWidth ==0 or iHeight == 0, means the render will close,
  *  so should call Zmf_OnVideoRenderRequestRemove.
  */
- typedef int  (*ZmfVideoRenderCallback)(void* pUser, const char* renderId, int sourceType, int iAngle,
-                                  int iMirror, int* iWidth, int* iHeight, unsigned char *buf,
-                                  unsigned long timeStamp);
+ typedef int  (*ZmfVideoRenderCallback)(void* pUser, const char* renderId, int sourceType, int iAngle,int iMirror, int* iWidth, int* iHeight, unsigned char *buf,unsigned long timeStamp);
 ``````
 
 After registration, the video data collected in each frame can be

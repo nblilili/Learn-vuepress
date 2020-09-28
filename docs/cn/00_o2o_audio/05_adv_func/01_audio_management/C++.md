@@ -56,9 +56,7 @@ int Zmf_AudioInputAddCallback(void *pUser, ZmfAudioInputCallback pfnCb);
  * @param[in] recDelayMS    the record dely ms
  * @param[in] clockDrift    the clock drift ms
  */
-typedef void (*ZmfAudioInputCallback)(void* pUser, const char* inputId, int iSampleRateHz, int iChannels,
-                                   unsigned char *buf, int len, int *micLevel,
-                                   int playDelayMS, int recDelayMS, int clockDrift);
+typedef void (*ZmfAudioInputCallback)(void* pUser, const char* inputId, int iSampleRateHz, int iChannels,unsigned char *buf, int len, int *micLevel,int playDelayMS, int recDelayMS, int clockDrift);
 ``````
 
 回调注册后，当有音频数据采集进来时，可以对音频数据进行处理。
@@ -66,10 +64,7 @@ typedef void (*ZmfAudioInputCallback)(void* pUser, const char* inputId, int iSam
 示例代码
 
 ``````cpp
-static void zmfAudioInputCallback(void* pUser, const char* inputId, int iSampleRateHz, int iChannels,
-                                   unsigned char *buf, int len, int *micLevel,
-                                   int playDelayMS, int recDelayMS, int clockDrift) {
-
+static void zmfAudioInputCallback(void* pUser, const char* inputId, int iSampleRateHz, int iChannels,unsigned char *buf, int len, int *micLevel,int playDelayMS, int recDelayMS, int clockDrift) {
     cout << "音频数据处理" << endl;
 }
 void JCSampleDlg::OnBnClickedButtonCall()
@@ -78,7 +73,7 @@ void JCSampleDlg::OnBnClickedButtonCall()
     Zmf_AudioInputAddCallback(void*pUser, zmfAudioInputCallback);
     //发起呼叫
     ...
-}
+}-
 ``````
 
 如果想移除回调，调用下面的接口。
@@ -146,8 +141,7 @@ int  Zmf_AudioOutputAddCallback     (void *pUser, ZmfAudioOutputCallback pfnCb);
 /** the callback to fill audio output buffer
  * @param[in] pUser  the user data registered by Zmf_AudioOutputAddCallback
  */
-typedef int  (*ZmfAudioOutputCallback)(void* pUser, const char* outputId, int iSampleRateHz, int iChannels,
-                                     unsigned char *buf, int len);
+typedef int  (*ZmfAudioOutputCallback)(void* pUser, const char* outputId, int iSampleRateHz, int iChannels,unsigned char *buf, int len);
 ``````
 
 回调注册后，当有解码后的音频数据进来时，可以进行对应的音频数据处理。
@@ -155,8 +149,7 @@ typedef int  (*ZmfAudioOutputCallback)(void* pUser, const char* outputId, int iS
 示例代码
 
 ``````cpp
-static void zmfAudioOutputCallback(void* pUser, const char* outputId, int iSampleRateHz, int iChannels,
-                                     unsigned char *buf, int len) {
+static void zmfAudioOutputCallback(void* pUser, const char* outputId, int iSampleRateHz, int iChannels,unsigned char *buf, int len) {
 
     cout << "音频数据处理" << endl;
 }
@@ -217,11 +210,11 @@ Juphoon 对应的接口中进行后续操作。
 /**
  * @brief Initialize Audio module of ZMF(Zero Media Framework).
  * @param  applicationContext For Windows, it can be the handle of the window,
- *                            The notification event will be sent to that window.
- *                            Or it can be callback function of type ZmfEventListenCallback.
- *                            For Android, it must be the Context.
- *                            For iOS, it should be NULL and is ignored.
- * @return                    0 on succeed, otherwise failed.
+ *         The notification event will be sent to that window.
+ *         Or it can be callback function of type ZmfEventListenCallback.
+ *         For Android, it must be the Context.
+ *         For iOS, it should be NULL and is ignored.
+ * @return 0 on succeed, otherwise failed.
  */
 int Zmf_AudioInitialize(void *applicationContext);
 ``````
