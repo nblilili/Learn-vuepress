@@ -31,8 +31,6 @@ title: 客户端 API
 | [getLoginParam](https://developer.juphoon.com/portal/reference/V2.3/Android/classcom_1_1juphoon_1_1cloud_1_1_j_c_client.html#afc8322301e634ad964780c75683c92fe) | 获取登录参数                                                 |
 | [login](https://developer.juphoon.com/portal/reference/V2.3/Android/classcom_1_1juphoon_1_1cloud_1_1_j_c_client.html#a50016ca73cd0dacf5c26aafc5839260f) | 登录 Juphoon Cloud 平台                                      |
 | [logout](https://developer.juphoon.com/portal/reference/V2.3/Android/classcom_1_1juphoon_1_1cloud_1_1_j_c_client.html#aba212cd8810310f5cc43303c14501b7a) | 登出 Juphoon Cloud 平台                                      |
-| setServerUid                                                 | 设置自己在服务器上的 uid                                     |
-| getServerUid                                                 | 获取自己在服务器上的 uid                                     |
 
 ## 登录事件
 
@@ -74,7 +72,6 @@ title: 客户端 API
 | [getAudioRouteType](https://developer.juphoon.com/portal/reference/V2.3/Android/classcom_1_1juphoon_1_1cloud_1_1_j_c_media_device.html#a9d601d607fbf27f44b53708696587d9f) | 音频路由类型                                                 |
 | [setVideoAngle](https://developer.juphoon.com/portal/reference/V2.3/Android/classcom_1_1juphoon_1_1cloud_1_1_j_c_media_device.html#a508da59a475ec6cbc9ce196ea2a32a93) | 设置视频窗体角度                                             |
 | [getVideoAngle](https://developer.juphoon.com/portal/reference/V2.3/Android/classcom_1_1juphoon_1_1cloud_1_1_j_c_media_device.html#a9d3d6cdbcda87c083909bdead4ca3483) | 获取视频窗体角度                                             |
-| enableScreenCapture                                          | 开启/关闭屏幕采集                                            |
 
 ## 设备事件
 
