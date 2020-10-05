@@ -25,3 +25,5 @@ yarn-error.log*
 *.sln
 *.sw?
 deploy.sh
+changeFile.sh
+addFrontMatter.sh

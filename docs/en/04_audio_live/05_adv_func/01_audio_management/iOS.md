@@ -53,7 +53,7 @@ int Zmf_AudioInputAddCallback(void *pUser, ZmfAudioInputCallback pfnCb);
 Callback type description:
 
 ``````objectivec
-/** The callback to receive audio input data
+/** the callback to receive audio input data
  *
  * @param[in] pUser  the user data registered by Zmf_AddAudioInputCallback
  * @param[in] inputId       unique name of the audio input
@@ -66,9 +66,7 @@ Callback type description:
  * @param[in] recDelayMS    the record dely ms
  * @param[in] clockDrift    the clock drift ms
  */
-typedef void (*ZmfAudioInputCallback)(void* pUser, const char* inputId, int iSampleRateHz, int iChannels,
-                                   unsigned char *buf, int len, int *micLevel,
-                                   int playDelayMS, int recDelayMS, int clockDrift);
+typedef void (*ZmfAudioInputCallback)(void* pUser, const char* inputId, int iSampleRateHz, int iChannels,unsigned char *buf, int len, int *micLevel,int playDelayMS, int recDelayMS, int clockDrift);
 ``````
 
 After the callback registration, you can process the audio data when
@@ -167,8 +165,7 @@ Callback type description:
 /** the callback to fill audio output buffer
  * @param[in] pUser  the user data registered by Zmf_AudioOutputAddCallback
  */
-typedef int  (*ZmfAudioOutputCallback)(void* pUser, const char* outputId, int iSampleRateHz, int iChannels,
-                                     unsigned char *buf, int len);
+typedef int  (*ZmfAudioOutputCallback)(void* pUser, const char* outputId, int iSampleRateHz, int iChannels,unsigned char *buf, int len);
 ``````
 
 After the callback registration, you can process the corresponding audio
@@ -177,8 +174,7 @@ data when receive the decoded audio data.
 Sample code:
 
 ``````objectivec
-static void zmfAudioOutputCallback(void* pUser, const char* outputId, int iSampleRateHz, int iChannels,
-                                     unsigned char *buf, int len) {
+static void zmfAudioOutputCallback(void* pUser, const char* outputId, int iSampleRateHz, int iChannels,unsigned char *buf, int len) {
 
     NSLog(@"process audio data");
 }
@@ -253,11 +249,11 @@ The interface of audio device initialization:
 /**
  * @brief Initialize Audio module of ZMF(Zero Media Framework).
  * @param  applicationContext For Windows, it can be the handle of the window,
- *                            The notification event will be sent to that window.
- *                            Or it can be callback function of type ZmfEventListenCallback.
- *                            For iOS, it must be the Context.
- *                            For iOS, it should be NULL and is ignored.
- * @return                    0 on succeed, otherwise failed.
+ *                 The notification event will be sent to that window.
+ *                 Or it can be callback function of type ZmfEventListenCallback.
+ *                 For iOS, it must be the Context.
+ *                 For iOS, it should be NULL and is ignored.
+ * @return  0 on succeed, otherwise failed.
  */
 int Zmf_AudioInitialize(void *applicationContext);
 ``````

@@ -54,7 +54,7 @@ interactive audio streaming are:
 <td><p>All use cases</p></td>
 </tr>
 <tr class="even">
-<td><p>Cloud rrecording</p></td>
+<td><p>Cloud recording</p></td>
 <td><p>Real-time recording; the recording file can be retrieved immediately after the call</p></td>
 <td><p>All use cases</p></td>
 </tr>

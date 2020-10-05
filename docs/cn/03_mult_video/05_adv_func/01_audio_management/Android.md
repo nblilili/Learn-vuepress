@@ -215,8 +215,7 @@ Juphoon 对应的接口中进行后续操作。
  * @param[in] clockDrift    clock drift between playout and record timestamp //时钟漂移 通常取0
  *
  */
-static public void onInput (String inputId, int sampleRateHz, int iChannels, ByteBuffer data,
-                                                     int playDelayMS, int recDelayMS, int clockDrift)
+static public void onInput (String inputId, int sampleRateHz, int iChannels, ByteBuffer data,int playDelayMS, int recDelayMS, int clockDrift)
 ``````
 
 ::: tip

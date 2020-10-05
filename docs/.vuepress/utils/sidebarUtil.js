@@ -112,8 +112,8 @@ function getChildren(filePath, childArr) {
       filename= path.basename(filename, ".md");
       var relativePath = path.relative(basePath, fileDir).split(path.sep).join('/');
       if (!platformSelectorMap.has(filename)) {
-        filename == 'README' ? childArr.splice(0, 0, '') : childArr.push(relativePath);
-        // console.log("---sidebar---: "+ JSON.stringify(sidebar, null, 4));
+        filename == 'README' ? childArr.splice(0, 0, relativePath.replace("README.md", "")) : childArr.push(relativePath);
+        console.log("---sidebar---: "+ JSON.stringify(sidebar, null, 4));
       } else {
         // console.log("fileDir: " + fileDir + " and do nothing");
       }

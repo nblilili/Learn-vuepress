@@ -223,14 +223,14 @@ text    具体的指令协议,参考文档下方说明
 
 | 指令格式                                                     | 参数说明                                                     |
 | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| **明文格式**<br/>`setmergemode_i <mode> <scsMode> [uri]`<br/>例如：设置智能模式为“自由模式”，带屏幕共享为“主持人模式”，大小屏放大用户默认为qqqq，则指令为：<br/>`@setmergemode_i 1 3 [username:qqqq@sample.cloud.justalk.com]` | **mode:智能分屏模式**<br/>1 freeLayout<br/>2 rectLayout<br/>3 bigSmallX2<br/>4 bigSmallX3<br/>......<br/>11 bigSmallX10<br/>12 bigSmallTop<br/>13 bigSmallBotto<br/><br/>**scsMode：智能分屏带屏幕共享模式**<br/>1 screen<br/>2 platform<br/>3 platformCover<br/>4 speaker<br/>uri: 大小屏默认放大的用户 uri |
+| **明文格式**<br/>`setmergemode_i <mode> <scsMode> [uri]`<br/>例如：设置智能模式为“自由模式”，带屏幕共享为“主持人模式”，设置 qqqq 为默认大屏的用户，，则指令为：<br/>`@setmergemode_i 1 3 [username:qqqq@sample.cloud.justalk.com]` | **mode:智能分屏模式**<br/>1 freeLayout<br/>2 rectLayout<br/>3 bigSmallX2<br/>4 bigSmallX3<br/>......<br/>11 bigSmallX10<br/>12 bigSmallTop<br/>13 bigSmallBottom<br/><br/>**scsMode：智能分屏带屏幕共享模式**<br/>1 screen<br/>2 platform<br/>3 platformCover<br/>4 speaker<br/>**uri: 大小屏默认放大的用户 uri** |
 
 
 ##### 调整智能模式的详细参数
 
 | 指令格式                                                     | 参数说明                                                     |
 | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| **明文格式**<br/>setmerge_i \<width\> \<height\> \<mode\> \<scsMode\> \<fps\> [uri]<br/>例如：设置宽为1600，高为900，智能模式为“自由模式”，带屏幕共享为“主持人模式”，帧数为24帧，大小屏放大用户默认为qqqq则指令为：<br/>@setmerge_i 1600 900 1 3 24 [username:qqqq@sample.cloud.justalk.com] | **width** 宽<br/>**height** 高<br/>**mode** 智能分屏模式，参见上方setmergemode_i<br/>**scsMode** 智能分屏带屏幕共享模式，参见上方setmergemode_iv<br/>**fps** 帧数 1-30<br/>**uri** 大小屏默认放大的用户 uri |
+| **明文格式**<br/>setmerge_i \<width\> \<height\> \<mode\> \<scsMode\> \<fps\> [uri]<br/>例如：设置宽为1600，高为900，智能模式为“自由模式”，带屏幕共享为“主持人模式”，帧数为24帧，设置 qqqq 为默认大屏的用户，则指令为：<br/>@setmerge_i 1600 900 1 3 24 [username:qqqq@sample.cloud.justalk.com] | **width** 宽<br/>**height** 高<br/>**mode** 智能分屏模式，参见上方setmergemode_i<br/>**scsMode** 智能分屏带屏幕共享模式，参见上方setmergemode_iv<br/>**fps** 帧数 1-30<br/>**uri** 大小屏默认放大的用户 uri |
 
 关于智能分屏模式和调整智能分屏模式的详细参数的具体指令信息，请参考 [智能模式布局](#智能模式布局)。
 
@@ -240,13 +240,13 @@ text    具体的指令协议,参考文档下方说明
 
 | 指令格式                                                     | 参数说明                                                     |
 | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| **JSON格式**<br/>{“cmd”:”StartRecord”,”Video”:true,”Storage”:<br/>{<br/>“Protocol”:”qiniu”,<br/>“AccessKey”:”Th2jW*********”,<br/>“SecretKey”:”Nh***********”,<br/>“**BucketName**”:”***”,<br/>“FileKey”:”1234.mp4”,<br/>“SplitFileSize”:1024<br/>}<br/>} | Video 是否视频会议，true为视频会议<br/>Protocol 云存储协议，目前支持七牛<br/>AccessKey、SecretKey 七牛云个人中心->密钥管理查看<br/>BucketName 七牛云的存储名称<br/>FileKey 上传到七牛的文件名<br/>SplitFileSize 录制文件超过多少 KB 自动分割，不填，默认是500M |
+| **JSON格式**<br/>{“cmd”:”StartRecord”,”Video”:true,”Storage”:<br/>{<br/>“Protocol”:”qiniu”,<br/>“AccessKey”:”Th2jW*********”,<br/>“SecretKey”:”Nh***********”,<br/>“**BucketName**”:”***”,<br/>“FileKey”:”1234.mp4”,<br/>“SplitFileSize”:1024<br/>}<br/>} | Video 是否为视频会议，true为视频会议<br/>Protocol 云存储协议，目前支持七牛<br/>AccessKey、SecretKey 七牛云个人中心->密钥管理查看<br/>BucketName 七牛云的存储名称<br/>FileKey 上传到七牛的文件名<br/>SplitFileSize 录制文件超过多少 KB 自动分割，不填，默认是500M |
 
 ##### 停止录制
 
 | 指令格式                                                     | 参数说明                                                     |
 | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| **JSON格式**<br/>{“cmd”:”StopRecord”}<br/>假设 base64编码后为 eyJjbWQiOiJTdG9wUmVjb3JkIn0=，会议号为12345678，则停止录制的命令如下：<br/>sendtext eyJjbWQiOiJTdG9wUmVjb3JkIn0=[username:delivery_12345678@delivery.cloud.justalk.com] | 录制器或推流器也是一个 confDelivery，录制器或推流器也是一个 confDelivery，录制器或推流器 uri 为：<br/>[username:delivery_会议号@delivery.cloud.justalk.com] |
+| **JSON格式**<br/>{“cmd”:”StopRecord”}<br/>base64编码后为 e+KAnGNtZOKAnTrigJ1TdG9wUmVjb3Jk4oCdfQ==，假设会议号为12345678，则停止录制的命令如下：<br/>sendtext +KAnGNtZOKAnTrigJ1TdG9wUmVjb3Jk4oCdfQ==[username:delivery_12345678@delivery.cloud.justalk.com] | 录制器或推流器也是一个 confDelivery，录制器或推流器 uri 为：<br/>[username:delivery_会议号@delivery.cloud.justalk.com] |
 
 ::: tip
 
@@ -260,8 +260,8 @@ text    具体的指令协议,参考文档下方说明
 
 | 指令内容     | 指令格式                                                     |
 | :----------- | :----------------------------------------------------------- |
-| 设置推流地址 | **明文格式**<br/>setpushuri \<uri\><br/>设置推流地址，若以’/’结尾，则自动添加当前会议号。<br/>必须在开始“视频混合”前设置<br/>录制器或推流器也是一个 confDelivery，可以通过 sendtext 命令通知录制器/推流器来操作<br/>录制器或推流器 uri 为：[username:delivery_会议号@delivery.cloud.justalk.com]<br/>// 举例<br/>假设会议号为12345678，则指令为：<br/>@sendtext @delivery_12345678 setpushuri rtmp://video-center.alivecdn.com/juphoon11/juphoon?vhost=broadcast.justalkcloud.com [username:delivery_12345678@delivery.cloud.justalk.com] |
-| 设置推流参数 | **明文格式**<br/>setpushuriparm \<parm\><br/>最终完全的推流的 URL 等于：推流地址 + 空格 + 推流参数<br/>必须在开始“视频混合”前设置<br/>// 举例<br/>假设会议号为12345678，则指令为：<br/>@sendtext @delivery_12345678 setpushuriparm socks=192.12.1.2[username:delivery_12345678@delivery.cloud.justalk.com] |
+| 设置推流地址 | **明文格式**<br/>setpushuri \<uri\><br/>设置推流地址，若以’/’结尾，则自动添加当前会议号。<br/>视频推流开始前必须先设置好视频模式（指用setmerge的命令去设置的模式，包括布局、视频合流等），推流后再设置将不起作用。<br/>录制器或推流器也是一个 confDelivery，可以通过 sendtext 命令通知录制器/推流器来操作<br/>录制器或推流器 uri 为：[username:delivery_会议号@delivery.cloud.justalk.com]<br/>// 举例<br/>假设会议号为12345678，则指令为：<br/>@sendtext @delivery_12345678 setpushuri rtmp://video-center.alivecdn.com/juphoon11/juphoon?vhost=broadcast.justalkcloud.com [username:delivery_12345678@delivery.cloud.justalk.com] |
+| 设置推流参数 | **明文格式**<br/>setpushuriparm \<parm\><br/>最终完全的推流的 URL 等于：推流地址 + 空格 + 推流参数<br/>视频推流开始前必须先设置好视频模式（指用setmerge的命令去设置的模式，包括布局、视频合流等），推流后再设置将不起作用。<br/>// 举例<br/>假设会议号为12345678，则指令为：<br/>@sendtext @delivery_12345678 setpushuriparm socks=192.12.1.2[username:delivery_12345678@delivery.cloud.justalk.com] |
 | 开始推流     | **明文格式**<br/>startpush<br/>开始向 CDN 推流，相应的网页观看地址由 CDN 服务提供商决定<br/>// 举例<br/>假设会议号为12345678，则指令为：<br/>@sendtext @delivery_12345678 startpush[username:delivery_12345678@delivery.cloud.justalk.com] |
 | 停止推流     | **明文格式**<br/>stoppush<br/>// 举例<br/>假设会议号为12345678，则指令为：<br/>@sendtext @delivery_12345678 stoppush[username:delivery_12345678@delivery.cloud.justalk.com] |
 
@@ -733,7 +733,7 @@ sendtext eyJjbWQiOiJTdGFydFJlY29yZCIsIlZpZGVvIjp0cnVlLCJTdG9yYWdlIjp7IlByb3RvY29
 ```js
 {"cmd":"StartRecord","Video":true,"Storage":{"Protocol":"qiniu","AccessKey":"Th2jW_jP5VSk-wfdVMy5it1oK4iHa8pv8vBZMhbd","SecretKey":"Nh***********","BucketName":"ajianzheng","FileKey":"12345678.mp4","SplitFileSize":1024}}
 
-base64编码为
+base64编码后为
 eyJjbWQiOiJTdGFydFJlY29yZCIsIlZpZGVvIjp0cnVlLCJTdG9yYWdlIjp7IlByb3RvY29sIjoicWluaXUiLCJBY2Nlc3NLZXkiOiJUaDJqV19qUDVWU2std2ZkVk15NWl0MW9LNGlIYThwdjh2QlpNaGJkIiwiU2VjcmV0S2V5IjoiTmgtX3BnWHJ4OXdlaXE4YmtBdEpQa3JCbFYzWVAxM1UwRngwZlQtYyIsIkJ1Y2tldE5hbWUiOiJhamlhbnpoZW5nIiwiRmlsZUtleSI6IjEyMzQ1Njc4Lm1wNCIsIlNwbGl0RmlsZVNpemUiOjEwMjR9fQ==
 
 假设会议号为12345678，则指令为

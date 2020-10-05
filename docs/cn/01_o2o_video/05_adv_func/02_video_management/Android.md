@@ -393,8 +393,7 @@ public void endCall() {
  * @param[in] iHeight       the image height                            //渲染图像高
  * @param[in] data          the image data buffer                       //渲染数据buffer
  */
-static public void onRender(String renderId, int sourceType, int iAngle, int iMirror,
-                                            int iWidth, int iHeight, ByteBuffer data)
+static public void onRender(String renderId, int sourceType, int iAngle, int iMirror,int iWidth, int iHeight, ByteBuffer data)
 ``````
 
 示例代码
